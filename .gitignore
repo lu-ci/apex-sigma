@@ -1,0 +1,6 @@
+*.xml
+*.iml
+*.txt
+.idea/vcs.xml
+config.json
+release/*
