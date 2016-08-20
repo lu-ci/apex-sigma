@@ -8,6 +8,7 @@ import json
 import urllib.request
 import urllib.error
 import wget
+from PIL import Image
 
 print('Starting up...')
 start_time = time.time()
@@ -61,9 +62,9 @@ async def on_ready():
     print('STATUS: Finished Loading!')
     print('-------------------------\n')
     print('-----------------------------------------')
-    print('Authors: AXAz0r, Awakening, Battlemuffins')
-    print('Bot Version: Beta 0.12b')
-    print('Build Date: 9. August 2016.')
+    print('Authors: AXAz0r, Awakening')
+    print('Bot Version: Beta 0.1')
+    print('Build Date: 20. August 2016.')
     print('-----------------------------------------\n')
 
 @client.event
@@ -105,8 +106,30 @@ async def on_message(message):
         profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
         profile_json = json.loads(profile_json_source)
         try:
-            image_link = profile_json['data']['avatar']
-            wget.download(image_link)
+            avatar_link = profile_json['data']['avatar']
+            border_link = profile_json['data']['levelFrame']
+            if os.path.isfile('avatar.png') == True:
+                os.remove('avatar.png')
+            if os.path.isfile('border.png') == True:
+                os.remove('border.png')
+            if os.path.isfile('profile.png') == True:
+                os.remove('profile.png')
+            wget.download(avatar_link)
+            avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
+            avatar_name = str(profile_json['data']['avatar'])
+            os.rename(avatar_name[len(avatar_link_base):], 'avatar.png')
+            wget.download(border_link)
+            border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
+            border_name = str(profile_json['data']['levelFrame'])
+            os.rename(border_name[len(border_link_base):], 'border.png')
+            base = Image.open('base.png')
+            foreground = Image.open('border.png')
+            foreground_res = foreground.resize((176, 176), Image.ANTIALIAS)
+            background = Image.open('avatar.png')
+            background_res = background.resize((72, 72), Image.ANTIALIAS)
+            base.paste(background_res, (28, 28), background_res)
+            base.paste(foreground_res, (-24, -24), foreground_res)
+            base.save('profile.png')
             overwatch_profile = ('**Name:** ' + profile_json['data']['username'] +
                                 '\n**Level:** ' + str(profile_json['data']['level']) +
                                 '\n**Quick Games:**' +
@@ -124,6 +147,7 @@ async def on_message(message):
                                  )
             print('CMD [' + cmd_name + '] > ' + initiator_data)
             await client.send_message(message.channel, overwatch_profile)
+            await client.send_file(message.channel, 'profile.png')
         except KeyError:
             try:
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
@@ -131,5 +155,5 @@ async def on_message(message):
                 await client.send_message(message.channel, profile_json['error'])
             except:
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
-                await client.send_message(message.channel, 'Something went wrong, please try again.')
+                await client.send_message(message.channel, 'Something went wrong.\nThe servers are most likely overloaded, please try again.')
 client.run(token)
