@@ -148,8 +148,8 @@ async def on_message(message):
         ow_name = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
         response = RequstOWProfile(initiator_data, ow_name)
         if (response[0]):
-            await client.send_file(message.channel, response[1])
-            await client.send_message(message.channel, response[2])
+            await client.send_file(message.channel, response[2])
+            await client.send_message(message.channel, response[1])
         else: await client.send_message(message.channel, response[1])
 
 
