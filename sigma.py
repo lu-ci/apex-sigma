@@ -68,22 +68,6 @@ async def on_ready():
     print('-----------------------------------------\n')
 
 @client.event
-async def on_member_join(member):
-    if os.path.isfile(member.server.id + '.txt') == False:
-        message = open(member.server.id + '.txt', 'w')
-        message.write('')
-        server_message = message.read()
-        print(str(member.server.id) + ' message file created.')
-    else:
-        message = open(member.server.id + '.txt', 'r')
-        server_message = message.read()
-        print(str(member.server.id) + ' message file read.')
-
-    welcome_message = ('Welcome to ' + member.server.name + '! <@' + member.id +  '>.\n' + server_message)
-    server = member.server
-    await client.send_message(server, welcome_message)
-    print(server.name + ': ' + welcome_message)
-@client.event
 async def on_message(message):
     # Static Strings
     initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nServer: ' + str(message.server.name) + '\nServerID: ' + str(message.server.id) + '\n-----------------------------------------')
@@ -146,8 +130,8 @@ async def on_message(message):
                                 '\n    **- Competitive:** ' + str(profile_json['data']['playtime']['competitive'])
                                  )
             print('CMD [' + cmd_name + '] > ' + initiator_data)
-            await client.send_message(message.channel, overwatch_profile)
             await client.send_file(message.channel, 'profile.png')
+            await client.send_message(message.channel, overwatch_profile)
         except KeyError:
             try:
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
