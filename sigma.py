@@ -7,6 +7,7 @@ import datetime
 import json
 import urllib.request
 import urllib.error
+import wget
 
 print('Starting up...')
 start_time = time.time()
@@ -104,6 +105,8 @@ async def on_message(message):
         profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
         profile_json = json.loads(profile_json_source)
         try:
+            image_link = profile_json['data']['avatar']
+            wget.download(image_link)
             overwatch_profile = ('**Name:** ' + profile_json['data']['username'] +
                                 '\n**Level:** ' + str(profile_json['data']['level']) +
                                 '\n**Quick Games:**' +
@@ -130,4 +133,3 @@ async def on_message(message):
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
                 await client.send_message(message.channel, 'Something went wrong, please try again.')
 client.run(token)
-#client.run('aleksa.radovic95@gmail.com', 'imtoosexy95')
