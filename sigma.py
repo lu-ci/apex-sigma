@@ -87,15 +87,6 @@ async def on_message(message):
 # Overwatch API
     elif message.content.startswith(pfx + cmd_overwatch + ' '):
         cmd_name = 'Overwatch'
-<<<<<<< HEAD
-        client.send_typing(message.channel)
-        ow_name = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
-        response = RequstOWProfile(initiator_data, ow_name)
-        if (response[0]):
-            await client.send_file(message.channel, response[2])
-            await client.send_message(message.channel, response[1])
-        else: await client.send_message(message.channel, response[1])
-=======
         await client.send_typing(message.channel)
         ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
         print(ow_input)
@@ -184,7 +175,6 @@ async def on_message(message):
             smn_id = str(summoner_by_name_json[summoner_name]['id'])
             smn_icon = str(summoner_by_name_json[summoner_name]['profileIconId'])
             smn_level = str(summoner_by_name_json[summoner_name]['summonerLevel'])
->>>>>>> refs/remotes/origin/master
 
             stats_normal_url = ('https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smn_id + '/summary?season=SEASON2016&api_key=' + riot_api_key)
             print(stats_normal_url)
