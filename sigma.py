@@ -97,7 +97,7 @@ async def on_message(message):
         print(ow_region.lower())
         print(ow_name)
         #profile = ('https://api.lootbox.eu/pc/eu/' + ow_name + '/profile')
-        profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile')
+        profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
         print(profile)
         profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
         profile_json = json.loads(profile_json_source)
