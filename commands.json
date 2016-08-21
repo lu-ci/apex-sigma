@@ -1,4 +1,5 @@
 {
 	"cmd_count": "count",
-	"cmd_overwatch": "overwatch"
+	"cmd_overwatch": "overwatch",
+	"cmd_league": "league"
 }
