@@ -89,16 +89,12 @@ async def on_message(message):
         cmd_name = 'Overwatch'
         await client.send_typing(message.channel)
         ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
-        print(ow_input)
         ow_region_x, ignore, ow_name = ow_input.partition(' ')
         #ow_name = (str(ow_input[3:]))
         #ow_region = (str(ow_input[:12]))
         ow_region = ow_region_x.replace('NA', 'US')
-        print(ow_region.lower())
-        print(ow_name)
         #profile = ('https://api.lootbox.eu/pc/eu/' + ow_name + '/profile')
         profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
-        print(profile)
         profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
         profile_json = json.loads(profile_json_source)
         try:
@@ -132,6 +128,11 @@ async def on_message(message):
             base.paste(overlay, (0, 0), overlay)
             base.paste(foreground_res, (0, 0), foreground_res)
             base.save('profile.png')
+            if message.author.id == '152239976338161664':
+                rank_error = 'Goddamn it Bubu!'
+            else:
+                rank_error = 'Season not active.'
+            #Original Rank Code: str(profile_json['data']['games']['competitive']['lost']
             overwatch_profile = ('**Name:** ' + profile_json['data']['username'] +
                                 '\n**Level:** ' + str(profile_json['data']['level']) +
                                 '\n**Quick Games:**' +
@@ -142,7 +143,7 @@ async def on_message(message):
                                 '\n    **- Played:** ' + str(profile_json['data']['games']['competitive']['played']) +
                                 '\n    **- Won:** ' + str(profile_json['data']['games']['competitive']['wins']) +
                                 '\n    **- Lost:** ' + str(profile_json['data']['games']['competitive']['lost']) +
-                                '\n    **- Rank:** ' + str(profile_json['data']['games']['competitive']['lost']) +
+                                '\n    **- Rank:** ' + rank_error +
                                 '\n**Playtime:**' +
                                 '\n    **- Quick:** ' +str(profile_json['data']['playtime']['quick']) +
                                 '\n    **- Competitive:** ' + str(profile_json['data']['playtime']['competitive'])
@@ -208,4 +209,11 @@ async def on_message(message):
             except:
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
                 await client.send_message(message.channel, 'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+    elif message.content.startswith('-read<@92747043885314048>'):
+        if message.author.id == ownr:
+            await client.send_message(message.channel, 'Alex stop wasting time and get back to working on my APIs...')
+        elif message.author.id == '92747043885314048':
+            await client.send_message(message.channel, 'Ace, I heard Alex bought this giant black dildo, wanna go test it out?')
+        else:
+            await client.send_message(message.channel, 'No! ಠ_ಠ')
 client.run(token)
