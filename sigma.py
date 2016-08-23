@@ -47,17 +47,21 @@ mashape_key = 'nvLNoBix6DmshG97ORG4iB51mHa5p1UezKwjsnigQ85K5RXieT'
 owm_key = 'b49efc119530833da61588e4d87668c1'
 
 # Commands
-cmd_count = (commands['cmd_count'])
+cmd_help = (commands['cmd_help'])
 cmd_overwatch = (commands['cmd_overwatch'])
 cmd_league = (commands['cmd_league'])
 cmd_bns = (commands['cmd_bns'])
 cmd_ud = (commands['cmd_ud'])
 cmd_weather = (commands['cmd_weather'])
+cmd_hearthstone = (commands['cmd_hearthstone'])
 
 # I love spaghetti!
 
 @client.event
 async def on_ready():
+    GameName = '>>help'
+    game = discord.Game(name=GameName)
+    await client.change_status(game)
     print('\nLogin Details:')
     print('---------------------')
     print('Logged in as:')
@@ -81,14 +85,16 @@ async def on_message(message):
     # Static Strings
     initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nServer: ' + str(message.server.name) + '\nServerID: ' + str(message.server.id) + '\n-----------------------------------------')
     client.change_status(game=None)
-    if message.content.startswith(pfx + cmd_count):
-        cmd_name = 'Count'
-        counter = 0
-        tmp = await client.send_message(message.channel, 'Calculating messages...')
-        async for log in client.logs_from(message.channel, limit=100):
-            if log.author == message.author:
-                counter += 1
-        await client.edit_message(tmp,'<@' + message.author.id + '> You have written {} messages.'.format(counter))
+    if message.content.startswith(pfx + cmd_help):
+        cmd_name = 'Help'
+        await client.send_typing(message.channel)
+        await client.send_message(message.channel, '\nHelp: `' + pfx + cmd_help + '`' +
+                                  '\nOverwatch: `' + pfx + cmd_overwatch + '`' +
+                                  '\nLeague of Legends: `' + pfx + cmd_league + '`' +
+                                  '\nBlade and Soul: `' + pfx + cmd_bns + '`'
+                                  '\nUrban Dictionary: `' + pfx + cmd_ud + '`' +
+                                  '\nWeather: `' + pfx + cmd_weather + '`' +
+                                  '\nHearthstone: `' + pfx + cmd_hearthstone + '`')
         print('CMD [' + cmd_name + '] > ' + initiator_data)
 # Overwatch API
     elif message.content.startswith(pfx + cmd_overwatch + ' '):
@@ -97,67 +103,75 @@ async def on_message(message):
         ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
         ow_region_x, ignore, ow_name = ow_input.partition(' ')
         ow_region = ow_region_x.replace('NA', 'US')
-        profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
-        profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
-        profile_json = json.loads(profile_json_source)
         try:
-            avatar_link = profile_json['data']['avatar']
-            border_link = profile_json['data']['levelFrame']
-            if os.path.isfile('avatar.png'):
-                os.remove('avatar.png')
-            if os.path.isfile('border.png'):
-                os.remove('border.png')
-            if os.path.isfile('profile.png'):
-                os.remove('profile.png')
-            wget.download(avatar_link)
-            avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
-            avatar_name = str(profile_json['data']['avatar'])
-            os.rename(avatar_name[len(avatar_link_base):], 'avatar.png')
-            wget.download(border_link)
-            border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
-            border_name = str(profile_json['data']['levelFrame'])
-            os.rename(border_name[len(border_link_base):], 'border.png')
-            base = Image.open('base.png')
-            overlay = Image.open('overlay.png')
-            foreground = Image.open('border.png')
-            foreground_res = foreground.resize((128, 128), Image.ANTIALIAS)
-            background = Image.open('avatar.png')
-            background_res = background.resize((72, 72), Image.ANTIALIAS)
-            base.paste(background_res, (28, 28))
-            base.paste(overlay, (0, 0), overlay)
-            base.paste(foreground_res, (0, 0), foreground_res)
-            base.save('profile.png')
-            if message.author.id == '152239976338161664':
-                rank_error = 'Goddamn it Bubu!'
-            else:
-                rank_error = 'Season not active.'
-            overwatch_profile = ('**Name:** ' + profile_json['data']['username'] +
-                                '\n**Level:** ' + str(profile_json['data']['level']) +
-                                '\n**Quick Games:**' +
-                                '\n    **- Played:** ' + str(profile_json['data']['games']['quick']['played']) +
-                                '\n    **- Won:** ' + str(profile_json['data']['games']['quick']['wins']) +
-                                '\n    **- Lost:** ' + str(profile_json['data']['games']['quick']['lost']) +
-                                '\n**Competitive Games:**' +
-                                '\n    **- Played:** ' + str(profile_json['data']['games']['competitive']['played']) +
-                                '\n    **- Won:** ' + str(profile_json['data']['games']['competitive']['wins']) +
-                                '\n    **- Lost:** ' + str(profile_json['data']['games']['competitive']['lost']) +
-                                '\n    **- Rank:** ' + rank_error +
-                                '\n**Playtime:**' +
-                                '\n    **- Quick:** ' +str(profile_json['data']['playtime']['quick']) +
-                                '\n    **- Competitive:** ' + str(profile_json['data']['playtime']['competitive'])
-                                 )
-            print('CMD [' + cmd_name + '] > ' + initiator_data)
-            await client.send_file(message.channel, 'profile.png')
-            await client.send_message(message.channel, overwatch_profile)
-        except KeyError:
+            profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
+            profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
+            profile_json = json.loads(profile_json_source)
+            good = True
+        except:
+            await client.send_message(message.channel, 'Error 503: Service ubnavailable.')
+            good = False
+        if good == True:
             try:
+                avatar_link = profile_json['data']['avatar']
+                border_link = profile_json['data']['levelFrame']
+                if os.path.isfile('avatar.png'):
+                    os.remove('avatar.png')
+                if os.path.isfile('border.png'):
+                    os.remove('border.png')
+                if os.path.isfile('profile.png'):
+                    os.remove('profile.png')
+                wget.download(avatar_link)
+                avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
+                avatar_name = str(profile_json['data']['avatar'])
+                os.rename(avatar_name[len(avatar_link_base):], 'avatar.png')
+                wget.download(border_link)
+                border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
+                border_name = str(profile_json['data']['levelFrame'])
+                os.rename(border_name[len(border_link_base):], 'border.png')
+                base = Image.open('base.png')
+                overlay = Image.open('overlay.png')
+                foreground = Image.open('border.png')
+                foreground_res = foreground.resize((128, 128), Image.ANTIALIAS)
+                background = Image.open('avatar.png')
+                background_res = background.resize((72, 72), Image.ANTIALIAS)
+                base.paste(background_res, (28, 28))
+                base.paste(overlay, (0, 0), overlay)
+                base.paste(foreground_res, (0, 0), foreground_res)
+                base.save('profile.png')
+                if message.author.id == '152239976338161664':
+                    rank_error = 'Goddamn it Bubu!'
+                else:
+                    rank_error = 'Season not active.'
+                overwatch_profile = ('**Name:** ' + profile_json['data']['username'] +
+                                    '\n**Level:** ' + str(profile_json['data']['level']) +
+                                    '\n**Quick Games:**' +
+                                    '\n    **- Played:** ' + str(profile_json['data']['games']['quick']['played']) +
+                                    '\n    **- Won:** ' + str(profile_json['data']['games']['quick']['wins']) +
+                                    '\n    **- Lost:** ' + str(profile_json['data']['games']['quick']['lost']) +
+                                    '\n**Competitive Games:**' +
+                                    '\n    **- Played:** ' + str(profile_json['data']['games']['competitive']['played']) +
+                                    '\n    **- Won:** ' + str(profile_json['data']['games']['competitive']['wins']) +
+                                    '\n    **- Lost:** ' + str(profile_json['data']['games']['competitive']['lost']) +
+                                    '\n    **- Rank:** ' + rank_error +
+                                    '\n**Playtime:**' +
+                                    '\n    **- Quick:** ' +str(profile_json['data']['playtime']['quick']) +
+                                    '\n    **- Competitive:** ' + str(profile_json['data']['playtime']['competitive'])
+                                     )
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
-                print(profile_json['error'])
-                await client.send_message(message.channel, profile_json['error'])
-            except:
-                print('CMD [' + cmd_name + '] > ' + initiator_data)
-                await client.send_message(message.channel, 'Something went wrong.\nThe servers are most likely overloaded, please try again.')
-# League of Legends API
+                await client.send_file(message.channel, 'profile.png')
+                await client.send_message(message.channel, overwatch_profile)
+            except KeyError:
+                try:
+                    print('CMD [' + cmd_name + '] > ' + initiator_data)
+                    print(profile_json['error'])
+                    await client.send_message(message.channel, profile_json['error'])
+                except:
+                    print('CMD [' + cmd_name + '] > ' + initiator_data)
+                    await client.send_message(message.channel, 'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+        else:
+            print('CMD [' + cmd_name + '] > ' + initiator_data)
+    # League of Legends API
     elif message.content.startswith(pfx + cmd_league + ' '):
         await client.send_typing(message.channel)
         cmd_name = 'League of Legends'
@@ -244,7 +258,7 @@ async def on_message(message):
         cmd_name = 'Weather'
         owm_input = (str(message.content[len(cmd_weather) + 1 + len(pfx):]))
         city, ignore, country = owm_input.partition(' ')
-        owm_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=b49efc119530833da61588e4d87668c1'
+        owm_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=' + owm_key
         owm_data = urllib.request.urlopen(owm_url).read().decode('utf-8')
         owm_json = json.loads(owm_data)
         kelvin = 273.16
@@ -298,4 +312,84 @@ async def on_message(message):
         except AttributeError:
             await client.send_message(message.channel, 'Something went wrong, and we don\'t know what!')
             print('CMD [' + cmd_name + '] > ' + initiator_data)
+    elif message.content.startswith(pfx + cmd_hearthstone + ' '):
+        await client.send_typing(message.channel)
+        cmd_name = 'Hearthstone'
+        hs_input = (str(message.content[len(cmd_hearthstone) + 1 + len(pfx):]))
+        url = "https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/" + hs_input
+        headers = {'X-Mashape-Key': mashape_key, 'Accept': 'text/plain'}
+        response = requests.get(url, headers=headers).json()
+        try:
+            name = str(response[0]['name'])
+            cardset = str(response[0]['cardSet'])
+            rarity = str(response[0]['rarity'])
+            type = str(response[0]['type'])
+            try:
+                cost = str(response[0]['cost'])
+            except:
+                cost = '0'
+            try:
+                faction = str(response[0]['faction'])
+            except:
+                faction = 'None'
+            try:
+                description = str(response[0]['flavor'])
+            except:
+                description = 'None'
+            if type == 'Minion':
+                attack = str(response[0]['attack'])
+                health = str(response[0]['health'])
+                message_text = ('Name: `' + name + '`\n' +
+                                '\nType: `' + type + '`' +
+                                '\nFaction: `' + faction + '`' +
+                                '\nRarity: `' + rarity + '`' +
+                                '\nCard Set: `' + cardset + '`' +
+                                '\nCost: `' + cost + '`' +
+                                '\nAttack: `' + attack + '`' +
+                                '\nHealth: `' + health + '`\n' +
+                                '\nDescription:```\n' + description + '```')
+            elif type == 'Spell':
+                try:
+                    text = str(response[0]['text'])
+                except:
+                    text = 'None'
+                message_text = ('Name: `' + name + '`\n' +
+                                '\nType: `' + type + '`' +
+                                '\nFaction: `' + faction + '`' +
+                                '\nRarity: `' + rarity + '`' +
+                                '\nCard Set: `' + cardset + '`' +
+                                '\nCost: `' + cost + '`' +
+                                '\nText: \n```' + text + '\n```' +
+                                '\nDescription:```\n' + description + '```')
+            elif type == 'Weapon':
+                attack = str(response[0]['attack'])
+                durability = str(response[0]['durability'])
+                try:
+                    text = str(response[0]['text'])
+                except:
+                    text = 'None'
+                message_text = ('Name: `' + name + '`\n' +
+                                '\nType: `' + type + '`' +
+                                '\nFaction: `' + faction + '`' +
+                                '\nRarity: `' + rarity + '`' +
+                                '\nCard Set: `' + cardset + '`' +
+                                '\nCost: `' + cost + '`' +
+                                '\nAttack: `' + attack + '`' +
+                                '\nDurability: `' + durability + '`' +
+                                '\nText: `' + text + '`' +
+                                '\nDescription:```\n' + description + '```')
+            else:
+                message_text = 'Data incomplete or special, uncollectable card...'
+            await client.send_message(message.channel, message_text)
+            print('CMD [' + cmd_name + '] > ' + initiator_data)
+        except TypeError:
+            try:
+                error = str(response['error'])
+                err_message = str(response['message'])
+                await client.send_message(message.channel, 'Error: ' + error + '. ' + err_message)
+            except:
+                await client.send_message(message.channel, 'Something went wrong...')
+            print('CMD [' + cmd_name + '] > ' + initiator_data)
+    elif message.content.startswith('(╯°□°）╯︵ ┻━┻'):
+        await client.send_message(message.channel, '┬─┬﻿ ノ( ゜-゜ノ)')
 client.run(token)

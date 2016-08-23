@@ -1,8 +1,9 @@
 {
-	"cmd_count": "count",
+	"cmd_help": "help",
 	"cmd_overwatch": "overwatch",
 	"cmd_league": "league",
 	"cmd_bns": "bns",
 	"cmd_ud": "ud",
-	"cmd_weather": "weather"
+	"cmd_weather": "weather",
+	"cmd_hearthstone": "hearthstone"
 }
