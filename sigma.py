@@ -161,6 +161,12 @@ async def on_message(message):
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
                 await client.send_file(message.channel, 'profile.png')
                 await client.send_message(message.channel, overwatch_profile)
+                if os.path.isfile('avatar.png'):
+                    os.remove('avatar.png')
+                if os.path.isfile('border.png'):
+                    os.remove('border.png')
+                if os.path.isfile('profile.png'):
+                    os.remove('profile.png')
             except KeyError:
                 try:
                     print('CMD [' + cmd_name + '] > ' + initiator_data)
@@ -186,6 +192,8 @@ async def on_message(message):
         os.rename(summoner_name + '_' + region + '_266_0.png', 'lolsig.png')
         try:
             await client.send_file(message.channel, 'lolsig.png')
+            if os.path.isfile('lolsig.png'):
+                os.remove('lolsig.png')
             print('CMD [' + cmd_name + '] > ' + initiator_data)
         except KeyError:
             print('CMD [' + cmd_name + '] > ' + initiator_data)
