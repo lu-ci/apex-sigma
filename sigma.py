@@ -206,17 +206,33 @@ async def on_message(message):
         region = region_x.lower()
         profile_url = ('http://' + region + '-bns.ncsoft.com/ingame/bs/character/profile?c=' + char_name)
         try:
-            profile_url = ('http://' + region + '-bns.ncsoft.com/ingame/bs/character/profile?c=' + char_name)
-            def page_raw_data():
-                page_data = urllib.request.urlopen(profile_url).read()
-                return str(page_data)
-            page_data_html = lxml.html.document_fromstring(page_raw_data())
-            page_data_extr = page_data_html.xpath("//div[@class='stat-point]'")
-            await client.send_message(message.channel, 'Retrieving data...')
-            await client.send_typing(message.channel)
-            print(page_data_extr)
-            await client.send_message(message.channel, page_data_extr)
-            print('CMD [' + cmd_name + '] > ' + initiator_data)
+            message_text = ('Character Name: `' + character_name + '` | Class: `' + character_class + '` | `' + character_clan + '`\n\n' +
+                            'Offensive Stats:\n```\n' +
+                            'Attack Power: `' + attack_power + '`' +
+                            'Evolved Attck Rate: `' + evolved_attack_rate + '`' +
+                            'Piercing: `' + piercing + '`' +
+                            'Accuracy: `' + accuracy + '`' +
+                            'Concentration: `' + concentration + '`' +
+                            'Critical Hit: `' + critical_hit + '`' +
+                            'Critical Damage: `' + critical_damage + '`' +
+                            'Mastery: `' + mastery + '`' +
+                            'Additional Damage: `' + additional_damage + '`' +
+                            'Threat: `' + threat + '`' +
+                            'Flame Damage: `' + flame_damage + '`' +
+                            'Frost Damage: `' + frost_damage + '`\n```\n' +
+                            'Defensive Stats:\n```\n' +
+                            'HP: `' + hp + '`' +
+                            'Defense: `' + defense + '`' +
+                            'Evolved Defense: `' + evolved_defense + '`' +
+                            'Evasion: `' + evasion + '`' +
+                            'Block: `' + block + '`' +
+                            'Critical Defense: `' + critical_hit + '`' +
+                            'Willpower: `' + willpower + '`' +
+                            'Damage Reduction: `' + damage_reduction + '`' +
+                            'Health Regen: `' + health_regen + '`' +
+                            'Recovery: `' + recovery + '`' +
+                            'Debuff Defemse: `' + debuff_defense + '`\n```')
+            await client.send_message(message.channel, message_text)
         except:
             client.send_message(message.channel, 'Something went wrong...')
             print('CMD [' + cmd_name + '] > ' + initiator_data)
