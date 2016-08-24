@@ -8,6 +8,7 @@ import urllib.error
 import urllib.request
 import discord
 import lxml.html
+import random
 import wget
 import requests
 from PIL import Image
@@ -54,6 +55,7 @@ cmd_bns = (commands['cmd_bns'])
 cmd_ud = (commands['cmd_ud'])
 cmd_weather = (commands['cmd_weather'])
 cmd_hearthstone = (commands['cmd_hearthstone'])
+cmd_pokemon = (commands['cmd_pokemon'])
 
 # I love spaghetti!
 
@@ -63,27 +65,27 @@ async def on_ready():
     game = discord.Game(name=GameName)
     await client.change_status(game)
     print('\nLogin Details:')
-    print('---------------------')
+    print('-------------------------')
     print('Logged in as:')
     print(client.user.name)
     print('Bot User ID:')
     print(client.user.id)
-    print('---------------------\n')
-    print('---------------------------------------')
-    print('Running discord.py version ' + discord.__version__)
-    print('---------------------------------------\n')
+    print('-------------------------\n')
+    print('-------------------------')
+    print('Running discord.py version\n' + discord.__version__)
+    print('-------------------------')
     print('STATUS: Finished Loading!')
     print('-------------------------\n')
-    print('-----------------------------------------')
+    print('-------------------------')
     print('Authors: AXAz0r, Awakening')
-    print('Bot Version: Beta 0.1')
-    print('Build Date: 20. August 2016.')
-    print('-----------------------------------------\n')
+    print('Bot Version: Beta 0.14')
+    print('Build Date: 24. August 2016.')
+    print('-------------------------')
 
 @client.event
 async def on_message(message):
     # Static Strings
-    initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nServer: ' + str(message.server.name) + '\nServerID: ' + str(message.server.id) + '\n-----------------------------------------')
+    initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nServer: ' + str(message.server.name) + '\nServerID: ' + str(message.server.id) + '\n-------------------------')
     client.change_status(game=None)
     if message.content.startswith(pfx + cmd_help):
         cmd_name = 'Help'
@@ -94,7 +96,8 @@ async def on_message(message):
                                   '\nBlade and Soul: `' + pfx + cmd_bns + '`'
                                   '\nUrban Dictionary: `' + pfx + cmd_ud + '`' +
                                   '\nWeather: `' + pfx + cmd_weather + '`' +
-                                  '\nHearthstone: `' + pfx + cmd_hearthstone + '`')
+                                  '\nHearthstone: `' + pfx + cmd_hearthstone + '`' +
+                                  '\nPokemon: `' + pfx + cmd_pokemon + '`')
         print('CMD [' + cmd_name + '] > ' + initiator_data)
 # Overwatch API
     elif message.content.startswith(pfx + cmd_overwatch + ' '):
@@ -181,15 +184,19 @@ async def on_message(message):
     elif message.content.startswith(pfx + cmd_league + ' '):
         await client.send_typing(message.channel)
         cmd_name = 'League of Legends'
+        champ_no = ['266', '103', '84', '12', '32', '34', '1', '22', '136' '268', '432', '53', '63', '201', '51', '69', '31', '42', '122', '131', '36', '119', '245', '60', '28', '81', '9', '114', '105', '3', '41', '86', '150', '79', '104', '120', '74', '420', '39', '40', '59' '24', '126', '202', '222', '429', '43', '30', '38', '55', '10', '85', '121', '203', '240', '96', '7', '64' '89', '127', '236', '117', '99', '54', '90', '57', '11' '21' '82', '25', '267', '75', '111', '76', '56', '20', '2', '61', '80', '78', '133', '33', '421', '58', '107', '92', '68', '13', '113', '35', '98', '102', '27', '14', '15', '72', '37', '16', '50', '134', '223' '163', '91', '44', '17', '412', '0', '18', '48', '23', '4' '29', '77', '6', '110', '67', '45', '161', '254', '112', '8', '106', '19', '62', '101', '5' '157', '83', '154', '238', '115', '26', '143']
+        skin_no = ['0', '1', '2']
+        champ_back = random.choice(champ_no)
+        skin_back = random.choice(skin_no)
         if os.path.isfile('lolsig.png'):
             os.remove('lolsig.png')
         lol_input = (str(message.content[len(cmd_league) + 1 + len(pfx):]))
         region_x, ignore, summoner_name_x = lol_input.partition(' ')
         summoner_name = summoner_name_x.lower()
         region = region_x.lower()
-        lol_sig_url = ('http://lolsigs.com/' + summoner_name + '_' + region + '_266_0.png')
+        lol_sig_url = ('http://lolsigs.com/' + summoner_name + '_' + region + '_' + champ_back + '_' + skin_back + '.png')
         wget.download(lol_sig_url)
-        os.rename(summoner_name + '_' + region + '_266_0.png', 'lolsig.png')
+        os.rename(summoner_name + '_' + region + '_' + champ_back + '_' + skin_back + '.png', 'lolsig.png')
         try:
             await client.send_file(message.channel, 'lolsig.png')
             if os.path.isfile('lolsig.png'):
@@ -281,7 +288,7 @@ async def on_message(message):
         await client.send_typing(message.channel)
         cmd_name = 'Weather'
         owm_input = (str(message.content[len(cmd_weather) + 1 + len(pfx):]))
-        city, ignore, country = owm_input.partition(' ')
+        city, ignore, country = owm_input.partition(', ')
         owm_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=' + owm_key
         owm_data = urllib.request.urlopen(owm_url).read().decode('utf-8')
         owm_json = json.loads(owm_data)
@@ -416,4 +423,117 @@ async def on_message(message):
             print('CMD [' + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith('(╯°□°）╯︵ ┻━┻'):
         await client.send_message(message.channel, '┬─┬﻿ ノ( ゜-゜ノ)')
+    elif message.content.startswith(pfx + cmd_pokemon + ' '):
+        await client.send_typing(message.channel)
+        cmd_name = 'Pokemon'
+        poke_input = (str(message.content[len(cmd_pokemon) + 1 + len(pfx):]))
+        pokemon = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower() + '/')
+        poke = requests.get(pokemon).json()
+        try:
+            poke_id = str(poke['id'])
+            name = str(poke['name']).title()
+            number = '#' + str(poke['order'])
+            height = str(poke['height'] / 10) + 'm'
+            weight = str(poke['weight'] / 10) + 'kg'
+            ability_1 = str(poke['abilities'][0]['ability']['name']).title()
+            abil_1_vis = poke['abilities'][0]['is_hidden']
+            if abil_1_vis == True:
+                a1v = 'Hidden'
+            else:
+                a1v = 'Not Hidden'
+            abil_2_vis = poke['abilities'][1]['is_hidden']
+            if abil_2_vis == True:
+                a2v = 'Hidden'
+            else:
+                a2v = 'Not Hidden'
+            ability_2 = str(poke['abilities'][1]['ability']['name']).title()
+            type_1 = str(poke['types'][0]['type']['name']).title()
+            #Icons
+            if type_1 == 'Fire':
+                icon_1 = ':fire:'
+            elif type_1 == 'Fighting':
+                icon_1 = ':muscle:'
+            elif type_1 == 'Water':
+                icon_1 = ':ocean:'
+            elif type_1 == 'Flying':
+                icon_1 = ':bird:'
+            elif type_1 == 'Grass':
+                icon_1 = ':herb:'
+            elif type_1 == 'Poison':
+                icon_1 = ':skull_crossbones:'
+            elif type_1 == 'Electric':
+                icon_1 = ':zap:'
+            elif type_1 == 'Ground':
+                icon_1 = ':chestnut:'
+            elif type_1 == 'Psychic':
+                icon_1 = ':eye:'
+            elif type_1 == 'Rock':
+                icon_1 = ':moyai:'
+            elif type_1 == 'Ice':
+                icon_1 = ':snowflake:'
+            elif type_1 == 'Bug':
+                icon_1 = ':bug:'
+            elif type_1 == 'Dragon':
+                icon_1 = ':dragon:'
+            elif type_1 == 'Ghost':
+                icon_1 = ':ghost:'
+            elif type_1 == 'Dark':
+                icon_1 = ':dark_sunglasses:'
+            elif type_1 == 'Steel':
+                icon_1 = ':nut_and_bolt:'
+            elif type_1 == 'Fairy':
+                icon_1 = ':gift_heart:'
+            else:
+                icon_1 = ':necktie:'
+            type_2 = str(poke['types'][1]['type']['name']).title()
+            if type_2 == 'Fire':
+                icon_2 = ':fire:'
+            elif type_2 == 'Fighting':
+                icon_2 = ':muscle:'
+            elif type_2 == 'Water':
+                icon_2 = ':ocean:'
+            elif type_2 == 'Flying':
+                icon_2 = ':bird:'
+            elif type_2 == 'Grass':
+                icon_2 = ':herb:'
+            elif type_2 == 'Poison':
+                icon_2 = ':skull_crossbones:'
+            elif type_2 == 'Electric':
+                icon_2 = ':zap:'
+            elif type_2 == 'Ground':
+                icon_2 = ':chestnut:'
+            elif type_2 == 'Psychic':
+                icon_2 = ':eye:'
+            elif type_2 == 'Rock':
+                icon_2 = ':moyai:'
+            elif type_2 == 'Ice':
+                icon_2 = ':snowflake:'
+            elif type_2 == 'Bug':
+                icon_2 = ':bug:'
+            elif type_2 == 'Dragon':
+                icon_2 = ':dragon:'
+            elif type_2 == 'Ghost':
+                icon_2 = ':ghost:'
+            elif type_2 == 'Dark':
+                icon_2 = ':dark_sunglasses:'
+            elif type_2 == 'Steel':
+                icon_2 = ':nut_and_bolt:'
+            elif type_2 == 'Fairy':
+                icon_2 = ':gift_heart:'
+            else:
+                icon_2 = ':necktie:'
+            message_text = (' Name: `' + name + '` `' + number + '`\n' +
+                            'ID: `' + poke_id + '`' +
+                            '\nDetails:' +
+                            '\nHeight: ' + height +
+                            '\nWeight: ' + weight +
+                            '\nType: ' + type_1 + '/' + type_2 + ' (' + icon_1 + '/' + icon_2 + ')' +
+                            '\nAbilities: ' + ability_1 + ' (' + a1v + ') | ' + ability_2 + ' (' + a2v + ')\n Image: https://randompokemon.com/sprites/animated/' + poke_id + '.gif')
+            await client.send_message(message.channel, message_text)
+        except:
+            try:
+                await client.send_message(message.channel, str(poke['detail']))
+            except:
+                await client.send_message(message.channel, 'Something went wrong')
+        print('CMD [' + cmd_name + '] > ' + initiator_data)
 client.run(token)
