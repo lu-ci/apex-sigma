@@ -7,14 +7,12 @@ import time
 import urllib.error
 import urllib.request
 import discord
-import lxml.html
 import random
 import wget
 import requests
 from PIL import Image
 
 import plugins.bns_api as bns_api
-
 
 print('Starting up...')
 start_time = time.time()
@@ -23,11 +21,13 @@ current_time = datetime.datetime.now().time()
 current_time.isoformat()
 
 if not os.path.isfile('config.json'):
-    sys.exit('Fatal Error: config.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+    sys.exit(
+        'Fatal Error: config.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
 else:
     print('config.json present, continuing...')
 if not os.path.isfile('commands.json'):
-    sys.exit('Fatal Error: commands.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+    sys.exit(
+        'Fatal Error: commands.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
 else:
     print('commands.json present, continuing...')
 
@@ -60,12 +60,13 @@ cmd_weather = (commands['cmd_weather'])
 cmd_hearthstone = (commands['cmd_hearthstone'])
 cmd_pokemon = (commands['cmd_pokemon'])
 
+
 # I love spaghetti!
 
 @client.event
 async def on_ready():
-    GameName = '>>help'
-    game = discord.Game(name=GameName)
+    gamename = '>>help'
+    game = discord.Game(name=gamename)
     await client.change_status(game)
     print('\nLogin Details:')
     print('-------------------------')
@@ -85,10 +86,13 @@ async def on_ready():
     print('Build Date: 24. August 2016.')
     print('-------------------------')
 
+
 @client.event
 async def on_message(message):
     # Static Strings
-    initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(message.content) + ']\nServer: ' + str(message.server.name) + '\nServerID: ' + str(message.server.id) + '\n-------------------------')
+    initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
+        message.content) + ']\nServer: ' + str(message.server.name) + '\nServerID: ' + str(
+        message.server.id) + '\n-------------------------')
     client.change_status(game=None)
     if message.content.startswith(pfx + cmd_help):
         cmd_name = 'Help'
@@ -96,13 +100,15 @@ async def on_message(message):
         await client.send_message(message.channel, '\nHelp: `' + pfx + cmd_help + '`' +
                                   '\nOverwatch: `' + pfx + cmd_overwatch + '`' +
                                   '\nLeague of Legends: `' + pfx + cmd_league + '`' +
-                                  '\nBlade and Soul: `' + pfx + cmd_bns + '`'
+                                  '\nBlade and Soul: `' + pfx + cmd_bns + '`' +
+                                  '\n - Detailed Attack Stats: `' + pfx + cmd_bns + 'att' + '`' +
+                                  '\n - Detailed Defense Stats: `' + pfx + cmd_bns + 'def' + '`' +
                                   '\nUrban Dictionary: `' + pfx + cmd_ud + '`' +
                                   '\nWeather: `' + pfx + cmd_weather + '`' +
                                   '\nHearthstone: `' + pfx + cmd_hearthstone + '`' +
                                   '\nPokemon: `' + pfx + cmd_pokemon + '`')
         print('CMD [' + cmd_name + '] > ' + initiator_data)
-# Overwatch API
+    # Overwatch API
     elif message.content.startswith(pfx + cmd_overwatch + ' '):
         cmd_name = 'Overwatch'
         await client.send_typing(message.channel)
@@ -117,7 +123,7 @@ async def on_message(message):
         except:
             await client.send_message(message.channel, 'Error 503: Service ubnavailable.')
             good = False
-        if good == True:
+        if good:
             try:
                 avatar_link = profile_json['data']['avatar']
                 border_link = profile_json['data']['levelFrame']
@@ -150,19 +156,20 @@ async def on_message(message):
                 else:
                     rank_error = 'Season not active.'
                 overwatch_profile = ('**Name:** ' + profile_json['data']['username'] +
-                                    '\n**Level:** ' + str(profile_json['data']['level']) +
-                                    '\n**Quick Games:**' +
-                                    '\n    **- Played:** ' + str(profile_json['data']['games']['quick']['played']) +
-                                    '\n    **- Won:** ' + str(profile_json['data']['games']['quick']['wins']) +
-                                    '\n    **- Lost:** ' + str(profile_json['data']['games']['quick']['lost']) +
-                                    '\n**Competitive Games:**' +
-                                    '\n    **- Played:** ' + str(profile_json['data']['games']['competitive']['played']) +
-                                    '\n    **- Won:** ' + str(profile_json['data']['games']['competitive']['wins']) +
-                                    '\n    **- Lost:** ' + str(profile_json['data']['games']['competitive']['lost']) +
-                                    '\n    **- Rank:** ' + rank_error +
-                                    '\n**Playtime:**' +
-                                    '\n    **- Quick:** ' +str(profile_json['data']['playtime']['quick']) +
-                                    '\n    **- Competitive:** ' + str(profile_json['data']['playtime']['competitive'])
+                                     '\n**Level:** ' + str(profile_json['data']['level']) +
+                                     '\n**Quick Games:**' +
+                                     '\n    **- Played:** ' + str(profile_json['data']['games']['quick']['played']) +
+                                     '\n    **- Won:** ' + str(profile_json['data']['games']['quick']['wins']) +
+                                     '\n    **- Lost:** ' + str(profile_json['data']['games']['quick']['lost']) +
+                                     '\n**Competitive Games:**' +
+                                     '\n    **- Played:** ' + str(
+                    profile_json['data']['games']['competitive']['played']) +
+                                     '\n    **- Won:** ' + str(profile_json['data']['games']['competitive']['wins']) +
+                                     '\n    **- Lost:** ' + str(profile_json['data']['games']['competitive']['lost']) +
+                                     '\n    **- Rank:** ' + rank_error +
+                                     '\n**Playtime:**' +
+                                     '\n    **- Quick:** ' + str(profile_json['data']['playtime']['quick']) +
+                                     '\n    **- Competitive:** ' + str(profile_json['data']['playtime']['competitive'])
                                      )
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
                 await client.send_file(message.channel, 'profile.png')
@@ -180,14 +187,23 @@ async def on_message(message):
                     await client.send_message(message.channel, profile_json['error'])
                 except:
                     print('CMD [' + cmd_name + '] > ' + initiator_data)
-                    await client.send_message(message.channel, 'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+                    await client.send_message(message.channel,
+                                              'Something went wrong.\nThe servers are most likely overloaded, please try again.')
         else:
             print('CMD [' + cmd_name + '] > ' + initiator_data)
-    # League of Legends API
+            # League of Legends API
     elif message.content.startswith(pfx + cmd_league + ' '):
         await client.send_typing(message.channel)
         cmd_name = 'League of Legends'
-        champ_no = ['266', '103', '84', '12', '32', '34', '1', '22', '136' '268', '432', '53', '63', '201', '51', '69', '31', '42', '122', '131', '36', '119', '245', '60', '28', '81', '9', '114', '105', '3', '41', '86', '150', '79', '104', '120', '74', '420', '39', '40', '59' '24', '126', '202', '222', '429', '43', '30', '38', '55', '10', '85', '121', '203', '240', '96', '7', '64' '89', '127', '236', '117', '99', '54', '90', '57', '11' '21' '82', '25', '267', '75', '111', '76', '56', '20', '2', '61', '80', '78', '133', '33', '421', '58', '107', '92', '68', '13', '113', '35', '98', '102', '27', '14', '15', '72', '37', '16', '50', '134', '223' '163', '91', '44', '17', '412', '0', '18', '48', '23', '4' '29', '77', '6', '110', '67', '45', '161', '254', '112', '8', '106', '19', '62', '101', '5' '157', '83', '154', '238', '115', '26', '143']
+        champ_no = ['266', '103', '84', '12', '32', '34', '1', '22', '136' '268', '432', '53', '63', '201', '51', '69',
+                    '31', '42', '122', '131', '36', '119', '245', '60', '28', '81', '9', '114', '105', '3', '41', '86',
+                    '150', '79', '104', '120', '74', '420', '39', '40', '59' '24', '126', '202', '222', '429', '43',
+                    '30', '38', '55', '10', '85', '121', '203', '240', '96', '7', '64' '89', '127', '236', '117', '99',
+                    '54', '90', '57', '11' '21' '82', '25', '267', '75', '111', '76', '56', '20', '2', '61', '80', '78',
+                    '133', '33', '421', '58', '107', '92', '68', '13', '113', '35', '98', '102', '27', '14', '15', '72',
+                    '37', '16', '50', '134', '223' '163', '91', '44', '17', '412', '0', '18', '48', '23', '4' '29',
+                    '77', '6', '110', '67', '45', '161', '254', '112', '8', '106', '19', '62', '101', '5' '157', '83',
+                    '154', '238', '115', '26', '143']
         skin_no = ['0', '1', '2']
         champ_back = random.choice(champ_no)
         skin_back = random.choice(skin_no)
@@ -197,7 +213,8 @@ async def on_message(message):
         region_x, ignore, summoner_name_x = lol_input.partition(' ')
         summoner_name = summoner_name_x.lower()
         region = region_x.lower()
-        lol_sig_url = ('http://lolsigs.com/' + summoner_name + '_' + region + '_' + champ_back + '_' + skin_back + '.png')
+        lol_sig_url = (
+            'http://lolsigs.com/' + summoner_name + '_' + region + '_' + champ_back + '_' + skin_back + '.png')
         wget.download(lol_sig_url)
         os.rename(summoner_name + '_' + region + '_' + champ_back + '_' + skin_back + '.png', 'lolsig.png')
         try:
@@ -207,74 +224,311 @@ async def on_message(message):
             print('CMD [' + cmd_name + '] > ' + initiator_data)
         except KeyError:
             print('CMD [' + cmd_name + '] > ' + initiator_data)
-            await client.send_message(message.channel, 'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+            await client.send_message(message.channel,
+                                      'Something went wrong.\nThe servers are most likely overloaded, please try again.')
     elif message.content.startswith('-read<@92747043885314048>'):
         if message.author.id == ownr:
             await client.send_message(message.channel, 'Alex stop wasting time and get back to working on my APIs...')
         elif message.author.id == '92747043885314048':
-            await client.send_message(message.channel, 'Ace, I heard Alex bought this giant black dildo, wanna go test it out?')
+            await client.send_message(message.channel,
+                                      'Ace, I heard Alex bought this giant black dildo, wanna go test it out?')
         else:
             await client.send_message(message.channel, 'No! ಠ_ಠ')
-# Blade and Soul API
-    elif message.content.startswith(pfx + cmd_bns + ' '):
-        #bns_api.fetchStats(region, nickname)
+            # Blade and Soul API
+    elif message.content.startswith(pfx + cmd_bns):
         cmd_name = 'Blade and Soul'
-        bns_input = (str(message.content[len(cmd_bns) + 1 + len(pfx):]))
-        region_x, ignore, char_name_x = bns_input.partition(' ')
-        char_name = char_name_x.lower()
-        region = region_x.lower()
-        profile_url = ('http://' + region + '-bns.ncsoft.com/ingame/bs/character/profile?c=' + char_name)
-        try:
-            message_text = ('Character Name: `' + character_name + '` | Class: `' + character_class + '` | `' + character_clan + '`\n\n' +
-                            'Offensive Stats:\n```\n' +
-                            'Attack Power: `' + attack_power + '`' +
-                            'Evolved Attck Rate: `' + evolved_attack_rate + '`' +
-                            'Piercing: `' + piercing + '`' +
-                            'Accuracy: `' + accuracy + '`' +
-                            'Concentration: `' + concentration + '`' +
-                            'Critical Hit: `' + critical_hit + '`' +
-                            'Critical Damage: `' + critical_damage + '`' +
-                            'Mastery: `' + mastery + '`' +
-                            'Additional Damage: `' + additional_damage + '`' +
-                            'Threat: `' + threat + '`' +
-                            'Flame Damage: `' + flame_damage + '`' +
-                            'Frost Damage: `' + frost_damage + '`\n```\n' +
-                            'Defensive Stats:\n```\n' +
-                            'HP: `' + hp + '`' +
-                            'Defense: `' + defense + '`' +
-                            'Evolved Defense: `' + evolved_defense + '`' +
-                            'Evasion: `' + evasion + '`' +
-                            'Block: `' + block + '`' +
-                            'Critical Defense: `' + critical_hit + '`' +
-                            'Willpower: `' + willpower + '`' +
-                            'Damage Reduction: `' + damage_reduction + '`' +
-                            'Health Regen: `' + health_regen + '`' +
-                            'Recovery: `' + recovery + '`' +
-                            'Debuff Defemse: `' + debuff_defense + '`\n```')
-            await client.send_message(message.channel, message_text)
-        except:
-            client.send_message(message.channel, 'Something went wrong...')
-            print('CMD [' + cmd_name + '] > ' + initiator_data)
-#Urban Dictionary API
+        await client.send_typing(message.channel)
+        query = message.content[len(cmd_bns) + 1 + len(pfx):]
+        region = str(query[:query.find(' ')]).lower()
+        if not region == 'na' and not region == 'eu':
+            error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + cmd_bns + ' [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
+            await client.send_message(message.channel, error_msg)
+        else:
+            error_msg = 'Something went wrong, API is unavailable or character does not exist.'
+            username = str(query[query.find(' ') + 1:]).lower()
+            profile = bns_api.fetchStats(region, username)
+            try:
+                # Summary
+                username = str(profile['Summary']['Username'])
+                nickname = str(profile['Summary']['Nickname'])
+                level = str(profile['Summary']['Level'])
+                world = str(profile['Summary']['World'])
+                ch_class = str(profile['Summary']['Class'])
+                faction = str(profile['Summary']['Faction'])
+                guild = str(profile['Summary']['Guild'])
+                # Attack Stats Basic
+                att_pwr = str(profile['Attack Stats']['Attack Power']['Total'])
+                ev_att_rate = str(profile['Attack Stats']['Evolved Attack Rate']['Total'])
+                pierc = str(profile['Attack Stats']['Piercing']['Total'])
+                pierc_def = str(profile['Attack Stats']['Piercing']['Defense Piercing'])
+                pierc_block = str(profile['Attack Stats']['Piercing']['Block Piercing'])
+                acc = str(profile['Attack Stats']['Accuracy']['Total'])
+                acc_hr = str(profile['Attack Stats']['Accuracy']['Hit Rate'])
+                conc = str(profile['Attack Stats']['Concentration']['Total'])
+                crit_hit = str(profile['Attack Stats']['Critical Hit']['Total'])
+                crit_hit_rate = str(profile['Attack Stats']['Critical Hit']['Critical Rate'])
+                crit_dmg = str(profile['Attack Stats']['Critical Damage']['Total'])
+                crit_dmg_dmg = str(profile['Attack Stats']['Critical Damage']['Increase Damage'])
+                mast = str(profile['Attack Stats']['Mastery']['Total'])
+                add_dmg = str(profile['Attack Stats']['Additional Damage']['Total'])
+                threat = str(profile['Attack Stats']['Threat']['Total'])
+                fire_dmg = str(profile['Attack Stats']['Flame Damage']['Total'])
+                cold_dmg = str(profile['Attack Stats']['Frost Damage']['Total'])
+                # Defense Stats Basic
+                hp = str(profile['Defense Stats']['HP']['Total'])
+                def_tot = str(profile['Defense Stats']['Defense']['Total'])
+                def_dmg_redu = str(profile['Defense Stats']['Defense']['Damage Reduction'])
+                ev_def = str(profile['Defense Stats']['Evolved Defense']['Total'])
+                evasion = str(profile['Defense Stats']['Evasion']['Total'])
+                evasion_rate = str(profile['Defense Stats']['Evasion']['Evasion Rate'])
+                block = str(profile['Defense Stats']['Block']['Total'])
+                block_rate = str(profile['Defense Stats']['Block']['Block Rate'])
+                crit_def = str(profile['Defense Stats']['Critical Defense']['Total'])
+                crit_def_rate = str(profile['Defense Stats']['Critical Defense']['Critical Evasion Rate'])
+                will = str(profile['Defense Stats']['Willpower']['Total'])
+                dmg_redu = str(profile['Defense Stats']['Damage Reduction']['Total'])
+                regen = str(profile['Defense Stats']['Health Regen']['Total'])
+                rec = str(profile['Defense Stats']['Recovery']['Total'])
+                nerf_def = str(profile['Defense Stats']['Debuff Defense']['Total'])
+                # Texts
+                summary_text = (':ticket: Summary:\n```' +
+                                '\nUsername: ' + username +
+                                '\nNickname: ' + nickname +
+                                '\nLevel: ' + level +
+                                '\nWorld: ' + world +
+                                '\nClass: ' + ch_class +
+                                '\nFaction: ' + faction +
+                                '\nGuild: ' + guild +
+                                '\n```')
+
+                attack_stats_text = (':crossed_swords: Attack Stats: \n```' +
+                                     '\nAttack Power: ' + att_pwr +
+                                     '\nEvolved Attack Rate: ' + ev_att_rate +
+                                     '\nPiercing: ' + pierc + '(DEF:' + pierc_def + '|Block: ' + pierc_block + ')' +
+                                     '\nAccuracy: ' + acc + '(' + acc_hr + ')' +
+                                     '\nConcentrationr: ' + conc +
+                                     '\nCrtitical Hit: ' + crit_hit + '(' + crit_hit_rate + ')' +
+                                     '\nCritical Damage: ' + crit_dmg + '(' + crit_dmg_dmg + ')' +
+                                     '\nMastery: ' + mast +
+                                     '\nAdditional Damage: ' + add_dmg +
+                                     '\nThreat: ' + threat +
+                                     '\nFlame Damage: ' + fire_dmg +
+                                     '\nFrost Damage: ' + cold_dmg +
+                                     '\n```')
+                def_stats_text = (':shield: Defense Stats: \n```' +
+                                  '\nHP: ' + hp +
+                                  '\nDefense: ' + def_tot + '(' + def_dmg_redu + ')' +
+                                  '\nEvolved Defense: ' + ev_def +
+                                  '\nEvasion: ' + evasion + '(' + evasion_rate + ')' +
+                                  '\nBlock: ' + block + '(' + block_rate + ')' +
+                                  '\nCritical Defense: ' + crit_def + '(' + crit_def_rate + ')' +
+                                  '\nWillpower: ' + will +
+                                  '\nDamage Reduction: ' + dmg_redu +
+                                  '\nHealth Regen: ' + regen +
+                                  '\nRecovery: ' + rec +
+                                  '\nDebuff Defense: ' + nerf_def +
+                                  '\n```')
+                await client.send_message(message.channel, summary_text + attack_stats_text + def_stats_text)
+                # await client.send_message(message.channel, summary_text)
+                # await client.send_message(message.channel, attack_stats_text)
+                # await client.send_message(message.channel, def_stats_text)
+            except TimeoutError:
+                await client.send_message(message.channel, error_msg)
+        print('CMD [' + cmd_name + '] > ' + initiator_data)
+    # Blade and Soul Attack Details API
+    elif message.content.startswith(pfx + 'att' + cmd_bns):
+        cmd_name = 'Blade and Soul Attack Details'
+        await client.send_typing(message.channel)
+        query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
+        region = str(query[:query.find(' ')]).lower()
+        if not region == 'na' and not region == 'eu':
+            error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + cmd_bns + ' [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
+            await client.send_message(message.channel, error_msg)
+        else:
+            error_msg = 'Something went wrong, API is unavailable or character does not exist.'
+            username = str(query[query.find(' ') + 1:]).lower()
+            profile = bns_api.fetchStats(region, username)
+            try:
+                # Summary
+                nickname = str(profile['Summary']['Nickname'])
+                # Attack Stats
+                att_pwr = str(profile['Attack Stats']['Attack Power']['Total'])
+                att_pwr_base = str(profile['Attack Stats']['Attack Power']['Base'])
+                att_pwr_eqp = str(profile['Attack Stats']['Attack Power']['Equipped'])
+                ev_att_rate = str(profile['Attack Stats']['Evolved Attack Rate']['Total'])
+                ev_att_rate_base = str(profile['Attack Stats']['Evolved Attack Rate']['Base'])
+                ev_att_rate_eqp = str(profile['Attack Stats']['Evolved Attack Rate']['Equipped'])
+                pierc = str(profile['Attack Stats']['Piercing']['Total'])
+                pierc_base = str(profile['Attack Stats']['Piercing']['Base'])
+                pierc_eqp = str(profile['Attack Stats']['Piercing']['Equipped'])
+                pierc_def = str(profile['Attack Stats']['Piercing']['Defense Piercing'])
+                pierc_block = str(profile['Attack Stats']['Piercing']['Block Piercing'])
+                acc = str(profile['Attack Stats']['Accuracy']['Total'])
+                acc_base = str(profile['Attack Stats']['Accuracy']['Base'])
+                acc_eqp = str(profile['Attack Stats']['Accuracy']['Equipped'])
+                acc_hr = str(profile['Attack Stats']['Accuracy']['Hit Rate'])
+                conc = str(profile['Attack Stats']['Concentration']['Total'])
+                conc_base = str(profile['Attack Stats']['Concentration']['Base'])
+                conc_eqp = str(profile['Attack Stats']['Concentration']['Equipped'])
+                conc_bsp = str(profile['Attack Stats']['Concentration']['Block Skill Piercing'])
+                conc_csp = str(profile['Attack Stats']['Concentration']['Counter Skill Piercing'])
+                crit_hit = str(profile['Attack Stats']['Critical Hit']['Total'])
+                crit_hit_base = str(profile['Attack Stats']['Critical Hit']['Base'])
+                crit_hit_eqp = str(profile['Attack Stats']['Critical Hit']['Equipped'])
+                crit_hit_rate = str(profile['Attack Stats']['Critical Hit']['Critical Rate'])
+                crit_dmg = str(profile['Attack Stats']['Critical Damage']['Total'])
+                crit_dmg_base = str(profile['Attack Stats']['Critical Damage']['Base'])
+                crit_dmg_eqp = str(profile['Attack Stats']['Critical Damage']['Equipped'])
+                crit_dmg_dmg = str(profile['Attack Stats']['Critical Damage']['Increase Damage'])
+                mast = str(profile['Attack Stats']['Mastery']['Total'])
+                add_dmg = str(profile['Attack Stats']['Additional Damage']['Total'])
+                add_dmg_bonus = str(profile['Attack Stats']['Additional Damage']['Damage Bonus'])
+                threat = str(profile['Attack Stats']['Threat']['Total'])
+                threat_base = str(profile['Attack Stats']['Threat']['Base'])
+                threat_eqp = str(profile['Attack Stats']['Threat']['Equipped'])
+                threat_bonus = str(profile['Attack Stats']['Threat']['Threat Bonus'])
+                fire_dmg = str(profile['Attack Stats']['Flame Damage']['Total'])
+                fire_dmg_base = str(profile['Attack Stats']['Flame Damage']['Base'])
+                fire_dmg_eqp = str(profile['Attack Stats']['Flame Damage']['Equipped'])
+                fire_dmg_rate = str(profile['Attack Stats']['Flame Damage']['Flame Damage Rate'])
+                cold_dmg = str(profile['Attack Stats']['Frost Damage']['Total'])
+                cold_dmg_base = str(profile['Attack Stats']['Frost Damage']['Base'])
+                cold_dmg_eqp = str(profile['Attack Stats']['Frost Damage']['Equipped'])
+                cold_dmg_rate = str(profile['Attack Stats']['Frost Damage']['Frost Damage Rate'])
+                attack_stats_text = (':crossed_swords: Attack Stats for **' + nickname + '**: \n```' +
+                                     '\nAttack Power: ' + att_pwr +
+                                     '\n(Base: ' + att_pwr_base + '|Equipped: ' + att_pwr_eqp + ')' +
+                                     '\nEvolved Attack Rate: ' + ev_att_rate +
+                                     '\n(Base: ' + ev_att_rate_base + '|Equipped: ' + ev_att_rate_eqp + ')' +
+                                     '\nPiercing: ' + pierc +
+                                     '\n(Base: ' + pierc_base + '|Equipped: ' + pierc_eqp + '|DEF: ' + pierc_def + '|Block: ' + pierc_block + ')' +
+                                     '\nAccuracy: ' + acc +
+                                     '\n(Base: ' + acc_base + '|Equipped: ' + acc_eqp + '|Rate: ' + acc_hr + ')' +
+                                     '\nConcentrationr: ' + conc +
+                                     '\n(Base: ' + conc_base + '|Equipped: ' + conc_eqp + '|BSP: ' + conc_bsp + '|CSP: ' + conc_csp + ')' +
+                                     '\nCrtitical Hit: ' + crit_hit +
+                                     '\n(Base: ' + crit_hit_base + '|Equipped: ' + crit_hit_eqp + '|Rate:' + crit_hit_rate + ')' +
+                                     '\nCritical Damage: ' + crit_dmg +
+                                     '\n(Base: ' + crit_dmg_base + '|Equipped: ' + crit_dmg_eqp + '|DMG: ' + crit_dmg_dmg + ')' +
+                                     '\nMastery: ' + mast +
+                                     '\nAdditional Damage: ' + add_dmg +
+                                     '\n(DMG Bonus: ' + add_dmg_bonus + ')' +
+                                     '\nThreat: ' + threat +
+                                     '\n(Base: ' + threat_base + '|Equipped: ' + threat_eqp + '|Bonus:' + threat_bonus + ')' +
+                                     '\nFlame Damage: ' + fire_dmg +
+                                     '\n(Base: ' + fire_dmg_base + '|Equipped: ' + fire_dmg_eqp + '|Rate: ' + fire_dmg_rate + ')' +
+                                     '\nFrost Damage: ' + cold_dmg +
+                                     '\n(Base: ' + cold_dmg_base + '|Equipped: ' + cold_dmg_eqp + '|Rate: ' + cold_dmg_rate + ')' +
+                                     '\n```')
+                await client.send_message(message.channel, attack_stats_text)
+            except TimeoutError:
+                await client.send_message(message.channel, error_msg)
+        print('CMD [' + cmd_name + '] > ' + initiator_data)
+    # Blade and Soul Defense Details API
+    elif message.content.startswith(pfx + 'def' + cmd_bns):
+        cmd_name = 'Blade and Soul Defense Details'
+        await client.send_typing(message.channel)
+        query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
+        region = str(query[:query.find(' ')]).lower()
+        if not region == 'na' and not region == 'eu':
+            error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + cmd_bns + ' [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
+            await client.send_message(message.channel, error_msg)
+        else:
+            error_msg = 'Something went wrong, API is unavailable or character does not exist.'
+            username = str(query[query.find(' ') + 1:]).lower()
+            profile = bns_api.fetchStats(region, username)
+            try:
+                # Summary
+                nickname = str(profile['Summary']['Nickname'])
+                # Defense Stats
+                hp = str(profile['Defense Stats']['HP']['Total'])
+                hp_base = str(profile['Defense Stats']['HP']['Base'])
+                hp_eqp = str(profile['Defense Stats']['HP']['Equipped'])
+                def_tot = str(profile['Defense Stats']['Defense']['Total'])
+                def_base = str(profile['Defense Stats']['Defense']['Base'])
+                def_eqp = str(profile['Defense Stats']['Defense']['Equipped'])
+                def_dmg_redu = str(profile['Defense Stats']['Defense']['Damage Reduction'])
+                def_aoe = str(profile['Defense Stats']['Defense']['AoE Defense'])
+                def_aoe_redu = str(profile['Defense Stats']['Defense']['AoE Defense Reduction'])
+                ev_def = str(profile['Defense Stats']['Evolved Defense']['Total'])
+                ev_def_base = str(profile['Defense Stats']['Evolved Defense']['Base'])
+                ev_def_eqp = str(profile['Defense Stats']['Evolved Defense']['Equipped'])
+                ev_def_rate = str(profile['Defense Stats']['Evolved Defense']['Evolved Defense Rate'])
+                ev_def_aoe = str(profile['Defense Stats']['Evolved Defense']['AoE Defense'])
+                ev_def_aoe_dmg_redu = str(profile['Defense Stats']['Evolved Defense']['AoE Defense Reduction'])
+                evasion = str(profile['Defense Stats']['Evasion']['Total'])
+                evasion_base = str(profile['Defense Stats']['Evasion']['Base'])
+                evastion_eqp = str(profile['Defense Stats']['Evasion']['Equipped'])
+                evasion_rate = str(profile['Defense Stats']['Evasion']['Evasion Rate'])
+                evasion_ctr = str(profile['Defense Stats']['Evasion']['Counter Bonus'])
+                block = str(profile['Defense Stats']['Block']['Total'])
+                block_base = str(profile['Defense Stats']['Block']['Base'])
+                block_eqp = str(profile['Defense Stats']['Block']['Equipped'])
+                block_rate = str(profile['Defense Stats']['Block']['Block Rate'])
+                block_bonus = str(profile['Defense Stats']['Block']['Block Bonus'])
+                block_dmg_redu = str(profile['Defense Stats']['Block']['Damage Reduction'])
+                crit_def = str(profile['Defense Stats']['Critical Defense']['Total'])
+                crit_def_rate = str(profile['Defense Stats']['Critical Defense']['Critical Evasion Rate'])
+                crit_def_dmg_redu = str(profile['Defense Stats']['Critical Defense']['Damage Reduction'])
+                will = str(profile['Defense Stats']['Willpower']['Total'])
+                dmg_redu = str(profile['Defense Stats']['Damage Reduction']['Total'])
+                dmg_redu_dmg_redu = str(profile['Defense Stats']['Damage Reduction']['Damage Reduction'])
+                regen = str(profile['Defense Stats']['Health Regen']['Total'])
+                regen_in = str(profile['Defense Stats']['Health Regen']['In Combat'])
+                regen_out = str(profile['Defense Stats']['Health Regen']['Out of Combat'])
+                rec = str(profile['Defense Stats']['Recovery']['Total'])
+                rec_pt = str(profile['Defense Stats']['Recovery']['Recovery'])
+                rec_add = str(profile['Defense Stats']['Recovery']['Additional Recovery'])
+                rec_rate = str(profile['Defense Stats']['Recovery']['Recovery Rate'])
+                nerf_def = str(profile['Defense Stats']['Debuff Defense']['Total'])
+                nerf_def_rate = str(profile['Defense Stats']['Debuff Defense']['Debuff Defense Rate'])
+                def_stats_text = (':shield: Defense Stats for **' + nickname + '**: \n```' +
+                                  '\nHP: ' + hp +
+                                  '\n(Base: ' + hp_base + '|Equipped: ' + hp_eqp + ')' +
+                                  '\nDefense: ' + def_tot +
+                                  '\n(Base: ' + def_base + '|Equipped: ' + def_eqp + '|DMG Reduction: ' + def_dmg_redu + '|AoE DEF: ' + def_aoe + '|AoE DMG Reduction: ' + def_aoe_redu + ')' +
+                                  '\nEvolved Defense: ' + ev_def +
+                                  '\n(Base: ' + ev_def_base + '|Equipped: ' + ev_def_eqp + '|Defense Rate: ' +ev_def_rate + '|AoE Defense: ' + ev_def_aoe + '|AoE DMG Reduction: ' + ev_def_aoe_dmg_redu + ')' +
+                                  '\nEvasion: ' + evasion +
+                                  '\n(Base: ' + evasion_base + '|Equipped: ' + evastion_eqp + '|Rate: ' + evasion_rate + '|Counter Bonus: ' + evasion_ctr + ')' +
+                                  '\nBlock: ' + block +
+                                  '\n(Base: ' + block_base + '|Equipped: ' + block_eqp + '|DMG Redu: ' + block_dmg_redu + '|Bonus: ' + block_base + '|Rate: ' + block_rate + ')' +
+                                  '\nCritical Defense: ' + crit_def +
+                                  '\n(Rate: ' + crit_def_rate + '|DMG Reduction: ' + crit_def_dmg_redu + ')' +
+                                  '\nWillpower: ' + will +
+                                  '\nDamage Reduction: ' + dmg_redu +
+                                  '\n(DMG Redu: ' + dmg_redu_dmg_redu + ')' +
+                                  '\nHealth Regen: ' + regen +
+                                  '\n(Out of Combat: ' + regen_out + '|In Combat: ' + regen_in + ')' +
+                                  '\nRecovery: ' + rec +
+                                  '\n(Recovery: ' + rec_pt + '|Additional: ' + rec_add + '|Rate: ' + rec_rate + ')' +
+                                  '\nDebuff Defense: ' + nerf_def +
+                                  '\n(Rate: ' + nerf_def_rate + ')' +
+                                  '\n```')
+                await client.send_message(message.channel, def_stats_text)
+            except TimeoutError:
+                await client.send_message(message.channel, error_msg)
+        print('CMD [' + cmd_name + '] > ' + initiator_data)
+    # Urban Dictionary API
     elif message.content.startswith(pfx + cmd_ud + ' '):
         await client.send_typing(message.channel)
         cmd_name = 'Urban Dictionary'
         ud_input = (str(message.content[len(cmd_ud) + 1 + len(pfx):]))
         url = "https://mashape-community-urban-dictionary.p.mashape.com/define?term=" + ud_input
         headers = {'X-Mashape-Key': mashape_key, 'Accept': 'text/plain'}
-        #r = requests.get(url, headers=headers)
-        #r_dec = r.read.decode('utf-8')
+        # r = requests.get(url, headers=headers)
+        # r_dec = r.read.decode('utf-8')
         response = requests.get(url, headers=headers).json()
         result_type = str((response['result_type']))
         if result_type == 'exact':
             try:
                 definition = str((response['list'][0]['definition']))
-                permalink = str((response['list'][0]['permalink']))
-                #thumbs_up = str((response['list'][0]['thumbs_up']))
-                #thumbs_down = str((response['list'][0]['thumbs_down']))
+                # permalink = str((response['list'][0]['permalink']))
+                # thumbs_up = str((response['list'][0]['thumbs_up']))
+                # thumbs_down = str((response['list'][0]['thumbs_down']))
                 example = str((response['list'][0]['example']))
                 await client.send_message(message.channel, 'Word: `' + ud_input + '`\n'
-                                          'Definition:\n```' + definition + '```\n' +
+                                                                                  'Definition:\n```' + definition + '```\n' +
                                           'Example:\n```' + example + '\n```')
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
             except IndexError:
@@ -357,7 +611,7 @@ async def on_message(message):
             name = str(response[0]['name'])
             cardset = str(response[0]['cardSet'])
             rarity = str(response[0]['rarity'])
-            type = str(response[0]['type'])
+            cd_type = str(response[0]['type'])
             try:
                 cost = str(response[0]['cost'])
             except:
@@ -374,7 +628,7 @@ async def on_message(message):
                 attack = str(response[0]['attack'])
                 health = str(response[0]['health'])
                 message_text = ('Name: `' + name + '`\n' +
-                                '\nType: `' + type + '`' +
+                                '\nType: `' + cd_type + '`' +
                                 '\nFaction: `' + faction + '`' +
                                 '\nRarity: `' + rarity + '`' +
                                 '\nCard Set: `' + cardset + '`' +
@@ -388,7 +642,7 @@ async def on_message(message):
                 except:
                     text = 'None'
                 message_text = ('Name: `' + name + '`\n' +
-                                '\nType: `' + type + '`' +
+                                '\nType: `' + cd_type + '`' +
                                 '\nFaction: `' + faction + '`' +
                                 '\nRarity: `' + rarity + '`' +
                                 '\nCard Set: `' + cardset + '`' +
@@ -403,7 +657,7 @@ async def on_message(message):
                 except:
                     text = 'None'
                 message_text = ('Name: `' + name + '`\n' +
-                                '\nType: `' + type + '`' +
+                                '\nType: `' + cd_type + '`' +
                                 '\nFaction: `' + faction + '`' +
                                 '\nRarity: `' + rarity + '`' +
                                 '\nCard Set: `' + cardset + '`' +
@@ -444,7 +698,7 @@ async def on_message(message):
             except:
                 ability_1 = str('None')
                 abil_1_vis = False
-            if abil_1_vis == True:
+            if abil_1_vis:
                 a1v = 'Hidden'
             else:
                 a1v = 'Not Hidden'
@@ -452,7 +706,7 @@ async def on_message(message):
                 abil_2_vis = poke['abilities'][1]['is_hidden']
             except:
                 abil_2_vis = False
-            if abil_2_vis == True:
+            if abil_2_vis:
                 a2v = 'Hidden'
             else:
                 a2v = 'Not Hidden'
@@ -464,7 +718,7 @@ async def on_message(message):
                 type_1 = str(poke['types'][0]['type']['name']).title()
             except:
                 type_1 = str('None')
-            #Icons
+            # Icons
             if type_1 == 'Fire':
                 icon_1 = ':fire:'
             elif type_1 == 'Fighting':
@@ -559,4 +813,6 @@ async def on_message(message):
             except:
                 await client.send_message(message.channel, 'Something went wrong')
         print('CMD [' + cmd_name + '] > ' + initiator_data)
+
+
 client.run(token)

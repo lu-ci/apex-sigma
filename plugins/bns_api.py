@@ -5,15 +5,18 @@ def getSummary(tree):
     summary = {
         'Username' : tree[0][0].text,
         'Nickname' : tree[0][1].text[1: -1],
-        'Level' : tree[2][0][1].text,
+        'Level' : tree[2][0][1].text[6:],
         'World' : tree[2][0][2].text,
-        'Class' : tree[2][0][0].text,
-        'Faction' : tree[2][0][3].text
+        'Class' : tree[2][0][0].text
     }
+    try:
+        summary['Faction'] = tree[2][0][3].text
+    except IndexError:
+        summary['Faction'] = 'None'
     try: #trying to parse guild name, player might not be in any guild
         summary['Guild'] = tree[2][0][4].text
     except IndexError:
-        pass
+        summary['Guild'] = 'None'
     return summary
 
 def getStats(tree):
