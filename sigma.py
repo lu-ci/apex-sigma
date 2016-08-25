@@ -427,27 +427,40 @@ async def on_message(message):
         await client.send_typing(message.channel)
         cmd_name = 'Pokemon'
         poke_input = (str(message.content[len(cmd_pokemon) + 1 + len(pfx):]))
-        pokemon = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower() + '/')
-        poke = requests.get(pokemon).json()
+        pokemon_url = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower() + '/')
+        poke = requests.get(pokemon_url).json()
         try:
             poke_id = str(poke['id'])
             name = str(poke['name']).title()
             number = '#' + str(poke['order'])
             height = str(poke['height'] / 10) + 'm'
             weight = str(poke['weight'] / 10) + 'kg'
-            ability_1 = str(poke['abilities'][0]['ability']['name']).title()
-            abil_1_vis = poke['abilities'][0]['is_hidden']
+            try:
+                ability_1 = str(poke['abilities'][0]['ability']['name']).title()
+                abil_1_vis = poke['abilities'][0]['is_hidden']
+            except:
+                ability_1 = str('None')
+                abil_1_vis = False
             if abil_1_vis == True:
                 a1v = 'Hidden'
             else:
                 a1v = 'Not Hidden'
-            abil_2_vis = poke['abilities'][1]['is_hidden']
+            try:
+                abil_2_vis = poke['abilities'][1]['is_hidden']
+            except:
+                abil_2_vis = False
             if abil_2_vis == True:
                 a2v = 'Hidden'
             else:
                 a2v = 'Not Hidden'
-            ability_2 = str(poke['abilities'][1]['ability']['name']).title()
-            type_1 = str(poke['types'][0]['type']['name']).title()
+            try:
+                ability_2 = str(poke['abilities'][1]['ability']['name']).title()
+            except:
+                ability_2 = str('None')
+            try:
+                type_1 = str(poke['types'][0]['type']['name']).title()
+            except:
+                type_1 = str('None')
             #Icons
             if type_1 == 'Fire':
                 icon_1 = ':fire:'
@@ -483,9 +496,14 @@ async def on_message(message):
                 icon_1 = ':nut_and_bolt:'
             elif type_1 == 'Fairy':
                 icon_1 = ':gift_heart:'
+            elif type_1 == 'None':
+                icon_1 = 'None'
             else:
                 icon_1 = ':necktie:'
-            type_2 = str(poke['types'][1]['type']['name']).title()
+            try:
+                type_2 = str(poke['types'][1]['type']['name']).title()
+            except:
+                type_2 = str('None')
             if type_2 == 'Fire':
                 icon_2 = ':fire:'
             elif type_2 == 'Fighting':
@@ -520,6 +538,8 @@ async def on_message(message):
                 icon_2 = ':nut_and_bolt:'
             elif type_2 == 'Fairy':
                 icon_2 = ':gift_heart:'
+            elif type_2 == 'None':
+                icon_2 = 'None'
             else:
                 icon_2 = ':necktie:'
             message_text = (' Name: `' + name + '` `' + number + '`\n' +
@@ -528,7 +548,7 @@ async def on_message(message):
                             '\nHeight: ' + height +
                             '\nWeight: ' + weight +
                             '\nType: ' + type_1 + '/' + type_2 + ' (' + icon_1 + '/' + icon_2 + ')' +
-                            '\nAbilities: ' + ability_1 + ' (' + a1v + ') | ' + ability_2 + ' (' + a2v + ')\n Image: https://randompokemon.com/sprites/animated/' + poke_id + '.gif')
+                            '\nAbilities: ' + ability_1 + ' (' + a1v + ') | ' + ability_2 + ' (' + a2v + ')\nImage: https://randompokemon.com/sprites/animated/' + poke_id + '.gif')
             await client.send_message(message.channel, message_text)
         except:
             try:
