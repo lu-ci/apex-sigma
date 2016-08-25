@@ -85,7 +85,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     # Static Strings
-    initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nServer: ' + str(message.server.name) + '\nServerID: ' + str(message.server.id) + '\n-------------------------')
+    initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(message.content) + ']\nServer: ' + str(message.server.name) + '\nServerID: ' + str(message.server.id) + '\n-------------------------')
     client.change_status(game=None)
     if message.content.startswith(pfx + cmd_help):
         cmd_name = 'Help'
@@ -271,8 +271,7 @@ async def on_message(message):
                 example = str((response['list'][0]['example']))
                 await client.send_message(message.channel, 'Word: `' + ud_input + '`\n'
                                           'Definition:\n```' + definition + '```\n' +
-                                          'Example:\n```' + example + '```\n' +
-                                          'Source: ```' + permalink + '```')
+                                          'Example:\n```' + example + '\n```')
                 print('CMD [' + cmd_name + '] > ' + initiator_data)
             except IndexError:
                 await client.send_message(message.channel, 'Something went wrong... The API dun goofed...')
