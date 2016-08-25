@@ -332,7 +332,7 @@ async def on_message(message):
                 # await client.send_message(message.channel, summary_text)
                 # await client.send_message(message.channel, attack_stats_text)
                 # await client.send_message(message.channel, def_stats_text)
-            except TimeoutError:
+            except:
                 await client.send_message(message.channel, error_msg)
         print('CMD [' + cmd_name + '] > ' + initiator_data)
     # Blade and Soul Attack Details API
@@ -421,7 +421,7 @@ async def on_message(message):
                                      '\n(Base: ' + cold_dmg_base + '|Equipped: ' + cold_dmg_eqp + '|Rate: ' + cold_dmg_rate + ')' +
                                      '\n```')
                 await client.send_message(message.channel, attack_stats_text)
-            except TimeoutError:
+            except:
                 await client.send_message(message.channel, error_msg)
         print('CMD [' + cmd_name + '] > ' + initiator_data)
     # Blade and Soul Defense Details API
@@ -488,11 +488,11 @@ async def on_message(message):
                                   '\nDefense: ' + def_tot +
                                   '\n(Base: ' + def_base + '|Equipped: ' + def_eqp + '|DMG Reduction: ' + def_dmg_redu + '|AoE DEF: ' + def_aoe + '|AoE DMG Reduction: ' + def_aoe_redu + ')' +
                                   '\nEvolved Defense: ' + ev_def +
-                                  '\n(Base: ' + ev_def_base + '|Equipped: ' + ev_def_eqp + '|Defense Rate: ' +ev_def_rate + '|AoE Defense: ' + ev_def_aoe + '|AoE DMG Reduction: ' + ev_def_aoe_dmg_redu + ')' +
+                                  '\n(Base: ' + ev_def_base + '|Equipped: ' + ev_def_eqp + '|Defense Rate: ' + ev_def_rate + '|AoE Defense: ' + ev_def_aoe + '|AoE DMG Reduction: ' + ev_def_aoe_dmg_redu + ')' +
                                   '\nEvasion: ' + evasion +
                                   '\n(Base: ' + evasion_base + '|Equipped: ' + evastion_eqp + '|Rate: ' + evasion_rate + '|Counter Bonus: ' + evasion_ctr + ')' +
                                   '\nBlock: ' + block +
-                                  '\n(Base: ' + block_base + '|Equipped: ' + block_eqp + '|DMG Redu: ' + block_dmg_redu + '|Bonus: ' + block_base + '|Rate: ' + block_rate + ')' +
+                                  '\n(Base: ' + block_base + '|Equipped: ' + block_eqp + '|DMG Redu: ' + block_dmg_redu + '|Bonus: ' + block_bonus + '|Rate: ' + block_rate + ')' +
                                   '\nCritical Defense: ' + crit_def +
                                   '\n(Rate: ' + crit_def_rate + '|DMG Reduction: ' + crit_def_dmg_redu + ')' +
                                   '\nWillpower: ' + will +
@@ -506,7 +506,7 @@ async def on_message(message):
                                   '\n(Rate: ' + nerf_def_rate + ')' +
                                   '\n```')
                 await client.send_message(message.channel, def_stats_text)
-            except TimeoutError:
+            except:
                 await client.send_message(message.channel, error_msg)
         print('CMD [' + cmd_name + '] > ' + initiator_data)
     # Urban Dictionary API
@@ -624,7 +624,7 @@ async def on_message(message):
                 description = str(response[0]['flavor'])
             except:
                 description = 'None'
-            if type == 'Minion':
+            if cd_type == 'Minion':
                 attack = str(response[0]['attack'])
                 health = str(response[0]['health'])
                 message_text = ('Name: `' + name + '`\n' +
@@ -636,7 +636,7 @@ async def on_message(message):
                                 '\nAttack: `' + attack + '`' +
                                 '\nHealth: `' + health + '`\n' +
                                 '\nDescription:```\n' + description + '```')
-            elif type == 'Spell':
+            elif cd_type == 'Spell':
                 try:
                     text = str(response[0]['text'])
                 except:
@@ -649,7 +649,7 @@ async def on_message(message):
                                 '\nCost: `' + cost + '`' +
                                 '\nText: \n```' + text + '\n```' +
                                 '\nDescription:```\n' + description + '```')
-            elif type == 'Weapon':
+            elif cd_type == 'Weapon':
                 attack = str(response[0]['attack'])
                 durability = str(response[0]['durability'])
                 try:
@@ -670,7 +670,7 @@ async def on_message(message):
                 message_text = 'Data incomplete or special, uncollectable card...'
             await client.send_message(message.channel, message_text)
             print('CMD [' + cmd_name + '] > ' + initiator_data)
-        except TypeError:
+        except:
             try:
                 error = str(response['error'])
                 err_message = str(response['message'])
