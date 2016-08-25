@@ -13,6 +13,9 @@ import wget
 import requests
 from PIL import Image
 
+import plugins.bns_api as bns_api
+
+
 print('Starting up...')
 start_time = time.time()
 time = time.time()
@@ -214,6 +217,7 @@ async def on_message(message):
             await client.send_message(message.channel, 'No! ಠ_ಠ')
 # Blade and Soul API
     elif message.content.startswith(pfx + cmd_bns + ' '):
+        #bns_api.fetchStats(region, nickname)
         cmd_name = 'Blade and Soul'
         bns_input = (str(message.content[len(cmd_bns) + 1 + len(pfx):]))
         region_x, ignore, char_name_x = bns_input.partition(' ')
