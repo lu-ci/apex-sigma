@@ -6,5 +6,6 @@
 	"cmd_ud": "ud",
 	"cmd_weather": "weather",
 	"cmd_hearthstone": "hearthstone",
-	"cmd_pokemon": "pokemon"
+	"cmd_pokemon": "pokemon",
+	"cmd_joke": "joke"
 }
