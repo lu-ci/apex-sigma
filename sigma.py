@@ -861,7 +861,7 @@ async def on_message(message):
             joke_type = 'xkcd Story'
             joke_url = 'http://xkcd.com/' + comic_no + '/info.0.json'
             joke_json = requests.get(joke_url).json()
-            joke = ('#' + comic_no + ' - ' + joke_json['title'] + joke_json['transcript'])
+            joke = ('#' + comic_no + ' - ' + joke_json['title'] + '\n\n' + joke_json['transcript'])
         else:
             joke_type = 'Normal Joke'
             joke_url = 'http://tambal.azurewebsites.net/joke/random'
