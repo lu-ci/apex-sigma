@@ -10,8 +10,8 @@ import discord
 import random
 import wget
 import requests
+import pushbullet
 from PIL import Image
-
 import plugins.bns_api as bns_api
 
 print('Starting up...')
@@ -49,6 +49,9 @@ client = discord.Client()
 riot_api_key = '759fa53e-7837-4109-bf6a-05b8dc63d702'
 mashape_key = 'nvLNoBix6DmshG97ORG4iB51mHa5p1UezKwjsnigQ85K5RXieT'
 owm_key = 'b49efc119530833da61588e4d87668c1'
+notify = (config['Notifications'])
+pb_key = (config['Pushbullet'])
+pb = pushbullet.Pushbullet(pb_key)
 
 # Commands
 cmd_help = (commands['cmd_help'])
@@ -85,6 +88,10 @@ async def on_ready():
     print('Bot Version: Beta 0.14')
     print('Build Date: 24. August 2016.')
     print('-------------------------')
+    if notify == 'Yes':
+        pb.push_note('Sigma', 'Sigma Activated!')
+    else:
+        print(client.user.name + ' activated.')
 
 
 @client.event
@@ -813,6 +820,24 @@ async def on_message(message):
             except:
                 await client.send_message(message.channel, 'Something went wrong')
         print('CMD [' + cmd_name + '] > ' + initiator_data)
-
-
+    elif message.content.startswith(pfx + 'checkbullet'):
+        cmd_name = 'PushBullet Message Check'
+        await client.send_typing(message.channel)
+        pushes = pb.get_pushes(limit=1)
+        title = pushes[0]['title']
+        body = pushes[0]['body']
+        await client.send_message(message.channel, 'Title: `' + title + '`\nMessage: `' + body + '`')
+        pb.dismiss_push(pushes[0]['iden'])
+        print('CMD [' + cmd_name + '] > ' + initiator_data)
+    elif message.content.startswith(pfx + 'sendbullet'):
+        cmd_name = 'PushBullet Message Send'
+        await client.send_typing(message.channel)
+        try:
+            push_input = message.content[len(pfx) + 11:]
+            title, ignore, body = str(push_input).partition(' ')
+            pb.push_note(title, body)
+            await client.send_message(message.channel, 'Message has been sent to <@' + ownr + '>')
+        except pushbullet.errors.PushbulletError:
+            await client.send_message(message.channel, 'There was a problem, probably rate limiting...')
+        print('CMD [' + cmd_name + '] > ' + initiator_data)
 client.run(token)
