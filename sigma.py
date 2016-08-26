@@ -857,7 +857,7 @@ async def on_message(message):
             joke_json = requests.get(joke_url).json()
             joke = joke_json[0]
         elif joke_no == 2:
-            comic_no = random.randint(1, 1724)
+            comic_no = str(random.randint(1, 1724))
             joke_type = 'xkcd Story'
             joke_url = 'http://xkcd.com/' + comic_no + '/info.0.json'
             joke_json = requests.get(joke_url).json()
