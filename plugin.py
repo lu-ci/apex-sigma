@@ -1,8 +1,8 @@
-import inspect
-import logging
-
 class PluginMount(type):
     def __init__(cls, name, bases, attrs):
+        cls.name = name
+        cls.bases = bases
+        cls.attrs = attrs
         if not hasattr(cls, 'plugins'):
             cls.plugins = []
         else:
@@ -10,6 +10,7 @@ class PluginMount(type):
 
 class Plugin(object, metaclass=PluginMount):
 
+    plugins = None
     is_global = False
     fancy_name = None
 
