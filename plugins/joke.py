@@ -8,6 +8,7 @@ class Joke(Plugin):
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_joke):
+            cmd_name = 'Joke'
             number_list = [0, 1, 2]
             joke_no = random.choice(number_list)
             await self.client.send_typing(message.channel)

@@ -160,6 +160,7 @@ class BladeAndSoul(Plugin):
     async def on_message(self, message, pfx):
         # Blade and Soul API
         if message.content.startswith(pfx + cmd_bns):
+            cmd_name = 'Blade and Soul'
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
@@ -260,6 +261,7 @@ class BladeAndSoul(Plugin):
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
         # Blade and Soul Attack Details API
         elif message.content.startswith(pfx + 'att' + cmd_bns):
+            cmd_name = 'Blade and Soul Attack Details'
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
@@ -348,6 +350,7 @@ class BladeAndSoul(Plugin):
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
         # Blade and Soul Defense Details API
         elif message.content.startswith(pfx + 'def' + cmd_bns):
+            cmd_name = 'Blade and Soul Defense Details'
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()

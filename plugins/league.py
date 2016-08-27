@@ -15,6 +15,7 @@ class LeagueOfLegends(Plugin):
         # League of Legends API
         if message.content.startswith(pfx + cmd_league + ' '):
             await self.client.send_typing(message.channel)
+            cmd_name = 'League of Legends'
             lol_input = str(message.content[len(pfx) + len(cmd_league) + 1:])
             region, ignore, smnr_name = lol_input.lower().partition(' ')
             smnr_name_table = smnr_name.replace(' ', '')

@@ -2,14 +2,13 @@ from plugin import Plugin
 from config import cmd_pokemon
 import requests
 
-
-# noinspection PyUnboundLocalVariable
 class Pokemon(Plugin):
     is_global = True
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_pokemon + ' '):
             await self.client.send_typing(message.channel)
+            cmd_name = 'Pokemon'
             poke_input = (str(message.content[len(cmd_pokemon) + 1 + len(pfx):]))
             pokemon_url = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower() + '/')
             poke = requests.get(pokemon_url).json()

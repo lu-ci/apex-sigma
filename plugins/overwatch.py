@@ -1,6 +1,6 @@
 from plugin import Plugin
 from config import cmd_overwatch
-import urllib.request
+import urllib
 import wget
 import os
 from PIL import Image
@@ -11,11 +11,11 @@ import json
 class Overwatch(Plugin):
     is_global = True
 
-    # noinspection PyUnboundLocalVariable,PyUnboundLocalVariable
     async def on_message(self, message, pfx):
 
         # Overwatch API
         if message.content.startswith(pfx + cmd_overwatch + ' '):
+            cmd_name = 'Overwatch'
             await self.client.send_typing(message.channel)
             ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
             ow_region_x, ignore, ow_name = ow_input.partition(' ')

@@ -10,6 +10,7 @@ class UrbanDictionary(Plugin):
     # Urban Dictionary API
         if message.content.startswith(pfx + cmd_ud + ' '):
             await self.client.send_typing(message.channel)
+            cmd_name = 'Urban Dictionary'
             ud_input = (str(message.content[len(cmd_ud) + 1 + len(pfx):]))
             url = "https://mashape-community-urban-dictionary.p.mashape.com/define?term=" + ud_input
             headers = {'X-Mashape-Key': mashape_key, 'Accept': 'text/plain'}

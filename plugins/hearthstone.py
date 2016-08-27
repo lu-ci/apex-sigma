@@ -10,6 +10,7 @@ class Hearthstone(Plugin):
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_hearthstone + ' '):
             await self.client.send_typing(message.channel)
+            cmd_name = 'Hearthstone'
             hs_input = (str(message.content[len(cmd_hearthstone) + 1 + len(pfx):]))
             url = "https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/" + hs_input
             headers = {'X-Mashape-Key': mashape_key, 'Accept': 'text/plain'}

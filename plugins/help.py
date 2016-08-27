@@ -7,6 +7,7 @@ class Help(Plugin):
     async def on_message(self, message, pfx):
 
         if message.content.startswith(pfx + cmd_help):
+                    cmd_name = 'Help'
                     await self.client.send_typing(message.channel)
                     await self.client.send_message(message.channel, '\nHelp: `' + pfx + cmd_help + '`' +
                                               '\nOverwatch: `' + pfx + cmd_overwatch + '`' +
