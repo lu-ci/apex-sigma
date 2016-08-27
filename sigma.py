@@ -12,7 +12,7 @@ import random
 import wget
 import requests
 import pushbullet
-import googleapiclient as gapi
+import googleapiclient as g_api
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
