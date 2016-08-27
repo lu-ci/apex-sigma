@@ -1,5 +1,5 @@
 from plugin import Plugin
-from commands import *
+from config import cmd_league
 from config import RiotAPIKey as riot_api_key
 import os
 import wget

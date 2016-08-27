@@ -1,5 +1,5 @@
 from plugin import Plugin
-from commands import *
+from config import cmd_joke
 import random
 import requests
 

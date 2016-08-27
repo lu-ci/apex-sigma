@@ -1,11 +1,11 @@
 from plugin import Plugin
-from commands import *
+from config import cmd_overwatch
 import urllib
 import wget
+import os
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
-import os
 
 class Overwatch(Plugin):
     is_global = True

@@ -40,9 +40,6 @@ from config import OwnerID as ownr
 #from config import Pushbullet as pb_key
 #pb = pushbullet.Pushbullet(pb_key)
 
-# Commands
-from config import Commands
-
 from plugin_manager import PluginManager
 from plugins.help import Help
 from plugins.league import LeagueOfLegends
