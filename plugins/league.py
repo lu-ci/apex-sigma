@@ -20,7 +20,7 @@ class LeagueOfLegends(Plugin):
             region, ignore, smnr_name = lol_input.lower().partition(' ')
             smnr_name_table = smnr_name.replace(' ', '')
             smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + riot_api_key
-            if region.lower() == 'eune' or 'euw' or 'na':
+            try:
                 smnr_by_name = requests.get(smrn_by_name_url).json()
                 smnr_id = str(smnr_by_name[smnr_name_table]['id'])
                 smnr_icon = str(smnr_by_name[smnr_name_table]['profileIconId'])
@@ -115,6 +115,9 @@ class LeagueOfLegends(Plugin):
                 else:
                     await self.client.send_file(message.channel, 'cache/lol/profile_' + message.author.id + '.png')
                     await self.client.send_message(message.channel,'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
-            else:
-                await self.client.send_message(message.channel, 'Invalid Region: `' + region + '`.')
+            except:
+                if not region.lower() == 'na' or 'eune' or 'euw':
+                    await self.client.send_message(message.channel, 'Invalid Region: `' + region + '`.')
+                else:
+                    await self.client.send_message(message.channel, 'Something went wrong, PANIC!')
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
