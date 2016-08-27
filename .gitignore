@@ -12,3 +12,4 @@ thing.py
 __pycache__/*
 plugins/__pycache__/*
 cache/*
+config.py

@@ -1,15 +1,21 @@
-import json
-import sys
-
-with open('config.json', 'r', encoding='utf-8') as config_file:
-    config = config_file.read()
-    config = json.loads(config)
-    print('Loaded configuration.')
-
-token = (config['Token'])
-if token == '':
-    sys.exit('Token not provided, please open config.json and place your token.')
-pfx = (config['Prefix'])
-ownr = (config['OwnerID'])
-mashape_key = ''
-owm_key = ''
+# Keys and BOT Data
+Token = "MjE2NDM3NTEzNzA5OTQ0ODMy.CpmEug.R6a1rxkD2LBkOp-d0vhYI3DePDA"
+ClientID = "216437513709944832"
+OwnerID = "137951917644054529"
+Notifications = "No"
+Pushbullet = "o.qWIG8GgFWlr7uPXYIpnqq6J0kX9UqynD"
+OpenWeatherMapKey = "b49efc119530833da61588e4d87668c1"
+MashapeKey = "nvLNoBix6DmshG97ORG4iB51mHa5p1UezKwjsnigQ85K5RXieT"
+RiotAPIKey = "759fa53e-7837-4109-bf6a-05b8dc63d702"
+GoogleAPIKey = "AIzaSyAlXt3-TEVrX5pubWf60y8XMnbzksXTqUo"
+Prefix = ">>"
+# Commands
+cmd_help = 'help'
+cmd_overwatch = 'overwatch'
+cmd_league = 'league'
+cmd_bns = 'bns'
+cmd_ud = 'ud'
+cmd_weather = 'weather'
+cmd_hearthstone = 'hearthstone'
+cmd_pokemon = 'pokemon'
+cmd_joke = 'joke'

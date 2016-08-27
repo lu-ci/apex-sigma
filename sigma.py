@@ -1,31 +1,4 @@
 # noinspection PyPep8
-import datetime
-import json
-import os
-import sys
-import time
-import discord
-import pushbullet
-
-
-print('Starting up...')
-start_time = time.time()
-time = time.time()
-current_time = datetime.datetime.now().time()
-current_time.isoformat()
-
-if not os.path.isfile('config.json'):
-    sys.exit(
-        'Fatal Error: config.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
-else:
-    print('config.json present, continuing...')
-if not os.path.isfile('commands.json'):
-    sys.exit(
-        'Fatal Error: commands.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
-else:
-    print('commands.json present, continuing...')
-
-
 from config import *
 from commands import *
 
@@ -39,16 +12,66 @@ from plugins.hearthstone import Hearthstone
 from plugins.pokemon import Pokemon
 from plugins.joke import Joke
 from plugins.overwatch import Overwatch
+import config as cfg
+import datetime
+import json
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+import discord
+import random
+import wget
+import requests
+import pushbullet
+import googleapiclient as g_api
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+import plugins.bns_api as bns_api
+import plugins.youtube_api as yt_api
 
+print('Starting up...')
+start_time = time.time()
+time = time.time()
+current_time = datetime.datetime.now().time()
+current_time.isoformat()
+
+if not os.path.isfile('config.py'):
+    sys.exit(
+        'Fatal Error: config.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+else:
+    print('config.py present, continuing...')
+# Data
+token = cfg.Token
+if token == '':
+    sys.exit('Token not provided, please open config.json and place your token.')
+pfx = cfg.Prefix
+ownr = cfg.OwnerID
 client = discord.Client()
-riot_api_key = '759fa53e-7837-4109-bf6a-05b8dc63d702'
+riot_api_key = cfg.RiotAPIKey
+mashape_key = cfg.MashapeKey
+owm_key = cfg.OpenWeatherMapKey
+notify = cfg.Notifications
+pb_key = cfg.Pushbullet
+pb = pushbullet.Pushbullet(pb_key)
+gapi = cfg.GoogleAPIKey
 
+# Commands
+cmd_help  = cfg.cmd_help
+cmd_overwatch  = cfg.cmd_overwatch
+cmd_league  = cfg.cmd_league
+cmd_bns  = cfg.cmd_bns
+cmd_ud  = cfg.cmd_ud
+cmd_weather  = cfg.cmd_weather
+cmd_hearthstone  = cfg.cmd_hearthstone
+cmd_pokemon  = cfg.cmd_pokemon
+cmd_joke  = cfg.cmd_joke
 
-#notify = (config['Notifications'])
-#pb_key = (config['Pushbullet'])
-#pb = pushbullet.Pushbullet(pb_key)
-
-
+notify = (config['Notifications'])
+pb_key = (config['Pushbullet'])
+pb = pushbullet.Pushbullet(pb_key)
 
 # I love spaghetti!
 
