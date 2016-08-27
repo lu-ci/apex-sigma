@@ -133,6 +133,8 @@ async def on_message(message):
             os.remove('cache/ow/border_' + message.author.id + '.png')
         if os.path.isfile('cache/ow/profile_' + message.author.id + '.png'):
             os.remove('cache/ow/profile_' + message.author.id + '.png')
+        if os.path.isfile('cache/ow/rank_' + message.author.id + '.png'):
+            os.remove('cache/ow/rank_' + message.author.id + '.png')
         if ow_region.upper() == 'NA' or 'US' or 'EU':
             try:
                 profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
@@ -162,9 +164,21 @@ async def on_message(message):
                     foreground_res = foreground.resize((128, 128), Image.ANTIALIAS)
                     background = Image.open('cache/ow/avatar_' + message.author.id + '.png')
                     background_res = background.resize((72, 72), Image.ANTIALIAS)
+                    try:
+                        rank_link = profile_json['data']['competitive']['rank_img']
+                        rankloc = 'cache/ow/rank_' + message.author.id + '.png'
+                        wget.download(rank_link, out=rankloc)
+                        rankimg = Image.open('cache/ow/rank_' + message.author.id + '.png')
+                        rankimg_res = rankimg.resize((64, 64), Image.ANTIALIAS)
+                    except:
+                        pass
                     base.paste(background_res, (28, 28))
                     base.paste(overlay, (0, 0), overlay)
                     base.paste(foreground_res, (0, 0), foreground_res)
+                    try:
+                        base.paste(rankimg_res, (310, 32), rankimg_res)
+                    except:
+                        pass
                     font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 32)
                     imgdraw = ImageDraw.Draw(base)
                     imgdraw.text((130, 46), profile_json['data']['username'], (255,255,255),font=font)
@@ -188,7 +202,7 @@ async def on_message(message):
                     except:
                         cg_lost = 'None'
                     try:
-                        rank = str(profile_json['data']['games']['competitive']['rank'])
+                        rank = str(profile_json['data']['competitive']['rank'])
                     except:
                         rank = 'None'
                     try:
@@ -231,13 +245,14 @@ async def on_message(message):
         cmd_name = 'League of Legends'
         lol_input = str(message.content[len(pfx) + len(cmd_league) + 1:])
         region, ignore, smnr_name = lol_input.lower().partition(' ')
+        smnr_name_table = smnr_name.replace(' ', '')
         smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + riot_api_key
         if region.lower() == 'eune' or 'euw' or 'na':
             smnr_by_name = requests.get(smrn_by_name_url).json()
-            smnr_id = str(smnr_by_name[smnr_name]['id'])
-            smnr_icon = str(smnr_by_name[smnr_name]['profileIconId'])
+            smnr_id = str(smnr_by_name[smnr_name_table]['id'])
+            smnr_icon = str(smnr_by_name[smnr_name_table]['profileIconId'])
             icon_url = 'http://ddragon.leagueoflegends.com/cdn/6.17.1/img/profileicon/' + smnr_icon + '.png'
-            smnr_lvl = str(smnr_by_name[smnr_name]['summonerLevel'])
+            smnr_lvl = str(smnr_by_name[smnr_name_table]['summonerLevel'])
             summary_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smnr_id + '/summary?season=SEASON2016&api_key=' + riot_api_key
             summary = requests.get(summary_url).json()
             league_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v2.5/league/by-summoner/' + smnr_id + '?api_key=' + riot_api_key
@@ -246,8 +261,8 @@ async def on_message(message):
                 league_name = league[smnr_id][0]['name']
                 league_tier = league[smnr_id][0]['tier']
             except:
-                league_name = 'None'
-                league_tier = 'None'
+                league_name = 'No League'
+                league_tier = 'No Rank'
             # Image Start
             if os.path.isfile('cache/lol/avatar_' + message.author.id + '.png'):
                 os.remove('cache/lol/avatar_' + message.author.id + '.png')
@@ -298,6 +313,8 @@ async def on_message(message):
                                    '\nMinion Kills: ' + ranked_minions +
                                    '\nTurret Kills: ' + ranked_turrets +
                                    '\nJungle Minion Kills: ' + ranked_neutrals)
+                else:
+                    ranked_text = 'None'
             except:
                 ranked_text = 'None'
             try:
@@ -316,6 +333,8 @@ async def on_message(message):
                                    '\nMinion Kills: ' + normal_minions +
                                    '\nTurret Kills: ' + normal_turrets +
                                    '\nJungle Minion Kills: ' + normal_neutrals)
+                else:
+                    normal_text = 'None'
             except SyntaxError:
                 normal_text = 'None'
             if ranked_text == 'None' and normal_text == 'None':
