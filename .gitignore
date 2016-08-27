@@ -11,3 +11,4 @@ lolsig.png
 thing.py
 __pycache__/*
 plugins/__pycache__/*
+cache/*
