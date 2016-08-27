@@ -1,8 +1,7 @@
 from plugin import Plugin
-from commands import *
+from config import cmd_ud
+from config import MashapeKey as mashape_key
 import requests
-
-from config import mashape_key
 
 class UrbanDictionary(Plugin):
     is_global = True

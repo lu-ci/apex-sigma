@@ -1,7 +1,7 @@
 from plugin import Plugin
-from commands import *
+from config import cmd_weather
+from config import OpenWeatherMapKey as owm_key
 import urllib
-from config import owm_key
 
 class Weather(Plugin):
     is_global = True

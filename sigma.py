@@ -1,18 +1,6 @@
 # noinspection PyPep8
 from config import *
 from commands import *
-
-from plugin_manager import PluginManager
-from plugins.help import Help
-from plugins.league import LeagueOfLegends
-from plugins.bns import BladeAndSoul
-from plugins.urbandictionary import UrbanDictionary
-from plugins.weather import Weather
-from plugins.hearthstone import Hearthstone
-from plugins.pokemon import Pokemon
-from plugins.joke import Joke
-from plugins.overwatch import Overwatch
-import config as cfg
 import datetime
 import json
 import os
@@ -25,12 +13,11 @@ import random
 import wget
 import requests
 import pushbullet
-import googleapiclient as g_api
+#import googleapiclient as g_api
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
-import plugins.bns_api as bns_api
-import plugins.youtube_api as yt_api
+#import plugins.youtube_api as yt_api
 
 print('Starting up...')
 start_time = time.time()
@@ -44,34 +31,28 @@ if not os.path.isfile('config.py'):
 else:
     print('config.py present, continuing...')
 # Data
-token = cfg.Token
-if token == '':
-    sys.exit('Token not provided, please open config.json and place your token.')
-pfx = cfg.Prefix
-ownr = cfg.OwnerID
-client = discord.Client()
-riot_api_key = cfg.RiotAPIKey
-mashape_key = cfg.MashapeKey
-owm_key = cfg.OpenWeatherMapKey
-notify = cfg.Notifications
-pb_key = cfg.Pushbullet
-pb = pushbullet.Pushbullet(pb_key)
-gapi = cfg.GoogleAPIKey
+from config import Token as token
+if token == '': sys.exit('Token not provided, please open config.json and place your token.')
 
-# Commands
-cmd_help  = cfg.cmd_help
-cmd_overwatch  = cfg.cmd_overwatch
-cmd_league  = cfg.cmd_league
-cmd_bns  = cfg.cmd_bns
-cmd_ud  = cfg.cmd_ud
-cmd_weather  = cfg.cmd_weather
-cmd_hearthstone  = cfg.cmd_hearthstone
-cmd_pokemon  = cfg.cmd_pokemon
-cmd_joke  = cfg.cmd_joke
+from config import Prefix as pfx
+from config import OwnerID as ownr
+
+#from config import Pushbullet as pb_key
+#pb = pushbullet.Pushbullet(pb_key)
+
+from plugin_manager import PluginManager
+from plugins.help import Help
+from plugins.league import LeagueOfLegends
+from plugins.bns import BladeAndSoul
+from plugins.urbandictionary import UrbanDictionary
+from plugins.weather import Weather
+from plugins.hearthstone import Hearthstone
+from plugins.pokemon import Pokemon
+from plugins.joke import Joke
+from plugins.overwatch import Overwatch
+
 
 # I love spaghetti!
-
-
 class sigma(discord.Client):
 
     def __init__(self):

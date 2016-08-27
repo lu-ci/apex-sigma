@@ -1,7 +1,8 @@
 from plugin import Plugin
-from commands import *
+from config import cmd_hearthstone
+from config import MashapeKey as mashape_key
 import requests
-from config import mashape_key
+
 
 class Hearthstone(Plugin):
     is_global = True
