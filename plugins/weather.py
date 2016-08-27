@@ -59,7 +59,7 @@ class Weather(Plugin):
                 #print('CMD [' + cmd_name + '] > ' + initiator_data)
             except AttributeError:
                 await self.client.send_message(message.channel, 'Something went wrong, and we don\'t know what!')
-                #print('CMD [' + cmd_name + '] > ' + initiator_data)
+                print('CMD [' + cmd_name + '] > ' + initiator_data)
             try:
                 owm_error_code = str(owm_json['cod'])
                 if owm_error_code == '404':
