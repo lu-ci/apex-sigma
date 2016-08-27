@@ -1,4 +1,5 @@
 # noinspection PyPep8
+import config as cfg
 import datetime
 import json
 import os
@@ -11,8 +12,10 @@ import random
 import wget
 import requests
 import pushbullet
+import googleapiclient as gapi
 from PIL import Image
 import plugins.bns_api as bns_api
+import plugins.youtube_api as yt_api
 
 print('Starting up...')
 start_time = time.time()
@@ -20,49 +23,36 @@ time = time.time()
 current_time = datetime.datetime.now().time()
 current_time.isoformat()
 
-if not os.path.isfile('config.json'):
+if not os.path.isfile('config.py'):
     sys.exit(
         'Fatal Error: config.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
 else:
-    print('config.json present, continuing...')
-if not os.path.isfile('commands.json'):
-    sys.exit(
-        'Fatal Error: commands.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
-else:
-    print('commands.json present, continuing...')
-
-with open('config.json', 'r', encoding='utf-8') as config_file:
-    config = config_file.read()
-    config = json.loads(config)
-    print('Loaded configuration.')
-with open('commands.json', 'r', encoding='utf-8') as commands_file:
-    commands = commands_file.read()
-    commands = json.loads(commands)
-    print('Loaded commands.')
-
-token = (config['Token'])
+    print('config.py present, continuing...')
+# Data
+token = cfg.Token
 if token == '':
     sys.exit('Token not provided, please open config.json and place your token.')
-pfx = (config['Prefix'])
-ownr = (config['OwnerID'])
+pfx = cfg.Prefix
+ownr = cfg.OwnerID
 client = discord.Client()
-riot_api_key = '759fa53e-7837-4109-bf6a-05b8dc63d702'
-mashape_key = 'nvLNoBix6DmshG97ORG4iB51mHa5p1UezKwjsnigQ85K5RXieT'
-owm_key = 'b49efc119530833da61588e4d87668c1'
-notify = (config['Notifications'])
-pb_key = (config['Pushbullet'])
+riot_api_key = cfg.RiotAPIKey
+mashape_key = cfg.MashapeKey
+owm_key = cfg.OpenWeatherMapKey
+notify = cfg.Notifications
+pb_key = cfg.Pushbullet
 pb = pushbullet.Pushbullet(pb_key)
+gapi = cfg.GoogleAPIKey
 
 # Commands
-cmd_help = (commands['cmd_help'])
-cmd_overwatch = (commands['cmd_overwatch'])
-cmd_league = (commands['cmd_league'])
-cmd_bns = (commands['cmd_bns'])
-cmd_ud = (commands['cmd_ud'])
-cmd_weather = (commands['cmd_weather'])
-cmd_hearthstone = (commands['cmd_hearthstone'])
-cmd_pokemon = (commands['cmd_pokemon'])
-cmd_joke = (commands['cmd_joke'])
+cmd_help  = cfg.cmd_help
+cmd_overwatch  = cfg.cmd_overwatch
+cmd_league  = cfg.cmd_league
+cmd_bns  = cfg.cmd_bns
+cmd_ud  = cfg.cmd_ud
+cmd_weather  = cfg.cmd_weather
+cmd_hearthstone  = cfg.cmd_hearthstone
+cmd_pokemon  = cfg.cmd_pokemon
+cmd_joke  = cfg.cmd_joke
 
 # I love spaghetti!
 
@@ -85,7 +75,7 @@ async def on_ready():
     print('-------------------------\n')
     print('-------------------------')
     print('Authors: AXAz0r, Awakening')
-    print('Bot Version: Beta 0.14')
+    print('Bot Version: Beta 0.16')
     print('Build Date: 24. August 2016.')
     print('-------------------------')
     if notify == 'Yes':
@@ -129,31 +119,25 @@ async def on_message(message):
             profile_json = json.loads(profile_json_source)
             good = True
         except:
-            await client.send_message(message.channel, 'Error 503: Service ubnavailable.')
+            await client.send_message(message.channel, 'Error 503: Service unavailable.')
             good = False
         if good:
             try:
                 avatar_link = profile_json['data']['avatar']
                 border_link = profile_json['data']['levelFrame']
-                if os.path.isfile('avatar.png'):
-                    os.remove('avatar.png')
-                if os.path.isfile('border.png'):
-                    os.remove('border.png')
-                if os.path.isfile('profile.png'):
-                    os.remove('profile.png')
                 wget.download(avatar_link)
                 avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
                 avatar_name = str(profile_json['data']['avatar'])
-                os.rename(avatar_name[len(avatar_link_base):], 'avatar.png')
+                os.rename(avatar_name[len(avatar_link_base):], '/cache/ow/avatar_' + message.author.id + '.png')
                 wget.download(border_link)
                 border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
                 border_name = str(profile_json['data']['levelFrame'])
-                os.rename(border_name[len(border_link_base):], 'border.png')
+                os.rename(border_name[len(border_link_base):], '/cache/ow/border_' + message.author.id + '.png')
                 base = Image.open('base.png')
                 overlay = Image.open('overlay.png')
-                foreground = Image.open('border.png')
+                foreground = Image.open('/cache/ow/border_' + message.author.id + 'avatar.png')
                 foreground_res = foreground.resize((128, 128), Image.ANTIALIAS)
-                background = Image.open('avatar.png')
+                background = Image.open('/cache/ow/avatar_' + message.author.id + 'avatar.png')
                 background_res = background.resize((72, 72), Image.ANTIALIAS)
                 base.paste(background_res, (28, 28))
                 base.paste(overlay, (0, 0), overlay)

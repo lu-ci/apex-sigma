@@ -9,3 +9,5 @@ border.png
 profile.png
 lolsig.png
 thing.py
+config.py
+*.pyc
