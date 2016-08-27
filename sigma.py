@@ -36,6 +36,7 @@ from plugins.hearthstone import Hearthstone
 from plugins.pokemon import Pokemon
 from plugins.joke import Joke
 from plugins.overwatch import Overwatch
+from plugins.rip import Rip
 
 
 # I love spaghetti!
@@ -87,6 +88,13 @@ class sigma(discord.Client):
                     print(e)
         except FileNotFoundError: pass
 
+        if not os.path.exists('cache/lol/'):
+            os.makedirs('cache/lol/')
+        if not os.path.exists('cache/ow/'):
+            os.makedirs('cache/ow/')
+        if not os.path.exists('cache/rip/'):
+            os.makedirs('cache/rip/')
+
     async def on_message(self, message):
         # Static Strings
         #initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
@@ -98,17 +106,9 @@ class sigma(discord.Client):
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
 
-        if message.content.startswith('-read<@92747043885314048>'):
-            if message.author.id == ownr:
-                await client.send_message(message.channel, 'Alex stop wasting time and get back to working on my APIs...')
-            elif message.author.id == '92747043885314048':
-                await client.send_message(message.channel,
-                                          'Ace, I heard Alex bought this giant black dildo, wanna go test it out?')
-            else:
-                await client.send_message(message.channel, 'No! ಠ_ಠ')
 
 
-        elif message.content.startswith('(╯°□°）╯︵ ┻━┻'):
+        if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
             await client.send_message(message.channel, '┬─┬﻿ ノ( ゜-゜ノ)')
 
 client = sigma()
