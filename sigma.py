@@ -1,23 +1,9 @@
 # noinspection PyPep8
-from config import *
-from commands import *
 import datetime
-import json
 import os
 import sys
 import time
-import urllib.error
-import urllib.request
 import discord
-import random
-import wget
-import requests
-import pushbullet
-#import googleapiclient as g_api
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
-#import plugins.youtube_api as yt_api
 
 print('Starting up...')
 start_time = time.time()
@@ -27,7 +13,7 @@ current_time.isoformat()
 
 if not os.path.isfile('config.py'):
     sys.exit(
-        'Fatal Error: config.json is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+        'Fatal Error: config.py is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
 else:
     print('config.py present, continuing...')
 # Data
@@ -124,28 +110,6 @@ class sigma(discord.Client):
 
         elif message.content.startswith('(╯°□°）╯︵ ┻━┻'):
             await client.send_message(message.channel, '┬─┬﻿ ノ( ゜-゜ノ)')
-
-        elif message.content.startswith(pfx + 'checkbullet'):
-            cmd_name = 'PushBullet Message Check'
-            await client.send_typing(message.channel)
-            pushes = pb.get_pushes(limit=1)
-            title = pushes[0]['title']
-            body = pushes[0]['body']
-            await client.send_message(message.channel, 'Title: `' + title + '`\nMessage: `' + body + '`')
-            pb.dismiss_push(pushes[0]['iden'])
-            #print('CMD [' + cmd_name + '] > ' + initiator_data)
-        elif message.content.startswith(pfx + 'sendbullet'):
-            cmd_name = 'PushBullet Message Send'
-            await client.send_typing(message.channel)
-            try:
-                push_input = message.content[len(pfx) + 11:]
-                title, ignore, body = str(push_input).partition(' ')
-                pb.push_note(title, body)
-                await client.send_message(message.channel, 'Message has been sent to <@' + ownr + '>')
-            except pushbullet.errors.PushbulletError:
-                await client.send_message(message.channel, 'There was a problem, probably rate limiting...')
-            #print('CMD [' + cmd_name + '] > ' + initiator_data)
-
 
 client = sigma()
 client.run(token)
