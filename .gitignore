@@ -12,3 +12,4 @@ thing.py
 config.py
 _pycache_
 *.pyc
+cache/ow/*

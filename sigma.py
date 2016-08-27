@@ -14,6 +14,8 @@ import requests
 import pushbullet
 import googleapiclient as gapi
 from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
 import plugins.bns_api as bns_api
 import plugins.youtube_api as yt_api
 
@@ -82,6 +84,14 @@ async def on_ready():
         pb.push_note('Sigma', 'Sigma Activated!')
     else:
         print(client.user.name + ' activated.')
+    folder = 'cache/ow'
+    for the_file in os.listdir(folder):
+        file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(e)
 
 
 @client.event
@@ -113,111 +123,169 @@ async def on_message(message):
         ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
         ow_region_x, ignore, ow_name = ow_input.partition(' ')
         ow_region = ow_region_x.replace('NA', 'US')
-        try:
-            profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
-            profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
-            profile_json = json.loads(profile_json_source)
-            good = True
-        except:
-            await client.send_message(message.channel, 'Error 503: Service unavailable.')
-            good = False
-        if good:
+        if os.path.isfile('cache/ow/avatar_' + message.author.id + '.png'):
+            os.remove('cache/ow/avatar_' + message.author.id + '.png')
+        if os.path.isfile('cache/ow/border_' + message.author.id + '.png'):
+            os.remove('cache/ow/border_' + message.author.id + '.png')
+        if os.path.isfile('cache/ow/profile_' + message.author.id + '.png'):
+            os.remove('cache/ow/profile_' + message.author.id + '.png')
+        if ow_region.upper() == 'NA' or 'US' or 'EU':
             try:
-                avatar_link = profile_json['data']['avatar']
-                border_link = profile_json['data']['levelFrame']
-                wget.download(avatar_link)
-                avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
-                avatar_name = str(profile_json['data']['avatar'])
-                os.rename(avatar_name[len(avatar_link_base):], '/cache/ow/avatar_' + message.author.id + '.png')
-                wget.download(border_link)
-                border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
-                border_name = str(profile_json['data']['levelFrame'])
-                os.rename(border_name[len(border_link_base):], '/cache/ow/border_' + message.author.id + '.png')
-                base = Image.open('base.png')
-                overlay = Image.open('overlay.png')
-                foreground = Image.open('/cache/ow/border_' + message.author.id + 'avatar.png')
-                foreground_res = foreground.resize((128, 128), Image.ANTIALIAS)
-                background = Image.open('/cache/ow/avatar_' + message.author.id + 'avatar.png')
-                background_res = background.resize((72, 72), Image.ANTIALIAS)
-                base.paste(background_res, (28, 28))
-                base.paste(overlay, (0, 0), overlay)
-                base.paste(foreground_res, (0, 0), foreground_res)
-                base.save('profile.png')
-                if message.author.id == '152239976338161664':
-                    rank_error = 'Goddamn it Bubu!'
-                else:
-                    rank_error = 'Season not active.'
-                overwatch_profile = ('**Name:** ' + profile_json['data']['username'] +
-                                     '\n**Level:** ' + str(profile_json['data']['level']) +
-                                     '\n**Quick Games:**' +
-                                     '\n    **- Played:** ' + str(profile_json['data']['games']['quick']['played']) +
-                                     '\n    **- Won:** ' + str(profile_json['data']['games']['quick']['wins']) +
-                                     '\n    **- Lost:** ' + str(profile_json['data']['games']['quick']['lost']) +
-                                     '\n**Competitive Games:**' +
-                                     '\n    **- Played:** ' + str(
-                    profile_json['data']['games']['competitive']['played']) +
-                                     '\n    **- Won:** ' + str(profile_json['data']['games']['competitive']['wins']) +
-                                     '\n    **- Lost:** ' + str(profile_json['data']['games']['competitive']['lost']) +
-                                     '\n    **- Rank:** ' + rank_error +
-                                     '\n**Playtime:**' +
-                                     '\n    **- Quick:** ' + str(profile_json['data']['playtime']['quick']) +
-                                     '\n    **- Competitive:** ' + str(profile_json['data']['playtime']['competitive'])
-                                     )
-                print('CMD [' + cmd_name + '] > ' + initiator_data)
-                await client.send_file(message.channel, 'profile.png')
-                await client.send_message(message.channel, overwatch_profile)
-                if os.path.isfile('avatar.png'):
-                    os.remove('avatar.png')
-                if os.path.isfile('border.png'):
-                    os.remove('border.png')
-                if os.path.isfile('profile.png'):
-                    os.remove('profile.png')
-            except KeyError:
+                profile = ('http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
+                profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
+                profile_json = json.loads(profile_json_source)
+                good = True
+            except:
+                await client.send_message(message.channel, 'Error 503: Service unavailable.')
+                good = False
+            if good:
                 try:
+                    avatar_link = profile_json['data']['avatar']
+                    border_link = profile_json['data']['levelFrame']
+                    avaloc = 'cache/ow/avatar_' + message.author.id + '.png'
+                    borloc = 'cache/ow/border_' + message.author.id + '.png'
+                    wget.download(avatar_link, out=avaloc)
+                    #avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
+                    #avatar_name = str(profile_json['data']['avatar'])
+                    #os.rename(avatar_name[len(avatar_link_base):], '/cache/ow/avatar_' + message.author.id + '.png')
+                    wget.download(border_link, out=borloc)
+                    #border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
+                    #border_name = str(profile_json['data']['levelFrame'])
+                    #os.rename(border_name[len(border_link_base):], '/cache/ow/border_' + message.author.id + '.png')
+                    base = Image.open('base.png')
+                    overlay = Image.open('overlay.png')
+                    foreground = Image.open('cache/ow/border_' + message.author.id + '.png')
+                    foreground_res = foreground.resize((128, 128), Image.ANTIALIAS)
+                    background = Image.open('cache/ow/avatar_' + message.author.id + '.png')
+                    background_res = background.resize((72, 72), Image.ANTIALIAS)
+                    base.paste(background_res, (28, 28))
+                    base.paste(overlay, (0, 0), overlay)
+                    base.paste(foreground_res, (0, 0), foreground_res)
+                    font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 32)
+                    imgdraw = ImageDraw.Draw(base)
+                    imgdraw.text((130, 46), profile_json['data']['username'], (255,255,255),font=font)
+                    base.save('cache\ow\profile_' + message.author.id + '.png')
+                    name = profile_json['data']['username']
+                    level = str(profile_json['data']['level'])
+                    qg_played = str(profile_json['data']['games']['quick']['played'])
+                    qg_won = str(profile_json['data']['games']['quick']['wins'])
+                    qg_lost = str(profile_json['data']['games']['quick']['lost'])
+                    qg_playtime = str(profile_json['data']['playtime']['quick'])
+                    try:
+                        cg_played = str(profile_json['data']['games']['competitive']['played'])
+                    except:
+                        cg_played = 'None'
+                    try:
+                        cg_won = str(profile_json['data']['games']['competitive']['wins'])
+                    except:
+                        cg_won = 'None'
+                    try:
+                        cg_lost = str(profile_json['data']['games']['competitive']['lost'])
+                    except:
+                        cg_lost = 'None'
+                    try:
+                        rank = str(profile_json['data']['games']['competitive']['rank'])
+                    except:
+                        rank = 'None'
+                    try:
+                        cg_playtime = str(profile_json['data']['playtime']['competitive'])
+                    except:
+                        cg_playtime = 'None'
+                    overwatch_profile = ('```Name: ' + name +
+                                         '\nLevel: ' + level +
+                                         '\nQuick Games:' +
+                                         '\n    - Played: ' + qg_played +
+                                         '\n    - Won: ' + qg_won +
+                                         '\n    - Lost: ' + qg_lost +
+                                         '\nCompetitive Games:' +
+                                         '\n    - Played: ' + cg_played +
+                                         '\n    - Won: ' + cg_won +
+                                         '\n    - Lost: ' + cg_lost +
+                                         '\n    - Rank: ' + rank +
+                                         '\nPlaytime:' +
+                                         '\n    - Quick: ' + qg_playtime +
+                                         '\n    - Competitive: ' + cg_playtime + '```')
                     print('CMD [' + cmd_name + '] > ' + initiator_data)
-                    print(profile_json['error'])
-                    await client.send_message(message.channel, profile_json['error'])
-                except:
-                    print('CMD [' + cmd_name + '] > ' + initiator_data)
-                    await client.send_message(message.channel,
-                                              'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+                    await client.send_file(message.channel, 'cache\ow\profile_' + message.author.id + '.png')
+                    await client.send_message(message.channel, overwatch_profile)
+                    if os.path.isfile('avatar.png'):
+                        os.remove('avatar.png')
+                    if os.path.isfile('border.png'):
+                        os.remove('border.png')
+                    if os.path.isfile('profile.png'):
+                        os.remove('profile.png')
+                except KeyError:
+                    try:
+                        print('CMD [' + cmd_name + '] > ' + initiator_data)
+                        print(profile_json['error'])
+                        await client.send_message(message.channel, profile_json['error'])
+                    except:
+                        print('CMD [' + cmd_name + '] > ' + initiator_data)
+                        await client.send_message(message.channel,
+                                                  'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+            else:
+                print('CMD [' + cmd_name + '] > ' + initiator_data)
         else:
-            print('CMD [' + cmd_name + '] > ' + initiator_data)
+            await client.send_message(message.channel, 'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + pfx + cmd_overwatch + 'region battletag#ID')
             # League of Legends API
     elif message.content.startswith(pfx + cmd_league + ' '):
         await client.send_typing(message.channel)
         cmd_name = 'League of Legends'
-        champ_no = ['266', '103', '84', '12', '32', '34', '1', '22', '136' '268', '432', '53', '63', '201', '51', '69',
-                    '31', '42', '122', '131', '36', '119', '245', '60', '28', '81', '9', '114', '105', '3', '41', '86',
-                    '150', '79', '104', '120', '74', '420', '39', '40', '59' '24', '126', '202', '222', '429', '43',
-                    '30', '38', '55', '10', '85', '121', '203', '240', '96', '7', '64' '89', '127', '236', '117', '99',
-                    '54', '90', '57', '11' '21' '82', '25', '267', '75', '111', '76', '56', '20', '2', '61', '80', '78',
-                    '133', '33', '421', '58', '107', '92', '68', '13', '113', '35', '98', '102', '27', '14', '15', '72',
-                    '37', '16', '50', '134', '223' '163', '91', '44', '17', '412', '0', '18', '48', '23', '4' '29',
-                    '77', '6', '110', '67', '45', '161', '254', '112', '8', '106', '19', '62', '101', '5' '157', '83',
-                    '154', '238', '115', '26', '143']
-        skin_no = ['0', '1', '2']
-        champ_back = random.choice(champ_no)
-        skin_back = random.choice(skin_no)
-        if os.path.isfile('lolsig.png'):
-            os.remove('lolsig.png')
-        lol_input = (str(message.content[len(cmd_league) + 1 + len(pfx):]))
-        region_x, ignore, summoner_name_x = lol_input.partition(' ')
-        summoner_name = summoner_name_x.lower()
-        region = region_x.lower()
-        lol_sig_url = (
-            'http://lolsigs.com/' + summoner_name + '_' + region + '_' + champ_back + '_' + skin_back + '.png')
-        wget.download(lol_sig_url)
-        os.rename(summoner_name + '_' + region + '_' + champ_back + '_' + skin_back + '.png', 'lolsig.png')
-        try:
-            await client.send_file(message.channel, 'lolsig.png')
-            if os.path.isfile('lolsig.png'):
-                os.remove('lolsig.png')
-            print('CMD [' + cmd_name + '] > ' + initiator_data)
-        except KeyError:
-            print('CMD [' + cmd_name + '] > ' + initiator_data)
-            await client.send_message(message.channel,
-                                      'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+        lol_input = str(message.content[len(pfx) + len(cmd_league) + 1:])
+        region, ignore, smnr_name = lol_input.lower().partition(' ')
+        smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + riot_api_key
+        if region.lower() == 'eune' or 'euw' or 'na':
+            smnr_by_name = requests.get(smrn_by_name_url).json()
+            smnr_id = str(smnr_by_name[smnr_name]['id'])
+            smnr_icon = str(smnr_by_name[smnr_name]['profileIconId'])
+            icon_url = 'http://ddragon.leagueoflegends.com/cdn/6.17.1/img/profileicon/' + smnr_icon + '.png'
+            smnr_lvl = str(smnr_by_name[smnr_name]['summonerLevel'])
+            summary_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smnr_id + '/summary?season=SEASON2016&api_key=' + riot_api_key
+            summary = requests.get(summary_url).json()
+            league_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v2.5/league/by-summoner/' + smnr_id + '?api_key=' + riot_api_key
+            league = requests.get(league_url).json()
+            try:
+                ranked = summary['playerStatSummaries'][7]
+                ranked_wins = str(ranked['wins'])
+                ranked_losses = str(ranked['losses'])
+                ranked_kills = str(ranked['aggregatedStats']['totalChampionKills'])
+                ranked_minions = str(ranked['aggregatedStats']['totalMinionKills'])
+                ranked_turrets = str(ranked['aggregatedStats']['totalTurretsKilled'])
+                ranked_neutrals = str(ranked['aggregatedStats']['totalNeutralMinionsKilled'])
+                ranked_assists = str(ranked['aggregatedStats']['totalAssists'])
+                ranked_text = ('Wins: ' + ranked_wins +
+                               '\nLosses: ' + ranked_losses +
+                               '\nKills: ' + ranked_kills +
+                               '\nAssists: ' + ranked_assists +
+                               '\nMinion Kills: ' + ranked_minions +
+                               '\nTurret Kills: ' + ranked_turrets +
+                               '\nJungle Minion Kills: ' + ranked_neutrals)
+            except:
+                ranked_text = ''
+            try:
+                normal = summary['playerStatSummaries'][10]
+                print(normal['playerStatSummaryType'])
+                normal_wins = str(normal['wins'])
+                normal_kills = str(normal['aggregatedStats']['totalChampionKills'])
+                normal_minions = str(normal['aggregatedStats']['totalMinionKills'])
+                normal_turrets = str(normal['aggregatedStats']['totalTurretsKilled'])
+                normal_neutrals = str(normal['aggregatedStats']['totalNeutralMinionsKilled'])
+                normal_assists = str(normal['aggregatedStats']['totalAssists'])
+                normal_text = ('Wins: ' + normal_wins +
+                               '\nKills: ' + normal_kills +
+                               '\nAssists: ' + normal_assists +
+                               '\nMinion Kills: ' + normal_minions +
+                               '\nTurret Kills: ' + normal_turrets +
+                               '\nJungle Minion Kills: ' + normal_neutrals)
+            except:
+                normal_text = ''
+            if ranked_text == '' and normal_text == '':
+                await client.send_message(message.channel, 'No stats found.')
+            else:
+                await client.send_message(message.channel,'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
+        else:
+            await client.send_message(message.channel, 'Invalid Region: `' + region + '`.')
+        print('CMD [' + cmd_name + '] > ' + initiator_data)
     elif message.content.startswith('-read<@92747043885314048>'):
         if message.author.id == ownr:
             await client.send_message(message.channel, 'Alex stop wasting time and get back to working on my APIs...')
