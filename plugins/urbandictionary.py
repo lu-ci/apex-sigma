@@ -2,7 +2,7 @@ from plugin import Plugin
 from commands import *
 import requests
 
-from config import mashape_key
+from config import MashapeKey as mashape_key
 
 class UrbanDictionary(Plugin):
     is_global = True
