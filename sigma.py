@@ -88,6 +88,13 @@ class sigma(discord.Client):
                     print(e)
         except FileNotFoundError: pass
 
+        if not os.path.exists('cache/lol/'):
+            os.makedirs('cache/lol/')
+        if not os.path.exists('cache/ow/'):
+            os.makedirs('cache/ow/')
+        if not os.path.exists('cache/rip/'):
+            os.makedirs('cache/rip/')
+
     async def on_message(self, message):
         # Static Strings
         #initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
