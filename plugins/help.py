@@ -1,5 +1,5 @@
 from plugin import Plugin
-from config import cmd_help
+from config import *
 
 class Help(Plugin):
     is_global = True
