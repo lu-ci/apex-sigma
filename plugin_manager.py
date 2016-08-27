@@ -12,7 +12,7 @@ class PluginManager:
         self.client.plugins.append(plugin_instance)
 
     def load_all(self):
-        print('Plugin manager: starting plugin load')
+        print('\nPlugin manager: starting plugin load\n')
         for plugin in Plugin.plugins:
             self.load(plugin)
 
