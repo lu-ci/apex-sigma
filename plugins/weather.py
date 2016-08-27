@@ -1,6 +1,7 @@
 from plugin import Plugin
 from config import cmd_weather
 from config import OpenWeatherMapKey as owm_key
+import json
 import urllib
 
 class Weather(Plugin):
