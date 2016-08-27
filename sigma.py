@@ -85,11 +85,15 @@ async def on_ready():
     else:
         print(client.user.name + ' activated.')
     folder = 'cache/ow'
+    folder2 = 'cache/lol'
     for the_file in os.listdir(folder):
         file_path = os.path.join(folder, the_file)
+        file_path2 = os.path.join(folder2, the_file)
         try:
             if os.path.isfile(file_path):
                 os.unlink(file_path)
+            if os.path.isfile(file_path2):
+                os.unlink(file_path2)
         except Exception as e:
             print(e)
 
@@ -208,12 +212,6 @@ async def on_message(message):
                     print('CMD [' + cmd_name + '] > ' + initiator_data)
                     await client.send_file(message.channel, 'cache\ow\profile_' + message.author.id + '.png')
                     await client.send_message(message.channel, overwatch_profile)
-                    if os.path.isfile('avatar.png'):
-                        os.remove('avatar.png')
-                    if os.path.isfile('border.png'):
-                        os.remove('border.png')
-                    if os.path.isfile('profile.png'):
-                        os.remove('profile.png')
                 except KeyError:
                     try:
                         print('CMD [' + cmd_name + '] > ' + initiator_data)
@@ -243,45 +241,87 @@ async def on_message(message):
             summary_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smnr_id + '/summary?season=SEASON2016&api_key=' + riot_api_key
             summary = requests.get(summary_url).json()
             league_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v2.5/league/by-summoner/' + smnr_id + '?api_key=' + riot_api_key
-            league = requests.get(league_url).json()
             try:
-                ranked = summary['playerStatSummaries'][7]
-                ranked_wins = str(ranked['wins'])
-                ranked_losses = str(ranked['losses'])
-                ranked_kills = str(ranked['aggregatedStats']['totalChampionKills'])
-                ranked_minions = str(ranked['aggregatedStats']['totalMinionKills'])
-                ranked_turrets = str(ranked['aggregatedStats']['totalTurretsKilled'])
-                ranked_neutrals = str(ranked['aggregatedStats']['totalNeutralMinionsKilled'])
-                ranked_assists = str(ranked['aggregatedStats']['totalAssists'])
-                ranked_text = ('Wins: ' + ranked_wins +
-                               '\nLosses: ' + ranked_losses +
-                               '\nKills: ' + ranked_kills +
-                               '\nAssists: ' + ranked_assists +
-                               '\nMinion Kills: ' + ranked_minions +
-                               '\nTurret Kills: ' + ranked_turrets +
-                               '\nJungle Minion Kills: ' + ranked_neutrals)
+                league = requests.get(league_url).json()
+                league_name = league[smnr_id][0]['name']
+                league_tier = league[smnr_id][0]['tier']
             except:
-                ranked_text = ''
+                league_name = 'None'
+                league_tier = 'None'
+            # Image Start
+            if os.path.isfile('cache/lol/avatar_' + message.author.id + '.png'):
+                os.remove('cache/lol/avatar_' + message.author.id + '.png')
+            if os.path.isfile('cache/lol/profile_' + message.author.id + '.png'):
+                os.remove('cache/lol/profile_' + message.author.id + '.png')
+            avaloc = 'cache/lol/avatar_' + message.author.id + '.png'
+            wget.download(icon_url, out=avaloc)
+            # avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
+            # avatar_name = str(profile_json['data']['avatar'])
+            # os.rename(avatar_name[len(avatar_link_base):], '/cache/ow/avatar_' + message.author.id + '.png')
+            # border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
+            # border_name = str(profile_json['data']['levelFrame'])
+            # os.rename(border_name[len(border_link_base):], '/cache/ow/border_' + message.author.id + '.png')
+            base = Image.open('base.png')
+            overlay = Image.open('overlay_lol.png')
+            background = Image.open('cache/lol/avatar_' + message.author.id + '.png')
+            background_res = background.resize((72, 72), Image.ANTIALIAS)
+            foreground = Image.open('border_lol.png')
+            foreground_res = foreground.resize((64, 64), Image.ANTIALIAS)
+            base.paste(background_res, (28, 28))
+            base.paste(overlay, (0, 0), overlay)
+            base.paste(foreground_res, (32, 32), foreground_res)
+            font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 32)
+            font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 16)
+            font3 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 48)
+            imgdraw = ImageDraw.Draw(base)
+            imgdraw.text((130, 38), smnr_name, (255, 255, 255), font=font)
+            imgdraw.text((130, 70), league_name + ' - ' + league_tier, (255, 255, 255), font=font2)
+            imgdraw.text((326, 38), smnr_lvl, (255, 255, 255), font=font3)
+            base.save('cache\lol\profile_' + message.author.id + '.png')
+            # Image End
+
             try:
-                normal = summary['playerStatSummaries'][10]
-                print(normal['playerStatSummaryType'])
-                normal_wins = str(normal['wins'])
-                normal_kills = str(normal['aggregatedStats']['totalChampionKills'])
-                normal_minions = str(normal['aggregatedStats']['totalMinionKills'])
-                normal_turrets = str(normal['aggregatedStats']['totalTurretsKilled'])
-                normal_neutrals = str(normal['aggregatedStats']['totalNeutralMinionsKilled'])
-                normal_assists = str(normal['aggregatedStats']['totalAssists'])
-                normal_text = ('Wins: ' + normal_wins +
-                               '\nKills: ' + normal_kills +
-                               '\nAssists: ' + normal_assists +
-                               '\nMinion Kills: ' + normal_minions +
-                               '\nTurret Kills: ' + normal_turrets +
-                               '\nJungle Minion Kills: ' + normal_neutrals)
+                item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'RankedSolo5x5'), None)
+                if item:
+                    ranked = item
+                    ranked_wins = str(ranked['wins'])
+                    ranked_losses = str(ranked['losses'])
+                    ranked_kills = str(ranked['aggregatedStats']['totalChampionKills'])
+                    ranked_minions = str(ranked['aggregatedStats']['totalMinionKills'])
+                    ranked_turrets = str(ranked['aggregatedStats']['totalTurretsKilled'])
+                    ranked_neutrals = str(ranked['aggregatedStats']['totalNeutralMinionsKilled'])
+                    ranked_assists = str(ranked['aggregatedStats']['totalAssists'])
+                    ranked_text = ('Wins: ' + ranked_wins +
+                                   '\nLosses: ' + ranked_losses +
+                                   '\nKills: ' + ranked_kills +
+                                   '\nAssists: ' + ranked_assists +
+                                   '\nMinion Kills: ' + ranked_minions +
+                                   '\nTurret Kills: ' + ranked_turrets +
+                                   '\nJungle Minion Kills: ' + ranked_neutrals)
             except:
-                normal_text = ''
-            if ranked_text == '' and normal_text == '':
+                ranked_text = 'None'
+            try:
+                item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'Unranked'), None)
+                if item:
+                    normal = item
+                    normal_wins = str(normal['wins'])
+                    normal_kills = str(normal['aggregatedStats']['totalChampionKills'])
+                    normal_minions = str(normal['aggregatedStats']['totalMinionKills'])
+                    normal_turrets = str(normal['aggregatedStats']['totalTurretsKilled'])
+                    normal_neutrals = str(normal['aggregatedStats']['totalNeutralMinionsKilled'])
+                    normal_assists = str(normal['aggregatedStats']['totalAssists'])
+                    normal_text = ('Wins: ' + normal_wins +
+                                   '\nKills: ' + normal_kills +
+                                   '\nAssists: ' + normal_assists +
+                                   '\nMinion Kills: ' + normal_minions +
+                                   '\nTurret Kills: ' + normal_turrets +
+                                   '\nJungle Minion Kills: ' + normal_neutrals)
+            except SyntaxError:
+                normal_text = 'None'
+            if ranked_text == 'None' and normal_text == 'None':
                 await client.send_message(message.channel, 'No stats found.')
             else:
+                await client.send_file(message.channel, 'cache/lol/profile_' + message.author.id + '.png')
                 await client.send_message(message.channel,'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
         else:
             await client.send_message(message.channel, 'Invalid Region: `' + region + '`.')
