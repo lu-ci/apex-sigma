@@ -6,6 +6,7 @@ import os
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+import json
 
 class Overwatch(Plugin):
     is_global = True
