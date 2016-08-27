@@ -9,8 +9,15 @@ border.png
 profile.png
 lolsig.png
 thing.py
+<<<<<<< HEAD
+__pycache__/*
+plugins/__pycache__/*
+cache/*
+config.py
+=======
 config.py
 _pycache_
 *.pyc
 cache/ow/*
 cache/lol/*
+>>>>>>> refs/remotes/origin/master
