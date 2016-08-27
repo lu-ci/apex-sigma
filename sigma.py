@@ -69,10 +69,6 @@ cmd_hearthstone  = cfg.cmd_hearthstone
 cmd_pokemon  = cfg.cmd_pokemon
 cmd_joke  = cfg.cmd_joke
 
-notify = (config['Notifications'])
-pb_key = (config['Pushbullet'])
-pb = pushbullet.Pushbullet(pb_key)
-
 # I love spaghetti!
 
 
