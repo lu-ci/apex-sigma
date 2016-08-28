@@ -198,7 +198,7 @@ class LeagueOfLegends(Plugin):
                                        '\nJungle Minion Kills: ' + hexakill_neutrals)
                     else:
                         hexakill_text = 'None'
-                except SyntaxError:
+                except:
                     hexakill_text = 'None'
                 if ranked_text == 'None' and normal_text == 'None' and aram_text == 'None' and dominion_text == 'None':
                     await self.client.send_message(message.channel, 'No stats found.')
@@ -214,8 +214,8 @@ class LeagueOfLegends(Plugin):
                         await self.client.send_message(message.channel,'Hexakill Stats:\n```' + hexakill_text + '\n```')
                     else:
                         await self.client.send_message(message.channel,'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
-            except SyntaxError:
-                if not region.lower() == ('na' and 'eune' and 'euw'):
+            except:
+                if not region.lower() == 'na' and not region.lower() == 'eune' and not region.lower() == 'euw':
                     await self.client.send_message(message.channel, 'Invalid Region: `' + region + '`.')
                 else:
                     await self.client.send_message(message.channel, 'Something went wrong, PANIC!')
