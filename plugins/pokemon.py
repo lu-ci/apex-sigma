@@ -1,14 +1,20 @@
 from plugin import Plugin
 from config import cmd_pokemon
 import requests
+from utils import create_logger
+
 
 class Pokemon(Plugin):
     is_global = True
+    log = create_logger(cmd_pokemon)
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_pokemon + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Pokemon'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                          message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             poke_input = (str(message.content[len(cmd_pokemon) + 1 + len(pfx):]))
             pokemon_url = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower() + '/')
             poke = requests.get(pokemon_url).json()

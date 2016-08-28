@@ -2,13 +2,18 @@ from plugin import Plugin
 from config import cmd_joke
 import random
 import requests
+from utils import create_logger
+
 
 class Joke(Plugin):
     is_global = True
+    log = create_logger(cmd_joke)
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_joke):
             cmd_name = 'Joke'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             number_list = [0, 1, 2]
             joke_no = random.choice(number_list)
             await self.client.send_typing(message.channel)

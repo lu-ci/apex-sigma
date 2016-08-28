@@ -3,8 +3,11 @@ from config import cmd_rip
 import requests
 from PIL import Image
 from io import BytesIO
+from utils import create_logger
+
 class Rip(Plugin):
     is_global = True
+    log = create_logger(cmd_rip)
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_rip):
@@ -14,6 +17,9 @@ class Rip(Plugin):
                 result = result + 'The Avatar of ' + user.display_name + " is " + user.avatar_url
                 mentioned_avatar = user.avatar_url
             cmd_name = 'Rest In Peace'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                          message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             user_avatar = requests.get(mentioned_avatar).content
             base = Image.open('img/rip/base.png')
             tomb = Image.open('img/rip/tombstone.png')

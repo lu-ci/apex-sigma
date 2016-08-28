@@ -7,15 +7,21 @@ import requests
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+from utils import create_logger
+
 
 class LeagueOfLegends(Plugin):
     is_global = True
+    log = create_logger(cmd_league)
 
     async def on_message(self, message, pfx):
         # League of Legends API
         if message.content.startswith(pfx + cmd_league + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'League of Legends'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                          message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             lol_input = str(message.content[len(pfx) + len(cmd_league) + 1:])
             region, ignore, smnr_name = lol_input.lower().partition(' ')
             smnr_name_table = smnr_name.replace(' ', '')

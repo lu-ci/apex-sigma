@@ -2,15 +2,18 @@ from plugin import Plugin
 from config import cmd_hearthstone
 from config import MashapeKey as mashape_key
 import requests
-
+from utils import create_logger
 
 class Hearthstone(Plugin):
     is_global = True
+    log = create_logger(cmd_hearthstone)
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_hearthstone + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Hearthstone'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             hs_input = (str(message.content[len(cmd_hearthstone) + 1 + len(pfx):]))
             url = "https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/" + hs_input
             headers = {'X-Mashape-Key': mashape_key, 'Accept': 'text/plain'}

@@ -2,9 +2,11 @@ from plugin import Plugin
 from config import cmd_ud
 from config import MashapeKey as mashape_key
 import requests
+from utils import create_logger
 
 class UrbanDictionary(Plugin):
     is_global = True
+    log = create_logger(cmd_ud)
 
     async def on_message(self, message, pfx):
     # Urban Dictionary API
