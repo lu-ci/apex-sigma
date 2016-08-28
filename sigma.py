@@ -5,6 +5,7 @@ import sys
 import time
 import discord
 import logging
+import random
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
@@ -118,14 +119,14 @@ class sigma(discord.Client):
 
 
         if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
-            #'┬─┬ ノ( ^_^ノ)'
-            #'┬─┬ ﾉ(° -°ﾉ)'
-            #'┬─┬ ノ(゜-゜ノ)'
-            #'┬─┬ ノ(ಠ\_ಠノ)'
-            #'┻━┻~~~~  ╯(°□° ╯)'
-            #'┻━┻====  ╯(°□° ╯)'
+            table = ['┬─┬ ノ( ^_^ノ)',
+            '┬─┬ ﾉ(° -°ﾉ)',
+            '┬─┬ ノ(゜-゜ノ)',
+            '┬─┬ ノ(ಠ\_ಠノ)',
+            '┻━┻~~~~  ╯(°□° ╯)',
+            '┻━┻====  ╯(°□° ╯)']
             logger.info("Table fliped by %s [%s], unflipping", message.author, message.author.id)
-            await client.send_message(message.channel, '┬─┬﻿ ノ( ゜-゜ノ)')
+            await client.send_message(message.channel, random.choice(table))
 
 client = sigma()
 client.run(token)
