@@ -25,8 +25,10 @@ class LeagueOfLegends(Plugin):
             lol_input = str(message.content[len(pfx) + len(cmd_league) + 1:])
             try:
                 region, gametype, smnr_name = lol_input.lower().split(maxsplit=2)
-                if not gametype.lower() == 'aram' and not 'dominion' and not 'urf' and not 'hexakill':
+                if not gametype.lower() == 'aram' and not gametype.lower() == 'dominion' and not gametype.lower() == 'urf' and not gametype.lower() == 'hexakill':
                     smnr_name = gametype + ' ' + smnr_name
+                else:
+                    pass
             except ValueError:
                 region, smnr_name = lol_input.lower().split(maxsplit=1)
                 gametype = 'None'
