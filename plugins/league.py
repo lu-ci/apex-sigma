@@ -116,13 +116,29 @@ class LeagueOfLegends(Plugin):
                         normal_text = 'None'
                 except SyntaxError:
                     normal_text = 'None'
-                if ranked_text == 'None' and normal_text == 'None':
+                try:
+                    item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'AramUnranked5x5'), None)
+                    if item:
+                        aram = item
+                        aram_wins = str(aram['wins'])
+                        aram_kills = str(aram['aggregatedStats']['totalChampionKills'])
+                        aram_turrets = str(aram['aggregatedStats']['totalTurretsKilled'])
+                        aram_assists = str(aram['aggregatedStats']['totalAssists'])
+                        aram_text = ('Wins: ' + aram_wins +
+                                       '\nKills: ' + aram_kills +
+                                       '\nAssists: ' + aram_assists +
+                                       '\nTurret Kills: ' + aram_turrets)
+                    else:
+                        aram_text = 'None'
+                except SyntaxError:
+                    aram_text = 'None'
+                if ranked_text == 'None' and normal_text == 'None' and aram_text == 'None':
                     await self.client.send_message(message.channel, 'No stats found.')
                 else:
                     await self.client.send_file(message.channel, 'cache/lol/profile_' + message.author.id + '.png')
-                    await self.client.send_message(message.channel,'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
+                    await self.client.send_message(message.channel,'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```\nARAM Stats:\n```' + aram_text + '\n```')
             except:
-                if not region.lower() == 'na' or 'eune' or 'euw':
+                if not region.lower() == ('na' and 'eune' and 'euw'):
                     await self.client.send_message(message.channel, 'Invalid Region: `' + region + '`.')
                 else:
                     await self.client.send_message(message.channel, 'Something went wrong, PANIC!')

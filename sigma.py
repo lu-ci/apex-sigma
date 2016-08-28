@@ -45,6 +45,7 @@ from plugins.pokemon import Pokemon
 from plugins.joke import Joke
 from plugins.overwatch import Overwatch
 from plugins.rip import Rip
+from plugins.lastfm import LastFM
 
 
 # I love spaghetti!
