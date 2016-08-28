@@ -23,7 +23,7 @@ class LastFM(Plugin):
             if no_of_songs == '':
                 no_of_songs = 5
             try:
-                top_tracks_text = ('Top 5 Tracks for the user `' + lfm_user + '`:\n```')
+                top_tracks_text = ('Top ' + str(no_of_songs) + ' Tracks for the user `' + lfm_user + '`:\n```')
                 for i in range(0, int(no_of_songs)):
                     name = lfm_data['toptracks']['track'][i]['name']
                     artist = lfm_data['toptracks']['track'][i]['artist']['name']

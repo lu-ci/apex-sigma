@@ -14,7 +14,9 @@ class UrbanDictionary(Plugin):
             await self.client.send_typing(message.channel)
             cmd_name = 'Urban Dictionary'
             ud_input = str(message.content[len(cmd_ud) + 1 + len(pfx):])
-
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                          message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             entry = ud_input[-2:]
             if entry.strip().isnumeric():
                 ud_input = ud_input[:-2] #stripping entry from the term
