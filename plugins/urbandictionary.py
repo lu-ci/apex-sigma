@@ -30,8 +30,6 @@ class UrbanDictionary(Plugin):
             result_type = str((response['result_type']))
             if result_type == 'exact':
                 try:
-                    print(response['list'])
-                    print(len(response['list']))
                     definition = str((response['list'][entry]['definition']))
                     # permalink = str((response['list'][0]['permalink']))
                     # thumbs_up = str((response['list'][0]['thumbs_up']))
