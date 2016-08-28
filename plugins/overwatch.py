@@ -7,15 +7,20 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 import json
+from utils import create_logger
 
 class Overwatch(Plugin):
     is_global = True
+    log = create_logger(cmd_overwatch)
 
     async def on_message(self, message, pfx):
 
         # Overwatch API
         if message.content.startswith(pfx + cmd_overwatch + ' '):
             cmd_name = 'Overwatch'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                          message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             await self.client.send_typing(message.channel)
             ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
             ow_region_x, ignore, ow_name = ow_input.partition(' ')

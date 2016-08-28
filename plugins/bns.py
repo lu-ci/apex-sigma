@@ -2,6 +2,7 @@ from plugin import Plugin
 from config import cmd_bns
 import requests
 from lxml import html
+from utils import create_logger
 
 def getSummary(tree):
     summary = {
@@ -156,11 +157,14 @@ def fetchStats(region, nickname):
 
 class BladeAndSoul(Plugin):
     is_global = True
+    log = create_logger(cmd_bns)
 
     async def on_message(self, message, pfx):
         # Blade and Soul API
         if message.content.startswith(pfx + cmd_bns):
             cmd_name = 'Blade and Soul'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
@@ -262,6 +266,8 @@ class BladeAndSoul(Plugin):
         # Blade and Soul Attack Details API
         elif message.content.startswith(pfx + 'att' + cmd_bns):
             cmd_name = 'Blade and Soul Attack Details'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
@@ -351,6 +357,8 @@ class BladeAndSoul(Plugin):
         # Blade and Soul Defense Details API
         elif message.content.startswith(pfx + 'def' + cmd_bns):
             cmd_name = 'Blade and Soul Defense Details'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()

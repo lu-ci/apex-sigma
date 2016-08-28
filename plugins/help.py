@@ -11,7 +11,9 @@ class Help(Plugin):
 
         if message.content.startswith(pfx + cmd_help):
                     cmd_name = 'Help'
-                    self.log.info('User %s [%s] on server %s [%s], used the help command on #%s channel', message.author, message.author.id, message.server.name, message.server.id, message.channel)
+                    self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                                  message.author,
+                                  message.author.id, message.server.name, message.server.id, message.channel)
                     await self.client.send_typing(message.channel)
                     await self.client.send_message(message.channel, '\nHelp: `' + pfx + cmd_help + '`' +
                                               '\nOverwatch: `' + pfx + cmd_overwatch + '`' +
