@@ -79,7 +79,7 @@ class Overwatch(Plugin):
                     base.paste(overlay, (0, 0), overlay)
                     base.paste(foreground_res, (0, 0), foreground_res)
                     try:
-                        base.paste(rankimg_res, (310, 30), rankimg_res)
+                        base.paste(rankimg_res, (310, 32), rankimg_res)
                     except:
                         pass
                     font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 32)
