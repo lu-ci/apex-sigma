@@ -13,22 +13,32 @@ class UrbanDictionary(Plugin):
         if message.content.startswith(pfx + cmd_ud + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Urban Dictionary'
-            ud_input = (str(message.content[len(cmd_ud) + 1 + len(pfx):]))
+            ud_input = str(message.content[len(cmd_ud) + 1 + len(pfx):])
+
+            entry = ud_input[-2:]
+            if entry.strip().isnumeric():
+                ud_input = ud_input[:-2] #stripping entry from the term
+                if int(entry) > 10:
+                    await self.client.send_message(message.channel, 'Out of boundary, please select a number from `1` to `10`')
+                    return
+                entry = int(entry) - 1 #converting the entry number
+            else: entry = 0
+
             url = "https://mashape-community-urban-dictionary.p.mashape.com/define?term=" + ud_input
             headers = {'X-Mashape-Key': mashape_key, 'Accept': 'text/plain'}
-            # r = requests.get(url, headers=headers)
-            # r_dec = r.read.decode('utf-8')
             response = requests.get(url, headers=headers).json()
             result_type = str((response['result_type']))
             if result_type == 'exact':
                 try:
-                    definition = str((response['list'][0]['definition']))
+                    print(response['list'])
+                    print(len(response['list']))
+                    definition = str((response['list'][entry]['definition']))
                     # permalink = str((response['list'][0]['permalink']))
                     # thumbs_up = str((response['list'][0]['thumbs_up']))
                     # thumbs_down = str((response['list'][0]['thumbs_down']))
                     example = str((response['list'][0]['example']))
                     await self.client.send_message(message.channel, 'Word: `' + ud_input + '`\n'
-                                                                                      'Definition:\n```' + definition + '```\n' +
+                                              'Definition:\n```' + definition + '```\n' +
                                               'Example:\n```' + example + '\n```')
                     #print('CMD [' + cmd_name + '] > ' + initiator_data)
                 except IndexError:
