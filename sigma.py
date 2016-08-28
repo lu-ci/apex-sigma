@@ -4,6 +4,14 @@ import os
 import sys
 import time
 import discord
+import logging
+
+logger = logging.getLogger(__name__)
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
 
 print('Starting up...')
 start_time = time.time()
@@ -109,6 +117,13 @@ class sigma(discord.Client):
 
 
         if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
+            #'┬─┬ ノ( ^_^ノ)'
+            #'┬─┬ ﾉ(° -°ﾉ)'
+            #'┬─┬ ノ(゜-゜ノ)'
+            #'┬─┬ ノ(ಠ\_ಠノ)'
+            #'┻━┻~~~~  ╯(°□° ╯)'
+            #'┻━┻====  ╯(°□° ╯)'
+            logger.info("Table fliped by %s [%s], unflipping", message.author, message.author.id)
             await client.send_message(message.channel, '┬─┬﻿ ノ( ゜-゜ノ)')
 
 client = sigma()
