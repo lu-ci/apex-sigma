@@ -47,7 +47,7 @@ from plugins.joke import Joke
 from plugins.overwatch import Overwatch
 from plugins.rip import Rip
 from plugins.lastfm import LastFM
-
+from plugins.noah_stuff import Jacob_Noah
 
 # I love spaghetti!
 class sigma(discord.Client):
