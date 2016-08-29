@@ -48,6 +48,7 @@ from plugins.overwatch import Overwatch
 from plugins.rip import Rip
 from plugins.lastfm import LastFM
 from plugins.cleverbot import Cleverbot
+from plugins.echo import Echo
 
 # I love spaghetti!
 class sigma(discord.Client):
