@@ -5,7 +5,7 @@ from config import OwnerID
 
 class Cleverbot(Plugin):
     is_global = True
-    log = create_logger('noah_stuff')
+    log = create_logger('cleverbot')
 
     async def on_message(self, message, pfx):
         if message.content.startswith(self.client.user.mention):
