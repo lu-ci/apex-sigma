@@ -1,22 +1,32 @@
 # Keys and BOT Data
-Token = ""
-ClientID = ""
-OwnerID = ""
-Notifications = "No"
-Pushbullet = ""
-OpenWeatherMapKey = ""
-MashapeKey = ""
-RiotAPIKey = ""
-GoogleAPIKey = ""
+Token = ''
+ClientID = ''
+OwnerID = ''
+Notifications = 'No'
+Pushbullet = ''
+OpenWeatherMapKey = ''
+MashapeKey = ''
+RiotAPIKey = ''
+GoogleAPIKey = ''
+LastFMAPIKey = ''
+ITADKey = ''
 Prefix = ">>"
-
 # Commands
 cmd_help = 'help'
 cmd_overwatch = 'overwatch'
 cmd_league = 'league'
+cmd_echo = 'echo'
 cmd_bns = 'bns'
 cmd_ud = 'ud'
 cmd_weather = 'weather'
 cmd_hearthstone = 'hearthstone'
 cmd_pokemon = 'pokemon'
 cmd_joke = 'joke'
+cmd_rip = 'rip'
+cmd_lfm = 'lastfm'
+cmd_nhentai = 'nhentai'
+cmd_ehentai = 'ehentai'
+cmd_gelbooru = 'gelbooru'
+cmd_rule34 = 'rule34'
+cmd_e621 = 'e621'
+cmd_hentaims = 'hentaims'
