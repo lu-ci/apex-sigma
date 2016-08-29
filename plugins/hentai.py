@@ -35,7 +35,7 @@ class Hentai(Plugin):
                 if message.channel.id == '216786478863220737':
                     await self.client.send_message(message.channel, choice.attrib['file_url'])
                 else:
-                    await self.client.send_message(message.channel, 'This is not the time and place to use this~ ;3\mTriTri would murder Alex\'s face off!')
+                    await self.client.send_message(message.channel, 'This is not the time and place to use this~ ;3\nTriTri would murder Alex\'s face off!')
             else:
                 await self.client.send_message(message.channel, choice.attrib['file_url'])
         elif message.content.startswith(pfx + cmd_nhentai + ' '):
