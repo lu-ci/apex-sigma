@@ -49,6 +49,7 @@ from plugins.rip import Rip
 from plugins.lastfm import LastFM
 from plugins.cleverbot import Cleverbot
 from plugins.echo import Echo
+from plugins.hentai import Hentai
 
 # I love spaghetti!
 class sigma(discord.Client):
