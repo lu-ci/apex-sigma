@@ -1,6 +1,7 @@
 from plugin import Plugin
 from config import *
 from utils import create_logger
+import asyncio
 
 
 class Help(Plugin):
@@ -14,16 +15,22 @@ class Help(Plugin):
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
             await self.client.send_typing(message.channel)
-            await self.client.send_message(message.channel, '\nHelp: `' + pfx + cmd_help + '`' +
-                                           '\nOverwatch: `' + pfx + cmd_overwatch + '`' +
-                                           '\nLeague of Legends: `' + pfx + cmd_league + '`' +
-                                           '\nBlade and Soul: `' + pfx + cmd_bns + '`' +
-                                           '\n - Detailed Attack Stats: `' + pfx + cmd_bns + 'att' + '`' +
-                                           '\n - Detailed Defense Stats: `' + pfx + cmd_bns + 'def' + '`' +
-                                           '\nUrban Dictionary: `' + pfx + cmd_ud + '`' +
-                                           '\nWeather: `' + pfx + cmd_weather + '`' +
-                                           '\nHearthstone: `' + pfx + cmd_hearthstone + '`' +
-                                           '\nPokemon: `' + pfx + cmd_pokemon + '`' +
-                                           '\nJoke: `' + pfx + cmd_joke + '`' +
-                                           '\nLastFM: `' + pfx + cmd_lfm + '`')
+            help_msg = await self.client.send_message(message.channel, '```\nHelp: ' + pfx + cmd_help +
+                                                      '\nOverwatch: ' + pfx + cmd_overwatch +
+                                                      '\nLeague of Legends: ' + pfx + cmd_league +
+                                                      '\nBlade and Soul: ' + pfx + cmd_bns +
+                                                      '\n - Detailed Attack Stats: ' + pfx + cmd_bns + 'att' +
+                                                      '\n - Detailed Defense Stats: ' + pfx + cmd_bns + 'def' +
+                                                      '\nUrban Dictionary: ' + pfx + cmd_ud +
+                                                      '\nWeather: ' + pfx + cmd_weather +
+                                                      '\nHearthstone: ' + pfx + cmd_hearthstone +
+                                                      '\nPokemon: ' + pfx + cmd_pokemon +
+                                                      '\nJoke: ' + pfx + cmd_joke +
+                                                      '\nLastFM: ' + pfx + cmd_lfm +
+                                                      '\nGelbooru: ' + pfx + cmd_gelbooru +
+                                                      '\nIsThereAnyDeal: ' + pfx + cmd_itad +
+                                                      '\nIMDB: ' + pfx + cmd_imdb + '```'
+                                                                                    'Made by Alex with love!\nhttps://github.com/AXAz0r/apex-sigma')
+            await asyncio.sleep(30)
+            await self.client.delete_message(help_msg)
             # print('CMD [' + cmd_name + '] > ' + initiator_data)
