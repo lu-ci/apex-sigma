@@ -31,8 +31,13 @@ class Hentai(Plugin):
             data = requests.get(gelbooru_url)
             posts = html.fromstring(data.content)
             choice = random.choice(posts)
-            await self.client.send_message(message.channel, choice.attrib['file_url'])
-
+            if message.server.id == '92827879448002560':
+                if message.channel.id == '216786478863220737':
+                    await self.client.send_message(message.channel, choice.attrib['file_url'])
+                else:
+                    await self.client.send_message(message.channel, 'This is not the time and place to use this~ ;3\mTriTri would murder Alex\'s face off!')
+            else:
+                await self.client.send_message(message.channel, choice.attrib['file_url'])
         elif message.content.startswith(pfx + cmd_nhentai + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'NHentai'
