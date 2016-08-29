@@ -21,4 +21,4 @@ class Cleverbot(Plugin):
             clv_input = message.content[len(self.client.user.mention):]
             cb = cleverbot.Cleverbot()
             response = cb.ask(clv_input)
-            await self.client.send_message(message.channel, '<@' + message.author.id + '>' + response)
+            await self.client.send_message(message.channel, '<@' + message.author.id + '> ' + response)
