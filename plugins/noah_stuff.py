@@ -7,7 +7,7 @@ class Jacob_Noah(Plugin):
     log = create_logger('noah_stuff')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith('<@' + self.client.id + '> kish meh'):
+        if message.content.startswith('<@' + self.client.user.id + '> kish meh'):
             await self.client.send_typing(message.channel)
             cmd_name = 'Jacob Noah Meme'
             self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
