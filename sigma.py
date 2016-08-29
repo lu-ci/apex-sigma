@@ -51,6 +51,7 @@ from plugins.cleverbot import Cleverbot
 from plugins.echo import Echo
 from plugins.hentai import Hentai
 from plugins.isthereanydeal import ITAD
+from plugins.imdb import IMDB
 
 # I love spaghetti!
 class sigma(discord.Client):
