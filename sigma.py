@@ -31,7 +31,7 @@ if token == '': sys.exit('Token not provided, please open config.json and place 
 
 from config import Prefix as pfx
 from config import OwnerID as ownr
-
+from config import cmd_help
 #from config import Pushbullet as pb_key
 #pb = pushbullet.Pushbullet(pb_key)
 
@@ -52,6 +52,8 @@ from plugins.echo import Echo
 from plugins.hentai import Hentai
 from plugins.isthereanydeal import ITAD
 from plugins.imdb import IMDB
+from plugins.nihongo import WK
+from plugins.nihongo import Jisho
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -66,7 +68,7 @@ class sigma(discord.Client):
         return plugins
 
     async def on_ready(self):
-        gamename = '>>help'
+        gamename = pfx + cmd_help
         game = discord.Game(name=gamename)
         await client.change_status(game)
         print('\nLogin Details:')
