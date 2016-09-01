@@ -1,5 +1,6 @@
 import logging
 
+
 def create_logger(name):
     logger = logging.getLogger(name)
     handler = logging.StreamHandler()
@@ -11,3 +12,43 @@ def create_logger(name):
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
     return logger
+
+
+def italics(text):
+    return '*' + text + '*'
+
+
+def bold(text):
+    return '**' + text + '**'
+
+
+def bold_italics(text):
+    return '***' + text + '***'
+
+
+def strikeout(text):
+    return '~~' + text + '~~'
+
+
+def underline(text):
+    return '__' + text + '__'
+
+
+def underline_italics(text):
+    return '__*' + text + '*__'
+
+
+def underline_bold(text):
+    return '__**' + text + '**__'
+
+
+def underline_bold_italics(text):
+    return '__***' + text + '***__'
+
+
+def code(text):
+    return '`' + text + '`'
+
+
+def multilinecode(text):
+    return '```' + text + '```'
