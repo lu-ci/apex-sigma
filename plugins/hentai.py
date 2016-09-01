@@ -23,26 +23,29 @@ class Hentai(Plugin):
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
             tags = message.content[len(pfx) + len(cmd_gelbooru) + 1:]
-            if tags == '':
-                tags = 'nude'
-            else:
-                pass
-            gelbooru_url = 'http://gelbooru.com/index.php?page=dapi&s=post&q=index&tags=' + tags.replace(' ', '+')
-            data = requests.get(gelbooru_url)
-            posts = html.fromstring(data.content)
-            choice = random.choice(posts)
-            if message.server.id == '92827879448002560':
-                if message.channel.id == '216786478863220737':
-                    await self.client.send_message(message.channel, choice.attrib['file_url'])
+            try:
+                if tags == '':
+                    tags = 'nude'
                 else:
-                    await self.client.send_message(message.channel, 'This is not the time and place to use this~ ;3\nTriTri would murder Alex\'s face off!')
-            elif message.server.id == '196373421834240000':
-                if message.channel.id == '205698165767143425':
-                    await self.client.send_message(message.channel, choice.attrib['file_url'])
+                    pass
+                gelbooru_url = 'http://gelbooru.com/index.php?page=dapi&s=post&q=index&tags=' + tags.replace(' ', '+')
+                data = requests.get(gelbooru_url)
+                posts = html.fromstring(data.content)
+                choice = random.choice(posts)
+                if message.server.id == '92827879448002560':
+                    if message.channel.id == '216786478863220737':
+                        await self.client.send_message(message.channel, choice.attrib['file_url'])
+                    else:
+                        await self.client.send_message(message.channel, 'This is not the time and place to use this~ ;3\nTriTri would murder Alex\'s face off!')
+                elif message.server.id == '196373421834240000':
+                    if message.channel.id == '205698165767143425':
+                        await self.client.send_message(message.channel, choice.attrib['file_url'])
+                    else:
+                        await self.client.send_message(message.channel, 'This is not the time and place to use this~ ;3\nTriTri would murder Alex\'s face off!')
                 else:
-                    await self.client.send_message(message.channel, 'This is not the time and place to use this~ ;3\nTriTri would murder Alex\'s face off!')
-            else:
-                await self.client.send_message(message.channel, choice.attrib['file_url'])
+                    await self.client.send_message(message.channel, choice.attrib['file_url'])
+            except:
+                await self.client.send_message(message.channel, 'Nothing found...')
         elif message.content.startswith(pfx + cmd_nhentai + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'NHentai'
