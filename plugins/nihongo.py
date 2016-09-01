@@ -2,6 +2,7 @@ from plugin import Plugin
 from config import cmd_jisho
 from config import cmd_wk
 from utils import create_logger
+from utils import bold
 import datetime
 import requests
 
@@ -17,58 +18,32 @@ class WK(Plugin):
             self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            wk_key = message.content[len(pfx) + len(cmd_wk) + 1:]
-            profile_url = requests.get('https://www.wanikani.com/api/user/' + wk_key + '/study-queue').json()
-            progress_url = requests.get('https://www.wanikani.com/api/user/' + wk_key + '/level-progression').json()
-            srs_url = requests.get('https://www.wanikani.com/api/user/' + wk_key + '/srs-distribution').json()
+            key = message.content[len(pfx) + len(cmd_wk) + 1:]
+            url = 'https://www.wanikani.com/api/user/' + key + '/srs-distribution'
+            api = requests.get(url).json()
             try:
-                username = profile_url['user_information']['username']
-                level = profile_url['user_information']['level']
-                title = profile_url['user_information']['title']
-                about = profile_url['user_information']
-                if about == '':
-                    about = 'Nothing written.'
-                website = profile_url['user_information']['website']
-                twitter = profile_url['user_information']['twitter']
-                topics = str(profile_url['user_information']['topics_count'])
-                print(topics)
-                posts = str(profile_url['user_information']['posts_count'])
-                print(posts)
-                join_date_raw = profile_url['user_information']['creation_date']
-                join_date = str(datetime.datetime.fromtimestamp(join_date_raw).strftime('%Y-%m-%d %H:%M:%S'))
-                print(join_date)
-                vac_date_raw = profile_url['user_information']['vacation_date']
-                vac_date = str(datetime.datetime.fromtimestamp(join_date_raw).strftime('%Y-%m-%d %H:%M:%S'))
-                print(vac_date)
-                lessons_count = str(profile_url['requested_information']['lessons_available'])
-                print(lessons_count)
-                reviews_count = str(profile_url['requested_information']['reviews_available'])
-                print(reviews_count)
-                next_review = str(datetime.datetime.fromtimestamp(
-                    profile_url['requested_information']['next_review_date']).strftime(
-                    '%Y-%m-%d %H:%M:%S'))
-                print(next_review)
-                rad_prog = progress_url['requested_information']['radicals_progress']
-                rad_total = str(progress_url['requested_information']['radicals_total'])
-                print(rad_total)
-                kanji_prog = progress_url['requested_information']['kanji_progress']
-                kanji_total = str(progress_url['requested_information']['kanji_total'])
-                print(kanji_total)
-                await self.client.send_message(message.channel, ('\nName: ' + username +
-                                                                 ' Level: ' + level +
-                                                                 '\nAbout: ' + about +
-                                                                 '\nTopics: ' + topics +
-                                                                 ' Posts: ' + posts +
-                                                                 '\nJoin Date: ' + join_date +
-                                                                 '\nVacation: ' + vac_date +
-                                                                 '\nLessons: ' + lessons_count +
-                                                                 ' Reviews: ' + reviews_count +
-                                                                 '\nNext Review: ' + next_review +
-                                                                 '\nRadicals: ' + rad_total +
-                                                                 '\nKanji: ' + kanji_total +
-                                                                 '\n```'))
-            except SyntaxError:
-                await self.client.send_message(message.channel, 'The key is wrong or the API dun goofed.')
+                username = api['user_information']['username']
+                title = api['user_information']['title']
+                level = str(api['user_information']['level'])
+                creation_date = datetime.datetime.fromtimestamp(api['user_information']['creation_date']).strftime('%B %d, %Y')
+                topics_count = str(api['user_information']['topics_count'])
+                posts_count = str(api['user_information']['posts_count'])
+
+                apprentice = 'Apprentice: ' + str(api['requested_information']['apprentice']['total'])
+                guru = 'Guru: ' + str(api['requested_information']['guru']['total'])
+                master = 'Master: ' + str(api['requested_information']['master']['total'])
+                enlightned = 'Enlightened: ' + str(api['requested_information']['enlighten']['total'])
+                burned = 'Burned: ' + str(api['requested_information']['burned']['total'])
+
+                out = ''
+                out += bold(username) + ' of ' + bold('Sect ' + title) + '\n'
+                out += bold('Level ' + level) + ' Apprentice' + '\n'
+                out += 'Scribed ' + bold(topics_count + ' topics') + ' & ' + bold(posts_count + ' posts') + '\n'
+                out += 'Serving the Crabigator since ' + bold(creation_date) + '\n'
+                out += apprentice + ' | ' + guru + ' | ' + master + ' | ' + enlightned + ' | ' + burned
+                await self.client.send_message(message.channel, out)
+            except:
+                await self.client.send_message(message.channel, 'Something went wrong ¯\_(ツ)_/¯')
 
 
 class Jisho(Plugin):
