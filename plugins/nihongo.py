@@ -1,5 +1,6 @@
 from plugin import Plugin
-from config import cmd_jisho, cmd_wk
+from config import cmd_jisho
+from config import cmd_wk
 from utils import create_logger
 import datetime
 import requests
@@ -53,20 +54,19 @@ class WK(Plugin):
                 kanji_prog = progress_url['requested_information']['kanji_progress']
                 kanji_total = str(progress_url['requested_information']['kanji_total'])
                 print(kanji_total)
-                stats_text = str('\nName: ' + username +
-                            ' Level: ' + level +
-                            '\nAbout: ' + about +
-                            '\nTopics: ' + topics +
-                            ' Posts: ' + posts +
-                            '\nJoin Date: ' + join_date +
-                            '\nVacation: ' + vac_date +
-                            '\nLessons: ' + lessons_count +
-                            ' Reviews: ' + reviews_count +
-                            '\nNext Review: ' + next_review +
-                            '\nRadicals: ' + rad_total +
-                            '\nKanji: ' + kanji_total +
-                            '\n```')
-                await self.client.send_message(message.channel, stats_text)
+                await self.client.send_message(message.channel, ('\nName: ' + username +
+                                                                 ' Level: ' + level +
+                                                                 '\nAbout: ' + about +
+                                                                 '\nTopics: ' + topics +
+                                                                 ' Posts: ' + posts +
+                                                                 '\nJoin Date: ' + join_date +
+                                                                 '\nVacation: ' + vac_date +
+                                                                 '\nLessons: ' + lessons_count +
+                                                                 ' Reviews: ' + reviews_count +
+                                                                 '\nNext Review: ' + next_review +
+                                                                 '\nRadicals: ' + rad_total +
+                                                                 '\nKanji: ' + kanji_total +
+                                                                 '\n```'))
             except SyntaxError:
                 await self.client.send_message(message.channel, 'The key is wrong or the API dun goofed.')
 
