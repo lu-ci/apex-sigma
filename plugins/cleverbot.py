@@ -1,6 +1,7 @@
 from plugin import Plugin
 from utils import create_logger
 import cleverbot
+import asyncio
 
 class Cleverbot(Plugin):
     is_global = True
@@ -21,4 +22,5 @@ class Cleverbot(Plugin):
             clv_input = message.content[len(self.client.user.mention):]
             cb = cleverbot.Cleverbot()
             response = cb.ask(clv_input)
+            await asyncio.sleep(len(response)*0.0145)
             await self.client.send_message(message.channel, '<@' + message.author.id + '> ' + response)

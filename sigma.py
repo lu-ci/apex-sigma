@@ -27,13 +27,14 @@ else:
     print('config.py present, continuing...')
 # Data
 from config import Token as token
+
 if token == '': sys.exit('Token not provided, please open config.json and place your token.')
 
 from config import Prefix as pfx
 from config import OwnerID as ownr
 from config import cmd_help
-#from config import Pushbullet as pb_key
-#pb = pushbullet.Pushbullet(pb_key)
+# from config import Pushbullet as pb_key
+# pb = pushbullet.Pushbullet(pb_key)
 
 from plugin_manager import PluginManager
 from plugins.help import Help
@@ -55,9 +56,9 @@ from plugins.imdb import IMDB
 from plugins.nihongo import WK
 from plugins.nihongo import Jisho
 
+
 # I love spaghetti!
 class sigma(discord.Client):
-
     def __init__(self):
         super().__init__()
         self.plugin_manager = PluginManager(self)
@@ -88,11 +89,11 @@ class sigma(discord.Client):
         print('Bot Version: Beta 0.14')
         print('Build Date: 24. August 2016.')
         print('-------------------------')
-        #try:
-            #if notify == 'Yes':
-            #    pb.push_note('Sigma', 'Sigma Activated!')
-            #else: print(client.user.name + ' activated.')
-        #except: pass
+        # try:
+        # if notify == 'Yes':
+        #    pb.push_note('Sigma', 'Sigma Activated!')
+        # else: print(client.user.name + ' activated.')
+        # except: pass
         folder = 'cache/ow'
         try:
             for the_file in os.listdir(folder):
@@ -102,7 +103,8 @@ class sigma(discord.Client):
                         os.unlink(file_path)
                 except Exception as e:
                     print(e)
-        except FileNotFoundError: pass
+        except FileNotFoundError:
+            pass
 
         if not os.path.exists('cache/lol/'):
             os.makedirs('cache/lol/')
@@ -113,7 +115,7 @@ class sigma(discord.Client):
 
     async def on_message(self, message):
         # Static Strings
-        #initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
+        # initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
         #    message.content) + ']\nServer: ' + str(message.server.name) + '\nServerID: ' + str(
         #    message.server.id) + '\n-------------------------')
         client.change_status(game=None)
@@ -122,17 +124,21 @@ class sigma(discord.Client):
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
 
-
-
         if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
             table = ['┬─┬ ノ( ^_^ノ)',
-            '┬─┬ ﾉ(° -°ﾉ)',
-            '┬─┬ ノ(゜-゜ノ)',
-            '┬─┬ ノ(ಠ\_ಠノ)',
-            '┻━┻~~~~  ╯(°□° ╯)',
-            '┻━┻====  ╯(°□° ╯)']
+                     '┬─┬ ﾉ(° -°ﾉ)',
+                     '┬─┬ ノ(゜-゜ノ)',
+                     '┬─┬ ノ(ಠ\_ಠノ)',
+                     '┻━┻~~~~  ╯(°□° ╯)',
+                     '┻━┻====  ╯(°□° ╯)',
+                     '┣ﾍ(^▽^ﾍ)Ξ(ﾟ▽ﾟ*)ﾉ┳━┳ There we go~♪',
+                     ' ┬──┬﻿ ¯\_(ツ)',
+                     '(ヘ･_･)ヘ┳━┳',
+                     'ヘ(´° □°)ヘ┳━┳',
+                     '┣ﾍ(≧∇≦ﾍ)… (≧∇≦)/┳━┳']
             logger.info("Table fliped by %s [%s], unflipping", message.author, message.author.id)
             await client.send_message(message.channel, random.choice(table))
+
 
 client = sigma()
 client.run(token)
