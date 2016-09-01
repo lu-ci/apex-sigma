@@ -29,11 +29,11 @@ class WK(Plugin):
                 topics_count = str(api['user_information']['topics_count'])
                 posts_count = str(api['user_information']['posts_count'])
 
-                apprentice = 'Apprentice: ' + str(api['requested_information']['apprentice']['total'])
-                guru = 'Guru: ' + str(api['requested_information']['guru']['total'])
-                master = 'Master: ' + str(api['requested_information']['master']['total'])
-                enlightned = 'Enlightened: ' + str(api['requested_information']['enlighten']['total'])
-                burned = 'Burned: ' + str(api['requested_information']['burned']['total'])
+                apprentice = 'Apprentice: ' + bold(str(api['requested_information']['apprentice']['total']))
+                guru = 'Guru: ' + bold(str(api['requested_information']['guru']['total']))
+                master = 'Master: ' + bold(str(api['requested_information']['master']['total']))
+                enlightned = 'Enlightened: ' + bold(str(api['requested_information']['enlighten']['total']))
+                burned = 'Burned: ' + bold(str(api['requested_information']['burned']['total']))
 
                 out = ''
                 out += bold(username) + ' of ' + bold('Sect ' + title) + '\n'
