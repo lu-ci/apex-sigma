@@ -87,8 +87,8 @@ class sigma(discord.Client):
         print('-------------------------\n')
         print('-------------------------')
         print('Authors: AXAz0r, Awakening')
-        print('Bot Version: Beta 0.14')
-        print('Build Date: 24. August 2016.')
+        print('Bot Version: Beta 0.22')
+        print('Build Date: 5. September 2016.')
         print('-------------------------')
         # try:
         # if notify == 'Yes':
