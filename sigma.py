@@ -55,6 +55,7 @@ from plugins.isthereanydeal import ITAD
 from plugins.imdb import IMDB
 from plugins.nihongo import WK
 from plugins.nihongo import Jisho
+from plugins.mal import MAL
 
 
 # I love spaghetti!
@@ -112,6 +113,8 @@ class sigma(discord.Client):
             os.makedirs('cache/ow/')
         if not os.path.exists('cache/rip/'):
             os.makedirs('cache/rip/')
+        if not os.path.exists('cache/ani/'):
+            os.makedirs('cache/ani/')
 
     async def on_message(self, message):
         # Static Strings

@@ -8,7 +8,6 @@ from config import cmd_hentaims
 from utils import create_logger
 from lxml import html
 import requests
-import xml.etree.ElementTree
 import random
 
 class Hentai(Plugin):
