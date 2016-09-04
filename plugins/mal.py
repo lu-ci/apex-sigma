@@ -33,8 +33,14 @@ class MAL(Plugin):
                 name = entries[0][1].text
                 eps = entries[0][4].text
                 score = entries[0][5].text
-                air = entries[0][8].text + ' to ' + entries[0][9].text
-                synopsis = (entries[0][10].text).replace('[i]', '').replace('[/i]', '').replace('<br>', '').replace('</br>', '').replace('<br />', '').replace('&#039;', '\'')
+                air_start = (entries[0][8].text)
+                if air_start == '0000-00-00':
+                    air_start = '???'
+                air_end = (entries[0][9].text)
+                if air_end == '0000-00-00':
+                    air_end = '???'
+                air = air_start + ' to ' + air_end
+                synopsis = (entries[0][10].text).replace('[i]', '').replace('[/i]', '').replace('<br>', '').replace('</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;', '-')
                 img = entries[0][11].text
                 type = entries[0][6].text
                 status = entries[0][7].text
@@ -59,7 +65,7 @@ class MAL(Plugin):
                 imgdraw.text((227, 222), air, (255, 255, 255), font=font)
                 base.save('cache\\ani\\anime_' + message.author.id + '.png')
                 await self.client.send_file(message.channel, 'cache\\ani\\anime_' + message.author.id + '.png')
-                await self.client.send_message(message.channel, '```\n' + synopsis + '\n```')
+                await self.client.send_message(message.channel, '```\n' + synopsis[:256] + '...\n\nMore At:\nhttps://myanimelist.net/anime/' + ani_id + '/ \n```')
                 os.remove('cache\\ani\\anime_' + message.author.id + '.png')
-            except SyntaxError:
+            except:
                 await self.client.send_message(message.channel, 'Not found or API dun goofed...')
