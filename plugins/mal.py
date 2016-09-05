@@ -31,7 +31,7 @@ class MAL(Plugin):
             print(len(entries))
             n = 0
             list_text = 'List of anime found for `' + mal_input + '`:\n```'
-            if len(entries) > 0:
+            if len(entries) > 1:
                 for entry in entries:
                     n +=1
                     list_text += '\n#' + str(n) + ' ' + entry[1].text
