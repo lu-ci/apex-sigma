@@ -40,12 +40,13 @@ class MAL(Plugin):
                 try:
                     ani_no = int(choice.content) - 1
                 except:
-                    await self.client.send_message(message.channel, 'Not a number... Please start over')
+                    await self.client.send_message(message.channel, 'Not a number or timed out... Please start over')
                 if choice is None:
                     return
             else:
                 ani_no = 0
             try:
+                await self.client.send_typing(message.channel)
                 ani_id = entries[ani_no][0].text
                 name = entries[ani_no][1].text
                 eps = entries[ani_no][4].text
@@ -85,7 +86,7 @@ class MAL(Plugin):
                 base.save('cache\\ani\\anime_' + message.author.id + '.png')
                 await self.client.send_file(message.channel, 'cache\\ani\\anime_' + message.author.id + '.png')
                 await self.client.send_message(message.channel, '```\n' + synopsis[
-                                                                          :256] + '...\n\nMore At:\nhttps://myanimelist.net/anime/' + ani_id + '/ \n```')
+                                                                          :256] + '...\n```\nMore at: <https://myanimelist.net/anime/' + ani_id + '/>\n')
                 os.remove('cache\\ani\\anime_' + message.author.id + '.png')
             except IndexError:
                 await self.client.send_message(message.channel, 'Number out of range, please start over...')
