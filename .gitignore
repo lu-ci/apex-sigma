@@ -21,3 +21,4 @@ _pycache_
 cache/ow/*
 cache/lol/*
 >>>>>>> refs/remotes/origin/master
+plugins/xp_grind.py

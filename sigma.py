@@ -56,6 +56,7 @@ from plugins.imdb import IMDB
 from plugins.nihongo import WK
 from plugins.nihongo import Jisho
 from plugins.mal import MAL
+from plugins.unflip import Table
 
 
 # I love spaghetti!
@@ -86,7 +87,7 @@ class sigma(discord.Client):
         print('STATUS: Finished Loading!')
         print('-------------------------\n')
         print('-------------------------')
-        print('Authors: AXAz0r, Awakening')
+        print('Authors: AXAz0r, Awakening, Mirai')
         print('Bot Version: Beta 0.22')
         print('Build Date: 5. September 2016.')
         print('-------------------------')
@@ -126,22 +127,6 @@ class sigma(discord.Client):
         enabled_plugins = await self.get_plugins()
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
-
-        if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
-            table = ['┬─┬ ノ( ^_^ノ)',
-                     '┬─┬ ﾉ(° -°ﾉ)',
-                     '┬─┬ ノ(゜-゜ノ)',
-                     '┬─┬ ノ(ಠ\_ಠノ)',
-                     '┻━┻~~~~  ╯(°□° ╯)',
-                     '┻━┻====  ╯(°□° ╯)',
-                     '┣ﾍ(^▽^ﾍ)Ξ(ﾟ▽ﾟ*)ﾉ┳━┳ There we go~♪',
-                     ' ┬──┬﻿ ¯\_(ツ)',
-                     '(ヘ･_･)ヘ┳━┳',
-                     'ヘ(´° □°)ヘ┳━┳',
-                     '┣ﾍ(≧∇≦ﾍ)… (≧∇≦)/┳━┳']
-            logger.info("Table fliped by %s [%s], unflipping", message.author, message.author.id)
-            await client.send_message(message.channel, random.choice(table))
-
 
 client = sigma()
 client.run(token)

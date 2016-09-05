@@ -26,26 +26,43 @@ class MAL(Plugin):
                           message.author.id, message.server.name, message.server.id, message.channel)
             mal_input = message.content[len(pfx) + len(cmd_mal) + 1:]
             mal_url = 'https://myanimelist.net/api/anime/search.xml?q=' + mal_input
+            mal = requests.get(mal_url, auth=HTTPBasicAuth(mal_un, mal_pw))
+            entries = html.fromstring(mal.content)
+            print(len(entries))
+            n = 0
+            list_text = 'List of anime found for `' + mal_input + '`:\n```'
+            if len(entries) > 0:
+                for entry in entries:
+                    n +=1
+                    list_text += '\n#' + str(n) + ' ' + entry[1].text
+                await self.client.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(len(entries)) + ')`')
+                choice = await self.client.wait_for_message(author=message.author, channel=message.channel, timeout=20)
+                try:
+                    ani_no = int(choice.content) - 1
+                except:
+                    await self.client.send_message(message.channel, 'Not a number... Please start over')
+                if choice is None:
+                    return
+            else:
+                ani_no = 0
             try:
-                mal = requests.get(mal_url, auth=HTTPBasicAuth(mal_un, mal_pw))
-                entries = html.fromstring(mal.content)
-                ani_id = entries[0][0].text
-                name = entries[0][1].text
-                eps = entries[0][4].text
-                score = entries[0][5].text
-                air_start = (entries[0][8].text)
+                ani_id = entries[ani_no][0].text
+                name = entries[ani_no][1].text
+                eps = entries[ani_no][4].text
+                score = entries[ani_no][5].text
+                air_start = (entries[ani_no][8].text)
                 if air_start == '0000-00-00':
                     air_start = '???'
-                air_end = (entries[0][9].text)
+                air_end = (entries[ani_no][9].text)
                 if air_end == '0000-00-00':
                     air_end = '???'
                 air = air_start + ' to ' + air_end
-                synopsis = (entries[0][10].text).replace('[i]', '').replace('[/i]', '').replace('<br>', '').replace(
+                synopsis = (entries[ani_no][10].text).replace('[i]', '').replace('[/i]', '').replace('<br>', '').replace(
                     '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
                                                                                                               '-')
-                img = entries[0][11].text
-                type = entries[0][6].text
-                status = entries[0][7].text
+                img = entries[ani_no][11].text
+                type = entries[ani_no][6].text
+                status = entries[ani_no][7].text
                 if len(name) > 22:
                     suffix = '...'
                 else:
@@ -70,5 +87,9 @@ class MAL(Plugin):
                 await self.client.send_message(message.channel, '```\n' + synopsis[
                                                                           :256] + '...\n\nMore At:\nhttps://myanimelist.net/anime/' + ani_id + '/ \n```')
                 os.remove('cache\\ani\\anime_' + message.author.id + '.png')
+            except IndexError:
+                await self.client.send_message(message.channel, 'Number out of range, please start over...')
+            except UnboundLocalError:
+                pass
             except:
                 await self.client.send_message(message.channel, 'Not found or API dun goofed...')
