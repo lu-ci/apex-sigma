@@ -19,8 +19,8 @@ class Help(Plugin):
                                                       '\nOverwatch: ' + pfx + cmd_overwatch +
                                                       '\nLeague of Legends: ' + pfx + cmd_league +
                                                       '\nBlade and Soul: ' + pfx + cmd_bns +
-                                                      '\n - Detailed Attack Stats: ' + pfx + cmd_bns + 'att' +
-                                                      '\n - Detailed Defense Stats: ' + pfx + cmd_bns + 'def' +
+                                                      '\n - Detailed Attack Stats: ' + pfx + cmd_bns_att +
+                                                      '\n - Detailed Defense Stats: ' + pfx + cmd_bns_def +
                                                       '\nUrban Dictionary: ' + pfx + cmd_ud +
                                                       '\nWeather: ' + pfx + cmd_weather +
                                                       '\nHearthstone: ' + pfx + cmd_hearthstone +
@@ -28,9 +28,13 @@ class Help(Plugin):
                                                       '\nJoke: ' + pfx + cmd_joke +
                                                       '\nLastFM: ' + pfx + cmd_lfm +
                                                       '\nGelbooru: ' + pfx + cmd_gelbooru +
+                                                      '\nAnime Search: ' + pfx + cmd_mal +
+                                                      '\nJisho: ' + pfx + cmd_jisho +
+                                                      '\nWaniKani: ' + pfx + cmd_wk +
                                                       '\nIsThereAnyDeal: ' + pfx + cmd_itad +
-                                                      '\nIMDB: ' + pfx + cmd_imdb + '```'
-                                                                                    'Made by Alex with love!\nhttps://github.com/AXAz0r/apex-sigma')
-            await asyncio.sleep(30)
+                                                      '\nIMDB: ' + pfx + cmd_imdb +
+                                                      '\n```' +
+                                                      '\nMade by `Alex` with **love**!\nhttps://github.com/AXAz0r/apex-sigma')
+            await asyncio.sleep(60)
             await self.client.delete_message(help_msg)
             # print('CMD [' + cmd_name + '] > ' + initiator_data)

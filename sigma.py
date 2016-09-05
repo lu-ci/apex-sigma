@@ -5,7 +5,6 @@ import sys
 import time
 import discord
 import logging
-import random
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
@@ -57,7 +56,6 @@ from plugins.nihongo import WK
 from plugins.nihongo import Jisho
 from plugins.mal import MAL
 from plugins.unflip import Table
-
 
 # I love spaghetti!
 class sigma(discord.Client):
