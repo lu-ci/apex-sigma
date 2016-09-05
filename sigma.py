@@ -56,6 +56,7 @@ from plugins.nihongo import WK
 from plugins.nihongo import Jisho
 from plugins.mal import MAL
 from plugins.unflip import Table
+from plugins.vindictus import VindictusScrollSearch
 
 # I love spaghetti!
 class sigma(discord.Client):
