@@ -21,7 +21,7 @@ class VindictusScrollSearch(Plugin):
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            scrl_input = (message.content[len(pfx) + len(cmd_vindi) + 1:]).lower().replace('\'', '').replace(' ', '').replace('es', '').replace('enchant', '').replace('scroll', '')
+            scrl_input = (message.content[len(pfx) + len(cmd_vindi) + 1:]).lower().replace('\'', '').replace(' ', '').replace(' es', '').replace('enchant', '').replace('scroll', '')
             try:
                 scrl_name = scrolls[scrl_input]['name']
                 scrl_type = scrolls[scrl_input]['type']
