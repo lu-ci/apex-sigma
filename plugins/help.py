@@ -28,11 +28,13 @@ class Help(Plugin):
                                                       '\nJoke: ' + pfx + cmd_joke +
                                                       '\nLastFM: ' + pfx + cmd_lfm +
                                                       '\nGelbooru: ' + pfx + cmd_gelbooru +
-                                                      '\nAnime Search: ' + pfx + cmd_mal +
+                                                      '\nAnime Search: ' + pfx + cmd_anime +
+                                                      '\nManga Search: ' + pfx + cmd_manga +
                                                       '\nJisho: ' + pfx + cmd_jisho +
                                                       '\nWaniKani: ' + pfx + cmd_wk +
                                                       '\nIsThereAnyDeal: ' + pfx + cmd_itad +
                                                       '\nIMDB: ' + pfx + cmd_imdb +
+                                                      '\nEnchant Scroll Search: ' + pfx + cmd_vindi +
                                                       '\n```' +
                                                       '\nMade by `Alex` with **love**!\nhttps://github.com/AXAz0r/apex-sigma')
             await asyncio.sleep(60)
