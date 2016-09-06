@@ -36,7 +36,7 @@ class MAL(Plugin):
                     n +=1
                     list_text += '\n#' + str(n) + ' ' + entry[1].text
                 try:
-                    await self.client.send_message(message.channel, list_text + '\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(len(entries)) + ')`')
+                    await self.client.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(len(entries)) + ')`')
                 except:
                     await self.client.send_message(message.channel, 'The list is way too big, please be more specific...')
                 choice = await self.client.wait_for_message(author=message.author, channel=message.channel, timeout=20)
@@ -115,7 +115,7 @@ class MAL(Plugin):
                     n +=1
                     list_text += '\n#' + str(n) + ' ' + entry[1].text
                 try:
-                    await self.client.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(len(entries)) + ')`')
+                    await self.client.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the manga of your choice `(1 - ' + str(len(entries)) + ')`')
                 except:
                     await self.client.send_message(message.channel, 'The list is way too big, please be more specific...')
                 choice = await self.client.wait_for_message(author=message.author, channel=message.channel, timeout=20)
