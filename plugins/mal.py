@@ -106,7 +106,7 @@ class MAL(Plugin):
             entries = html.fromstring(mal.content)
             print(len(entries))
             n = 0
-            list_text = 'List of anime found for `' + mal_input + '`:\n```'
+            list_text = 'List of mangas found for `' + mal_input + '`:\n```'
             if len(entries) > 1:
                 for entry in entries:
                     n +=1
