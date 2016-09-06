@@ -57,7 +57,7 @@ class MAL(Plugin):
                 air_end = (entries[ani_no][9].text)
                 if air_end == '0000-00-00':
                     air_end = '???'
-                air = air_start + ' to ' + air_end
+                air = air_start.replace('-', '.') + ' to ' + air_end.replace('-', '.')
                 synopsis = (entries[ani_no][10].text).replace('[i]', '').replace('[/i]', '').replace('<br>', '').replace(
                     '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
                                                                                                               '-')
@@ -134,7 +134,7 @@ class MAL(Plugin):
                 air_end = (entries[ani_no][10].text)
                 if air_end == '0000-00-00':
                     air_end = '???'
-                air = air_start + ' to ' + air_end
+                air = air_start.replace('-', '.') + ' to ' + air_end.replace('-', '.')
                 synopsis = (entries[ani_no][11].text).replace('[i]', '').replace('[/i]', '').replace('<br>', '').replace(
                     '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
                                                                                                               '-')
