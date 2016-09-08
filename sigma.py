@@ -50,7 +50,12 @@ from plugins.lastfm import LastFM
 from plugins.cleverbot import Cleverbot
 from plugins.echo import Echo
 from plugins.hentai import NSFWPermission
-from plugins.hentai import Hentai
+from plugins.hentai import Gelbooru
+from plugins.hentai import R34
+from plugins.hentai import NHentai
+from plugins.hentai import EHentai
+from plugins.hentai import E621
+from plugins.hentai import HentaiMS
 from plugins.isthereanydeal import ITAD
 from plugins.imdb import IMDB
 from plugins.nihongo import WK

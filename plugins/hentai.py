@@ -49,14 +49,14 @@ class NSFWPermission(Plugin):
                                                'Only an **Administrator** can manage permissions. :dark_sunglasses:')
 
 
-class Hentai(Plugin):
+class Gelbooru(Plugin):
     is_global = True
-    log = create_logger('hentai')
+    log = create_logger('Gelbooru')
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_gelbooru):
             await self.client.send_typing(message.channel)
-            cmd_name = 'GelBooru'
+            cmd_name = 'Gelbooru'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
@@ -92,38 +92,89 @@ class Hentai(Plugin):
                                                    'This channel does not have the NSFW Module permitted!')
             except:
                 await self.client.send_message(message.channel, 'Nothing found...')
-        elif message.content.startswith(pfx + cmd_nhentai + ' '):
+
+class NHentai(Plugin):
+    is_global = True
+    log = create_logger('nHentai')
+    async def on_message(self, message, pfx):
+        if message.content.startswith(pfx + cmd_nhentai):
             await self.client.send_typing(message.channel)
             cmd_name = 'NHentai'
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            # stuff
-        elif message.content.startswith(pfx + cmd_ehentai + ' '):
+
+class EHentai(Plugin):
+    is_global = True
+    log = create_logger('eHentai')
+    async def on_message(self, message, pfx):
+        if message.content.startswith(pfx + cmd_ehentai):
             await self.client.send_typing(message.channel)
             cmd_name = 'EHentai'
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            # stuff
-        elif message.content.startswith(pfx + cmd_e621 + ' '):
+
+class E621(Plugin):
+    is_global = True
+    log = create_logger('e621')
+    async def on_message(self, message, pfx):
+        if message.content.startswith(pfx + cmd_e621):
             await self.client.send_typing(message.channel)
             cmd_name = 'E621'
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            # stuff
-        elif message.content.startswith(pfx + cmd_rule34 + ' '):
+
+class R34(Plugin):
+    is_global = True
+    log = create_logger('Rule34')
+    async def on_message(self, message, pfx):
+        if message.content.startswith(pfx + cmd_rule34):
             await self.client.send_typing(message.channel)
             cmd_name = 'Rule34'
+            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            # stuff
-        elif message.content.startswith(pfx + cmd_hentaims + ' '):
+            try:
+                perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=" + str(message.channel.id) + ";")
+                permed = 'No'
+                for row in perms:
+                    permed = row[0]
+            except sqlite3.OperationalError:
+                permed = 'No'
+            except SyntaxError:
+                permed = 'No'
+            if permed == 'Yes':
+                permitted = True
+            else:
+                permitted = False
+            tags = message.content[len(pfx) + len(cmd_rule34) + 1:]
+            try:
+                if tags == '':
+                    tags = 'nude'
+                else:
+                    pass
+                r34_url = 'http://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=' + tags.replace(' ', '+')
+                data = requests.get(r34_url)
+                posts = html.fromstring(data.content)
+                choice = random.choice(posts)
+                if permitted == True:
+                    await self.client.send_message(message.channel, str(choice.attrib['file_url']).replace('//img', 'http://img'))
+                else:
+                    await self.client.send_message(message.channel,
+                                                   'This channel does not have the NSFW Module permitted!')
+            except:
+                await self.client.send_message(message.channel, 'Nothing found...')
+
+class HentaiMS(Plugin):
+    is_global = True
+    log = create_logger('Hentai.MS')
+    async def on_message(self, message, pfx):
+        if message.content.startswith(pfx + cmd_hentaims):
             await self.client.send_typing(message.channel)
             cmd_name = 'Hentai.MS'
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            # stuff
