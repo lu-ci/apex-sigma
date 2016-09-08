@@ -26,7 +26,15 @@ class WK(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            key_cur = dbsql.execute("SELECT WK_KEY from WANIKANI where USER_ID=" + str(message.author.id) + ";")
+            try:
+                for user in message.mentions:
+                    user_id = str(user.id)
+            except:
+                user_id = str(message.author.id)
+            try:
+                key_cur = dbsql.execute("SELECT WK_KEY from WANIKANI where USER_ID=" + str(user_id) + ";")
+            except:
+                key_cur = dbsql.execute("SELECT WK_KEY from WANIKANI where USER_ID=" + str(message.author.id) + ";")
             for row in key_cur:
                 key = row[0]
             try:
