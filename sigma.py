@@ -53,6 +53,7 @@ from plugins.hentai import Hentai
 from plugins.isthereanydeal import ITAD
 from plugins.imdb import IMDB
 from plugins.nihongo import WK
+from plugins.nihongo import WKKey
 from plugins.nihongo import Jisho
 from plugins.mal import MAL
 from plugins.unflip import Table
