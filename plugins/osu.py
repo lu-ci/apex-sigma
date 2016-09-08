@@ -24,5 +24,5 @@ class OSU(Plugin):
                 sig_img.save('cache/img_' + message.author.id + '.png')
                 await self.client.send_file(message.channel, 'cache/img_' + message.author.id + '.png')
                 os.remove('cache/img_' + message.author.id + '.png')
-            except SyntaxError:
+            except:
                 await self.client.send_message(message.channel, 'Something went wrong or the user was not found.')
