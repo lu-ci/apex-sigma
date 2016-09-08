@@ -27,11 +27,14 @@ class Help(Plugin):
                                                       '\nPokemon: ' + pfx + cmd_pokemon +
                                                       '\nJoke: ' + pfx + cmd_joke +
                                                       '\nLastFM: ' + pfx + cmd_lfm +
+                                                      '\nNSFW Permission: ' + pfx + cmd_nsfw_permit +
                                                       '\nGelbooru: ' + pfx + cmd_gelbooru +
+                                                      '\nRule34: ' + pfx + cmd_rule34 +
                                                       '\nAnime Search: ' + pfx + cmd_anime +
                                                       '\nManga Search: ' + pfx + cmd_manga +
                                                       '\nJisho: ' + pfx + cmd_jisho +
                                                       '\nWaniKani: ' + pfx + cmd_wk +
+                                                      '\nWaniKani Key Save: ' + pfx + cmd_wk_store +
                                                       '\nIsThereAnyDeal: ' + pfx + cmd_itad +
                                                       '\nIMDB: ' + pfx + cmd_imdb +
                                                       '\nEnchant Scroll Search: ' + pfx + cmd_vindi +
