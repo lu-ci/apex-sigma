@@ -19,18 +19,29 @@ class Help(Plugin):
                                                       '\nOverwatch: ' + pfx + cmd_overwatch +
                                                       '\nLeague of Legends: ' + pfx + cmd_league +
                                                       '\nBlade and Soul: ' + pfx + cmd_bns +
-                                                      '\n - Detailed Attack Stats: ' + pfx + cmd_bns + 'att' +
-                                                      '\n - Detailed Defense Stats: ' + pfx + cmd_bns + 'def' +
+                                                      '\n - Detailed Attack Stats: ' + pfx + cmd_bns_att +
+                                                      '\n - Detailed Defense Stats: ' + pfx + cmd_bns_def +
+                                                      '\nOsu! Profile: ' + pfx + cmd_osu +
                                                       '\nUrban Dictionary: ' + pfx + cmd_ud +
                                                       '\nWeather: ' + pfx + cmd_weather +
                                                       '\nHearthstone: ' + pfx + cmd_hearthstone +
                                                       '\nPokemon: ' + pfx + cmd_pokemon +
                                                       '\nJoke: ' + pfx + cmd_joke +
                                                       '\nLastFM: ' + pfx + cmd_lfm +
+                                                      '\nNSFW Permission: ' + pfx + cmd_nsfw_permit +
                                                       '\nGelbooru: ' + pfx + cmd_gelbooru +
+                                                      '\nRule34: ' + pfx + cmd_rule34 +
+                                                      '\nnHentai: ' + pfx + cmd_nhentai +
+                                                      '\nAnime Search: ' + pfx + cmd_anime +
+                                                      '\nManga Search: ' + pfx + cmd_manga +
+                                                      '\nJisho: ' + pfx + cmd_jisho +
+                                                      '\nWaniKani: ' + pfx + cmd_wk +
+                                                      '\nWaniKani Key Save: ' + pfx + cmd_wk_store +
                                                       '\nIsThereAnyDeal: ' + pfx + cmd_itad +
-                                                      '\nIMDB: ' + pfx + cmd_imdb + '```'
-                                                                                    'Made by Alex with love!\nhttps://github.com/AXAz0r/apex-sigma')
-            await asyncio.sleep(30)
+                                                      '\nIMDB: ' + pfx + cmd_imdb +
+                                                      '\nEnchant Scroll Search: ' + pfx + cmd_vindi +
+                                                      '\n```' +
+                                                      '\nMade by `Alex` with **love**!\nhttps://github.com/AXAz0r/apex-sigma')
+            await asyncio.sleep(60)
             await self.client.delete_message(help_msg)
             # print('CMD [' + cmd_name + '] > ' + initiator_data)

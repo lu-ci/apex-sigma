@@ -5,7 +5,6 @@ import sys
 import time
 import discord
 import logging
-import random
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
@@ -40,6 +39,8 @@ from plugin_manager import PluginManager
 from plugins.help import Help
 from plugins.league import LeagueOfLegends
 from plugins.bns import BladeAndSoul
+from plugins.osu import OSU
+from plugins.dota2 import Dota2
 from plugins.urbandictionary import UrbanDictionary
 from plugins.weather import Weather
 from plugins.hearthstone import Hearthstone
@@ -50,12 +51,21 @@ from plugins.rip import Rip
 from plugins.lastfm import LastFM
 from plugins.cleverbot import Cleverbot
 from plugins.echo import Echo
-from plugins.hentai import Hentai
+from plugins.nsfwperms import NSFWPermission
+from plugins.gelbooru import Gelbooru
+from plugins.r34 import R34
+from plugins.nhentai import NHentai
+from plugins.ehentai import EHentai
+from plugins.e621 import E621
+from plugins.hentaims import HentaiMS
 from plugins.isthereanydeal import ITAD
 from plugins.imdb import IMDB
 from plugins.nihongo import WK
+from plugins.nihongo import WKKey
 from plugins.nihongo import Jisho
-
+from plugins.mal import MAL
+from plugins.unflip import Table
+from plugins.vindictus import VindictusScrollSearch
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -86,8 +96,9 @@ class sigma(discord.Client):
         print('-------------------------\n')
         print('-------------------------')
         print('Authors: AXAz0r, Awakening')
-        print('Bot Version: Beta 0.14')
-        print('Build Date: 24. August 2016.')
+        print('Contributors: Mirai, Chaeldar')
+        print('Bot Version: Beta 0.30')
+        print('Build Date: 7. September 2016.')
         print('-------------------------')
         # try:
         # if notify == 'Yes':
@@ -112,6 +123,8 @@ class sigma(discord.Client):
             os.makedirs('cache/ow/')
         if not os.path.exists('cache/rip/'):
             os.makedirs('cache/rip/')
+        if not os.path.exists('cache/ani/'):
+            os.makedirs('cache/ani/')
 
     async def on_message(self, message):
         # Static Strings
@@ -123,22 +136,6 @@ class sigma(discord.Client):
         enabled_plugins = await self.get_plugins()
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
-
-        if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
-            table = ['┬─┬ ノ( ^_^ノ)',
-                     '┬─┬ ﾉ(° -°ﾉ)',
-                     '┬─┬ ノ(゜-゜ノ)',
-                     '┬─┬ ノ(ಠ\_ಠノ)',
-                     '┻━┻~~~~  ╯(°□° ╯)',
-                     '┻━┻====  ╯(°□° ╯)',
-                     '┣ﾍ(^▽^ﾍ)Ξ(ﾟ▽ﾟ*)ﾉ┳━┳ There we go~♪',
-                     ' ┬──┬﻿ ¯\_(ツ)',
-                     '(ヘ･_･)ヘ┳━┳',
-                     'ヘ(´° □°)ヘ┳━┳',
-                     '┣ﾍ(≧∇≦ﾍ)… (≧∇≦)/┳━┳']
-            logger.info("Table fliped by %s [%s], unflipping", message.author, message.author.id)
-            await client.send_message(message.channel, random.choice(table))
-
 
 client = sigma()
 client.run(token)

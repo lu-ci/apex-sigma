@@ -1,5 +1,7 @@
 from plugin import Plugin
 from config import cmd_bns
+from config import cmd_bns_att
+from config import cmd_bns_def
 import requests
 from lxml import html
 from utils import create_logger
@@ -264,7 +266,7 @@ class BladeAndSoul(Plugin):
                     await self.client.send_message(message.channel, error_msg)
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
         # Blade and Soul Attack Details API
-        elif message.content.startswith(pfx + 'att' + cmd_bns):
+        elif message.content.startswith(pfx + cmd_bns_att):
             cmd_name = 'Blade and Soul Attack Details'
             self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
@@ -355,7 +357,7 @@ class BladeAndSoul(Plugin):
                     await self.client.send_message(message.channel, error_msg)
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
         # Blade and Soul Defense Details API
-        elif message.content.startswith(pfx + 'def' + cmd_bns):
+        elif message.content.startswith(pfx + cmd_bns_def):
             cmd_name = 'Blade and Soul Defense Details'
             self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
