@@ -29,7 +29,6 @@ class WK(Plugin):
             key_cur = dbsql.execute("SELECT WK_KEY from WANIKANI where USER_ID=" + str(message.author.id) + ";")
             for row in key_cur:
                 key = row[0]
-            print(key)
             url = 'https://www.wanikani.com/api/user/' + key + '/srs-distribution'
             api = requests.get(url).json()
             try:
@@ -89,6 +88,8 @@ class WKKey(Plugin):
                     dbsql.execute(sql_cmd)
                     dbsql.commit()
                     await self.client.send_message(message.channel, 'New Key Safely Stored. :key:')
+                except UnboundLocalError:
+                    await self.client.send_message(message.channel, 'There doesn\'t seem to be a key tied to you...')
                 except SyntaxError:
                     await self.client.send_message(message.channel, 'Something went horribly wrong!')
 
