@@ -29,7 +29,11 @@ class WK(Plugin):
             key_cur = dbsql.execute("SELECT WK_KEY from WANIKANI where USER_ID=" + str(message.author.id) + ";")
             for row in key_cur:
                 key = row[0]
-            url = 'https://www.wanikani.com/api/user/' + key + '/srs-distribution'
+            try:
+                url = 'https://www.wanikani.com/api/user/' + key + '/srs-distribution'
+            except UnboundLocalError:
+                await self.client.send_message(message.channel, 'There doesn\'t seem to be a key tied to you...')
+                return
             api = requests.get(url).json()
             try:
                 username = api['user_information']['username']
