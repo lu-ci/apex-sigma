@@ -30,6 +30,7 @@ class Help(Plugin):
                                                       '\nNSFW Permission: ' + pfx + cmd_nsfw_permit +
                                                       '\nGelbooru: ' + pfx + cmd_gelbooru +
                                                       '\nRule34: ' + pfx + cmd_rule34 +
+                                                      '\nnHentai: ' + pfx + cmd_nhentai +
                                                       '\nAnime Search: ' + pfx + cmd_anime +
                                                       '\nManga Search: ' + pfx + cmd_manga +
                                                       '\nJisho: ' + pfx + cmd_jisho +
