@@ -39,6 +39,7 @@ from plugin_manager import PluginManager
 from plugins.help import Help
 from plugins.league import LeagueOfLegends
 from plugins.bns import BladeAndSoul
+from plugins.osu import OSU
 from plugins.urbandictionary import UrbanDictionary
 from plugins.weather import Weather
 from plugins.hearthstone import Hearthstone

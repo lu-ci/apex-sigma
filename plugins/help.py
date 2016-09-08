@@ -21,6 +21,7 @@ class Help(Plugin):
                                                       '\nBlade and Soul: ' + pfx + cmd_bns +
                                                       '\n - Detailed Attack Stats: ' + pfx + cmd_bns_att +
                                                       '\n - Detailed Defense Stats: ' + pfx + cmd_bns_def +
+                                                      '\nOsu! Profile: ' + pfx + cmd_osu +
                                                       '\nUrban Dictionary: ' + pfx + cmd_ud +
                                                       '\nWeather: ' + pfx + cmd_weather +
                                                       '\nHearthstone: ' + pfx + cmd_hearthstone +
