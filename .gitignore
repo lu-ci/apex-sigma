@@ -22,3 +22,4 @@ cache/ow/*
 cache/lol/*
 >>>>>>> refs/remotes/origin/master
 plugins/xp_grind.py
+storage/server_settings.sqlite
