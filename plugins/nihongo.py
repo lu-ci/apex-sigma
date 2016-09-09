@@ -43,6 +43,8 @@ class WK(Plugin):
                 await self.client.send_message(message.channel, 'There doesn\'t seem to be a key tied to you...')
                 return
             api = requests.get(url).json()
+            api2 = requests.get('https://www.wanikani.com/api/user/' + key + '/level-progression').json()
+            api3 = requests.get('https://www.wanikani.com/api/user/' + key + '/study-queue').json()
             try:
                 username = api['user_information']['username']
                 title = api['user_information']['title']
@@ -58,14 +60,31 @@ class WK(Plugin):
                 enlightned = 'Enlightened: ' + bold(str(api['requested_information']['enlighten']['total']))
                 burned = 'Burned: ' + bold(str(api['requested_information']['burned']['total']))
 
+                rad = 'Radicals: Total: ' + bold(str(api2['requested_information']['radicals_total'])) + ' | Done: ' + bold(str(api2['requested_information']['radicals_progress']))
+                kanji = 'Kanji: Total: ' + bold(str(api2['requested_information']['kanji_total'])) + ' | Done: ' + bold(str(api2['requested_information']['kanji_progress']))
+
+                next_review_date = bold(datetime.datetime.fromtimestamp(api3['requested_information']['next_review_date']).strftime(
+                    '%B %d, %Y %H:%M'))
+                lesson_queue = bold(str(api3['requested_information']['lessons_available']))
+                review_queue = bold(str(api3['requested_information']['reviews_available']))
+                review_nh = bold(str(api3['requested_information']['reviews_available_next_hour']))
+                review_nd = bold(str(api3['requested_information']['reviews_available_next_day']))
+                if api3['requested_information']['reviews_available'] > 150:
+                    warning = ':exclamation:'
+                else:
+                    warning = ''
                 out = ''
                 out += bold(username) + ' of ' + bold('Sect ' + title) + '\n'
                 out += bold('Level ' + level) + ' Apprentice' + '\n'
                 out += 'Scribed ' + bold(topics_count + ' topics') + ' & ' + bold(posts_count + ' posts') + '\n'
                 out += 'Serving the Crabigator since ' + bold(creation_date) + '\n'
-                out += apprentice + ' | ' + guru + ' | ' + master + ' | ' + enlightned + ' | ' + burned
+                out += apprentice + ' | ' + guru + ' | ' + master + ' | ' + enlightned + ' | ' + burned + '\n'
+                out += rad + ' ' + kanji + '\n'
+                out += 'Your Next Review: ' + next_review_date + '\n'
+                out += 'Lesson Queue: ' + lesson_queue + ' | Review Queue: ' + review_queue + warning + '\n'
+                out += 'Reviews Next Hour: ' + review_nh + ' | Reviews Next Day: ' + review_nd
                 await self.client.send_message(message.channel, out)
-            except:
+            except SyntaxError:
                 await self.client.send_message(message.channel, 'Something went wrong ¯\_(ツ)_/¯')
 
 
