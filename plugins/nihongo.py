@@ -40,7 +40,8 @@ class WK(Plugin):
             try:
                 url = 'https://www.wanikani.com/api/user/' + key + '/srs-distribution'
             except UnboundLocalError:
-                await self.client.send_message(message.channel, 'There doesn\'t seem to be a key tied to you...')
+                await self.client.send_message(message.channel,
+                                               'There doesn\'t seem to be a key tied to you...\n\nYou can add your key by sending a direct message to me with the the WKSave Command, for example:\n`' + pfx + cmd_wk_store + ' 16813135183151381`\nAnd just replace the numbers with your WK API Key!')
                 return
             api = requests.get(url).json()
             api2 = requests.get('https://www.wanikani.com/api/user/' + key + '/level-progression').json()
@@ -60,11 +61,15 @@ class WK(Plugin):
                 enlightned = 'Enlightened: ' + bold(str(api['requested_information']['enlighten']['total']))
                 burned = 'Burned: ' + bold(str(api['requested_information']['burned']['total']))
 
-                rad = 'Radicals: Total: ' + bold(str(api2['requested_information']['radicals_total'])) + ' | Done: ' + bold(str(api2['requested_information']['radicals_progress']))
-                kanji = 'Kanji: Total: ' + bold(str(api2['requested_information']['kanji_total'])) + ' | Done: ' + bold(str(api2['requested_information']['kanji_progress']))
+                rad = 'Radicals: Total: ' + bold(
+                    str(api2['requested_information']['radicals_total'])) + ' | Done: ' + bold(
+                    str(api2['requested_information']['radicals_progress']))
+                kanji = 'Kanji: Total: ' + bold(str(api2['requested_information']['kanji_total'])) + ' | Done: ' + bold(
+                    str(api2['requested_information']['kanji_progress']))
 
-                next_review_date = bold(datetime.datetime.fromtimestamp(api3['requested_information']['next_review_date']).strftime(
-                    '%B %d, %Y %H:%M'))
+                next_review_date = bold(
+                    datetime.datetime.fromtimestamp(api3['requested_information']['next_review_date']).strftime(
+                        '%B %d, %Y %H:%M'))
                 lesson_queue = bold(str(api3['requested_information']['lessons_available']))
                 review_queue = bold(str(api3['requested_information']['reviews_available']))
                 review_nh = bold(str(api3['requested_information']['reviews_available_next_hour']))
@@ -120,7 +125,8 @@ class WKKey(Plugin):
                     dbsql.commit()
                     await self.client.send_message(message.channel, 'New Key Safely Stored. :key:')
                 except UnboundLocalError:
-                    await self.client.send_message(message.channel, 'There doesn\'t seem to be a key tied to you...')
+                    await self.client.send_message(message.channel,
+                                                   'There doesn\'t seem to be a key tied to you...\nYou can add your key by sending a direct message to me withe the WKSave Command, for example:\n`' + pfx + cmd_wk_store + ' 16813135183151381`\nand just replace the numbers with your WK API Key!')
                 except SyntaxError:
                     await self.client.send_message(message.channel, 'Something went horribly wrong!')
 
