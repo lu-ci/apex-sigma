@@ -23,7 +23,8 @@ class NHentai(Plugin):
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
             try:
-                perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=" + str(message.channel.id) + ";")
+                id = (str(message.channel.id),)
+                perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=?;", id)
                 permed = 'No'
                 for row in perms:
                     permed = row[0]
