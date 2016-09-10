@@ -41,7 +41,7 @@ class WK(Plugin):
                     await self.client.send_message(message.channel, 'No arguments passed')
                     return
                 else: #a username was passed
-                    key_cur = dbsql.execute("SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=" + str(user_id) + ";")
+                    key_cur = dbsql.execute("SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;", (str(user_id),))
                     db_response = key_cur.fetchone()
                     if db_response == None:
                         await self.client.send_message(message.channel, 'No assigned key or username was found\n'
@@ -169,22 +169,22 @@ class WKKey(Plugin):
                 dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
 
                 if mode == 'remov':  #remove
-                    query = "DELETE from WANIKANI where USER_ID=" + user_id + ";"
-                    dbsql.execute(query)
+                    query = "DELETE from WANIKANI where USER_ID=?;"
+                    dbsql.execute(query, (user_id,))
                     dbsql.commit()
                     await self.client.send_message(message.channel, 'Record deleted')
                     return
 
                 try:
-                    if mode == 'key': query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES ("+user_id+",'"+payload+"')"
-                    if mode == 'username': query = "INSERT INTO WANIKANI (USER_ID, WK_USERNAME) VALUES ("+user_id+",'"+payload+"')"
-                    dbsql.execute(query)
+                    if mode == 'key': query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES (?, ?)"
+                    if mode == 'username': query = "INSERT INTO WANIKANI (USER_ID, WK_USERNAME) VALUES (?, ?)"
+                    dbsql.execute(query, (user_id, payload))
                     dbsql.commit()
                     await self.client.send_message(message.channel, mode.capitalize() + ' Safely Stored. :key:')
                 except sqlite3.IntegrityError:
                     await self.client.send_message(message.channel, 'A Key for your User ID already exists, removing...')
-                    dbsql.execute("DELETE from WANIKANI where USER_ID=" + user_id + ";")
-                    dbsql.execute(query)
+                    dbsql.execute("DELETE from WANIKANI where USER_ID=?;", (user_id,))
+                    dbsql.execute(query, (user_id,))
                     dbsql.commit()
                     await self.client.send_message(message.channel, 'New '+mode.capitalize()+' Safely Stored. :key:')
                 except UnboundLocalError:
