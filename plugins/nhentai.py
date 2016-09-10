@@ -85,5 +85,7 @@ class NHentai(Plugin):
                     else:
                         await self.client.send_message(message.channel,
                                                        'This channel does not have the NSFW Module permitted!')
-            except SyntaxError:
-                await self.client.send_message(message.channel, 'Nothing found...')
+            except nh.nhentai.nHentaiException as err:
+                await self.client.send_message(message.channel, str(err))
+            except:
+                await self.client.send_message(message.channel, 'Nothing found or something broke...')
