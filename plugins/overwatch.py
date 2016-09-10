@@ -90,9 +90,7 @@ class Overwatch(Plugin):
                     base.save('cache\ow\profile_' + message.author.id + '.png')
                     name = profile_json['data']['username']
                     level = str(profile_json['data']['level'])
-                    qg_played = str(profile_json['data']['games']['quick']['played'])
                     qg_won = str(profile_json['data']['games']['quick']['wins'])
-                    qg_lost = str(profile_json['data']['games']['quick']['lost'])
                     qg_playtime = str(profile_json['data']['playtime']['quick'])
                     try:
                         cg_played = str(profile_json['data']['games']['competitive']['played'])
@@ -117,9 +115,7 @@ class Overwatch(Plugin):
                     overwatch_profile = ('```Name: ' + name +
                                          '\nLevel: ' + level +
                                          '\nQuick Games:' +
-                                         '\n    - Played: ' + qg_played +
                                          '\n    - Won: ' + qg_won +
-                                         '\n    - Lost: ' + qg_lost +
                                          '\nCompetitive Games:' +
                                          '\n    - Played: ' + cg_played +
                                          '\n    - Won: ' + cg_won +

@@ -26,18 +26,20 @@ else:
     print('config.py present, continuing...')
 # Data
 from config import Token as token
+
 if token == '': sys.exit('Token not provided, please open config.json and place your token.')
 
 from config import Prefix as pfx
 from config import OwnerID as ownr
-
-#from config import Pushbullet as pb_key
-#pb = pushbullet.Pushbullet(pb_key)
+from config import cmd_help
+# from config import Pushbullet as pb_key
+# pb = pushbullet.Pushbullet(pb_key)
 
 from plugin_manager import PluginManager
 from plugins.help import Help
 from plugins.league import LeagueOfLegends
 from plugins.bns import BladeAndSoul
+from plugins.osu import OSU
 from plugins.urbandictionary import UrbanDictionary
 from plugins.weather import Weather
 from plugins.hearthstone import Hearthstone
@@ -46,11 +48,26 @@ from plugins.joke import Joke
 from plugins.overwatch import Overwatch
 from plugins.rip import Rip
 from plugins.lastfm import LastFM
-
+from plugins.cleverbot import Cleverbot
+from plugins.echo import Echo
+from plugins.nsfwperms import NSFWPermission
+from plugins.gelbooru import Gelbooru
+from plugins.r34 import R34
+from plugins.nhentai import NHentai
+from plugins.ehentai import EHentai
+from plugins.e621 import E621
+from plugins.hentaims import HentaiMS
+from plugins.isthereanydeal import ITAD
+from plugins.imdb import IMDB
+from plugins.nihongo import WK
+from plugins.nihongo import WKKey
+from plugins.nihongo import Jisho
+from plugins.mal import MAL
+from plugins.unflip import Table
+from plugins.vindictus import VindictusScrollSearch
 
 # I love spaghetti!
 class sigma(discord.Client):
-
     def __init__(self):
         super().__init__()
         self.plugin_manager = PluginManager(self)
@@ -61,7 +78,7 @@ class sigma(discord.Client):
         return plugins
 
     async def on_ready(self):
-        gamename = '>>help'
+        gamename = pfx + cmd_help
         game = discord.Game(name=gamename)
         await client.change_status(game)
         print('\nLogin Details:')
@@ -78,14 +95,15 @@ class sigma(discord.Client):
         print('-------------------------\n')
         print('-------------------------')
         print('Authors: AXAz0r, Awakening')
-        print('Bot Version: Beta 0.14')
-        print('Build Date: 24. August 2016.')
+        print('Contributors: Mirai, Chaeldar')
+        print('Bot Version: Beta 0.30')
+        print('Build Date: 7. September 2016.')
         print('-------------------------')
-        #try:
-            #if notify == 'Yes':
-            #    pb.push_note('Sigma', 'Sigma Activated!')
-            #else: print(client.user.name + ' activated.')
-        #except: pass
+        # try:
+        # if notify == 'Yes':
+        #    pb.push_note('Sigma', 'Sigma Activated!')
+        # else: print(client.user.name + ' activated.')
+        # except: pass
         folder = 'cache/ow'
         try:
             for the_file in os.listdir(folder):
@@ -95,7 +113,8 @@ class sigma(discord.Client):
                         os.unlink(file_path)
                 except Exception as e:
                     print(e)
-        except FileNotFoundError: pass
+        except FileNotFoundError:
+            pass
 
         if not os.path.exists('cache/lol/'):
             os.makedirs('cache/lol/')
@@ -103,10 +122,12 @@ class sigma(discord.Client):
             os.makedirs('cache/ow/')
         if not os.path.exists('cache/rip/'):
             os.makedirs('cache/rip/')
+        if not os.path.exists('cache/ani/'):
+            os.makedirs('cache/ani/')
 
     async def on_message(self, message):
         # Static Strings
-        #initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
+        # initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
         #    message.content) + ']\nServer: ' + str(message.server.name) + '\nServerID: ' + str(
         #    message.server.id) + '\n-------------------------')
         client.change_status(game=None)
@@ -114,18 +135,6 @@ class sigma(discord.Client):
         enabled_plugins = await self.get_plugins()
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
-
-
-
-        if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
-            #'┬─┬ ノ( ^_^ノ)'
-            #'┬─┬ ﾉ(° -°ﾉ)'
-            #'┬─┬ ノ(゜-゜ノ)'
-            #'┬─┬ ノ(ಠ\_ಠノ)'
-            #'┻━┻~~~~  ╯(°□° ╯)'
-            #'┻━┻====  ╯(°□° ╯)'
-            logger.info("Table fliped by %s [%s], unflipping", message.author, message.author.id)
-            await client.send_message(message.channel, '┬─┬﻿ ノ( ゜-゜ノ)')
 
 client = sigma()
 client.run(token)
