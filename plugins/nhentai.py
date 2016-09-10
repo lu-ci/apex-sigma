@@ -2,7 +2,11 @@ from plugin import Plugin
 from config import cmd_nhentai
 from config import cmd_rule34
 from utils import create_logger
+from PIL import Image
+from io import BytesIO
+import os
 import sqlite3
+import requests
 import nhentai as nh
 
 
@@ -46,6 +50,7 @@ class NHentai(Plugin):
                 if len(nh.search(search)['result']) > 1:
                     await self.client.send_message(message.channel, list_text + '\n```')
                     choice = await self.client.wait_for_message(author=message.author, channel=message.channel, timeout=20)
+                    await self.client.send_typing(message.channel)
                     try:
                         nh_no = int(choice.content) - 1
                     except:
@@ -62,10 +67,21 @@ class NHentai(Plugin):
                     hen_url = ('https://nhentai.net/g/' + str(hen_id) + '/')
                     hen_img = ('https://i.nhentai.net/galleries/' + str(hen_media_id) + '/1.jpg')
                     nhen_text = ''
+                    nh_cover_raw = requests.get(hen_img).content
+                    nh_cover_res = Image.open(BytesIO(nh_cover_raw))
+                    nh_cover = nh_cover_res.resize((251, 321), Image.ANTIALIAS)
+                    base = Image.open('img/ani/base.png')
+                    overlay = Image.open('img/ani/overlay_nh.png')
+                    base.paste(nh_cover, (100, 0))
+                    base.paste(overlay, (0, 0), overlay)
+                    base.save('cache\\ani\\nh_' + message.author.id + '.png')
                     for tags in nh.search(search)['result'][nh_no]['tags']:
                         nhen_text += '[' + str(tags['name']).title() + '] '
                     if permitted is True:
-                        await self.client.send_message(message.channel,'Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nImage: <' + hen_img + '>\nBook URL: <' + hen_url + '>')
+                        # 251 x 321
+                        await self.client.send_file(message.channel, 'cache\\ani\\nh_' + message.author.id + '.png')
+                        await self.client.send_message(message.channel,'Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
+                        os.remove('cache\\ani\\nh_' + message.author.id + '.png')
                     else:
                         await self.client.send_message(message.channel,
                                                        'This channel does not have the NSFW Module permitted!')
