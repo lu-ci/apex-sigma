@@ -120,7 +120,7 @@ class WK(Plugin):
                 out += apprentice + ' | ' + guru + ' | ' + master + ' | ' + enlightned + ' | ' + burned + '\n'
 
                 if 'api2' in locals():
-                    out += rad + ' ' + kanji + '\n'
+                    out += rad + ' || ' + kanji + '\n'
 
                 if 'api3' in locals():
                     try: out += 'Your Next Review: ' + next_review_date + '\n'
