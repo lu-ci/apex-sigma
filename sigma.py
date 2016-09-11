@@ -5,6 +5,7 @@ import sys
 import time
 import discord
 import logging
+from config import StartupType, dsc_email, dsc_password
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
@@ -66,6 +67,7 @@ from plugins.mal import MAL
 from plugins.unflip import Table
 from plugins.vindictus import VindictusScrollSearch
 from plugins.sonarr import Sonarr
+from plugins.karaoke import Karaoke
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -138,4 +140,9 @@ class sigma(discord.Client):
             self.loop.create_task(plugin._on_message(message, pfx))
 
 client = sigma()
-client.run(token)
+if StartupType == '0':
+    client.run(token)
+elif StartupType == '1':
+    client.run(dsc_email, dsc_password)
+else:
+    print('Failed loading connection settings.\nCheck your StartupType and make sure it\'s either 0 or 1.')
