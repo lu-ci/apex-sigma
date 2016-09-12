@@ -23,9 +23,7 @@ class VNDBSearch(Plugin):
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
             vndb_input = (str(message.content[len(cmd_vndb) + 1 + len(pfx):]))
-            search = message.content[len(pfx) + len(cmd_vndb) + 1:]
             sdata = await setsu.search_vndb('v', vndb_input)
-            print(sdata)
             try:
                 n = 0
                 list_text = '```'
@@ -70,18 +68,17 @@ class VNDBSearch(Plugin):
                 tit_sfx = ''
             vn_cover_raw = requests.get(vn_img).content
             vn_cover_res = Image.open(BytesIO(vn_cover_raw))
-            vn_cover = vn_cover_res.resize((251, 321), Image.ANTIALIAS)
-            base = Image.open('img/ani/base.png')
+            vn_cover = vn_cover_res.resize((231, 321), Image.ANTIALIAS)
+            base = Image.open('img/ani/base_vn.png')
             overlay = Image.open('img/ani/overlay_vn.png')
-            base.paste(vn_cover, (100, 0))
+            base.paste(vn_cover, (110, 0))
             base.paste(overlay, (0, 0), overlay)
             base.save('cache\\ani\\vn_' + message.author.id + '.png')
-            print(vn_title)
             try:
                 await self.client.send_file(message.channel, 'cache\\ani\\vn_' + message.author.id + '.png')
                 await self.client.send_message(message.channel,
                                                'Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[
-                                                                                                       :300] + suffix + '\n```')
+                                                                                                       :300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
                 os.remove('cache\\ani\\vn_' + message.author.id + '.png')
             except:
-                await self.client.send_message(message.channel, 'Error: ' + sys.exc_info()[0])
+                await self.client.send_message(message.channel, 'Error: It goofed... =P')
