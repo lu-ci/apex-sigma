@@ -1,6 +1,5 @@
 from plugin import Plugin
 from config import cmd_nhentai
-from config import cmd_rule34
 from utils import create_logger
 from PIL import Image
 from io import BytesIO
@@ -37,7 +36,7 @@ class NHentai(Plugin):
             else:
                 permitted = False
             # End Perms
-            search = message.content[len(pfx) + len(cmd_rule34) + 1:]
+            search = message.content[len(pfx) + len(cmd_nhentai) + 1:]
             try:
                 if search == '':
                     tags = 'nude'

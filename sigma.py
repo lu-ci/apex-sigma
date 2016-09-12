@@ -68,6 +68,7 @@ from plugins.unflip import Table
 from plugins.vindictus import VindictusScrollSearch
 from plugins.sonarr import Sonarr
 from plugins.karaoke import Karaoke
+from plugins.vndb import VNDBSearch
 
 # I love spaghetti!
 class sigma(discord.Client):
