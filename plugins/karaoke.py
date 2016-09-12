@@ -67,7 +67,7 @@ class Karaoke(Plugin):
                 await self.client.send_message(message.channel, 'The list seems to be either empty, or broken...')
         elif message.content.startswith(pfx + 'karaoke'):
             await self.client.send_typing(message.channel)
-            cmd_name = 'Repertiore'
+            cmd_name = 'Karaoke Commands List'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
             self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,

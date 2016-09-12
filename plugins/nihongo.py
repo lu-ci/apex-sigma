@@ -139,7 +139,11 @@ class WKKey(Plugin):
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_wk_store):
-            await self.client.send_typing(message.channel)
+            await self.client.delete_message(message)
+            try:
+                await self.client.send_typing(message.channel)
+            except:
+                pass
             cmd_name = 'WaniKani Key Save'
             user_id = str(message.author.id)
             self.log.info('User %s [%s], used the ' + cmd_name + ' command.', message.author, user_id)
