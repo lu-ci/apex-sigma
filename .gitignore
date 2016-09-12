@@ -9,7 +9,6 @@ border.png
 profile.png
 lolsig.png
 thing.py
-<<<<<<< HEAD
 __pycache__/*
 plugins/__pycache__/*
 cache/*
@@ -20,6 +19,4 @@ _pycache_
 *.pyc
 cache/ow/*
 cache/lol/*
->>>>>>> refs/remotes/origin/master
 plugins/xp_grind.py
-storage/*

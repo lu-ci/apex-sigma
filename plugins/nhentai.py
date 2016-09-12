@@ -1,6 +1,5 @@
 from plugin import Plugin
 from config import cmd_nhentai
-from config import cmd_rule34
 from utils import create_logger
 from PIL import Image
 from io import BytesIO
@@ -23,7 +22,8 @@ class NHentai(Plugin):
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
             try:
-                perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=" + str(message.channel.id) + ";")
+                id = (str(message.channel.id),)
+                perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=?;", id)
                 permed = 'No'
                 for row in perms:
                     permed = row[0]
@@ -36,7 +36,7 @@ class NHentai(Plugin):
             else:
                 permitted = False
             # End Perms
-            search = message.content[len(pfx) + len(cmd_rule34) + 1:]
+            search = message.content[len(pfx) + len(cmd_nhentai) + 1:]
             try:
                 if search == '':
                     tags = 'nude'
