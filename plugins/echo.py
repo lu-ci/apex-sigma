@@ -1,9 +1,7 @@
 from plugin import Plugin
 from utils import create_logger
 from config import cmd_echo
-from config import Prefix as pfx
 from config import OwnerID as ownr
-
 class Echo(Plugin):
     is_global = True
     log = create_logger(cmd_echo)
