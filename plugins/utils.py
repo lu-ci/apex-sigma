@@ -1,8 +1,8 @@
 from plugin import Plugin
-from config import cmd_remind
+from config import cmd_remind, donators
 import asyncio
 from utils import create_logger
-from utils import bold
+from utils import bold\
 
 
 class Reminder(Plugin):
@@ -37,3 +37,20 @@ class Reminder(Plugin):
             except:
                 await self.client.send_message(message.channel,
                                                'Something went wrong with setting the timer, are you sure you inputed a number?')
+
+
+class Donators(Plugin):
+    is_global = True
+    log = create_logger('Donators')
+
+    async def on_message(self, message, pfx):
+        if message.content.startswith(pfx + 'donors'):
+            await self.client.send_typing(message.channel)
+            cmd_name = 'Reminder'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                          message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
+            out_text = ''
+            for donor in donators:
+                out_text += '\n' + bold(str(donor)) + ' :ribbon: '
+            await self.client.send_message(message.channel, out_text)
