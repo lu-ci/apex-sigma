@@ -268,6 +268,8 @@ class Jisho(Plugin):
                         tags += '\"' + str(tag) + '\", '
                 except:
                     tags = '\"None\"'
+                if tags == '':
+                    tags = '\"None\", '
                 try:
                     p_of_s = ''
                     pofs_data = request['data'][0]['senses'][0]['parts_of_speech']
@@ -275,6 +277,8 @@ class Jisho(Plugin):
                         p_of_s += '\"' + str(pof) + '\", '
                 except:
                     p_of_s = 'None'
+                if p_of_s == '':
+                    p_of_s = '\"None\", '
                 try:
                     s_tag = ''
                     s_tag_data = request['data'][0]['senses'][0]['tags']
@@ -282,6 +286,8 @@ class Jisho(Plugin):
                         s_tag += '\"' + str(tag) + '\", '
                 except:
                     s_tag = 'None'
+                if s_tag == '':
+                    s_tag = '\"None\", '
                 result_text = ('Search querry for `' + jisho_q + '`:\n```java' +
                                '\nJapanese Word: ' + ja_word +
                                '\nJapanese Reading: ' + ja_reading +

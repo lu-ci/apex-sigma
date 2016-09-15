@@ -1,5 +1,6 @@
 from plugin import Plugin
 from config import *
+from utils import bold
 from utils import create_logger
 import asyncio
 
@@ -9,7 +10,7 @@ class Help(Plugin):
     log = create_logger(cmd_help)
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_help):
+        if message.content == (pfx + cmd_help):
             cmd_name = 'Module List'
             self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
@@ -42,4 +43,53 @@ class Help(Plugin):
                                                       '\n```' +
                                                       '\nMade by `Alex` with **love**!\nhttps://github.com/AXAz0r/apex-sigma')
             await asyncio.sleep(60)
-            await self.client.delete_message(help_msg)
+            try:
+                await self.client.delete_message(help_msg)
+            except:
+                print('Help Message Deletion Failed - Not found or something...')
+                pass
+        elif message.content.startswith(pfx + cmd_help + ' '):
+            cmd_name = 'Command Help'
+            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                          message.author,
+                          message.author.id, message.server.name, message.server.id, message.channel)
+            await self.client.send_typing(message.channel)
+            help_q = str(message.content[len(pfx) + len(cmd_help) + 1:])
+            q = help_q.lower()
+            if q == "bns" or q == "blade and soul":
+                desc = desc_bns
+                usg = usg_bns
+                out_type = 0
+            elif q == 'echo':
+                desc = desc_echo
+                usg = usg_echo
+                out_type = 0
+            elif q == 'gelbooru':
+                desc = desc_gelbooru
+                usg = usg_gelbooru
+                out_type = 0
+            elif q == 'hearthstone' or q == 'hs':
+                desc = desc_hearthstone
+                usg = usg_hearthstone
+                out_type = 0
+            elif q == 'imdb':
+                desc = desc_imdb
+                usg = usg_imdb
+                out_type = 0
+            elif q == 'itad':
+                desc = desc_itad
+                usg = usg_itad
+                out_type = 0
+            elif q == 'joke':
+                desc = desc_joke
+                usg = usg_joke
+                out_type = 0
+            else:
+                desc = 'None'
+                usg = 'None'
+                out_type = 1
+            if out_type == 1:
+                out_text = 'Command not found or not specified...'
+            else:
+                out_text = (bold('Description:') + '\n```java\n' + desc + '\n```\n' + bold('Usage: ') + '`' + usg + '`')
+            await self.client.send_message(message.channel, out_text)
