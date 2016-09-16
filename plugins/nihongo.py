@@ -256,7 +256,7 @@ class Jisho(Plugin):
                     for eng in eng_def_data:
                         eng_def += '\"' + str(eng) + '\", '
                 except:
-                    eng_def = '\"None\"'
+                    eng_def = '\"None\", '
                 try:
                     info = '\"' + request['data'][0]['senses'][0]['info'][0] + '\"'
                 except:
@@ -267,7 +267,7 @@ class Jisho(Plugin):
                     for tag in tags_data:
                         tags += '\"' + str(tag) + '\", '
                 except:
-                    tags = '\"None\"'
+                    tags = '\"None\", '
                 if tags == '':
                     tags = '\"None\", '
                 try:
@@ -276,7 +276,7 @@ class Jisho(Plugin):
                     for pof in pofs_data:
                         p_of_s += '\"' + str(pof) + '\", '
                 except:
-                    p_of_s = 'None'
+                    p_of_s = '\"None\", '
                 if p_of_s == '':
                     p_of_s = '\"None\", '
                 try:
@@ -285,7 +285,7 @@ class Jisho(Plugin):
                     for tag in s_tag_data:
                         s_tag += '\"' + str(tag) + '\", '
                 except:
-                    s_tag = 'None'
+                    s_tag = '\"None\", '
                 if s_tag == '':
                     s_tag = '\"None\", '
                 result_text = ('Search querry for `' + jisho_q + '`:\n```java' +
