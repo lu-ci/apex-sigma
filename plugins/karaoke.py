@@ -11,7 +11,7 @@ client = discord.Client()
 
 karaoke = False
 karaoke_mod = True
-karaoke_channel = 'Karaoke Room'
+karaoke_channel = 'Music Room'
 karaoke_strict = False
 karaoke_override = ['Bot', 'Bots', 'Karaoke Staff', 'Karaoke Spotlight', 'Admin', 'BOT', 'Operation Managers', 'Mods',
                     'Coders']
@@ -63,24 +63,29 @@ class VoiceChangeDetection(Plugin):
         global karaoke_mod
         global karaoke_channel
         global karaoke_strict
-
+        log = False
         if karaoke_mod:
             if karaoke:
+                #print("karaoke's running")
+                if (after.voice.voice_channel == None) or (after.voice.voice_channel.name != karaoke_channel):
+                    if after.voice.mute == True:  # if he's muted
+                        if log: print('not in karaoke channel, unmuting')
+                        await self.client.server_voice_state(after, mute=False)  # unmute him
                 try:
                     if after.voice.voice_channel.name == karaoke_channel:
                         if karaoke_strict:
                             for role in after.roles:  # iterate through roles of a user
                                 if role.name in karaoke_override:
-                                    print('Strict, Overriden, Aborting')
+                                    if log: print('strict, overriden, aborting')
                                     return  # if user has an override role
                             if after.voice.mute == False:  # if user is not muted
-                                print('Strict, Not Overriden, Muting')
+                                if log: print('strict, not overriden, muting')
                                 await self.client.server_voice_state(after, mute=True)  # otherwise mute the user
                                 return
 
                         else:
                             if after.voice.mute == True:  # if user is muted
-                                print('Not Strict, Ummuting')
+                                if log: print('not strict, ummuting')
                                 await self.client.server_voice_state(after, mute=False)  # unmute
                                 return
 
@@ -89,8 +94,10 @@ class VoiceChangeDetection(Plugin):
 
                 if (after.voice.voice_channel == None) or (after.voice.voice_channel.name != karaoke_channel):
                     if after.voice.mute == True:  # if he's muted
-                        print('Not in karaoke channel, Unmuting')
+                        if log: print('not in karaoke channel, unmuting')
                         await self.client.server_voice_state(after, mute=False)  # unmute him
+            #else: print('not running, doing nothing')
+            if log: print()
 
 
 # @client.event
@@ -166,14 +173,34 @@ class Control(Plugin):
                 karaoke_channel = target
                 karaoke_strict = True
                 try:
+                    temp = []
                     for channel in message.server.channels:  # iterate through server channels
                         if channel.name == karaoke_channel:  # find the karaoke channel
                             for user in channel.voice_members:  # iterate through users in the channel
-                                for role in user.roles:
-                                    if role.name in karaoke_override:  # if user has an override role
-                                        break
-                                else:
-                                    await self.client.server_voice_state(user, mute=True)  # mute them
+                                #print(user.name)
+                                temp.append(user)
+                                #overridden = False
+                                #for role in user.roles:
+                                #    if role.name in karaoke_override:  # if user has an override role
+                                #        overridden = True
+                                #        print('override triggered')
+                                #        break
+                                #print(overridden)
+                                #if not overridden: await self.client.server_voice_state(user, mute=True)  # mute them
+                                #print()
+
+                    for user in temp:
+                        overridden = False
+                        for role in user.roles:
+                            if role.name in karaoke_override:
+                                overridden = True
+                                break
+                        if not overridden:
+                            await self.client.server_voice_state(user, mute = True)
+
+
+
+
                     await self.client.send_message(message.channel,
                                                    "Karaoke started in strict mode on channel " + karaoke_channel)
                 except SyntaxError:
@@ -183,13 +210,15 @@ class Control(Plugin):
 
         elif message.content.startswith(pfx + 'stopkaraoke'):
             if checkPermissions(message.author):
-
-                if karaoke is True:
+                if karaoke:
                     karaoke = False
+                    temp = []
                     for channel in message.server.channels:  # iterate through server channels
                         if channel.name == karaoke_channel:  # find the karaoke channel
                             for user in channel.voice_members:  # iterate through users in the channel
-                                await self.client.server_voice_state(user, mute=False)  # unmute them
+                                temp.append(user)
+                            break
+                    for user in temp: await self.client.server_voice_state(user, mute=False)  # unmute them
                     await self.client.send_message(message.channel, "Karaoke stopped")
                 else:
                     await self.client.send_message(message.channel, "No ongoing karaoke found")
@@ -324,12 +353,17 @@ class Control(Plugin):
 
 
         elif message.content.startswith(pfx + 'status'):
-            out = 'Karaoke mode: ' + bold(boolToStr(karaoke_mod)) + '\n'
-            out += 'Session ongoing: ' + bold(boolToStr(karaoke)) + '\n'
-            out += 'Channel: ' + bold(karaoke_channel) + '\n'
-            out += 'Strict mode: ' + bold(boolToStr(karaoke_strict))
+            out = 'Karaoke mode ' + bold(boolToStr(karaoke_mod)) + '\n'
+            out += 'Session ongoing ' + bold(boolToStr(karaoke)) + '\n'
+            out += 'Channel ' + bold(karaoke_channel) + '\n'
+            out += 'Strict mode ' + bold(boolToStr(karaoke_strict))
 
             await self.client.send_message(message.channel, out)
+
+        #elif message.content.startswith(pfx + 'echo '):
+        #    if checkPermissions(message.author):
+        #        await self.client.send_message(message.channel, message.content[5 + len(pfx):])
+
 
         elif message.content.startswith(pfx + 'test1'):
             print('test1')
@@ -354,6 +388,51 @@ class Control(Plugin):
                 if role.name == 'Karaoke Spotlight':
                     await client.remove_roles(message.author, role)
                     return
+
+        elif message.content.startswith(pfx + 'test3'):
+            print('test2')
+            for role in message.server.roles:
+                if role.name == 'Karaoke Spotlight':
+                    await client.remove_roles(message.author, role)
+                    return
+
+        elif message.content.startswith(pfx + 'forceunmute'):
+            print('Force unmuting')
+            temp = []
+            for channel in message.server.channels:  # iterate through server channels
+                if channel.name == karaoke_channel:  # find the karaoke channel
+                    for user in channel.voice_members:  # iterate through users in the channel
+                        temp.append(user)
+            for user in temp:
+                await self.client.server_voice_state(user, mute=False)  # unmute them
+            await self.client.send_message(message.channel, "Iterated through channel")
+            print()
+
+        elif message.content.startswith(pfx + 'forcemute'):
+            print('Force muting')
+            temp = []
+            for channel in message.server.channels:  # iterate through server channels
+                if channel.name == karaoke_channel:  # find the karaoke channel
+                    for user in channel.voice_members:  # iterate through users in the channel
+                        #print(user.name)
+                        temp.append(user)
+            for user in temp:
+                print(user.name)
+                await self.client.server_voice_state(user, mute=True)  # unmute them
+            await self.client.send_message(message.channel, "Iterated through channel")
+            print()
+
+        elif message.content.startswith(pfx + 'listchannelmembers'):
+            for channel in message.server.channels:  # iterate through server channels
+                if channel.name == karaoke_channel:  # find the karaoke channel
+                    for user in channel.voice_members:  # iterate through users in the channel
+                        print(user.name)
+                        #await self.client.server_voice_state(user, mute=False)  # unmute them
+            #await self.client.send_message(message.channel, "Iterated through channel")
+
+        elif message.content.startswith(pfx + 'setchannel'):
+            karaoke_channel = message.content[len(pfx) + len('setchannel') + 1:]
+            await self.client.send_message(message.channel, "Channel set")
 
 
 
