@@ -67,8 +67,11 @@ from plugins.mal import MAL
 from plugins.unflip import Table
 from plugins.vindictus import VindictusScrollSearch
 from plugins.sonarr import Sonarr
-from plugins.karaoke import Karaoke
+from plugins.karaoke import VoiceChangeDetection
+from plugins.karaoke import Control
 from plugins.vndb import VNDBSearch
+from plugins.utils import Reminder
+from plugins.utils import Donators
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -76,6 +79,11 @@ class sigma(discord.Client):
         super().__init__()
         self.plugin_manager = PluginManager(self)
         self.plugin_manager.load_all()
+
+    async def on_voice_state_update(self, before, after):
+        enabled_plugins = await self.get_plugins()
+        for plugin in enabled_plugins:
+            self.loop.create_task(plugin._on_voice_state_update(before, after))
 
     async def get_plugins(self):
         plugins = await self.plugin_manager.get_all()

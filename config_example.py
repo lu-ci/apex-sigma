@@ -57,3 +57,21 @@ cmd_handdown = 'handdown'
 cmd_takemic = 'takemic'
 cmd_dropmic = 'dropmic'
 cmd_repertoire = 'singers'
+cmd_vndb = 'vndb'
+cmd_remind = 'remind'
+# Descriptions
+desc_bns = 'The Blade and Soul module provides in-depth character information.'
+desc_echo = 'Repeats the given text. (\'Bot Owner Only\')'
+desc_gelbooru = 'Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.'
+desc_hearthstone = 'Hearthstone card lookup.'
+desc_imdb = 'Searches the Internet Movie Database for a Title of your choice.'
+desc_itad = 'Lists the latest deals from IsThereAnyDeal'
+desc_joke = 'Outputs a random joke from a random source, it is totally cancerous.'
+# Usage
+usg_bns = str(Prefix) + str(cmd_bns) + ' EU Lucia Konohana'
+usg_echo = str(Prefix) + str(cmd_echo) + ' Hello world!'
+usg_gelbooru = str(Prefix) + str(cmd_gelbooru) + ' vella mabinogi_heroes'
+usg_hearthstone = str(Prefix) + str(cmd_hearthstone) + ' Murloc Raider'
+usg_imdb = str(Prefix) + str(cmd_imdb) + ' A Clockwork Orange'
+usg_itad = str(Prefix) + str(cmd_itad)
+usg_joke = str(Prefix) + str(cmd_joke)

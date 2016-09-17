@@ -64,6 +64,10 @@ class Plugin(object, metaclass=PluginMount):
     async def on_server_role_update(self, server, role):
         pass
 
+    async def _on_voice_state_update(self, before, after):
+        await self.on_voice_state_update(before, after)
+        #pass
+
     async def on_voice_state_update(self, before, after):
         pass
 
