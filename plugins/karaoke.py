@@ -111,10 +111,10 @@ class Control(Plugin):
         global karaoke_queue
         global karaoke_deban
 
-        async def lookforstrayspotlight():
-            for spotlight in message.server.roles:
+        async def lookforstrayspotlight(server):
+            for spotlight in server.roles:
                 if spotlight.name == 'Karaoke Spotlight':
-                    for user in message.server.members:  # iterating through server members
+                    for user in server.members:  # iterating through server members
                         for role in user.roles:  # through their roles
                             if role == spotlight:  # looking of spotlight roles
                                 await self.client.remove_roles(user, spotlight)  # taking it away =P
@@ -210,6 +210,7 @@ class Control(Plugin):
                     await enforcestrictmode()
                     await self.client.send_message(message.channel,
                                                    "Karaoke started in strict mode on channel " + karaoke_channel)
+                    await lookforstrayspotlight(message.server)
                 except SyntaxError:
                     await self.client.send_message(message.channel, "Error while starting karaoke session")
             else:
@@ -322,7 +323,7 @@ class Control(Plugin):
                         if he_is:
                             karaoke_deban = [True, karaoke_queue.popleft()]
 
-                            await lookforstrayspotlight()
+                            await lookforstrayspotlight(message.server)
                             await assignspotlight(karaoke_deban[1])
                             await self.client.send_message(message.channel,
                                                            '<@' + karaoke_deban[
@@ -386,7 +387,7 @@ class Control(Plugin):
 
         elif message.content.startswith(pfx + 'test1'):
             print('test1')
-            await lookforstrayspotlight()
+            await lookforstrayspotlight(message.server)
             # for spotlight in message.server.roles:
             #    if spotlight.name == 'Karaoke Spotlight':
             #        for user in message.server.members:
