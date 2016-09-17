@@ -80,6 +80,11 @@ class sigma(discord.Client):
         self.plugin_manager = PluginManager(self)
         self.plugin_manager.load_all()
 
+    async def on_voice_state_update(self, before, after):
+        enabled_plugins = await self.get_plugins()
+        for plugin in enabled_plugins:
+            self.loop.create_task(plugin._on_voice_state_update(before, after))
+
     async def get_plugins(self):
         plugins = await self.plugin_manager.get_all()
         return plugins

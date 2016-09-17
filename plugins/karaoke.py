@@ -70,16 +70,16 @@ class VoiceChangeDetection(Plugin):
                         if karaoke_strict:
                             for role in after.roles:  # iterate through roles of a user
                                 if role.name in karaoke_override:
-                                    print('strict, overriden, aborting')
+                                    print('Strict, Overriden, Aborting')
                                     return  # if user has an override role
                             if after.voice.mute == False:  # if user is not muted
-                                print('strict, not overriden, muting')
+                                print('Strict, Not Overriden, Muting')
                                 await self.client.server_voice_state(after, mute=True)  # otherwise mute the user
                                 return
 
                         else:
                             if after.voice.mute == True:  # if user is muted
-                                print('not strict, ummuting')
+                                print('Not Strict, Ummuting')
                                 await self.client.server_voice_state(after, mute=False)  # unmute
                                 return
 
@@ -88,9 +88,8 @@ class VoiceChangeDetection(Plugin):
 
                 if (after.voice.voice_channel == None) or (after.voice.voice_channel.name != karaoke_channel):
                     if after.voice.mute == True:  # if he's muted
-                        print('not in karaoke channel, unmuting')
+                        print('Not in karaoke channel, Unmuting')
                         await self.client.server_voice_state(after, mute=False)  # unmute him
-            print()
 
 
 # @client.event
@@ -170,8 +169,8 @@ class Control(Plugin):
                         if channel.name == karaoke_channel:  # find the karaoke channel
                             for user in channel.voice_members:  # iterate through users in the channel
                                 for role in user.roles:
-                                    if role in karaoke_override:  # if user has an override role
-                                        return  # return
+                                    if role.name in karaoke_override:  # if user has an override role
+                                        break
                                 else:
                                     await self.client.server_voice_state(user, mute=True)  # mute them
                     await self.client.send_message(message.channel,
