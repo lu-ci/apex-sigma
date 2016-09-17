@@ -331,11 +331,6 @@ class Control(Plugin):
 
             await self.client.send_message(message.channel, out)
 
-        elif message.content.startswith(pfx + 'echo '):
-            if checkPermissions(message.author):
-                await self.client.send_message(message.channel, message.content[5 + len(pfx):])
-
-
         elif message.content.startswith(pfx + 'test1'):
             print('test1')
             await lookforstrayspotlight()
