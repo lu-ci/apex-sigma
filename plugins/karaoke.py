@@ -5,6 +5,7 @@ from collections import deque
 from plugin import Plugin
 from utils import create_logger
 from config import permitted_id, permitted_roles
+from utils import bold
 
 client = discord.Client()
 
@@ -352,10 +353,10 @@ class Control(Plugin):
 
 
         elif message.content.startswith(pfx + 'status'):
-            out = 'Karaoke mode ' + boolToStr(karaoke_mod) + '\n'
-            out += 'Session ongoing ' + boolToStr(karaoke) + '\n'
-            out += 'Channel ' + karaoke_channel + '\n'
-            out += 'Strict mode ' + boolToStr(karaoke_strict)
+            out = 'Karaoke mode ' + bold(boolToStr(karaoke_mod)) + '\n'
+            out += 'Session ongoing ' + bold(boolToStr(karaoke)) + '\n'
+            out += 'Channel ' + bold(karaoke_channel) + '\n'
+            out += 'Strict mode ' + bold(boolToStr(karaoke_strict))
 
             await self.client.send_message(message.channel, out)
 
