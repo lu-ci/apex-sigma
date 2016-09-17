@@ -159,7 +159,11 @@ class WKKey(Plugin):
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_wk_store):
-            await self.client.delete_message(message)
+            try:
+                await self.client.delete_message(message)
+            except:
+                print('Message in private channel, unable to delete...')
+                pass
             try:
                 await self.client.send_typing(message.channel)
             except:
@@ -288,7 +292,7 @@ class Jisho(Plugin):
                     s_tag = '\"None\", '
                 if s_tag == '':
                     s_tag = '\"None\", '
-                result_text = ('Search querry for `' + jisho_q + '`:\n```java' +
+                result_text = ('Search query for `' + jisho_q + '`:\n```java' +
                                '\nJapanese Word: ' + ja_word +
                                '\nJapanese Reading: ' + ja_reading +
                                '\nEnglish Definition: ' + eng_def[:-2] +
