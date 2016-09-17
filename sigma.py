@@ -67,7 +67,8 @@ from plugins.mal import MAL
 from plugins.unflip import Table
 from plugins.vindictus import VindictusScrollSearch
 from plugins.sonarr import Sonarr
-from plugins.karaoke import Karaoke
+from plugins.karaoke import VoiceChangeDetection
+from plugins.karaoke import Control
 from plugins.vndb import VNDBSearch
 from plugins.utils import Reminder
 from plugins.utils import Donators
