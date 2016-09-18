@@ -187,10 +187,6 @@ class WK(Plugin):
                 font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
                 review_font = font2
                 review_pos = (420, 110)
-                if int(review_queue) > 150:
-                    review_color = (255,174,35)
-                    review_font = font1
-                    review_pos = (420, 108)
                 imgdraw = ImageDraw.Draw(base)
                 imgdraw.text((95, 2), username + ' of sect ' + title, (0, 125, 107), font=font1)
                 imgdraw.text((116, 31), str(apprentice), (0, 125, 107), font=font2)
@@ -206,6 +202,10 @@ class WK(Plugin):
                         imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
                     except:
                         imgdraw.text((11, 88), 'Next Review: ' 'On Vacation or No Data', (255, 255, 255), font=font2)
+                    if int(review_queue) > 150:
+                        review_color = (255, 174, 35)
+                        review_font = font1
+                        review_pos = (420, 108)
                     imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
                     imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
                     imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255), font=font2)
