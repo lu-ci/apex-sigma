@@ -135,12 +135,14 @@ class WK(Plugin):
                 out += 'Level \"' + str(level) + '\" Apprentice' + '\n'
                 out += 'Scribed \"' + str(topics_count) + '\" topics' + ' & \"' + str(posts_count) + '\" posts' + '\n'
                 out += 'Serving the Crabigator since \"' + creation_date + '\"\n'
-                out += 'Apprentice: \"' + str(apprentice) + '\" | Guru: \"' + str(guru) + '\" | Master: \"' + str(master) + '\" | Enlightened: \"' + str(
+                out += 'Apprentice: \"' + str(apprentice) + '\" | Guru: \"' + str(guru) + '\" | Master: \"' + str(
+                    master) + '\" | Enlightened: \"' + str(
                     enlightned) + '\" | Burned: \"' + str(burned) + '\"\n'
 
                 if 'api2' in locals():
                     img_type = 'Big'
-                    out += 'Radicals: \"' + str(rad_curr) + '/' + str(rad_total) + '\" || Kanji: \"' + str(kanji_curr) + '/' + str(
+                    out += 'Radicals: \"' + str(rad_curr) + '/' + str(rad_total) + '\" || Kanji: \"' + str(
+                        kanji_curr) + '/' + str(
                         kanji_total) + '\"\n'
 
                 if 'api3' in locals():
@@ -153,31 +155,49 @@ class WK(Plugin):
                     out += 'Reviews Next Hour: \"' + review_nh + '\" | Reviews Next Day: \"' + review_nd + '\"'
                 ava_raw = requests.get(avatar).content
                 ava = Image.open(BytesIO(ava_raw))
-                if img_type == 'Small':
-                    base = Image.open('img/ani/base_wk_small.png')
-                    overlay = Image.open('img/ani/overlay_wk_small.png')
-                elif img_type == 'Big':
-                    base = Image.open('img/ani/base_wk.png')
-                    overlay = Image.open('img/ani/overlay_wk.png')
+                txt_color = (0, 125, 107)
                 rank_category = ''
                 kanji_loc = 174
+                ov_color = ''
                 if level <= 10:
                     rank_category = '快'
                     kanji_loc = 184
+                    ov_color = '_pl'
+                    txt_color = (204, 51, 255)
                 elif 11 <= level <= 20:
                     kanji_loc = 184
                     rank_category = '苦'
+                    ov_color = '_pai'
+                    txt_color = (153, 102, 255)
                 elif 21 <= level <= 30:
                     rank_category = '死'
                     kanji_loc = 184
+                    ov_color = '_de'
+                    txt_color = (102, 102, 255)
                 elif 31 <= level <= 40:
                     rank_category = '地獄'
+                    ov_color = '_he'
+                    txt_color = (51, 102, 255)
                 elif 41 <= level <= 50:
                     rank_category = '天堂'
+                    ov_color = '_par'
+                    txt_color = (0, 102, 255)
                 elif 51 <= level <= 59:
                     rank_category = '現実'
+                    ov_color = '_re'
+                    txt_color = (0, 153, 255)
                 elif level == 60:
                     rank_category = '発明'
+                    ov_color = '_en'
+                    txt_color = (0, 204, 255)
+                base = Image.open('img/ani/base_wk_small.png')
+                overlay = Image.open('img/ani/overlay_wk_small' + ov_color + '.png')
+                if img_type == 'Small':
+                    base = Image.open('img/ani/base_wk_small.png')
+                    overlay = Image.open('img/ani/overlay_wk_small' + ov_color + '.png')
+                elif img_type == 'Big':
+                    base = Image.open('img/ani/base_wk.png')
+                    overlay = Image.open('img/ani/overlay_wk' + ov_color + '.png')
                 base.paste(ava, (15, 5))
                 base.paste(overlay, (0, 0), overlay)
                 review_color = (255, 255, 255)
@@ -188,14 +208,14 @@ class WK(Plugin):
                 review_font = font2
                 review_pos = (420, 110)
                 imgdraw = ImageDraw.Draw(base)
-                imgdraw.text((95, 2), username + ' of sect ' + title, (0, 125, 107), font=font1)
-                imgdraw.text((116, 31), str(apprentice), (0, 125, 107), font=font2)
-                imgdraw.text((182, 31), str(guru), (0, 125, 107), font=font2)
-                imgdraw.text((248, 31), str(master), (0, 125, 107), font=font2)
-                imgdraw.text((314, 31), str(enlightned), (0, 125, 107), font=font2)
-                imgdraw.text((380, 31), str(burned), (0, 125, 107), font=font2)
-                imgdraw.text((95, 60), 'Level: ' + str(level), (0, 125, 107), font=font2)
-                imgdraw.text((250, 60), 'Joined: ' + str(creation_date), (0, 125, 107), font=font2)
+                imgdraw.text((95, 2), username + ' of sect ' + title, txt_color, font=font1)
+                imgdraw.text((116, 31), str(apprentice), txt_color, font=font2)
+                imgdraw.text((182, 31), str(guru), txt_color, font=font2)
+                imgdraw.text((248, 31), str(master), txt_color, font=font2)
+                imgdraw.text((314, 31), str(enlightned), txt_color, font=font2)
+                imgdraw.text((380, 31), str(burned), txt_color, font=font2)
+                imgdraw.text((95, 60), 'Level: ' + str(level), txt_color, font=font2)
+                imgdraw.text((250, 60), 'Joined: ' + str(creation_date), txt_color, font=font2)
                 imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
                 if img_type == 'Big':
                     try:
@@ -208,8 +228,28 @@ class WK(Plugin):
                         review_pos = (420, 108)
                     imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
                     imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
-                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255), font=font2)
-                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255), font=font2)
+                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255),
+                                 font=font2)
+                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255),
+                                 font=font2)
+                    imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
+                    imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
+                    imgdraw.text(review_pos, str(review_queue), review_color, font=review_font)
+                if img_type == 'Big':
+                    try:
+                        imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
+                    except:
+                        imgdraw.text((11, 88), 'Next Review: ' 'On Vacation or No Data', (255, 255, 255), font=font2)
+                    if int(review_queue) > 150:
+                        review_color = (255, 174, 35)
+                        review_font = font1
+                        review_pos = (420, 108)
+                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
+                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
+                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255),
+                                 font=font2)
+                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255),
+                                 font=font2)
                     imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
                     imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
                     imgdraw.text(review_pos, str(review_queue), review_color, font=review_font)
