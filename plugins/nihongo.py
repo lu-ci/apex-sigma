@@ -180,10 +180,17 @@ class WK(Plugin):
                     rank_category = '発明'
                 base.paste(ava, (15, 5))
                 base.paste(overlay, (0, 0), overlay)
+                review_color = (255, 255, 255)
                 font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 25)
                 font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 21)
                 font3 = ImageFont.truetype("YuGothB.ttc", 21)
                 font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
+                review_font = font2
+                review_pos = (420, 110)
+                if int(review_queue) > 150:
+                    review_color = (255,174,35)
+                    review_font = font1
+                    review_pos = (420, 108)
                 imgdraw = ImageDraw.Draw(base)
                 imgdraw.text((95, 2), username + ' of sect ' + title, (0, 125, 107), font=font1)
                 imgdraw.text((116, 31), str(apprentice), (0, 125, 107), font=font2)
@@ -195,15 +202,17 @@ class WK(Plugin):
                 imgdraw.text((250, 60), 'Joined: ' + str(creation_date), (0, 125, 107), font=font2)
                 imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
                 if img_type == 'Big':
-                    imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
+                    try:
+                        imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
+                    except:
+                        imgdraw.text((11, 88), 'Next Review: ' 'On Vacation or No Data', (255, 255, 255), font=font2)
                     imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
                     imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
                     imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255), font=font2)
                     imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255), font=font2)
                     imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
-                    imgdraw.text((363, 110), 'Reviews: ' + str(review_queue), (255, 255, 255), font=font2)
-                if int(review_queue) > 150:
-                    imgdraw.text((443, 110), '!', (255, 0, 0), font=font2)
+                    imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
+                    imgdraw.text(review_pos, str(review_queue), review_color, font=review_font)
                 base.save('cache\\ani\\wk_' + message.author.id + '.png')
                 await self.client.send_file(message.channel, 'cache\\ani\\wk_' + message.author.id + '.png')
                 await self.client.send_message(message.channel, '```java\n' + out + '\n```')
