@@ -87,10 +87,7 @@ class WK(Plugin):
                     review_queue = str(api3['requested_information']['reviews_available'])
                     review_nh = str(api3['requested_information']['reviews_available_next_hour'])
                     review_nd = str(api3['requested_information']['reviews_available_next_day'])
-                    if api3['requested_information']['reviews_available'] > 150:
-                        warning = ':exclamation:'
-                    else:
-                        warning = ''
+                    warning = ''
                 except UnboundLocalError:
                     await self.client.send_message(message.channel,
                                                    'There doesn\'t seem to be a key tied to you...\n\nYou can add your key by sending a direct message to me with the the WKSave Command, for example:\n`' + pfx + cmd_wk_store + ' 16813135183151381`\nAnd just replace the numbers with your WK API Key!')
@@ -205,7 +202,8 @@ class WK(Plugin):
                     imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255), font=font2)
                     imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
                     imgdraw.text((363, 110), 'Reviews: ' + str(review_queue), (255, 255, 255), font=font2)
-
+                if api3['requested_information']['reviews_available'] > 150:
+                    imgdraw.text((475, 110), '!', (255, 0, 0), font=font2)
                 base.save('cache\\ani\\wk_' + message.author.id + '.png')
                 await self.client.send_file(message.channel, 'cache\\ani\\wk_' + message.author.id + '.png')
                 await self.client.send_message(message.channel, '```java\n' + out + '\n```')
