@@ -9,6 +9,11 @@ import datetime
 import requests
 import json
 from lxml import html
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+import os
+from io import BytesIO
 
 
 class WK(Plugin):
@@ -67,23 +72,21 @@ class WK(Plugin):
                     api = requests.get(url + '/srs-distribution').json()
                     api2 = requests.get(url + '/level-progression').json()
                     api3 = requests.get(url + '/study-queue').json()
-                    rad = 'Radicals: Total: ' + bold(
-                        str(api2['requested_information']['radicals_total'])) + ' | Done: ' + bold(
-                        str(api2['requested_information']['radicals_progress']))
-                    kanji = 'Kanji: Total: ' + bold(
-                        str(api2['requested_information']['kanji_total'])) + ' | Done: ' + bold(
-                        str(api2['requested_information']['kanji_progress']))
+                    rad_total = api2['requested_information']['radicals_total']
+                    rad_curr = api2['requested_information']['radicals_progress']
+                    kanji_total = api2['requested_information']['kanji_total']
+                    kanji_curr = api2['requested_information']['kanji_progress']
 
                     try:
-                        next_review_date = bold(
-                            datetime.datetime.fromtimestamp(api3['requested_information']['next_review_date']).strftime(
-                                '%B %d, %Y %H:%M'))
+                        next_review_date = datetime.datetime.fromtimestamp(
+                            api3['requested_information']['next_review_date']).strftime(
+                            '%B %d, %Y %H:%M')
                     except TypeError:
                         pass  # NoneType on retrival, user is on vacation
-                    lesson_queue = bold(str(api3['requested_information']['lessons_available']))
-                    review_queue = bold(str(api3['requested_information']['reviews_available']))
-                    review_nh = bold(str(api3['requested_information']['reviews_available_next_hour']))
-                    review_nd = bold(str(api3['requested_information']['reviews_available_next_day']))
+                    lesson_queue = str(api3['requested_information']['lessons_available'])
+                    review_queue = str(api3['requested_information']['reviews_available'])
+                    review_nh = str(api3['requested_information']['reviews_available_next_hour'])
+                    review_nd = str(api3['requested_information']['reviews_available_next_day'])
                     if api3['requested_information']['reviews_available'] > 150:
                         warning = ':exclamation:'
                     else:
@@ -114,39 +117,100 @@ class WK(Plugin):
 
             # parsing
             try:
+                img_type = 'Small'
                 out = ''
 
                 username = api['user_information']['username']
                 title = api['user_information']['title']
-                level = str(api['user_information']['level'])
+                avatar = 'https://www.gravatar.com/avatar/' + api['user_information']['gravatar']
+                level = api['user_information']['level']
                 creation_date = datetime.datetime.fromtimestamp(api['user_information']['creation_date']).strftime(
                     '%B %d, %Y')
-                topics_count = str(api['user_information']['topics_count'])
-                posts_count = str(api['user_information']['posts_count'])
-                apprentice = 'Apprentice: ' + bold(str(api['requested_information']['apprentice']['total']))
-                guru = 'Guru: ' + bold(str(api['requested_information']['guru']['total']))
-                master = 'Master: ' + bold(str(api['requested_information']['master']['total']))
-                enlightned = 'Enlightened: ' + bold(str(api['requested_information']['enlighten']['total']))
-                burned = 'Burned: ' + bold(str(api['requested_information']['burned']['total']))
+                topics_count = api['user_information']['topics_count']
+                posts_count = api['user_information']['posts_count']
+                apprentice = api['requested_information']['apprentice']['total']
+                guru = api['requested_information']['guru']['total']
+                master = api['requested_information']['master']['total']
+                enlightned = api['requested_information']['enlighten']['total']
+                burned = api['requested_information']['burned']['total']
 
-                out += bold(username) + ' of ' + bold('Sect ' + title) + '\n'
-                out += bold('Level ' + level) + ' Apprentice' + '\n'
-                out += 'Scribed ' + bold(topics_count + ' topics') + ' & ' + bold(posts_count + ' posts') + '\n'
-                out += 'Serving the Crabigator since ' + bold(creation_date) + '\n'
-                out += apprentice + ' | ' + guru + ' | ' + master + ' | ' + enlightned + ' | ' + burned + '\n'
+                out += '\"' + username + '\"' + ' of ' + 'Sect \"' + title + '\"\n'
+                out += 'Level \"' + str(level) + '\" Apprentice' + '\n'
+                out += 'Scribed \"' + str(topics_count) + '\" topics' + ' & \"' + str(posts_count) + '\" posts' + '\n'
+                out += 'Serving the Crabigator since \"' + creation_date + '\"\n'
+                out += 'Apprentice: \"' + str(apprentice) + '\" | Guru: \"' + str(guru) + '\" | Master: \"' + str(master) + '\" | Enlightened: \"' + str(
+                    enlightned) + '\" | Burned: \"' + str(burned) + '\"\n'
 
                 if 'api2' in locals():
-                    out += rad + ' || ' + kanji + '\n'
+                    img_type = 'Big'
+                    out += 'Radicals: \"' + str(rad_curr) + '/' + str(rad_total) + '\" || Kanji: \"' + str(kanji_curr) + '/' + str(
+                        kanji_total) + '\"\n'
 
                 if 'api3' in locals():
+                    img_type = 'Big'
                     try:
-                        out += 'Your Next Review: ' + next_review_date + '\n'
+                        out += 'Your Next Review: \"' + next_review_date + '\"\n'
                     except UnboundLocalError:
                         pass  # no review date, user is on vacation
-                    out += 'Lesson Queue: ' + lesson_queue + ' | Review Queue: ' + review_queue + warning + '\n'
-                    out += 'Reviews Next Hour: ' + review_nh + ' | Reviews Next Day: ' + review_nd
-                await self.client.send_message(message.channel, out)
-            except:
+                    out += 'Lesson Queue: \"' + lesson_queue + '\" | Review Queue: \"' + review_queue + warning + '\"\n'
+                    out += 'Reviews Next Hour: \"' + review_nh + '\" | Reviews Next Day: \"' + review_nd + '\"'
+                ava_raw = requests.get(avatar).content
+                ava = Image.open(BytesIO(ava_raw))
+                if img_type == 'Small':
+                    base = Image.open('img/ani/base_wk_small.png')
+                    overlay = Image.open('img/ani/overlay_wk_small.png')
+                elif img_type == 'Big':
+                    base = Image.open('img/ani/base_wk.png')
+                    overlay = Image.open('img/ani/overlay_wk.png')
+                rank_category = ''
+                kanji_loc = 174
+                if level <= 10:
+                    rank_category = '快'
+                    kanji_loc = 184
+                elif 11 <= level <= 20:
+                    kanji_loc = 184
+                    rank_category = '苦'
+                elif 21 <= level <= 30:
+                    rank_category = '死'
+                    kanji_loc = 184
+                elif 31 <= level <= 40:
+                    rank_category = '地獄'
+                elif 41 <= level <= 50:
+                    rank_category = '天堂'
+                elif 51 <= level <= 59:
+                    rank_category = '現実'
+                elif level == 60:
+                    rank_category = '発明'
+                base.paste(ava, (15, 5))
+                base.paste(overlay, (0, 0), overlay)
+                font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 25)
+                font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 21)
+                font3 = ImageFont.truetype("YuGothB.ttc", 21)
+                font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
+                imgdraw = ImageDraw.Draw(base)
+                imgdraw.text((95, 2), username + ' of sect ' + title, (0, 125, 107), font=font1)
+                imgdraw.text((116, 31), str(apprentice), (0, 125, 107), font=font2)
+                imgdraw.text((182, 31), str(guru), (0, 125, 107), font=font2)
+                imgdraw.text((248, 31), str(master), (0, 125, 107), font=font2)
+                imgdraw.text((314, 31), str(enlightned), (0, 125, 107), font=font2)
+                imgdraw.text((380, 31), str(burned), (0, 125, 107), font=font2)
+                imgdraw.text((95, 60), 'Level: ' + str(level), (0, 125, 107), font=font2)
+                imgdraw.text((250, 60), 'Joined: ' + str(creation_date), (0, 125, 107), font=font2)
+                imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
+                if img_type == 'Big':
+                    imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
+                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nd), (255, 255, 255), font=font4)
+                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nh), (255, 255, 255), font=font4)
+                    imgdraw.text((262, 88), 'Radic: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255), font=font2)
+                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255), font=font2)
+                    imgdraw.text((262, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
+                    imgdraw.text((363, 110), 'Reviews: ' + str(review_queue), (255, 255, 255), font=font2)
+
+                base.save('cache\\ani\\wk_' + message.author.id + '.png')
+                await self.client.send_file(message.channel, 'cache\\ani\\wk_' + message.author.id + '.png')
+                await self.client.send_message(message.channel, '```java\n' + out + '\n```')
+                os.remove('cache\\ani\\wk_' + message.author.id + '.png')
+            except SyntaxError:
                 self.log.info('Error while parsing the data')
                 await self.client.send_message(message.channel,
                                                'Something went wrong ¯\_(ツ)_/¯. Error while parsing the data')
