@@ -202,7 +202,7 @@ class WK(Plugin):
                     imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255), font=font2)
                     imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
                     imgdraw.text((363, 110), 'Reviews: ' + str(review_queue), (255, 255, 255), font=font2)
-                if review_queue > 150:
+                if int(review_queue) > 150:
                     imgdraw.text((440, 110), '!', (255, 0, 0), font=font2)
                 base.save('cache\\ani\\wk_' + message.author.id + '.png')
                 await self.client.send_file(message.channel, 'cache\\ani\\wk_' + message.author.id + '.png')
