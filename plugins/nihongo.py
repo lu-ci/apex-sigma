@@ -199,11 +199,11 @@ class WK(Plugin):
                 imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
                 if img_type == 'Big':
                     imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
-                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nd), (255, 255, 255), font=font4)
-                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nh), (255, 255, 255), font=font4)
-                    imgdraw.text((262, 88), 'Radic: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255), font=font2)
+                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
+                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
+                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255), font=font2)
                     imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255), font=font2)
-                    imgdraw.text((262, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
+                    imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
                     imgdraw.text((363, 110), 'Reviews: ' + str(review_queue), (255, 255, 255), font=font2)
 
                 base.save('cache\\ani\\wk_' + message.author.id + '.png')
