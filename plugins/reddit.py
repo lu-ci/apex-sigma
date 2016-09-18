@@ -28,4 +28,4 @@ class FoodPorn(Plugin):
                     url_list.append(post.url)
                 out = random.choice(url_list)
                 await self.client.send_message(message.channel, out)
-                asyncio.sleep(180)
+                await asyncio.sleep(180)
