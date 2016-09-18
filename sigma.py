@@ -72,6 +72,7 @@ from plugins.karaoke import Control
 from plugins.vndb import VNDBSearch
 from plugins.utils import Reminder
 from plugins.utils import Donators
+from plugins.reddit import FoodPorn
 
 # I love spaghetti!
 class sigma(discord.Client):
