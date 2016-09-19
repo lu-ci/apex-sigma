@@ -42,7 +42,7 @@ class Reminder(Plugin):
                 await self.client.send_message(message.channel,
                                                '<@' + message.author.id + '> Time\'s up! Let\'s do this! :clock: \n :exclamation: ' + bold(
                                                    str(remind_text)) + ' :exclamation: ')
-            except SyntaxError:
+            except:
                 await self.client.send_message(message.channel,
                                                'Something went wrong with setting the timer, are you sure you inputed a number?')
 
