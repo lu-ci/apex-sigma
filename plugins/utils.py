@@ -61,7 +61,7 @@ class Donators(Plugin):
             out_text = ''
             for donor in donators:
                 out_text += '\n' + bold(str(donor)) + ' :ribbon: '
-            await self.client.send_message(message.channel, out_text)
+            await self.client.send_message(message.channel, out_text + '\nPlease consider donating by hitting the Donate button on this page: <https://auroraproject.xyz/donors/>!')
 
 
 class BulkMSG(Plugin):
