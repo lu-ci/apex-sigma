@@ -12,8 +12,14 @@ class Joke(Plugin):
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + cmd_joke):
             cmd_name = 'Joke'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             number_list = [0, 1, 2]
             joke_no = random.choice(number_list)
             await self.client.send_typing(message.channel)
@@ -40,3 +46,21 @@ class Joke(Plugin):
                 joke = joke_json['joke']
             await self.client.send_message(message.channel, 'Here, have a ' + joke_type + '!\n```' + joke + '\n```')
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
+        elif message.content.startswith(pfx + 'pun'):
+            cmd_name = 'Pun'
+            await self.client.send_typing(message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            try:
+                pun_url = 'http://www.punoftheday.com/cgi-bin/arandompun.pl'
+                pun_req = requests.get(pun_url).content
+                pun_text = (str(pun_req)[len('b\'document.write(\\\'&quot;'):-len('&quot;<br />\\\')\ndocument.write(\\\'<i>&copy; 1996-2016 <a href="http://www.punoftheday.com">Pun of the Day.com</a></i><br />\\\')\\n\'') - 1]).replace('&rsquo;','\'')
+                await self.client.send_message(message.channel, 'You\'ve asked for it...\n```' + pun_text + '\n```')
+            except:
+                await self.client.send_message(message.channel, 'Um, so... we have a bug in the code...\nI failed to retrieve a pun...')
