@@ -1,21 +1,24 @@
 from plugin import Plugin
 from utils import create_logger
 import praw
+from config import reddit_un as un, reddit_pw as pw
 import random
 import asyncio
 from config import OwnerID as ownr
 
-mmm = False
+logged_in = False
 
 
-class FoodPorn(Plugin):
+class Reddit(Plugin):
     is_global = True
-    log = create_logger('food_porn')
+    log = create_logger('Reddit')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + 'foodporn'):
+        if message.content.startswith(pfx + 'redditlogin'):
             await self.client.send_typing(message.channel)
-            cmd_name = 'Food Porn'
+            cmd_name = 'Reddit Login'
+            global logged_in
+            # Start Logger
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                               message.author,
@@ -24,30 +27,43 @@ class FoodPorn(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            if mmm is False:
-                try:
-                    global mmm
-                    time_choice = int(message.content[len(pfx) + len('foodporn') + 1:])
-                    if message.author.id == ownr:
-                        mmm = True
-                        while mmm is True:
-                            req = praw.Reddit(user_agent='Apex Sigma')
-                            posts = req.get_subreddit('foodporn').get_hot(limit=100)
-                            url_list = []
-                            for post in posts:
-                                url_list.append(post.url)
-                            out = random.choice(url_list)
-                            await self.client.send_message(message.channel, out)
-                            await asyncio.sleep(time_choice)
-                    else:
-                        await self.client.send_message(message.channel,
-                                                       'Insufficient permissions...\nOnly <@' + ownr + '> can activate the ' + cmd_name + ' command~')
-                except:
-                    await self.client.send_message(message.channel, 'Not a number or something went to shit...')
-            elif mmm is not False:
-                if message.author.id == ownr:
-                    mmm = False
-                    await self.client.send_message(message.channel, 'Loop stopped...')
-                else:
-                    await self.client.send_message(message.channel,
-                                                   'Insufficient permissions...\nOnly <@' + ownr + '> can activate the ' + cmd_name + ' command~')
+            # Eng Logger
+            if message.author.id == ownr:
+                if logged_in is False:
+                    conn = praw.Reddit(user_agent='Apex Sigma')
+                    try:
+                        conn.login(un, pw, disable_warning=True)
+                    except praw.errors.InvalidUserPass:
+                        await self.client.send_message(message.channel, 'Invalid Login Credentials')
+                    await self.client.send_message(message.channel, 'Logged into Reddit as ' + un)
+                    logged_in = True
+                elif logged_in is not False:
+                    await self.client.send_message(message.channel, 'Already logged in into Reddit as ' + un)
+            else:
+                await self.client.send_message(message.channel,
+                                               'I\'m sorry <@' + message.author.id + '>, but you don\'t have that permission.')
+        elif message.content.startswith(pfx + 'redditmulti'):
+            mr = message.content[len(pfx) + len('redditmulti') + 1:]
+            await self.client.send_typing(message.channel)
+            cmd_name = 'Reddit Profile'
+            # Start Logger
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            # Eng Logger
+            conn = praw.Reddit(user_agent='Apex Sigma')
+            try:
+                multi = conn.get_multireddit('Imjustheretobefined', mr)
+                multi_list = multi.get_hot(limit=10)
+                out = ''
+                for post in multi_list:
+                    out += post.get_hot(limit=10)
+                print(out)
+                await self.client.send_message(message.channel, out)
+            except SyntaxError:
+                print('syn errrrrr')

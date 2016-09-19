@@ -72,7 +72,9 @@ from plugins.karaoke import Control
 from plugins.vndb import VNDBSearch
 from plugins.utils import Reminder
 from plugins.utils import Donators
-from plugins.reddit import FoodPorn
+from plugins.reddit import Reddit
+from plugins.utils import BulkMSG
+
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -148,6 +150,7 @@ class sigma(discord.Client):
         enabled_plugins = await self.get_plugins()
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
+
 
 client = sigma()
 if StartupType == '0':

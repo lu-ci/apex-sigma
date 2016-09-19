@@ -1,8 +1,8 @@
 from plugin import Plugin
-from config import cmd_remind, donators
+from config import cmd_remind, donators, OwnerID as ownr, permitted_id
 import asyncio
 from utils import create_logger
-from utils import bold\
+from utils import bold
 
 
 class Reminder(Plugin):
@@ -54,3 +54,43 @@ class Donators(Plugin):
             for donor in donators:
                 out_text += '\n' + bold(str(donor)) + ' :ribbon: '
             await self.client.send_message(message.channel, out_text)
+
+
+class BulkMSG(Plugin):
+    is_global = True
+    log = create_logger('BulkMSG')
+
+    async def on_message(self, message, pfx):
+        if message.content.startswith(pfx + 'bulkmsg'):
+            await self.client.send_typing(message.channel)
+            cmd_name = 'Bulk Message'
+            # Start Logger
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            # Eng Logger
+            input_message = message.content[len(pfx) + len('bulkmsg') + 1:]
+            try:
+                if message.author.id in permitted_id:
+                    await self.client.send_message(message.channel,
+                                                   'Starting bulk sending... Stand by for confirmation')
+                    out = ''
+                    for user in self.client.get_all_members():
+                        if user.server.id == message.server.id and user.id != self.client.user.id:
+                            try:
+                                await self.client.start_private_message(user)
+                                await self.client.send_message(user, input_message)
+                                out += '\nSuccess: ' + user.name
+                            except:
+                                out += '\nFailed: ' + user.name
+                    await self.client.send_message(message.channel, 'Bulk message sending complete...\n' + out[:1900])
+                else:
+                    await self.client.send_message(message.channel,
+                                                   'Not enough permissions, due to security issues, only a permitted user can use this for now...')
+            except:
+                print('Something went wrong. Most likely a basic error with the sending.')
