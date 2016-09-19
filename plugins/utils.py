@@ -32,12 +32,12 @@ class Reminder(Plugin):
                 confirm_msg = await self.client.send_message(message.channel, 'Okay! Reminder for\n[' + bold(
                     str(remind_text)) + ']\nis set and will be activated in `' + time_conv + '`! :clock:')
                 time_num = int(time_q)
-                while time_num != 0:
-                    time_num -= 1
+                while time_num > 0:
                     time_conv_second = time.strftime('%H:%M:%S', time.gmtime(int(time_num)))
                     await self.client.edit_message(confirm_msg,'Okay! Reminder for\n[' + bold(
                     str(remind_text)) + ']\nis set and will be activated in `' + time_conv_second + '`! :clock:')
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(10)
+                    time_num -= 10
                 await self.client.send_typing(message.channel)
                 await self.client.send_message(message.channel,
                                                '<@' + message.author.id + '> Time\'s up! Let\'s do this! :clock: \n :exclamation: ' + bold(
