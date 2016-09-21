@@ -74,7 +74,8 @@ from plugins.utils import Reminder
 from plugins.utils import Donators
 from plugins.reddit import Reddit
 from plugins.utils import BulkMSG
-
+from plugins.nihongo import WaniKaniAutoCheck
+from plugins.nihongo import WKReviewFiller
 
 # I love spaghetti!
 class sigma(discord.Client):

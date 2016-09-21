@@ -2,9 +2,11 @@ from plugin import Plugin
 from config import cmd_jisho
 from config import cmd_wk
 from config import cmd_wk_store
+from config import OwnerID as ownr
 from utils import create_logger
+from pytz import utc, timezone
+from time import mktime
 import sqlite3
-from utils import bold
 import datetime
 import requests
 import json
@@ -14,6 +16,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 import os
 from io import BytesIO
+import asyncio
 
 
 class WK(Plugin):
@@ -416,3 +419,110 @@ class Jisho(Plugin):
                 await self.client.send_message(message.channel, result_text)
             except:
                 await self.client.send_message(message.channel, 'The word was not found or the API dun goofed.')
+
+
+class WaniKaniAutoCheck(Plugin):
+    is_global = True
+    log = create_logger('wanikanichecker')
+
+    async def on_message(self, message, pfx):
+        if message.content == pfx + 'startchecker':
+            mytz = timezone('Europe/London')  ## Set your timezone
+            current_time = datetime.datetime.now()
+            current_time_unix = mktime(mytz.localize(current_time, is_dst=True).utctimetuple())
+            if message.author.id == ownr:
+                cmd_name = 'WaniKani'
+                dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+                try:
+                    self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                                  message.author,
+                                  message.author.id, message.server.name, message.server.id, message.channel)
+                except:
+                    self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                                  message.author,
+                                  message.author.id)
+                while True:
+                    out_msg = ''
+                    not_empty = 0
+                    empty = 0
+                    next_review = dbsql.execute("SELECT NEXT_REV from WANIKANI WHERE NEXT_REV IS NOT NULL")
+                    for review_time_tupple in next_review:
+                        print('checking...')
+                        review_time = review_time_tupple[0]
+                        if review_time == 'None':
+                            review_time = '0'
+                        else:
+                            # rev_tim_conv_low = datetime.datetime.fromtimestamp(int(review_time) - 1)
+                            rev_tim_conv_low = int(review_time) - 15
+                            # rev_time_conv_high = datetime.datetime.fromtimestamp(int(review_time) + 1)
+                            rev_time_conv_high = int(review_time) + 15
+                            if rev_tim_conv_low < current_time_unix < rev_time_conv_high:
+                                print('Reviews!')
+                                user_id_finder = dbsql.execute("SELECT USER_ID FROM WANIKANI WHERE NEXT_REV= ?", (str(review_time),))
+                                for user in user_id_finder:
+                                    user_id = user[0]
+                                out_msg += ('\nHey! <@' + str(user_id) + '>! You\'ve got reviews! Go do them!')
+                                not_empty += 1
+                            else:
+                                empty += 1
+                    print('Not Empty: ' + str(not_empty) + '\nEmpty: ' + str(empty))
+                    if out_msg != '':
+                        await self.client.send_message(message.channel, out_msg)
+                    await asyncio.sleep(10)
+            else:
+                await self.client.send_message(message.channel, 'Only <@' + ownr + '> can start the WKChecker due to it\'s large load...\n(That\'s what she said~)')
+
+
+class WKReviewFiller(Plugin):
+    is_global = True
+    log = create_logger('wkfiller')
+
+    async def on_message(self, message, pfx):
+        if message.content == pfx + 'startwkupdater':
+            cmd_name = 'WaniKani'
+            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+            if message.author.id == ownr:
+                await self.client.send_typing(message.channel)
+                await self.client.send_message(message.channel,
+                                               'Started the WaniKani Updater on a 30 minute interval.\nChannel used for logging: `' + message.channel.name + '`')
+                while True:
+                    try:
+                        self.log.info(
+                            'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                            message.author,
+                            message.author.id, message.server.name, message.server.id, message.channel)
+                    except:
+                        self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                                      message.author,
+                                      message.author.id)
+                    print('Updating Review Times...')
+                    key_list = dbsql.execute("SELECT WK_KEY from WANIKANI WHERE WK_KEY IS NOT NULL")
+                    fail = 0
+                    succ = 0
+                    for key in key_list:
+                        url = 'https://www.wanikani.com/api/user/' + key[0]
+                        try:
+                            api3 = requests.get(url + '/study-queue').json()
+                        except:
+                            fail += 1
+                            print('Special Error, returning')
+                            return
+                        try:
+                            review_time = api3['requested_information']['next_review_date']
+                            selector = "SELECT WK_KEY from WANIKANI WHERE WK_KEY= ?"
+                            query = "UPDATE WANIKANI SET NEXT_REV= ? WHERE WK_KEY= ?"
+                            dbsql.cursor().execute(selector, (str(key[0]),))
+                            dbsql.execute(query, (str(review_time), str(key[0]),))
+                            dbsql.commit()
+                            succ += 1
+                        except:
+                            fail += 1
+                            pass
+                    print('Successfully Updated: ' + str(succ) + '\nFailed: ' + str(fail))
+                    await self.client.send_message(message.channel,
+                                                   'Successfully Updated: `' + str(succ) + '`\nFailed: `' + str(
+                                                       fail) + '`')
+                    await asyncio.sleep(1800)
+            else:
+                await self.client.send_message(message.channel,
+                                               'Only <@' + ownr + '> can start the WKChecker due to it\'s large load...\n(That\'s what she said~)')
