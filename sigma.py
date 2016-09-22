@@ -78,6 +78,7 @@ from plugins.utils import BulkMSG
 #from plugins.nihongo import WKReviewFiller
 from plugins.reward import RewardOnMessage
 from plugins.reward import LevelCheck
+from plugins.utils import PMRedirect
 
 # I love spaghetti!
 class sigma(discord.Client):

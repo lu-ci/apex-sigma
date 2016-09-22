@@ -1,5 +1,5 @@
 from plugin import Plugin
-from config import cmd_remind, donators, OwnerID as ownr, permitted_id
+from config import cmd_remind, donators, OwnerID as ownr, permitted_id, ClientID as cid
 import asyncio
 from utils import create_logger
 from utils import bold
@@ -102,3 +102,21 @@ class BulkMSG(Plugin):
                                                    'Not enough permissions, due to security issues, only a permitted user can use this for now...')
             except:
                 print('Something went wrong. Most likely a basic error with the sending.')
+
+class PMRedirect(Plugin):
+    is_global = True
+    log = create_logger('received PM')
+    async def on_message(self, message, pfx):
+        cmd_name = 'Private Message'
+        if message.server is None:
+            if str(message.author.id) == str(cid):
+                return
+            else:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+                for user in self.client.get_all_members():
+                    if user.id == ownr:
+                        private_msg_to_owner = await self.client.start_private_message(user=user)
+                        await self.client.send_message(private_msg_to_owner, '**' + message.author.name + '** (ID: ' + message.author.id + '):\n```' + message.content + '\n```')
+                        return
