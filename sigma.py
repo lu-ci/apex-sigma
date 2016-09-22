@@ -76,6 +76,8 @@ from plugins.reddit import Reddit
 from plugins.utils import BulkMSG
 #from plugins.nihongo import WaniKaniAutoCheck
 #from plugins.nihongo import WKReviewFiller
+from plugins.reward import RewardOnMessage
+from plugins.reward import LevelCheck
 
 # I love spaghetti!
 class sigma(discord.Client):
