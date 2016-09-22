@@ -46,8 +46,6 @@ class RewardOnMessage(Plugin):
                                                            level_point) + '**!')
                     else:
                         return
-        else:
-            await self.client.send_message(message.channel, 'I don\'t recommend using me in Private Messaging.')
 
 
 class LevelCheck(Plugin):
