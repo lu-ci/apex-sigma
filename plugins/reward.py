@@ -16,7 +16,7 @@ class RewardOnMessage(Plugin):
                 (str(message.author.id),))
             for info_check in info_grabber_checker:
                 if info_check[0] == 0:
-                    #print('Non-Existant: Inserting')
+                    # print('Non-Existant: Inserting')
                     dbsql.execute("INSERT INTO POINT_SYSTEM (USER_ID, LVL, LV_CHECK, POINTS) VALUES (?, ?, ?, ?)",
                                   (str(message.author.id), 0, 0, 0,))
                     dbsql.commit()
@@ -41,9 +41,9 @@ class RewardOnMessage(Plugin):
                         dbsql.execute("UPDATE POINT_SYSTEM SET LV_CHECK= ? WHERE USER_ID= ?",
                                       (str(level_should), str(message.author.id),))
                         dbsql.commit()
-                        await self.client.send_message(message.channel,
-                                                       'Congratulations <@' + message.author.id + '>!\nYou just leveled up to **Level ' + str(
-                                                           level_point) + '**!')
+                        # await self.client.send_message(message.channel,
+                        # 'Congratulations <@' + message.author.id + '>!\nYou just leveled up to **Level ' + str(
+                        # level_point) + '**!')
                     else:
                         return
 
