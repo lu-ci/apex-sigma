@@ -1,8 +1,11 @@
 from plugin import Plugin
 from config import cmd_hearthstone
-from config import MashapeKey as mashape_key
+from config import MashapeKey
 import requests
 from utils import create_logger
+from PIL import Image
+from io import BytesIO
+import os
 
 class Hearthstone(Plugin):
     is_global = True
@@ -15,77 +18,63 @@ class Hearthstone(Plugin):
             self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
             hs_input = (str(message.content[len(cmd_hearthstone) + 1 + len(pfx):]))
-            url = "https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/" + hs_input
-            headers = {'X-Mashape-Key': mashape_key, 'Accept': 'text/plain'}
+            url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/' + hs_input + '?locale=enUS'
+            headers = {'X-Mashape-Key': MashapeKey, 'Accept': 'text/plain'}
             response = requests.get(url, headers=headers).json()
+            card_list = '```'
             try:
-                name = str(response[0]['name'])
-                cardset = str(response[0]['cardSet'])
-                rarity = str(response[0]['rarity'])
-                cd_type = str(response[0]['type'])
-                try:
-                    cost = str(response[0]['cost'])
-                except:
-                    cost = '0'
-                try:
-                    faction = str(response[0]['faction'])
-                except:
-                    faction = 'None'
-                try:
-                    description = str(response[0]['flavor'])
-                except:
-                    description = 'None'
-                if cd_type == 'Minion':
-                    attack = str(response[0]['attack'])
-                    health = str(response[0]['health'])
-                    message_text = ('Name: `' + name + '`\n' +
-                                    '\nType: `' + cd_type + '`' +
-                                    '\nFaction: `' + faction + '`' +
-                                    '\nRarity: `' + rarity + '`' +
-                                    '\nCard Set: `' + cardset + '`' +
-                                    '\nCost: `' + cost + '`' +
-                                    '\nAttack: `' + attack + '`' +
-                                    '\nHealth: `' + health + '`\n' +
-                                    '\nDescription:```\n' + description + '```')
-                elif cd_type == 'Spell':
+                if len(response) > 1:
+                    n = 0
+                    for card in response:
+                        n += 1
+                        card_list += ('\n#' + str(n) + ': ' + card['name'])
                     try:
-                        text = str(response[0]['text'])
+                        await self.client.send_message(message.channel,
+                                                       card_list + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
+                                                           len(response)) + ')`')
+                        choice = await self.client.wait_for_message(author=message.author, channel=message.channel, timeout=20)
+                        await self.client.send_typing(message.channel)
+                        try:
+                            card_no = int(choice.content) - 1
+                        except:
+                            await self.client.send_message(message.channel,
+                                                           'Not a number or timed out... Please start over')
+                        if choice is None:
+                            return
                     except:
-                        text = 'None'
-                    message_text = ('Name: `' + name + '`\n' +
-                                    '\nType: `' + cd_type + '`' +
-                                    '\nFaction: `' + faction + '`' +
-                                    '\nRarity: `' + rarity + '`' +
-                                    '\nCard Set: `' + cardset + '`' +
-                                    '\nCost: `' + cost + '`' +
-                                    '\nText: \n```' + text + '\n```' +
-                                    '\nDescription:```\n' + description + '```')
-                elif cd_type == 'Weapon':
-                    attack = str(response[0]['attack'])
-                    durability = str(response[0]['durability'])
-                    try:
-                        text = str(response[0]['text'])
-                    except:
-                        text = 'None'
-                    message_text = ('Name: `' + name + '`\n' +
-                                    '\nType: `' + cd_type + '`' +
-                                    '\nFaction: `' + faction + '`' +
-                                    '\nRarity: `' + rarity + '`' +
-                                    '\nCard Set: `' + cardset + '`' +
-                                    '\nCost: `' + cost + '`' +
-                                    '\nAttack: `' + attack + '`' +
-                                    '\nDurability: `' + durability + '`' +
-                                    '\nText: `' + text + '`' +
-                                    '\nDescription:```\n' + description + '```')
+                        await self.client.send_message(message.channel,
+                                                       'The list is way too big, please be more specific...')
                 else:
-                    message_text = 'Data incomplete or special, uncollectable card...'
-                await self.client.send_message(message.channel, message_text)
-                #print('CMD [' + cmd_name + '] > ' + initiator_data)
+                    card_no = 0
             except:
                 try:
                     error = str(response['error'])
                     err_message = str(response['message'])
-                    await self.client.send_message(message.channel, 'Error: ' + error + '. ' + err_message)
+                    await self.client.send_message(message.channel, 'Error: ' + error + '.\n' + err_message)
+                    return
                 except:
                     await self.client.send_message(message.channel, 'Something went wrong...')
-                #print('CMD [' + cmd_name + '] > ' + initiator_data)
+                    return
+            try:
+                card_img_url = response[card_no]['img']
+                card_img_request = requests.get(card_img_url).content
+                card_img = Image.open(BytesIO(card_img_request))
+                card_img.save('cache/hs_' + message.author.id + '.png')
+                try:
+                    flavor_text = response[card_no]['flavor']
+                except:
+                    flavor_text = ''
+                await self.client.send_file(message.channel, 'cache/hs_' + message.author.id + '.png')
+                os.remove('cache/hs_' + message.author.id + '.png')
+                if flavor_text == '':
+                    return
+                else:
+                    flavor_out = '```\n' + flavor_text + '\n```'
+                    await self.client.send_message(message.channel, flavor_out)
+            except:
+                try:
+                    error = str(response['error'])
+                    err_message = str(response['message'])
+                    await self.client.send_message(message.channel, 'Error: ' + error + '.\n' + err_message)
+                except:
+                    await self.client.send_message(message.channel, 'Something went wrong...')
