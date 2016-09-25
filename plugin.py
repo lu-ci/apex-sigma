@@ -11,7 +11,6 @@ class PluginMount(type):
 class Plugin(object, metaclass=PluginMount):
 
     is_global = False
-    fancy_name = None
 
     def __init__(self, client):
         self.client = client

@@ -75,8 +75,8 @@ from plugins.reddit import Reddit
 from plugins.utils import BulkMSG
 #from plugins.nihongo import WaniKaniAutoCheck
 #from plugins.nihongo import WKReviewFiller
-#from plugins.reward import RewardOnMessage
-#from plugins.reward import LevelCheck
+from plugins.reward import RewardOnMessage
+from plugins.reward import LevelCheck
 from plugins.utils import PMRedirect
 from plugins.world_of_warcraft import World_Of_Warcraft
 
@@ -101,17 +101,25 @@ class sigma(discord.Client):
         gamename = pfx + cmd_help
         game = discord.Game(name=gamename)
         await client.change_status(game)
+        server_amo = 0
+        member_amo = 0
+        for server in client.servers:
+            server_amo += 1
+            for member in server.members:
+                member_amo += 1
 
         print('-----------------------------------')
         print('Logged in as: ' + client.user.name)
         print('Bot User ID: ' + client.user.id)
         print('Running discord.py version: ' + discord.__version__)
-        print('STATUS: Finished Loading!')
         print('Authors: AXAz0r, Awakening')
         print('Contributors: Mirai, Chaeldar')
         print('Bot Version: Beta 0.50')
         print('Build Date: 25. September 2016.')
         print('-----------------------------------')
+        print('Connected to [ ' + str(server_amo) + ' ] servers.')
+        print('Serving [ ' + str(member_amo) + ' ] users.')
+        print('\nSuccessfully connected to Discord!')
         # try:
         # if notify == 'Yes':
         #    pb.push_note('Sigma', 'Sigma Activated!')
