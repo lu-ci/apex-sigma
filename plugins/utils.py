@@ -4,6 +4,7 @@ import asyncio
 from utils import create_logger
 from utils import bold
 import time
+from config import sigma_version
 
 
 class Reminder(Plugin):
@@ -120,3 +121,29 @@ class PMRedirect(Plugin):
                         private_msg_to_owner = await self.client.start_private_message(user=user)
                         await self.client.send_message(private_msg_to_owner, '**' + message.author.name + '** (ID: ' + message.author.id + '):\n```' + message.content + '\n```')
                         return
+
+
+class OtherUtils(Plugin):
+    is_global = True
+    log = create_logger('basic util')
+    async def on_message(self, message, pfx):
+        if message.content == (pfx + 'stats'):
+            server_amo = 0
+            member_amo = 0
+            permed_ids = ''
+            for server in self.client.servers:
+                server_amo += 1
+                for member in server.members:
+                    member_amo += 1
+            for per_id in permitted_id:
+                permed_ids += '[' + per_id + '], '
+            out_txt = ''
+            out_txt += '\nAuthors: \"Alex\" and \"Awakening\"'
+            out_txt += '\nContributors: \"Mirai\", \"Valeth\" and \"Chaeldar\"'
+            out_txt += '\nSigma Version: ' + sigma_version
+            out_txt += '\nConnected to [ ' + str(server_amo) + ' ] servers.'
+            out_txt += '\nServing [ ' + str(member_amo) + ' ] users.'
+            out_txt += '\nSigma Owner ID: [' + ownr + ']'
+            out_txt += '\nPermitted IDs: ' + permed_ids[:-2]
+
+            await self.client.send_message(message.channel, '```python' + out_txt + '\n```')
