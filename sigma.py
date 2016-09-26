@@ -31,7 +31,6 @@ from config import Token as token
 if token == '': sys.exit('Token not provided, please open config.json and place your token.')
 
 from config import Prefix as pfx
-from config import OwnerID as ownr
 from config import cmd_help
 # from config import Pushbullet as pb_key
 # pb = pushbullet.Pushbullet(pb_key)
@@ -72,6 +71,15 @@ from plugins.karaoke import Control
 from plugins.vndb import VNDBSearch
 from plugins.utils import Reminder
 from plugins.utils import Donators
+from plugins.reddit import Reddit
+from plugins.utils import BulkMSG
+#from plugins.nihongo import WaniKaniAutoCheck
+#from plugins.nihongo import WKReviewFiller
+from plugins.reward import RewardOnMessage
+from plugins.reward import LevelCheck
+from plugins.utils import PMRedirect
+from plugins.world_of_warcraft import World_Of_Warcraft
+
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -93,24 +101,25 @@ class sigma(discord.Client):
         gamename = pfx + cmd_help
         game = discord.Game(name=gamename)
         await client.change_status(game)
-        print('\nLogin Details:')
-        print('-------------------------')
-        print('Logged in as:')
-        print(client.user.name)
-        print('Bot User ID:')
-        print(client.user.id)
-        print('-------------------------\n')
-        print('-------------------------')
-        print('Running discord.py version\n' + discord.__version__)
-        print('-------------------------')
-        print('STATUS: Finished Loading!')
-        print('-------------------------\n')
-        print('-------------------------')
+        server_amo = 0
+        member_amo = 0
+        for server in client.servers:
+            server_amo += 1
+            for member in server.members:
+                member_amo += 1
+
+        print('-----------------------------------')
+        print('Logged in as: ' + client.user.name)
+        print('Bot User ID: ' + client.user.id)
+        print('Running discord.py version: ' + discord.__version__)
         print('Authors: AXAz0r, Awakening')
         print('Contributors: Mirai, Chaeldar')
-        print('Bot Version: Beta 0.30')
-        print('Build Date: 7. September 2016.')
-        print('-------------------------')
+        print('Bot Version: Beta 0.50')
+        print('Build Date: 25. September 2016.')
+        print('-----------------------------------')
+        print('Connected to [ ' + str(server_amo) + ' ] servers.')
+        print('Serving [ ' + str(member_amo) + ' ] users.')
+        print('\nSuccessfully connected to Discord!')
         # try:
         # if notify == 'Yes':
         #    pb.push_note('Sigma', 'Sigma Activated!')
@@ -147,6 +156,7 @@ class sigma(discord.Client):
         enabled_plugins = await self.get_plugins()
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
+
 
 client = sigma()
 if StartupType == '0':

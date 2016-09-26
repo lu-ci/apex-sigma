@@ -1,11 +1,12 @@
 import discord
 import asyncio
 from collections import deque
-# from config import pfxfix as pfx
 from plugin import Plugin
 from utils import create_logger
 from config import permitted_id, permitted_roles
 from utils import bold
+from config import cmd_handup, cmd_handdown, cmd_repertoire, cmd_takemic, cmd_dropmic, cmd_startkaraoke, \
+    cmd_karaokemode, cmd_forceremove, cmd_strict
 
 client = discord.Client()
 
@@ -17,16 +18,6 @@ from config import permitted_roles as karaoke_override
 
 karaoke_queue = deque()
 karaoke_deban = [False, 0]
-
-cmd_handup = 'handup'
-cmd_handdown = 'handdown'
-cmd_repertoire = 'repertoire'
-cmd_takemic = 'takemic'
-cmd_dropmic = 'dropmic'
-cmd_startkaraoke = 'startkaraoke'
-cmd_karaokemode = 'karaokemode'
-cmd_strict = 'karaokestrict'
-cmd_forceremove = 'remove'
 
 
 def checkPermissions(user):
@@ -292,7 +283,8 @@ class Control(Plugin):
             if checkPermissions(message.author):
                 karaoke_queue.clear()
                 await self.client.send_message(message.channel, 'Karaoke queue cleared')
-            else: await self.client.send_message(message.channel, "Insufficient permissions")
+            else:
+                await self.client.send_message(message.channel, "Insufficient permissions")
 
         elif message.content.startswith(pfx + cmd_forceremove):
             if checkPermissions(message.author):
@@ -305,7 +297,8 @@ class Control(Plugin):
                     await self.client.send_message(message.channel, 'User removed from the queue')
                 else:
                     await self.client.send_message(message.channel, 'User not found in the queue')
-            else: await self.client.send_message(message.channel, "Insufficient permissions")
+            else:
+                await self.client.send_message(message.channel, "Insufficient permissions")
 
         elif message.content.startswith(pfx + cmd_handdown):
             if karaoke:
@@ -431,34 +424,34 @@ class Control(Plugin):
 
 
 
-            # elif message.content.startswith(pfx + 'karaokestrict'):
-            #   if karaoke_strict:
-            #       karaoke_strict = False
-            #       for channel in message.server.channels: #iterate through server channels
-            #           if channel.name == karaoke_channel: #find the karaoke channel
-            #               for user in channel.voice_members: #iterate through users in the channel
-            #                   await self.client.server_voice_state(user, mute=False) #unmute them
-            #       await self.client.send_message(message.channel, "Strict mode disabled")
-            #   else:
-            #       karaoke_strict = True
-            #       for channel in message.server.channels: #iterate through server channels
-            #           if channel.name == karaoke_channel: #find the karaoke channel
-            #               for user in channel.voice_members: #iterate through users in the channel
-            #                   await self.client.server_voice_state(user, mute=True) #mute them
-            #       await self.client.send_message(message.channel, "Strict mode enabled")
+                # elif message.content.startswith(pfx + 'karaokestrict'):
+                #   if karaoke_strict:
+                #       karaoke_strict = False
+                #       for channel in message.server.channels: #iterate through server channels
+                #           if channel.name == karaoke_channel: #find the karaoke channel
+                #               for user in channel.voice_members: #iterate through users in the channel
+                #                   await self.client.server_voice_state(user, mute=False) #unmute them
+                #       await self.client.send_message(message.channel, "Strict mode disabled")
+                #   else:
+                #       karaoke_strict = True
+                #       for channel in message.server.channels: #iterate through server channels
+                #           if channel.name == karaoke_channel: #find the karaoke channel
+                #               for user in channel.voice_members: #iterate through users in the channel
+                #                   await self.client.server_voice_state(user, mute=True) #mute them
+                #       await self.client.send_message(message.channel, "Strict mode enabled")
 
-            # elif message.content.startswith(pfx + 'karaoke'):
-            #    await self.client.send_typing(message.channel)
-            #    cmd_name = 'Repertiore'
-            #    dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
-            #    #self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-            #    #              message.author,
-            #    #              message.author.id, message.server.name, message.server.id, message.channel)
-            #    await self.client.send_message(message.channel,
-            #                                   '```css\n[' + pfx + cmd_handup + '] Adds you to the singers list.' +
-            #                                   '\n[' + pfx + cmd_handdown + '] Removes you to the singers list.' +
-            #                                   '\n[' + pfx + cmd_repertoire + '] Lists the current singers.' +
-            #                                   '\n[' + pfx + cmd_takemic + '] Mutes everyone except you so you can start.' +
-            #                                   '\n[' + pfx + cmd_dropmic + '] Unmutes everyone and marks your performance as done.' +
-            #                                   '\n[' + pfx + 'karaoke' + '] Lists these commands.' +
-            #                                   '\n```')
+                # elif message.content.startswith(pfx + 'karaoke'):
+                #    await self.client.send_typing(message.channel)
+                #    cmd_name = 'Repertiore'
+                #    dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+                #    #self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                #    #              message.author,
+                #    #              message.author.id, message.server.name, message.server.id, message.channel)
+                #    await self.client.send_message(message.channel,
+                #                                   '```css\n[' + pfx + cmd_handup + '] Adds you to the singers list.' +
+                #                                   '\n[' + pfx + cmd_handdown + '] Removes you to the singers list.' +
+                #                                   '\n[' + pfx + cmd_repertoire + '] Lists the current singers.' +
+                #                                   '\n[' + pfx + cmd_takemic + '] Mutes everyone except you so you can start.' +
+                #                                   '\n[' + pfx + cmd_dropmic + '] Unmutes everyone and marks your performance as done.' +
+                #                                   '\n[' + pfx + 'karaoke' + '] Lists these commands.' +
+                #                                   '\n```')

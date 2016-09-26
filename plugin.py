@@ -11,10 +11,11 @@ class PluginMount(type):
 class Plugin(object, metaclass=PluginMount):
 
     is_global = False
-    fancy_name = None
 
     def __init__(self, client):
         self.client = client
+    async def _on_ready(self):
+        await self.on_ready()
 
     async def on_ready(self):
         pass

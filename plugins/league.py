@@ -8,6 +8,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 from utils import create_logger
+from io import BytesIO
 
 
 class LeagueOfLegends(Plugin):
@@ -34,11 +35,14 @@ class LeagueOfLegends(Plugin):
                 gametype = 'None'
             smnr_name_table = smnr_name.replace(' ', '')
             smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + riot_api_key
+            version_url = 'https://global.api.pvp.net/api/lol/static-data/' + region + '/v1.2/versions?api_key=' + riot_api_key
+            version_json = requests.get(version_url).json()
+            version = str(version_json[0])
             try:
                 smnr_by_name = requests.get(smrn_by_name_url).json()
                 smnr_id = str(smnr_by_name[smnr_name_table]['id'])
                 smnr_icon = str(smnr_by_name[smnr_name_table]['profileIconId'])
-                icon_url = 'http://ddragon.leagueoflegends.com/cdn/6.17.1/img/profileicon/' + smnr_icon + '.png'
+                icon_url = 'http://ddragon.leagueoflegends.com/cdn/' + version + '/img/profileicon/' + smnr_icon + '.png'
                 smnr_lvl = str(smnr_by_name[smnr_name_table]['summonerLevel'])
                 summary_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smnr_id + '/summary?season=SEASON2016&api_key=' + riot_api_key
                 summary = requests.get(summary_url).json()
@@ -51,12 +55,10 @@ class LeagueOfLegends(Plugin):
                     league_name = 'No League'
                     league_tier = 'No Rank'
                 # Image Start
-                if os.path.isfile('cache/lol/avatar_' + message.author.id + '.png'):
-                    os.remove('cache/lol/avatar_' + message.author.id + '.png')
                 if os.path.isfile('cache/lol/profile_' + message.author.id + '.png'):
                     os.remove('cache/lol/profile_' + message.author.id + '.png')
-                avaloc = 'cache/lol/avatar_' + message.author.id + '.png'
-                wget.download(icon_url, out=avaloc)
+                avatar = requests.get(icon_url).content
+                print(str(icon_url))
                 # avatar_link_base = 'https://blzgdapipro-a.akamaihd.net/game/unlocks/'
                 # avatar_name = str(profile_json['data']['avatar'])
                 # os.rename(avatar_name[len(avatar_link_base):], '/cache/ow/avatar_' + message.author.id + '.png')
@@ -65,7 +67,7 @@ class LeagueOfLegends(Plugin):
                 # os.rename(border_name[len(border_link_base):], '/cache/ow/border_' + message.author.id + '.png')
                 base = Image.open('img/lol/base.png')
                 overlay = Image.open('img/lol/overlay_lol.png')
-                background = Image.open('cache/lol/avatar_' + message.author.id + '.png')
+                background = Image.open(BytesIO(avatar))
                 background_res = background.resize((72, 72), Image.ANTIALIAS)
                 foreground = Image.open('img/lol/border_lol.png')
                 foreground_res = foreground.resize((64, 64), Image.ANTIALIAS)
@@ -138,7 +140,7 @@ class LeagueOfLegends(Plugin):
                                        '\nTurret Kills: ' + aram_turrets)
                     else:
                         aram_text = 'None'
-                except SyntaxError:
+                except:
                     aram_text = 'None'
                 try:
                     item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'CAP5x5'), None)
@@ -158,7 +160,7 @@ class LeagueOfLegends(Plugin):
                                        '\nJungle Minion Kills: ' + dominion_neutrals)
                     else:
                         dominion_text = 'None'
-                except SyntaxError:
+                except:
                     dominion_text = 'None'
                 try:
                     item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'URF'), None)
@@ -178,7 +180,7 @@ class LeagueOfLegends(Plugin):
                                        '\nJungle Minion Kills: ' + urf_neutrals)
                     else:
                         urf_text = 'None'
-                except SyntaxError:
+                except:
                     urf_text = 'None'
                 try:
                     item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'Hexakill'), None)
@@ -215,6 +217,7 @@ class LeagueOfLegends(Plugin):
                     else:
                         await self.client.send_message(message.channel,'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
             except:
+                print(league_url)
                 if not region.lower() == 'na' and not region.lower() == 'eune' and not region.lower() == 'euw':
                     await self.client.send_message(message.channel, 'Invalid Region: `' + region + '`.')
                 else:

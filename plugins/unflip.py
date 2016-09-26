@@ -4,7 +4,7 @@ import random
 
 class Table(Plugin):
     is_global = True
-    log = create_logger('xp_grind')
+    log = create_logger('table')
 
     async def on_message(self, message, pfx):
         if message.content.startswith('(╯°□°）╯︵ ┻━┻'):

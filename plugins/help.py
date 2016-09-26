@@ -55,7 +55,7 @@ class Help(Plugin):
                           message.author.id, message.server.name, message.server.id, message.channel)
             await self.client.send_typing(message.channel)
             help_q = str(message.content[len(pfx) + len(cmd_help) + 1:])
-            q = help_q.lower()
+            q = help_q.lower().replace(pfx, '')
             if q == "bns" or q == "blade and soul":
                 desc = desc_bns
                 usg = usg_bns
@@ -83,6 +83,70 @@ class Help(Plugin):
             elif q == 'joke':
                 desc = desc_joke
                 usg = usg_joke
+                out_type = 0
+            elif q == 'help':
+                desc = desc_help
+                usg = usg_help
+                out_type = 0
+            elif q == 'overwatch':
+                desc = desc_overwatch
+                usg = usg_overwatch
+                out_type = 0
+            elif q == 'league' or q == 'league of legends':
+                desc = desc_league
+                usg = usg_league
+                out_type = 0
+            elif q == 'osu':
+                desc = desc_osu
+                usg = usg_osu
+                out_type = 0
+            elif q == 'ud' or q == 'urban dictionary':
+                desc = desc_ud
+                usg = usg_ud
+                out_type = 0
+            elif q == 'weather':
+                desc = desc_weather
+                usg = usg_weather
+                out_type = 0
+            elif q == 'pokemon':
+                desc = desc_pokemon
+                usg = usg_pokemon
+                out_type = 0
+            elif q == 'lastfm' or q == 'lfm':
+                desc = desc_lfm
+                usg = usg_lfm
+                out_type = 0
+            elif q == 'nsfw permit' or q == 'nsfwpermit':
+                desc = desc_nsfw_permit
+                usg = usg_nsfw_permit
+                out_type = 0
+            elif q == 'rule34':
+                desc = desc_rule34
+                usg = usg_rule34
+                out_type = 0
+            elif q == 'nhentai':
+                desc = desc_nhentai
+                usg = usg_nhentai
+                out_type = 0
+            elif q == 'anime' or q == 'animu':
+                desc = desc_anime
+                usg = usg_anime
+                out_type = 0
+            elif q == 'manga' or q == 'mango':
+                desc = desc_manga
+                usg = usg_manga
+                out_type = 0
+            elif q == 'jisho':
+                desc = desc_jisho
+                usg = usg_jisho
+                out_type = 0
+            elif q == 'wanikani' or q == 'wk':
+                desc = desc_wanikani
+                usg = usg_wanikani
+                out_type = 0
+            elif q == 'wkstore':
+                desc = desc_wk_store
+                usg = usg_wk_store
                 out_type = 0
             else:
                 desc = 'None'

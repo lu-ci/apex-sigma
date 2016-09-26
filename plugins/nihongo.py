@@ -2,13 +2,21 @@ from plugin import Plugin
 from config import cmd_jisho
 from config import cmd_wk
 from config import cmd_wk_store
+from config import OwnerID as ownr
 from utils import create_logger
+from pytz import utc, timezone
+from time import mktime
 import sqlite3
-from utils import bold
 import datetime
 import requests
 import json
 from lxml import html
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+import os
+from io import BytesIO
+import asyncio
 
 
 class WK(Plugin):
@@ -67,27 +75,22 @@ class WK(Plugin):
                     api = requests.get(url + '/srs-distribution').json()
                     api2 = requests.get(url + '/level-progression').json()
                     api3 = requests.get(url + '/study-queue').json()
-                    rad = 'Radicals: Total: ' + bold(
-                        str(api2['requested_information']['radicals_total'])) + ' | Done: ' + bold(
-                        str(api2['requested_information']['radicals_progress']))
-                    kanji = 'Kanji: Total: ' + bold(
-                        str(api2['requested_information']['kanji_total'])) + ' | Done: ' + bold(
-                        str(api2['requested_information']['kanji_progress']))
+                    rad_total = api2['requested_information']['radicals_total']
+                    rad_curr = api2['requested_information']['radicals_progress']
+                    kanji_total = api2['requested_information']['kanji_total']
+                    kanji_curr = api2['requested_information']['kanji_progress']
 
                     try:
-                        next_review_date = bold(
-                            datetime.datetime.fromtimestamp(api3['requested_information']['next_review_date']).strftime(
-                                '%B %d, %Y %H:%M'))
+                        next_review_date = datetime.datetime.fromtimestamp(
+                            api3['requested_information']['next_review_date']).strftime(
+                            '%B %d, %Y %H:%M')
                     except TypeError:
                         pass  # NoneType on retrival, user is on vacation
-                    lesson_queue = bold(str(api3['requested_information']['lessons_available']))
-                    review_queue = bold(str(api3['requested_information']['reviews_available']))
-                    review_nh = bold(str(api3['requested_information']['reviews_available_next_hour']))
-                    review_nd = bold(str(api3['requested_information']['reviews_available_next_day']))
-                    if api3['requested_information']['reviews_available'] > 150:
-                        warning = ':exclamation:'
-                    else:
-                        warning = ''
+                    lesson_queue = str(api3['requested_information']['lessons_available'])
+                    review_queue = str(api3['requested_information']['reviews_available'])
+                    review_nh = str(api3['requested_information']['reviews_available_next_hour'])
+                    review_nd = str(api3['requested_information']['reviews_available_next_day'])
+                    warning = ''
                 except UnboundLocalError:
                     await self.client.send_message(message.channel,
                                                    'There doesn\'t seem to be a key tied to you...\n\nYou can add your key by sending a direct message to me with the the WKSave Command, for example:\n`' + pfx + cmd_wk_store + ' 16813135183151381`\nAnd just replace the numbers with your WK API Key!')
@@ -114,39 +117,150 @@ class WK(Plugin):
 
             # parsing
             try:
+                img_type = 'Small'
                 out = ''
 
                 username = api['user_information']['username']
                 title = api['user_information']['title']
-                level = str(api['user_information']['level'])
+                avatar = 'https://www.gravatar.com/avatar/' + api['user_information']['gravatar']
+                level = api['user_information']['level']
                 creation_date = datetime.datetime.fromtimestamp(api['user_information']['creation_date']).strftime(
                     '%B %d, %Y')
-                topics_count = str(api['user_information']['topics_count'])
-                posts_count = str(api['user_information']['posts_count'])
-                apprentice = 'Apprentice: ' + bold(str(api['requested_information']['apprentice']['total']))
-                guru = 'Guru: ' + bold(str(api['requested_information']['guru']['total']))
-                master = 'Master: ' + bold(str(api['requested_information']['master']['total']))
-                enlightned = 'Enlightened: ' + bold(str(api['requested_information']['enlighten']['total']))
-                burned = 'Burned: ' + bold(str(api['requested_information']['burned']['total']))
+                topics_count = api['user_information']['topics_count']
+                posts_count = api['user_information']['posts_count']
+                apprentice = api['requested_information']['apprentice']['total']
+                guru = api['requested_information']['guru']['total']
+                master = api['requested_information']['master']['total']
+                enlightned = api['requested_information']['enlighten']['total']
+                burned = api['requested_information']['burned']['total']
 
-                out += bold(username) + ' of ' + bold('Sect ' + title) + '\n'
-                out += bold('Level ' + level) + ' Apprentice' + '\n'
-                out += 'Scribed ' + bold(topics_count + ' topics') + ' & ' + bold(posts_count + ' posts') + '\n'
-                out += 'Serving the Crabigator since ' + bold(creation_date) + '\n'
-                out += apprentice + ' | ' + guru + ' | ' + master + ' | ' + enlightned + ' | ' + burned + '\n'
+                out += '\"' + username + '\"' + ' of ' + 'Sect \"' + title + '\"\n'
+                out += 'Level \"' + str(level) + '\" Apprentice' + '\n'
+                out += 'Scribed \"' + str(topics_count) + '\" topics' + ' & \"' + str(posts_count) + '\" posts' + '\n'
+                out += 'Serving the Crabigator since \"' + creation_date + '\"\n'
+                out += 'Apprentice: \"' + str(apprentice) + '\" | Guru: \"' + str(guru) + '\" | Master: \"' + str(
+                    master) + '\" | Enlightened: \"' + str(
+                    enlightned) + '\" | Burned: \"' + str(burned) + '\"\n'
 
                 if 'api2' in locals():
-                    out += rad + ' || ' + kanji + '\n'
+                    img_type = 'Big'
+                    out += 'Radicals: \"' + str(rad_curr) + '/' + str(rad_total) + '\" || Kanji: \"' + str(
+                        kanji_curr) + '/' + str(
+                        kanji_total) + '\"\n'
 
                 if 'api3' in locals():
+                    img_type = 'Big'
                     try:
-                        out += 'Your Next Review: ' + next_review_date + '\n'
+                        out += 'Your Next Review: \"' + next_review_date + '\"\n'
                     except UnboundLocalError:
                         pass  # no review date, user is on vacation
-                    out += 'Lesson Queue: ' + lesson_queue + ' | Review Queue: ' + review_queue + warning + '\n'
-                    out += 'Reviews Next Hour: ' + review_nh + ' | Reviews Next Day: ' + review_nd
-                await self.client.send_message(message.channel, out)
-            except:
+                    out += 'Lesson Queue: \"' + lesson_queue + '\" | Review Queue: \"' + review_queue + warning + '\"\n'
+                    out += 'Reviews Next Hour: \"' + review_nh + '\" | Reviews Next Day: \"' + review_nd + '\"'
+                ava_raw = requests.get(avatar).content
+                ava = Image.open(BytesIO(ava_raw))
+                txt_color = (0, 125, 107)
+                rank_category = ''
+                kanji_loc = 174
+                ov_color = ''
+                if level <= 10:
+                    rank_category = '快'
+                    kanji_loc = 184
+                    ov_color = '_pl'
+                    txt_color = (204, 51, 255)
+                elif 11 <= level <= 20:
+                    kanji_loc = 184
+                    rank_category = '苦'
+                    ov_color = '_pai'
+                    txt_color = (153, 102, 255)
+                elif 21 <= level <= 30:
+                    rank_category = '死'
+                    kanji_loc = 184
+                    ov_color = '_de'
+                    txt_color = (102, 102, 255)
+                elif 31 <= level <= 40:
+                    rank_category = '地獄'
+                    ov_color = '_he'
+                    txt_color = (51, 102, 255)
+                elif 41 <= level <= 50:
+                    rank_category = '天堂'
+                    ov_color = '_par'
+                    txt_color = (0, 102, 255)
+                elif 51 <= level <= 59:
+                    rank_category = '現実'
+                    ov_color = '_re'
+                    txt_color = (0, 153, 255)
+                elif level == 60:
+                    rank_category = '発明'
+                    ov_color = '_en'
+                    txt_color = (0, 204, 255)
+                base = Image.open('img/ani/base_wk_small.png')
+                overlay = Image.open('img/ani/overlay_wk_small' + ov_color + '.png')
+                if img_type == 'Small':
+                    base = Image.open('img/ani/base_wk_small.png')
+                    overlay = Image.open('img/ani/overlay_wk_small' + ov_color + '.png')
+                elif img_type == 'Big':
+                    base = Image.open('img/ani/base_wk.png')
+                    overlay = Image.open('img/ani/overlay_wk' + ov_color + '.png')
+                base.paste(ava, (15, 5))
+                base.paste(overlay, (0, 0), overlay)
+                review_color = (255, 255, 255)
+                font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 25)
+                font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 21)
+                font3 = ImageFont.truetype("YuGothB.ttc", 21)
+                font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
+                review_font = font2
+                review_pos = (420, 110)
+                imgdraw = ImageDraw.Draw(base)
+                imgdraw.text((95, 2), username + ' of sect ' + title, txt_color, font=font1)
+                imgdraw.text((116, 31), str(apprentice), txt_color, font=font2)
+                imgdraw.text((182, 31), str(guru), txt_color, font=font2)
+                imgdraw.text((248, 31), str(master), txt_color, font=font2)
+                imgdraw.text((314, 31), str(enlightned), txt_color, font=font2)
+                imgdraw.text((380, 31), str(burned), txt_color, font=font2)
+                imgdraw.text((95, 60), 'Level: ' + str(level), txt_color, font=font2)
+                imgdraw.text((250, 60), 'Joined: ' + str(creation_date), txt_color, font=font2)
+                imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
+                if img_type == 'Big':
+                    try:
+                        imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
+                    except:
+                        imgdraw.text((11, 88), 'Next Review: ' 'On Vacation or No Data', (255, 255, 255), font=font2)
+                    if int(review_queue) > 150:
+                        review_color = (255, 174, 35)
+                        review_font = font1
+                        review_pos = (420, 108)
+                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
+                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
+                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255),
+                                 font=font2)
+                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255),
+                                 font=font2)
+                    imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
+                    imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
+                    imgdraw.text(review_pos, str(review_queue), review_color, font=review_font)
+                if img_type == 'Big':
+                    try:
+                        imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
+                    except:
+                        imgdraw.text((11, 88), 'Next Review: ' 'On Vacation or No Data', (255, 255, 255), font=font2)
+                    if int(review_queue) > 150:
+                        review_color = (255, 174, 35)
+                        review_font = font1
+                        review_pos = (420, 108)
+                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
+                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
+                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255),
+                                 font=font2)
+                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255),
+                                 font=font2)
+                    imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
+                    imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
+                    imgdraw.text(review_pos, str(review_queue), review_color, font=review_font)
+                base.save('cache\\ani\\wk_' + message.author.id + '.png')
+                await self.client.send_file(message.channel, 'cache\\ani\\wk_' + message.author.id + '.png')
+                await self.client.send_message(message.channel, '```java\n' + out + '\n```')
+                os.remove('cache\\ani\\wk_' + message.author.id + '.png')
+            except SyntaxError:
                 self.log.info('Error while parsing the data')
                 await self.client.send_message(message.channel,
                                                'Something went wrong ¯\_(ツ)_/¯. Error while parsing the data')
@@ -305,3 +419,110 @@ class Jisho(Plugin):
                 await self.client.send_message(message.channel, result_text)
             except:
                 await self.client.send_message(message.channel, 'The word was not found or the API dun goofed.')
+
+
+class WaniKaniAutoCheck(Plugin):
+    is_global = True
+    log = create_logger('wanikanichecker')
+
+    async def on_message(self, message, pfx):
+        if message.content == pfx + 'startchecker':
+            mytz = timezone('Europe/London')  ## Set your timezone
+            current_time = datetime.datetime.now()
+            current_time_unix = mktime(mytz.localize(current_time, is_dst=True).utctimetuple())
+            if message.author.id == ownr:
+                cmd_name = 'WaniKani'
+                dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+                try:
+                    self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                                  message.author,
+                                  message.author.id, message.server.name, message.server.id, message.channel)
+                except:
+                    self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                                  message.author,
+                                  message.author.id)
+                while True:
+                    out_msg = ''
+                    not_empty = 0
+                    empty = 0
+                    next_review = dbsql.execute("SELECT NEXT_REV from WANIKANI WHERE NEXT_REV IS NOT NULL")
+                    for review_time_tupple in next_review:
+                        print('checking...')
+                        review_time = review_time_tupple[0]
+                        if review_time == 'None':
+                            review_time = '0'
+                        else:
+                            # rev_tim_conv_low = datetime.datetime.fromtimestamp(int(review_time) - 1)
+                            rev_tim_conv_low = int(review_time) - 15
+                            # rev_time_conv_high = datetime.datetime.fromtimestamp(int(review_time) + 1)
+                            rev_time_conv_high = int(review_time) + 15
+                            if rev_tim_conv_low < current_time_unix < rev_time_conv_high:
+                                print('Reviews!')
+                                user_id_finder = dbsql.execute("SELECT USER_ID FROM WANIKANI WHERE NEXT_REV= ?", (str(review_time),))
+                                for user in user_id_finder:
+                                    user_id = user[0]
+                                out_msg += ('\nHey! <@' + str(user_id) + '>! You\'ve got reviews! Go do them!')
+                                not_empty += 1
+                            else:
+                                empty += 1
+                    print('Not Empty: ' + str(not_empty) + '\nEmpty: ' + str(empty))
+                    if out_msg != '':
+                        await self.client.send_message(message.channel, out_msg)
+                    await asyncio.sleep(10)
+            else:
+                await self.client.send_message(message.channel, 'Only <@' + ownr + '> can start the WKChecker due to it\'s large load...\n(That\'s what she said~)')
+
+
+class WKReviewFiller(Plugin):
+    is_global = True
+    log = create_logger('wkfiller')
+
+    async def on_message(self, message, pfx):
+        if message.content == pfx + 'startwkupdater':
+            cmd_name = 'WaniKani'
+            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+            if message.author.id == ownr:
+                await self.client.send_typing(message.channel)
+                await self.client.send_message(message.channel,
+                                               'Started the WaniKani Updater on a 30 minute interval.\nChannel used for logging: `' + message.channel.name + '`')
+                while True:
+                    try:
+                        self.log.info(
+                            'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                            message.author,
+                            message.author.id, message.server.name, message.server.id, message.channel)
+                    except:
+                        self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                                      message.author,
+                                      message.author.id)
+                    print('Updating Review Times...')
+                    key_list = dbsql.execute("SELECT WK_KEY from WANIKANI WHERE WK_KEY IS NOT NULL")
+                    fail = 0
+                    succ = 0
+                    for key in key_list:
+                        url = 'https://www.wanikani.com/api/user/' + key[0]
+                        try:
+                            api3 = requests.get(url + '/study-queue').json()
+                        except:
+                            fail += 1
+                            print('Special Error, returning')
+                            return
+                        try:
+                            review_time = api3['requested_information']['next_review_date']
+                            selector = "SELECT WK_KEY from WANIKANI WHERE WK_KEY= ?"
+                            query = "UPDATE WANIKANI SET NEXT_REV= ? WHERE WK_KEY= ?"
+                            dbsql.cursor().execute(selector, (str(key[0]),))
+                            dbsql.execute(query, (str(review_time), str(key[0]),))
+                            dbsql.commit()
+                            succ += 1
+                        except:
+                            fail += 1
+                            pass
+                    print('Successfully Updated: ' + str(succ) + '\nFailed: ' + str(fail))
+                    await self.client.send_message(message.channel,
+                                                   'Successfully Updated: `' + str(succ) + '`\nFailed: `' + str(
+                                                       fail) + '`')
+                    await asyncio.sleep(1800)
+            else:
+                await self.client.send_message(message.channel,
+                                               'Only <@' + ownr + '> can start the WKChecker due to it\'s large load...\n(That\'s what she said~)')
