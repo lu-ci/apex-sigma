@@ -5,7 +5,7 @@ import sys
 import time
 import discord
 import logging
-from config import StartupType, dsc_email, dsc_password
+from config import StartupType, dsc_email, dsc_password, sigma_version
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
@@ -71,10 +71,11 @@ from plugins.karaoke import Control
 from plugins.vndb import VNDBSearch
 from plugins.utils import Reminder
 from plugins.utils import Donators
+from plugins.utils import OtherUtils
 from plugins.reddit import Reddit
 from plugins.utils import BulkMSG
-#from plugins.nihongo import WaniKaniAutoCheck
-#from plugins.nihongo import WKReviewFiller
+# from plugins.nihongo import WaniKaniAutoCheck
+# from plugins.nihongo import WKReviewFiller
 from plugins.reward import RewardOnMessage
 from plugins.reward import LevelCheck
 from plugins.utils import PMRedirect
@@ -114,7 +115,7 @@ class sigma(discord.Client):
         print('Running discord.py version: ' + discord.__version__)
         print('Authors: AXAz0r, Awakening')
         print('Contributors: Mirai, Chaeldar')
-        print('Bot Version: Beta 0.50')
+        print('Bot Version: ' + sigma_version)
         print('Build Date: 25. September 2016.')
         print('-----------------------------------')
         print('Connected to [ ' + str(server_amo) + ' ] servers.')

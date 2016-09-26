@@ -4,6 +4,8 @@ from config import BlizzardKey
 import requests
 from utils import create_logger
 import wget
+from PIL import Image, ImageDraw, ImageFont
+from io import BytesIO
 
 classes = ['Warrior', 'Paladin', 'Hunter', 'Rogue', 'Priest', 'Death Knight', 'Shaman', 'Mage', 'Warlock', 'Monk',
            'Druid', 'Demon Hunter']
@@ -28,7 +30,11 @@ class World_Of_Warcraft(Plugin):
                               message.author.id)
             await self.client.send_typing(message.channel)
             query = message.content[len(pfx) + len(cmd_wow_character) + 1:]
-            region, realm, char_name = query.split(maxsplit=2)
+            try:
+                region, realm, char_name = query.split(maxsplit=2)
+            except:
+                await self.client.send_message(message.channel, 'Invalid Input Format, please reffer to the example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
+                return
             try:
                 base_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?locale=en_GB&apikey=' + BlizzardKey
                 char_data = requests.get(base_url).json()
@@ -141,43 +147,9 @@ class World_Of_Warcraft(Plugin):
                     item_off_hand = 'None'
                 # Item Data End
 
-                out_data = ''
-                out_data += '\nName: \"' + char_ig_name + '\"'
-                out_data += '\nRealm: \"' + char_realm + '\"'
-                out_data += '\nLevel: \"' + str(char_level) + '\"'
-                out_data += '\nRace: \"' + race_name + '\"'
-                out_data += '\nClass: \"' + class_name + '\"'
-                out_data += '\nGender: \"' + gender_name + '\"'
-                out_data += '\nName: \"' + char_ig_name + '\"'
-                out_data += '\nBattlegroup: \"' + battlegroup + '\"'
-                out_data += '\nAchievement Points: \"' + str(char_achi_points) + '\"'
-                out_data += '\nHonorable Kills: \"' + str(hon_kills) + '\"'
-                out_data += '\nThumbnail: \"' + image_url + '\"'
 
-                out_eqp = ''
-                out_eqp += '\nAverage Equipment Level: \"' + str(avg_item_level) + '\"'
-                out_eqp += '\nHead: \"' + item_head + '\"'
-                out_eqp += '\nNeck: \"' + item_neck + '\"'
-                out_eqp += '\nShoulder: \"' + item_shoulder + '\"'
-                out_eqp += '\nBack: \"' + item_back + '\"'
-                out_eqp += '\nChest: \"' + item_chest + '\"'
-                out_eqp += '\nShirt: \"' + item_shirt + '\"'
-                out_eqp += '\nTabard: \"' + item_tabard + '\"'
-                out_eqp += '\nWrist: \"' + item_wrist + '\"'
-                out_eqp += '\nHands: \"' + item_hands + '\"'
-                out_eqp += '\nWaist: \"' + item_waist + '\"'
-                out_eqp += '\nLegs: \"' + item_legs + '\"'
-                out_eqp += '\nFeet: \"' + item_feet + '\"'
-                out_eqp += '\nFinger 1: \"' + item_finger1 + '\"'
-                out_eqp += '\nFinger 2: \"' + item_finger2 + '\"'
-                out_eqp += '\nTrinket 1: \"' + item_trinket1 + '\"'
-                out_eqp += '\nTrinket 2: \"' + item_trinket2 + '\"'
-                out_eqp += '\nMain Hand: \"' + item_main_hand + '\"'
-                out_eqp += '\nOff Hand: \"' + item_off_hand + '\"'
 
-                await self.client.send_message(message.channel, ':ticket: Basic Stats:\n```python\n' + out_data + '\n```')
-                await self.client.send_message(message.channel, ':shirt: Equipment:\n```python\n' + out_eqp + '\n```')
-                wget.download('http://auction-api-eu.worldofwarcraft.com/auction-data/79747dfecb0c48ab6a26aa4cff0ffcbb/auctions.json')
+                await self.client.send_file(message.channel, 'cache/wow_' + message.author.id + '.png')
             except:
                 try:
                     error_no = char_data['status']

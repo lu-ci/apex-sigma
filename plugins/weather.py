@@ -1,9 +1,8 @@
 from plugin import Plugin
 from config import cmd_weather
 from config import OpenWeatherMapKey as owm_key
-import json
+import requests
 from utils import create_logger
-import urllib
 
 class Weather(Plugin):
     is_global = True
@@ -20,9 +19,9 @@ class Weather(Plugin):
             owm_input = (str(message.content[len(cmd_weather) + 1 + len(pfx):]))
             city, ignore, country = owm_input.partition(', ')
             owm_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=' + owm_key
-            owm_data = urllib.request.urlopen(owm_url).read().decode('utf-8')
-            owm_json = json.loads(owm_data)
+            owm_json = requests.get(owm_url).json()
             kelvin = 273.16
+            print(owm_json)
             try:
                 coord_lon = str(owm_json['coord']['lon'])
                 coord_lat = str(owm_json['coord']['lat'])
@@ -61,15 +60,11 @@ class Weather(Plugin):
                                    'Low: ' + temp_min_c + ' (' + temp_min_f + ')\n' +
                                    'Humidity: ' + humidity + '\nPressure: ' + pressure + '\n```')
                 await self.client.send_message(message.channel, weather_message)
-                #print('CMD [' + cmd_name + '] > ' + initiator_data)
             except AttributeError:
                 await self.client.send_message(message.channel, 'Something went wrong, and we don\'t know what!')
-                print('CMD [' + cmd_name + '] > ' + initiator_data)
             try:
                 owm_error_code = str(owm_json['cod'])
                 if owm_error_code == '404':
                     await self.client.send_message(message.channel, 'Error: Requested location not found!')
-                    #print('CMD [' + cmd_name + '] > ' + initiator_data)
             except AttributeError:
                 await self.client.send_message(message.channel, 'Something went wrong, and we don\'t know what!')
-                #print('CMD [' + cmd_name + '] > ' + initiator_data)

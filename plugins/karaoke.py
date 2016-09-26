@@ -1,5 +1,5 @@
 import discord
-import asyncio
+import sqlite3
 from collections import deque
 from plugin import Plugin
 from utils import create_logger
@@ -421,6 +421,52 @@ class Control(Plugin):
             if checkPermissions(message.author):
                 karaoke_channel = message.content[len(pfx) + len('setchannel') + 1:]
                 await self.client.send_message(message.channel, "Channel set")
+
+        elif message.content.startswith(pfx + 'signup'):
+            cmd_name = 'karaoke signup'
+            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+            await self.client.send_typing(message.channel)
+            try:
+                self.log.info(
+                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                    message.author,
+                    message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            info_grabber_checker = dbsql.execute(
+                "SELECT EXISTS (SELECT USER_ID FROM KARAOKE_LIST WHERE USER_ID=?);", (str(message.author.id),))
+            for info_check in info_grabber_checker:
+                if info_check[0] == 0:
+                    dbsql.execute('INSERT INTO KARAOKE_LIST (USER_ID, USER_NAME) VALUES (?, ?)', (str(message.author.id), str(message.author.name),))
+                    dbsql.commit()
+                    await self.client.send_message(message.channel, 'Thank you for signing up for the Karaoke event, <@' + message.author.id + '>!')
+                else:
+                    await self.client.send_message(message.channel, 'It seems you\'ve already signed up, <@' + message.author.id + '>!')
+        elif message.content.startswith(pfx + 'karaokelist'):
+            cmd_name = 'karaoke signup sheet list'
+            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+            await self.client.send_typing(message.channel)
+            try:
+                self.log.info(
+                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                    message.author,
+                    message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            username_grabber = dbsql.execute('SELECT USER_NAME FROM KARAOKE_LIST')
+            out_text = ''
+            n = 0
+            for username in username_grabber:
+                n += 1
+                out_text += '\n#' + str(n) + ' [ ' + str(username[0]) + ' ]'
+            if out_text == '':
+                await self.client.send_message(message.channel, 'Nobody signed up yet...')
+            else:
+                await self.client.send_message(message.channel, out_text)
 
 
 
