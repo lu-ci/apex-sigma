@@ -1,5 +1,5 @@
 import logging
-
+from config import permitted_id, permitted_roles
 
 def create_logger(name):
     logger = logging.getLogger(name)
@@ -52,3 +52,15 @@ def code(text):
 
 def multilinecode(text):
     return '```' + text + '```'
+
+def checkPermissions(user):
+    #Checking a list of permitted users
+    #if user.id in permitted_id: return True
+    for id in permitted_id:
+        if id == user.id: return True
+
+    #Checking a list of permitted roles
+    for permitted_role in permitted_roles:
+        for user_role in user.roles:
+            if user_role.name == permitted_role: return True
+    return False

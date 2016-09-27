@@ -128,6 +128,17 @@ class OtherUtils(Plugin):
     log = create_logger('basic util')
     async def on_message(self, message, pfx):
         if message.content == (pfx + 'stats'):
+            await self.client.send_typing(message.channel)
+            cmd_name = 'Stats'
+            # Start Logger
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             server_amo = 0
             member_amo = 0
             permed_ids = ''
@@ -147,3 +158,27 @@ class OtherUtils(Plugin):
             out_txt += '\nPermitted IDs: ' + permed_ids[:-2]
 
             await self.client.send_message(message.channel, '```python' + out_txt + '\n```')
+        elif message.content.startswith(pfx + 'setgame '):
+            await self.client.send_typing(message.channel)
+            cmd_name = 'Set Game'
+            # Start Logger
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            if message.author.id in permitted_id:
+                import discord
+                gamename = message.content[len(pfx) + len('setgame') + 1:]
+                game = discord.Game(name=gamename)
+                await self.client.change_status(game)
+                response = await self.client.send_message(message.channel, 'Done! :ok_hand:')
+                await asyncio.sleep(5)
+                await self.client.delete_message(response)
+            else:
+                response = await self.client.send_message(message.channel, 'Insufficient permissions...')
+                await asyncio.sleep(5)
+                await self.client.delete_message(response)

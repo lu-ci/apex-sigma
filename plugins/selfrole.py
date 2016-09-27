@@ -5,7 +5,7 @@ import asyncio
 
 target_channel = ['roles']
 #self_roles = ['Aqua', 'Crimson', 'Red', 'Scarlet', 'CS:GO']
-self_roles = ['Grass Green', 'Peach', 'Yellow', 'Light Grey', 'Dark Orange', 'Teal', 'Red', 'Scarlet', 'Blue', 'Brown', 'Aqua', 'Dirt Brown', 'Gold', 'Purple', 'Dark Green', 'Light Brown', 'Mint Green', 'Green', 'Pink', 'Velvet', 'Turquoise', 'Dark Red', 'Violet', 'Magenta/Fuchsia', 'Dark Grey', 'Black', 'Olive', 'Sweet Blue', 'Light Blue', 'Dark Pink', 'Light Orange', 'Dark Brown', 'Burgundy', 'Lavender', 'Orange', 'Moon blue', 'Dark Blue', 'Crimson', 'Light Yellow', 'Periwinkle', 'Lime Green', 'Dark Purple', 'Overwatch', 'Rocket League', 'Blade and Soul', 'Vindictus', 'Dragon Nest', 'League of Legends', 'CS:GO', 'Pokemon Go', 'Lewd']
+self_roles = ['Grass Green', 'Peach', 'Yellow', 'Light Grey', 'Dark Orange', 'Teal', 'Red', 'Scarlet', 'Blue', 'Brown', 'Aqua', 'Dirt Brown', 'Gold', 'Purple', 'Dark Green', 'Light Brown', 'Mint Green', 'Green', 'Pink', 'Velvet', 'Turquoise', 'Dark Red', 'Violet', 'Magenta/Fuchsia', 'Dark Grey', 'Black', 'Olive', 'Sweet Blue', 'Light Blue', 'Dark Pink', 'Light Orange', 'Dark Brown', 'Burgundy', 'Lavender', 'Orange', 'Moon blue', 'Dark Blue', 'Crimson', 'Light Yellow', 'Periwinkle', 'Lime Green', 'Dark Purple', 'Overwatch', 'Rocket League', 'Blade and Soul', 'Vindictus', 'Dragon Nest', 'League of Legends', 'CS:GO', 'Pokemon Go']
 timeout = 5
 
 cmd_addAssingableRole = 'aar'

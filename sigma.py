@@ -79,6 +79,7 @@ from plugins.utils import BulkMSG
 from plugins.reward import RewardOnMessage
 from plugins.reward import LevelCheck
 from plugins.utils import PMRedirect
+from plugins.selfrole import SelfRole
 from plugins.world_of_warcraft import World_Of_Warcraft
 
 
