@@ -9,7 +9,7 @@ from io import BytesIO
 
 classes = ['Warrior', 'Paladin', 'Hunter', 'Rogue', 'Priest', 'Death Knight', 'Shaman', 'Mage', 'Warlock', 'Monk',
            'Druid', 'Demon Hunter']
-races = ['Human', 'Orc', 'Dwarf', 'Night Elf', 'Undead', 'Tauren', 'Gnome', 'Troll', 'Pandaran', 'Blood Elf', 'Braenei']
+races = ['Human', 'Orc', 'Dwarf', 'Night Elf', 'Undead', 'Tauren', 'Gnome', 'Troll', 'Goblin', 'Blood Elf', 'Draenei']
 
 
 class World_Of_Warcraft(Plugin):

@@ -81,6 +81,7 @@ from plugins.reward import LevelCheck
 from plugins.utils import PMRedirect
 from plugins.selfrole import SelfRole
 from plugins.world_of_warcraft import World_Of_Warcraft
+from plugins.rocket_league import RocketLeague
 
 
 # I love spaghetti!
