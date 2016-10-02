@@ -3,13 +3,9 @@ from config import cmd_wow_character
 from config import BlizzardKey
 import requests
 from utils import create_logger
-import wget
+import os
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
-
-classes = ['Warrior', 'Paladin', 'Hunter', 'Rogue', 'Priest', 'Death Knight', 'Shaman', 'Mage', 'Warlock', 'Monk',
-           'Druid', 'Demon Hunter']
-races = ['Human', 'Orc', 'Dwarf', 'Night Elf', 'Undead', 'Tauren', 'Gnome', 'Troll', 'Goblin', 'Blood Elf', 'Draenei']
 
 
 class World_Of_Warcraft(Plugin):
@@ -31,11 +27,12 @@ class World_Of_Warcraft(Plugin):
             await self.client.send_typing(message.channel)
             query = message.content[len(pfx) + len(cmd_wow_character) + 1:]
             try:
-                region, realm, char_name = query.split(maxsplit=2)
+                region_raw, realm, char_name = query.split(maxsplit=2)
             except:
                 await self.client.send_message(message.channel, 'Invalid Input Format, please reffer to the example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
                 return
             try:
+                region = region_raw.replace('_', '%20')
                 base_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?locale=en_GB&apikey=' + BlizzardKey
                 char_data = requests.get(base_url).json()
                 achi_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?fields=achievements' + '&locale=en_GB&apikey=' + BlizzardKey
@@ -46,10 +43,67 @@ class World_Of_Warcraft(Plugin):
                 char_ig_name = char_data['name']
                 char_realm = char_data['realm']
                 battlegroup = char_data['battlegroup']
-                class_id = char_data['class']
-                class_name = classes[class_id - 1]
                 race_id = char_data['race']
-                race_name = races[race_id - 1]
+                if race_id == 1:
+                    race_name = 'Human'
+                elif race_id == 2:
+                    race_name = 'Orc'
+                elif race_id == 3:
+                    race_name = 'Dwarf'
+                elif race_id == 4:
+                    race_name = 'Night Elf'
+                elif race_id == 5:
+                    race_name = 'Undead'
+                elif race_id == 6:
+                    race_name = 'Tauren'
+                elif race_id == 7:
+                    race_name = 'Gnome'
+                elif race_id == 8:
+                    race_name = 'Troll'
+                elif race_id == 9:
+                    race_name = 'Goblin'
+                elif race_id == 10:
+                    race_name = 'Blood Elf'
+                elif race_id == 11:
+                    race_name = 'Draenei'
+                elif race_id == 22:
+                    race_name = 'Worgen'
+                elif race_id == 24:
+                    race_name = 'Pandaren'
+                elif race_id == 25:
+                    race_name = 'Pandaren'
+                elif race_id == 26:
+                    race_name = 'Pandaren'
+                else:
+                    race_name = 'Error'
+                # -------
+                class_id = char_data['class']
+                if class_id == 1:
+                    class_name = 'Warrior'
+                elif class_id == 2:
+                    class_name = 'Paladin'
+                elif class_id == 3:
+                    class_name = 'Hunter'
+                elif class_id == 4:
+                    class_name = 'Rogue'
+                elif class_id == 5:
+                    class_name = 'Priest'
+                elif class_id == 6:
+                    class_name = 'Death Knight'
+                elif class_id == 7:
+                    class_name = 'Shaman'
+                elif class_id == 8:
+                    class_name = 'Mage'
+                elif class_id == 9:
+                    class_name = 'Warlock'
+                elif class_id == 10:
+                    class_name = 'Monk'
+                elif class_id == 11:
+                    class_name = 'Druid'
+                elif class_id == 12:
+                    class_name = 'Demon Hunter'
+                # -------
+
                 gender_id = char_data['gender']
                 if gender_id == 1:
                     gender_name = 'Female'
@@ -147,13 +201,41 @@ class World_Of_Warcraft(Plugin):
                     item_off_hand = 'None'
                 # Item Data End
 
+                base = Image.open('img/wow/base_wow.png')
+                overlay = Image.open('img/wow/overlay_wow.png')
+                base.paste(overlay, (0, 0), overlay)
+                font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 64)
+                font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 30)
+                font3 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 87)
+                font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 28)
+                imgdraw = ImageDraw.Draw(base)
+                imgdraw.text((5, 2), char_ig_name, (255, 255, 255), font=font1)
+                imgdraw.text((5, 64), race_name + ' ' + class_name + ' of ' + char_realm, (255, 255, 255), font=font2)
+                imgdraw.text((633, 2), str(char_level), (255, 255, 255), font=font3)
+                imgdraw.text((100, 104), item_head, (255, 255, 255), font=font4)
+                imgdraw.text((100, 131), item_neck, (255, 255, 255), font=font4)
+                imgdraw.text((100, 158), item_shoulder, (255, 255, 255), font=font4)
+                imgdraw.text((100, 185), item_back, (255, 255, 255), font=font4)
+                imgdraw.text((100, 212), item_chest, (255, 255, 255), font=font4)
+                imgdraw.text((100, 239), item_shirt, (255, 255, 255), font=font4)
+                imgdraw.text((100, 266), item_tabard, (255, 255, 255), font=font4)
+                imgdraw.text((100, 293), item_wrist, (255, 255, 255), font=font4)
+                imgdraw.text((100, 320), item_hands, (255, 255, 255), font=font4)
+                imgdraw.text((100, 347), item_waist, (255, 255, 255), font=font4)
+                imgdraw.text((100, 374), item_legs, (255, 255, 255), font=font4)
+                imgdraw.text((100, 401), item_feet, (255, 255, 255), font=font4)
+                imgdraw.text((100, 428), item_finger1, (255, 255, 255), font=font4)
+                imgdraw.text((100, 455), item_finger2, (255, 255, 255), font=font4)
+                imgdraw.text((100, 482), item_trinket1, (255, 255, 255), font=font4)
+                imgdraw.text((100, 509), item_trinket2, (255, 255, 255), font=font4)
 
-
+                base.save('cache\\wow_' + message.author.id + '.png')
                 await self.client.send_file(message.channel, 'cache/wow_' + message.author.id + '.png')
+                os.remove('cache\\wow_' + message.author.id + '.png')
             except:
                 try:
                     error_no = char_data['status']
                     error_msg = char_data['reason']
                     await self.client.send_message(message.channel, 'Error: ' + str(error_no) + '\n' + error_msg)
                 except:
-                    await self.client.send_message(message.channel, 'Something went wrong, most likely invalid region...\nRegions are: `US`, `EN`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
+                    await self.client.send_message(message.channel, 'Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')

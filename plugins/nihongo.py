@@ -284,8 +284,15 @@ class WKKey(Plugin):
                 pass
             cmd_name = 'WaniKani Key Save'
             user_id = str(message.author.id)
-            self.log.info('User %s [%s], used the ' + cmd_name + ' command.', message.author, user_id)
-
+            try:
+                self.log.info(
+                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                    message.author,
+                    message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             try:
                 args = message.content[len(pfx) + len(cmd_wk_store) + 1:]
 
@@ -350,9 +357,15 @@ class Jisho(Plugin):
         if message.content.startswith(pfx + cmd_jisho):
             await self.client.send_typing(message.channel)
             cmd_name = 'Jisho'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info(
+                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                    message.author,
+                    message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             jisho_q = message.content[len(pfx) + len(cmd_jisho) + 1:]
             request = requests.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q).json()
             try:
