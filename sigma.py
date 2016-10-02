@@ -76,8 +76,8 @@ from plugins.reddit import Reddit
 from plugins.utils import BulkMSG
 # from plugins.nihongo import WaniKaniAutoCheck
 # from plugins.nihongo import WKReviewFiller
-# from plugins.reward import RewardOnMessage
-# from plugins.reward import LevelCheck
+from plugins.reward import RewardOnMessage
+from plugins.reward import LevelCheck
 from plugins.utils import PMRedirect
 from plugins.selfrole import SelfRole
 from plugins.world_of_warcraft import World_Of_Warcraft
