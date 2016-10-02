@@ -3,9 +3,6 @@ from config import cmd_wow_character
 from config import BlizzardKey
 import requests
 from utils import create_logger
-import os
-from PIL import Image, ImageDraw, ImageFont
-from io import BytesIO
 
 
 class World_Of_Warcraft(Plugin):
@@ -25,11 +22,12 @@ class World_Of_Warcraft(Plugin):
                               message.author,
                               message.author.id)
             await self.client.send_typing(message.channel)
-            query = message.content[len(pfx) + len(cmd_wow_character) + 1:]
+            query = message.content[len(pfx) + len(cmd_wow_character) + 1:].replace('_', '%20')
             try:
                 region_raw, realm, char_name = query.split(maxsplit=2)
             except:
-                await self.client.send_message(message.channel, 'Invalid Input Format, please reffer to the example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
+                await self.client.send_message(message.channel,
+                                               'Invalid Input Format, please reffer to the example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
                 return
             try:
                 region = region_raw.replace('_', '%20')
@@ -201,41 +199,48 @@ class World_Of_Warcraft(Plugin):
                     item_off_hand = 'None'
                 # Item Data End
 
-                base = Image.open('img/wow/base_wow.png')
-                overlay = Image.open('img/wow/overlay_wow.png')
-                base.paste(overlay, (0, 0), overlay)
-                font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 64)
-                font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 30)
-                font3 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 87)
-                font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 28)
-                imgdraw = ImageDraw.Draw(base)
-                imgdraw.text((5, 2), char_ig_name, (255, 255, 255), font=font1)
-                imgdraw.text((5, 64), race_name + ' ' + class_name + ' of ' + char_realm, (255, 255, 255), font=font2)
-                imgdraw.text((633, 2), str(char_level), (255, 255, 255), font=font3)
-                imgdraw.text((100, 104), item_head, (255, 255, 255), font=font4)
-                imgdraw.text((100, 131), item_neck, (255, 255, 255), font=font4)
-                imgdraw.text((100, 158), item_shoulder, (255, 255, 255), font=font4)
-                imgdraw.text((100, 185), item_back, (255, 255, 255), font=font4)
-                imgdraw.text((100, 212), item_chest, (255, 255, 255), font=font4)
-                imgdraw.text((100, 239), item_shirt, (255, 255, 255), font=font4)
-                imgdraw.text((100, 266), item_tabard, (255, 255, 255), font=font4)
-                imgdraw.text((100, 293), item_wrist, (255, 255, 255), font=font4)
-                imgdraw.text((100, 320), item_hands, (255, 255, 255), font=font4)
-                imgdraw.text((100, 347), item_waist, (255, 255, 255), font=font4)
-                imgdraw.text((100, 374), item_legs, (255, 255, 255), font=font4)
-                imgdraw.text((100, 401), item_feet, (255, 255, 255), font=font4)
-                imgdraw.text((100, 428), item_finger1, (255, 255, 255), font=font4)
-                imgdraw.text((100, 455), item_finger2, (255, 255, 255), font=font4)
-                imgdraw.text((100, 482), item_trinket1, (255, 255, 255), font=font4)
-                imgdraw.text((100, 509), item_trinket2, (255, 255, 255), font=font4)
+                out_data = ''
+                out_data += '\nName: \"' + char_ig_name + '\"'
+                out_data += '\nRealm: \"' + char_realm + '\"'
+                out_data += '\nLevel: \"' + str(char_level) + '\"'
+                out_data += '\nRace: \"' + race_name + '\"'
+                out_data += '\nClass: \"' + class_name + '\"'
+                out_data += '\nGender: \"' + gender_name + '\"'
+                out_data += '\nName: \"' + char_ig_name + '\"'
+                out_data += '\nBattlegroup: \"' + battlegroup + '\"'
+                out_data += '\nAchievement Points: \"' + str(char_achi_points) + '\"'
+                out_data += '\nHonorable Kills: \"' + str(hon_kills) + '\"'
+                out_data += '\nThumbnail: \"' + image_url + '\"'
 
-                base.save('cache\\wow_' + message.author.id + '.png')
-                await self.client.send_file(message.channel, 'cache/wow_' + message.author.id + '.png')
-                os.remove('cache\\wow_' + message.author.id + '.png')
+                out_eqp = ''
+                out_eqp += '\nAverage Equipment Level: \"' + str(avg_item_level) + '\"'
+                out_eqp += '\nHead: \"' + item_head + '\"'
+                out_eqp += '\nNeck: \"' + item_neck + '\"'
+                out_eqp += '\nShoulder: \"' + item_shoulder + '\"'
+                out_eqp += '\nBack: \"' + item_back + '\"'
+                out_eqp += '\nChest: \"' + item_chest + '\"'
+                out_eqp += '\nShirt: \"' + item_shirt + '\"'
+                out_eqp += '\nTabard: \"' + item_tabard + '\"'
+                out_eqp += '\nWrist: \"' + item_wrist + '\"'
+                out_eqp += '\nHands: \"' + item_hands + '\"'
+                out_eqp += '\nWaist: \"' + item_waist + '\"'
+                out_eqp += '\nLegs: \"' + item_legs + '\"'
+                out_eqp += '\nFeet: \"' + item_feet + '\"'
+                out_eqp += '\nFinger 1: \"' + item_finger1 + '\"'
+                out_eqp += '\nFinger 2: \"' + item_finger2 + '\"'
+                out_eqp += '\nTrinket 1: \"' + item_trinket1 + '\"'
+                out_eqp += '\nTrinket 2: \"' + item_trinket2 + '\"'
+                out_eqp += '\nMain Hand: \"' + item_main_hand + '\"'
+                out_eqp += '\nOff Hand: \"' + item_off_hand + '\"'
+
+                await self.client.send_message(message.channel,
+                                               ':ticket: Basic Stats:\n```python\n' + out_data + '\n```')
+                await self.client.send_message(message.channel, ':shirt: Equipment:\n```python\n' + out_eqp + '\n```')
             except:
                 try:
                     error_no = char_data['status']
                     error_msg = char_data['reason']
                     await self.client.send_message(message.channel, 'Error: ' + str(error_no) + '\n' + error_msg)
                 except:
-                    await self.client.send_message(message.channel, 'Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
+                    await self.client.send_message(message.channel,
+                                                   'Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
