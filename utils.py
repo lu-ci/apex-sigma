@@ -64,3 +64,22 @@ def checkPermissions(user):
         for user_role in user.roles:
             if user_role.name == permitted_role: return True
     return False
+	
+def getArguments(raw, separator):
+    raw = raw.strip()
+    args = raw.count(' ') + 1
+    out = []
+    for arg in range(0, args):
+        if raw.find(separator) == -1:
+            out.append(raw)
+            return tuple(out)
+
+        temp = raw[:raw.find(separator)]
+        raw = raw[len(temp):].strip()
+        out.append(temp)
+    return tuple(out)
+
+def split_list(alist, wanted_parts=1):
+    length = len(alist)
+    return [ alist[i*length // wanted_parts: (i+1)*length // wanted_parts]
+             for i in range(wanted_parts) ]
