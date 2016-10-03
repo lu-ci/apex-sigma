@@ -21,9 +21,14 @@ class MAL(Plugin):
         if message.content.startswith(pfx + cmd_anime):
             await self.client.send_typing(message.channel)
             cmd_name = 'MyAnimeList Anime Lookup'
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             mal_input = message.content[len(pfx) + len(cmd_anime) + 1:]
             mal_url = 'https://myanimelist.net/api/anime/search.xml?q=' + mal_input
             mal = requests.get(mal_url, auth=HTTPBasicAuth(mal_un, mal_pw))

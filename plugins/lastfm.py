@@ -12,9 +12,14 @@ class LastFM(Plugin):
         if message.content.startswith(pfx + cmd_lfm + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'LastFM'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             lfm_input = message.content[len(pfx) + len(cmd_lfm) + 1:]
             lfm_user, ignore, no_of_songs = lfm_input.partition(' ')
             lfm_url = 'http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=' + lfm_user + '&api_key=' + lfm_key + '&format=json'

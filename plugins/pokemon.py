@@ -12,9 +12,14 @@ class Pokemon(Plugin):
         if message.content.startswith(pfx + cmd_pokemon + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Pokemon'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             poke_input = (str(message.content[len(cmd_pokemon) + 1 + len(pfx):]))
             pokemon_url = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower() + '/')
             poke = requests.get(pokemon_url).json()

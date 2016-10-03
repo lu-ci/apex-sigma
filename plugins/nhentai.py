@@ -18,9 +18,14 @@ class NHentai(Plugin):
             await self.client.send_typing(message.channel)
             cmd_name = 'NHentai'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             try:
                 id = (str(message.channel.id),)
                 perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=?;", id)

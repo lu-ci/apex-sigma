@@ -8,6 +8,7 @@ class Table(Plugin):
 
     async def on_message(self, message, pfx):
         if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
+            cmd_name = 'TableFlip'
             table = ['┬─┬ ノ( ^_^ノ)',
                      '┬─┬ ﾉ(° -°ﾉ)',
                      '┬─┬ ノ(゜-゜ノ)',
@@ -19,8 +20,12 @@ class Table(Plugin):
                      '(ヘ･_･)ヘ┳━┳',
                      'ヘ(´° □°)ヘ┳━┳',
                      '┣ﾍ(≧∇≦ﾍ)… (≧∇≦)/┳━┳']
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             await self.client.send_message(message.channel, random.choice(table))
-            cmd_name = 'TableFlip'
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)

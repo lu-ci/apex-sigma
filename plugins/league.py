@@ -20,9 +20,14 @@ class LeagueOfLegends(Plugin):
         if message.content.startswith(pfx + cmd_league + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'League of Legends'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             lol_input = str(message.content[len(pfx) + len(cmd_league) + 1:])
             try:
                 region, gametype, smnr_name = lol_input.lower().split(maxsplit=2)

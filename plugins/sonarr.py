@@ -14,9 +14,14 @@ class Sonarr(Plugin):
         if message.content.startswith(pfx + cmd_sonarr + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Sonarr'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             snr_input = (str(message.content[len(cmd_sonarr) + 1 + len(pfx):]))
             snr_url = 'http://localhost:38082/api/' + snr_input + '?apikey=' + apikey
             snr_data = requests.get(snr_url).json()

@@ -15,8 +15,14 @@ class Hearthstone(Plugin):
         if message.content.startswith(pfx + cmd_hearthstone + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Hearthstone'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             hs_input = (str(message.content[len(cmd_hearthstone) + 1 + len(pfx):]))
             url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/' + hs_input + '?locale=enUS'
             headers = {'X-Mashape-Key': MashapeKey, 'Accept': 'text/plain'}

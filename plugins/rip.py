@@ -17,9 +17,14 @@ class Rip(Plugin):
                 result = result + 'The Avatar of ' + user.display_name + " is " + user.avatar_url
                 mentioned_avatar = user.avatar_url
             cmd_name = 'Rest In Peace'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             user_avatar = requests.get(mentioned_avatar).content
             base = Image.open('img/rip/base.png')
             tomb = Image.open('img/rip/tombstone.png')

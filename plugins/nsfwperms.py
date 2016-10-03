@@ -14,9 +14,14 @@ class NSFWPermission(Plugin):
             cmd_name = 'NSFW Permit'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
             sql_cmd_yes = "INSERT INTO NSFW (CHANNEL_ID, PERMITTED) VALUES (?, ?)"
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             admin_check = message.author.permissions_in(message.channel).administrator
             if admin_check is True:
                 try:

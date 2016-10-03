@@ -16,9 +16,14 @@ class R34(Plugin):
             await self.client.send_typing(message.channel)
             cmd_name = 'Rule34'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             try:
                 perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=?;", (str(message.channel.id),))
                 permed = 'No'
@@ -26,7 +31,7 @@ class R34(Plugin):
                     permed = row[0]
             except sqlite3.OperationalError:
                 permed = 'No'
-            except SyntaxError:
+            except:
                 permed = 'No'
             if permed == 'Yes':
                 permitted = True

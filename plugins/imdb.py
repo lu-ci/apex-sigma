@@ -12,9 +12,14 @@ class IMDB(Plugin):
         if message.content.startswith(pfx + cmd_imdb):
             await self.client.send_typing(message.channel)
             cmd_name = 'Internet Movie DataBase'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             imdb_imput = message.content[len(pfx) + len(cmd_imdb) + 1:]
             request = requests.get('http://www.omdbapi.com/?t=' + imdb_imput + '&y=&plot=short&r=json').json()
             try:

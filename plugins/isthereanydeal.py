@@ -12,9 +12,14 @@ class ITAD(Plugin):
         if message.content.startswith(pfx + cmd_itad):
             await self.client.send_typing(message.channel)
             cmd_name = 'IsThereAnyDeal'
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             request = requests.get('https://api.isthereanydeal.com/v01/deals/list/eu2/?key=' + key + '&country=RS&offset=0&limit=20').json()
             try:
                 deal_text = 'Latest 10 Deals:\n```'

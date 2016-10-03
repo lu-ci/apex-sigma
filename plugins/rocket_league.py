@@ -136,10 +136,10 @@ class RocketLeague(Plugin):
                 await self.client.send_file(message.channel, 'cache\\rl_' + message.author.id + '.png')
                 await self.client.send_message(message.channel, 'You can find more at:\n<' + profile_url + '>')
                 os.remove('cache\\rl_' + message.author.id + '.png')
-            except SyntaxError:
+            except:
                 try:
                     error = rl_data['error']
                     await self.client.send_message(message.channel, 'Error: ' + str(error))
-                except SyntaxError:
+                except:
                     await self.client.send_message(message.channel,
                                                    'Could not retrieve webpage.\nUser not found or the service goofed.')

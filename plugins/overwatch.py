@@ -20,9 +20,14 @@ class Overwatch(Plugin):
         # Overwatch API
         if message.content.startswith(pfx + cmd_overwatch + ' '):
             cmd_name = 'Overwatch'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             await self.client.send_typing(message.channel)
             ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
             ow_region_x, ignore, ow_name = ow_input.partition(' ')

@@ -165,8 +165,14 @@ class BladeAndSoul(Plugin):
         # Blade and Soul API
         if message.content.startswith(pfx + cmd_bns):
             cmd_name = 'Blade and Soul'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
@@ -268,8 +274,14 @@ class BladeAndSoul(Plugin):
         # Blade and Soul Attack Details API
         elif message.content.startswith(pfx + cmd_bns_att):
             cmd_name = 'Blade and Soul Attack Details'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
@@ -359,8 +371,14 @@ class BladeAndSoul(Plugin):
         # Blade and Soul Defense Details API
         elif message.content.startswith(pfx + cmd_bns_def):
             cmd_name = 'Blade and Soul Defense Details'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             await self.client.send_typing(message.channel)
             query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()

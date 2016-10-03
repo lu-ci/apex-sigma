@@ -22,7 +22,7 @@ current_time.isoformat()
 
 if not os.path.isfile('config.py'):
     sys.exit(
-        'Fatal Error: config.py is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+        'Fatal Error: config.py is not present.\nIf you didn\'t already, rename config_example.py to config.py, fill out your credentials and try again.')
 else:
     print('config.py present, continuing...')
 # Data

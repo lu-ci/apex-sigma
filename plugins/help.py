@@ -12,9 +12,14 @@ class Help(Plugin):
     async def on_message(self, message, pfx):
         if message.content == (pfx + cmd_help):
             cmd_name = 'Module List'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             await self.client.send_typing(message.channel)
             help_msg = await self.client.send_message(message.channel, '```java' +
                                                       '\n\"Help\": ' + pfx + cmd_help +

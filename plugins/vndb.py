@@ -19,9 +19,14 @@ class VNDBSearch(Plugin):
         if message.content.startswith(pfx + cmd_vndb + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'VNDB Search'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             vndb_input = (str(message.content[len(cmd_vndb) + 1 + len(pfx):]))
             try:
                 sdata = await setsu.search_vndb('v', vndb_input)

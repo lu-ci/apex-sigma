@@ -18,9 +18,14 @@ class VindictusScrollSearch(Plugin):
         if message.content.startswith(pfx + cmd_vindi):
             await self.client.send_typing(message.channel)
             cmd_name = 'Vindictus Scroll Search'
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             scrl_input = (message.content[len(pfx) + len(cmd_vindi) + 1:]).lower().replace('\'', '').replace(' ', '').replace(' es', '').replace('enchant', '').replace('scroll', '')
             try:
                 scrl_name = scrolls[scrl_input]['name']

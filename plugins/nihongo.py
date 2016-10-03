@@ -260,7 +260,7 @@ class WK(Plugin):
                 await self.client.send_file(message.channel, 'cache\\ani\\wk_' + message.author.id + '.png')
                 await self.client.send_message(message.channel, '```java\n' + out + '\n```')
                 os.remove('cache\\ani\\wk_' + message.author.id + '.png')
-            except SyntaxError:
+            except:
                 self.log.info('Error while parsing the data')
                 await self.client.send_message(message.channel,
                                                'Something went wrong ¯\_(ツ)_/¯. Error while parsing the data')
@@ -342,7 +342,7 @@ class WKKey(Plugin):
                 except UnboundLocalError:
                     await self.client.send_message(message.channel,
                                                    'There doesn\'t seem to be a key or username tied to you...\nYou can add your it by sending a direct message to me with the WKSave Command, for example:\n`' + pfx + cmd_wk_store + ' 16813135183151381`\nand just replace the numbers with your WK API Key!')
-                except SyntaxError:
+                except:
                     await self.client.send_message(message.channel, 'Something went horribly wrong!')
 
             except:

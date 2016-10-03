@@ -13,9 +13,14 @@ class Weather(Plugin):
         if message.content.startswith(pfx + cmd_weather + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Weather'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             owm_input = (str(message.content[len(cmd_weather) + 1 + len(pfx):]))
             city, ignore, country = owm_input.partition(', ')
             owm_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=' + owm_key
@@ -60,11 +65,10 @@ class Weather(Plugin):
                                    'Low: ' + temp_min_c + ' (' + temp_min_f + ')\n' +
                                    'Humidity: ' + humidity + '\nPressure: ' + pressure + '\n```')
                 await self.client.send_message(message.channel, weather_message)
-            except AttributeError:
-                await self.client.send_message(message.channel, 'Something went wrong, and we don\'t know what!')
-            try:
-                owm_error_code = str(owm_json['cod'])
-                if owm_error_code == '404':
-                    await self.client.send_message(message.channel, 'Error: Requested location not found!')
-            except AttributeError:
-                await self.client.send_message(message.channel, 'Something went wrong, and we don\'t know what!')
+            except:
+                try:
+                    owm_error_code = str(owm_json['cod'])
+                    if owm_error_code == '404':
+                        await self.client.send_message(message.channel, 'Error: Requested location not found!')
+                except:
+                    await self.client.send_message(message.channel, 'Something went wrong, and we don\'t know what!')
