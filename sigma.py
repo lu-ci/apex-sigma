@@ -1,4 +1,3 @@
-# noinspection PyPep8
 import datetime
 import os
 import sys
@@ -32,8 +31,6 @@ if token == '': sys.exit('Token not provided, please open config.json and place 
 
 from config import Prefix as pfx
 from config import cmd_help
-# from config import Pushbullet as pb_key
-# pb = pushbullet.Pushbullet(pb_key)
 
 from plugin_manager import PluginManager
 from plugins.help import Help
@@ -82,7 +79,7 @@ from plugins.utils import PMRedirect
 from plugins.selfrole import SelfRole
 from plugins.world_of_warcraft import World_Of_Warcraft
 from plugins.rocket_league import RocketLeague
-
+from plugins.utils import SetAvatar
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -112,22 +109,17 @@ class sigma(discord.Client):
                 member_amo += 1
 
         print('-----------------------------------')
-        print('Logged in as: ' + client.user.name)
+        print('Logged In As: ' + client.user.name)
         print('Bot User ID: ' + client.user.id)
         print('Running discord.py version: ' + discord.__version__)
         print('Authors: AXAz0r, Awakening')
         print('Contributors: Mirai, Chaeldar')
         print('Bot Version: ' + sigma_version)
-        print('Build Date: 25. September 2016.')
+        print('Build Date: 04. October 2016.')
         print('-----------------------------------')
         print('Connected to [ ' + str(server_amo) + ' ] servers.')
         print('Serving [ ' + str(member_amo) + ' ] users.')
         print('\nSuccessfully connected to Discord!')
-        # try:
-        # if notify == 'Yes':
-        #    pb.push_note('Sigma', 'Sigma Activated!')
-        # else: print(client.user.name + ' activated.')
-        # except: pass
         folder = 'cache/ow'
         try:
             for the_file in os.listdir(folder):
@@ -168,3 +160,4 @@ elif StartupType == '1':
     client.run(dsc_email, dsc_password)
 else:
     print('Failed loading connection settings.\nCheck your StartupType and make sure it\'s either 0 or 1.')
+    sys.exit('Startup Type is not found.')

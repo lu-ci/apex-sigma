@@ -5,6 +5,7 @@ from utils import create_logger
 from utils import bold
 import time
 from config import sigma_version
+import aiohttp
 
 
 class Reminder(Plugin):
@@ -35,8 +36,8 @@ class Reminder(Plugin):
                 time_num = int(time_q)
                 while time_num > 0:
                     time_conv_second = time.strftime('%H:%M:%S', time.gmtime(int(time_num)))
-                    await self.client.edit_message(confirm_msg,'Okay! Reminder for\n[' + bold(
-                    str(remind_text)) + ']\nis set and will be activated in `' + time_conv_second + '`! :clock:')
+                    await self.client.edit_message(confirm_msg, 'Okay! Reminder for\n[' + bold(
+                        str(remind_text)) + ']\nis set and will be activated in `' + time_conv_second + '`! :clock:')
                     await asyncio.sleep(10)
                     time_num -= 10
                 await self.client.send_typing(message.channel)
@@ -62,7 +63,8 @@ class Donators(Plugin):
             out_text = ''
             for donor in donators:
                 out_text += '\n' + bold(str(donor)) + ' :ribbon: '
-            await self.client.send_message(message.channel, out_text + '\nPlease consider donating by hitting the Donate button on this page: <https://auroraproject.xyz/donors/>!')
+            await self.client.send_message(message.channel,
+                                           out_text + '\nPlease consider donating by hitting the Donate button on this page: <https://auroraproject.xyz/donors/>!')
 
 
 class BulkMSG(Plugin):
@@ -104,9 +106,11 @@ class BulkMSG(Plugin):
             except:
                 print('Something went wrong. Most likely a basic error with the sending.')
 
+
 class PMRedirect(Plugin):
     is_global = True
     log = create_logger('received PM')
+
     async def on_message(self, message, pfx):
         cmd_name = 'Private Message'
         if message.server is None:
@@ -119,13 +123,15 @@ class PMRedirect(Plugin):
                 for user in self.client.get_all_members():
                     if user.id == ownr:
                         private_msg_to_owner = await self.client.start_private_message(user=user)
-                        await self.client.send_message(private_msg_to_owner, '**' + message.author.name + '** (ID: ' + message.author.id + '):\n```' + message.content + '\n```')
+                        await self.client.send_message(private_msg_to_owner,
+                                                       '**' + message.author.name + '** (ID: ' + message.author.id + '):\n```' + message.content + '\n```')
                         return
 
 
 class OtherUtils(Plugin):
     is_global = True
     log = create_logger('basic util')
+
     async def on_message(self, message, pfx):
         if message.content == (pfx + 'stats'):
             await self.client.send_typing(message.channel)
@@ -182,3 +188,39 @@ class OtherUtils(Plugin):
                 response = await self.client.send_message(message.channel, 'Insufficient permissions...')
                 await asyncio.sleep(5)
                 await self.client.delete_message(response)
+
+
+class SetAvatar(Plugin):
+    is_global = True
+    log = create_logger('Set Avatar')
+
+    async def on_message(self, message, pfx, url=None):
+        aiosession = aiohttp.ClientSession()
+        if message.content.startswith(pfx + 'setavatar'):
+            if message.author.id in permitted_id:
+                try:
+                    if message.attachments:
+                        thing = message.attachments[0]['url']
+                    else:
+                        thing = url.strip('<>')
+
+                    try:
+                        with aiohttp.Timeout(10):
+                            async with aiosession.get(thing) as res:
+                                await self.client.edit_profile(avatar=await res.read())
+                    except:
+                        return
+                except AttributeError:
+                    try:
+                        thing = message.content[len(pfx) + len('setavatar') + 1:]
+                        try:
+                            with aiohttp.Timeout(10):
+                                aiosession = aiohttp.ClientSession()
+                                async with aiosession.get(thing) as res:
+                                    await self.client.edit_profile(avatar=await res.read())
+                        except:
+                            return
+                    except ResourceWarning:
+                        pass
+                    except Exception as err:
+                        await self.client.send_message(message.channel, str(err))

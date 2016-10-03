@@ -61,7 +61,7 @@ class WK(Plugin):
                     if db_response == None:
                         await self.client.send_message(message.channel, 'No assigned key or username was found\n'
                                                                         'You can add it by sending me a direct message, for example\n'
-                                                                        '`' + pfx + cmd_wk_store + ' key <your API key>` or `' + pfx + cmd_wk_store + ' username <your username>`')
+                                                                        'For Advanced Stats: `' + pfx + cmd_wk_store + ' key <your API key>`\nor `' + pfx + cmd_wk_store + ' username <your username>` for basic stats.')
                         return
                     print(db_response)
                     key = db_response[0]
