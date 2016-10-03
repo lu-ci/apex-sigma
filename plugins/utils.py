@@ -194,16 +194,16 @@ class SetAvatar(Plugin):
     is_global = True
     log = create_logger('Set Avatar')
 
-    async def on_message(self, message, pfx, url=None):
-        aiosession = aiohttp.ClientSession()
+    async def on_message(self, message, pfx, url=None, loop=None):
         if message.content.startswith(pfx + 'setavatar'):
             if message.author.id in permitted_id:
+                loop = asyncio.get_event_loop() if loop is None else loop
+                aiosession = aiohttp.ClientSession(loop=loop)
                 try:
                     if message.attachments:
                         thing = message.attachments[0]['url']
                     else:
                         thing = url.strip('<>')
-
                     try:
                         with aiohttp.Timeout(10):
                             async with aiosession.get(thing) as res:
@@ -215,7 +215,6 @@ class SetAvatar(Plugin):
                         thing = message.content[len(pfx) + len('setavatar') + 1:]
                         try:
                             with aiohttp.Timeout(10):
-                                aiosession = aiohttp.ClientSession()
                                 async with aiosession.get(thing) as res:
                                     await self.client.edit_profile(avatar=await res.read())
                         except:
