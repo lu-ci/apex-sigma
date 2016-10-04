@@ -2,7 +2,6 @@ from plugin import Plugin
 from utils import create_logger
 from utils import getArguments
 from utils import split_list
-#from config import cmd_
 import sqlite3
 from random import sample
 
