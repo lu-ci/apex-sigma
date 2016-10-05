@@ -155,6 +155,8 @@ class OtherUtils(Plugin):
             for per_id in permitted_id:
                 permed_ids += '[' + per_id + '], '
             out_txt = ''
+            out_txt += '\nLogged In As: ' + self.client.user.name
+            out_txt += '\nUser ID: ' + self.client.user.id
             out_txt += '\nAuthors: \"Alex\" and \"Awakening\"'
             out_txt += '\nContributors: \"Mirai\", \"Valeth\" and \"Chaeldar\"'
             out_txt += '\nSigma Version: ' + sigma_version
@@ -188,7 +190,31 @@ class OtherUtils(Plugin):
                 response = await self.client.send_message(message.channel, 'Insufficient permissions...')
                 await asyncio.sleep(5)
                 await self.client.delete_message(response)
-
+        elif message.content.startswith(pfx + 'servers'):
+            await self.client.send_typing(message.channel)
+            cmd_name = 'Servers'
+            # Start Logger
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            if message.author.id in permitted_id:
+                out_text = 'List of servers:\n```python'
+                for server in self.client.servers:
+                    out_text += '\n\"' + str(server) + '\" (' + str(server.id) + ')'
+                if len(out_text) > 1950:
+                    out_text = out_text[:1950]
+                    out_text += '...'
+                out_text += '\n```'
+                await self.client.send_message(message.channel, out_text)
+            else:
+                error_msg = await self.client.send_message(message.channel, 'Insufficient permissions.')
+                await asyncio.sleep(5)
+                await self.client.delete_message(error_msg)
 
 class SetAvatar(Plugin):
     is_global = True
