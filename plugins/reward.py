@@ -41,10 +41,10 @@ class RewardOnMessage(Plugin):
                         dbsql.execute("UPDATE POINT_SYSTEM SET LV_CHECK= ? WHERE USER_ID= ?",
                                       (str(level_should), str(message.author.id),))
                         dbsql.commit()
-                        if message.server.id == '219894896172072971':
-                            await self.client.send_message(message.channel,
-                            'Congratulations <@' + message.author.id + '>!\nYou just leveled up to **Level ' + str(
-                            level_point) + '**!')
+                        # if message.server.id == '219894896172072971':
+                            # await self.client.send_message(message.channel,
+                            # 'Congratulations <@' + message.author.id + '>!\nYou just leveled up to **Level ' + str(
+                            # level_point) + '**!')
                     else:
                         return
 
