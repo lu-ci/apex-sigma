@@ -101,9 +101,6 @@ class BulkMSG(Plugin):
                                 await self.client.start_private_message(user)
                                 await self.client.send_message(user, input_message)
                                 out += '\nSuccess: ' + user.name
-                            except:
-                                printer += '\nSuccess: ' + user.name
-                                no_s += 1
                             except Exception as err:
                                 out += '\nFailed: ' + user.name
                                 printer += '\nFailed: ' + user.name + '\nReason: ' + str(err)

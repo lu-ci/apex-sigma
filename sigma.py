@@ -70,6 +70,7 @@ from plugins.utils import OtherUtils
 from plugins.utils import BulkMSG
 # from plugins.nihongo import WaniKaniAutoCheck
 # from plugins.nihongo import WKReviewFiller
+from plugins.imgur import Imgur
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -100,7 +101,6 @@ class sigma(discord.Client):
         print('Bot User ID: ' + client.user.id)
         print('Running discord.py version: ' + discord.__version__)
         print('Authors: AXAz0r, Awakening')
-        print('Contributors: Mirai, Chaeldar', 'Valeth')
         print('Contributors: Mirai, Chaeldar, Valeth')
         print('Bot Version: ' + sigma_version)
         print('Build Date: 05. October 2016.')
@@ -143,9 +143,15 @@ class sigma(discord.Client):
 
 client = sigma()
 if StartupType == '0':
-    client.run(token)
+    try:
+        client.run(token)
+    except Exception as err:
+        print(err)
 elif StartupType == '1':
-    client.run(dsc_email, dsc_password)
+    try:
+        client.run(dsc_email, dsc_password)
+    except Exception as err:
+        print(err)
 else:
     print('Failed loading connection settings.\nCheck your StartupType and make sure it\'s either 0 or 1.')
     sys.exit('Startup Type is not found.')
