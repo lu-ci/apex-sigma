@@ -24,11 +24,12 @@ class RewardOnMessage(Plugin):
                     number_grabber = dbsql.execute("SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?",
                                                    (str(message.author.id),))
                     for number in number_grabber:
+                        level = number[0]
                         level_check = number[1]
                         points = number[2]
                     points_old = points
                     points_new = points_old + random.randint(1, 10)
-                    level_point = format(points_new / 500, ".0f")
+                    level_point = format(points_new / (601 + (69 * int(level))), ".0f")
                     level_should = int(level_point)
                     # print('Existant: Updating points to: ' + str(points_new) + ' from ' + str(
                     # points_old) + '\nLevel should be: ' + str(level_should) + ' / ' + str(level_check))
