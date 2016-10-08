@@ -6,6 +6,7 @@ from utils import bold
 import time
 from config import sigma_version
 import aiohttp
+import sys
 
 
 class Reminder(Plugin):
@@ -91,6 +92,9 @@ class BulkMSG(Plugin):
                     await self.client.send_message(message.channel,
                                                    'Starting bulk sending... Stand by for confirmation')
                     out = ''
+                    printer = ''
+                    no_s = 0
+                    no_f = 0
                     for user in self.client.get_all_members():
                         if user.server.id == message.server.id and user.id != self.client.user.id:
                             try:
@@ -98,8 +102,16 @@ class BulkMSG(Plugin):
                                 await self.client.send_message(user, input_message)
                                 out += '\nSuccess: ' + user.name
                             except:
+                                printer += '\nSuccess: ' + user.name
+                                no_s += 1
+                            except Exception as err:
                                 out += '\nFailed: ' + user.name
+                                printer += '\nFailed: ' + user.name + '\nReason: ' + str(err)
+                                no_f += 1
                     await self.client.send_message(message.channel, 'Bulk message sending complete...\n' + out[:1900])
+                    print(printer)
+                    print('Succeeded: ' + str(no_s))
+                    print('Failed: ' + str(no_f))
                 else:
                     await self.client.send_message(message.channel,
                                                    'Not enough permissions, due to security issues, only a permitted user can use this for now...')
@@ -215,6 +227,9 @@ class OtherUtils(Plugin):
                 error_msg = await self.client.send_message(message.channel, 'Insufficient permissions.')
                 await asyncio.sleep(5)
                 await self.client.delete_message(error_msg)
+        elif message.content == pfx + 'kill':
+            if message.author.id in permitted_id:
+                sys.exit('terminated by command')
 
 class SetAvatar(Plugin):
     is_global = True

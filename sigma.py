@@ -45,7 +45,6 @@ from plugins.joke import Joke
 from plugins.overwatch import Overwatch
 from plugins.rip import Rip
 from plugins.lastfm import LastFM
-from plugins.cleverbot import Cleverbot
 from plugins.echo import Echo
 from plugins.nsfwperms import NSFWPermission
 from plugins.gelbooru import Gelbooru
@@ -60,7 +59,6 @@ from plugins.nihongo import WK
 from plugins.nihongo import WKKey
 from plugins.nihongo import Jisho
 from plugins.mal import MAL
-from plugins.unflip import Table
 from plugins.vindictus import VindictusScrollSearch
 from plugins.sonarr import Sonarr
 from plugins.karaoke import VoiceChangeDetection
@@ -69,17 +67,9 @@ from plugins.vndb import VNDBSearch
 from plugins.utils import Reminder
 from plugins.utils import Donators
 from plugins.utils import OtherUtils
-from plugins.reddit import Reddit
 from plugins.utils import BulkMSG
 # from plugins.nihongo import WaniKaniAutoCheck
 # from plugins.nihongo import WKReviewFiller
-from plugins.reward import RewardOnMessage
-from plugins.reward import LevelCheck
-from plugins.utils import PMRedirect
-from plugins.selfrole import SelfRole
-from plugins.world_of_warcraft import World_Of_Warcraft
-from plugins.rocket_league import RocketLeague
-from plugins.utils import SetAvatar
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -98,9 +88,6 @@ class sigma(discord.Client):
         return plugins
 
     async def on_ready(self):
-        gamename = pfx + cmd_help
-        game = discord.Game(name=gamename)
-        await client.change_status(game)
         server_amo = 0
         member_amo = 0
         for server in client.servers:
@@ -114,6 +101,7 @@ class sigma(discord.Client):
         print('Running discord.py version: ' + discord.__version__)
         print('Authors: AXAz0r, Awakening')
         print('Contributors: Mirai, Chaeldar', 'Valeth')
+        print('Contributors: Mirai, Chaeldar, Valeth')
         print('Bot Version: ' + sigma_version)
         print('Build Date: 05. October 2016.')
         print('-----------------------------------')
