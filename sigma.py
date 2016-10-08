@@ -71,6 +71,17 @@ from plugins.utils import BulkMSG
 # from plugins.nihongo import WaniKaniAutoCheck
 # from plugins.nihongo import WKReviewFiller
 from plugins.imgur import Imgur
+from plugins.reward import RewardOnMessage
+from plugins.reward import LevelCheck
+from plugins.utils import PMRedirect
+from plugins.selfrole import SelfRole
+from plugins.world_of_warcraft import World_Of_Warcraft
+from plugins.rocket_league import RocketLeague
+from plugins.utils import SetAvatar
+from plugins.reddit import Reddit
+from plugins.unflip import Table
+from plugins.cleverbot import Cleverbot
+
 
 # I love spaghetti!
 class sigma(discord.Client):
@@ -89,6 +100,10 @@ class sigma(discord.Client):
         return plugins
 
     async def on_ready(self):
+        gamename = pfx + cmd_help
+        game = discord.Game(name=gamename)
+        await client.change_status(game)
+
         server_amo = 0
         member_amo = 0
         for server in client.servers:
