@@ -28,8 +28,4 @@ class Imgur(Plugin):
             except:
                 await self.client.send_message(message.channel, 'No results...')
                 return
-            if chosen_item.startswith('http://i.imgur'):
-                chosen_item = chosen_item
-            else:
-                chosen_item = chosen_item.replace('http://imgur', 'http://i.imgur').replace('/a/', '/') + '.png'
             await self.client.send_message(message.channel, chosen_item)
