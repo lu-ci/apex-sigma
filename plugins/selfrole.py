@@ -18,8 +18,8 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Welcome Party', 'Cake Shop', 'Weebs']
 timeout = 5
 
-cmd_addAssingableRole = 'aar'
-cmd_removeAssingableRole = 'rar'
+cmd_addAssingableRole = 'addar'
+cmd_removeAssingableRole = 'remar'
 
 
 class SelfRole(Plugin):

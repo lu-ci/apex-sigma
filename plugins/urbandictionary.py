@@ -9,10 +9,10 @@ class UrbanDictionary(Plugin):
 
     async def on_message(self, message, pfx):
     # Urban Dictionary API
-        if message.content.startswith(pfx + 'rip' + ' '):
+        if message.content.startswith(pfx + 'ud' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Urban Dictionary'
-            ud_input = str(message.content[len('rip') + 1 + len(pfx):])
+            ud_input = str(message.content[len('ud') + 1 + len(pfx):])
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                               message.author,
