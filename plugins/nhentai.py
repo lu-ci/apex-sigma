@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_nhentai
 from utils import create_logger
 from PIL import Image
 from io import BytesIO
@@ -14,7 +13,7 @@ class NHentai(Plugin):
     log = create_logger('nHentai')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_nhentai):
+        if message.content.startswith(pfx + 'nhentai'):
             await self.client.send_typing(message.channel)
             cmd_name = 'NHentai'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
@@ -27,8 +26,8 @@ class NHentai(Plugin):
                               message.author,
                               message.author.id)
             try:
-                id = (str(message.channel.id),)
-                perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=?;", id)
+                ch_id = (str(message.channel.id),)
+                perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=?;", ch_id)
                 permed = 'No'
                 for row in perms:
                     permed = row[0]
@@ -41,12 +40,8 @@ class NHentai(Plugin):
             else:
                 permitted = False
             # End Perms
-            search = message.content[len(pfx) + len(cmd_nhentai) + 1:]
+            search = message.content[len(pfx) + len('nhentai') + 1:]
             try:
-                if search == '':
-                    tags = 'nude'
-                else:
-                    pass
                 n = 0
                 list_text = '```'
                 for entry in nh.search(search)['result']:
@@ -61,6 +56,7 @@ class NHentai(Plugin):
                     except:
                         await self.client.send_message(message.channel,
                                                        'Not a number or timed out... Please start over')
+                        return
                 else:
                     nh_no = 0
                 if nh_no > len(nh.search(search)['result']):

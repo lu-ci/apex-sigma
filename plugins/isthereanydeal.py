@@ -1,15 +1,14 @@
 from plugin import Plugin
-from config import cmd_itad
-from config import ITADKey as key
+from config import ITADKey
 from utils import create_logger
 import requests
 
 class ITAD(Plugin):
     is_global = True
-    log = create_logger(cmd_itad)
+    log = create_logger('itad')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_itad):
+        if message.content.startswith(pfx + 'itad'):
             await self.client.send_typing(message.channel)
             cmd_name = 'IsThereAnyDeal'
             try:
@@ -20,14 +19,13 @@ class ITAD(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            request = requests.get('https://api.isthereanydeal.com/v01/deals/list/eu2/?key=' + key + '&country=RS&offset=0&limit=20').json()
+            request = requests.get('https://api.isthereanydeal.com/v01/deals/list/eu2/?key=' + ITADKey + '&country=RS&offset=0&limit=20').json()
             try:
                 deal_text = 'Latest 10 Deals:\n```'
                 currency = request['.meta']['currency']
                 for i in range(0, 10):
                     game_title = request['data']['list'][i]['title']
                     shop_name = request['data']['list'][i]['shop']['name']
-                    shop_url = request['data']['list'][i]['urls']['buy']
                     price_old = str(request['data']['list'][i]['price_old'])
                     price_new = str(request['data']['list'][i]['price_new'])
                     price_cut = str(request['data']['list'][i]['price_cut'])

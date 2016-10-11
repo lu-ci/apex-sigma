@@ -1,6 +1,5 @@
 from plugin import Plugin
 from utils import create_logger
-from config import cmd_gelbooru
 from lxml import html
 import requests
 import random
@@ -12,7 +11,7 @@ class Gelbooru(Plugin):
     log = create_logger('Gelbooru')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_gelbooru):
+        if message.content.startswith(pfx + 'gelbooru'):
             await self.client.send_typing(message.channel)
             cmd_name = 'Gelbooru'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
@@ -37,7 +36,7 @@ class Gelbooru(Plugin):
                 permitted = True
             else:
                 permitted = False
-            tags = message.content[len(pfx) + len(cmd_gelbooru) + 1:]
+            tags = message.content[len(pfx) + len('gelbooru') + 1:]
             try:
                 if tags == '':
                     tags = 'nude'

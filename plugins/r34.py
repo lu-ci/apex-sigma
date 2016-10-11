@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_rule34
 from utils import create_logger
 from lxml import html
 import requests
@@ -12,7 +11,7 @@ class R34(Plugin):
     log = create_logger('Rule34')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_rule34):
+        if message.content.startswith(pfx + 'rule34'):
             await self.client.send_typing(message.channel)
             cmd_name = 'Rule34'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
@@ -37,7 +36,7 @@ class R34(Plugin):
                 permitted = True
             else:
                 permitted = False
-            tags = message.content[len(pfx) + len(cmd_rule34) + 1:]
+            tags = message.content[len(pfx) + len('rule34') + 1:]
             try:
                 if tags == '':
                     tags = 'nude'

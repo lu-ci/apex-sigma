@@ -2,7 +2,6 @@ import Shosetsu
 
 setsu = Shosetsu.Shosetsu()
 from plugin import Plugin
-from config import cmd_vndb
 import requests
 import os
 from PIL import Image
@@ -13,10 +12,10 @@ from utils import create_logger
 
 class VNDBSearch(Plugin):
     is_global = True
-    log = create_logger(cmd_vndb)
+    log = create_logger('vndb')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_vndb + ' '):
+        if message.content.startswith(pfx + 'vndb' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'VNDB Search'
             try:
@@ -27,7 +26,7 @@ class VNDBSearch(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            vndb_input = (str(message.content[len(cmd_vndb) + 1 + len(pfx):]))
+            vndb_input = (str(message.content[len('vndb') + 1 + len(pfx):]))
             try:
                 sdata = await setsu.search_vndb('v', vndb_input)
                 n = 0

@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_rip
 import requests
 from PIL import Image
 from io import BytesIO
@@ -7,10 +6,10 @@ from utils import create_logger
 
 class Rip(Plugin):
     is_global = True
-    log = create_logger(cmd_rip)
+    log = create_logger('rip')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_rip):
+        if message.content.startswith(pfx + 'rip'):
             result = ''
             mentioned_avatar = ''
             for user in message.mentions:

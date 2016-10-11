@@ -1,15 +1,14 @@
 from plugin import Plugin
-from config import cmd_imdb
 from utils import create_logger
 import requests
 
 
 class IMDB(Plugin):
     is_global = True
-    log = create_logger(cmd_imdb)
+    log = create_logger('imdb')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_imdb):
+        if message.content.startswith(pfx + 'imdb'):
             await self.client.send_typing(message.channel)
             cmd_name = 'Internet Movie DataBase'
             try:
@@ -20,7 +19,7 @@ class IMDB(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            imdb_imput = message.content[len(pfx) + len(cmd_imdb) + 1:]
+            imdb_imput = message.content[len(pfx) + len('imdb') + 1:]
             request = requests.get('http://www.omdbapi.com/?t=' + imdb_imput + '&y=&plot=short&r=json').json()
             try:
                 title = request['Title']

@@ -1,12 +1,11 @@
 from plugin import Plugin
-from config import cmd_ehentai
 from utils import create_logger
 
 class EHentai(Plugin):
     is_global = True
     log = create_logger('eHentai')
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_ehentai):
+        if message.content.startswith(pfx + 'ehentai'):
             await self.client.send_typing(message.channel)
             cmd_name = 'EHentai'
             try:

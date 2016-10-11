@@ -30,7 +30,6 @@ from config import Token as token
 if token == '': sys.exit('Token not provided, please open config.json and place your token.')
 
 from config import Prefix as pfx
-from config import cmd_help
 
 from plugin_manager import PluginManager
 from plugins.help import Help
@@ -68,11 +67,9 @@ from plugins.utils import Reminder
 from plugins.utils import Donators
 from plugins.utils import OtherUtils
 from plugins.utils import BulkMSG
-# from plugins.nihongo import WaniKaniAutoCheck
-# from plugins.nihongo import WKReviewFiller
 from plugins.imgur import Imgur
-from plugins.reward import RewardOnMessage
-from plugins.reward import LevelCheck
+# from plugins.reward import RewardOnMessage
+# from plugins.reward import LevelCheck
 from plugins.utils import PMRedirect
 from plugins.selfrole import SelfRole
 from plugins.world_of_warcraft import World_Of_Warcraft
@@ -100,7 +97,7 @@ class sigma(discord.Client):
         return plugins
 
     async def on_ready(self):
-        gamename = pfx + cmd_help
+        gamename = pfx + 'help'
         game = discord.Game(name=gamename)
         await client.change_status(game)
 

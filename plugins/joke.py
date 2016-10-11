@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_joke
 import random
 import requests
 from utils import create_logger
@@ -9,10 +8,10 @@ import asyncio
 
 class Joke(Plugin):
     is_global = True
-    log = create_logger(cmd_joke)
+    log = create_logger('joke')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_joke):
+        if message.content.startswith(pfx + 'joke'):
             cmd_name = 'Joke'
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',

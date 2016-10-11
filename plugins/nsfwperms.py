@@ -1,15 +1,14 @@
 from plugin import Plugin
-from config import cmd_nsfw_permit
 from utils import create_logger
 import sqlite3
 
 
 class NSFWPermission(Plugin):
     is_global = True
-    log = create_logger(cmd_nsfw_permit)
+    log = create_logger('nsfwpermit')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_nsfw_permit):
+        if message.content.startswith(pfx + 'nsfwpermit'):
             await self.client.send_typing(message.channel)
             cmd_name = 'NSFW Permit'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)

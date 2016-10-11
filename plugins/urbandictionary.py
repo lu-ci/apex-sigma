@@ -1,19 +1,18 @@
 from plugin import Plugin
-from config import cmd_ud
 from config import MashapeKey as mashape_key
 import requests
 from utils import create_logger
 
 class UrbanDictionary(Plugin):
     is_global = True
-    log = create_logger(cmd_ud)
+    log = create_logger('ud')
 
     async def on_message(self, message, pfx):
     # Urban Dictionary API
-        if message.content.startswith(pfx + cmd_ud + ' '):
+        if message.content.startswith(pfx + 'rip' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Urban Dictionary'
-            ud_input = str(message.content[len(cmd_ud) + 1 + len(pfx):])
+            ud_input = str(message.content[len('rip') + 1 + len(pfx):])
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                               message.author,

@@ -1,7 +1,6 @@
 from plugin import Plugin
 from utils import create_logger
 import requests
-from lxml import html
 from config import RLAPIKey
 from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO

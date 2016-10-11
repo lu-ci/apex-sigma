@@ -1,15 +1,14 @@
 from plugin import Plugin
-from config import cmd_lfm
-from config import LastFMAPIKey as lfm_key
+from config import LastFMAPIKey
 from utils import create_logger
 import requests
 
 class LastFM(Plugin):
     is_global = True
-    log = create_logger(cmd_lfm)
+    log = create_logger('lastfm')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_lfm + ' '):
+        if message.content.startswith(pfx + 'lastfm' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'LastFM'
             try:
@@ -20,9 +19,9 @@ class LastFM(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            lfm_input = message.content[len(pfx) + len(cmd_lfm) + 1:]
+            lfm_input = message.content[len(pfx) + len('lastfm') + 1:]
             lfm_user, ignore, no_of_songs = lfm_input.partition(' ')
-            lfm_url = 'http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=' + lfm_user + '&api_key=' + lfm_key + '&format=json'
+            lfm_url = 'http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=' + lfm_user + '&api_key=' + LastFMAPIKey + '&format=json'
             lfm_data = requests.get(lfm_url).json()
             no_of_songs_in_list = len(lfm_data['toptracks']['track'])
             if no_of_songs == '':

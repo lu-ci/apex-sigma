@@ -1,16 +1,15 @@
 from plugin import Plugin
-from config import cmd_weather
 from config import OpenWeatherMapKey as owm_key
 import requests
 from utils import create_logger
 
 class Weather(Plugin):
     is_global = True
-    log = create_logger(cmd_weather)
+    log = create_logger('weather')
 
     async def on_message(self, message, pfx):
 
-        if message.content.startswith(pfx + cmd_weather + ' '):
+        if message.content.startswith(pfx + 'weather' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Weather'
             try:
@@ -21,7 +20,7 @@ class Weather(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            owm_input = (str(message.content[len(cmd_weather) + 1 + len(pfx):]))
+            owm_input = (str(message.content[len('weather') + 1 + len(pfx):]))
             city, ignore, country = owm_input.partition(', ')
             owm_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=' + owm_key
             owm_json = requests.get(owm_url).json()

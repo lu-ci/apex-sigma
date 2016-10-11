@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_wow_character
 from config import BlizzardKey
 import requests
 from utils import create_logger
@@ -10,7 +9,7 @@ class World_Of_Warcraft(Plugin):
     log = create_logger('wow')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_wow_character + ' '):
+        if message.content.startswith(pfx + 'wowchar' + ' '):
             cmd_name = 'WoW Character'
             try:
                 self.log.info(
@@ -22,12 +21,12 @@ class World_Of_Warcraft(Plugin):
                               message.author,
                               message.author.id)
             await self.client.send_typing(message.channel)
-            query = message.content[len(pfx) + len(cmd_wow_character) + 1:].replace('_', '%20')
+            query = message.content[len(pfx) + len('wowchar') + 1:].replace('_', '%20')
             try:
                 region_raw, realm, char_name = query.split(maxsplit=2)
             except:
                 await self.client.send_message(message.channel,
-                                               'Invalid Input Format, please reffer to the example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
+                                               'Invalid Input Format, please reffer to the example:\n`' + pfx + 'wowchar' + ' EU Doomhammer Takamatsuku`')
                 return
             try:
                 region = region_raw.replace('_', '%20')
@@ -243,4 +242,4 @@ class World_Of_Warcraft(Plugin):
                     await self.client.send_message(message.channel, 'Error: ' + str(error_no) + '\n' + error_msg)
                 except:
                     await self.client.send_message(message.channel,
-                                                   'Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
+                                                   'Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + 'wowchar' + ' EU Doomhammer Takamatsuku`')

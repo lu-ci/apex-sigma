@@ -1,7 +1,4 @@
 from plugin import Plugin
-from config import cmd_jisho
-from config import cmd_wk
-from config import cmd_wk_store
 from config import OwnerID as ownr
 from utils import create_logger
 from pytz import utc, timezone
@@ -21,10 +18,10 @@ import asyncio
 
 class WK(Plugin):
     is_global = True
-    log = create_logger(cmd_wk)
+    log = create_logger('wanikani')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_wk):
+        if message.content.startswith(pfx + 'wanikani'):
             await self.client.send_typing(message.channel)
             cmd_name = 'WaniKani'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
@@ -38,17 +35,18 @@ class WK(Plugin):
                               message.author.id)
 
             if len(message.mentions) == 0:  # no mentions in the message
-                if message.content == (pfx + cmd_wk):
+                if message.content == (pfx + 'wanikani'):
                     user_id = str(message.author.id)  # if no arguments passed, pulling the ID of a caller
                 else:
                     key = None
                     username = message.content[
-                               len(pfx) + len(cmd_wk) + 1:]  # otherwise, pull the username out of a message
+                               len(pfx) + len('wanikani') + 1:]  # otherwise, pull the username out of a message
             else:  # if there are mentions in the message
                 try:
                     user_id = message.mentions[0].id  # pull the mentioned ID
                 except:
                     await self.client.send_message(message.channel, 'Error while parsing the input message')
+                    return
 
             if 'username' not in locals():
                 if 'user_id' not in locals():
@@ -61,7 +59,7 @@ class WK(Plugin):
                     if db_response == None:
                         await self.client.send_message(message.channel, 'No assigned key or username was found\n'
                                                                         'You can add it by sending me a direct message, for example\n'
-                                                                        'For Advanced Stats: `' + pfx + cmd_wk_store + ' key <your API key>`\nor `' + pfx + cmd_wk_store + ' username <your username>` for basic stats.')
+                                                                        'For Advanced Stats: `' + pfx + 'wksave' + ' key <your API key>`\nor `' + pfx + 'wksave' + ' username <your username>` for basic stats.')
                         return
                     print(db_response)
                     key = db_response[0]
@@ -93,7 +91,7 @@ class WK(Plugin):
                     warning = ''
                 except UnboundLocalError:
                     await self.client.send_message(message.channel,
-                                                   'There doesn\'t seem to be a key tied to you...\n\nYou can add your key by sending a direct message to me with the the WKSave Command, for example:\n`' + pfx + cmd_wk_store + ' 16813135183151381`\nAnd just replace the numbers with your WK API Key!')
+                                                   'There doesn\'t seem to be a key tied to you...\n\nYou can add your key by sending a direct message to me with the the WKSave Command, for example:\n`' + pfx + 'wksave' + ' 16813135183151381`\nAnd just replace the numbers with your WK API Key!')
                     return
                 except TypeError:
                     self.log.info('Type error')
@@ -269,10 +267,10 @@ class WK(Plugin):
 
 class WKKey(Plugin):
     is_global = True
-    log = create_logger(cmd_wk_store)
+    log = create_logger('wksave')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_wk_store):
+        if message.content.startswith(pfx + 'wksave'):
             try:
                 await self.client.delete_message(message)
             except:
@@ -294,7 +292,7 @@ class WKKey(Plugin):
                               message.author,
                               message.author.id)
             try:
-                args = message.content[len(pfx) + len(cmd_wk_store) + 1:]
+                args = message.content[len(pfx) + len('wksave') + 1:]
 
                 mode = args[:args.find(' ')].strip()
                 payload = args[args.find(' ') + 1:].strip()  # key or username
@@ -306,7 +304,7 @@ class WKKey(Plugin):
                 if mode == '':
                     await self.client.send_message(message.channel,
                                                    'Bind your Discord profile and your API key or username\n'
-                                                   'Usage: `' + pfx + cmd_wk_store + ' key <your api key here>` or `' + pfx + cmd_wk_store + ' username <your username here>`')
+                                                   'Usage: `' + pfx + 'wksave' + ' key <your api key here>` or `' + pfx + 'wksave' + ' username <your username here>`')
                     return
                 if mode not in ['key', 'username', 'remov']:  # remove
                     await self.client.send_message(message.channel, 'Unknown argument')
@@ -326,8 +324,12 @@ class WKKey(Plugin):
                     return
 
                 try:
-                    if mode == 'key': query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES (?, ?)"
-                    if mode == 'username': query = "INSERT INTO WANIKANI (USER_ID, WK_USERNAME) VALUES (?, ?)"
+                    if mode == 'key':
+                        query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES (?, ?)"
+                    elif mode == 'username':
+                        query = "INSERT INTO WANIKANI (USER_ID, WK_USERNAME) VALUES (?, ?)"
+                    else:
+                        return
                     dbsql.execute(query, (user_id, payload))
                     dbsql.commit()
                     await self.client.send_message(message.channel, mode.capitalize() + ' Safely Stored. :key:')
@@ -335,13 +337,14 @@ class WKKey(Plugin):
                     await self.client.send_message(message.channel,
                                                    'A Key for your User ID already exists, removing...')
                     dbsql.execute("DELETE from WANIKANI where USER_ID=?;", (user_id,))
+                    query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES (?, ?)"
                     dbsql.execute(query, (user_id,))
                     dbsql.commit()
                     await self.client.send_message(message.channel,
                                                    'New ' + mode.capitalize() + ' Safely Stored. :key:')
                 except UnboundLocalError:
                     await self.client.send_message(message.channel,
-                                                   'There doesn\'t seem to be a key or username tied to you...\nYou can add your it by sending a direct message to me with the WKSave Command, for example:\n`' + pfx + cmd_wk_store + ' 16813135183151381`\nand just replace the numbers with your WK API Key!')
+                                                   'There doesn\'t seem to be a key or username tied to you...\nYou can add your it by sending a direct message to me with the WKSave Command, for example:\n`' + pfx + 'wksave' + ' 16813135183151381`\nand just replace the numbers with your WK API Key!')
                 except:
                     await self.client.send_message(message.channel, 'Something went horribly wrong!')
 
@@ -351,10 +354,10 @@ class WKKey(Plugin):
 
 class Jisho(Plugin):
     is_global = True
-    log = create_logger(cmd_jisho)
+    log = create_logger('jisho')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_jisho):
+        if message.content.startswith(pfx + 'jisho'):
             await self.client.send_typing(message.channel)
             cmd_name = 'Jisho'
             try:
@@ -366,7 +369,7 @@ class Jisho(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            jisho_q = message.content[len(pfx) + len(cmd_jisho) + 1:]
+            jisho_q = message.content[len(pfx) + len('jisho') + 1:]
             request = requests.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q).json()
             try:
                 try:
@@ -432,110 +435,3 @@ class Jisho(Plugin):
                 await self.client.send_message(message.channel, result_text)
             except:
                 await self.client.send_message(message.channel, 'The word was not found or the API dun goofed.')
-
-
-class WaniKaniAutoCheck(Plugin):
-    is_global = True
-    log = create_logger('wanikanichecker')
-
-    async def on_message(self, message, pfx):
-        if message.content == pfx + 'startchecker':
-            mytz = timezone('Europe/London')  ## Set your timezone
-            current_time = datetime.datetime.now()
-            current_time_unix = mktime(mytz.localize(current_time, is_dst=True).utctimetuple())
-            if message.author.id == ownr:
-                cmd_name = 'WaniKani'
-                dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
-                try:
-                    self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                                  message.author,
-                                  message.author.id, message.server.name, message.server.id, message.channel)
-                except:
-                    self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
-                                  message.author,
-                                  message.author.id)
-                while True:
-                    out_msg = ''
-                    not_empty = 0
-                    empty = 0
-                    next_review = dbsql.execute("SELECT NEXT_REV from WANIKANI WHERE NEXT_REV IS NOT NULL")
-                    for review_time_tupple in next_review:
-                        print('checking...')
-                        review_time = review_time_tupple[0]
-                        if review_time == 'None':
-                            review_time = '0'
-                        else:
-                            # rev_tim_conv_low = datetime.datetime.fromtimestamp(int(review_time) - 1)
-                            rev_tim_conv_low = int(review_time) - 15
-                            # rev_time_conv_high = datetime.datetime.fromtimestamp(int(review_time) + 1)
-                            rev_time_conv_high = int(review_time) + 15
-                            if rev_tim_conv_low < current_time_unix < rev_time_conv_high:
-                                print('Reviews!')
-                                user_id_finder = dbsql.execute("SELECT USER_ID FROM WANIKANI WHERE NEXT_REV= ?", (str(review_time),))
-                                for user in user_id_finder:
-                                    user_id = user[0]
-                                out_msg += ('\nHey! <@' + str(user_id) + '>! You\'ve got reviews! Go do them!')
-                                not_empty += 1
-                            else:
-                                empty += 1
-                    print('Not Empty: ' + str(not_empty) + '\nEmpty: ' + str(empty))
-                    if out_msg != '':
-                        await self.client.send_message(message.channel, out_msg)
-                    await asyncio.sleep(10)
-            else:
-                await self.client.send_message(message.channel, 'Only <@' + ownr + '> can start the WKChecker due to it\'s large load...\n(That\'s what she said~)')
-
-
-class WKReviewFiller(Plugin):
-    is_global = True
-    log = create_logger('wkfiller')
-
-    async def on_message(self, message, pfx):
-        if message.content == pfx + 'startwkupdater':
-            cmd_name = 'WaniKani'
-            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
-            if message.author.id == ownr:
-                await self.client.send_typing(message.channel)
-                await self.client.send_message(message.channel,
-                                               'Started the WaniKani Updater on a 30 minute interval.\nChannel used for logging: `' + message.channel.name + '`')
-                while True:
-                    try:
-                        self.log.info(
-                            'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                            message.author,
-                            message.author.id, message.server.name, message.server.id, message.channel)
-                    except:
-                        self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
-                                      message.author,
-                                      message.author.id)
-                    print('Updating Review Times...')
-                    key_list = dbsql.execute("SELECT WK_KEY from WANIKANI WHERE WK_KEY IS NOT NULL")
-                    fail = 0
-                    succ = 0
-                    for key in key_list:
-                        url = 'https://www.wanikani.com/api/user/' + key[0]
-                        try:
-                            api3 = requests.get(url + '/study-queue').json()
-                        except:
-                            fail += 1
-                            print('Special Error, returning')
-                            return
-                        try:
-                            review_time = api3['requested_information']['next_review_date']
-                            selector = "SELECT WK_KEY from WANIKANI WHERE WK_KEY= ?"
-                            query = "UPDATE WANIKANI SET NEXT_REV= ? WHERE WK_KEY= ?"
-                            dbsql.cursor().execute(selector, (str(key[0]),))
-                            dbsql.execute(query, (str(review_time), str(key[0]),))
-                            dbsql.commit()
-                            succ += 1
-                        except:
-                            fail += 1
-                            pass
-                    print('Successfully Updated: ' + str(succ) + '\nFailed: ' + str(fail))
-                    await self.client.send_message(message.channel,
-                                                   'Successfully Updated: `' + str(succ) + '`\nFailed: `' + str(
-                                                       fail) + '`')
-                    await asyncio.sleep(1800)
-            else:
-                await self.client.send_message(message.channel,
-                                               'Only <@' + ownr + '> can start the WKChecker due to it\'s large load...\n(That\'s what she said~)')

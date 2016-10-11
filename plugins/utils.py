@@ -1,5 +1,5 @@
 from plugin import Plugin
-from config import cmd_remind, donators, OwnerID as ownr, permitted_id, ClientID as cid
+from config import donators, OwnerID as ownr, permitted_id, ClientID as cid
 import asyncio
 from utils import create_logger
 from utils import bold
@@ -11,23 +11,23 @@ import sys
 
 class Reminder(Plugin):
     is_global = True
-    log = create_logger(cmd_remind)
+    log = create_logger('remind')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_remind + ' '):
+        if message.content.startswith(pfx + 'remind' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Reminder'
             self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                           message.author,
                           message.author.id, message.server.name, message.server.id, message.channel)
-            remind_input = message.content[len(pfx) + len(cmd_remind) + 1:]
+            remind_input = message.content[len(pfx) + len('remind') + 1:]
             try:
                 time_q, ignore, remind_text = str(remind_input).partition(' ')
             except:
                 remind_text = 'Nothing'
                 time_q = '0'
                 await self.client.send_message(message.channel,
-                                               'Input missing parameters.\nThe command format is **' + pfx + cmd_remind + '[time in seconds] [message]**\nExample: ' + pfx + cmd_remind + ' 60 Leeroy jenkins!')
+                                               'Input missing parameters.\nThe command format is **' + pfx + 'remind' + '[time in seconds] [message]**\nExample: ' + pfx + 'remind' + ' 60 Leeroy jenkins!')
             try:
                 time_conv = time.strftime('%H:%M:%S', time.gmtime(int(time_q)))
                 if remind_text == '':

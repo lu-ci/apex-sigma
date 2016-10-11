@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_vindi
 from utils import create_logger
 import json
 from lxml import html
@@ -12,10 +11,10 @@ with open('scrolls.json', 'r', encoding='utf-8') as scrolls_file:
 
 class VindictusScrollSearch(Plugin):
     is_global = True
-    log = create_logger(cmd_vindi)
+    log = create_logger('es')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_vindi):
+        if message.content.startswith(pfx + 'es'):
             await self.client.send_typing(message.channel)
             cmd_name = 'Vindictus Scroll Search'
             try:
@@ -26,7 +25,7 @@ class VindictusScrollSearch(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            scrl_input = (message.content[len(pfx) + len(cmd_vindi) + 1:]).lower().replace('\'', '').replace(' ', '').replace(' es', '').replace('enchant', '').replace('scroll', '')
+            scrl_input = (message.content[len(pfx) + len('es') + 1:]).lower().replace('\'', '').replace(' ', '').replace(' es', '').replace('enchant', '').replace('scroll', '')
             try:
                 scrl_name = scrolls[scrl_input]['name']
                 scrl_type = scrolls[scrl_input]['type']

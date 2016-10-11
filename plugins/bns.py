@@ -1,7 +1,4 @@
 from plugin import Plugin
-from config import cmd_bns
-from config import cmd_bns_att
-from config import cmd_bns_def
 import requests
 from lxml import html
 from utils import create_logger
@@ -159,11 +156,11 @@ def fetchStats(region, nickname):
 
 class BladeAndSoul(Plugin):
     is_global = True
-    log = create_logger(cmd_bns)
+    log = create_logger('bnsstats')
 
     async def on_message(self, message, pfx):
         # Blade and Soul API
-        if message.content.startswith(pfx + cmd_bns):
+        if message.content.startswith(pfx + 'bnsstats'):
             cmd_name = 'Blade and Soul'
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
@@ -174,10 +171,10 @@ class BladeAndSoul(Plugin):
                               message.author,
                               message.author.id)
             await self.client.send_typing(message.channel)
-            query = message.content[len(cmd_bns) + 1 + len(pfx):]
+            query = message.content[len('bnsstats') + 1 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
             if not region == 'na' and not region == 'eu':
-                error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + cmd_bns + ' [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
+                error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + 'bnsstats [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
                 await self.client.send_message(message.channel, error_msg)
             else:
                 error_msg = 'Something went wrong, API is unavailable or character does not exist.'
@@ -272,7 +269,7 @@ class BladeAndSoul(Plugin):
                     await self.client.send_message(message.channel, error_msg)
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
         # Blade and Soul Attack Details API
-        elif message.content.startswith(pfx + cmd_bns_att):
+        elif message.content.startswith(pfx + 'bnsatt'):
             cmd_name = 'Blade and Soul Attack Details'
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
@@ -283,10 +280,10 @@ class BladeAndSoul(Plugin):
                               message.author,
                               message.author.id)
             await self.client.send_typing(message.channel)
-            query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
+            query = message.content[len('bnsatt') + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
             if not region == 'na' and not region == 'eu':
-                error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + cmd_bns + ' [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
+                error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + 'bnsatt [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
                 await self.client.send_message(message.channel, error_msg)
             else:
                 error_msg = 'Something went wrong, API is unavailable or character does not exist.'
@@ -369,7 +366,7 @@ class BladeAndSoul(Plugin):
                     await self.client.send_message(message.channel, error_msg)
             #print('CMD [' + cmd_name + '] > ' + initiator_data)
         # Blade and Soul Defense Details API
-        elif message.content.startswith(pfx + cmd_bns_def):
+        elif message.content.startswith(pfx + 'bnsdef'):
             cmd_name = 'Blade and Soul Defense Details'
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
@@ -380,10 +377,10 @@ class BladeAndSoul(Plugin):
                               message.author,
                               message.author.id)
             await self.client.send_typing(message.channel)
-            query = message.content[len(cmd_bns) + 1 + 3 + len(pfx):]
+            query = message.content[len('bnsdef') + 1 + 3 + len(pfx):]
             region = str(query[:query.find(' ')]).lower()
             if not region == 'na' and not region == 'eu':
-                error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + cmd_bns + ' [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
+                error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + pfx + 'bnsdef [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
                 await self.client.send_message(message.channel, error_msg)
             else:
                 error_msg = 'Something went wrong, API is unavailable or character does not exist.'
