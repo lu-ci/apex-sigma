@@ -72,5 +72,5 @@ class Help(Plugin):
                     pass
                 return
             out_text = (
-            bold('Description:') + '\n```java\n' + description + '\n```\n' + bold('Usage: ') + '`' + usage + '`')
+            bold('Description:') + '\n```\n' + description + '\n```\n' + bold('Usage: ') + '`' + usage + '`')
             await self.client.send_message(message.channel, out_text)
