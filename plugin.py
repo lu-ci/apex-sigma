@@ -1,5 +1,6 @@
 import inspect
 import logging
+import warnings
 
 class PluginMount(type):
     def __init__(cls, name, bases, attrs):
@@ -21,6 +22,7 @@ class Plugin(object, metaclass=PluginMount):
         pass
 
     async def _on_message(self, message, pfx):
+        warnings.filterwarnings("ignore", category=ResourceWarning)
         await self.on_message(message, pfx)
 
     async def on_message(self, message, pfx):

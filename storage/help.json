@@ -140,7 +140,7 @@
     "usage": "%pfx%jisho Kawaii"
   },
   "wanikani": {
-    "description": "Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani fora given username. For advanced stats, a user must save his WaniKani API Key with the %pfx%wksave command. Use help on it to get more info.",
+    "description": "Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the %pfx%wksave command. Use help on it to get more info.",
     "usage": "%pfx%wanikani breadstickninja"
   },
   "wksave": {
