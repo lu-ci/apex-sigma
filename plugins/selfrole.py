@@ -8,7 +8,7 @@ target_channel = ['roles']
 self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumble [DN]', 'Protect [DN]', 'PvE [DN]',
               'Raids [DN]', 'Nests [DN]', 'Dailies [DN]', 'Starlight [DN]',
               'Blade and Soul', 'PvP [BNS]', 'PvE [BNS]',
-              'NA [LoL]', 'EU [LoL]', 'OCE [LoL]',
+              'League of Legends', 'NA [LoL]', 'EU [LoL]', 'OCE [LoL]',
               'Vindictus', 'PvP [Vindi]', 'PvE [Vindi]',
               'Overwatch', 'CS:GO',
               'Black Desert Online', 'PvE [BD]', 'PvP [BD]',
