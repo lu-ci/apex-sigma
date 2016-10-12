@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  bot:
+    build: .
+    volumes:
+      - .:/sigma
+    ports:
+      - "443:443"
