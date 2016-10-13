@@ -181,7 +181,7 @@ class WK(Plugin):
         return user
 
     async def draw_image(self, message, user):
-        rank_category, kanji_loc, ov_color, txt_color = rank_info = self.get_rank_info(user['level'])
+        rank_category, kanji_loc, ov_color, txt_color = self.get_rank_info(user['level'])
 
         img_type = 'big' if user['method'] == 'api' else 'small'
 
@@ -216,7 +216,6 @@ class WK(Plugin):
         review_color = (255, 255, 255)
         review_font = font2
         review_pos = (420, 110)
-        txt_color = (0, 125, 107)
 
         imgdraw.text((95, 2), '{:s} of sect {:s}'.format(user['name'], user['title']), txt_color, font=font1)
         imgdraw.text((116, 31), str(user['srs']['apprentice']), txt_color, font=font2)
