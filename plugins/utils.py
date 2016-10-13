@@ -118,12 +118,12 @@ class BulkMSG(Plugin):
 
 class PMRedirect(Plugin):
     is_global = True
-    log = create_logger('received PM')
+    log = create_logger('received pm')
 
     async def on_message(self, message, pfx):
         cmd_name = 'Private Message'
         if message.server is None:
-            if str(message.author.id) == str(cid):
+            if str(message.author.id) == str(cid) or str(message.author.id) == str(ownr):
                 return
             else:
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',

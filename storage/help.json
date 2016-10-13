@@ -190,5 +190,9 @@
   "wowchar": {
     "description": "Shows World of Warcraft Character information and equipment.",
     "usage": "%pfx%wowchar EU Doomhammer Takamatsuku"
+  },
+  "mtg": {
+    "description": "Searches the Magic The Gathering Database for the inputed card.",
+    "usage": "%pfx%mtg Archangel Avacyn"
   }
 }

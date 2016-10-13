@@ -1,10 +1,9 @@
-config
 
 wget
 requests
 Pillow
 lxml
-nhentai
+nhentai.py
 pytz
 hurry.filesize
 Shosetsu

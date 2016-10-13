@@ -78,6 +78,7 @@ from plugins.utils import SetAvatar
 from plugins.reddit import Reddit
 from plugins.unflip import Table
 from plugins.cleverbot import Cleverbot
+from plugins.magic import MagicTheGathering
 
 
 # I love spaghetti!
