@@ -5,6 +5,6 @@ services:
     build: .
     volumes:
       - .:/sigma
-      - /usr/share/fonts:/usr/share/fonts
+      - ./fonts:/usr/share/fonts
     ports:
       - "443:443"

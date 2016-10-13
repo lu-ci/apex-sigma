@@ -22,13 +22,13 @@ class WK(Plugin):
     img_base = 'img/ani'
     wk_base_url = 'https://www.wanikani.com/api/user/'
 
-    def parse_date(self, time):
+    def parse_date(self, time, fmt = '%B %d, %Y %H:%M'):
         if time:
-            return datetime.datetime.fromtimestamp(time).strftime('%B %d, %Y %H:%M')
+            return datetime.datetime.fromtimestamp(time).strftime(fmt)
         else:
             return 'Unknown'
 
-    def get_rank_info(self, level, location = 184):
+    def get_rank_info(self, level, location = 174):
         if level == 60:
             return ('発明', location, '_en', (0, 204, 255))
         elif level >= 51:
@@ -38,11 +38,11 @@ class WK(Plugin):
         elif level >= 31:
             return ('地獄', location, '_he', (51, 102, 255))
         elif level >= 21:
-            return ('死', location, '_de', (102, 102, 255))
+            return ('死', 184, '_de', (102, 102, 255))
         elif level >= 11:
-            return ('苦', location, '_pai', (153, 102, 255))
+            return ('苦', 184, '_pai', (153, 102, 255))
         else:
-            return ('快', location, '_pl', (204, 51, 255))
+            return ('快', 184, '_pl', (204, 51, 255))
 
     async def text_message(self, message, user):
         srs = user['srs']
@@ -181,7 +181,7 @@ class WK(Plugin):
         return user
 
     async def draw_image(self, message, user):
-        rank_category, kanji_loc, ov_color, txt_color = self.get_rank_info(user['level'])
+        rank_category, kanji_loc, ov_color, txt_color = rank_info = self.get_rank_info(user['level'])
 
         img_type = 'big' if user['method'] == 'api' else 'small'
 
@@ -212,13 +212,11 @@ class WK(Plugin):
 
         base.paste(ava, (15, 5))
         base.paste(overlay, (0, 0), overlay)
-        review_color = (255, 255, 255)
 
+        review_color = (255, 255, 255)
         review_font = font2
         review_pos = (420, 110)
         txt_color = (0, 125, 107)
-        rank_category = ''
-        kanji_loc = 174
 
         imgdraw.text((95, 2), '{:s} of sect {:s}'.format(user['name'], user['title']), txt_color, font=font1)
         imgdraw.text((116, 31), str(user['srs']['apprentice']), txt_color, font=font2)
@@ -229,7 +227,7 @@ class WK(Plugin):
         imgdraw.text((95, 60), 'Level: {:d}'.format(user['level']), txt_color, font=font2)
 
         imgdraw.text((250, 60), 'Joined: {:s}'.format(
-            self.parse_date(user['creation_date'])),
+            self.parse_date(user['creation_date'], fmt = '%B %d, %Y')),
             txt_color, font=font2)
 
         imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
@@ -326,9 +324,12 @@ class WK(Plugin):
 
             # TODO: make text messages optional
             if user:
-                await self.draw_image(message, user)
+                try:
+                    await self.draw_image(message, user)
+                except OSError:
+                    # failed to generate image
+                    pass
                 await self.text_message(message, user)
-
 
 class WKKey(Plugin):
     is_global = True
@@ -415,7 +416,6 @@ class WKKey(Plugin):
 
             except:
                 await self.client.send_message(message.channel, 'Error while parsing the input message')
-
 
 class Jisho(Plugin):
     is_global = True
