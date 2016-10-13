@@ -15,16 +15,299 @@ import os
 from io import BytesIO
 import asyncio
 
-
 class WK(Plugin):
     is_global = True
     log = create_logger('wanikani')
+
+    img_base = 'img/ani'
+    wk_base_url = 'https://www.wanikani.com/api/user/'
+
+    def parse_date(self, time, fmt = '%B %d, %Y %H:%M'):
+        if time:
+            return datetime.datetime.fromtimestamp(time).strftime(fmt)
+        else:
+            return 'Unknown'
+
+    def get_rank_info(self, level, location = 174):
+        if level == 60:
+            return ('発明', location, '_en', (0, 204, 255))
+        elif level >= 51:
+            return ('現実', location, '_re', (0, 153, 255))
+        elif level >= 41:
+            return ('天堂', location, '_par', (0, 102, 255))
+        elif level >= 31:
+            return ('地獄', location, '_he', (51, 102, 255))
+        elif level >= 21:
+            return ('死', 184, '_de', (102, 102, 255))
+        elif level >= 11:
+            return ('苦', 184, '_pai', (153, 102, 255))
+        else:
+            return ('快', 184, '_pl', (204, 51, 255))
+
+    async def text_message(self, message, user):
+        srs = user['srs']
+
+        out = ''
+        out += '"{:s}" of Sect "{:s}"\n'.format(user['name'], user['title'])
+        out += 'Level {:d} Apprentice\n'.format(user['level'])
+        out += 'Scribed {:d} topics & {:d} posts\n'.format(user['forums']['topics'], user['forums']['posts'])
+
+        out += 'Serving the Crabigator since "{:s}"\n'.format(
+                self.parse_date(user['creation_date']))
+
+        out += 'Apprentice: {:d} | Guru: {:d} | Master {:d} | Enlightened {:d} | Burned {:d}\n'.format(
+                srs['apprentice'], srs['guru'], srs['master'], srs['enlightened'], srs['burned'])
+
+        # we have additional information through the api
+        if user['method'] == 'api':
+            rad_cur = user['radicals']['current']
+            rad_total = user['radicals']['total']
+            kan_cur = user['kanji']['current']
+            kan_total = user['kanji']['total']
+            out += 'Radicals: {:d}/{:d} ({:.2f}%) | Kanji: {:d}/{:d} ({:.2f}%)\n'.format(
+                    rad_cur, rad_total, (rad_cur / rad_total) * 100,
+                    kan_cur, kan_total, (kan_cur / kan_total) * 100)
+
+            out += 'Your Next Review: "{:s}"\n'.format(
+                    self.parse_date(user['reviews']['next_date']))
+
+            out += 'Lesson Queue: {:d} | Review Queue: {:d}\n'.format(
+                    user['lessons']['now'],
+                    user['reviews']['now'])
+
+            out += 'Reviews Next Hour: {:d} | Reviews Next Day: {:d}\n'.format(
+                    user['reviews']['next_hour'],
+                    user['reviews']['next_day'])
+
+        await self.client.send_message(message.channel, '```json\n{:s}\n```'.format(out))
+
+    async def get_user_data(self, message, key = None, username = None):
+        user = {
+            'method': None,
+            'name': '',
+            'title': '',
+            'avatar': ['', None],
+            'level': 0,
+            'creation_date': 0,
+            'forums': {'posts': 0, 'topics': 0},
+            'srs': {
+                'apprentice': 0,
+                'guru': 0,
+                'master': 0,
+                'enlightened': 0,
+                'burned': 0
+            },
+            'radicals': {'total': 0, 'current': 0},
+            'kanji': {'total': 0, 'current': 0},
+            'lessons': {'now': 0},
+            'reviews': {'now': 0, 'next_hour': 0, 'next_day': 0, 'next_date': 0},
+        }
+
+        srs_dist = None
+        lvl_prog = None
+        queue = None
+        userinfo = None
+
+        # if we have a key, pull data directly from API
+        if key:
+            url =  self.wk_base_url + key
+
+            try:
+                srs_dist = requests.get(url + '/srs-distribution').json()
+                lvl_prog = requests.get(url + '/level-progression').json()['requested_information']
+                queue = requests.get(url + '/study-queue').json()['requested_information']
+            except ConnectionError as e:
+                self.client.send_message('Failed to get user data.')
+                self.log.error('{:s}'.format(e))
+                raise e
+
+            userinfo = srs_dist['user_information']
+            srs_dist = srs_dist['requested_information']
+
+            user['method'] = 'api'
+            user['radicals']['total'] = lvl_prog['radicals_total']
+            user['radicals']['current'] = lvl_prog['radicals_progress']
+            user['kanji']['total'] = lvl_prog['kanji_total']
+            user['kanji']['current'] = lvl_prog['kanji_progress']
+            user['lessons']['now'] = queue['lessons_available']
+            user['reviews']['now'] = queue['reviews_available']
+            user['reviews']['next_hour'] = queue['reviews_available_next_hour']
+            user['reviews']['next_day'] = queue['reviews_available_next_day']
+            user['reviews']['next_date'] = queue['next_review_date']
+
+        # otherwise if we have a username, pull data from profile page
+        elif username:
+            page = requests.get('https://www.wanikani.com/community/people/' + username)
+            tree = html.fromstring(page.content)
+
+            script = tree.xpath('//div[@class="footer-adjustment"]/script')
+            if script != []:
+                script = script[0].text.strip()
+            else:
+                await self.client.send_message(message.channel,
+                    "Error while parsing the page, profile not found or doesn't exist")
+                return None
+
+            script = script[script.find('var srsCounts'): script.find(
+                'Counts.fillInSrsCount(srsCounts.requested_information);')]
+            script = script.strip()[16:-1]
+
+            userinfo = json.loads(script)['user_information']
+            srs_dist = json.loads(script)['requested_information']
+            user['method'] = 'html'
+        else:
+            await self.client.send_message(message.channel, 'No key or username')
+            return None
+
+        user['name'] = userinfo['username']
+        user['title'] = userinfo['title']
+        user['level'] = userinfo['level']
+        user['avatar'][0] = 'https://www.gravatar.com/avatar/' + userinfo['gravatar']
+        user['creation_date'] = userinfo['creation_date']
+        user['forums']['posts'] = userinfo['posts_count']
+        user['forums']['topics'] = userinfo['topics_count']
+        user['srs']['apprentice'] = srs_dist['apprentice']['total']
+        user['srs']['guru'] = srs_dist['guru']['total']
+        user['srs']['master'] = srs_dist['master']['total']
+        user['srs']['enlightened'] = srs_dist['enlighten']['total']
+        user['srs']['burned'] = srs_dist['burned']['total']
+
+        try:
+            user['avatar'][1] = requests.get(user['avatar'][0]).content
+        except ConnectionError as e:
+            self.client.send_message('Failed to get user avatar.')
+            self.log.error('{:s}'.format(e))
+
+        return user
+
+    async def draw_image(self, message, user):
+        rank_category, kanji_loc, ov_color, txt_color = rank_info = self.get_rank_info(user['level'])
+
+        img_type = 'big' if user['method'] == 'api' else 'small'
+
+        # load images and fonts
+        try:
+            # TODO: use default avatar image if it could not be downloaded
+            ava = Image.open(BytesIO(user['avatar'][1]))
+            base = Image.open('{:s}/base_wk_{:s}.png'.format(self.img_base, img_type))
+            overlay = Image.open('{:s}/overlay_wk_{:s}{:s}.png'.format(self.img_base, img_type, ov_color));
+        except IOError as e:
+            self.log.error('{:s}'.format(str(e)))
+            raise e
+
+        try:
+            font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 25)
+            font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 21)
+            font3 = ImageFont.truetype("YuGothB.ttc", 21)
+            font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
+        except OSError as e:
+            self.log.error('{:s}'.format(str(e)))
+            raise e
+
+        try:
+            imgdraw = ImageDraw.Draw(base)
+        except IOError as e:
+            self.log.error('{:s}'.format(str(e)))
+            raise e
+
+        base.paste(ava, (15, 5))
+        base.paste(overlay, (0, 0), overlay)
+
+        review_color = (255, 255, 255)
+        review_font = font2
+        review_pos = (420, 110)
+        txt_color = (0, 125, 107)
+
+        imgdraw.text((95, 2), '{:s} of sect {:s}'.format(user['name'], user['title']), txt_color, font=font1)
+        imgdraw.text((116, 31), str(user['srs']['apprentice']), txt_color, font=font2)
+        imgdraw.text((182, 31), str(user['srs']['guru']), txt_color, font=font2)
+        imgdraw.text((248, 31), str(user['srs']['master']), txt_color, font=font2)
+        imgdraw.text((314, 31), str(user['srs']['enlightened']), txt_color, font=font2)
+        imgdraw.text((380, 31), str(user['srs']['burned']), txt_color, font=font2)
+        imgdraw.text((95, 60), 'Level: {:d}'.format(user['level']), txt_color, font=font2)
+
+        imgdraw.text((250, 60), 'Joined: {:s}'.format(
+            self.parse_date(user['creation_date'], fmt = '%B %d, %Y')),
+            txt_color, font=font2)
+
+        imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
+
+        if user['method'] == 'api':
+            imgdraw.text((11, 88), 'Next Review: {:s}'.format(
+                self.parse_date(user['reviews']['next_date'])),
+                (255, 255, 255), font=font2)
+
+            if int(user['reviews']['now']) > 150:
+                review_color = (255, 174, 35)
+                review_font = font1
+                review_pos = (420, 108)
+
+            imgdraw.text((11, 110), 'Next Hour: {:d}'.format(user['reviews']['next_hour']), (255, 255, 255), font=font4)
+            imgdraw.text((136, 110), 'Next Day: {:d}'.format(user['reviews']['next_day']), (255, 255, 255), font=font4)
+
+            imgdraw.text((252, 88), 'Radical: {:d}/{:d}'.format(
+                user['radicals']['current'],
+                user['radicals']['total']),
+                (255, 255, 255), font=font2)
+
+            imgdraw.text((363, 88), 'Kanji: {:d}/{:d}'.format(
+                user['kanji']['current'],
+                user['kanji']['total']),
+                (255, 255, 255), font=font2)
+
+            imgdraw.text((252, 110), 'Lessons: {:d}'.format(user['lessons']['now']), (255, 255, 255), font=font2)
+            imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
+            imgdraw.text(review_pos, str(user['reviews']['now']), review_color, font=review_font)
+
+        base.save('cache/ani/wk_' + message.author.id + '.png')
+        await self.client.send_file(message.channel, 'cache/ani/wk_' + message.author.id + '.png')
+        os.remove('cache/ani/wk_' + message.author.id + '.png')
+
+    async def get_key(self, message, pfx):
+        # if no arguments passed, pulling the ID of a caller
+        if message.content == (pfx + 'wanikani'):
+            user_id = str(message.author.id)
+        # otherwise see if someone was mentioned
+        elif len(message.mentions) > 0:
+            user_id = message.mentions[0].id
+        # otherwise, pull the username out of a message
+        else:
+            key = None
+            try:
+                username = message.content[len(pfx) + len('wanikani') + 1:]
+            except:
+                await self.client.send_message(message.channel, 'Error while parsing the input message')
+                return
+
+        # TODO: move database connection out of plugin
+        dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+        if 'username' not in locals():
+            if 'user_id' not in locals():
+                await self.client.send_message(message.channel, 'No arguments passed')
+                return
+            # a username was passed
+            else:
+                key_cur = dbsql.execute("SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;",
+                                        (str(user_id),))
+                db_response = key_cur.fetchone()
+                if db_response == None:
+                    await self.client.send_message(message.channel,
+                            'No assigned key or username was found\n'
+                            'You can add it by sending me a direct message, for example\n'
+                            'For Advanced Stats: `' + pfx + 'wksave' + ' key <your API key>`\nor `' + pfx + 'wksave' + ' username <your username>` for basic stats.')
+                    return (None, None)
+
+                print(db_response)
+                key = db_response[0]
+                username = db_response[1]
+
+        return (key, username)
 
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + 'wanikani'):
             await self.client.send_typing(message.channel)
             cmd_name = 'WaniKani'
-            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                               message.author,
@@ -33,237 +316,20 @@ class WK(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
+                await self.client.send_typing(message.channel)
 
-            if len(message.mentions) == 0:  # no mentions in the message
-                if message.content == (pfx + 'wanikani'):
-                    user_id = str(message.author.id)  # if no arguments passed, pulling the ID of a caller
-                else:
-                    key = None
-                    username = message.content[
-                               len(pfx) + len('wanikani') + 1:]  # otherwise, pull the username out of a message
-            else:  # if there are mentions in the message
+            key, username = await self.get_key(message, pfx)
+
+            user = await self.get_user_data(message, key, username)
+
+            # TODO: make text messages optional
+            if user:
                 try:
-                    user_id = message.mentions[0].id  # pull the mentioned ID
-                except:
-                    await self.client.send_message(message.channel, 'Error while parsing the input message')
-                    return
-
-            if 'username' not in locals():
-                if 'user_id' not in locals():
-                    await self.client.send_message(message.channel, 'No arguments passed')
-                    return
-                else:  # a username was passed
-                    key_cur = dbsql.execute("SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;",
-                                            (str(user_id),))
-                    db_response = key_cur.fetchone()
-                    if db_response == None:
-                        await self.client.send_message(message.channel, 'No assigned key or username was found\n'
-                                                                        'You can add it by sending me a direct message, for example\n'
-                                                                        'For Advanced Stats: `' + pfx + 'wksave' + ' key <your API key>`\nor `' + pfx + 'wksave' + ' username <your username>` for basic stats.')
-                        return
-                    print(db_response)
-                    key = db_response[0]
-                    username = db_response[1]
-                    if (key == ''): key = None  # None the key if its empty so the if below won't be confused
-
-            # pull data to parse from
-            if key != None:  # if we have a key, pull data directly from API
-                try:
-                    url = 'https://www.wanikani.com/api/user/' + key
-                    api = requests.get(url + '/srs-distribution').json()
-                    api2 = requests.get(url + '/level-progression').json()
-                    api3 = requests.get(url + '/study-queue').json()
-                    rad_total = api2['requested_information']['radicals_total']
-                    rad_curr = api2['requested_information']['radicals_progress']
-                    kanji_total = api2['requested_information']['kanji_total']
-                    kanji_curr = api2['requested_information']['kanji_progress']
-
-                    try:
-                        next_review_date = datetime.datetime.fromtimestamp(
-                            api3['requested_information']['next_review_date']).strftime(
-                            '%B %d, %Y %H:%M')
-                    except TypeError:
-                        pass  # NoneType on retrival, user is on vacation
-                    lesson_queue = str(api3['requested_information']['lessons_available'])
-                    review_queue = str(api3['requested_information']['reviews_available'])
-                    review_nh = str(api3['requested_information']['reviews_available_next_hour'])
-                    review_nd = str(api3['requested_information']['reviews_available_next_day'])
-                    warning = ''
-                except UnboundLocalError:
-                    await self.client.send_message(message.channel,
-                                                   'There doesn\'t seem to be a key tied to you...\n\nYou can add your key by sending a direct message to me with the the WKSave Command, for example:\n`' + pfx + 'wksave' + ' 16813135183151381`\nAnd just replace the numbers with your WK API Key!')
-                    return
-                except TypeError:
-                    self.log.info('Type error')
-                    return
-            elif username != None:  # otherwise if we have a username, pull data from profile page
-                page = requests.get('https://www.wanikani.com/community/people/' + username)
-                tree = html.fromstring(page.content)
-                try:
-                    script = tree.xpath('//div[@class="footer-adjustment"]/script')[0].text.strip()
-                except IndexError:
-                    await self.client.send_message(message.channel,
-                                                   "Error while parsing the page, profile not found or doesn't exist")
-                    return
-                script = script[script.find('var srsCounts'): script.find(
-                    'Counts.fillInSrsCount(srsCounts.requested_information);')]
-                script = script.strip()[16:-1]
-                api = json.loads(script)
-            else:
-                await self.client.send_message(message.channel, 'No key or username')
-                return
-
-            # parsing
-            try:
-                img_type = 'Small'
-                out = ''
-
-                username = api['user_information']['username']
-                title = api['user_information']['title']
-                avatar = 'https://www.gravatar.com/avatar/' + api['user_information']['gravatar']
-                level = api['user_information']['level']
-                creation_date = datetime.datetime.fromtimestamp(api['user_information']['creation_date']).strftime(
-                    '%B %d, %Y')
-                topics_count = api['user_information']['topics_count']
-                posts_count = api['user_information']['posts_count']
-                apprentice = api['requested_information']['apprentice']['total']
-                guru = api['requested_information']['guru']['total']
-                master = api['requested_information']['master']['total']
-                enlightned = api['requested_information']['enlighten']['total']
-                burned = api['requested_information']['burned']['total']
-
-                out += '\"' + username + '\"' + ' of ' + 'Sect \"' + title + '\"\n'
-                out += 'Level \"' + str(level) + '\" Apprentice' + '\n'
-                out += 'Scribed \"' + str(topics_count) + '\" topics' + ' & \"' + str(posts_count) + '\" posts' + '\n'
-                out += 'Serving the Crabigator since \"' + creation_date + '\"\n'
-                out += 'Apprentice: \"' + str(apprentice) + '\" | Guru: \"' + str(guru) + '\" | Master: \"' + str(
-                    master) + '\" | Enlightened: \"' + str(
-                    enlightned) + '\" | Burned: \"' + str(burned) + '\"\n'
-
-                if 'api2' in locals():
-                    img_type = 'Big'
-                    out += 'Radicals: \"' + str(rad_curr) + '/' + str(rad_total) + '\" || Kanji: \"' + str(
-                        kanji_curr) + '/' + str(
-                        kanji_total) + '\"\n'
-
-                if 'api3' in locals():
-                    img_type = 'Big'
-                    try:
-                        out += 'Your Next Review: \"' + next_review_date + '\"\n'
-                    except UnboundLocalError:
-                        pass  # no review date, user is on vacation
-                    out += 'Lesson Queue: \"' + lesson_queue + '\" | Review Queue: \"' + review_queue + warning + '\"\n'
-                    out += 'Reviews Next Hour: \"' + review_nh + '\" | Reviews Next Day: \"' + review_nd + '\"'
-                ava_raw = requests.get(avatar).content
-                ava = Image.open(BytesIO(ava_raw))
-                txt_color = (0, 125, 107)
-                rank_category = ''
-                kanji_loc = 174
-                ov_color = ''
-                if level <= 10:
-                    rank_category = '快'
-                    kanji_loc = 184
-                    ov_color = '_pl'
-                    txt_color = (204, 51, 255)
-                elif 11 <= level <= 20:
-                    kanji_loc = 184
-                    rank_category = '苦'
-                    ov_color = '_pai'
-                    txt_color = (153, 102, 255)
-                elif 21 <= level <= 30:
-                    rank_category = '死'
-                    kanji_loc = 184
-                    ov_color = '_de'
-                    txt_color = (102, 102, 255)
-                elif 31 <= level <= 40:
-                    rank_category = '地獄'
-                    ov_color = '_he'
-                    txt_color = (51, 102, 255)
-                elif 41 <= level <= 50:
-                    rank_category = '天堂'
-                    ov_color = '_par'
-                    txt_color = (0, 102, 255)
-                elif 51 <= level <= 59:
-                    rank_category = '現実'
-                    ov_color = '_re'
-                    txt_color = (0, 153, 255)
-                elif level == 60:
-                    rank_category = '発明'
-                    ov_color = '_en'
-                    txt_color = (0, 204, 255)
-                base = Image.open('img/ani/base_wk_small.png')
-                overlay = Image.open('img/ani/overlay_wk_small' + ov_color + '.png')
-                if img_type == 'Small':
-                    base = Image.open('img/ani/base_wk_small.png')
-                    overlay = Image.open('img/ani/overlay_wk_small' + ov_color + '.png')
-                elif img_type == 'Big':
-                    base = Image.open('img/ani/base_wk.png')
-                    overlay = Image.open('img/ani/overlay_wk' + ov_color + '.png')
-                base.paste(ava, (15, 5))
-                base.paste(overlay, (0, 0), overlay)
-                review_color = (255, 255, 255)
-                font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 25)
-                font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 21)
-                font3 = ImageFont.truetype("YuGothB.ttc", 21)
-                font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
-                review_font = font2
-                review_pos = (420, 110)
-                imgdraw = ImageDraw.Draw(base)
-                imgdraw.text((95, 2), username + ' of sect ' + title, txt_color, font=font1)
-                imgdraw.text((116, 31), str(apprentice), txt_color, font=font2)
-                imgdraw.text((182, 31), str(guru), txt_color, font=font2)
-                imgdraw.text((248, 31), str(master), txt_color, font=font2)
-                imgdraw.text((314, 31), str(enlightned), txt_color, font=font2)
-                imgdraw.text((380, 31), str(burned), txt_color, font=font2)
-                imgdraw.text((95, 60), 'Level: ' + str(level), txt_color, font=font2)
-                imgdraw.text((250, 60), 'Joined: ' + str(creation_date), txt_color, font=font2)
-                imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
-                if img_type == 'Big':
-                    try:
-                        imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
-                    except:
-                        imgdraw.text((11, 88), 'Next Review: ' 'On Vacation or No Data', (255, 255, 255), font=font2)
-                    if int(review_queue) > 150:
-                        review_color = (255, 174, 35)
-                        review_font = font1
-                        review_pos = (420, 108)
-                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
-                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
-                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255),
-                                 font=font2)
-                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255),
-                                 font=font2)
-                    imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
-                    imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
-                    imgdraw.text(review_pos, str(review_queue), review_color, font=review_font)
-                if img_type == 'Big':
-                    try:
-                        imgdraw.text((11, 88), 'Next Review: ' + str(next_review_date), (255, 255, 255), font=font2)
-                    except:
-                        imgdraw.text((11, 88), 'Next Review: ' 'On Vacation or No Data', (255, 255, 255), font=font2)
-                    if int(review_queue) > 150:
-                        review_color = (255, 174, 35)
-                        review_font = font1
-                        review_pos = (420, 108)
-                    imgdraw.text((11, 110), 'Next Hour: ' + str(review_nh), (255, 255, 255), font=font4)
-                    imgdraw.text((136, 110), 'Next Day: ' + str(review_nd), (255, 255, 255), font=font4)
-                    imgdraw.text((252, 88), 'Radical: ' + str(rad_curr) + '/' + str(rad_total), (255, 255, 255),
-                                 font=font2)
-                    imgdraw.text((363, 88), 'Kanji: ' + str(kanji_curr) + '/' + str(kanji_total), (255, 255, 255),
-                                 font=font2)
-                    imgdraw.text((252, 110), 'Lessons: ' + str(lesson_queue), (255, 255, 255), font=font2)
-                    imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
-                    imgdraw.text(review_pos, str(review_queue), review_color, font=review_font)
-                base.save('cache\\ani\\wk_' + message.author.id + '.png')
-                await self.client.send_file(message.channel, 'cache\\ani\\wk_' + message.author.id + '.png')
-                await self.client.send_message(message.channel, '```java\n' + out + '\n```')
-                os.remove('cache\\ani\\wk_' + message.author.id + '.png')
-            except:
-                self.log.info('Error while parsing the data')
-                await self.client.send_message(message.channel,
-                                               'Something went wrong ¯\_(ツ)_/¯. Error while parsing the data')
-                return
-
+                    await self.draw_image(message, user)
+                except OSError:
+                    # failed to generate image
+                    pass
+                await self.text_message(message, user)
 
 class WKKey(Plugin):
     is_global = True
@@ -350,7 +416,6 @@ class WKKey(Plugin):
 
             except:
                 await self.client.send_message(message.channel, 'Error while parsing the input message')
-
 
 class Jisho(Plugin):
     is_global = True
