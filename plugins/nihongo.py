@@ -181,7 +181,7 @@ class WK(Plugin):
         return user
 
     async def draw_image(self, message, user):
-        rank_category, kanji_loc, ov_color, txt_color = rank_info = self.get_rank_info(user['level'])
+        rank_category, kanji_loc, ov_color, txt_color = self.get_rank_info(user['level'])
 
         img_type = 'big' if user['method'] == 'api' else 'small'
 
