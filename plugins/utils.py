@@ -234,6 +234,15 @@ class SetAvatar(Plugin):
 
     async def on_message(self, message, pfx, url=None, loop=None):
         if message.content.startswith(pfx + 'setavatar'):
+            cmd_name = 'Set Avatar'
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             if message.author.id in permitted_id:
                 loop = asyncio.get_event_loop() if loop is None else loop
                 aiosession = aiohttp.ClientSession(loop=loop)

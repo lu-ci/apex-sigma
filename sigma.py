@@ -68,8 +68,6 @@ from plugins.utils import Donators
 from plugins.utils import OtherUtils
 from plugins.utils import BulkMSG
 from plugins.imgur import Imgur
-from plugins.reward import RewardOnMessage
-from plugins.reward import LevelCheck
 from plugins.utils import PMRedirect
 from plugins.selfrole import SelfRole
 from plugins.world_of_warcraft import World_Of_Warcraft
@@ -79,6 +77,7 @@ from plugins.reddit import Reddit
 from plugins.unflip import Table
 from plugins.cleverbot import Cleverbot
 from plugins.magic import MagicTheGathering
+from plugins.key_vis import KeyVisual
 
 
 # I love spaghetti!
