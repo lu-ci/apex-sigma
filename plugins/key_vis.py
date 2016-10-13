@@ -124,22 +124,21 @@ class KeyVisual(Plugin):
                     await self.client.send_message(message.channel, 'Nothing found for `' + str(q) + '`...')
                     return
                 url_base = 'https://cgv.blicky.net/'
-                ran_chosen = random.choice(key_vn_list)
-                if ran_chosen == 'kud':
+                if visual_abrev == 'kud':
                     end_range = 290
-                elif ran_chosen == 'air':
+                elif visual_abrev == 'air':
                     end_range = 156
-                elif ran_chosen == 'knn':
+                elif visual_abrev == 'knn':
                     end_range = 175
-                elif ran_chosen == 'lbe':
+                elif visual_abrev == 'lbe':
                     end_range = 424
-                elif ran_chosen == 'cla':
+                elif visual_abrev == 'cla':
                     end_range = 206
-                elif ran_chosen == 'pla':
+                elif visual_abrev == 'pla':
                     end_range = 19
-                elif ran_chosen == 'rhf':
+                elif visual_abrev == 'rhf':
                     end_range = 84
-                elif ran_chosen == 'rwr':
+                elif visual_abrev == 'rwr':
                     end_range = 252
                 else:
                     return

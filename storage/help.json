@@ -194,5 +194,9 @@
   "mtg": {
     "description": "Searches the Magic The Gathering Database for the inputed card.",
     "usage": "%pfx%mtg Archangel Avacyn"
+  },
+  "keyvis": {
+    "description": "Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random",
+    "usage": "%pfx%keyvis rewrite harvest festa"
   }
 }
