@@ -1,12 +1,10 @@
 import discord
-import asyncio
+import sqlite3
 from collections import deque
 from plugin import Plugin
 from utils import create_logger
 from config import permitted_id, permitted_roles
 from utils import bold
-from config import cmd_handup, cmd_handdown, cmd_repertoire, cmd_takemic, cmd_dropmic, cmd_startkaraoke, \
-    cmd_karaokemode, cmd_forceremove, cmd_strict
 
 client = discord.Client()
 
@@ -174,7 +172,7 @@ class Control(Plugin):
             for user in temp:
                 await self.client.server_voice_state(user, mute=False)  # unmute them
 
-        if message.content.startswith(pfx + cmd_karaokemode):
+        if message.content.startswith(pfx + 'startkaraoke'):
             if checkPermissions(message.author):
                 if karaoke_mod:
                     karaoke_mod = False
@@ -185,9 +183,9 @@ class Control(Plugin):
             else:
                 await self.client.send_message(message.channel, "Insufficient permissions")
 
-        elif message.content.startswith(pfx + cmd_startkaraoke):
+        elif message.content.startswith(pfx + 'startkaraoke'):
             if checkPermissions(message.author):
-                target = message.content[len(pfx) + len(cmd_startkaraoke) + 1:]
+                target = message.content[len(pfx) + len('startkaraoke') + 1:]
                 if (len(target)) == 0:
                     await self.client.send_message(message.channel, "No channel specified, aborting")
                     return
@@ -225,7 +223,7 @@ class Control(Plugin):
             else:
                 await self.client.send_message(message.channel, "Insufficient permissions")
 
-        elif message.content.startswith(pfx + cmd_strict):
+        elif message.content.startswith(pfx + 'karaokestrict'):
             if checkPermissions(message.author):
 
                 if karaoke_strict:
@@ -251,7 +249,7 @@ class Control(Plugin):
             else:
                 await self.client.send_message(message.channel, "Insufficient permissions")
 
-        elif message.content.startswith(pfx + cmd_handup):
+        elif message.content.startswith(pfx + 'handup'):
             await self.client.send_typing(message.channel)
             if karaoke:
                 if not message.author.id in karaoke_queue:
@@ -264,7 +262,7 @@ class Control(Plugin):
             else:
                 await self.client.send_message(message.channel, 'No karaoke session running')
 
-        elif message.content.startswith(pfx + cmd_repertoire):
+        elif message.content.startswith(pfx + 'repertoire'):
             if karaoke:
                 await self.client.send_typing(message.channel)
                 if len(karaoke_queue) != 0:
@@ -286,9 +284,9 @@ class Control(Plugin):
             else:
                 await self.client.send_message(message.channel, "Insufficient permissions")
 
-        elif message.content.startswith(pfx + cmd_forceremove):
+        elif message.content.startswith(pfx + 'karaokeremove'):
             if checkPermissions(message.author):
-                target = message.content[len(pfx) + len(cmd_forceremove) + 1:]
+                target = message.content[len(pfx) + len('karaokeremove') + 1:]
                 if (len(target)) == 0:
                     await self.client.send_message(message.channel, "No user specified, aborting")
                     return
@@ -300,7 +298,7 @@ class Control(Plugin):
             else:
                 await self.client.send_message(message.channel, "Insufficient permissions")
 
-        elif message.content.startswith(pfx + cmd_handdown):
+        elif message.content.startswith(pfx + 'handdown'):
             if karaoke:
                 if message.author in karaoke_queue:
                     karaoke_queue.remove(message.author)
@@ -311,7 +309,7 @@ class Control(Plugin):
             else:
                 await self.client.send_message(message.channel, 'No karaoke session running')
 
-        elif message.content.startswith(pfx + cmd_takemic):
+        elif message.content.startswith(pfx + 'takemic'):
             if not karaoke_deban[0]:  # if its not someone's else turn
                 if message.author in karaoke_queue:  # if user is in the queue
                     if message.author == karaoke_queue[0]:  # if its his/her turn
@@ -339,7 +337,7 @@ class Control(Plugin):
             else:
                 self.client.send_message(message.channel, "Shh, it's <@" + karaoke_deban[1].id + "> singing time")
 
-        elif message.content.startswith(pfx + cmd_dropmic):
+        elif message.content.startswith(pfx + 'dropmic'):
             # try:
             if karaoke_deban[0]:
                 if message.author == karaoke_deban[1]:
@@ -352,7 +350,7 @@ class Control(Plugin):
                     await self.client.send_message(message.channel,
                                                    'It seems <@' + karaoke_deban[
                                                        1].id + '> is done, unfortunatelly at the cost of a broken microphone!\nWe broudght spares, yay~! Whenever the next singer is ready, type ' + bold(
-                                                       pfx) + bold(cmd_takemic) + '!')
+                                                       pfx) + bold('takemic') + '!')
                     karaoke_deban = [False, 0]
                     return
                 else:
@@ -368,7 +366,7 @@ class Control(Plugin):
                 #    await self.client.send_message(message.channel, "What do you think you're dropping <@" + message.author.id + "> ?")
 
 
-        elif message.content.startswith(pfx + 'status'):
+        elif message.content.startswith(pfx + 'karaokestatus'):
             out = 'Karaoke mode ' + bold(boolToStr(karaoke_mod)) + '\n'
             out += 'Session ongoing ' + bold(boolToStr(karaoke)) + '\n'
             out += 'Channel ' + bold(karaoke_channel) + '\n'
@@ -421,6 +419,52 @@ class Control(Plugin):
             if checkPermissions(message.author):
                 karaoke_channel = message.content[len(pfx) + len('setchannel') + 1:]
                 await self.client.send_message(message.channel, "Channel set")
+
+        elif message.content.startswith(pfx + 'signup'):
+            cmd_name = 'karaoke signup'
+            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+            await self.client.send_typing(message.channel)
+            try:
+                self.log.info(
+                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                    message.author,
+                    message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            info_grabber_checker = dbsql.execute(
+                "SELECT EXISTS (SELECT USER_ID FROM KARAOKE_LIST WHERE USER_ID=?);", (str(message.author.id),))
+            for info_check in info_grabber_checker:
+                if info_check[0] == 0:
+                    dbsql.execute('INSERT INTO KARAOKE_LIST (USER_ID, USER_NAME) VALUES (?, ?)', (str(message.author.id), str(message.author.name),))
+                    dbsql.commit()
+                    await self.client.send_message(message.channel, 'Thank you for signing up for the Karaoke event, <@' + message.author.id + '>!')
+                else:
+                    await self.client.send_message(message.channel, 'It seems you\'ve already signed up, <@' + message.author.id + '>!')
+        elif message.content.startswith(pfx + 'karaokelist'):
+            cmd_name = 'karaoke signup sheet list'
+            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
+            await self.client.send_typing(message.channel)
+            try:
+                self.log.info(
+                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                    message.author,
+                    message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            username_grabber = dbsql.execute('SELECT USER_NAME FROM KARAOKE_LIST')
+            out_text = ''
+            n = 0
+            for username in username_grabber:
+                n += 1
+                out_text += '\n#' + str(n) + ' [ ' + str(username[0]) + ' ]'
+            if out_text == '':
+                await self.client.send_message(message.channel, 'Nobody signed up yet...')
+            else:
+                await self.client.send_message(message.channel, out_text)
 
 
 

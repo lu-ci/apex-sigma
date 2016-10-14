@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_hearthstone
 from config import MashapeKey
 import requests
 from utils import create_logger
@@ -9,15 +8,21 @@ import os
 
 class Hearthstone(Plugin):
     is_global = True
-    log = create_logger(cmd_hearthstone)
+    log = create_logger('hearthstone')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_hearthstone + ' '):
+        if message.content.startswith(pfx + 'hearthstone' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Hearthstone'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel', message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
-            hs_input = (str(message.content[len(cmd_hearthstone) + 1 + len(pfx):]))
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            hs_input = (str(message.content[len('hearthstone') + 1 + len(pfx):]))
             url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/' + hs_input + '?locale=enUS'
             headers = {'X-Mashape-Key': MashapeKey, 'Accept': 'text/plain'}
             response = requests.get(url, headers=headers).json()
@@ -39,11 +44,13 @@ class Hearthstone(Plugin):
                         except:
                             await self.client.send_message(message.channel,
                                                            'Not a number or timed out... Please start over')
+                            return
                         if choice is None:
                             return
                     except:
                         await self.client.send_message(message.channel,
                                                        'The list is way too big, please be more specific...')
+                        return
                 else:
                     card_no = 0
             except:

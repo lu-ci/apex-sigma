@@ -1,0 +1,16 @@
+
+wget
+requests
+Pillow
+lxml
+nhentai.py
+pytz
+hurry.filesize
+Shosetsu
+imgurpython
+praw
+cleverbot
+discord.py
+
+blinker
+nose

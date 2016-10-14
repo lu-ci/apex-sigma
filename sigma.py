@@ -1,11 +1,10 @@
-# noinspection PyPep8
 import datetime
 import os
 import sys
 import time
 import discord
 import logging
-from config import StartupType, dsc_email, dsc_password
+from config import StartupType, dsc_email, dsc_password, sigma_version
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler()
@@ -22,7 +21,7 @@ current_time.isoformat()
 
 if not os.path.isfile('config.py'):
     sys.exit(
-        'Fatal Error: config.py is not present.\nIf you didn\'t already, rename config.example.json to config.json and try again.')
+        'Fatal Error: config.py is not present.\nIf you didn\'t already, rename config_example.py to config.py, fill out your credentials and try again.')
 else:
     print('config.py present, continuing...')
 # Data
@@ -31,9 +30,6 @@ from config import Token as token
 if token == '': sys.exit('Token not provided, please open config.json and place your token.')
 
 from config import Prefix as pfx
-from config import cmd_help
-# from config import Pushbullet as pb_key
-# pb = pushbullet.Pushbullet(pb_key)
 
 from plugin_manager import PluginManager
 from plugins.help import Help
@@ -48,7 +44,6 @@ from plugins.joke import Joke
 from plugins.overwatch import Overwatch
 from plugins.rip import Rip
 from plugins.lastfm import LastFM
-from plugins.cleverbot import Cleverbot
 from plugins.echo import Echo
 from plugins.nsfwperms import NSFWPermission
 from plugins.gelbooru import Gelbooru
@@ -63,7 +58,6 @@ from plugins.nihongo import WK
 from plugins.nihongo import WKKey
 from plugins.nihongo import Jisho
 from plugins.mal import MAL
-from plugins.unflip import Table
 from plugins.vindictus import VindictusScrollSearch
 from plugins.sonarr import Sonarr
 from plugins.karaoke import VoiceChangeDetection
@@ -71,14 +65,19 @@ from plugins.karaoke import Control
 from plugins.vndb import VNDBSearch
 from plugins.utils import Reminder
 from plugins.utils import Donators
-from plugins.reddit import Reddit
+from plugins.utils import OtherUtils
 from plugins.utils import BulkMSG
-#from plugins.nihongo import WaniKaniAutoCheck
-#from plugins.nihongo import WKReviewFiller
-from plugins.reward import RewardOnMessage
-from plugins.reward import LevelCheck
+from plugins.imgur import Imgur
 from plugins.utils import PMRedirect
+from plugins.selfrole import SelfRole
 from plugins.world_of_warcraft import World_Of_Warcraft
+from plugins.rocket_league import RocketLeague
+from plugins.utils import SetAvatar
+from plugins.reddit import Reddit
+from plugins.unflip import Table
+from plugins.cleverbot import Cleverbot
+from plugins.magic import MagicTheGathering
+from plugins.key_vis import KeyVisual
 
 
 # I love spaghetti!
@@ -98,9 +97,10 @@ class sigma(discord.Client):
         return plugins
 
     async def on_ready(self):
-        gamename = pfx + cmd_help
+        gamename = pfx + 'help'
         game = discord.Game(name=gamename)
         await client.change_status(game)
+
         server_amo = 0
         member_amo = 0
         for server in client.servers:
@@ -109,22 +109,17 @@ class sigma(discord.Client):
                 member_amo += 1
 
         print('-----------------------------------')
-        print('Logged in as: ' + client.user.name)
+        print('Logged In As: ' + client.user.name)
         print('Bot User ID: ' + client.user.id)
         print('Running discord.py version: ' + discord.__version__)
         print('Authors: AXAz0r, Awakening')
-        print('Contributors: Mirai, Chaeldar')
-        print('Bot Version: Beta 0.50')
-        print('Build Date: 25. September 2016.')
+        print('Contributors: Mirai, Chaeldar, Valeth')
+        print('Bot Version: ' + sigma_version)
+        print('Build Date: 05. October 2016.')
         print('-----------------------------------')
         print('Connected to [ ' + str(server_amo) + ' ] servers.')
         print('Serving [ ' + str(member_amo) + ' ] users.')
         print('\nSuccessfully connected to Discord!')
-        # try:
-        # if notify == 'Yes':
-        #    pb.push_note('Sigma', 'Sigma Activated!')
-        # else: print(client.user.name + ' activated.')
-        # except: pass
         folder = 'cache/ow'
         try:
             for the_file in os.listdir(folder):
@@ -160,8 +155,15 @@ class sigma(discord.Client):
 
 client = sigma()
 if StartupType == '0':
-    client.run(token)
+    try:
+        client.run(token)
+    except Exception as err:
+        print(err)
 elif StartupType == '1':
-    client.run(dsc_email, dsc_password)
+    try:
+        client.run(dsc_email, dsc_password)
+    except Exception as err:
+        print(err)
 else:
     print('Failed loading connection settings.\nCheck your StartupType and make sure it\'s either 0 or 1.')
+    sys.exit('Startup Type is not found.')

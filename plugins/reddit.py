@@ -65,5 +65,5 @@ class Reddit(Plugin):
                     out += post.get_hot(limit=10)
                 print(out)
                 await self.client.send_message(message.channel, out)
-            except SyntaxError:
+            except:
                 print('syn errrrrr')

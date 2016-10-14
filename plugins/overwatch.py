@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_overwatch
 import urllib.request
 import wget
 import os
@@ -13,18 +12,23 @@ from utils import create_logger
 
 class Overwatch(Plugin):
     is_global = True
-    log = create_logger(cmd_overwatch)
+    log = create_logger('overwatch')
 
     async def on_message(self, message, pfx):
 
         # Overwatch API
-        if message.content.startswith(pfx + cmd_overwatch + ' '):
+        if message.content.startswith(pfx + 'overwatch' + ' '):
             cmd_name = 'Overwatch'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             await self.client.send_typing(message.channel)
-            ow_input = (str(message.content[len(cmd_overwatch) + 1 + len(pfx):])).replace('#', '-')
+            ow_input = (str(message.content[len('overwatch') + 1 + len(pfx):])).replace('#', '-')
             ow_region_x, ignore, ow_name = ow_input.partition(' ')
             ow_region = ow_region_x.replace('NA', 'US')
             if os.path.isfile('cache/ow/avatar_' + message.author.id + '.png'):
@@ -140,4 +144,4 @@ class Overwatch(Plugin):
                         # print('CMD [' + cmd_name + '] > ' + initiator_data)
             else:
                 await self.client.send_message(message.channel,
-                                               'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + pfx + cmd_overwatch + 'region battletag#ID')
+                                               'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + pfx + 'overwatch' + 'region battletag#ID')

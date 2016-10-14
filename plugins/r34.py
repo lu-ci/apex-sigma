@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_rule34
 from utils import create_logger
 from lxml import html
 import requests
@@ -12,13 +11,18 @@ class R34(Plugin):
     log = create_logger('Rule34')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_rule34):
+        if message.content.startswith(pfx + 'rule34'):
             await self.client.send_typing(message.channel)
             cmd_name = 'Rule34'
             dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
-            self.log.info('\nUser %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             try:
                 perms = dbsql.execute("SELECT PERMITTED from NSFW where CHANNEL_ID=?;", (str(message.channel.id),))
                 permed = 'No'
@@ -26,13 +30,13 @@ class R34(Plugin):
                     permed = row[0]
             except sqlite3.OperationalError:
                 permed = 'No'
-            except SyntaxError:
+            except:
                 permed = 'No'
             if permed == 'Yes':
                 permitted = True
             else:
                 permitted = False
-            tags = message.content[len(pfx) + len(cmd_rule34) + 1:]
+            tags = message.content[len(pfx) + len('rule34') + 1:]
             try:
                 if tags == '':
                     tags = 'nude'

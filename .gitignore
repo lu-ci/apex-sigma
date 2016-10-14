@@ -1,22 +1,25 @@
-*.xml
+# IDE stuff
 *.iml
-*.txt
 .idea/vcs.xml
-config.json
 release/*
+
+# Python stuff
+*.pyc
+__pycache__/*
+plugins/__pycache__/*
+thing.py
+config.py
+plugins/xp_grind.py
+
+# Database
+storage/*.sqlite*
+
+# Misc
+*.xml
+config.json
 avatar.png
 border.png
 profile.png
 lolsig.png
-thing.py
-__pycache__/*
-plugins/__pycache__/*
 cache/*
-config.py
-=======
-config.py
-_pycache_
-*.pyc
-cache/ow/*
-cache/lol/*
-plugins/xp_grind.py
+log.txt

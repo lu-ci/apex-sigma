@@ -1,5 +1,4 @@
 from plugin import Plugin
-from config import cmd_sonarr
 from config import SonarrKey as apikey
 from hurry.filesize import size
 import requests
@@ -8,16 +7,21 @@ from utils import create_logger
 
 class Sonarr(Plugin):
     is_global = True
-    log = create_logger(cmd_sonarr)
+    log = create_logger('sonarr')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_sonarr + ' '):
+        if message.content.startswith(pfx + 'sonarr' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Sonarr'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
-            snr_input = (str(message.content[len(cmd_sonarr) + 1 + len(pfx):]))
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            snr_input = (str(message.content[len('sonarr') + 1 + len(pfx):]))
             snr_url = 'http://localhost:38082/api/' + snr_input + '?apikey=' + apikey
             snr_data = requests.get(snr_url).json()
             out_text = ''

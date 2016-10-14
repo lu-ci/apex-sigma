@@ -1,6 +1,5 @@
 from plugin import Plugin
-from config import cmd_league
-from config import RiotAPIKey as riot_api_key
+from config import RiotAPIKey
 import os
 import wget
 import requests
@@ -13,17 +12,22 @@ from io import BytesIO
 
 class LeagueOfLegends(Plugin):
     is_global = True
-    log = create_logger(cmd_league)
+    log = create_logger('league')
 
     async def on_message(self, message, pfx):
         # League of Legends API
-        if message.content.startswith(pfx + cmd_league + ' '):
+        if message.content.startswith(pfx + 'league' + ' '):
             await self.client.send_typing(message.channel)
             cmd_name = 'League of Legends'
-            self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                          message.author,
-                          message.author.id, message.server.name, message.server.id, message.channel)
-            lol_input = str(message.content[len(pfx) + len(cmd_league) + 1:])
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            lol_input = str(message.content[len(pfx) + len('league') + 1:])
             try:
                 region, gametype, smnr_name = lol_input.lower().split(maxsplit=2)
                 if not gametype.lower() == 'aram' and not gametype.lower() == 'dominion' and not gametype.lower() == 'urf' and not gametype.lower() == 'hexakill':
@@ -34,8 +38,8 @@ class LeagueOfLegends(Plugin):
                 region, smnr_name = lol_input.lower().split(maxsplit=1)
                 gametype = 'None'
             smnr_name_table = smnr_name.replace(' ', '')
-            smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + riot_api_key
-            version_url = 'https://global.api.pvp.net/api/lol/static-data/' + region + '/v1.2/versions?api_key=' + riot_api_key
+            smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + RiotAPIKey
+            version_url = 'https://global.api.pvp.net/api/lol/static-data/' + region + '/v1.2/versions?api_key=' + RiotAPIKey
             version_json = requests.get(version_url).json()
             version = str(version_json[0])
             try:
@@ -44,9 +48,9 @@ class LeagueOfLegends(Plugin):
                 smnr_icon = str(smnr_by_name[smnr_name_table]['profileIconId'])
                 icon_url = 'http://ddragon.leagueoflegends.com/cdn/' + version + '/img/profileicon/' + smnr_icon + '.png'
                 smnr_lvl = str(smnr_by_name[smnr_name_table]['summonerLevel'])
-                summary_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smnr_id + '/summary?season=SEASON2016&api_key=' + riot_api_key
+                summary_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smnr_id + '/summary?season=SEASON2016&api_key=' + RiotAPIKey
                 summary = requests.get(summary_url).json()
-                league_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v2.5/league/by-summoner/' + smnr_id + '?api_key=' + riot_api_key
+                league_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v2.5/league/by-summoner/' + smnr_id + '?api_key=' + RiotAPIKey
                 try:
                     league = requests.get(league_url).json()
                     league_name = league[smnr_id][0]['name']

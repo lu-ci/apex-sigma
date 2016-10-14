@@ -1,13 +1,7 @@
 from plugin import Plugin
-from config import cmd_wow_character
 from config import BlizzardKey
 import requests
 from utils import create_logger
-import wget
-
-classes = ['Warrior', 'Paladin', 'Hunter', 'Rogue', 'Priest', 'Death Knight', 'Shaman', 'Mage', 'Warlock', 'Monk',
-           'Druid', 'Demon Hunter']
-races = ['Human', 'Orc', 'Dwarf', 'Night Elf', 'Undead', 'Tauren', 'Gnome', 'Troll', 'Pandaran', 'Blood Elf', 'Braenei']
 
 
 class World_Of_Warcraft(Plugin):
@@ -15,7 +9,7 @@ class World_Of_Warcraft(Plugin):
     log = create_logger('wow')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + cmd_wow_character + ' '):
+        if message.content.startswith(pfx + 'wowchar' + ' '):
             cmd_name = 'WoW Character'
             try:
                 self.log.info(
@@ -27,9 +21,15 @@ class World_Of_Warcraft(Plugin):
                               message.author,
                               message.author.id)
             await self.client.send_typing(message.channel)
-            query = message.content[len(pfx) + len(cmd_wow_character) + 1:]
-            region, realm, char_name = query.split(maxsplit=2)
+            query = message.content[len(pfx) + len('wowchar') + 1:].replace('_', '%20')
             try:
+                region_raw, realm, char_name = query.split(maxsplit=2)
+            except:
+                await self.client.send_message(message.channel,
+                                               'Invalid Input Format, please reffer to the example:\n`' + pfx + 'wowchar' + ' EU Doomhammer Takamatsuku`')
+                return
+            try:
+                region = region_raw.replace('_', '%20')
                 base_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?locale=en_GB&apikey=' + BlizzardKey
                 char_data = requests.get(base_url).json()
                 achi_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?fields=achievements' + '&locale=en_GB&apikey=' + BlizzardKey
@@ -40,10 +40,67 @@ class World_Of_Warcraft(Plugin):
                 char_ig_name = char_data['name']
                 char_realm = char_data['realm']
                 battlegroup = char_data['battlegroup']
-                class_id = char_data['class']
-                class_name = classes[class_id - 1]
                 race_id = char_data['race']
-                race_name = races[race_id - 1]
+                if race_id == 1:
+                    race_name = 'Human'
+                elif race_id == 2:
+                    race_name = 'Orc'
+                elif race_id == 3:
+                    race_name = 'Dwarf'
+                elif race_id == 4:
+                    race_name = 'Night Elf'
+                elif race_id == 5:
+                    race_name = 'Undead'
+                elif race_id == 6:
+                    race_name = 'Tauren'
+                elif race_id == 7:
+                    race_name = 'Gnome'
+                elif race_id == 8:
+                    race_name = 'Troll'
+                elif race_id == 9:
+                    race_name = 'Goblin'
+                elif race_id == 10:
+                    race_name = 'Blood Elf'
+                elif race_id == 11:
+                    race_name = 'Draenei'
+                elif race_id == 22:
+                    race_name = 'Worgen'
+                elif race_id == 24:
+                    race_name = 'Pandaren'
+                elif race_id == 25:
+                    race_name = 'Pandaren'
+                elif race_id == 26:
+                    race_name = 'Pandaren'
+                else:
+                    race_name = 'Error'
+                # -------
+                class_id = char_data['class']
+                if class_id == 1:
+                    class_name = 'Warrior'
+                elif class_id == 2:
+                    class_name = 'Paladin'
+                elif class_id == 3:
+                    class_name = 'Hunter'
+                elif class_id == 4:
+                    class_name = 'Rogue'
+                elif class_id == 5:
+                    class_name = 'Priest'
+                elif class_id == 6:
+                    class_name = 'Death Knight'
+                elif class_id == 7:
+                    class_name = 'Shaman'
+                elif class_id == 8:
+                    class_name = 'Mage'
+                elif class_id == 9:
+                    class_name = 'Warlock'
+                elif class_id == 10:
+                    class_name = 'Monk'
+                elif class_id == 11:
+                    class_name = 'Druid'
+                elif class_id == 12:
+                    class_name = 'Demon Hunter'
+                # -------
+
                 gender_id = char_data['gender']
                 if gender_id == 1:
                     gender_name = 'Female'
@@ -175,13 +232,14 @@ class World_Of_Warcraft(Plugin):
                 out_eqp += '\nMain Hand: \"' + item_main_hand + '\"'
                 out_eqp += '\nOff Hand: \"' + item_off_hand + '\"'
 
-                await self.client.send_message(message.channel, ':ticket: Basic Stats:\n```python\n' + out_data + '\n```')
+                await self.client.send_message(message.channel,
+                                               ':ticket: Basic Stats:\n```python\n' + out_data + '\n```')
                 await self.client.send_message(message.channel, ':shirt: Equipment:\n```python\n' + out_eqp + '\n```')
-                wget.download('http://auction-api-eu.worldofwarcraft.com/auction-data/79747dfecb0c48ab6a26aa4cff0ffcbb/auctions.json')
             except:
                 try:
                     error_no = char_data['status']
                     error_msg = char_data['reason']
                     await self.client.send_message(message.channel, 'Error: ' + str(error_no) + '\n' + error_msg)
                 except:
-                    await self.client.send_message(message.channel, 'Something went wrong, most likely invalid region...\nRegions are: `US`, `EN`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + cmd_wow_character + ' EU Doomhammer Takamatsuku`')
+                    await self.client.send_message(message.channel,
+                                                   'Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + pfx + 'wowchar' + ' EU Doomhammer Takamatsuku`')

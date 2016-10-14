@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  bot:
+    build: .
+    volumes:
+      - .:/sigma
+      - ./fonts:/usr/share/fonts
+    ports:
+      - "443:443"
