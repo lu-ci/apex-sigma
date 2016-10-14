@@ -7,7 +7,7 @@ class Table(Plugin):
     log = create_logger('table')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith('(╯°□°）╯︵ ┻━┻'):
+        if '(╯°□°）╯︵ ┻━┻' in message.content:
             cmd_name = 'TableFlip'
             table = ['┬─┬ ノ( ^_^ノ)',
                      '┬─┬ ﾉ(° -°ﾉ)',

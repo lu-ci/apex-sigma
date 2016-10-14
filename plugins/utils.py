@@ -7,6 +7,7 @@ import time
 from config import sigma_version
 import aiohttp
 import sys
+import json
 
 
 class Reminder(Plugin):
@@ -228,12 +229,22 @@ class OtherUtils(Plugin):
             if message.author.id in permitted_id:
                 sys.exit('terminated by command')
 
+
 class SetAvatar(Plugin):
     is_global = True
     log = create_logger('Set Avatar')
 
     async def on_message(self, message, pfx, url=None, loop=None):
         if message.content.startswith(pfx + 'setavatar'):
+            cmd_name = 'Set Avatar'
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
             if message.author.id in permitted_id:
                 loop = asyncio.get_event_loop() if loop is None else loop
                 aiosession = aiohttp.ClientSession(loop=loop)
@@ -261,3 +272,44 @@ class SetAvatar(Plugin):
                         pass
                     except Exception as err:
                         await self.client.send_message(message.channel, str(err))
+
+
+class MakeCommandList(Plugin):
+    is_global = True
+    log = create_logger('mkcmdlist')
+
+    async def on_message(self, message, pfx):
+        if message.content == pfx + 'mkcmdlist':
+            cmd_name = 'Make Command List'
+            await self.client.send_typing(message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            if message.author.id in permitted_id:
+                out_text = 'Command |  Description |  Usage'
+                out_text += '\n--------|--------------|-------'
+                try:
+                    import os
+                    os.remove('COMMANDLIST.md')
+                except:
+                    pass
+                with open('storage/help.json', 'r', encoding='utf-8') as help_file:
+                    help_data = help_file.read()
+                    help_data = json.loads(help_data)
+                for entry in help_data:
+                    out_text += '\n`' + pfx + entry + '`  |  ' + help_data[entry]['description'].replace('%pfx%', str(
+                        pfx)) + '  |  `' + help_data[entry]['usage'].replace('%pfx%', str(pfx)) + '`'
+                with open("COMMANDLIST.md", "w") as text_file:
+                    text_file.write(out_text)
+                response = await self.client.send_message(message.channel, 'Done :ok_hand:')
+                await asyncio.sleep(5)
+                await self.client.delete_message(response)
+            else:
+                response = await self.client.send_message(message.channel, 'Unpermitted :x:')
+                await asyncio.sleep(5)
+                await self.client.delete_message(response)
