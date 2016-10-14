@@ -229,6 +229,7 @@ class OtherUtils(Plugin):
             if message.author.id in permitted_id:
                 sys.exit('terminated by command')
 
+
 class SetAvatar(Plugin):
     is_global = True
     log = create_logger('Set Avatar')
@@ -272,8 +273,8 @@ class SetAvatar(Plugin):
                     except Exception as err:
                         await self.client.send_message(message.channel, str(err))
 
-class MakeCommandList(Plugin):
 
+class MakeCommandList(Plugin):
     is_global = True
     log = create_logger('mkcmdlist')
 
@@ -301,7 +302,8 @@ class MakeCommandList(Plugin):
                     help_data = help_file.read()
                     help_data = json.loads(help_data)
                 for entry in help_data:
-                    out_text += '\n`' + pfx + entry + '`  |  ' + help_data[entry]['description'].replace('%pfx%', str(pfx)) + '  |  `' + help_data[entry]['usage'].replace('%pfx%', str(pfx)) + '`'
+                    out_text += '\n`' + pfx + entry + '`  |  ' + help_data[entry]['description'].replace('%pfx%', str(
+                        pfx)) + '  |  `' + help_data[entry]['usage'].replace('%pfx%', str(pfx)) + '`'
                 with open("COMMANDLIST.md", "w") as text_file:
                     text_file.write(out_text)
                 response = await self.client.send_message(message.channel, 'Done :ok_hand:')
