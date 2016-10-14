@@ -301,7 +301,7 @@ class MakeCommandList(Plugin):
                     help_data = help_file.read()
                     help_data = json.loads(help_data)
                 for entry in help_data:
-                    out_text += '\n`' + pfx + entry + '`  |  ' + help_data[entry]['description'] + '  |  `' + help_data[entry]['usage'] + '`'
+                    out_text += '\n`' + pfx + entry + '`  |  ' + help_data[entry]['description'].replace('%pfx%', str(pfx)) + '  |  `' + help_data[entry]['usage'].replace('%pfx%', str(pfx)) + '`'
                 with open("commandlist.md", "w") as text_file:
                     text_file.write(out_text)
                 response = await self.client.send_message(message.channel, 'Done :ok_hand:')
