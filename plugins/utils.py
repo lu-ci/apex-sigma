@@ -294,7 +294,7 @@ class MakeCommandList(Plugin):
                 out_text += '\n--------|--------------|-------'
                 try:
                     import os
-                    os.remove('commandlist.md')
+                    os.remove('COMMANDLIST.md')
                 except:
                     pass
                 with open('storage/help.json', 'r', encoding='utf-8') as help_file:
@@ -302,7 +302,7 @@ class MakeCommandList(Plugin):
                     help_data = json.loads(help_data)
                 for entry in help_data:
                     out_text += '\n`' + pfx + entry + '`  |  ' + help_data[entry]['description'].replace('%pfx%', str(pfx)) + '  |  `' + help_data[entry]['usage'].replace('%pfx%', str(pfx)) + '`'
-                with open("commandlist.md", "w") as text_file:
+                with open("COMMANDLIST.md", "w") as text_file:
                     text_file.write(out_text)
                 response = await self.client.send_message(message.channel, 'Done :ok_hand:')
                 await asyncio.sleep(5)
