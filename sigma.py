@@ -4,14 +4,13 @@ import sys
 import time
 import discord
 import logging
-from config import StartupType, dsc_email, dsc_password, sigma_version
 
-logger = logging.getLogger(__name__)
-handler = logging.StreamHandler()
-formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
+from config import StartupType, dsc_email, dsc_password, sigma_version
+from config import Token as token
+from config import Prefix as pfx
+
+from plugin_manager import PluginManager
+from database import Database
 
 print('Starting up...')
 start_time = time.time()
@@ -25,65 +24,36 @@ if not os.path.isfile('config.py'):
 else:
     print('config.py present, continuing...')
 # Data
-from config import Token as token
 
-if token == '': sys.exit('Token not provided, please open config.json and place your token.')
-
-from config import Prefix as pfx
-
-from plugin_manager import PluginManager
-from plugins.help import Help
-from plugins.league import LeagueOfLegends
-from plugins.bns import BladeAndSoul
-from plugins.osu import OSU
-from plugins.urbandictionary import UrbanDictionary
-from plugins.weather import Weather
-from plugins.hearthstone import Hearthstone
-from plugins.pokemon import Pokemon
-from plugins.joke import Joke
-from plugins.overwatch import Overwatch
-from plugins.rip import Rip
-from plugins.lastfm import LastFM
-from plugins.echo import Echo
-from plugins.nsfwperms import NSFWPermission
-from plugins.gelbooru import Gelbooru
-from plugins.r34 import R34
-from plugins.nhentai import NHentai
-from plugins.ehentai import EHentai
-from plugins.e621 import E621
-from plugins.hentaims import HentaiMS
-from plugins.isthereanydeal import ITAD
-from plugins.imdb import IMDB
-from plugins.nihongo import WK
-from plugins.nihongo import WKKey
-from plugins.nihongo import Jisho
-from plugins.mal import MAL
-from plugins.vindictus import VindictusScrollSearch
-from plugins.sonarr import Sonarr
-from plugins.karaoke import VoiceChangeDetection
-from plugins.karaoke import Control
-from plugins.vndb import VNDBSearch
-from plugins.utils import Reminder
-from plugins.utils import Donators
-from plugins.utils import OtherUtils
-from plugins.utils import BulkMSG
-from plugins.imgur import Imgur
-from plugins.utils import PMRedirect
-from plugins.selfrole import SelfRole
-from plugins.world_of_warcraft import World_Of_Warcraft
-from plugins.rocket_league import RocketLeague
-from plugins.utils import SetAvatar
-from plugins.reddit import Reddit
-from plugins.unflip import Table
-from plugins.cleverbot import Cleverbot
-from plugins.magic import MagicTheGathering
-from plugins.key_vis import KeyVisual
+if token == '':
+    sys.exit('Token not provided, please open config.py and place your token.')
 
 
 # I love spaghetti!
-class sigma(discord.Client):
+class Sigma(discord.Client):
     def __init__(self):
         super().__init__()
+        self.prefix = pfx
+
+        # self.init_logger()
+        self.init_databases()
+        self.init_plugins()
+
+    def init_logger(self):
+        logger = logging.getLogger(__name__)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        logger.setLevel(logging.DEBUG)
+
+        self.log = logger
+
+    def init_databases(self):
+        self.db = Database('storage/server_settings.sqlite')
+
+    def init_plugins(self):
         self.plugin_manager = PluginManager(self)
         self.plugin_manager.load_all()
 
@@ -99,7 +69,7 @@ class sigma(discord.Client):
     async def on_ready(self):
         gamename = pfx + 'help'
         game = discord.Game(name=gamename)
-        await client.change_status(game)
+        await client.change_presence(game=game)
 
         server_amo = 0
         member_amo = 0
@@ -146,14 +116,15 @@ class sigma(discord.Client):
         # initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
         #    message.content) + ']\nServer: ' + str(message.server.name) + '\nServerID: ' + str(
         #    message.server.id) + '\n-------------------------')
-        client.change_status(game=None)
+        client.change_presence()
 
         enabled_plugins = await self.get_plugins()
+
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
 
 
-client = sigma()
+client = Sigma()
 if StartupType == '0':
     try:
         client.run(token)

@@ -5,8 +5,6 @@ release/*
 
 # Python stuff
 *.pyc
-__pycache__/*
-plugins/__pycache__/*
 thing.py
 config.py
 plugins/xp_grind.py
@@ -23,3 +21,4 @@ profile.png
 lolsig.png
 cache/*
 log.txt
+fonts/*
