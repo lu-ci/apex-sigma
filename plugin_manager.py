@@ -24,7 +24,7 @@ from plugins.isthereanydeal import ITAD
 from plugins.imdb import IMDB
 from plugins.nihongo import WK
 from plugins.nihongo import WKKey
-from plugins.nihongo import Jisho
+from plugins.jisho import Jisho
 from plugins.mal import MAL
 from plugins.vindictus import VindictusScrollSearch
 from plugins.sonarr import Sonarr
