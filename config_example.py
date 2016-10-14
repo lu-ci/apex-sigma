@@ -1,23 +1,61 @@
-# Keys and BOT Data
+# BOT
 StartupType = '0'  # 0 For starting up as a Bot, 1 for starting up as a Normal User
 Token = ''  # Discord App Token (If StartupType is 0)
+ClientID = ''  # Discord App Client ID
 dsc_email = ''  # Discord Email (If StartupType is 1)
 dsc_password = ''  # Discord Password (If StartupType is 1)
-ClientID = ''  # Discord App Client ID
 OwnerID = ''  # Your UniqueID for special permissions
-Notifications = 'No'  # Experimental Pushbullet Notification Toggle
-Pushbullet = ''  # Pushbullet API Key
-OpenWeatherMapKey = ''  # Open Weather Map API Key
-MashapeKey = ''  # Mashape API Key
-RiotAPIKey = ''  # Riot Games API Key
-GoogleAPIKey = ''  # Google API Key
-LastFMAPIKey = ''  # LastFM API Key
-ITADKey = ''  # IsThereAnyDeal API Key
-SteamAPI = ''  # Steam API Key
-SonarrKey = ''  # Sonarr API Key
-mal_un = ''  # MyAnimeList Username
-mal_pw = ''  # MyAnimeList Password
 Prefix = '>>'  # Bot Command Prefix
+sigma_version = ''
+
+# APIs
+# Blizzard/Battle.net
+BlizzardKey = ''
+RLAPIKey = ''
+
+# Reddit
+reddit_un = ''
+reddit_pw = ''
+
+# MyAnimeList
+mal_un = ''  # Username
+mal_pw = ''  # Password
+
+# Open Weather Map API Key
+OpenWeatherMapKey = ''
+
+# Mashape API Key
+MashapeKey = ''
+
+# Riot Games API Key
+RiotAPIKey = ''
+
+# Google API KEy
+GoogleAPIKey = ''
+
+# LastFM API Key
+LastFMAPIKey = ''
+
+# IsThereAnyDeal API Key
+ITADKey = ''
+
+# Pushbullet API Key
+Pushbullet = ''
+Notifications = 'No'  # Experimental Pushbullet Notification Toggle
+
+# Steam API Key
+SteamAPI = ''
+
+# Sonarr API Key
+SonarrKey = ''
+
+# Imgur API
+ImgurClientID = ''
+ImgurClientSecret = ''
+
+# GitHub
+GitHubToken = ''
+
 # Commands
 cmd_help = 'help'
 cmd_modules = 'modules'
@@ -59,6 +97,7 @@ cmd_dropmic = 'dropmic'
 cmd_repertoire = 'singers'
 cmd_vndb = 'vndb'
 cmd_remind = 'remind'
+
 # Descriptions
 desc_help = 'Returns the list of command modules or gives you the description and usage for a selected command.'
 desc_overwatch = 'Shows the Overwatch statistics of inputed Battle.Net ID. (\'Warning: Case Sensitive\')'
@@ -87,6 +126,7 @@ desc_hearthstone = 'Hearthstone card lookup.'
 desc_imdb = 'Searches the Internet Movie Database for a Title of your choice.'
 desc_itad = 'Lists the latest deals from IsThereAnyDeal'
 desc_joke = 'Outputs a random joke from a random source, it is totally cancerous.'
+
 # Usage
 usg_help = str(Prefix) + str(cmd_help) + ' overwatch'
 usg_overwatch = str(Prefix) + str(cmd_overwatch) + ' EU Aurora#22978'
@@ -111,6 +151,7 @@ usg_hearthstone = str(Prefix) + str(cmd_hearthstone) + ' Murloc Raider'
 usg_imdb = str(Prefix) + str(cmd_imdb) + ' A Clockwork Orange'
 usg_itad = str(Prefix) + str(cmd_itad)
 usg_joke = str(Prefix) + str(cmd_joke)
+
 # Experimental
 permitted_id = ['1234567891361631']
 permitted_roles = ['Admin']
