@@ -1,6 +1,5 @@
 from plugin import Plugin
 from utils import create_logger
-import sqlite3
 import random
 
 
@@ -9,45 +8,42 @@ class RewardOnMessage(Plugin):
     log = create_logger('Add Point For Activity')
 
     async def on_message(self, message, pfx):
-        dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
         if message.server is not None:
-            info_grabber_checker = dbsql.execute(
-                "SELECT EXISTS (SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?);",
-                (str(message.author.id),))
+            query = "SELECT EXISTS (SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?);"
+            info_grabber_checker = self.db.execute(query, str(message.author.id))
+
             for info_check in info_grabber_checker:
                 if info_check[0] == 0:
-                    # print('Non-Existant: Inserting')
-                    dbsql.execute("INSERT INTO POINT_SYSTEM (USER_ID, LVL, LV_CHECK, POINTS) VALUES (?, ?, ?, ?)",
-                                  (str(message.author.id), 0, 0, 0,))
-                    dbsql.commit()
+                    query = "INSERT INTO POINT_SYSTEM (USER_ID, LVL, LV_CHECK, POINTS) VALUES (?, ?, ?, ?)"
+                    self.db.execute(query, str(message.author.id), 0, 0, 0)
+                    self.db.commit()
                 else:
-                    number_grabber = dbsql.execute("SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?",
-                                                   (str(message.author.id),))
+                    query = "SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?"
+                    number_grabber = self.db.execute(query, str(message.author.id))
+
                     for number in number_grabber:
                         level = number[0]
                         level_check = number[1]
                         points = number[2]
+
                     points_old = points
                     points_new = points_old + random.randint(1, 10)
                     level_point = format(points_new / (601 + (69 * int(level))), ".0f")
                     level_should = int(level_point)
-                    # print('Existant: Updating points to: ' + str(points_new) + ' from ' + str(
-                    # points_old) + '\nLevel should be: ' + str(level_should) + ' / ' + str(level_check))
-                    dbsql.execute("UPDATE POINT_SYSTEM SET POINTS= ? WHERE USER_ID= ?",
-                                  (str(points_new), str(message.author.id),))
-                    dbsql.commit()
+
+                    query = "UPDATE POINT_SYSTEM SET POINTS=? WHERE USER_ID=?"
+                    self.db.execute(query, str(points_new), str(message.author.id))
+
                     if level_should > level_check:
-                        dbsql.execute("UPDATE POINT_SYSTEM SET LVL= ? WHERE USER_ID= ?",
-                                      (str(level_should), str(message.author.id),))
-                        dbsql.execute("UPDATE POINT_SYSTEM SET LV_CHECK= ? WHERE USER_ID= ?",
-                                      (str(level_should), str(message.author.id),))
-                        dbsql.commit()
-                        # if message.server.id == '219894896172072971':
-                            # await self.client.send_message(message.channel,
-                            # 'Congratulations <@' + message.author.id + '>!\nYou just leveled up to **Level ' + str(
-                            # level_point) + '**!')
+                        query = "UPDATE POINT_SYSTEM SET LVL=? WHERE USER_ID=?"
+                        self.db.execute(query, str(level_should), str(message.author.id))
+
+                        query = "UPDATE POINT_SYSTEM SET LV_CHECK=? WHERE USER_ID=?"
+                        self.db.execute(query, str(level_should), str(message.author.id))
                     else:
-                        return
+                        break
+
+                    self.db.commit()
 
 
 class LevelCheck(Plugin):
@@ -55,7 +51,6 @@ class LevelCheck(Plugin):
     log = create_logger('Level Check')
 
     async def on_message(self, message, pfx):
-        dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
         if message.content.startswith(pfx + 'level'):
             cmd_name = 'Level Check'
             try:
@@ -75,8 +70,9 @@ class LevelCheck(Plugin):
                 user_id = message.author.id
                 mid_msg = '. You are'
                 end_msg = 'have'
-            number_grabber = dbsql.execute("SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?",
-                                           (str(user_id),))
+            number_grabber = self.db.execute("SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?",
+                                           str(user_id))
+            self.db.commit()
             for number in number_grabber:
                 level = number[0]
                 points = number[2]

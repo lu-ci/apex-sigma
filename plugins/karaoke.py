@@ -1,10 +1,12 @@
-import discord
-import sqlite3
-from collections import deque
 from plugin import Plugin
+
+import discord
+from collections import deque
 from utils import create_logger
-from config import permitted_id, permitted_roles
 from utils import bold
+
+from config import permitted_id, permitted_roles
+from config import permitted_roles as karaoke_override
 
 client = discord.Client()
 
@@ -12,7 +14,6 @@ karaoke = False
 karaoke_mod = True
 karaoke_channel = 'Music Room'
 karaoke_strict = False
-from config import permitted_roles as karaoke_override
 
 karaoke_queue = deque()
 karaoke_deban = [False, 0]
@@ -140,7 +141,6 @@ class Control(Plugin):
                     #                await self.client.server_voice_state(user, mute=True)  # mute them
 
         async def disablestrictmode():
-            karaoke_strict = False
             for channel in message.server.channels:  # iterate through server channels
                 if channel.name == karaoke_channel:  # find the karaoke channel
                     for user in channel.voice_members:  # iterate through users in the channel
@@ -422,7 +422,6 @@ class Control(Plugin):
 
         elif message.content.startswith(pfx + 'signup'):
             cmd_name = 'karaoke signup'
-            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
             await self.client.send_typing(message.channel)
             try:
                 self.log.info(
@@ -433,19 +432,24 @@ class Control(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            info_grabber_checker = dbsql.execute(
-                "SELECT EXISTS (SELECT USER_ID FROM KARAOKE_LIST WHERE USER_ID=?);", (str(message.author.id),))
+
+            query = "SELECT EXISTS (SELECT USER_ID FROM KARAOKE_LIST WHERE USER_ID=?);"
+            info_grabber_checker = self.db.execute(query, str(message.author.id))
+
             for info_check in info_grabber_checker:
                 if info_check[0] == 0:
-                    dbsql.execute('INSERT INTO KARAOKE_LIST (USER_ID, USER_NAME) VALUES (?, ?)', (str(message.author.id), str(message.author.name),))
-                    dbsql.commit()
+
+                    query = 'INSERT INTO KARAOKE_LIST (USER_ID, USER_NAME) VALUES (?, ?)'
+                    self.db.execute(query, str(message.author.id), str(message.author.name))
+                    self.db.commit()
+
                     await self.client.send_message(message.channel, 'Thank you for signing up for the Karaoke event, <@' + message.author.id + '>!')
                 else:
                     await self.client.send_message(message.channel, 'It seems you\'ve already signed up, <@' + message.author.id + '>!')
         elif message.content.startswith(pfx + 'karaokelist'):
             cmd_name = 'karaoke signup sheet list'
-            dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
             await self.client.send_typing(message.channel)
+
             try:
                 self.log.info(
                     'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
@@ -455,7 +459,10 @@ class Control(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            username_grabber = dbsql.execute('SELECT USER_NAME FROM KARAOKE_LIST')
+
+            query = 'SELECT USER_NAME FROM KARAOKE_LIST'
+            username_grabber = self.db.execute(query)
+
             out_text = ''
             n = 0
             for username in username_grabber:
