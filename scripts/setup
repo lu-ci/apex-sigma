@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+db_dir='storage'
+
+docker-compose build
+sqlite3 -init "$db_dir/server_settings.sql" "$db_dir/server_settings.sqlite" '.quit'
