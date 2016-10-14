@@ -1,0 +1,17 @@
+[flake8]
+exclude =
+    .git,
+    .ci,
+    __pycache__,
+    cache,
+    fonts,
+    img,
+    scripts,
+    storage
+
+ignore =
+    # ignore "line too long" errors for now
+    E501,
+	E126,
+	E127,
+	E128
