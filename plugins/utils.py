@@ -7,6 +7,7 @@ import time
 from config import sigma_version
 import aiohttp
 import sys
+import json
 
 
 class Reminder(Plugin):
@@ -270,3 +271,43 @@ class SetAvatar(Plugin):
                         pass
                     except Exception as err:
                         await self.client.send_message(message.channel, str(err))
+
+class MakeCommandList(Plugin):
+
+    is_global = True
+    log = create_logger('mkcmdlist')
+
+    async def on_message(self, message, pfx):
+        if message.content == pfx + 'mkcmdlist':
+            cmd_name = 'Make Command List'
+            await self.client.send_typing(message.channel)
+            try:
+                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+                              message.author,
+                              message.author.id, message.server.name, message.server.id, message.channel)
+            except:
+                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+                              message.author,
+                              message.author.id)
+            if message.author.id in permitted_id:
+                out_text = 'Command |  Description |  Usage'
+                out_text += '\n--------|--------------|-------'
+                try:
+                    import os
+                    os.remove('commandlist.md')
+                except:
+                    pass
+                with open('storage/help.json', 'r', encoding='utf-8') as help_file:
+                    help_data = help_file.read()
+                    help_data = json.loads(help_data)
+                for entry in help_data:
+                    out_text += '\n`' + pfx + entry + '`  |  ' + help_data[entry]['description'] + '  |  `' + help_data[entry]['usage'] + '`'
+                with open("commandlist.md", "w") as text_file:
+                    text_file.write(out_text)
+                response = await self.client.send_message(message.channel, 'Done :ok_hand:')
+                await asyncio.sleep(5)
+                await self.client.delete_message(response)
+            else:
+                response = await self.client.send_message(message.channel, 'Unpermitted :x:')
+                await asyncio.sleep(5)
+                await self.client.delete_message(response)
