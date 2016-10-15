@@ -97,7 +97,6 @@ __all__ = [
     'Table',
     'Cleverbot',
     'MagicTheGathering',
-    'KeyVisual'
     'KeyVisual',
     'WorlfOfWarships'
 ]
