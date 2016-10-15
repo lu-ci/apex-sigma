@@ -1,6 +1,5 @@
-import inspect
-import logging
 import warnings
+
 
 class PluginMount(type):
     def __init__(cls, name, bases, attrs):
@@ -9,12 +8,16 @@ class PluginMount(type):
         else:
             cls.plugins.append(cls)
 
+
 class Plugin(object, metaclass=PluginMount):
 
     is_global = False
 
     def __init__(self, client):
         self.client = client
+        self.prefix = client.prefix
+        self.db = client.db
+
     async def _on_ready(self):
         await self.on_ready()
 
@@ -69,7 +72,6 @@ class Plugin(object, metaclass=PluginMount):
 
     async def _on_voice_state_update(self, before, after):
         await self.on_voice_state_update(before, after)
-        #pass
 
     async def on_voice_state_update(self, before, after):
         pass

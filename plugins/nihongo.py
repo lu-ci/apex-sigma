@@ -1,9 +1,5 @@
 from plugin import Plugin
-from config import OwnerID as ownr
 from utils import create_logger
-from pytz import utc, timezone
-from time import mktime
-import sqlite3
 import datetime
 import requests
 import json
@@ -13,7 +9,8 @@ from PIL import ImageFont
 from PIL import ImageDraw
 import os
 from io import BytesIO
-import asyncio
+from database import IntegrityError
+
 
 class WK(Plugin):
     is_global = True
@@ -22,13 +19,13 @@ class WK(Plugin):
     img_base = 'img/ani'
     wk_base_url = 'https://www.wanikani.com/api/user/'
 
-    def parse_date(self, time, fmt = '%B %d, %Y %H:%M'):
+    def parse_date(self, time, fmt='%B %d, %Y %H:%M'):
         if time:
             return datetime.datetime.fromtimestamp(time).strftime(fmt)
         else:
             return 'Unknown'
 
-    def get_rank_info(self, level, location = 174):
+    def get_rank_info(self, level, location=174):
         if level == 60:
             return ('発明', location, '_en', (0, 204, 255))
         elif level >= 51:
@@ -53,10 +50,10 @@ class WK(Plugin):
         out += 'Scribed {:d} topics & {:d} posts\n'.format(user['forums']['topics'], user['forums']['posts'])
 
         out += 'Serving the Crabigator since "{:s}"\n'.format(
-                self.parse_date(user['creation_date']))
+            self.parse_date(user['creation_date']))
 
         out += 'Apprentice: {:d} | Guru: {:d} | Master {:d} | Enlightened {:d} | Burned {:d}\n'.format(
-                srs['apprentice'], srs['guru'], srs['master'], srs['enlightened'], srs['burned'])
+            srs['apprentice'], srs['guru'], srs['master'], srs['enlightened'], srs['burned'])
 
         # we have additional information through the api
         if user['method'] == 'api':
@@ -65,23 +62,23 @@ class WK(Plugin):
             kan_cur = user['kanji']['current']
             kan_total = user['kanji']['total']
             out += 'Radicals: {:d}/{:d} ({:.2f}%) | Kanji: {:d}/{:d} ({:.2f}%)\n'.format(
-                    rad_cur, rad_total, (rad_cur / rad_total) * 100,
-                    kan_cur, kan_total, (kan_cur / kan_total) * 100)
+                 rad_cur, rad_total, (rad_cur / rad_total) * 100,
+                 kan_cur, kan_total, (kan_cur / kan_total) * 100)
 
             out += 'Your Next Review: "{:s}"\n'.format(
-                    self.parse_date(user['reviews']['next_date']))
+                 self.parse_date(user['reviews']['next_date']))
 
             out += 'Lesson Queue: {:d} | Review Queue: {:d}\n'.format(
-                    user['lessons']['now'],
-                    user['reviews']['now'])
+                 user['lessons']['now'],
+                 user['reviews']['now'])
 
             out += 'Reviews Next Hour: {:d} | Reviews Next Day: {:d}\n'.format(
-                    user['reviews']['next_hour'],
-                    user['reviews']['next_day'])
+                 user['reviews']['next_hour'],
+                 user['reviews']['next_day'])
 
         await self.client.send_message(message.channel, '```json\n{:s}\n```'.format(out))
 
-    async def get_user_data(self, message, key = None, username = None):
+    async def get_user_data(self, message, key=None, username=None):
         user = {
             'method': None,
             'name': '',
@@ -110,7 +107,7 @@ class WK(Plugin):
 
         # if we have a key, pull data directly from API
         if key:
-            url =  self.wk_base_url + key
+            url = self.wk_base_url + key
 
             try:
                 srs_dist = requests.get(url + '/srs-distribution').json()
@@ -156,7 +153,6 @@ class WK(Plugin):
             srs_dist = json.loads(script)['requested_information']
             user['method'] = 'html'
         else:
-            await self.client.send_message(message.channel, 'No key or username')
             return None
 
         user['name'] = userinfo['username']
@@ -190,7 +186,7 @@ class WK(Plugin):
             # TODO: use default avatar image if it could not be downloaded
             ava = Image.open(BytesIO(user['avatar'][1]))
             base = Image.open('{:s}/base_wk_{:s}.png'.format(self.img_base, img_type))
-            overlay = Image.open('{:s}/overlay_wk_{:s}{:s}.png'.format(self.img_base, img_type, ov_color));
+            overlay = Image.open('{:s}/overlay_wk_{:s}{:s}.png'.format(self.img_base, img_type, ov_color))
         except IOError as e:
             self.log.error('{:s}'.format(str(e)))
             raise e
@@ -226,7 +222,7 @@ class WK(Plugin):
         imgdraw.text((95, 60), 'Level: {:d}'.format(user['level']), txt_color, font=font2)
 
         imgdraw.text((250, 60), 'Joined: {:s}'.format(
-            self.parse_date(user['creation_date'], fmt = '%B %d, %Y')),
+            self.parse_date(user['creation_date'], fmt='%B %d, %Y')),
             txt_color, font=font2)
 
         imgdraw.text((kanji_loc, 61), rank_category, (255, 255, 255), font=font3)
@@ -262,9 +258,9 @@ class WK(Plugin):
         await self.client.send_file(message.channel, 'cache/ani/wk_' + message.author.id + '.png')
         os.remove('cache/ani/wk_' + message.author.id + '.png')
 
-    async def get_key(self, message, pfx):
+    async def get_key(self, message, args):
         # if no arguments passed, pulling the ID of a caller
-        if message.content == (pfx + 'wanikani'):
+        if not args:
             user_id = str(message.author.id)
         # otherwise see if someone was mentioned
         elif len(message.mentions) > 0:
@@ -273,30 +269,30 @@ class WK(Plugin):
         else:
             key = None
             try:
-                username = message.content[len(pfx) + len('wanikani') + 1:]
-            except:
+                username = args[0]
+            except Exception as e:
+                self.log.error(e)
                 await self.client.send_message(message.channel, 'Error while parsing the input message')
                 return
 
-        # TODO: move database connection out of plugin
-        dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
         if 'username' not in locals():
             if 'user_id' not in locals():
                 await self.client.send_message(message.channel, 'No arguments passed')
                 return
             # a username was passed
             else:
-                key_cur = dbsql.execute("SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;",
-                                        (str(user_id),))
+                query = "SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;"
+                key_cur = self.db.execute(query, str(user_id))
                 db_response = key_cur.fetchone()
-                if db_response == None:
+
+                if not db_response:
                     await self.client.send_message(message.channel,
                             'No assigned key or username was found\n'
                             'You can add it by sending me a direct message, for example\n'
-                            'For Advanced Stats: `' + pfx + 'wksave' + ' key <your API key>`\nor `' + pfx + 'wksave' + ' username <your username>` for basic stats.')
+                            'For Advanced Stats:\n\t`{0:s}wksave key <your API key>`\nor\n\t`{0:s}wksave username <your username>` for basic stats.'.format(self.prefix))
+
                     return (None, None)
 
-                print(db_response)
                 key = db_response[0]
                 username = db_response[1]
 
@@ -307,28 +303,37 @@ class WK(Plugin):
             await self.client.send_typing(message.channel)
             cmd_name = 'WaniKani'
 
-            try:
-                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
+            if message.server:
+                self.log.info('User %s [%s] on server %s [%s], used the {:s} command on #%s channel'.format(cmd_name),
                               message.author,
                               message.author.id, message.server.name, message.server.id, message.channel)
-            except:
-                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
+            else:
+                self.log.info('User %s [%s], used the command.'.format(cmd_name),
                               message.author,
                               message.author.id)
-                await self.client.send_typing(message.channel)
 
-            key, username = await self.get_key(message, pfx)
+            show_text = False
+            args = message.content.split(' ')
+            args.pop(0)
+
+            if args and args[-1] == 'text':
+                show_text = True
+                args.pop()
+
+            key, username = await self.get_key(message, args)
 
             user = await self.get_user_data(message, key, username)
 
-            # TODO: make text messages optional
             if user:
-                try:
-                    await self.draw_image(message, user)
-                except OSError:
-                    # failed to generate image
-                    pass
-                await self.text_message(message, user)
+                if show_text:
+                    await self.text_message(message, user)
+                else:
+                    try:
+                        await self.draw_image(message, user)
+                    except OSError:
+                        # failed to generate image
+                        await self.text_message(message, user)
+
 
 class WKKey(Plugin):
     is_global = True
@@ -345,8 +350,10 @@ class WKKey(Plugin):
                 await self.client.send_typing(message.channel)
             except:
                 pass
+
             cmd_name = 'WaniKani Key Save'
             user_id = str(message.author.id)
+
             try:
                 self.log.info(
                     'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
@@ -356,6 +363,7 @@ class WKKey(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
+
             try:
                 args = message.content[len(pfx) + len('wksave') + 1:]
 
@@ -379,123 +387,49 @@ class WKKey(Plugin):
                         await self.client.send_message(message.channel, 'The Key Seems Invalid...')
                         return
 
-                dbsql = sqlite3.connect('storage/server_settings.sqlite', timeout=20)
-
                 if mode == 'remov':  # remove
                     query = "DELETE from WANIKANI where USER_ID=?;"
-                    dbsql.execute(query, (user_id,))
-                    dbsql.commit()
+                    self.db.execute(query, user_id)
+                    self.db.commit()
+
                     await self.client.send_message(message.channel, 'Record deleted')
                     return
 
-                try:
-                    if mode == 'key':
-                        query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES (?, ?)"
-                    elif mode == 'username':
-                        query = "INSERT INTO WANIKANI (USER_ID, WK_USERNAME) VALUES (?, ?)"
-                    else:
-                        return
-                    dbsql.execute(query, (user_id, payload))
-                    dbsql.commit()
-                    await self.client.send_message(message.channel, mode.capitalize() + ' Safely Stored. :key:')
-                except sqlite3.IntegrityError:
-                    await self.client.send_message(message.channel,
+                if mode == 'key':
+                    insert_query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES (?, ?)"
+                elif mode == 'username':
+                    insert_query = "INSERT INTO WANIKANI (USER_ID, WK_USERNAME) VALUES (?, ?)"
+                else:
+                    return
+
+                retries = 3
+                for i in range(0, retries + 1):
+                    try:
+                        if i:
+                            await self.client.send_message(message.channel, 'Retry {:d}/{:d}'.format(i, retries))
+
+                        self.db.execute(insert_query, user_id, payload)
+                        self.db.commit()
+                        await self.client.send_message(message.channel, mode.capitalize() + ' Safely Stored. :key:')
+                        break
+                    except IntegrityError:
+                        await self.client.send_message(message.channel,
                                                    'A Key for your User ID already exists, removing...')
-                    dbsql.execute("DELETE from WANIKANI where USER_ID=?;", (user_id,))
-                    query = "INSERT INTO WANIKANI (USER_ID, WK_KEY) VALUES (?, ?)"
-                    dbsql.execute(query, (user_id,))
-                    dbsql.commit()
-                    await self.client.send_message(message.channel,
-                                                   'New ' + mode.capitalize() + ' Safely Stored. :key:')
-                except UnboundLocalError:
-                    await self.client.send_message(message.channel,
+
+                        self.db.rollback()
+                        query = "DELETE from WANIKANI where USER_ID=?;"
+                        self.db.execute(query, user_id)
+                        self.db.commit()
+
+                        continue
+                    except UnboundLocalError as e:
+                        self.log.error(e)
+                        await self.client.send_message(message.channel,
                                                    'There doesn\'t seem to be a key or username tied to you...\nYou can add your it by sending a direct message to me with the WKSave Command, for example:\n`' + pfx + 'wksave' + ' 16813135183151381`\nand just replace the numbers with your WK API Key!')
-                except:
-                    await self.client.send_message(message.channel, 'Something went horribly wrong!')
+                    except Exception as e:
+                        self.log.error(e)
+                        await self.client.send_message(message.channel, 'Something went horribly wrong!')
 
-            except:
+            except Exception as e:
+                self.log.error(e)
                 await self.client.send_message(message.channel, 'Error while parsing the input message')
-
-class Jisho(Plugin):
-    is_global = True
-    log = create_logger('jisho')
-
-    async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + 'jisho'):
-            await self.client.send_typing(message.channel)
-            cmd_name = 'Jisho'
-            try:
-                self.log.info(
-                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                    message.author,
-                    message.author.id, message.server.name, message.server.id, message.channel)
-            except:
-                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
-                              message.author,
-                              message.author.id)
-            jisho_q = message.content[len(pfx) + len('jisho') + 1:]
-            request = requests.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q).json()
-            try:
-                try:
-                    is_common = '\"' + str(request['data'][0]['is_common']).title() + '\"'
-                except:
-                    is_common = '\"False\"'
-                try:
-                    ja_word = '\"' + request['data'][0]['japanese'][0]['word'] + '\"'
-                except:
-                    ja_word = '\"None\"'
-                try:
-                    ja_reading = '\"' + request['data'][0]['japanese'][0]['reading'] + '\"'
-                except:
-                    ja_reading = '\"None\"'
-                try:
-                    eng_def = ''
-                    eng_def_data = request['data'][0]['senses'][0]['english_definitions']
-                    for eng in eng_def_data:
-                        eng_def += '\"' + str(eng) + '\", '
-                except:
-                    eng_def = '\"None\", '
-                try:
-                    info = '\"' + request['data'][0]['senses'][0]['info'][0] + '\"'
-                except:
-                    info = '\"None\"'
-                try:
-                    tags = ''
-                    tags_data = request['data'][0]['tags']
-                    for tag in tags_data:
-                        tags += '\"' + str(tag) + '\", '
-                except:
-                    tags = '\"None\", '
-                if tags == '':
-                    tags = '\"None\", '
-                try:
-                    p_of_s = ''
-                    pofs_data = request['data'][0]['senses'][0]['parts_of_speech']
-                    for pof in pofs_data:
-                        p_of_s += '\"' + str(pof) + '\", '
-                except:
-                    p_of_s = '\"None\", '
-                if p_of_s == '':
-                    p_of_s = '\"None\", '
-                try:
-                    s_tag = ''
-                    s_tag_data = request['data'][0]['senses'][0]['tags']
-                    for tag in s_tag_data:
-                        s_tag += '\"' + str(tag) + '\", '
-                except:
-                    s_tag = '\"None\", '
-                if s_tag == '':
-                    s_tag = '\"None\", '
-                result_text = ('Search query for `' + jisho_q + '`:\n```java' +
-                               '\nJapanese Word: ' + ja_word +
-                               '\nJapanese Reading: ' + ja_reading +
-                               '\nEnglish Definition: ' + eng_def[:-2] +
-                               '\nInfo: ' + info +
-                               '\nCommon word: ' + is_common +
-                               '\nParts of Speech: ' + p_of_s[:-2] +
-                               '\nTags: ' + tags[:-2].replace('wanikani', 'WaniKani Level ') +
-                               '\nSense Tags: ' + s_tag[:-2] +
-                               '\n```')
-                await self.client.send_message(message.channel, result_text)
-            except:
-                await self.client.send_message(message.channel, 'The word was not found or the API dun goofed.')

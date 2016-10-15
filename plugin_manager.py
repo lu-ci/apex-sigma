@@ -1,5 +1,9 @@
 from plugin import Plugin
 
+# * imports are ugly but it works
+from plugins import *
+
+
 class PluginManager:
     def __init__(self, client):
         self.client = client
