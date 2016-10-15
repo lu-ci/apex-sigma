@@ -35,7 +35,7 @@ class Sigma(discord.Client):
         super().__init__()
         self.prefix = pfx
 
-        # self.init_logger()
+        self.init_logger()
         self.init_databases()
         self.init_plugins()
 
@@ -82,10 +82,10 @@ class Sigma(discord.Client):
         print('Logged In As: ' + client.user.name)
         print('Bot User ID: ' + client.user.id)
         print('Running discord.py version: ' + discord.__version__)
-        print('Authors: AXAz0r, Awakening')
-        print('Contributors: Mirai, Chaeldar, Valeth')
+        print('Authors: AXAz0r, Awakening, Valeth')
+        print('Contributors: Mirai, Chaeldar')
         print('Bot Version: ' + sigma_version)
-        print('Build Date: 05. October 2016.')
+        print('Build Date: 16. October 2016.')
         print('-----------------------------------')
         print('Connected to [ ' + str(server_amo) + ' ] servers.')
         print('Serving [ ' + str(member_amo) + ' ] users.')

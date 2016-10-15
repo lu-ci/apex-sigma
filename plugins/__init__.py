@@ -46,6 +46,7 @@ from .unflip import Table
 from .cleverbot import Cleverbot
 from .magic import MagicTheGathering
 from .key_vis import KeyVisual
+from .wargaming.wows import WorlfOfWarships
 
 
 __all__ = [
@@ -96,5 +97,6 @@ __all__ = [
     'Table',
     'Cleverbot',
     'MagicTheGathering',
-    'KeyVisual'
+    'KeyVisual',
+    'WorlfOfWarships'
 ]
