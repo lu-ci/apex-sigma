@@ -4,10 +4,13 @@ sigma_version = 'Beta 0.41b'
 StartupType = '0'
 # Bot Application Token; Must be filled if the startup type is 0.
 Token = ''
+# GitHub WebHook Server Settings.
+GitHubWebserverPort = ''
+GitHubWebserverAddr = ''
 # Discord User Account login details; Must be filled if the startup type is 1.
 dsc_email = ''
 dsc_password = ''
-# API Keys and Login Details for Various Services
+# API Keys and Login Details for Various Services.
 OpenWeatherMapKey = ''
 MashapeKey = ''
 RiotAPIKey = ''
@@ -25,10 +28,10 @@ mal_un = ''
 mal_pw = ''
 reddit_un = ''
 reddit_pw = ''
-# Bot Prefix for Commands
+# Bot Prefix for Commands.
 Prefix = '>>'
-# Aurora Project Donators
+# Aurora Project Donators.
 donators = []
-# Permitted IDs and Roles
+# Permitted IDs and Roles.
 permitted_id = ['1234567891234569']
 permitted_roles = []

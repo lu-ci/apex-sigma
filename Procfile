@@ -1,1 +1,1 @@
-web: python sigma.py
+bot: python sigma.py
