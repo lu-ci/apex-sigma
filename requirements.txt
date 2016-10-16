@@ -10,6 +10,7 @@ Shosetsu
 imgurpython
 praw
 cleverbot
+tornado
 discord.py
 
 blinker
