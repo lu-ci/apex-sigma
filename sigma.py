@@ -4,6 +4,7 @@ import sys
 import time
 import discord
 import logging
+import json
 
 from config import StartupType, dsc_email, dsc_password, sigma_version
 from config import Token as token
@@ -25,6 +26,7 @@ else:
     print('config.py present, continuing...')
 # Data
 
+
 # I love spaghetti!
 class Sigma(discord.Client):
     def __init__(self):
@@ -34,6 +36,14 @@ class Sigma(discord.Client):
         self.init_logger()
         self.init_databases()
         self.init_plugins()
+
+        self.server_count = 0
+        self.member_count = 0
+
+        with open('AUTHORS') as authors_file:
+            content = json.load(authors_file)
+            self.authors = content['authors']
+            self.contributors = content['contributors']
 
     def init_logger(self):
         logger = logging.getLogger(__name__)
@@ -67,24 +77,22 @@ class Sigma(discord.Client):
         game = discord.Game(name=gamename)
         await client.change_presence(game=game)
 
-        server_amo = 0
-        member_amo = 0
         for server in client.servers:
-            server_amo += 1
+            self.server_count += 1
             for member in server.members:
-                member_amo += 1
+                self.member_count += 1
 
         print('-----------------------------------')
         print('Logged In As: ' + client.user.name)
         print('Bot User ID: ' + client.user.id)
         print('Running discord.py version: ' + discord.__version__)
-        print('Authors: AXAz0r, Awakening, Valeth')
-        print('Contributors: Mirai, Chaeldar')
+        print('Authors: {:s}'.format(', '.join(self.authors)))
+        print('Contributors: {:s}'.format(', '.join(self.contributors)))
         print('Bot Version: ' + sigma_version)
         print('Build Date: 16. October 2016.')
         print('-----------------------------------')
-        print('Connected to [ ' + str(server_amo) + ' ] servers.')
-        print('Serving [ ' + str(member_amo) + ' ] users.')
+        print('Connected to [ ' + str(self.server_count) + ' ] servers.')
+        print('Serving [ ' + str(self.member_count) + ' ] users.')
         print('\nSuccessfully connected to Discord!')
         folder = 'cache/ow'
         try:
