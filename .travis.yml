@@ -4,3 +4,6 @@ python:
 
 install: pip install -r requirements.txt
 script: .ci/run_tests.sh
+notifications:
+  webhooks:
+    - https://discordapp.com/api/webhooks/237241271528325121/B2fvRkrQeXa7eV6pLLG84e5gkUXof00DLR81LzQDrm4xtWz1Sb30K4kh0Oll9WZesGPg
