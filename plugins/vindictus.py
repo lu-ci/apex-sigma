@@ -1,8 +1,6 @@
 from plugin import Plugin
 from utils import create_logger
 import json
-from lxml import html
-import requests
 
 with open('scrolls.json', 'r', encoding='utf-8') as scrolls_file:
     scrolls = scrolls_file.read()

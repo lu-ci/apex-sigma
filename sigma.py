@@ -25,10 +25,6 @@ else:
     print('config.py present, continuing...')
 # Data
 
-if token == '':
-    sys.exit('Token not provided, please open config.py and place your token.')
-
-
 # I love spaghetti!
 class Sigma(discord.Client):
     def __init__(self):
@@ -126,11 +122,19 @@ class Sigma(discord.Client):
 
 client = Sigma()
 if StartupType == '0':
+    if token == '':
+        sys.exit('Token not provided, please open config.py and place your token.')
+    else:
+        pass
     try:
         client.run(token)
     except Exception as err:
         print(err)
 elif StartupType == '1':
+    if dsc_email == '' or dsc_password == '':
+        sys.exit('Discord Email and/or Passoword not provided, please open config.py and fill in those details.')
+    else:
+        pass
     try:
         client.run(dsc_email, dsc_password)
     except Exception as err:

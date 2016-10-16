@@ -2,9 +2,7 @@ from plugin import Plugin
 from utils import create_logger
 import praw
 from config import reddit_un as un, reddit_pw as pw
-import random
-import asyncio
-from config import OwnerID as ownr
+from config import permitted_id
 
 logged_in = False
 
@@ -28,7 +26,7 @@ class Reddit(Plugin):
                               message.author,
                               message.author.id)
             # Eng Logger
-            if message.author.id == ownr:
+            if message.author.id in permitted_id:
                 if logged_in is False:
                     conn = praw.Reddit(user_agent='Apex Sigma')
                     try:
