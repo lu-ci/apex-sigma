@@ -47,6 +47,7 @@ from .cleverbot import Cleverbot
 from .magic import MagicTheGathering
 from .key_vis import KeyVisual
 from .wargaming.wows import WorlfOfWarships
+from .utils import MakeCommandList
 from .github import GitHub
 
 
@@ -100,5 +101,6 @@ __all__ = [
     'MagicTheGathering',
     'KeyVisual',
     'WorlfOfWarships',
+    'MakeCommandList',
     'GitHub'
 ]
