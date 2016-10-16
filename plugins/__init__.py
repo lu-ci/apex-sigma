@@ -47,6 +47,7 @@ from .cleverbot import Cleverbot
 from .magic import MagicTheGathering
 from .key_vis import KeyVisual
 from .wargaming.wows import WorlfOfWarships
+from .utils import MakeCommandList
 
 
 __all__ = [
@@ -98,5 +99,6 @@ __all__ = [
     'Cleverbot',
     'MagicTheGathering',
     'KeyVisual',
-    'WorlfOfWarships'
+    'WorlfOfWarships',
+    'MakeCommandList'
 ]
