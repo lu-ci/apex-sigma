@@ -1,206 +1,210 @@
 {
-  "help": {
-    "description": "Returns the list of command modules or gives you the description and usage for a selected command.",
-    "usage": "%pfx%help overwatch"
-  },
-  "overwatch": {
-    "description": "Shows the Overwatch statistics of inputed Battle.Net ID. (Warning: Case Sensitive)",
-    "usage": "%pfx%overwatch EU Aurora#22978"
-  },
-  "bnsstats": {
-    "description": "The Blade and Soul module provides in-depth character information.",
-    "usage": "%pfx%bnsstats EU Lucia Konohana"
-  },
-  "bnsatt": {
-    "description": "Provides highly detailed Attack Statistics",
-    "usage": "%pfx%bnsatt EU Lucia Konohana"
-  },
-  "bnsdef": {
-    "description": "Provides highly detailed Defense Statistics",
-    "usage": "%pfx%bnsdef EU Lucia Konohana"
-  },
-  "echo": {
-    "description": "Repeats the given text. (Bot Owner Only)",
-    "usage": "%pfx%echo Hello world!"
-  },
-  "gelbooru": {
-    "description": "Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.",
-    "usage": "%pfx%gelbooru vella mabinogi_heroes"
-  },
-  "hearthstone": {
-    "description": "Hearthstone card lookup.",
-    "usage": "%pfx%hearthstone Murloc Raider"
-  },
-  "imdb": {
-    "description": "Searches the Internet Movie Database for a Title of your choice.",
-    "usage": "%pfx%imdb A Clockwork Orange"
-  },
-  "imgur": {
-    "description": "Searches through Imgur posts for the given title. Do remember that it is not Image-Only",
-    "usage": "%pfx%imgur Game Grumps"
-  },
-  "itad": {
-    "description": "Lists the latest deals from IsThereAnyDeal",
-    "usage": "%pfx%itad"
-  },
-  "joke": {
-    "description": "Outputs a random joke from a random source, it is totally cancerous.",
-    "usage": "%pfx%joke"
-  },
-  "startkaraoke": {
-    "description": "Starts the Karaoke function on a specified Voice Channel. The voice channel will then be put in Strict Mode that will enforce an Absolute Mute (Server Mute that can not be deactivated untill the function is deactivated).(All Karaoke Functions are Only for Specially Permitted Users)",
-    "usage": "%pfx%startkaraoke Karaoke Room"
-  },
-  "stopkaraoke": {
-    "description": "Stops the Karaoke function.",
-    "usage": "%pfx%stopkaraoke"
-  },
-  "karaokestrict": {
-    "description": "Toggles the Karaoke Strict Mode On and Off",
-    "usage": "%pfx%karaokestrict"
-  },
-  "handup": {
-    "description": "Adds you to the Singer Queue.",
-    "usage": "%pfx%handup"
-  },
-  "handdown": {
-    "description": "Removes you from the Singer Queue.",
-    "usage": "%pfx%handdown"
-  },
-  "repertoire": {
-    "description": "Lists all the users in the Singer Queue",
-    "usage": "%pfx%itad"
-  },
-  "clearqueue": {
-    "description": "Clears the Singer Queue",
-    "usage": "%pfx%clearqueue"
-  },
-  "karaokeremove": {
-    "description": "Removes mentioned user from the Singer Queue",
-    "usage": "%pfx%karaokeremove @user"
-  },
-  "takemic": {
-    "description": "If it is your turn to sing, it will unmute you during the karaoke session and mute everyone else.",
-    "usage": "%pfx%takemic"
-  },
-  "dropmic": {
-    "description": "Marks you ending your singing session. Allows the next person in the Singing Queue to pick the mic up.",
-    "usage": "%pfx%dropmic"
-  },
-  "karaokestatus": {
-    "description": "Outputs the current Karaoke Mode, Session Ongoing state, Channel for the Karaoke Session if running, and if the Karaoke is in Strict Mode.",
-    "usage": "%pfx%karaokestatus"
-  },
-  "forceunmute": {
-    "description": "A Testing Purpose function for forcing the channel to unmute all users.",
-    "usage": "%pfx%forceunmute"
-  },
-  "forcemute": {
-    "description": "A Testing Purpose function for forcing the channel to mute all users.",
-    "usage": "%pfx%forcemute"
-  },
-  "listchannelmembers": {
-    "description": "A Testing Purpose function for listing all users in a voice channel.",
-    "usage": "%pfx%listchannelmembers"
-  },
-  "setchannel": {
-    "description": "Sets the karaoke channel to a new specified channel.",
-    "usage": "%pfx%setchannel Karaoke Room"
-  },
-  "signup": {
-    "description": "Signs you up for a karaoke event. Like saying you will be attending.",
-    "usage": "%pfx%signup"
-  },
-  "karaokelist": {
-    "description": "List all users that signed up for a karaoke event.",
-    "usage": "%pfx%karaokelist"
-  },
-  "lastfm": {
-    "description": "List the users top tracks from LastFM.",
-    "usage": "%pfx%lastfm axaz0r"
-  },
-  "league": {
-    "description": "Shows the players League of Legends statistics of inputed Summoner Name. You can also place a gamemode between the Region and Summoner Name to get statistics for it.",
-    "usage": "%pfx%league EUNE AXAz0r"
-  },
-  "anime": {
-    "description": "Searches MyAnimeList for anime by given name. Generates a really cool image with the details!",
-    "usage": "%pfx%anime Terror in Resonance"
-  },
-  "manga": {
-    "description": "Searches MyAnimeList for manga by given name. Generates a really cool image with the details!",
-    "usage": "%pfx%manga Silent Voice"
-  },
-  "nhentai": {
-    "description": "Searches nHentai for doujinshi for the inputed name, displays the results, cover and tags.",
-    "usage": "%pfx%nhentai Oreimo"
-  },
-  "jisho": {
-    "description": "Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.",
-    "usage": "%pfx%jisho Kawaii"
-  },
-  "wanikani": {
-    "description": "Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the %pfx%wksave command. Use help on it to get more info.",
-    "usage": "%pfx%wanikani breadstickninja"
-  },
-  "wksave": {
-    "description": "Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!",
-    "usage": "%pfx%wksave key 12345678901234567890123456789012"
-  },
-  "nsfwpermit": {
-    "description": "Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)",
-    "usage": "%pfx%nsfwpermit"
-  },
-  "osu": {
-    "description": "Generates a signature image with the users stats for osu.",
-    "usage": "%pfx%osu AXAz0r"
-  },
-  "pokemon": {
-    "description": "Shows details for the inputed Pokemon.",
-    "usage": "%pfx%pokemon Snorlax"
-  },
-  "rule34": {
-    "description": "Searches Rule34 for selected tags, if no tags are specified, it gives a random image.",
-    "usage": "%pfx%rule34 ovum"
-  },
-  "level": {
-    "description": "Shows yours or a mentioned persons Sigma level.",
-    "usage": "%pfx%level"
-  },
-  "rip": {
-    "description": "Generates a tombstone with the mentioned users avatar.",
-    "usage": "%pfx%rip @person"
-  },
-  "ud": {
-    "description": "Shows the Urban Dictionary definition for the given word.",
-    "usage": "%pfx%ud Alex"
-  },
-  "es": {
-    "description": "Vindictus Enchant Scroll Search.",
-    "usage": "%pfx%es Righteous"
-  },
-  "vndb": {
-    "description": "Searches the Visual Novel Database fot the title you inputed.",
-    "usage": "%pfx%vndb Rewrite"
-  },
-  "weather": {
-    "description": "Shows weather data for the selected location.",
-    "usage": "%pfx%weather Melbourne, AU"
-  },
-  "wowchar": {
-    "description": "Shows World of Warcraft Character information and equipment.",
-    "usage": "%pfx%wowchar EU Doomhammer Takamatsuku"
-  },
-  "mtg": {
-    "description": "Searches the Magic The Gathering Database for the inputed card.",
-    "usage": "%pfx%mtg Archangel Avacyn"
-  },
-  "keyvis": {
-    "description": "Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.",
-    "usage": "%pfx%keyvis rewrite harvest festa"
-  },
-  "mkcmdlist": {
-    "description": "Generates the MarkDown file of the command list for GitHub (Owner Only).",
-    "usage": "%pfx%mkcmdlist"
-  }
+    "help": {
+        "description": "Returns the list of command modules or gives you the description and usage for a selected command.",
+        "usage": "%pfx%help overwatch"
+    },
+    "overwatch": {
+        "description": "Shows the Overwatch statistics of inputed Battle.Net ID. (Warning: Case Sensitive)",
+        "usage": "%pfx%overwatch EU Aurora#22978"
+    },
+    "bnsstats": {
+        "description": "The Blade and Soul module provides in-depth character information.",
+        "usage": "%pfx%bnsstats EU Lucia Konohana"
+    },
+    "bnsatt": {
+        "description": "Provides highly detailed Attack Statistics",
+        "usage": "%pfx%bnsatt EU Lucia Konohana"
+    },
+    "bnsdef": {
+        "description": "Provides highly detailed Defense Statistics",
+        "usage": "%pfx%bnsdef EU Lucia Konohana"
+    },
+    "echo": {
+        "description": "Repeats the given text. (Bot Owner Only)",
+        "usage": "%pfx%echo Hello world!"
+    },
+    "gelbooru": {
+        "description": "Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.",
+        "usage": "%pfx%gelbooru vella mabinogi_heroes"
+    },
+    "hearthstone": {
+        "description": "Hearthstone card lookup.",
+        "usage": "%pfx%hearthstone Murloc Raider"
+    },
+    "imdb": {
+        "description": "Searches the Internet Movie Database for a Title of your choice.",
+        "usage": "%pfx%imdb A Clockwork Orange"
+    },
+    "imgur": {
+        "description": "Searches through Imgur posts for the given title. Do remember that it is not Image-Only",
+        "usage": "%pfx%imgur Game Grumps"
+    },
+    "itad": {
+        "description": "Lists the latest deals from IsThereAnyDeal",
+        "usage": "%pfx%itad"
+    },
+    "joke": {
+        "description": "Outputs a random joke from a random source, it is totally cancerous.",
+        "usage": "%pfx%joke"
+    },
+    "startkaraoke": {
+        "description": "Starts the Karaoke function on a specified Voice Channel. The voice channel will then be put in Strict Mode that will enforce an Absolute Mute (Server Mute that can not be deactivated untill the function is deactivated).(All Karaoke Functions are Only for Specially Permitted Users)",
+        "usage": "%pfx%startkaraoke Karaoke Room"
+    },
+    "stopkaraoke": {
+        "description": "Stops the Karaoke function.",
+        "usage": "%pfx%stopkaraoke"
+    },
+    "karaokestrict": {
+        "description": "Toggles the Karaoke Strict Mode On and Off",
+        "usage": "%pfx%karaokestrict"
+    },
+    "handup": {
+        "description": "Adds you to the Singer Queue.",
+        "usage": "%pfx%handup"
+    },
+    "handdown": {
+        "description": "Removes you from the Singer Queue.",
+        "usage": "%pfx%handdown"
+    },
+    "repertoire": {
+        "description": "Lists all the users in the Singer Queue",
+        "usage": "%pfx%itad"
+    },
+    "clearqueue": {
+        "description": "Clears the Singer Queue",
+        "usage": "%pfx%clearqueue"
+    },
+    "karaokeremove": {
+        "description": "Removes mentioned user from the Singer Queue",
+        "usage": "%pfx%karaokeremove @user"
+    },
+    "takemic": {
+        "description": "If it is your turn to sing, it will unmute you during the karaoke session and mute everyone else.",
+        "usage": "%pfx%takemic"
+    },
+    "dropmic": {
+        "description": "Marks you ending your singing session. Allows the next person in the Singing Queue to pick the mic up.",
+        "usage": "%pfx%dropmic"
+    },
+    "karaokestatus": {
+        "description": "Outputs the current Karaoke Mode, Session Ongoing state, Channel for the Karaoke Session if running, and if the Karaoke is in Strict Mode.",
+        "usage": "%pfx%karaokestatus"
+    },
+    "forceunmute": {
+        "description": "A Testing Purpose function for forcing the channel to unmute all users.",
+        "usage": "%pfx%forceunmute"
+    },
+    "forcemute": {
+        "description": "A Testing Purpose function for forcing the channel to mute all users.",
+        "usage": "%pfx%forcemute"
+    },
+    "listchannelmembers": {
+        "description": "A Testing Purpose function for listing all users in a voice channel.",
+        "usage": "%pfx%listchannelmembers"
+    },
+    "setchannel": {
+        "description": "Sets the karaoke channel to a new specified channel.",
+        "usage": "%pfx%setchannel Karaoke Room"
+    },
+    "signup": {
+        "description": "Signs you up for a karaoke event. Like saying you will be attending.",
+        "usage": "%pfx%signup"
+    },
+    "karaokelist": {
+        "description": "List all users that signed up for a karaoke event.",
+        "usage": "%pfx%karaokelist"
+    },
+    "lastfm": {
+        "description": "List the users top tracks from LastFM.",
+        "usage": "%pfx%lastfm axaz0r"
+    },
+    "league": {
+        "description": "Shows the players League of Legends statistics of inputed Summoner Name. You can also place a gamemode between the Region and Summoner Name to get statistics for it.",
+        "usage": "%pfx%league EUNE AXAz0r"
+    },
+    "anime": {
+        "description": "Searches MyAnimeList for anime by given name. Generates a really cool image with the details!",
+        "usage": "%pfx%anime Terror in Resonance"
+    },
+    "manga": {
+        "description": "Searches MyAnimeList for manga by given name. Generates a really cool image with the details!",
+        "usage": "%pfx%manga Silent Voice"
+    },
+    "nhentai": {
+        "description": "Searches nHentai for doujinshi for the inputed name, displays the results, cover and tags.",
+        "usage": "%pfx%nhentai Oreimo"
+    },
+    "jisho": {
+        "description": "Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.",
+        "usage": "%pfx%jisho Kawaii"
+    },
+    "wanikani": {
+        "description": "Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the %pfx%wksave command. Use help on it to get more info.",
+        "usage": "%pfx%wanikani breadstickninja"
+    },
+    "wksave": {
+        "description": "Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!",
+        "usage": "%pfx%wksave key 12345678901234567890123456789012"
+    },
+    "nsfwpermit": {
+        "description": "Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)",
+        "usage": "%pfx%nsfwpermit"
+    },
+    "osu": {
+        "description": "Generates a signature image with the users stats for osu.",
+        "usage": "%pfx%osu AXAz0r"
+    },
+    "pokemon": {
+        "description": "Shows details for the inputed Pokemon.",
+        "usage": "%pfx%pokemon Snorlax"
+    },
+    "rule34": {
+        "description": "Searches Rule34 for selected tags, if no tags are specified, it gives a random image.",
+        "usage": "%pfx%rule34 ovum"
+    },
+    "level": {
+        "description": "Shows yours or a mentioned persons Sigma level.",
+        "usage": "%pfx%level"
+    },
+    "rip": {
+        "description": "Generates a tombstone with the mentioned users avatar.",
+        "usage": "%pfx%rip @person"
+    },
+    "ud": {
+        "description": "Shows the Urban Dictionary definition for the given word.",
+        "usage": "%pfx%ud Alex"
+    },
+    "es": {
+        "description": "Vindictus Enchant Scroll Search.",
+        "usage": "%pfx%es Righteous"
+    },
+    "vndb": {
+        "description": "Searches the Visual Novel Database fot the title you inputed.",
+        "usage": "%pfx%vndb Rewrite"
+    },
+    "weather": {
+        "description": "Shows weather data for the selected location.",
+        "usage": "%pfx%weather Melbourne, AU"
+    },
+    "wowchar": {
+        "description": "Shows World of Warcraft Character information and equipment.",
+        "usage": "%pfx%wowchar EU Doomhammer Takamatsuku"
+    },
+    "mtg": {
+        "description": "Searches the Magic The Gathering Database for the inputed card.",
+        "usage": "%pfx%mtg Archangel Avacyn"
+    },
+    "keyvis": {
+        "description": "Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.",
+        "usage": "%pfx%keyvis rewrite harvest festa"
+    },
+    "mkcmdlist": {
+        "description": "Generates the MarkDown file of the command list for GitHub (Owner Only).",
+        "usage": "%pfx%mkcmdlist"
+    },
+    "wows": {
+        "description": "Shows user statistics for the given username.",
+        "usage": "%pfx%wows eu metallicadutch"
+    }
 }
