@@ -1,6 +1,6 @@
 from plugin import Plugin
 from utils import create_logger
-from config import OwnerID as ownr
+from config import permitted_id
 class Echo(Plugin):
     is_global = True
     log = create_logger('echo')
@@ -16,7 +16,7 @@ class Echo(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            if message.author.id == ownr:
+            if message.author.id in permitted_id:
                 await self.client.send_message(message.channel, message.content[len('echo') + len(pfx):])
             else:
                 await self.client.send_message(message.channel,

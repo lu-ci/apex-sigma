@@ -1,7 +1,6 @@
 from plugin import Plugin
 from config import RiotAPIKey
 import os
-import wget
 import requests
 from PIL import Image
 from PIL import ImageFont

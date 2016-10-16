@@ -2,7 +2,6 @@ from plugin import Plugin
 import urllib.request
 import wget
 import os
-import requests
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw

@@ -1,5 +1,5 @@
 from plugin import Plugin
-from config import donators, OwnerID as ownr, permitted_id, ClientID as cid
+from config import donators, permitted_id
 import asyncio
 from utils import create_logger
 from utils import bold
@@ -8,7 +8,7 @@ from config import sigma_version
 import aiohttp
 import sys
 import json
-
+import discord
 
 class Reminder(Plugin):
     is_global = True
@@ -120,18 +120,18 @@ class BulkMSG(Plugin):
 class PMRedirect(Plugin):
     is_global = True
     log = create_logger('received pm')
-
     async def on_message(self, message, pfx):
+        cid = self.client.user.id
         cmd_name = 'Private Message'
         if message.server is None:
-            if str(message.author.id) == str(cid) or str(message.author.id) == str(ownr):
+            if str(message.author.id) == str(cid) or str(message.author.id) in permitted_id:
                 return
             else:
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
                 for user in self.client.get_all_members():
-                    if user.id == ownr:
+                    if user.id in permitted_id:
                         private_msg_to_owner = await self.client.start_private_message(user=user)
                         await self.client.send_message(private_msg_to_owner,
                                                        '**' + message.author.name + '** (ID: ' + message.author.id + '):\n```' + message.content + '\n```')
@@ -172,7 +172,6 @@ class OtherUtils(Plugin):
             out_txt += '\nSigma Version: ' + sigma_version
             out_txt += '\nConnected to [ ' + str(server_amo) + ' ] servers.'
             out_txt += '\nServing [ ' + str(member_amo) + ' ] users.'
-            out_txt += '\nSigma Owner ID: [' + ownr + ']'
             out_txt += '\nPermitted IDs: ' + permed_ids[:-2]
 
             await self.client.send_message(message.channel, '```python' + out_txt + '\n```')
