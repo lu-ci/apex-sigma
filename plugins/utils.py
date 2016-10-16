@@ -8,7 +8,7 @@ from config import sigma_version
 import aiohttp
 import sys
 import json
-import discord
+
 
 class Reminder(Plugin):
     is_global = True
@@ -155,26 +155,23 @@ class OtherUtils(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            server_amo = 0
-            member_amo = 0
-            permed_ids = ''
-            for server in self.client.servers:
-                server_amo += 1
-                for member in server.members:
-                    member_amo += 1
-            for per_id in permitted_id:
-                permed_ids += '[' + per_id + '], '
-            out_txt = ''
-            out_txt += '\nLogged In As: ' + self.client.user.name
-            out_txt += '\nUser ID: ' + self.client.user.id
-            out_txt += '\nAuthors: \"Alex\" and \"Awakening\"'
-            out_txt += '\nContributors: \"Mirai\", \"Valeth\" and \"Chaeldar\"'
-            out_txt += '\nSigma Version: ' + sigma_version
-            out_txt += '\nConnected to [ ' + str(server_amo) + ' ] servers.'
-            out_txt += '\nServing [ ' + str(member_amo) + ' ] users.'
-            out_txt += '\nPermitted IDs: ' + permed_ids[:-2]
 
-            await self.client.send_message(message.channel, '```python' + out_txt + '\n```')
+            permed_ids = ', '.join(['[{:s}]'.format(x) for x in permitted_id])
+
+            authors = ', '.join(['"{:s}"'.format(n) for n in self.client.authors])
+            contributors = ', '.join(['"{:s}"'.format(n) for n in self.client.contributors])
+            out_txt = '```python\n'
+            out_txt += 'Logged In As: {:s}\n'.format(self.client.user.name)
+            out_txt += 'User ID: {:s}\n'.format(self.client.user.id)
+            out_txt += 'Authors: {:s}\n'.format(authors)
+            out_txt += 'Contributors: {:s}\n'.format(contributors)
+            out_txt += 'Sigma Version: {:s}\n'.format(sigma_version)
+            out_txt += 'Connected to [ {:d} ] servers.\n'.format(self.client.server_count)
+            out_txt += 'Serving [ {:d} ] users.\n'.format(self.client.member_count)
+            out_txt += 'Permitted IDs: {:s}\n'.format(permed_ids)
+            out_txt += '```'
+
+            await self.client.send_message(message.channel, out_txt)
         elif message.content.startswith(pfx + 'setgame '):
             await self.client.send_typing(message.channel)
             cmd_name = 'Set Game'
