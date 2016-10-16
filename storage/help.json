@@ -204,7 +204,7 @@
         "usage": "%pfx%mkcmdlist"
     },
     "wows": {
-        "description": "Shows user statistics for the given username.",
+        "description": "Shows World of Warships statistics and information for the given username.",
         "usage": "%pfx%wows eu metallicadutch"
     }
 }
