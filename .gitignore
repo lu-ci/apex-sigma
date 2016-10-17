@@ -9,9 +9,8 @@ thing.py
 config.py
 plugins/xp_grind.py
 
-# Database & Storage
-db/*
-!db/server_settings.sql
+# Database
+storage/*.sqlite*
 
 # Misc
 *.xml

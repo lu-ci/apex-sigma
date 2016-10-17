@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 
-echo 'Starting Travis build testing...'
+echo 'dummy test'
 #nosetests --with-coverage
-echo 'Launching Sigma'
-python sigma.py
-echo 'Sigma Launched'
