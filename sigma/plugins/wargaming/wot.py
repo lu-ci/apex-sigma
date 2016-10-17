@@ -1,8 +1,9 @@
-from plugin import Plugin
-from utils import create_logger
 from requests import get as rg
+
+from sigma.plugin import Plugin
+from sigma.utils import create_logger
+
 from config import WarGamingAppID
-import datetime
 
 
 class WorldOfTanks(Plugin):
