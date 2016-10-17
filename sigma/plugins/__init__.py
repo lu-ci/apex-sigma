@@ -34,6 +34,7 @@ from .searches.sonarr import Sonarr
 from .searches.vndb import VNDBSearch
 from .searches.imgur import Imgur
 from .searches.reddit import Reddit
+from .searches.awwnime import Awwnime
 # NSFW Modules
 from .nsfw.gelbooru import Gelbooru
 from .nsfw.r34 import R34
@@ -111,5 +112,6 @@ __all__ = [
     'WorlfOfWarships',
     'WorldOfTanks',
     'MakeCommandList',
-    'GitHub'
+    'GitHub',
+    'Awwnime'
 ]
