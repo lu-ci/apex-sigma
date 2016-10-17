@@ -16,4 +16,4 @@ RUN chown -R ${USER}:${USER} /sigma
 
 USER ${USER}
 
-ENTRYPOINT ["python3", "sigma.py"]
+ENTRYPOINT ["python3", "run.py"]
