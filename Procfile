@@ -1,1 +1,1 @@
-bot: python sigma.py
+bot: python3 run.py
