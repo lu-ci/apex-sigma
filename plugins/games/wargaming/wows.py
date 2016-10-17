@@ -78,7 +78,7 @@ class WorlfOfWarships(Plugin):
                 max_frags_ship_id = main_battery['max_frags_ship_id']
                 shots = main_battery['shots']
 
-                max_frags_ship_url = 'https://api.worldofwarships.eu/wows/encyclopedia/ships/?application_id=' + WarGamingAppID + '&ship_id=' + str(max_frags_ship_id)
+                max_frags_ship_url = 'https://api.worldofwarships.' + game_region + '/wows/encyclopedia/ships/?application_id=' + WarGamingAppID + '&ship_id=' + str(max_frags_ship_id)
                 max_frags_ship_data = rg(max_frags_ship_url).json()
 
                 if max_frags_ship_id is not None:
