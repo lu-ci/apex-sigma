@@ -23,6 +23,7 @@ from .games.world_of_warcraft import World_Of_Warcraft
 from .games.rocket_league import RocketLeague
 from .games.magic import MagicTheGathering
 from .games.wargaming.wows import WorlfOfWarships
+from .games.wargaming.wot import WorldOfTanks
 # Search and Media
 from .searches.urbandictionary import UrbanDictionary
 from .searches.lastfm import LastFM
@@ -108,6 +109,7 @@ __all__ = [
     'MagicTheGathering',
     'KeyVisual',
     'WorlfOfWarships',
+    'WorldOfTanks',
     'MakeCommandList',
     'GitHub'
 ]
