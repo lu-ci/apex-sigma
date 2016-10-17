@@ -12,7 +12,7 @@ class PluginManager(object):
     def load(self, plugin):
         plugname = plugin.__name__
 
-        if plugname in plug.__all__:
+        if plugname in plug.pluglist:
             self.log.info('Loading Plugin: [ {:s} ]'.format(plugname))
             plugin_instance = plugin(self.client)
             self.client.plugins.append(plugin_instance)

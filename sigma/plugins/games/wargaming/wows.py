@@ -7,7 +7,7 @@ from sigma.utils import create_logger
 from config import WarGamingAppID
 
 
-class WorlfOfWarships(Plugin):
+class WorldOfWarships(Plugin):
 
     is_global = True
     log = create_logger('wows')
