@@ -5,3 +5,4 @@ echo 'Starting Travis build testing...'
 echo 'Launching Sigma'
 python sigma.py
 echo 'Sigma Launched'
+echo 'Done Testing'
