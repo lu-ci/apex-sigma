@@ -14,7 +14,7 @@ class OSU(Plugin):
     async def on_message(self, message, pfx):
         if message.content.startswith(pfx + 'osu'):
             await self.client.send_typing(message.channel)
-            cmd_name = 'Rule34'
+            cmd_name = 'Osu'
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                               message.author,
