@@ -98,7 +98,7 @@ class Jisho(Plugin):
                     try:
                         other_forms += request['japanese'][i]['word'] + '、'
                     except:
-                        other_forms += 'None、'
+                        pass
             if other_forms:
                 output += '\n\nOther forms ' + other_forms[:-1] + '```'  # account for extra comma
             else:
