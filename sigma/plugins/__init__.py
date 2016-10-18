@@ -19,6 +19,9 @@ from . import finalo
 # Miscellaneous
 from . import misc
 
+# Project Polaris Sonata
+from . import polaris
+
 
 __all__ = [
     'utils',
@@ -28,6 +31,7 @@ __all__ = [
     'nihongo',
     'finalo',
     'misc',
+    'polaris'
 ]
 
 pluglist = []
@@ -38,3 +42,4 @@ pluglist += nsfw.pluglist
 pluglist += nihongo.pluglist
 pluglist += finalo.pluglist
 pluglist += misc.pluglist
+pluglist += polaris.pluglist
