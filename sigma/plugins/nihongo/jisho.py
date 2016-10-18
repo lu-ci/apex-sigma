@@ -95,7 +95,10 @@ class Jisho(Plugin):
             if len(request['japanese']) > 1:
                 other_forms = ''
                 for i in range(1, len(request['japanese'])):
-                    other_forms += request['japanese'][i]['word'] + '、'
+                    try:
+                        other_forms += request['japanese'][i]['word'] + '、'
+                    except:
+                        pass
             if other_forms:
                 output += '\n\nOther forms ' + other_forms[:-1] + '```'  # account for extra comma
             else:

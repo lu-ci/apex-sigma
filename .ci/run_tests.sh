@@ -3,6 +3,6 @@
 echo 'Starting Travis build testing...'
 #nosetests --with-coverage
 echo 'Launching Sigma'
-python sigma.py
+python run.py
 echo 'Sigma Launched'
 echo 'Done Testing'

@@ -1,25 +1,18 @@
-import praw
-
 from sigma.plugin import Plugin
 from sigma.utils import create_logger
-
-from config import reddit_un as un, reddit_pw as pw
-from config import permitted_id
-
-
-logged_in = False
+import praw
+import random
 
 
 class Reddit(Plugin):
+
     is_global = True
-    log = create_logger('Reddit')
+    log = create_logger('reddit')
 
     async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + 'redditlogin'):
+        if message.content.startswith(pfx + 'reddit '):
             await self.client.send_typing(message.channel)
-            cmd_name = 'Reddit Login'
-            global logged_in
-            # Start Logger
+            cmd_name = 'Reddit'
             try:
                 self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
                               message.author,
@@ -28,43 +21,14 @@ class Reddit(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                               message.author,
                               message.author.id)
-            # Eng Logger
-            if message.author.id in permitted_id:
-                if logged_in is False:
-                    conn = praw.Reddit(user_agent='Apex Sigma')
-                    try:
-                        conn.login(un, pw, disable_warning=True)
-                    except praw.errors.InvalidUserPass:
-                        await self.client.send_message(message.channel, 'Invalid Login Credentials')
-                    await self.client.send_message(message.channel, 'Logged into Reddit as ' + un)
-                    logged_in = True
-                elif logged_in is not False:
-                    await self.client.send_message(message.channel, 'Already logged in into Reddit as ' + un)
-            else:
-                await self.client.send_message(message.channel,
-                                               'I\'m sorry <@' + message.author.id + '>, but you don\'t have that permission.')
-        elif message.content.startswith(pfx + 'redditmulti'):
-            mr = message.content[len(pfx) + len('redditmulti') + 1:]
-            await self.client.send_typing(message.channel)
-            cmd_name = 'Reddit Profile'
-            # Start Logger
+            q = message.content[len(pfx) + len('reddit') + 1:]
+            req = praw.Reddit(user_agent='Apex Sigma')
             try:
-                self.log.info('User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                              message.author,
-                              message.author.id, message.server.name, message.server.id, message.channel)
-            except:
-                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
-                              message.author,
-                              message.author.id)
-            # Eng Logger
-            conn = praw.Reddit(user_agent='Apex Sigma')
-            try:
-                multi = conn.get_multireddit('Imjustheretobefined', mr)
-                multi_list = multi.get_hot(limit=10)
-                out = ''
-                for post in multi_list:
-                    out += post.get_hot(limit=10)
-                print(out)
-                await self.client.send_message(message.channel, out)
-            except:
-                print('syn errrrrr')
+                posts = req.get_subreddit(str(q)).get_hot(limit=100)
+                url_list = []
+                for post in posts:
+                    url_list.append(post.url)
+                out_tex = random.choice(url_list)
+                await self.reply(out_tex)
+            except Exception as err:
+                await self.reply(str(err))
