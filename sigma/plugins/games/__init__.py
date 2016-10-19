@@ -8,7 +8,7 @@ from .vindictus import VindictusScrollSearch
 from .world_of_warcraft import World_Of_Warcraft
 from .rocket_league import RocketLeague
 from .magic import MagicTheGathering
-
+from .steam import Steam
 from . import wargaming
 
 __all__ = [
@@ -21,6 +21,7 @@ __all__ = [
     'VindictusScrollSearch',
     'World_Of_Warcraft',
     'RocketLeague',
+    'Steam',
     'MagicTheGathering',
     'WorldOfWarships',
     'WorldOfTanks'
