@@ -1,0 +1,15 @@
+name: EXAMPLE
+
+categories:
+  - example
+
+enabled: false
+
+commands:
+  - name:    command1
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      This is an example command
