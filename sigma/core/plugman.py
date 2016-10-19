@@ -1,0 +1,41 @@
+import os
+
+from .logger import create_logger
+from .plugin import Plugin
+
+
+class PluginManager(object):
+    def __init__(self, bot):
+        self.bot = bot
+        self.client = self.bot
+
+        self.db = bot.db
+        self.log = create_logger('Plugin Manager')
+
+        self.plugin_dirs = []
+        self.plugins = []
+        self.commands = {}
+
+        self.get_plugin_dirs()
+        self.load_all()
+
+        self.log.info('Available commands:')
+        for k, v in self.commands.items():
+            self.log.info('[ {:s} ]'.format(k))
+
+    def load_plugin(self, path):
+        plugin = Plugin(self.bot, path)
+
+        if plugin.loaded:
+            self.plugins.append(plugin)
+            self.commands.update(plugin.commands)
+            self.log.info('Loaded plugin: [{:s}]'.format(plugin.name))
+
+    def load_all(self):
+        for path in self.plugin_dirs:
+            self.load_plugin(path)
+
+    def get_plugin_dirs(self):
+        for root, dirs, files in os.walk('sigma/plugins'):
+            if 'plugin.yml' in files:
+                self.plugin_dirs.append(root)

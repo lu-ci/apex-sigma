@@ -11,6 +11,7 @@ imgurpython
 praw
 cleverbot
 tornado
+pyyaml
 discord.py
 
 blinker

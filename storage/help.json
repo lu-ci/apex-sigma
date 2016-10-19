@@ -135,18 +135,6 @@
         "description": "Searches nHentai for doujinshi for the inputed name, displays the results, cover and tags.",
         "usage": "%pfx%nhentai Oreimo"
     },
-    "jisho": {
-        "description": "Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.",
-        "usage": "%pfx%jisho Kawaii"
-    },
-    "wanikani": {
-        "description": "Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the %pfx%wksave command. Use help on it to get more info.",
-        "usage": "%pfx%wanikani breadstickninja"
-    },
-    "wksave": {
-        "description": "Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!",
-        "usage": "%pfx%wksave key 12345678901234567890123456789012"
-    },
     "nsfwpermit": {
         "description": "Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)",
         "usage": "%pfx%nsfwpermit"

@@ -1,6 +1,6 @@
 import sqlite3
 
-from .utils import create_logger
+from .logger import create_logger
 
 
 class DatabaseError(Exception):
