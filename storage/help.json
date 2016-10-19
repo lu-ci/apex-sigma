@@ -23,10 +23,6 @@
         "description": "Repeats the given text. (Bot Owner Only)",
         "usage": "%pfx%echo Hello world!"
     },
-    "gelbooru": {
-        "description": "Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.",
-        "usage": "%pfx%gelbooru vella mabinogi_heroes"
-    },
     "hearthstone": {
         "description": "Hearthstone card lookup.",
         "usage": "%pfx%hearthstone Murloc Raider"
@@ -131,10 +127,6 @@
         "description": "Searches MyAnimeList for manga by given name. Generates a really cool image with the details!",
         "usage": "%pfx%manga Silent Voice"
     },
-    "nhentai": {
-        "description": "Searches nHentai for doujinshi for the inputed name, displays the results, cover and tags.",
-        "usage": "%pfx%nhentai Oreimo"
-    },
     "nsfwpermit": {
         "description": "Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)",
         "usage": "%pfx%nsfwpermit"
@@ -146,10 +138,6 @@
     "pokemon": {
         "description": "Shows details for the inputed Pokemon.",
         "usage": "%pfx%pokemon Snorlax"
-    },
-    "rule34": {
-        "description": "Searches Rule34 for selected tags, if no tags are specified, it gives a random image.",
-        "usage": "%pfx%rule34 ovum"
     },
     "level": {
         "description": "Shows yours or a mentioned persons Sigma level.",
@@ -182,10 +170,6 @@
     "mtg": {
         "description": "Searches the Magic The Gathering Database for the inputed card.",
         "usage": "%pfx%mtg Archangel Avacyn"
-    },
-    "keyvis": {
-        "description": "Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.",
-        "usage": "%pfx%keyvis rewrite harvest festa"
     },
     "mkcmdlist": {
         "description": "Generates the MarkDown file of the command list for GitHub (Owner Only).",

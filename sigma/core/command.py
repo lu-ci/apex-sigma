@@ -1,6 +1,8 @@
 import os
 from importlib import import_module
 
+from .permission import check_channel_nsfw
+
 
 class CommandNotEnabled(RuntimeError):
     pass
@@ -13,7 +15,6 @@ class Command(object):
         self.sfw = True
         self.usage = 'No help available.'
         self.desc = 'No description available.'
-
 
         self.db = plugin.db
         self.log = plugin.log
@@ -73,5 +74,10 @@ class Command(object):
         self.reply = reply
         self.reply_file = reply_file
         self.delete_call_message = delete_call_message
+
+        # check channel nsfw permission
+        if not self.sfw and not check_channel_nsfw(self.db, message.channel.id):
+            await self.reply('Channel does not have NSFW permissions set, sorry.')
+            return
 
         await getattr(self.module, self.name)(self, message, *args)
