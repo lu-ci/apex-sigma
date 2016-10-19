@@ -26,6 +26,15 @@ class Plugin(object, metaclass=PluginMount):
 
     async def _on_message(self, message, pfx):
         warnings.filterwarnings("ignore", category=ResourceWarning)
+
+        self.channel = message.channel
+        self.author = message.author
+
+        async def reply(*args):
+            await self.client.send_message(self.channel, *args)
+
+        self.reply = reply
+
         await self.on_message(message, pfx)
 
     async def on_message(self, message, pfx):

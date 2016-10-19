@@ -10,7 +10,9 @@ Shosetsu
 imgurpython
 praw
 cleverbot
+tornado
 discord.py
+wikipedia
 
 blinker
 nose
