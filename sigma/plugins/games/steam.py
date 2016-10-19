@@ -37,7 +37,8 @@ class Steam(Plugin):
                 creation = int(creation) / 60 /60 / 24 / 365.25
                 lastOnline = time.strftime('%H:%M:%S', time.gmtime(int(lastOnline)))
                 avatar = str(summery['avatarfull'])
-                gameCount = str(steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False, include_played_free_games=True,appids_filter=-1)['response']['game_count'])
-                await self.client.send_message(message.channel, str('Display name : '+ str(displayName)+ '\nTime on steam: '+str(creation)[-1:]+' years\nlast Online: '+ str(lastOnline)+' ago\navatar: '+str(avatar)+'\nnumber of games: ' +str(gameCount)))
+                gameCount = steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False, include_played_free_games=True,appids_filter=-1)['response']['game_count']
+                gameCountNonFree = steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False, include_played_free_games=False,appids_filter=-1)['response']['game_count']
+                await self.client.send_message(message.channel, str('Display name : '+ displayName+ '\nTime on steam: '+str(creation)[-1:]+' years\nlast Online: '+ str(lastOnline)+' ago\navatar: '+avatar+'\nnumber of games: ' +str(gameCount)+', of which '+str(gameCount - gameCountNonFree) +' are free.'))
             except:
                 await self.client.send_message(message.channel, 'an unknown error ocoured. is that your vanity URL?')
