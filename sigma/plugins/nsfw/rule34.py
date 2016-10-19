@@ -20,5 +20,5 @@ async def rule34(cmd, message, args):
 
         await cmd.reply(str(choice.attrib['file_url']).replace('//img', 'http://img'))
     except Exception as e:
-        cmd.log(e)
+        cmd.log.info(e)
         await cmd.reply('Nothing found...')
