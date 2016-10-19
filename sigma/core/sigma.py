@@ -1,5 +1,4 @@
 import os
-import io
 import datetime
 import time
 import discord
@@ -102,27 +101,14 @@ class Sigma(discord.Client):
         self.log.info('Bot Version: ' + sigma_version)
         self.log.info('Build Date: 16. October 2016.')
         self.log.info('-----------------------------------')
-        self.log.info('Connected to [ ' + str(self.server_count) + ' ] servers.')
-        self.log.info('Serving [ ' + str(self.member_count) + ' ] users.')
+        self.log.info('Connected to [ {:d} ] servers'.format(self.server_count))
+        self.log.info('Serving [ {:d} ] users'.format(self.member_count))
         self.log.info('Successfully connected to Discord!')
 
     async def on_message(self, message):
         self.change_presence()
 
-        # some convenience methods
-        async def reply(thing):
-            if isinstance(thing, str):
-                await self.send_typing(message.channel)
-                await self.send_message(message.channel, thing)
-            elif isinstance(thing, io.IOBase):
-                await self.send_file(message.channel, thing)
-
-        async def typing():
-            await self.send_typing(message.channel)
-
-        self.reply = reply
-        self.typing = typing
-
+        # handle commands
         if message.content.startswith(pfx):
             args = message.content.split(' ')
             cmd = args.pop(0).lstrip(pfx)
@@ -139,4 +125,9 @@ class Sigma(discord.Client):
                               message.author,
                               message.author.id)
 
-            self.loop.create_task(self.plugin_manager.commands[cmd].call(message, args))
+            if cmd == 'help':
+                help_msg = self.plugin_manager.commands[args[0]].help()
+                await self.send_message(message.channel, help_msg)
+            else:
+                task = self.plugin_manager.commands[cmd].call(message, args)
+                self.loop.create_task(task)
