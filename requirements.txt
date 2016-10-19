@@ -1,4 +1,4 @@
-
+steam
 wget
 requests
 Pillow
@@ -13,6 +13,7 @@ cleverbot
 tornado
 pyyaml
 discord.py
+wikipedia
 
 blinker
 nose

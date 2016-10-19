@@ -132,7 +132,7 @@ class PMRedirect(Plugin):
                               message.author,
                               message.author.id)
                 for user in self.client.get_all_members():
-                    if user.id in permitted_id:
+                    if str(user.id) == str(permitted_id[0]):
                         private_msg_to_owner = await self.client.start_private_message(user=user)
                         await self.client.send_message(private_msg_to_owner,
                                                        '**' + message.author.name + '** (ID: ' + message.author.id + '):\n```' + message.content + '\n```')
