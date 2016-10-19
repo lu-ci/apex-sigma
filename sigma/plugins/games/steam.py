@@ -2,7 +2,7 @@ from steam import WebAPI as steam
 import time
 
 from sigma.plugin import Plugin
-from sigma.utils import create_logger, elapsedtime
+from sigma.utils import create_logger
 
 from config import SteamAPI
 
@@ -25,21 +25,19 @@ class Steam(Plugin):
                 self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
                         message.author,
                         message.author.id)
-
             try:
                 steamapi = steam(SteamAPI)
                 steam_input = message.content[len(pfx)+len('steam')+1:]
                 userID = steamapi.ISteamUser.ResolveVanityURL(vanityurl=steam_input, url_type=1)['response']['steamid']
                 summery = steamapi.ISteamUser.GetPlayerSummaries(steamids=userID)['response']['players'][0]
-                print(type(summery))
                 displayName = str(summery['personaname'])
                 currentStamp = int(round(time.time()))
                 creation = currentStamp - int(summery['timecreated'])
                 lastOnline = currentStamp - int(summery['lastlogoff'])
-                creation = elapsedtime(creation)
-                lastOnline=elapsedtime(lastOnline)
+                creation = int(creation) / 60 /60 / 24 / 365.25
+                lastOnline = time.strftime('%H:%M:%S', time.gmtime(int(lastOnline)))
                 avatar = str(summery['avatarfull'])
                 gameCount = str(steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False, include_played_free_games=True,appids_filter=-1)['response']['game_count'])
-                await self.client.send_message(message.channel, str('Display name : '+ str(displayName)+ '\ntime on steam: '+str(creation)+'\nlast Online: '+ str(lastOnline)+'\navatar: '+str(avatar)+'\nnumber of games: ' +str(gameCount)))
+                await self.client.send_message(message.channel, str('Display name : '+ str(displayName)+ '\nTime on steam: '+str(creation)[-1:]+' years\nlast Online: '+ str(lastOnline)+' ago\navatar: '+str(avatar)+'\nnumber of games: ' +str(gameCount)))
             except:
                 await self.client.send_message(message.channel, 'an unknown error ocoured. is that your vanity URL?')
