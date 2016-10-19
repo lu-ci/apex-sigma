@@ -1,6 +1,7 @@
 from sigma.plugin import Plugin
 from sigma.utils import create_logger
 from sigma.database import IntegrityError
+import asyncio
 
 
 class NSFWPermission(Plugin):
@@ -35,5 +36,7 @@ class NSFWPermission(Plugin):
                     self.db.commit()
                     await self.client.send_message(message.channel, 'Permission reverted to **Disabled**! :fire:')
             else:
-                await self.client.send_message(message.channel,
-                                               'Only an **Administrator** can manage permissions. :dark_sunglasses:')
+                response = await self.client.send_message(message.channel,
+                                                          'Only an **Administrator** can manage permissions. :x:')
+                await asyncio.sleep(10)
+                await self.client.delete_message(response)
