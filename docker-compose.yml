@@ -6,5 +6,3 @@ services:
     volumes:
       - .:/sigma
       - ./fonts:/usr/share/fonts
-    ports:
-        - "37812:37812"
