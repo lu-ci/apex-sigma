@@ -126,8 +126,13 @@ class Sigma(discord.Client):
                               message.author.id)
 
             if cmd == 'help':
-                help_msg = self.plugin_manager.commands[args[0]].help()
-                await self.send_message(message.channel, help_msg)
+                if args:
+                    help_msg = self.plugin_manager.commands[args[0]].help()
+                    await self.send_message(message.channel, help_msg)
+                else:
+                    cmd_list = ['`{:s}`'.format(x) for x in self.plugin_manager.commands.keys()]
+                    help_msg = 'Commands:\n' + ', '.join(cmd_list)
+                    await self.send_message(message.channel, help_msg)
             else:
                 task = self.plugin_manager.commands[cmd].call(message, args)
                 self.loop.create_task(task)
