@@ -2,5 +2,4 @@
 Dockerfile
 docker-compose.yml
 
-*.pyc
 .git*
