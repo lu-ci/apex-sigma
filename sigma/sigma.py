@@ -1,16 +1,21 @@
-import datetime
-import os
 import sys
+import os
+import datetime
 import time
 import discord
 import logging
+<<<<<<< HEAD:sigma.py
+=======
+import json
+import sqlite3
+>>>>>>> dev:sigma/sigma.py
 
-from config import StartupType, dsc_email, dsc_password, sigma_version
-from config import Token as token
 from config import Prefix as pfx
+from config import sigma_version
 
-from plugin_manager import PluginManager
-from database import Database
+from .plugin_manager import PluginManager
+from .database import Database
+
 
 print('Starting up...')
 start_time = time.time()
@@ -23,7 +28,6 @@ if not os.path.isfile('config.py'):
         'Fatal Error: config.py is not present.\nIf you didn\'t already, rename config_example.py to config.py, fill out your credentials and try again.')
 else:
     print('config.py present, continuing...')
-# Data
 
 if token == '':
     sys.exit('Token not provided, please open config.py and place your token.')
@@ -51,7 +55,20 @@ class Sigma(discord.Client):
         self.log = logger
 
     def init_databases(self):
-        self.db = Database('storage/server_settings.sqlite')
+        db_path = 'db/server_settings.sqlite'
+        if os.path.isfile(db_path):
+            pass
+        else:
+            print('Database Not Found')
+            open(db_path, 'w+')
+        db_conn = sqlite3.connect(db_path)
+        db_intructions = open('db/server_settings.sql', 'r').read()
+        cur = db_conn.cursor()
+        cur.executescript(db_intructions)
+        db_conn.commit()
+        cur.close()
+        db_conn.close()
+        self.db = Database(db_path)
 
     def init_plugins(self):
         self.plugin_manager = PluginManager(self)
@@ -69,18 +86,23 @@ class Sigma(discord.Client):
     async def on_ready(self):
         gamename = pfx + 'help'
         game = discord.Game(name=gamename)
-        await client.change_presence(game=game)
+        await self.change_presence(game=game)
 
+<<<<<<< HEAD:sigma.py
         server_amo = 0
         member_amo = 0
         for server in client.servers:
             server_amo += 1
+=======
+        for server in self.servers:
+            self.server_count += 1
+>>>>>>> dev:sigma/sigma.py
             for member in server.members:
                 member_amo += 1
 
         print('-----------------------------------')
-        print('Logged In As: ' + client.user.name)
-        print('Bot User ID: ' + client.user.id)
+        print('Logged In As: ' + self.user.name)
+        print('Bot User ID: ' + self.user.id)
         print('Running discord.py version: ' + discord.__version__)
         print('Authors: AXAz0r, Awakening')
         print('Contributors: Mirai, Chaeldar, Valeth')
@@ -116,12 +138,13 @@ class Sigma(discord.Client):
         # initiator_data = ('by: ' + str(message.author) + '\nUserID: ' + str(message.author.id) + '\nContent: [' + str(
         #    message.content) + ']\nServer: ' + str(message.server.name) + '\nServerID: ' + str(
         #    message.server.id) + '\n-------------------------')
-        client.change_presence()
+        self.change_presence()
 
         enabled_plugins = await self.get_plugins()
 
         for plugin in enabled_plugins:
             self.loop.create_task(plugin._on_message(message, pfx))
+<<<<<<< HEAD:sigma.py
 
 
 client = Sigma()
@@ -138,3 +161,5 @@ elif StartupType == '1':
 else:
     print('Failed loading connection settings.\nCheck your StartupType and make sure it\'s either 0 or 1.')
     sys.exit('Startup Type is not found.')
+=======
+>>>>>>> dev:sigma/sigma.py

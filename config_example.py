@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BOT
 StartupType = '0'  # 0 For starting up as a Bot, 1 for starting up as a Normal User
 Token = ''  # Discord App Token (If StartupType is 0)
@@ -22,6 +23,22 @@ mal_un = ''  # Username
 mal_pw = ''  # Password
 
 # Open Weather Map API Key
+=======
+# Sigma's internal version control.
+sigma_version = 'Beta 0.41b'
+# 0 - Bot Application; 1 - User Account; Must be either 0 or 1.
+StartupType = '0'
+# Bot Application Token; Must be filled if the startup type is 0.
+Token = ''
+ClientID = ''
+# GitHub WebHook Server Settings.
+GitHubWebserverPort = 37812
+GitHubWebserverAddr = ''
+# Discord User Account login details; Must be filled if the startup type is 1.
+dsc_email = ''
+dsc_password = ''
+# API Keys and Login Details for Various Services.
+>>>>>>> dev
 OpenWeatherMapKey = ''
 
 # Mashape API Key
