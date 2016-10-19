@@ -11,6 +11,7 @@ imgurpython
 praw
 cleverbot
 discord.py
+wikipedia
 
 blinker
 nose
