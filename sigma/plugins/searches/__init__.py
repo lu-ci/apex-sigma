@@ -7,6 +7,7 @@ from .sonarr import Sonarr
 from .vndb import VNDBSearch
 from .imgur import Imgur
 from .reddit import Reddit
+from .wikipedia import Wikipedia
 
 
 __all__ = [
@@ -18,7 +19,8 @@ __all__ = [
     'Sonarr',
     'VNDBSearch',
     'Imgur',
-    'Reddit'
+    'Reddit',
+    'Wikipedia'
 ]
 
 pluglist = __all__
