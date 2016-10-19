@@ -85,35 +85,6 @@ def getArguments(raw, separator):
         out.append(temp)
     return tuple(out)
 
-def elapsedtime(seconds):
-    minutes = seconds//60
-    seconds = seconds%60
-    hours = minutes//60
-    minutes =minutes%60
-    days = hours//24
-    hours = hours%24
-    #UGH MONTHS
-    months = days//30
-    days = days%24
-    years = months//12
-    months = months%24
-    if years == 0:
-        if months == 30 or months == 0:
-            if days == 0 or days == 30:
-                if hours == 0 or hours == 24:
-                    if minutes == 0 or minutes == 60:
-                        return str(str(seconds)+' seconds ago')
-                    else:
-                        return str(str(minutes)+ ' minutes and '+str(seconds)+'seconds ago')
-                else:
-                    return str(str(hours)+ ' hours, '+str(minutes)+' minutes and '+str(seconds)+'seconds ago')
-            else:
-                return str(str(days)+ ' days, '+str(hours)+ ' hours, '+str(minutes)+ ' minutes and '+str(seconds)+ 'seconds ago')
-        else:
-            return str(str(months)+ ' months, '+ str(days)+ ' days, '+str(hours)+ ' hours, '+str(minutes)+ ' minutes and '+str(seconds)+ 'seconds ago')
-    else:
-        return str(str(years) +' years, '+ str(months)+ ' months, '+ str(days)+ ' days, '+str(hours)+ ' hours, '+str(minutes)+ ' minutes and '+str(seconds)+ 'seconds ago')
-
 def split_list(alist, wanted_parts=1):
     length = len(alist)
     return [alist[i * length // wanted_parts: (i + 1) * length // wanted_parts]
