@@ -64,3 +64,6 @@ class Plugin(object):
             if cmd.enabled:
                 self.commands.update({cmd_info['name']: cmd})
                 self.modules.append(cmd.module)
+
+        self.log.info('Loaded commands: [{:s}]'.format(
+                ', '.join(self.commands.keys())))

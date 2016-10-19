@@ -19,10 +19,6 @@ class PluginManager(object):
         self.get_plugin_dirs()
         self.load_all()
 
-        self.log.info('Available commands:')
-        for k, v in self.commands.items():
-            self.log.info('[ {:s} ]'.format(k))
-
     def load_plugin(self, path):
         plugin = Plugin(self.bot, path)
 
