@@ -1,5 +1,5 @@
 from .help import Help
-from .administration import Administration
+from .administration import GreetingMessageToggle
 from .utility import Utility
 from .permissions import Permissions
 from .conversations import Conversations
@@ -12,7 +12,7 @@ from .translator import Translator
 from .customreactions import CustomReactions
 
 __all__ = ['Help',
-           'Administration',
+           'GreetingMessageToggle',
            'Utility',
            'Permissions',
            'Conversations',
