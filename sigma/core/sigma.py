@@ -109,30 +109,25 @@ class Sigma(discord.Client):
         self.change_presence()
 
         # handle commands
-        if message.content.startswith(pfx):
-            args = message.content.split(' ')
-            cmd = args.pop(0).lstrip(pfx)
+        if not message.content.startswith(pfx):
+            # abort
+            return
 
-            if message.server:
-                self.log.info('User %s [%s] on server %s [%s], used the {:s} command on #%s channel'.format(cmd),
-                              message.author,
-                              message.author.id,
-                              message.server.name,
-                              message.server.id,
-                              message.channel)
-            else:
-                self.log.info('User %s [%s], used the command.'.format(cmd),
-                              message.author,
-                              message.author.id)
+        args = message.content.split(' ')
+        cmd = args.pop(0).lstrip(pfx)
 
-            if cmd == 'help':
-                if args:
-                    help_msg = self.plugin_manager.commands[args[0]].help()
-                    await self.send_message(message.channel, help_msg)
-                else:
-                    cmd_list = ['`{:s}`'.format(x) for x in self.plugin_manager.commands.keys()]
-                    help_msg = 'Commands:\n' + ', '.join(cmd_list)
-                    await self.send_message(message.channel, help_msg)
-            else:
-                task = self.plugin_manager.commands[cmd].call(message, args)
-                self.loop.create_task(task)
+        if message.server:
+            self.log.info('User %s [%s] on server %s [%s], used the {:s} command on #%s channel'.format(cmd),
+                          message.author, message.author.id,
+                          message.server.name, message.server.id, message.channel)
+        else:
+            self.log.info('User %s [%s], used the command.'.format(cmd),
+                          message.author,
+                          message.author.id)
+
+        try:
+            task = self.plugin_manager.commands[cmd].call(message, args)
+            self.loop.create_task(task)
+        except KeyError:
+            # no such command
+            pass

@@ -1,8 +1,4 @@
 {
-    "help": {
-        "description": "Returns the list of command modules or gives you the description and usage for a selected command.",
-        "usage": "%pfx%help overwatch"
-    },
     "overwatch": {
         "description": "Shows the Overwatch statistics of inputed Battle.Net ID. (Warning: Case Sensitive)",
         "usage": "%pfx%overwatch EU Aurora#22978"

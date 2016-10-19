@@ -62,13 +62,13 @@ class Command(object):
 
         async def reply(text):
             await typing()
-            await self.bot.send_message(message.channel, text)
+            return await self.bot.send_message(message.channel, text)
 
         async def reply_file(filename):
-            await self.bot.send_file(message.channel, filename)
+            return await self.bot.send_file(message.channel, filename)
 
         async def delete_call_message():
-            await self.bot.delete_message(message)
+            return await self.bot.delete_message(message)
 
         self.typing = typing
         self.reply = reply

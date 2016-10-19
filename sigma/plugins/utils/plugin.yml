@@ -1,0 +1,16 @@
+name: Utils
+
+categories:
+  - utils
+
+enabled: true
+
+commands:
+  - name:    help
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} [command]"
+    description:
+      Returns the list of command modules or gives you the description
+      and usage for a selected command.
