@@ -21,7 +21,9 @@ class RewardOnMessage(Plugin):
                 else:
                     query = "SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?"
                     number_grabber = self.db.execute(query, str(message.author.id))
-
+                    points = 0
+                    level = 0
+                    level_check = 0
                     for number in number_grabber:
                         level = number[0]
                         level_check = number[1]
@@ -74,6 +76,8 @@ class LevelCheck(Plugin):
             number_grabber = self.db.execute("SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?",
                                            str(user_id))
             self.db.commit()
+            level = 0
+            points = 0
             for number in number_grabber:
                 level = number[0]
                 points = number[2]
