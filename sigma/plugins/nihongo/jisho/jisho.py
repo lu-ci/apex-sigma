@@ -2,13 +2,7 @@ import requests
 
 
 async def jisho(cmd, message, *args):
-    await cmd.bot.typing()
-
-    cmd.log.info(args)
-
     jisho_q = ' '.join(*args)
-
-    cmd.log.info(jisho_q)
 
     try:
         cmd.log.info('%s | %s | %s [%s] on %s [%s] in #%s',
@@ -20,10 +14,8 @@ async def jisho(cmd, message, *args):
 
     request = requests.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q)
 
-    cmd.log.info(request.text)
-
     if request.text.find('503 Service Unavailable') != -1:
-        await cmd.bot.reply('Jisho responded with 503 Service Unavailable')
+        await cmd.reply('Jisho responded with 503 Service Unavailable')
         return
 
     request = request.json()
@@ -32,7 +24,7 @@ async def jisho(cmd, message, *args):
     if request['data']:
         request = request['data'][0]
     else:
-        await cmd.bot.reply("Sorry, couldn't find anything matching `{}`".format(jisho_q))
+        await cmd.reply("Sorry, couldn't find anything matching `{}`".format(jisho_q))
         return
 
     output = '```'
@@ -102,4 +94,4 @@ async def jisho(cmd, message, *args):
     else:
         output += '```'
 
-    await cmd.bot.reply(output)
+    await cmd.reply(output)
