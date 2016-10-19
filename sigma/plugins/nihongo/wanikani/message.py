@@ -35,7 +35,7 @@ def get_rank_info(level, location=174):
         return ('快', 184, '_pl', (204, 51, 255))
 
 
-async def text_message(bot, message, user):
+async def text_message(cmd, message, user):
     srs = user['srs']
 
     out = ''
@@ -71,10 +71,10 @@ async def text_message(bot, message, user):
             user['reviews']['next_hour'],
             user['reviews']['next_day'])
 
-    await bot.reply('```json\n{:s}\n```'.format(out))
+    await cmd.reply('```json\n{:s}\n```'.format(out))
 
 
-async def draw_image(bot, message, user):
+async def draw_image(cmd, message, user):
     rank_category, kanji_loc, ov_color, txt_color = get_rank_info(user['level'])
 
     img_type = 'big' if user['method'] == 'api' else 'small'
@@ -166,6 +166,7 @@ async def draw_image(bot, message, user):
         imgdraw.text(review_pos, str(user['reviews'][
                      'now']), review_color, font=review_font)
 
-    base.save('cache/ani/wk_' + message.author.id + '.png')
-    await bot.reply_file('cache/ani/wk_' + message.author.id + '.png')
-    os.remove('cache/ani/wk_' + message.author.id + '.png')
+    tmp_file = 'cache/ani/wk_{:s}.png'.format(message.author.id)
+    base.save(tmp_file)
+    await cmd.reply_file(tmp_file)
+    os.remove(tmp_file)

@@ -8,7 +8,7 @@ from .logger import log
 wk_base_url = 'https://www.wanikani.com/api/user/'
 
 
-async def get_user_data(bot, message, key=None, username=None):
+async def get_user_data(cmd, message, key=None, username=None):
     user = {
         'method': None,
         'name': '',
@@ -46,7 +46,7 @@ async def get_user_data(bot, message, key=None, username=None):
             queue = requests.get(
                 url + '/study-queue').json()['requested_information']
         except ConnectionError as e:
-            bot.reply('Failed to get user data.')
+            cmd.reply('Failed to get user data.')
             log.error('{:s}'.format(e))
             raise e
 
@@ -74,7 +74,7 @@ async def get_user_data(bot, message, key=None, username=None):
         if script != []:
             script = script[0].text.strip()
         else:
-            await bot.reply("Error while parsing the page, profile not found or doesn't exist")
+            await cmd.reply("Error while parsing the page, profile not found or doesn't exist")
             return None
 
         script = script[script.find('var srsCounts'): script.find(
@@ -104,13 +104,13 @@ async def get_user_data(bot, message, key=None, username=None):
     try:
         user['avatar'][1] = requests.get(user['avatar'][0]).content
     except ConnectionError as e:
-        bot.reply('Failed to get user avatar.')
+        cmd.reply('Failed to get user avatar.')
         log.error('{:s}'.format(e))
 
     return user
 
 
-async def get_key(bot, message, args):
+async def get_key(cmd, message, args):
     # if no arguments passed, pulling the ID of a caller
     if not args:
         user_id = str(message.author.id)
@@ -124,23 +124,23 @@ async def get_key(bot, message, args):
             username = args[0]
         except Exception as e:
             log.error(e)
-            await bot.reply('Error while parsing the input message')
+            await cmd.reply('Error while parsing the input message')
             return
 
     if 'username' not in locals():
         if 'user_id' not in locals():
-            await bot.reply('No arguments passed')
+            await cmd.reply('No arguments passed')
             return
         # a username was passed
         else:
             query = "SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;"
-            key_cur = bot.db.execute(query, str(user_id))
+            key_cur = cmd.db.execute(query, str(user_id))
             db_response = key_cur.fetchone()
 
             if not db_response:
-                await bot.reply('No assigned key or username was found\n'
+                await cmd.reply('No assigned key or username was found\n'
                                 'You can add it by sending me a direct message, for example\n'
-                                'For Advanced Stats:\n\t`{0:s}wksave key <your API key>`\nor\n\t`{0:s}wksave username <your username>` for basic stats.'.format(bot.prefix))
+                                'For Advanced Stats:\n\t`{0:s}wksave key <your API key>`\nor\n\t`{0:s}wksave username <your username>` for basic stats.'.format(cmd.prefix))
 
                 return (None, None)
 
