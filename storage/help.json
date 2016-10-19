@@ -127,10 +127,6 @@
         "description": "Searches MyAnimeList for manga by given name. Generates a really cool image with the details!",
         "usage": "%pfx%manga Silent Voice"
     },
-    "nsfwpermit": {
-        "description": "Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)",
-        "usage": "%pfx%nsfwpermit"
-    },
     "osu": {
         "description": "Generates a signature image with the users stats for osu.",
         "usage": "%pfx%osu AXAz0r"

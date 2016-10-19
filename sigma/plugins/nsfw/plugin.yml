@@ -6,6 +6,15 @@ categories:
 enabled: true
 
 commands:
+  - name:    nsfwpermit
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Permits the NSFW module in the channel where the command is written to.
+      (Server Administrator Only)
+
   - name:    rule34
     global:  true
     enabled: true
