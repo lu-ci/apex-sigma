@@ -4,8 +4,9 @@ sigma_version = 'Beta 0.41b'
 StartupType = '0'
 # Bot Application Token; Must be filled if the startup type is 0.
 Token = ''
+ClientID = ''
 # GitHub WebHook Server Settings.
-GitHubWebserverPort = ''
+GitHubWebserverPort = 37812
 GitHubWebserverAddr = ''
 # Discord User Account login details; Must be filled if the startup type is 1.
 dsc_email = ''
