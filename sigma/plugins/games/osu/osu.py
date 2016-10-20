@@ -11,7 +11,6 @@ async def osu(cmd, message, args):
         sig_url = 'https://lemmmy.pw/osusig/sig.php?colour=pink&uname=' + osu_input
         sig = requests.get(sig_url).content
         sig_img = Image.open(BytesIO(sig))
-
         sig_img.save('cache/img_' + message.author.id + '.png')
         await cmd.reply_file('cache/img_' + message.author.id + '.png')
         os.remove('cache/img_' + message.author.id + '.png')

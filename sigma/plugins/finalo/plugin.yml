@@ -1,6 +1,15 @@
-name: Finalo
+name: SelfRole
 
 categories:
   - finalo
 
-enabled: false
+enabled: true
+
+commands:
+  - name:    selfrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "Used by writing a role name in the FinalOrder roles channel."
+    description:
+      Assigns the given role (if available) to the user that wrote it in the Final Order Roles channel.
