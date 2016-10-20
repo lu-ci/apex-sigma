@@ -47,39 +47,3 @@ class RewardOnMessage(Plugin):
                         break
 
                     self.db.commit()
-
-
-class LevelCheck(Plugin):
-    is_global = True
-    log = create_logger('Level Check')
-
-    async def on_message(self, message, pfx):
-        if message.content.startswith(pfx + 'level'):
-            cmd_name = 'Level Check'
-            try:
-                self.log.info(
-                    'User %s [%s] on server %s [%s], used the ' + cmd_name + ' command on #%s channel',
-                    message.author,
-                    message.author.id, message.server.name, message.server.id, message.channel)
-            except:
-                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
-                              message.author,
-                              message.author.id)
-            try:
-                user_id = message.mentions[0].id
-                mid_msg = ' is'
-                end_msg = 'has'
-            except:
-                user_id = message.author.id
-                mid_msg = '. You are'
-                end_msg = 'have'
-            number_grabber = self.db.execute("SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?",
-                                           str(user_id))
-            self.db.commit()
-            level = 0
-            points = 0
-            for number in number_grabber:
-                level = number[0]
-                points = number[2]
-            await self.client.send_message(message.channel, 'Okay, <@' + user_id + '>' + mid_msg + ' **Level ' + str(
-                level) + '** and currently ' + end_msg + ' **' + str(points) + ' Points**!')
