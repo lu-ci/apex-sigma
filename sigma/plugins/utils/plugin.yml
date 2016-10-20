@@ -1,0 +1,109 @@
+name: Utils
+
+categories:
+  - utils
+
+enabled: true
+
+commands:
+  - name:    help
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} [command]"
+    description:
+      Returns the list of command modules or gives you the description
+      and usage for a selected command.
+
+  - name:    echo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Hello world!"
+    description:
+      Repeats the given text. (Bot Owner Only)
+
+  - name:    remind
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} time text"
+
+  - name:    donors
+    global:  true
+    enabled: true
+    sfw:     true
+
+  - name:    bulkmsg
+    global:  true
+    enabled: true
+    sfw:     true
+
+  - name:    stats
+    global:  true
+    enabled: true
+    sfw:     true
+
+  - name:    setgame
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} New Game!"
+
+  - name:    servers
+    global:  true
+    enabled: true
+    sfw:     true
+
+  - name:    kill
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Forcefully kill the bot. (Requires permission)
+
+  # disabled: untested, no API key
+  - name:    weather
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Melbourne, AU"
+    description:
+      Shows weather data for the selected location.
+
+  # disabled: unfinished
+  - name:    github
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} search <query>"
+    description:
+      Various github commands. (WIP)
+
+
+  # disabled: don't know if this works yet
+  - name:    setavatar
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} url"
+    description:
+      Set the avatar picture. (Requires premission)
+
+  # disabled: obsolete?
+  - name:    mkcmdlist
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Generates the Markdown file of the command list for GitHub (Owner Only).
+
+events:
+  - name:    pmredirect
+    type:    message
+    global:  true
+    enabled: false
+    sfw:     true
+    description:
+      Redirects PM info to the bot owner.
