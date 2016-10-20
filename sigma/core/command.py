@@ -13,7 +13,7 @@ class Command(object):
         self.enabled = False
         self.glob = False
         self.sfw = True
-        self.usage = 'No help available.'
+        self.usage = "{pfx:s}{cmd:s}"
         self.desc = 'No description available.'
 
         self.db = plugin.db
