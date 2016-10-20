@@ -10,6 +10,6 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
+    usage:   "{pfx:s}{cmd:s} [platform] [profile name]"
     description:
       Rocket league info
