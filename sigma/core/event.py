@@ -50,7 +50,7 @@ class Event(object):
         self.sfw = info['sfw']
 
         module_path = os.path.join(self.path, self.name)
-        self.modpath = module_path.replace('/', '.')
+        self.modpath = module_path.replace('/', '.').replace('\\', '.')
         self.module = import_module(self.modpath)
 
     def help(self):

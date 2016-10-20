@@ -3,14 +3,18 @@ import asyncio
 
 async def help(cmd, message, args):
     help_msg = None
-
+    timeout = 60
     if not args:
         help_msg = await cmd.reply(cmd.help())
 
     else:
-        help_msg = await cmd.reply(cmd.bot.plugin_manager.commands[args[0]].help())
+        try:
+            help_msg = await cmd.reply(cmd.bot.plugin_manager.commands[args[0]].help())
+        except:
+            help_msg = await cmd.reply('No such command...')
+            timeout = 15
 
-    await asyncio.sleep(60)
+    await asyncio.sleep(timeout)
 
     try:
         await cmd.bot.delete_message(help_msg)
