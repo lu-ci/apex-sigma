@@ -56,16 +56,18 @@ class Command(object):
         return 'Usage: `{:s}`\n```{:s}```'.format(usage, self.desc)
 
     async def call(self, message, *args):
+        channel = message.channel
+
         # some convenience methods
         async def typing():
-            await self.bot.send_typing(message.channel)
+            await self.bot.send_typing(channel)
 
         async def reply(text):
             await typing()
-            return await self.bot.send_message(message.channel, text)
+            return await self.bot.send_message(channel, text)
 
         async def reply_file(filename):
-            return await self.bot.send_file(message.channel, filename)
+            return await self.bot.send_file(channel, filename)
 
         async def delete_call_message():
             return await self.bot.delete_message(message)
@@ -76,8 +78,9 @@ class Command(object):
         self.delete_call_message = delete_call_message
 
         # check channel nsfw permission
-        if not self.sfw and not check_channel_nsfw(self.db, message.channel.id):
-            await self.reply('Channel does not have NSFW permissions set, sorry.')
+        if not self.sfw and not check_channel_nsfw(self.db, channel.id):
+            msg = 'Channel does not have NSFW permissions set, sorry.'
+            await self.reply(msg)
             return
 
         await getattr(self.module, self.name)(self, message, *args)
