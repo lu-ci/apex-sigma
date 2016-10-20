@@ -98,7 +98,7 @@ class Sigma(discord.Client):
         gamename = self.prefix + 'help'
         game = discord.Game(name=gamename)
         await self.change_presence(game=game)
-
+        self.create_cache()
         for server in self.servers:
             self.server_count += 1
             for member in server.members:
