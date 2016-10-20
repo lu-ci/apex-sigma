@@ -15,10 +15,6 @@
         "description": "Provides highly detailed Defense Statistics",
         "usage": "%pfx%bnsdef EU Lucia Konohana"
     },
-    "echo": {
-        "description": "Repeats the given text. (Bot Owner Only)",
-        "usage": "%pfx%echo Hello world!"
-    },
     "hearthstone": {
         "description": "Hearthstone card lookup.",
         "usage": "%pfx%hearthstone Murloc Raider"
@@ -151,10 +147,6 @@
         "description": "Searches the Visual Novel Database fot the title you inputed.",
         "usage": "%pfx%vndb Rewrite"
     },
-    "weather": {
-        "description": "Shows weather data for the selected location.",
-        "usage": "%pfx%weather Melbourne, AU"
-    },
     "wowchar": {
         "description": "Shows World of Warcraft Character information and equipment.",
         "usage": "%pfx%wowchar EU Doomhammer Takamatsuku"
@@ -164,8 +156,6 @@
         "usage": "%pfx%mtg Archangel Avacyn"
     },
     "mkcmdlist": {
-        "description": "Generates the MarkDown file of the command list for GitHub (Owner Only).",
-        "usage": "%pfx%mkcmdlist"
     },
     "wows": {
         "description": "Shows World of Warships statistics and information for the given username.",

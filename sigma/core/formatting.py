@@ -18,5 +18,5 @@ def code(text):
     return '`{:s}`'.format(text)
 
 
-def codeblock(text):
-    return '```{:s}```'.format(text)
+def codeblock(text, syntax=''):
+    return '```{:s}\n{:s}\n```'.format(syntax, text)
