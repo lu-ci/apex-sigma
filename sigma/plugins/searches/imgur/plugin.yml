@@ -1,0 +1,16 @@
+name: Imgur
+
+categories:
+  - search
+
+enabled: true
+
+commands:
+  - name:    imgur
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Game Grumps"
+    description:
+      Searches through Imgur posts for the given title.
+      Do remember that it is not Image-Only

@@ -1,0 +1,12 @@
+name: Sonarr
+
+categories:
+  - search
+
+enabled: true
+
+commands:
+  - name:    sonarr
+    global:  true
+    enabled: true
+    sfw:     true

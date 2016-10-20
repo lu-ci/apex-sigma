@@ -1,0 +1,15 @@
+name: CSGO
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    csgo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} vanityurl"
+    description:
+      Get Counter Strike Global Offensive statistics.
