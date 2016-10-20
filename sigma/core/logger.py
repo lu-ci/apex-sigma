@@ -2,7 +2,7 @@ import logging
 
 
 def create_logger(name):
-    fmt = '%(asctime)s %(name)-15s %(levelname)-8s %(message)s'
+    fmt = '%(asctime)s %(name)-25s %(levelname)-8s %(message)s'
     formatter = logging.Formatter(fmt)
 
     handler = logging.StreamHandler()
