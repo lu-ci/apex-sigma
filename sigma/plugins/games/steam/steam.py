@@ -7,45 +7,35 @@ from config import SteamAPI
 async def steam(cmd, message, args):
     try:
         steamapi = steamwebapi(SteamAPI)
+
         steam_input = ' '.join(args)
-        userID = steamapi.ISteamUser.ResolveVanityURL(vanityurl=steam_input, url_type=1)['response']['steamid']
-        summary = steamapi.ISteamUser.GetPlayerSummaries(steamids=userID)['response']['players'][0]
-        displayName = str(summary['personaname'])
-        currentStamp = int(round(time.time()))
-        creation = currentStamp - int(summary['timecreated'])
-        lastOnline = currentStamp - int(summary['lastlogoff'])
+        # Data Collection Start
+        response_call = steamapi.call('ISteamUser.ResolveVanityURL', vanityurl=str(steam_input), url_type=1)
+        try:
+            response = response_call['response']
+            userid = response['steamid']
+        except Exception as e:
+            await cmd.reply('User Not Found...')
+            return
+        gamecount_call = steamapi.call('IPlayerService.GetOwnedGames', steamid=userid, include_appinfo=False, include_played_free_games=True, appids_filter=-1)
+        gamecountnonfree_call = steamapi.call('IPlayerService.GetOwnedGames', steamid=userid, include_appinfo=False, include_played_free_games=False, appids_filter=-1)
+        print(response)
+        print(userid)
+        summary_call = steamapi.call('ISteamUser.GetPlayerSummaries', steamids=userid)
+        summary = summary_call['response']['players'][0]
+        print(summary)
+        displayname = str(summary['personaname'])
+        currentstamp = int(round(time.time()))
+        creation = currentstamp - int(summary['timecreated'])
+        lastonline = currentstamp - int(summary['lastlogoff'])
         creation = int(creation) / 60 / 60 / 24 / 365.25
-        lastOnline = time.strftime('%H:%M:%S', time.gmtime(int(lastOnline)))
-        onlineNow = summary['personastate']
-        if (onlineNow):
-            try:
-                currentGame = summary['gameextrainfo']
-            except:
-                currentGame = 'None'
+        lastonline = time.strftime('%H:%M:%S', time.gmtime(int(lastonline)))
+        onlinenow = summary['personastate']
         avatar = str(summary['avatarfull'])
-        gameCount = \
-            steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False, include_played_free_games=True,
-                                                  appids_filter=-1)['response']['game_count']
-        gameCountNonFree = steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False,
-                                                                 include_played_free_games=False, appids_filter=-1)[
-            'response']['game_count']
-        if (onlineNow):
-            await cmd.reply(str('Display name : ' + displayName +
-                                '\nTime on steam: ' + str(creation)[
-                                                      -1:] + ' years' +
-                                '\nThis User is Currently Online' +
-                                '\navatar: ' + avatar +
-                                '\nnumber of games: ' + str(
-                gameCount) + ', of which ' + str(gameCount - gameCountNonFree) + ' are free.'))
-        else:
-            await cmd.reply(str('Display name : ' + displayName +
-                                '\nTime on steam: ' + str(creation)[
-                                                      -1:] + ' years' +
-                                '\nlast Online: ' + str(lastOnline) + ' ago' +
-                                '\navatar: ' + avatar +
-                                '\nnumber of games: ' + str(
-                gameCount) + ', of which ' + str(gameCount - gameCountNonFree) + ' are free.'))
+        gamecount = gamecount_call['response']['game_count']
+        gamecountnonfree = gamecountnonfree_call['response']['game_count']
+        # Data Collection End, Pillow Start
 
     except SyntaxError as e:
-        await cmd.reply('An unknown error ocoured. is that your vanity URL?')
+        await cmd.reply('An unknown error occurred. is that your vanity URL?')
         print(e)
