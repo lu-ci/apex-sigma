@@ -1,5 +1,6 @@
 from .league import LeagueOfLegends
 from .bns import BladeAndSoul
+from .csgo import CSGO
 from .osu import OSU
 from .overwatch import Overwatch
 from .hearthstone import Hearthstone
@@ -14,6 +15,7 @@ from . import wargaming
 __all__ = [
     'LeagueOfLegends',
     'BladeAndSoul',
+    'CSGO',
     'OSU',
     'Overwatch',
     'Hearthstone',
