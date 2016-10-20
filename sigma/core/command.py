@@ -85,4 +85,5 @@ class Command(object):
             await self.reply(msg)
             return
 
+        await typing()
         await getattr(self.module, self.name)(self, message, *args)
