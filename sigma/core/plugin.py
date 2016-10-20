@@ -3,6 +3,7 @@ import yaml
 from itertools import dropwhile
 
 from .command import Command
+from .event import Event
 from .logger import create_logger
 
 
@@ -15,7 +16,14 @@ class Plugin(object):
         self.loaded = False
         self.help = 'No help available, sorry :('
         self.commands_info = []
+        self.events_info = []
+
         self.commands = {}
+        self.events = {
+            'mention': {},
+            'message': {},
+            'server_join': {}
+        }
         self.modules = []
         self.path = path
 
@@ -27,6 +35,7 @@ class Plugin(object):
         except PluginNotEnabled:
             return
 
+        self.load_events()
         self.load_commands()
         self.loaded = True
         self.log.info('Loaded plugin {:s}'.format(self.name))
@@ -61,6 +70,9 @@ class Plugin(object):
             if 'commands' in yml:
                 self.commands_info = yml['commands']
 
+            if 'events' in yml:
+                self.events_info = yml['events']
+
     def load_commands(self):
         for cmd_info in self.commands_info:
             cmd = Command(self, cmd_info)
@@ -69,5 +81,19 @@ class Plugin(object):
                 self.commands.update({cmd_info['name']: cmd})
                 self.modules.append(cmd.module)
 
-        self.log.info('Loaded commands: [{:s}]'.format(
+        if self.commands:
+            self.log.info('Loaded commands: [{:s}]'.format(
                 ', '.join(self.commands.keys())))
+
+    def load_events(self):
+        for ev_info in self.events_info:
+            ev = Event(self, ev_info)
+
+            if ev.enabled:
+                self.events[ev.type].update({ev_info['name']: ev})
+                self.modules.append(ev.module)
+
+        for ev_type, events in self.events.items():
+            if events:
+                self.log.info('Loaded {:s} events: [{:s}]'.format(
+                        ev_type, ', '.join(events.keys())))
