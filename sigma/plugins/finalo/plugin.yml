@@ -5,8 +5,9 @@ categories:
 
 enabled: true
 
-commands:
+events:
   - name:    selfrole
+    type:    message
     global:  true
     enabled: true
     sfw:     true
