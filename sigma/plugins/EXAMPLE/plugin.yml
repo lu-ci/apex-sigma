@@ -1,0 +1,29 @@
+name: EXAMPLE
+
+categories:
+  - example
+
+enabled: false
+
+commands:
+  - name:    command1
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      This is an example command
+
+# possible events:
+# - mention       Handle bot mentions
+# - message       Handle raw message events
+# - server_join   Handle users joining a server
+events:
+  - name:    event1
+    type:    mention
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "@bot"
+    description:
+      React on bot user mentions.
