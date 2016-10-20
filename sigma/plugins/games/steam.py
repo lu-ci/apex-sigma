@@ -36,9 +36,24 @@ class Steam(Plugin):
                 lastOnline = currentStamp - int(summery['lastlogoff'])
                 creation = int(creation) / 60 /60 / 24 / 365.25
                 lastOnline = time.strftime('%H:%M:%S', time.gmtime(int(lastOnline)))
+                onlineNow = summery['personastate']
+                if (onlineNow):
+                    currentGame = summery['gameextrainfo']
                 avatar = str(summery['avatarfull'])
                 gameCount = steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False, include_played_free_games=True,appids_filter=-1)['response']['game_count']
                 gameCountNonFree = steamapi.IPlayerService.GetOwnedGames(steamid=userID, include_appinfo=False, include_played_free_games=False,appids_filter=-1)['response']['game_count']
-                await self.client.send_message(message.channel, str('Display name : '+ displayName+ '\nTime on steam: '+str(creation)[-1:]+' years\nlast Online: '+ str(lastOnline)+' ago\navatar: '+avatar+'\nnumber of games: ' +str(gameCount)+', of which '+str(gameCount - gameCountNonFree) +' are free.'))
+                if (onlineNow):
+                    await self.client.send_message(message.channel, str('Display name : '+ displayName+
+                                                                    '\nTime on steam: '+str(creation)[-1:]+' years'+
+                                                                    '\nThis User is Currently Online'+
+                                                                    '\navatar: '+avatar+
+                                                                    '\nnumber of games: ' +str(gameCount)+', of which '+str(gameCount - gameCountNonFree) +' are free.'))
+                else:
+                    await self.client.send_message(message.channel, str('Display name : '+ displayName+
+                                                                    '\nTime on steam: '+str(creation)[-1:]+' years'+
+                                                                    '\nlast Online: '+ str(lastOnline)+' ago'+
+                                                                    '\navatar: '+avatar+
+                                                                    '\nnumber of games: ' +str(gameCount)+', of which '+str(gameCount - gameCountNonFree) +' are free.'))
+
             except:
                 await self.client.send_message(message.channel, 'an unknown error ocoured. is that your vanity URL?')
