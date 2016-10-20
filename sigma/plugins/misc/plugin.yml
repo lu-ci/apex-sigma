@@ -21,3 +21,29 @@ commands:
     usage:   "{pfx:s}{cmd:s} @person"
     description:
       Shows yours or a mentioned persons Sigma level.
+
+events:
+  - name:    cleverbot
+    type:    mention
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "@bot message"
+    description:
+      Interact with cleverbot.
+
+  - name:    reward
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Get levels by chatting in a channel.
+
+  - name:    unflip
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Calm down bro.
