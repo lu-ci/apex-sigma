@@ -98,3 +98,12 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Generates the Markdown file of the command list for GitHub (Owner Only).
+
+events:
+  - name:    pmredirect
+    type:    message
+    global:  true
+    enabled: false
+    sfw:     true
+    description:
+      Redirects PM info to the bot owner.

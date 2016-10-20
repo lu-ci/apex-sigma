@@ -1,19 +1,23 @@
-class PMRedirect(Plugin):
-    is_global = True
-    log = create_logger('received pm')
-    async def on_message(self, message, pfx):
-        cid = self.client.user.id
-        cmd_name = 'Private Message'
-        if message.server is None:
-            if str(message.author.id) == str(cid) or str(message.author.id) in permitted_id:
-                return
-            else:
-                self.log.info('User %s [%s], used the ' + cmd_name + ' command.',
-                              message.author,
-                              message.author.id)
-                for user in self.client.get_all_members():
-                    if str(user.id) == str(permitted_id[0]):
-                        private_msg_to_owner = await self.client.start_private_message(user=user)
-                        await self.client.send_message(private_msg_to_owner,
-                                                       '**' + message.author.name + '** (ID: ' + message.author.id + '):\n```' + message.content + '\n```')
-                        return
+from config import permitted_id
+
+from sigma.core.formatting import codeblock
+
+
+async def pmredirect(ev, message, args):
+    cid = ev.bot.user.id
+    author = message.author
+
+    if not message.server:
+        if author.id == cid or author.id in permitted_id:
+            return
+        else:
+            ev.log.info('User {:s} [{:s}] sent a private message.'.format(author.name, author.id))
+
+            # very expensive operation
+            for user in ev.bot.get_all_members():
+                if user.id == permitted_id[0]:
+                    private_msg_to_owner = await ev.bot.start_private_message(user=user)
+                    msg = '**{:s}** (ID: {:s}):\n{:s}\n'
+                    await ev.bot.send_message(private_msg_to_owner, msg.format(
+                        author.name, author.id, codeblock(message.content)))
+                    break

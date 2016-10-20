@@ -75,9 +75,7 @@ class Sigma(discord.Client):
             pass
 
     async def on_voice_state_update(self, before, after):
-        enabled_plugins = await self.get_plugins()
-        for plugin in enabled_plugins:
-            self.loop.create_task(plugin._on_voice_state_update(before, after))
+        pass
 
     async def get_plugins(self):
         return self.plugin_manager.plugins
@@ -108,26 +106,31 @@ class Sigma(discord.Client):
     async def on_message(self, message):
         self.change_presence()
 
-        # handle commands
-        if not message.content.startswith(pfx):
-            # abort
-            return
-
         args = message.content.split(' ')
-        cmd = args.pop(0).lstrip(pfx)
 
-        if message.server:
-            self.log.info('User %s [%s] on server %s [%s], used the {:s} command on #%s channel'.format(cmd),
-                          message.author, message.author.id,
-                          message.server.name, message.server.id, message.channel)
-        else:
-            self.log.info('User %s [%s], used the command.'.format(cmd),
-                          message.author,
-                          message.author.id)
+        # handle mention events
+        if self.user.mentioned_in(message):
+            for ev_name, event in self.plugin_manager.events['mention'].items():
+                await event.call(message, args)
+
+        # handle raw message events
+        for ev_name, event in self.plugin_manager.events['message'].items():
+            await event.call(message, args)
+
+        cmd = args.pop(0).lstrip(pfx)
 
         try:
             task = self.plugin_manager.commands[cmd].call(message, args)
             self.loop.create_task(task)
+
+            if message.server:
+                self.log.info('User %s [%s] on server %s [%s], used the {:s} command on #%s channel'.format(cmd),
+                              message.author, message.author.id,
+                              message.server.name, message.server.id, message.channel)
+            else:
+                self.log.info('User %s [%s], used the command.'.format(cmd),
+                              message.author,
+                              message.author.id)
         except KeyError:
             # no such command
             pass

@@ -5,37 +5,38 @@ from .permission import check_channel_nsfw
 from sigma.core.formatting import code, codeblock
 
 
-class CommandNotEnabled(RuntimeError):
+class EventNotEnabled(RuntimeError):
     pass
 
 
-class Command(object):
+class Event(object):
     def __init__(self, plugin, info):
         self.enabled = False
         self.glob = False
         self.sfw = True
-        self.usage = "{pfx:s}{cmd:s}"
-        self.desc = 'No description available.'
+        self.usage = 'No usage available'
+        self.desc = 'No description available'
 
         self.db = plugin.db
         self.log = plugin.log
         self.bot = plugin.bot
         self.plugin = plugin
-        self.prefix = self.bot.prefix
 
         try:
             self.load_info(info)
-        except CommandNotEnabled:
+        except EventNotEnabled:
             return
 
     def load_info(self, info):
         if 'enabled' not in info or not info['enabled']:
-            raise CommandNotEnabled
+            raise EventNotEnabled
         else:
             self.enabled = True
 
         self.name = info['name']
         self.path = self.plugin.path
+
+        self.type = info['type']
 
         if 'global' in info and info['global']:
             self.glob = True
@@ -53,14 +54,13 @@ class Command(object):
         self.module = import_module(self.modpath)
 
     def help(self):
-        usage = self.usage.format(pfx=self.prefix, cmd=self.name)
+        usage = self.usage
         return 'Usage: {:s}\n{:s}'.format(
                 code(usage), codeblock(self.desc))
 
     async def call(self, message, *args):
         channel = message.channel
 
-        # some convenience methods
         async def typing():
             await self.bot.send_typing(channel)
 
@@ -68,18 +68,9 @@ class Command(object):
             await typing()
             return await self.bot.send_message(channel, text)
 
-        async def reply_file(filename):
-            return await self.bot.send_file(channel, filename)
-
-        async def delete_call_message():
-            return await self.bot.delete_message(message)
-
         self.typing = typing
         self.reply = reply
-        self.reply_file = reply_file
-        self.delete_call_message = delete_call_message
 
-        # check channel nsfw permission
         if not self.sfw and not check_channel_nsfw(self.db, channel.id):
             msg = 'Channel does not have NSFW permissions set, sorry.'
             await self.reply(msg)
