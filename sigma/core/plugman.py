@@ -25,7 +25,6 @@ class PluginManager(object):
         if plugin.loaded:
             self.plugins.append(plugin)
             self.commands.update(plugin.commands)
-            self.log.info('Loaded plugin: [{:s}]'.format(plugin.name))
 
     def load_all(self):
         for path in self.plugin_dirs:

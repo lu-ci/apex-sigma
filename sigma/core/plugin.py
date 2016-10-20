@@ -14,21 +14,22 @@ class Plugin(object):
     def __init__(self, bot, path):
         self.loaded = False
         self.help = 'No help available, sorry :('
+        self.commands_info = []
         self.commands = {}
         self.modules = []
         self.path = path
+
+        self.db = bot.db
+        self.bot = bot
 
         try:
             self.load_info(bot)
         except PluginNotEnabled:
             return
 
-        self.log = create_logger(self.name)
-        self.db = bot.db
-        self.bot = bot
-
         self.load_commands()
         self.loaded = True
+        self.log.info('Loaded plugin {:s}'.format(self.name))
 
     def load_info(self, bot):
         with open(os.path.join(self.path, 'plugin.yml')) as yml_file:
@@ -45,6 +46,9 @@ class Plugin(object):
                 yml['name'] = name
 
             self.name = yml['name']
+
+            self.log = create_logger(self.name)
+            self.log.info('Loading plugin {:s}'.format(self.name))
 
             # set categories from rest of pathname
             if 'categories' not in yml:
