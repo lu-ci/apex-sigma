@@ -31,10 +31,6 @@
         "description": "Lists the latest deals from IsThereAnyDeal",
         "usage": "%pfx%itad"
     },
-    "joke": {
-        "description": "Outputs a random joke from a random source, it is totally cancerous.",
-        "usage": "%pfx%joke"
-    },
     "startkaraoke": {
         "description": "Starts the Karaoke function on a specified Voice Channel. The voice channel will then be put in Strict Mode that will enforce an Absolute Mute (Server Mute that can not be deactivated untill the function is deactivated).(All Karaoke Functions are Only for Specially Permitted Users)",
         "usage": "%pfx%startkaraoke Karaoke Room"
