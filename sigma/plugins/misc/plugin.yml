@@ -1,0 +1,23 @@
+name: Misc
+
+categories:
+  - misc
+
+enabled: true
+
+commands:
+  - name:    rip
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Generates a tombstone with the mentioned users avatar.
+
+  - name:    level
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows yours or a mentioned persons Sigma level.

@@ -123,14 +123,6 @@
         "description": "Shows details for the inputed Pokemon.",
         "usage": "%pfx%pokemon Snorlax"
     },
-    "level": {
-        "description": "Shows yours or a mentioned persons Sigma level.",
-        "usage": "%pfx%level"
-    },
-    "rip": {
-        "description": "Generates a tombstone with the mentioned users avatar.",
-        "usage": "%pfx%rip @person"
-    },
     "ud": {
         "description": "Shows the Urban Dictionary definition for the given word.",
         "usage": "%pfx%ud Alex"
