@@ -1,0 +1,15 @@
+name: Pokemon
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    pokemon
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Snorlax"
+    description:
+      Shows details for the inputed Pokemon.
