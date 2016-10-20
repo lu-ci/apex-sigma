@@ -117,20 +117,23 @@ class Sigma(discord.Client):
         for ev_name, event in self.plugin_manager.events['message'].items():
             await event.call(message, args)
 
-        cmd = args.pop(0).lstrip(pfx)
+        if message.content.startswith(pfx):
+            cmd = args.pop(0).lstrip(pfx)
 
-        try:
-            task = self.plugin_manager.commands[cmd].call(message, args)
-            self.loop.create_task(task)
+            try:
+                task = self.plugin_manager.commands[cmd].call(message, args)
+                self.loop.create_task(task)
 
-            if message.server:
-                self.log.info('User %s [%s] on server %s [%s], used the {:s} command on #%s channel'.format(cmd),
-                              message.author, message.author.id,
-                              message.server.name, message.server.id, message.channel)
-            else:
-                self.log.info('User %s [%s], used the command.'.format(cmd),
-                              message.author,
-                              message.author.id)
-        except KeyError:
-            # no such command
-            pass
+                if message.server:
+                    msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s channel'
+                    self.log.info(msg.format(cmd),
+                                  message.author, message.author.id,
+                                  message.server.name, message.server.id, message.channel)
+                else:
+                    msg = 'User %s [%s], used the command.'
+                    self.log.info(msg.format(cmd),
+                                  message.author,
+                                  message.author.id)
+            except KeyError:
+                # no such command
+                pass
