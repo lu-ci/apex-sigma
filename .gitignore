@@ -8,7 +8,7 @@ release/*
 config.py
 
 # Virtualenv
-venv
+sigma.env
 
 # Database & Storage
 db/*
