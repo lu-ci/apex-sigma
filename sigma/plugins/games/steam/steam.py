@@ -68,5 +68,5 @@ async def steam(cmd, message, args):
         await cmd.reply_file('cache/steam_' + message.author.id + '.png')
         os.remove('cache/steam_' + message.author.id + '.png')
     except Exception as e:
+        cmd.log.error(e)
         await cmd.reply('An unknown error occurred.\nError: ' + str(e))
-        print(e)

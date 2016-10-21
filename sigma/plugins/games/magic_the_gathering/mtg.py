@@ -43,6 +43,6 @@ async def mtg(cmd, message, args):
         card_img.save('cache/mtg_' + message.author.id + '.png')
         await cmd.reply_file('cache/mtg_' + message.author.id + '.png')
         os.remove('cache/mtg_' + message.author.id + '.png')
-    except Exception as err:
-        print(err)
+    except Exception as e:
+        cmd.log.error(e)
         await cmd.reply('Something went wrong...')

@@ -34,8 +34,8 @@ async def wot(cmd, message, args):
             pass
         else:
             return
-    except Exception as err:
-        print(err)
+    except Exception as e:
+        cmd.log.error(e)
         return
 
     try:
@@ -53,8 +53,8 @@ async def wot(cmd, message, args):
             pass
         else:
             return
-    except Exception as err:
-        print(err)
+    except Exception as e:
+        cmd.log.error(e)
         return
 
     try:
