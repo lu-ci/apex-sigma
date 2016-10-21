@@ -48,8 +48,8 @@ async def overwatch(cmd, message, args):
             # border_link_base = 'https://blzgdapipro-a.akamaihd.net/game/playerlevelrewards/'
             # border_name = str(profile_json['data']['levelFrame'])
             # os.rename(border_name[len(border_link_base):], '/cache/ow/border_' + message.author.id + '.png')
-            base = Image.open('img/ow/base.png')
-            overlay = Image.open('img/ow/overlay.png')
+            base = Image.open(cmd.resource('img/base.png'))
+            overlay = Image.open(cmd.resource('img/overlay.png'))
             foreground = Image.open('cache/ow/border_' + message.author.id + '.png')
             foreground_res = foreground.resize((128, 128), Image.ANTIALIAS)
             background = Image.open('cache/ow/avatar_' + message.author.id + '.png')

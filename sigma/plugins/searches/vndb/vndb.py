@@ -80,8 +80,8 @@ async def vndb(cmd, message, args):
     vn_cover_raw = requests.get(vn_img).content
     vn_cover_res = Image.open(BytesIO(vn_cover_raw))
     vn_cover = vn_cover_res.resize((231, 321), Image.ANTIALIAS)
-    base = Image.open('img/ani/base_vn.png')
-    overlay = Image.open('img/ani/overlay_vn.png')
+    base = Image.open(cmd.resource('img/base_vn.png'))
+    overlay = Image.open(cmd.resource('img/overlay_vn.png'))
     base.paste(vn_cover, (110, 0))
     base.paste(overlay, (0, 0), overlay)
     base.save('cache/ani/vn_' + message.author.id + '.png')

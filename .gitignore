@@ -5,9 +5,7 @@ release/*
 
 # Python stuff
 *.pyc
-thing.py
 config.py
-plugins/xp_grind.py
 
 # Virtualenv
 venv
@@ -18,11 +16,12 @@ db/*
 
 # Misc
 *.xml
-config.json
+cache/*
+log.txt
+fonts/*
+
+# still required?
 avatar.png
 border.png
 profile.png
 lolsig.png
-cache/*
-log.txt
-fonts/*

@@ -49,8 +49,8 @@ async def league(cmd, message, args):
             os.remove('cache/lol/profile_' + message.author.id + '.png')
         avatar = requests.get(icon_url).content
         print(str(icon_url))
-        base = Image.open('img/lol/base.png')
-        overlay = Image.open('img/lol/overlay_lol.png')
+        base = Image.open(cmd.resource('img/base.png'))
+        overlay = Image.open(cmd.resource('img/overlay_lol.png'))
         background = Image.open(BytesIO(avatar))
         background_res = background.resize((72, 72), Image.ANTIALIAS)
         foreground = Image.open('img/lol/border_lol.png')
