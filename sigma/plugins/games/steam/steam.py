@@ -35,7 +35,6 @@ async def steam(cmd, message, args):
         creation = int(creation) / 60 / 60 / 24 / 365.25
         lastonline = time.strftime('%H:%M:%S', time.gmtime(int(lastonline)))
         onlinenow = summary['personastate']
-        print(onlinenow)
         avatar_url = str(summary['avatarfull'])
         gamecount = gamecount_call['response']['game_count']
         gamecountnonfree = gamecount - gamecountnonfree_call['response']['game_count']
