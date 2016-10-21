@@ -8,9 +8,6 @@ from io import BytesIO
 from .logger import log
 
 
-img_base = 'img/ani'
-
-
 def parse_date(time, fmt='%B %d, %Y %H:%M'):
     if time:
         return datetime.datetime.fromtimestamp(time).strftime(fmt)
@@ -84,9 +81,9 @@ async def draw_image(cmd, message, user):
         # TODO: use default avatar image if it could not be downloaded
         ava = Image.open(BytesIO(user['avatar'][1]))
         base = Image.open(
-            '{:s}/base_wk_{:s}.png'.format(img_base, img_type))
+            cmd.resource('img/base_wk_{:s}.png'.format(img_type)))
         overlay = Image.open(
-            '{:s}/overlay_wk_{:s}{:s}.png'.format(img_base, img_type, ov_color))
+            cmd.resource('img/overlay_wk_{:s}{:s}.png'.format(img_type, ov_color)))
     except IOError as e:
         log.error('{:s}'.format(str(e)))
         raise e

@@ -4,7 +4,7 @@ import random
 
 
 async def dadjoke(cmd, message, args):
-    with open('storage/dadjokes.json', 'r', encoding='utf-8') as dadjokes_file:
+    with open(cmd.resource('dadjokes.json'), 'r', encoding='utf-8') as dadjokes_file:
         jokes = dadjokes_file.read()
         jokes = json.loads(jokes)
         joke_list = jokes['JOKES']
