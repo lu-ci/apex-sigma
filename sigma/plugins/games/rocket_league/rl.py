@@ -69,10 +69,10 @@ async def rl(cmd, message, args):
 
         profile_url = rl_data['url']
 
-        solo_tier_img = 'img/rl/ranks/' + str(solo_rn_tier) + '.png'
-        doubles_tier_img = 'img/rl/ranks/' + str(doubles_rn_tier) + '.png'
-        solo_str_tier_img = 'img/rl/ranks/' + str(solo_str_rn_tier) + '.png'
-        str_tier_img = 'img/rl/ranks/' + str(str_rn_tier) + '.png'
+        solo_tier_img = cmd.resource('img/ranks/' + str(solo_rn_tier) + '.png')
+        doubles_tier_img = cmd.resource('img/ranks/' + str(doubles_rn_tier) + '.png')
+        solo_str_tier_img = cmd.resource('img/ranks/' + str(solo_str_rn_tier) + '.png')
+        str_tier_img = cmd.resource('img/ranks/' + str(str_rn_tier) + '.png')
 
         solo_img = Image.open(solo_tier_img)
         doubles_img = Image.open(doubles_tier_img)
@@ -88,8 +88,8 @@ async def rl(cmd, message, args):
         solo_str_img_res = solo_str_img.resize((40, 40), Image.ANTIALIAS)
         str_img_res = str_img.resize((40, 40), Image.ANTIALIAS)
 
-        base = Image.open('img/rl/base_rl.png')
-        overlay = Image.open('img/rl/overlay.png')
+        base = Image.open(cmd.resource('img/base_rl.png'))
+        overlay = Image.open(cmd.resource('img/overlay.png'))
         base.paste(avatar_img, (369, 3))
         base.paste(overlay, (0, 0), overlay)
 

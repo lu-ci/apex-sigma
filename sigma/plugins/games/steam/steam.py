@@ -42,8 +42,8 @@ async def steam(cmd, message, args):
         avatar_raw = requests.get(avatar_url).content
 
         with Image.open(BytesIO(avatar_raw)) as avatar:
-            base = Image.open('img/steam/base.png')
-            overlay = Image.open('img/steam/overlay.png')
+            base = Image.open(cmd.resource('img/base.png'))
+            overlay = Image.open(cmd.resource('img/overlay.png'))
             base.paste(avatar, (0, 0))
             base.paste(overlay, (0, 0), overlay)
             font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 40)
@@ -64,9 +64,9 @@ async def steam(cmd, message, args):
                 imgdraw.text((2, 165), '*', (255, 153, 0), font=font)
             else:
                 imgdraw.text((2, 165), '*', (102, 102, 153), font=font)
-            base.save('cache\steam_' + message.author.id + '.png')
-        await cmd.reply_file('cache\steam_' + message.author.id + '.png')
-        os.remove('cache\steam_' + message.author.id + '.png')
+            base.save('cache/steam_' + message.author.id + '.png')
+        await cmd.reply_file('cache/steam_' + message.author.id + '.png')
+        os.remove('cache/steam_' + message.author.id + '.png')
     except Exception as e:
         await cmd.reply('An unknown error occurred.\nError: ' + str(e))
         print(e)

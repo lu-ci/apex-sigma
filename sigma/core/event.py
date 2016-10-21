@@ -58,6 +58,9 @@ class Event(object):
         return 'Usage: {:s}\n{:s}'.format(
                 code(usage), codeblock(self.desc))
 
+    def resource(self, path):
+        return os.path.join(self.path, 'res', path)
+
     async def call(self, message, *args):
         channel = message.channel
 

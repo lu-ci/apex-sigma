@@ -42,8 +42,8 @@ async def nhentai(cmd, message, args):
             nh_cover_res = Image.open(BytesIO(nh_cover_raw))
             nh_cover = nh_cover_res.resize((251, 321), Image.ANTIALIAS)
 
-            base = Image.open('img/ani/base.png')
-            overlay = Image.open('img/ani/overlay_nh.png')
+            base = Image.open(cmd.resource('img/base.png'))
+            overlay = Image.open(cmd.resource('img/overlay_nh.png'))
 
             base.paste(nh_cover, (100, 0))
             base.paste(overlay, (0, 0), overlay)

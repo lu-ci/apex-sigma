@@ -68,8 +68,8 @@ async def manga(cmd, message, args):
             suffix = ''
         ani_img_raw = requests.get(img).content
         ani_img = Image.open(BytesIO(ani_img_raw))
-        base = Image.open('img/ani/base.png')
-        overlay = Image.open('img/ani/overlay_manga.png')
+        base = Image.open(cmd.resource('img/base.png'))
+        overlay = Image.open(cmd.resource('img/overlay_manga.png'))
         base.paste(ani_img, (0, 0))
         base.paste(overlay, (0, 0), overlay)
         font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 28)
