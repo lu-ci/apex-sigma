@@ -1,11 +1,13 @@
 import json
 
-with open('scrolls.json', 'r', encoding='utf-8') as scrolls_file:
-    scrolls = scrolls_file.read()
-    scrolls = json.loads(scrolls)
-
 
 async def es(cmd, message, args):
+    scrolls = ''
+
+    with open(cmd.resource('scrolls.json'), 'r', encoding='utf-8') as scrolls_file:
+        scrolls = scrolls_file.read()
+        scrolls = json.loads(scrolls)
+
     scrl_input = ' '.join(args).lower()
     scrl_input = scrl_input.replace('\'', '').replace(' ', '').replace(' es', '').replace('enchant', '').replace('scroll', '')
 
