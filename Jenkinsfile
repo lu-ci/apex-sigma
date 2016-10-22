@@ -4,7 +4,7 @@ node('master') {
     
     env.WORKSPACE = pwd()
     
-    bat 'virtualenv --python=python35 sigma.env'
+    bat 'virtualenv sigma.env'
     bat 'sigma.venv/Scripts/activate'
     bat 'pip install -r requirements.txt'
     
