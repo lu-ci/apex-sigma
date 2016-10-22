@@ -1,19 +1,17 @@
 import logging
+import coloredlogs
+
+
+fmt = '%(asctime)s %(name)-25s %(levelname)-8s %(message)s'
+formatter = coloredlogs.ColoredFormatter(fmt)
+
+log_file = open('log.txt', mode='a+')
 
 
 def create_logger(name):
-    fmt = '%(asctime)s %(name)-25s %(levelname)-8s %(message)s'
-    formatter = logging.Formatter(fmt)
-
-    handler = logging.StreamHandler()
-    handler.setFormatter(formatter)
-
-    file_handler = logging.FileHandler('log.txt')
-    file_handler.setFormatter(formatter)
-
     logger = logging.getLogger(name)
-    logger.addHandler(file_handler)
-    logger.addHandler(handler)
-    logger.setLevel(logging.INFO)
+
+    coloredlogs.install(level='INFO', fmt=fmt)
+    coloredlogs.install(level='INFO', fmt=fmt, stream=log_file, isatty=False)
 
     return logger
