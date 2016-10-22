@@ -1,4 +1,9 @@
-{
-	"authors": ["AXAz0r", "Awakening", "Valeth"],
-	"contributors": ["Mirai", "Chaeldar", "mralext20"]
-}
+authors:
+  - AXAz0r
+  - Awakening
+  - Valeth
+  
+contributors:
+  - Mirai
+  - Chaeldar
+  - mralext20
