@@ -5,8 +5,6 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from io import BytesIO
 
-from .logger import log
-
 
 def parse_date(time, fmt='%B %d, %Y %H:%M'):
     if time:
@@ -85,7 +83,7 @@ async def draw_image(cmd, message, user):
         overlay = Image.open(
             cmd.resource('img/overlay_wk_{:s}{:s}.png'.format(img_type, ov_color)))
     except IOError as e:
-        log.error('{:s}'.format(str(e)))
+        cmd.log.error('{:s}'.format(str(e)))
         raise e
 
     try:
@@ -94,13 +92,13 @@ async def draw_image(cmd, message, user):
         font3 = ImageFont.truetype("YuGothB.ttc", 21)
         font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
     except OSError as e:
-        log.error('{:s}'.format(str(e)))
+        cmd.log.error('{:s}'.format(str(e)))
         raise e
 
     try:
         imgdraw = ImageDraw.Draw(base)
     except IOError as e:
-        log.error('{:s}'.format(str(e)))
+        cmd.log.error('{:s}'.format(str(e)))
         raise e
 
     base.paste(ava, (15, 5))

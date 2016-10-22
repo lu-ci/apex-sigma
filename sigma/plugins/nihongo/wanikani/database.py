@@ -2,8 +2,6 @@ import requests
 import json
 from lxml import html
 
-from .logger import log
-
 
 wk_base_url = 'https://www.wanikani.com/api/user/'
 
@@ -47,7 +45,7 @@ async def get_user_data(cmd, message, key=None, username=None):
                 url + '/study-queue').json()['requested_information']
         except ConnectionError as e:
             cmd.reply('Failed to get user data.')
-            log.error('{:s}'.format(e))
+            cmd.log.error('{:s}'.format(e))
             raise e
 
         userinfo = srs_dist['user_information']
@@ -105,7 +103,7 @@ async def get_user_data(cmd, message, key=None, username=None):
         user['avatar'][1] = requests.get(user['avatar'][0]).content
     except ConnectionError as e:
         cmd.reply('Failed to get user avatar.')
-        log.error('{:s}'.format(e))
+        cmd.log.error('{:s}'.format(e))
 
     return user
 
@@ -123,7 +121,7 @@ async def get_key(cmd, message, args):
         try:
             username = args[0]
         except Exception as e:
-            log.error(e)
+            cmd.log.error(e)
             await cmd.reply('Error while parsing the input message')
             return
 
