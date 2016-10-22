@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-db_dir='db'
-
-docker-compose build
-docker-compose run --rm --entrypoint "sqlite3 -init $db_dir/server_settings.sql $db_dir/server_settings.sqlite .quit" bot
