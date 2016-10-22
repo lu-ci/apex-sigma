@@ -16,8 +16,8 @@ async def rip(cmd, message, args):
         mentioned_avatar = user.avatar_url
 
     user_avatar = requests.get(mentioned_avatar).content
-    base = Image.open('img/rip/base.png')
-    tomb = Image.open('img/rip/tombstone.png')
+    base = Image.open(cmd.resource('img/base.png'))
+    tomb = Image.open(cmd.resource('img/tombstone.png'))
     avatar_img = Image.open(BytesIO(user_avatar))
     base.paste(avatar_img, (52, 160))
     base.paste(tomb, (0, 0), tomb)
