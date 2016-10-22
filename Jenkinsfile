@@ -1,4 +1,4 @@
-node ('windows') {
+node('master') {
     // BUILD
     stage 'Build'
     
