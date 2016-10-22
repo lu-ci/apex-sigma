@@ -1,6 +1,7 @@
 node('master') {
     // BUILD
     stage 'Build'
+    checkout scm
     
     env.WORKSPACE = pwd()
     
