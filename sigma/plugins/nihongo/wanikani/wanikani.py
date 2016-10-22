@@ -5,8 +5,6 @@ from .message import text_message, draw_image
 async def wanikani(cmd, message, args):
     show_text = False
 
-    cmd.log.info(args)
-
     if args and args[-1] == 'text':
         show_text = True
         args.pop()
