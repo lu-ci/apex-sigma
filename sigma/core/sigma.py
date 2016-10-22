@@ -3,7 +3,6 @@ import datetime
 import time
 import discord
 import yaml
-import sqlite3
 
 from config import Prefix as pfx
 from config import sigma_version
@@ -45,19 +44,8 @@ class Sigma(discord.Client):
 
     def init_databases(self):
         db_path = 'db/server_settings.sqlite'
-        if os.path.isfile(db_path):
-            pass
-        else:
-            print('Database Not Found')
-            open(db_path, 'w+')
-        db_conn = sqlite3.connect(db_path)
-        db_intructions = open('db/server_settings.sql', 'r').read()
-        cur = db_conn.cursor()
-        cur.executescript(db_intructions)
-        db_conn.commit()
-        cur.close()
-        db_conn.close()
-        self.db = Database(db_path)
+        sql_file = 'db/server_settings.sql'
+        self.db = Database(db_path, sql_file)
 
     def init_plugins(self):
         self.plugin_manager = PluginManager(self)
