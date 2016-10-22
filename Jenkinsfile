@@ -4,7 +4,7 @@ node('master') {
     checkout scm
 
     env.WORKSPACE = pwd()
-    bat .ci/jenkins.bat
+    bat '.ci/jenkins.bat'
 
     // TEST
     stage 'Test'
