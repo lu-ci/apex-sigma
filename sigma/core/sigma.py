@@ -2,7 +2,7 @@ import os
 import datetime
 import time
 import discord
-import json
+import yaml
 import sqlite3
 
 from config import Prefix as pfx
@@ -27,7 +27,7 @@ class Sigma(discord.Client):
         self.member_count = 0
 
         with open('AUTHORS') as authors_file:
-            content = json.load(authors_file)
+            content = yaml.load(authors_file)
             self.authors = content['authors']
             self.contributors = content['contributors']
 
