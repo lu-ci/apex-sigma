@@ -14,6 +14,7 @@ tornado
 pyyaml
 discord.py
 wikipedia
+coloredlogs
 
 blinker
 nose
