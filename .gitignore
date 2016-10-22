@@ -14,10 +14,13 @@ sigma.env
 db/*
 !db/server_settings.sql
 
+# Logfiles
+log/*
+log.txt
+
 # Misc
 *.xml
 cache/*
-log.txt
 fonts/*
 
 # still required?
