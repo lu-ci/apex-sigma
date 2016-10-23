@@ -9,11 +9,5 @@ async def stats(cmd, message, args):
 
     stats_msg = await cmd.reply(out_txt)
     await asyncio.sleep(60)
-    try:
-        await cmd.delete_call_message()
-    except Exception as e:
-        cmd.log.error(e)
-    try:
-        await cmd.bot.delete_message(stats_msg)
-    except Exception as e:
-        cmd.log.error(e)
+    await cmd.bot.delete_message(message)
+    await cmd.bot.delete_message(stats_msg)
