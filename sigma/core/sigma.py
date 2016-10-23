@@ -5,11 +5,11 @@ import discord
 import yaml
 
 from config import Prefix as pfx
-from config import sigma_version
 
 from .plugman import PluginManager
 from .database import Database
 from .logger import create_logger
+from .stats import stats
 
 
 # I love spaghetti!
@@ -94,17 +94,8 @@ class Sigma(discord.Client):
                 self.member_count += 1
 
         self.log.info('-----------------------------------')
-        self.log.info('Logged In As: ' + self.user.name)
-        self.log.info('Bot User ID: ' + self.user.id)
-        self.log.info('Running discord.py version: ' + discord.__version__)
-        self.log.info('Authors: {:s}'.format(', '.join(self.authors)))
-        self.log.info('Contributors: {:s}'.format(', '.join(self.contributors)))
-        self.log.info('Donors: {:s}'.format(', '.join(self.donors)))
-        self.log.info('Bot Version: ' + sigma_version)
-        self.log.info('Build Date: 16. October 2016.')
+        stats(self, self.log)
         self.log.info('-----------------------------------')
-        self.log.info('Connected to [ {:d} ] servers'.format(self.server_count))
-        self.log.info('Serving [ {:d} ] users'.format(self.member_count))
         self.log.info('Successfully connected to Discord!')
 
     async def on_message(self, message):
