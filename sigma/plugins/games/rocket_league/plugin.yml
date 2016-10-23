@@ -10,6 +10,6 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} [platform] [profile name]"
+    usage:   "{pfx:s}{cmd:s} Steam IconicDauntless"
     description:
-      Rocket league info
+      Rocket league information for the inputed user on the inputed platform, which can be Steam, XBOX or PSN.

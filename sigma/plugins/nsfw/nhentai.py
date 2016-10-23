@@ -51,9 +51,9 @@ async def nhentai(cmd, message, args):
 
             for tags in nh.search(search)['result'][nh_no]['tags']:
                 nhen_text += '[' + str(tags['name']).title() + '] '
-                await cmd.reply_file('cache/ani/nh_' + message.author.id + '.png')
-                await cmd.reply('Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
-                os.remove('cache/ani/nh_' + message.author.id + '.png')
+            await cmd.reply_file('cache/ani/nh_' + message.author.id + '.png')
+            await cmd.reply('Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
+            os.remove('cache/ani/nh_' + message.author.id + '.png')
 
     except nh.nhentai.nHentaiException as e:
         await cmd.reply(e)

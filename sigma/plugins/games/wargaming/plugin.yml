@@ -16,5 +16,5 @@ commands:
 
   - name:    wot
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true

@@ -11,4 +11,4 @@ commands:
     enabled: true
     sfw:     true
     description:
-      Lists the latest deals from IsThereAnyDeal
+      Lists the latest deals from IsThereAnyDeal.

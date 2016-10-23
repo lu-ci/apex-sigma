@@ -13,5 +13,4 @@ commands:
     usage:   "{pfx:s}{cmd:s} EUNE AXAz0r"
     description:
       Shows the players League of Legends statistics of inputed Summoner Name.
-      You can also place a gamemode between the Region and Summoner Name to get
-      statistics for it.
+      You can also place a gamemode between the Region and Summoner Name to get statistics for it.

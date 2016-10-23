@@ -37,8 +37,13 @@ async def mtg(cmd, message, args):
         card_no = 0
 
     try:
-        card_img_url = cards['cards'][card_no]['imageUrl']
-        card_img_request = requests.get(card_img_url).content
+        try:
+            card_img_url = cards['cards'][card_no]['imageUrl']
+            card_img_request = requests.get(card_img_url).content
+        except Exception as e:
+            cmd.log.error(e)
+            await cmd.reply('I was not able to get the image for the selected card...')
+            return
         card_img = Image.open(BytesIO(card_img_request))
         card_img.save('cache/mtg_' + message.author.id + '.png')
         await cmd.reply_file('cache/mtg_' + message.author.id + '.png')
