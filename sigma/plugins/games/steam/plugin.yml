@@ -10,4 +10,6 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
+    usage:   "{pfx:s}{cmd:s} thealeksaradovic"
+    description:
+      Generates a a Steam Signature for the inputed Steam Community ID, the profile must not be private!

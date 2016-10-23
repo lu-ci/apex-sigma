@@ -31,8 +31,5 @@ reddit_un = ''
 reddit_pw = ''
 # Bot Prefix for Commands.
 Prefix = '>>'
-# Aurora Project Donators.
-donators = []
-# Permitted IDs and Roles.
+# Permitted IDs.
 permitted_id = ['1234567891234569']
-permitted_roles = []

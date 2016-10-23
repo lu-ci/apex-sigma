@@ -45,25 +45,25 @@ commands:
 
   - name:     ehentai
     global:   true
-    enabled:  true
+    enabled:  false
     sfw:      false
 
   - name:     hentaims
     global:   true
-    enabled:  true
+    enabled:  false
     sfw:      false
 
   - name:     e621
     global:   true
-    enabled:  true
+    enabled:  false
     sfw:      false
 
 # broken right now
   - name:     nhentai
     global:   true
-    enabled:  false
+    enabled:  true
     sfw:      false
     usage:    "{pfx:s}{cmd:s} Oreimo"
     description:
-      Searches nHentai for doujinshi for the inputed name,
-      displays the results, cover and tags.
+      Searches nHentai for doujinshi for the inputed name.
+      Displays the results, cover and tags.

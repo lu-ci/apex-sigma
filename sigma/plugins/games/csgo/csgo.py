@@ -8,9 +8,9 @@ async def csgo(cmd, message, args):
 
     try:
         api = WebAPI(SteamAPI)
-        userID = api.ISteamUser.ResolveVanityURL(vanityurl=csgo_input, url_type=1)['response']['steamid']
-        stats = api.ISteamUserStats.GetUserStatsForGame(steamid=userID, appid='730')['playerstats']['stats']
-        summery = api.ISteamUser.GetPlayerSummaries(steamids=userID)['response']['players'][0]
+        userID = api.call('ISteamUser.ResolveVanityURL', vanityurl=csgo_input, url_type=1)['response']['steamid']
+        stats = api.call('ISteamUserStats.GetUserStatsForGame', steamid=userID, appid='730')['playerstats']['stats']
+        summery = api.call('ISteamUser.GetPlayerSummaries', steamids=userID)['response']['players'][0]
 
         displayName = str(summery['personaname'])
         v = 'value'
@@ -30,18 +30,18 @@ async def csgo(cmd, message, args):
         matchesLost = matchesplayed - matchesWon
         winLoseRatio = matchesWon / matchesLost
 
-        await cmd.reply('display name: ' + displayName +
-                        '\nkills: ' + str(kills) +
-                        '\ndeaths: ' + str(deaths) +
+        await cmd.reply('Display name: ' + displayName +
+                        '\nKills: ' + str(kills) +
+                        '\nDeaths: ' + str(deaths) +
                         '\nKill Death Ratio: {:.2}'.format(KdR) +
-                        '\ntime in game: ' + playTime + 'hours' +
+                        '\nDime in game: ' + playTime + 'hours' +
                         '\nKnife Kills: ' + knifeKills +
                         '\nHead Shot Kills: ' + headshotKills +
-                        '\nshots fired: ' + str(shotsFired) +
-                        '\nshots hit: ' + str(shotsHit) +
-                        '\naccuracy: {:.2}'.format(acc) +
+                        '\nShots fired: ' + str(shotsFired) +
+                        '\nShots hit: ' + str(shotsHit) +
+                        '\nAccuracy: {:.2}'.format(acc) +
                         '\nRounds Played: ' + rounds +
-                        '\ntimes MPV: ' + mpv +
+                        '\nTimes MPV: ' + mpv +
                         '\nMatches Won: ' + str(matchesWon) +
                         '\nMatches Lost: ' + str(matchesLost) +
                         '\nMatches Played: ' + str(matchesplayed) +

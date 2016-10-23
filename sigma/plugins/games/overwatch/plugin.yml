@@ -13,4 +13,4 @@ commands:
     usage:   "{pfx:s}{cmd:s} EU Aurora#22978"
     description:
       Shows the Overwatch statistics of inputed Battle.Net ID.
-      (Warning Case Sensitive)
+      (Warning! Case Sensitive!)

@@ -33,27 +33,38 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    description:
+      Shows the list of the lovely people who donated to the Aurora Project.
 
   - name:    bulkmsg
     global:  true
     enabled: true
     sfw:     true
+    usage: "{pfx:s}{cmd:s} Hello everyone!"
+    description:
+      Sends the inputed message to every single person on the server. (Requires permission)
 
   - name:    stats
     global:  true
     enabled: true
     sfw:     true
+    description:
+      Shows the statistics of Sigma.
 
   - name:    setgame
     global:  true
     enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} New Game!"
+    description:
+      Sets the bots playing states to whatever you wish. (Requires permission)
 
   - name:    servers
     global:  true
     enabled: true
     sfw:     true
+    description:
+      Shows all the servers Sigma is on.
 
   - name:    kill
     global:  true
@@ -62,10 +73,9 @@ commands:
     description:
       Forcefully kill the bot. (Requires permission)
 
-  # disabled: untested, no API key
   - name:    weather
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Melbourne, AU"
     description:
@@ -81,10 +91,9 @@ commands:
       Various github commands. (WIP)
 
 
-  # disabled: don't know if this works yet
   - name:    setavatar
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} url"
     description:

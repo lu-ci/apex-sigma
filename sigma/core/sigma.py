@@ -29,6 +29,9 @@ class Sigma(discord.Client):
             content = yaml.load(authors_file)
             self.authors = content['authors']
             self.contributors = content['contributors']
+        with open('DONORS') as donors_file:
+            content = yaml.load(donors_file)
+            self.donors = content['donors']
 
     def run(self, token):
         self.log.info('Starting up...')
@@ -53,13 +56,10 @@ class Sigma(discord.Client):
     def create_cache(self):
         if not os.path.exists('cache/lol/'):
             os.makedirs('cache/lol/')
-
         if not os.path.exists('cache/ow/'):
             os.makedirs('cache/ow/')
-
         if not os.path.exists('cache/rip/'):
             os.makedirs('cache/rip/')
-
         if not os.path.exists('cache/ani/'):
             os.makedirs('cache/ani/')
 
@@ -83,6 +83,7 @@ class Sigma(discord.Client):
         return self.plugin_manager.plugins
 
     async def on_ready(self):
+        self.log.info('Checking API Keys...')
         gamename = self.prefix + 'help'
         game = discord.Game(name=gamename)
         await self.change_presence(game=game)
@@ -98,6 +99,7 @@ class Sigma(discord.Client):
         self.log.info('Running discord.py version: ' + discord.__version__)
         self.log.info('Authors: {:s}'.format(', '.join(self.authors)))
         self.log.info('Contributors: {:s}'.format(', '.join(self.contributors)))
+        self.log.info('Donors: {:s}'.format(', '.join(self.donors)))
         self.log.info('Bot Version: ' + sigma_version)
         self.log.info('Build Date: 16. October 2016.')
         self.log.info('-----------------------------------')
