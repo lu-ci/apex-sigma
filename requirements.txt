@@ -14,6 +14,6 @@ tornado
 pyyaml
 discord.py
 wikipedia
-
+humanfriendly
 blinker
 nose
