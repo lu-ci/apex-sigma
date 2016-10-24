@@ -58,7 +58,8 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person"
+    usage:   "{pfx:s}{cmd:s} X @person"
     description:
-      Kicks the mentioned user.
-      Requires the user who calls the command to have kick privileges.
+      Deltes X number of messages posted by the mentioned person.
+      If number a user is not provided, it will prune the last X messages regardless of poster.
+      If a number is not provided it will prune the last 100 messages.
