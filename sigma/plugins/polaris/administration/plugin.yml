@@ -61,5 +61,5 @@ commands:
     usage:   "{pfx:s}{cmd:s} X @person"
     description:
       Deltes X number of messages posted by the mentioned person.
-      If number a user is not provided, it will prune the last X messages regardless of poster.
+      If a user is not provided, it will prune the last X messages regardless of poster.
       If a number is not provided it will prune the last 100 messages.
