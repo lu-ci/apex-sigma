@@ -8,8 +8,14 @@ root = true
 # and encode files with UTF-8
 [*]
 end_of_line = lf
-insert_final_newline = true
+insert_final_newline = false
 indent_style = spaces
 indent_size = 4
 tab_width = 4
 charset = utf-8
+
+[*.py]
+insert_final_newline = true
+
+[.yml]
+indent_size = 2

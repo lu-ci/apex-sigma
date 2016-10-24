@@ -5,21 +5,26 @@ release/*
 
 # Python stuff
 *.pyc
-thing.py
 config.py
-plugins/xp_grind.py
+
+# Virtualenv
+sigma.env
 
 # Database & Storage
 db/*
 !db/server_settings.sql
 
+# Logfiles
+log/*
+log.txt
+
 # Misc
 *.xml
-config.json
+cache/*
+fonts/*
+
+# still required?
 avatar.png
 border.png
 profile.png
 lolsig.png
-cache/*
-log.txt
-fonts/*

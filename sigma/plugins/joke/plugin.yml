@@ -1,0 +1,31 @@
+name: Joke
+
+categories:
+  - fun
+
+enabled: true
+
+commands:
+  - name:    dadjoke
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Cringe!
+
+  - name:    joke
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random joke from a random source, it is totally cancerous.
+
+  - name:    pun
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Gives you some random pun, beware.

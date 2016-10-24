@@ -1,0 +1,19 @@
+name: Jisho
+
+access:
+  database: true
+
+categories:
+  - nihongo
+
+enabled: true
+
+commands:
+  - name:    jisho
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} kawaii"
+    description:
+      Searches the Japanese word dictionary (Jisho) for the given word
+      and gives information for it.

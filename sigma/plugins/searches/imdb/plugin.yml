@@ -1,0 +1,15 @@
+name: IMDB
+
+categories:
+  - search
+
+enabled: true
+
+commands:
+  - name:    imdb
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} A Clockwork Orange"
+    description:
+      Searches the Internet Movie Database for a Title of your choice.

@@ -1,0 +1,28 @@
+name: Polaris Sonata
+
+categories:
+  - polaris
+
+enabled: true
+
+commands:
+  - name: greet
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the greet message in the channel it is written in.
+      Whenever a user joins the server the greet messsage will be displayed.
+      (Server Administrator Only)
+
+  - name: greetmsg
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Hello %user_mention% and welcoem to %server_name%!"
+    description:
+      Sets the greet message text.
+      Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server.
+      If no arguments are inputed
+      (Server Administrator Only)

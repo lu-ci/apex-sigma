@@ -1,0 +1,15 @@
+name: OSU!
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    osu
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} AXAz0r"
+    description:
+      Generates a signature image with the users stats for osu.

@@ -1,0 +1,25 @@
+name: MyAnimeList
+
+categories:
+  - search
+
+enabled: true
+
+commands:
+  - name:    anime
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Terror in Resonance"
+    description:
+      Searches MyAnimeList for anime by given name.
+      Generates a really cool image with the details!
+
+  - name:    manga
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Silent Voice"
+    description:
+      Searches MyAnimeList for manga by given name.
+      Generates a really cool image with the details!
