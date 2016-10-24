@@ -33,3 +33,7 @@ def set_channel_nsfw(db, channel_id):
 
 def check_admin(user, channel):
     return user.permissions_in(channel).administrator
+def check_ban(user, channel):
+    return user.permissions_in(channel).ban_members
+def check_kick(user, channel):
+    return user.permissions_in(channel).kick_members
