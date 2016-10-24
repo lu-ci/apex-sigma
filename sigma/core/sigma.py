@@ -2,15 +2,14 @@ import os
 import datetime
 import time
 import discord
-import json
-import sqlite3
+import yaml
 
 from config import Prefix as pfx
-from config import sigma_version
 
 from .plugman import PluginManager
 from .database import Database
 from .logger import create_logger
+from .stats import stats
 
 
 # I love spaghetti!
@@ -27,9 +26,12 @@ class Sigma(discord.Client):
         self.member_count = 0
 
         with open('AUTHORS') as authors_file:
-            content = json.load(authors_file)
+            content = yaml.load(authors_file)
             self.authors = content['authors']
             self.contributors = content['contributors']
+        with open('DONORS') as donors_file:
+            content = yaml.load(donors_file)
+            self.donors = content['donors']
 
     def run(self, token):
         self.log.info('Starting up...')
@@ -45,19 +47,8 @@ class Sigma(discord.Client):
 
     def init_databases(self):
         db_path = 'db/server_settings.sqlite'
-        if os.path.isfile(db_path):
-            pass
-        else:
-            print('Database Not Found')
-            open(db_path, 'w+')
-        db_conn = sqlite3.connect(db_path)
-        db_intructions = open('db/server_settings.sql', 'r').read()
-        cur = db_conn.cursor()
-        cur.executescript(db_intructions)
-        db_conn.commit()
-        cur.close()
-        db_conn.close()
-        self.db = Database(db_path)
+        sql_file = 'db/server_settings.sql'
+        self.db = Database(db_path, sql_file)
 
     def init_plugins(self):
         self.plugin_manager = PluginManager(self)
@@ -65,13 +56,10 @@ class Sigma(discord.Client):
     def create_cache(self):
         if not os.path.exists('cache/lol/'):
             os.makedirs('cache/lol/')
-
         if not os.path.exists('cache/ow/'):
             os.makedirs('cache/ow/')
-
         if not os.path.exists('cache/rip/'):
             os.makedirs('cache/rip/')
-
         if not os.path.exists('cache/ani/'):
             os.makedirs('cache/ani/')
 
@@ -95,6 +83,7 @@ class Sigma(discord.Client):
         return self.plugin_manager.plugins
 
     async def on_ready(self):
+        self.log.info('Checking API Keys...')
         gamename = self.prefix + 'help'
         game = discord.Game(name=gamename)
         await self.change_presence(game=game)
@@ -105,16 +94,8 @@ class Sigma(discord.Client):
                 self.member_count += 1
 
         self.log.info('-----------------------------------')
-        self.log.info('Logged In As: ' + self.user.name)
-        self.log.info('Bot User ID: ' + self.user.id)
-        self.log.info('Running discord.py version: ' + discord.__version__)
-        self.log.info('Authors: {:s}'.format(', '.join(self.authors)))
-        self.log.info('Contributors: {:s}'.format(', '.join(self.contributors)))
-        self.log.info('Bot Version: ' + sigma_version)
-        self.log.info('Build Date: 16. October 2016.')
+        stats(self, self.log)
         self.log.info('-----------------------------------')
-        self.log.info('Connected to [ {:d} ] servers'.format(self.server_count))
-        self.log.info('Serving [ {:d} ] users'.format(self.member_count))
         self.log.info('Successfully connected to Discord!')
 
     async def on_message(self, message):

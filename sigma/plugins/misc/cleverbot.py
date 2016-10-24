@@ -4,15 +4,14 @@ from cleverbot import Cleverbot
 cb = Cleverbot()
 
 async def cleverbot(ev, message, args):
-    mention = ev.bot.user.mention
+    mention = '<@' + ev.bot.user.id + '>'
+    mention_alt = '<@!' + ev.bot.user.id + '>'
     author_id = message.author.id
-
-    if args and args[0] == mention:
+    if message.content.startswith(mention) or message.content.startswith(mention_alt):
         await ev.typing()
 
         try:
-            cb_input = ' '.join(args[1:])
-
+            cb_input = message.content[len(mention) + 1:]
             response = cb.ask(cb_input)
             await asyncio.sleep(len(response) * 0.0145)
             await ev.reply('<@' + message.author.id + '> ' + response)

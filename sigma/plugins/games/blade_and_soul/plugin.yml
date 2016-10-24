@@ -12,7 +12,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} EU Lucia Konohana"
     description:
-      The Blade and Soul module provides in-depth character information.
+      The Blade and Soul module provides in-depth character information for the inputed Character.
 
   - name:    bnsatt
     global:  true
@@ -20,7 +20,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} EU Lucia Konohana"
     description:
-      Provides highly detailed Attack Statistics
+      Provides highly detailed Attack Statistics for the inputed Blade and Soul Character.
 
   - name:    bnsdef
     global:  true
@@ -28,4 +28,4 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} EU Lucia Konohana"
     description:
-      Provides highly detailed Defense Statistics
+      Provides highly detailed Defense Statistics for the inputed Blade and Soul Character.

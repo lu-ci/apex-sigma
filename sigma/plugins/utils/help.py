@@ -18,5 +18,6 @@ async def help(cmd, message, args):
 
     try:
         await cmd.bot.delete_message(help_msg)
+        await cmd.bot.delete_message(message)
     except Exception as e:
         cmd.log.error('Help Message Deletion Failed {:s}'.format(e))

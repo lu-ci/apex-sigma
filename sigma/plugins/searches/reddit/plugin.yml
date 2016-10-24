@@ -12,4 +12,4 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} minecraft"
     description:
-      Get a random post from some subreddit.
+      Get a random post from the inputed subreddit.

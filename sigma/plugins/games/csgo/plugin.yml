@@ -10,6 +10,6 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} vanityurl"
+    usage:   "{pfx:s}{cmd:s} thealeksaradovic"
     description:
-      Get Counter Strike Global Offensive statistics.
+      Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!)

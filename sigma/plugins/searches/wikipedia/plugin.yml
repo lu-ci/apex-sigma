@@ -12,4 +12,4 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} search"
     description:
-      Search on wikipedia
+      Searches Wikipedia and shows the summary for your query.
