@@ -1,5 +1,4 @@
 # Sigma's internal version control.
-sigma_version = 'Beta 0.41b'
 Token = ''
 ClientID = ''
 # GitHub WebHook Server Settings.
