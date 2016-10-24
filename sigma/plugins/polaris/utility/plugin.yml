@@ -1,0 +1,41 @@
+name: Polaris Sonata Utilities
+
+categories:
+  - polaris
+
+enabled: true
+
+commands:
+  - name: userinfo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows information about the mentioned user.
+      If no user is mentioned, it will show information about you, instead.
+
+  - name: channelinfo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows information about the channel the command was used in.
+
+  - name: serverinfo
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows information about the server the command was used on.
+
+  - name: permissions
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows all server permissions for the mentioned user.
+      If no user is mentioned, it will show information about you, instead.

@@ -1,4 +1,4 @@
-name: Polaris Sonata
+name: Polaris Sonata Administration
 
 categories:
   - polaris
@@ -26,3 +26,39 @@ commands:
       Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server.
       If no arguments are inputed
       (Server Administrator Only)
+
+  - name: ban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Bans the mentioned user.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: softban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Bans and instantly unbans the mentioned user.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: kick
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Kicks the mentioned user.
+      Requires the user who calls the command to have kick privileges.
+
+  - name: prune
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Kicks the mentioned user.
+      Requires the user who calls the command to have kick privileges.
