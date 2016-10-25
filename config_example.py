@@ -1,4 +1,4 @@
-# Sigma's internal version control.
+#token and client ID for Bot
 Token = ''
 ClientID = ''
 # GitHub WebHook Server Settings.
@@ -22,6 +22,7 @@ mal_un = ''
 mal_pw = ''
 reddit_un = ''
 reddit_pw = ''
+twitchKey = ''
 # Bot Prefix for Commands.
 Prefix = '>>'
 # Permitted IDs.
