@@ -13,14 +13,11 @@ async def league(cmd, message, args):
     lol_input = ' '.join(args)
 
     try:
-        region, gametype, smnr_name = lol_input.lower().split(maxsplit=2)
-        if not gametype.lower() == 'aram' and not gametype.lower() == 'dominion' and not gametype.lower() == 'urf' and not gametype.lower() == 'hexakill':
-            smnr_name = gametype + ' ' + smnr_name
-        else:
-            pass
-    except ValueError:
         region, smnr_name = lol_input.lower().split(maxsplit=1)
-        gametype = 'None'
+    except Exception as e:
+        cmd.log.error(e)
+        await cmd.reply(str(e))
+        return
 
     smnr_name_table = smnr_name.replace(' ', '')
     smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + RiotAPIKey
@@ -48,12 +45,11 @@ async def league(cmd, message, args):
         if os.path.isfile('cache/lol/profile_' + message.author.id + '.png'):
             os.remove('cache/lol/profile_' + message.author.id + '.png')
         avatar = requests.get(icon_url).content
-        print(str(icon_url))
         base = Image.open(cmd.resource('img/base.png'))
         overlay = Image.open(cmd.resource('img/overlay_lol.png'))
         background = Image.open(BytesIO(avatar))
         background_res = background.resize((72, 72), Image.ANTIALIAS)
-        foreground = Image.open('img/lol/border_lol.png')
+        foreground = Image.open('sigma/plugins/games/league_of_legends/res/img/border_lol.png')
         foreground_res = foreground.resize((64, 64), Image.ANTIALIAS)
         base.paste(background_res, (28, 28))
         base.paste(overlay, (0, 0), overlay)
@@ -69,7 +65,9 @@ async def league(cmd, message, args):
         # Image End
 
         try:
-            item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'RankedSolo5x5'), None)
+            item = next(
+                (item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'RankedSolo5x5'),
+                None)
             if item:
                 ranked = item
                 ranked_wins = str(ranked['wins'])
@@ -91,7 +89,8 @@ async def league(cmd, message, args):
         except:
             ranked_text = 'None'
         try:
-            item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'Unranked'), None)
+            item = next(
+                (item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'Unranked'), None)
             if item:
                 normal = item
                 normal_wins = str(normal['wins'])
@@ -110,99 +109,12 @@ async def league(cmd, message, args):
                 normal_text = 'None'
         except SyntaxError:
             normal_text = 'None'
-        try:
-            item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'AramUnranked5x5'), None)
-            if item:
-                aram = item
-                aram_wins = str(aram['wins'])
-                aram_kills = str(aram['aggregatedStats']['totalChampionKills'])
-                aram_turrets = str(aram['aggregatedStats']['totalTurretsKilled'])
-                aram_assists = str(aram['aggregatedStats']['totalAssists'])
-                aram_text = ('Wins: ' + aram_wins +
-                               '\nKills: ' + aram_kills +
-                               '\nAssists: ' + aram_assists +
-                               '\nTurret Kills: ' + aram_turrets)
-            else:
-                aram_text = 'None'
-        except:
-            aram_text = 'None'
-        try:
-            item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'CAP5x5'), None)
-            if item:
-                dominion = item
-                dominion_wins = str(dominion['wins'])
-                dominion_kills = str(dominion['aggregatedStats']['totalChampionKills'])
-                dominion_minions = str(dominion['aggregatedStats']['totalMinionKills'])
-                dominion_turrets = str(dominion['aggregatedStats']['totalTurretsKilled'])
-                dominion_neutrals = str(dominion['aggregatedStats']['totalNeutralMinionsKilled'])
-                dominion_assists = str(dominion['aggregatedStats']['totalAssists'])
-                dominion_text = ('Wins: ' + dominion_wins +
-                               '\nKills: ' + dominion_kills +
-                               '\nAssists: ' + dominion_assists +
-                               '\nMinion Kills: ' + dominion_minions +
-                               '\nTurret Kills: ' + dominion_turrets +
-                               '\nJungle Minion Kills: ' + dominion_neutrals)
-            else:
-                dominion_text = 'None'
-        except:
-            dominion_text = 'None'
-        try:
-            item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'URF'), None)
-            if item:
-                urf = item
-                urf_wins = str(urf['wins'])
-                urf_kills = str(urf['aggregatedStats']['totalChampionKills'])
-                urf_minions = str(urf['aggregatedStats']['totalMinionKills'])
-                urf_turrets = str(urf['aggregatedStats']['totalTurretsKilled'])
-                urf_neutrals = str(urf['aggregatedStats']['totalNeutralMinionsKilled'])
-                urf_assists = str(urf['aggregatedStats']['totalAssists'])
-                urf_text = ('Wins: ' + urf_wins +
-                               '\nKills: ' + urf_kills +
-                               '\nAssists: ' + urf_assists +
-                               '\nMinion Kills: ' + urf_minions +
-                               '\nTurret Kills: ' + urf_turrets +
-                               '\nJungle Minion Kills: ' + urf_neutrals)
-            else:
-                urf_text = 'None'
-        except:
-            urf_text = 'None'
-        try:
-            item = next((item for item in summary['playerStatSummaries'] if item['playerStatSummaryType'] == 'Hexakill'), None)
-            if item:
-                hexakill = item
-                hexakill_wins = str(hexakill['wins'])
-                hexakill_kills = str(hexakill['aggregatedStats']['totalChampionKills'])
-                hexakill_minions = str(hexakill['aggregatedStats']['totalMinionKills'])
-                hexakill_turrets = str(hexakill['aggregatedStats']['totalTurretsKilled'])
-                hexakill_neutrals = str(hexakill['aggregatedStats']['totalNeutralMinionsKilled'])
-                hexakill_assists = str(hexakill['aggregatedStats']['totalAssists'])
-                hexakill_text = ('Wins: ' + hexakill_wins +
-                               '\nKills: ' + hexakill_kills +
-                               '\nAssists: ' + hexakill_assists +
-                               '\nMinion Kills: ' + hexakill_minions +
-                               '\nTurret Kills: ' + hexakill_turrets +
-                               '\nJungle Minion Kills: ' + hexakill_neutrals)
-            else:
-                hexakill_text = 'None'
-        except:
-            hexakill_text = 'None'
-        if ranked_text == 'None' and normal_text == 'None' and aram_text == 'None' and dominion_text == 'None':
+        if ranked_text == 'None' and normal_text == 'None':
             await cmd.reply('No stats found.')
         else:
             await cmd.reply_file('cache/lol/profile_' + message.author.id + '.png')
-            if gametype.lower() == 'aram':
-                await cmd.reply('ARAM Stats:\n```' + aram_text + '\n```')
-            elif gametype.lower() == 'dominion':
-                await cmd.reply('Dominion Stats:\n```' + dominion_text + '\n```')
-            elif gametype.lower() == 'urf':
-                await cmd.reply('URF Stats:\n```' + urf_text + '\n```')
-            elif gametype.lower() == 'hexakill':
-                await cmd.reply('Hexakill Stats:\n```' + hexakill_text + '\n```')
-            else:
-                await cmd.reply('Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
-    except:
-        print(league_url)
-        if not region.lower() == 'na' and not region.lower() == 'eune' and not region.lower() == 'euw':
-            await cmd.reply('Invalid Region: `' + region + '`.')
-        else:
-            await cmd.reply('Something went wrong, PANIC!')
+            await cmd.reply('Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
+    #except Exception as e:
+    except SyntaxError:
+        #cmd.log.error(e)
+        await cmd.reply('Something went wrong, PANIC!')
