@@ -1,11 +1,12 @@
 from twitch.api import v3 as api
 from config import TwitchClientID
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
-import requests
-from io import BytesIO
-import os
+# uncomment these for PIL
+# from PIL import Image
+# from PIL import ImageFont
+# from PIL import ImageDraw
+# import requests
+# from io import BytesIO
+# import os
 
 
 async def twitch(cmd, message, args):
@@ -23,13 +24,12 @@ async def twitch(cmd, message, args):
         avatar_url = channel['logo']
         followers = channel['followers']
         steam = api.streams.by_channel(twitch_input)['stream']
-        if type(steam) == type(None):
+        if isinstance(steam, None):
             online = False
         else:
             start = steam['created_at']
             online = True
 
-        avatar_raw = requests.get(avatar_url).content
         # data End; pillow start?
         if online:
             await cmd.reply('display name: ' + name +
@@ -42,7 +42,9 @@ async def twitch(cmd, message, args):
                             '\nllast seen playing: ' + game +
                             '\nAvatar: ' + avatar_url +
                             '\nfollowers: ' + str(followers))
-
+        # TODO: impliment PIL into this module
+        # avatar_raw = requests.get(avatar_url).content
+        #
         #        with Image.open(BytesIO(avatar_raw)) as avatar:
         #            base = Image.open(cmd.resource('img/base.png'))
         #            overlay = Image.open(cmd.resource('img/overlay.png'))

@@ -16,8 +16,6 @@ async def wowchar(cmd, message, args):
         region = region_raw.replace('_', '%20')
         base_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?locale=en_GB&apikey=' + BlizzardKey
         char_data = requests.get(base_url).json()
-        achi_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?fields=achievements' + '&locale=en_GB&apikey=' + BlizzardKey
-        achi_data = requests.get(achi_url).json()
         items_url = 'https://' + region.lower() + '.api.battle.net/wow/character/' + realm + '/' + char_name + '?fields=items' + '&locale=en_GB&apikey=' + BlizzardKey
         items_data = requests.get(items_url).json()
         # Character Data Begin
@@ -94,21 +92,10 @@ async def wowchar(cmd, message, args):
         char_level = char_data['level']
         char_achi_points = char_data['achievementPoints']
         thumbnail = char_data['thumbnail']
-        faction = char_data['faction']
-
-        if faction == 1:
-            faction_name = 'Horde'
-        elif faction == 0:
-            faction_name = 'Alliance'
-        else:
-            faction_name = 'Neutral'
 
         hon_kills = char_data['totalHonorableKills']
         image_url = 'http://' + region.lower() + '.battle.net/static-render/' + region.lower() + '/' + thumbnail
         # Character Data End
-        # Achievement Data Start
-        achi_no = len(achi_data['achievements']['achievementsCompleted'])
-        # Achievement Data End
         # Item Data Start
         avg_item_level = items_data['items']['averageItemLevel']
         try:

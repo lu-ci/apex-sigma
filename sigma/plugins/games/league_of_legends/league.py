@@ -114,7 +114,7 @@ async def league(cmd, message, args):
         else:
             await cmd.reply_file('cache/lol/profile_' + message.author.id + '.png')
             await cmd.reply('Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
-    #except Exception as e:
+    # except Exception as e:
     except SyntaxError:
-        #cmd.log.error(e)
+        # `cmd.log.error(e)
         await cmd.reply('Something went wrong, PANIC!')

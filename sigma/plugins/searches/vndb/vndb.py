@@ -60,22 +60,11 @@ async def vndb(cmd, message, args):
 
     vn_desc = data['description']
     vn_id = data['id']
-    vn_len = data['length']
-
-    if data['tags']['erotic'] is None:
-        nsfw = 'Yes'
-    else:
-        nsfw = 'No'
 
     if len(vn_desc) > 300:
         suffix = '...'
     else:
         suffix = ''
-
-    if len(vn_title) > 21:
-        tit_sfx = '...'
-    else:
-        tit_sfx = ''
 
     vn_cover_raw = requests.get(vn_img).content
     vn_cover_res = Image.open(BytesIO(vn_cover_raw))
