@@ -25,6 +25,8 @@ async def ud(cmd, message, args):
     if result_type == 'exact':
         try:
             definition = str((response['list'][entry]['definition']))
+            if len(definition) > 750:
+                definition = definition[:750] + '...'
             example = str((response['list'][0]['example']))
             await cmd.reply('Word: `' + ud_input + '`\n'
                                       'Definition:\n```' + definition + '```\n' +
