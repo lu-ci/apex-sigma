@@ -25,7 +25,7 @@ commands:
 
   - name: serverinfo
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
