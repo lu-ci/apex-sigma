@@ -1,4 +1,4 @@
-#token and client ID for Bot
+# token and client ID for Bot
 Token = ''
 ClientID = ''
 # GitHub WebHook Server Settings.
