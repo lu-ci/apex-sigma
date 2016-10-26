@@ -1,0 +1,15 @@
+name: Twitch
+
+categories:
+  - utilities
+
+enabled: true
+
+commands:
+  - name:    twitch
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Fetches information about a streamer.

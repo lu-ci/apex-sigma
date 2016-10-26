@@ -11,8 +11,11 @@ imgurpython
 praw
 cleverbot
 tornado
+pyyaml
 discord.py
 wikipedia
-
+humanfriendly
 blinker
 nose
+psutil
+python-twitch

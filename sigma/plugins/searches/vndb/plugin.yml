@@ -1,0 +1,15 @@
+name: Visual Novel Database
+
+categories:
+  - search
+
+enabled: true
+
+commands:
+  - name:    vndb
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Rewrite"
+    description:
+      Searches the Visual Novel Database fot the title you inputed.
