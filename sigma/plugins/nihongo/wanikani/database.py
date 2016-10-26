@@ -138,7 +138,7 @@ async def get_key(cmd, message, args):
             if not db_response:
                 await cmd.reply('No assigned key or username was found\n'
                                 'You can add it by sending me a direct message, for example\n'
-                                'For Advanced Stats:\n\t`{0:s}wksave key <your API key>`\nor\n\t`{0:s}wksave username <your username>` for basic stats.'.format(cmd.prefix))
+                                'For Advanced Stats:\n\t`{0:s}wksave key <your API key>`\nor For Basicc Stats:\n\t`{0:s}wksave username <your username>`.'.format(cmd.prefix))
 
                 return (None, None)
 

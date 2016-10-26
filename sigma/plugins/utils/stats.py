@@ -5,7 +5,7 @@ import asyncio
 async def stats(cmd, message, args):
     out = sigma_stats(cmd.bot)
 
-    out_txt = codeblock('\n'.join(out), syntax='python')
+    out_txt = codeblock('\n'.join(out), syntax='json')
 
     stats_msg = await cmd.reply(out_txt)
     await asyncio.sleep(60)
