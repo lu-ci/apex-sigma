@@ -17,4 +17,5 @@ wikipedia
 humanfriendly
 blinker
 nose
+psutil
 python-twitch
