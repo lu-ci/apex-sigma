@@ -20,7 +20,7 @@ def stats(bot, log=None):
 
 
     tmp = []
-    tmp.append(multi('Logged In As: ' + bot.user.name, log))
+    tmp.append(multi('Logged In As: \"' + bot.user.name + '\"', log))
     tmp.append(multi('Bot User ID: ' + bot.user.id, log))
     tmp.append(multi('Running discord.py version: ' + discord.__version__, log))
     tmp.append(multi('Authors: {:s}'.format(authors), log))

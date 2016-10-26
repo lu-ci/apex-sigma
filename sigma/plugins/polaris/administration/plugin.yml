@@ -82,3 +82,12 @@ commands:
     description:
       Will unmute a person who was muted with the mute command.
       Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
+
+  - name: announce
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Hello World!"
+    description:
+      It will post your inputed message to the default text channel of every server the bot is connected to.
+      Bot Special Permitted/Owner Only

@@ -8,7 +8,7 @@ enabled: true
 commands:
   - name:    es
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Righteous"
     description:
