@@ -63,3 +63,22 @@ commands:
       Deltes X number of messages posted by the mentioned person.
       If a user is not provided, it will prune the last X messages regardless of poster.
       If a number is not provided it will prune the last 100 messages.
+      Requires the user who calls the command to have the Manage Messages permission.
+
+  - name: mute
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Will not allow the person to type on the server at all.
+      Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
+
+  - name: unmute
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Will unmute a person who was muted with the mute command.
+      Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.

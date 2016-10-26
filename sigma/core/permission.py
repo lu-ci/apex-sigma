@@ -39,3 +39,7 @@ def check_kick(user, channel):
     return user.permissions_in(channel).kick_members
 def check_man_msg(user, channel):
     return user.permissions_in(channel).manage_messages
+def check_man_roles(user, channel):
+    return user.permissions_in(channel).manage_roles
+def check_write(user, channel):
+    return user.permissions_in(channel).send_messages

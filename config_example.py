@@ -22,7 +22,7 @@ mal_un = ''
 mal_pw = ''
 reddit_un = ''
 reddit_pw = ''
-twitchKey = ''
+TwitchClientID = ''
 # Bot Prefix for Commands.
 Prefix = '>>'
 # Permitted IDs.
