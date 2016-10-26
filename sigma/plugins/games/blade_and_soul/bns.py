@@ -4,91 +4,101 @@ from lxml import html
 
 def getSummary(tree):
     summary = {
-        'Username' : tree[0][0].text,
-        'Nickname' : tree[0][1].text[1: -1],
-        'Level' : tree[2][0][1].text[6:],
-        'World' : tree[2][0][2].text,
-        'Class' : tree[2][0][0].text
+        'Username': tree[0][0].text,
+        'Nickname': tree[0][1].text[1: -1],
+        'Level': tree[2][0][1].text[6:],
+        'World': tree[2][0][2].text,
+        'Class': tree[2][0][0].text
     }
     try:
         summary['Faction'] = tree[2][0][3].text
     except IndexError:
         summary['Faction'] = 'None'
-    try: #trying to parse guild name, player might not be in any guild
+    try:  # trying to parse guild name, player might not be in any guild
         summary['Guild'] = tree[2][0][4].text
     except IndexError:
         summary['Guild'] = 'None'
     return summary
 
+
 def getStats(tree):
     out = {}
-    #Collecting attack stats
+    # Collecting attack stats
     for i in range(0, len(tree), 2):
         title = tree[i][1].text
         total = tree[i][2].text
 
-        #collecting all stats in a single array
-        #in key, value, key, value formatting
+        # collecting all stats in a single array
+        # in key, value, key, value formatting
         substats = ['Total', total]
         try:
             for elem in tree[i + 1][0]:
                 for subel in elem:
                     if subel.tag == 'span':
                         substats.append(subel.text)
-        except IndexError: pass
+        except IndexError:
+            pass
 
-        #splitting the stats in json
+        # splitting the stats in json
         stats = {}
         for index in range(0, len(substats), 2):
             stats[substats[index]] = ''
         for index in range(1, len(substats), 2):
             stats[substats[index - 1]] = substats[index]
-        stats = {title : stats} #wrapping them
+        stats = {title: stats}  # wrapping them
         out[title] = stats[title]
     return out
+
 
 def getEquipment(tree):
     weapon_name = ''
     weapon_quality = ''
     weapon_gems = []
 
-    try: weapon_name = tree[2][1][0].text
-    except: pass
+    try:
+        weapon_name = tree[2][1][0].text
+    except:
+        pass
 
-    try: weapon_quality = tree[2][0][3][2].text
-    except: pass
+    try:
+        weapon_quality = tree[2][0][3][2].text
+    except:
+        pass
 
     try:
         for element in tree[2][3]:
             weapon_gems.append(element[0].attrib['alt'])
-    except: pass
+    except:
+        pass
 
     accessories = []
     for i in range(4, 24, 2):
         if tree[i][1][0].attrib['class'] != 'empty':
             accessories.append(tree[i][1][0].text)
-        else: accessories.append('')
+        else:
+            accessories.append('')
 
     equipment = {
-        'Weapon' : {
-            'Name' : weapon_name,
-            'Quality' : weapon_quality,
-            'Gems' : weapon_gems
+        'Weapon': {
+            'Name': weapon_name,
+            'Quality': weapon_quality,
+            'Gems': weapon_gems
         },
-        'Accessories' : {
-            'Necklace' : accessories[0],
-            'Earring' : accessories[1],
-            'Ring' : accessories[2],
-            'Bracelet' : accessories[3],
-            'Belt' : accessories[4],
-            'Soul' : accessories[5],
-            'Clothes' : accessories[6],
-            'Head Adornment' : accessories[7],
-            'Face Adornment' : accessories[8],
-            'Adornment' : accessories[9]
+        'Accessories': {
+            'Necklace': accessories[0],
+            'Earring': accessories[1],
+            'Ring': accessories[2],
+            'Bracelet': accessories[3],
+            'Belt': accessories[4],
+            'Soul': accessories[5],
+            'Clothes': accessories[6],
+            'Head Adornment': accessories[7],
+            'Face Adornment': accessories[8],
+            'Adornment': accessories[9]
         }
     }
     return equipment
+
 
 def getSoulShieldStats(tree):
     output = {}
@@ -99,13 +109,14 @@ def getSoulShieldStats(tree):
         set = element[1][2].text
         base = str(int(total) - (int(fused) + int(set)))
         substats = {
-            'Total' : total,
-            'Base' : base,
-            'Fused' : fused,
-            'Set' : set
+            'Total': total,
+            'Base': base,
+            'Fused': fused,
+            'Set': set
         }
         output[name] = substats
     return output
+
 
 def getSoulShieldEffect(tree):
     name = tree[3].text
@@ -116,13 +127,15 @@ def getSoulShieldEffect(tree):
         br = string.find('<br>')
         effects.append(string[:br])
         string = string[br + 4:].strip()
-        if string == '</p>': break
+        if string == '</p>':
+            break
     return {
-        'Passive' : {
-            'Name' : name,
-            'Effects' : effects
+        'Passive': {
+            'Name': name,
+            'Effects': effects
         }
     }
+
 
 def fetchStats(region, nickname):
     query = 'http://' + region + '-bns.ncsoft.com/ingame/bs/character/profile?c=' + nickname.replace(' ', '%20')
@@ -150,5 +163,5 @@ def fetchStats(region, nickname):
         return output
     except:
         return {
-            'Error' : 'Something went wrong'
+            'Error': 'Something went wrong'
         }
