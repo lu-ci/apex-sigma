@@ -17,13 +17,11 @@ async def mute(cmd, message, args):
     if message.author is not user_q:
         if check_man_msg(message.author, channel) and check_man_roles(message.author, channel):
             try:
-                out_num = 0
                 for chan in server.channels:
                     if str(chan.type).lower() == 'text':
                         if check_write(user_q, chan):
                             await cmd.bot.edit_channel_permissions(chan, user_q, overwrite)
-                            out_num += 1
-                await cmd.reply('Execution Successful.\nUser **' + user_q.name + '** was muted in **' + str(out_num) + '** channels.')
+                await cmd.reply('Execution Successful.\nUser **' + user_q.name + '** was muted')
             except Exception as e:
                 cmd.log.error(e)
                 await cmd.reply(str(e))

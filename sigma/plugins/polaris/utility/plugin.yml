@@ -39,3 +39,38 @@ commands:
     description:
       Shows all server permissions for the mentioned user.
       If no user is mentioned, it will show information about you, instead.
+
+  - name: invite
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the OAuth2 URL for inviting Sigma to a server.
+
+  - name: status
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Show the statistics of the machine running the bot.
+
+  - name: coinflip
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Heads"
+    description:
+      Flips a coin. Nothing complex.
+      You can try guessing the results by typing either Heads or Tails after the command.
+
+  - name: roll
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 701"
+    description:
+      Gives a random number from 0 to 100.
+      You can specify the highest number the function calls by adding a number after the command.
+      The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.

@@ -49,7 +49,7 @@ async def league(cmd, message, args):
         overlay = Image.open(cmd.resource('img/overlay_lol.png'))
         background = Image.open(BytesIO(avatar))
         background_res = background.resize((72, 72), Image.ANTIALIAS)
-        foreground = Image.open('sigma/plugins/games/league_of_legends/res/img/border_lol.png')
+        foreground = Image.open(cmd.resource('img/border_lol.png'))
         foreground_res = foreground.resize((64, 64), Image.ANTIALIAS)
         base.paste(background_res, (28, 28))
         base.paste(overlay, (0, 0), overlay)
