@@ -1,0 +1,16 @@
+name: Gravatar
+
+categories:
+  - searches
+
+enabled: true
+
+commands:
+  - name:    gravatar
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} admin@auroraproject.xyz"
+    description:
+      Shows the Gravatar avatar associated with the inpute email.
+      If the email is not found in the Gravatar database, it will return the default avatar.
