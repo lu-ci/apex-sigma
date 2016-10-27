@@ -90,4 +90,4 @@ commands:
     usage:   "{pfx:s}{cmd:s} Hello World!"
     description:
       It will post your inputed message to the default text channel of every server the bot is connected to.
-      Bot Special Permitted/Owner Only
+      Bot Special Permitted/Owner Only.

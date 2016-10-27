@@ -93,3 +93,22 @@ commands:
     description:
       The bot will select a thing from the inputed list.
       Separate list items with a space.
+
+
+  - name: ping
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the latency between the server hosting the bot and Google.
+      Windows host only for now.
+      Bot Special Permitted/Owner Only.
+
+  - name: math
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 69+42"
+    description:
+      Solves simple mathematical operations.
