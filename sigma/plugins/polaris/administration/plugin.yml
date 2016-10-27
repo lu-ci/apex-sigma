@@ -24,7 +24,28 @@ commands:
     description:
       Sets the greet message text.
       Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server.
-      If no arguments are inputed
+      If no arguments are inputed it will show the current greet message.
+      (Server Administrator Only)
+
+  - name: bye
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the bye message in the channel it is written in.
+      Whenever a user leaves the server the bye messsage will be displayed.
+      (Server Administrator Only)
+
+  - name: byemsg
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} %user_mention% has left %server_name%"
+    description:
+      Sets the bye message text.
+      Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server.
+      If no arguments are inputed it will show the current bye message.
       (Server Administrator Only)
 
   - name: ban
