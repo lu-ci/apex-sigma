@@ -2,6 +2,7 @@ import hashlib
 
 
 async def gravatar(cmd, message, args):
+    await cmd.bot.delete_message(message)
     if args:
         email = args[0]
         email = email.encode('utf-8')
