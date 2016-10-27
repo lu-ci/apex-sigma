@@ -58,7 +58,6 @@ commands:
     enabled:  false
     sfw:      false
 
-# broken right now
   - name:     nhentai
     global:   true
     enabled:  true
@@ -67,3 +66,12 @@ commands:
     description:
       Searches nHentai for doujinshi for the inputed name.
       Displays the results, cover and tags.
+
+  - name:     nyaa
+    global:   true
+    enabled:  true
+    sfw:      false
+    usage:    "{pfx:s}{cmd:s}"
+    description:
+      Provides a random Nekomimi image.
+
