@@ -4,14 +4,6 @@ import requests
 async def jisho(cmd, message, *args):
     jisho_q = ' '.join(*args)
 
-    try:
-        cmd.log.info('%s | %s | %s [%s] on %s [%s] in #%s',
-                      'jisho lookup', jisho_q, message.author, message.author.id, message.server.name, message.server.id, message.channel)
-
-    except:
-        cmd.log.info('%s | %s | %s [%s]',
-                      'jisho lookup', jisho_q, message.author, message.author.id)
-
     request = requests.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q)
 
     if request.text.find('503 Service Unavailable') != -1:
@@ -61,8 +53,10 @@ async def jisho(cmd, message, *args):
             etc.append(', '.join(request['senses'][i]['parts_of_speech']))
 
         if request['senses'][i]['tags']:
-            etc.append('; '.join(request['senses'][i]['tags']))
-
+            try:
+                etc.append('; '.join(request['senses'][i]['tags']))
+            except:
+                pass
         if request['senses'][i]['see_also']:
             etc.append('See also {}'.format(', '.join(request['senses'][i]['see_also'])))
 
