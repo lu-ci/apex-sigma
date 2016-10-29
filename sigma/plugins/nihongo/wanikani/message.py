@@ -130,7 +130,7 @@ async def draw_image(cmd, message, user):
         parse_date(user['creation_date'], fmt='%B %d, %Y')),
         txt_color, font=font2)
 
-    imgdraw.text((kanji_loc, 61), rank_category,
+    imgdraw.text((kanji_loc, 52), rank_category,
                  (255, 255, 255), font=font3)
 
     if user['method'] == 'api':
