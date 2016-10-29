@@ -46,8 +46,9 @@ async def steam(cmd, message, args):
             overlay = Image.open(cmd.resource('img/overlay.png'))
             base.paste(avatar, (0, 0))
             base.paste(overlay, (0, 0), overlay)
-            font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 40)
-            font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 30)
+            main_font = 'NotoSansCJKjp-Medium.otf'
+            font = ImageFont.truetype(main_font, 35)
+            font2 = ImageFont.truetype(main_font, 25)
             imgdraw = ImageDraw.Draw(base)
             imgdraw.text((190, 7), displayname, (255, 255, 255), font=font)
             imgdraw.text((190, 45), 'Member for ' + str(creation)[-1:] + ' years', (255, 255, 255), font=font2)
