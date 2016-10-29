@@ -7,6 +7,7 @@ from PIL import ImageDraw
 import time
 import requests
 import os
+import datetime
 
 
 async def steam(cmd, message, args):
@@ -30,9 +31,10 @@ async def steam(cmd, message, args):
         summary = summary_call['response']['players'][0]
         displayname = str(summary['personaname'])
         currentstamp = int(round(time.time()))
-        creation = currentstamp - int(summary['timecreated'])
+        creation = summary['timecreated']
         lastonline = currentstamp - int(summary['lastlogoff'])
-        creation = int(creation) / 60 / 60 / 24 / 365.25
+        fmt = '%B %d, %Y'
+        creation = datetime.datetime.fromtimestamp(creation).strftime(fmt)
         lastonline = time.strftime('%H:%M:%S', time.gmtime(int(lastonline)))
         onlinenow = summary['personastate']
         avatar_url = str(summary['avatarfull'])
@@ -46,11 +48,14 @@ async def steam(cmd, message, args):
             overlay = Image.open(cmd.resource('img/overlay.png'))
             base.paste(avatar, (0, 0))
             base.paste(overlay, (0, 0), overlay)
-            font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 40)
-            font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 30)
+            main_font = 'NotoSansCJKjp-Medium.otf'
+            font = ImageFont.truetype(main_font, 32)
+            font2 = ImageFont.truetype(main_font, 23)
             imgdraw = ImageDraw.Draw(base)
+            if len(displayname) > 18:
+                displayname = displayname[:17] + '...'
             imgdraw.text((190, 7), displayname, (255, 255, 255), font=font)
-            imgdraw.text((190, 45), 'Member for ' + str(creation)[-1:] + ' years', (255, 255, 255), font=font2)
+            imgdraw.text((190, 45), 'Joined ' + str(creation), (255, 255, 255), font=font2)
             imgdraw.text((190, 75), 'Last Logoff: ' + str(lastonline) + ' ago', (255, 255, 255), font=font2)
             imgdraw.text((190, 105), 'Has ' + str(gamecount) + ' games', (255, 255, 255), font=font2)
             imgdraw.text((190, 135), 'Out of which ' + str(gamecountnonfree) + ' are free', (255, 255, 255), font=font2)
