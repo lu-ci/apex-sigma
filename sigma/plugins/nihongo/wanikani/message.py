@@ -87,12 +87,15 @@ async def draw_image(cmd, message, user):
         raise e
 
     try:
-        font1 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 25)
-        font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 21)
-        font3 = ImageFont.truetype("YuGothB.ttc", 21)
-        font4 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 20)
+        main_font = 'NotoSansCJKjp-Medium.otf'
+        japanese_font = 'NotoSansCJKjp-Medium.otf'
+        font1 = ImageFont.truetype(main_font, 15)
+        font2 = ImageFont.truetype(main_font, 13)
+        font3 = ImageFont.truetype(japanese_font, 21)
+        font4 = ImageFont.truetype(main_font, 12)
     except OSError as e:
         cmd.log.error('{:s}'.format(str(e)))
+        cmd.log.error('You\'re missing the fonts!')
         raise e
 
     try:
