@@ -72,9 +72,9 @@ async def role(cmd, message, args):
                             else:
                                 await cmd.reply('Role ' + role_name + ' has not been found.')
                         elif mode == 'add':
-                            return
+                            await cmd.reply('Not yet implemented, sorry.')
                         elif mode == 'del':
-                            return
+                            await cmd.reply('Not yet implemented, sorry.')
                         elif mode == 'auto':
                             if check_admin:
                                 role_on_server = False
