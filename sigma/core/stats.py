@@ -1,7 +1,7 @@
 import yaml
 from config import permitted_id
 import discord
-
+import datetime
 
 def stats(bot, log=None):
     permed_ids = userlist(permitted_id)
@@ -11,12 +11,17 @@ def stats(bot, log=None):
     with open('VERSION') as version_file:
         content = yaml.load(version_file)
         version = content['version']
+        build_date = datetime.datetime.fromtimestamp(content['build_date']).strftime('%B %d, %Y')
+        v_major = version['major']
+        v_minor = version['minor']
+        v_patch = version['patch']
         codename = content['codename']
         beta_state = content['beta']
+    v_full = str(v_major) + '.' + str(v_minor) + '.' + str(v_patch)
     version_text = ''
     if beta_state:
         version_text += 'Beta '
-    version_text += 'v' + str(version) + ' Codename ' + codename
+    version_text += v_full + ' Codename ' + codename
 
 
     tmp = []
@@ -27,7 +32,7 @@ def stats(bot, log=None):
     tmp.append(multi('Contributors: {:s}'.format(contributors), log))
     tmp.append(multi('Donors: {:s}'.format(donors), log))
     tmp.append(multi('Bot Version: ' + version_text, log))
-    tmp.append(multi('Build Date: 16. October 2016.', log))
+    tmp.append(multi('Build Date: ' + build_date, log))
     tmp.append(multi('Connected to [ {:d} ] servers'.format(bot.server_count), log))
     tmp.append(multi('Serving [ {:d} ] users'.format(bot.member_count), log))
     tmp.append(multi('Permitted IDs: {:s}'.format(permed_ids), log))
