@@ -135,4 +135,4 @@ commands:
 
       del - Removes a role from the list of self assignable roles.
 
-      Requires the user who calls the command to have the Manage Roles permision as well as Manage Roles.
+      Requires the user who calls the command to have the Manage Roles permision, and Administrator if changing the Auto Role settings.

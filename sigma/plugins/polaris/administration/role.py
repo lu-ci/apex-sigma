@@ -82,7 +82,6 @@ async def role(cmd, message, args):
                                     if role_name.lower() == role_res.name.lower():
                                         role_on_server = True
                                         break
-
                                 role_query = 'SELECT ROLE_NAME FROM AUTO_ROLE WHERE SERVER_ID=?'
                                 chk_query = 'SELECT EXISTS (SELECT SERVER_ID, ROLE_NAME FROM AUTO_ROLE WHERE SERVER_ID=?);'
                                 insert_query = 'INSERT INTO AUTO_ROLE (SERVER_ID, ROLE_NAME) VALUES (?, ?)'
@@ -136,13 +135,11 @@ async def role(cmd, message, args):
                                                 'The auto role ' + role_name + ' has been set for ' + message.server.name + '.')
                                             await asyncio.sleep(10)
                                             await cmd.bot.delete_message(response)
-
                         else:
                             response = await cmd.reply(
                                 'Only a user with **Administrator** privileges can use this function. :x:')
                             await asyncio.sleep(10)
                             await cmd.bot.delete_message(response)
-
             else:
                 response = await cmd.reply('Only a user with the **Manage Roles** privilege can use this command. :x:')
                 await asyncio.sleep(10)
