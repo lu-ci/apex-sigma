@@ -108,6 +108,16 @@ commands:
     description:
       Generates the Markdown file of the command list for GitHub (Owner Only).
 
+  - name:    apikeys
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows which keys are present and which are missing from the config.
+      The list is sent as a DM to the user.
+      Permitted ID Only.
+
 events:
   - name:    pmredirect
     type:    message
