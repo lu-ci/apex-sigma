@@ -1,4 +1,5 @@
 import config
+import asyncio
 from config import permitted_id
 from humanfriendly.tables import format_pretty_table as boop
 
@@ -15,6 +16,17 @@ async def apikeys(cmd, message, args):
                     option_state = '✔'
                 out_list.append([option.upper(), option_state])
         out_text = '```haskell\n' + boop(out_list) + '\n```'
-        await cmd.reply(out_text)
+        try:
+            await cmd.bot.start_private_message(message.author)
+            await cmd.bot.send_message(message.author, out_text)
+        except Exception as e:
+            cmd.log.error(e)
+            await cmd.reply(str(e))
+        status = await cmd.reply('The API Key List has been sent to your DM.')
+    else:
+        status = await cmd.reply('Insufficient permissions. :x:')
+    await asyncio.sleep(10)
+    await cmd.bot.delete_message(message)
+    await cmd.bot.delete_message(status)
 
 
