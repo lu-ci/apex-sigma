@@ -2,6 +2,6 @@ beta: true
 build_date: 1477872304
 version:
   major: 0
-  minor: 85
-  patch: 21
+  minor: 87
+  patch: 0
 codename: 'Chihiro'

@@ -72,7 +72,27 @@ async def role(cmd, message, args):
                             else:
                                 await cmd.reply('Role ' + role_name + ' has not been found.')
                         elif mode == 'add':
-                            await cmd.reply('Not yet implemented, sorry.')
+                            role_on_server = False
+                            for role_res in message.server.roles:
+                                if role_name.lower() == role_res.name.lower():
+                                    role_on_server = True
+                                    break
+                            if role_on_server:
+                                add_qry = 'INSERT INTO SELF_ROLE (SERVER_ID, ROLE_NAME) VALUES (?, ?)'
+                                chk_query = 'SELECT EXISTS (SELECT ROLE_NAME, SERVER_ID FROM SELF_ROLE WHERE SERVER_ID=?);'
+                                check_results = cmd.db.execute(chk_query, message.server.id)
+                                srv_exists_in_db = 0
+                                rol_exists_in_db = 0
+                                for result in check_results:
+                                    print(result)
+                                    srv_exists_in_db = result[0]
+                                    rol_exists_in_db = result[1]
+                                if srv_exists_in_db == 0 and rol_exists_in_db == 0:
+                                    cmd.db.execute(add_qry, message.server.id, role_name)
+                                    cmd.db.commit()
+                                    await cmd.reply('Role ' + role_name + ' added to the self role database.')
+                                else:
+                                    await cmd.reply('This role is already in the database.')
                         elif mode == 'del':
                             await cmd.reply('Not yet implemented, sorry.')
                         elif mode == 'auto':
