@@ -5,7 +5,7 @@ async def help(cmd, message, args):
     help_msg = None
     timeout = 60
     if not args:
-        help_msg = await cmd.reply(cmd.help())
+        help_msg = await cmd.reply('**Command List**:\n<https://github.com/aurora-pro/apex-sigma/blob/dev/COMMANDLIST.md>')
 
     else:
         try:
