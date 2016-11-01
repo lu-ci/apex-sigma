@@ -26,6 +26,7 @@ async def mute(cmd, message, args):
                 cmd.log.error(e)
                 await cmd.reply(str(e))
         else:
-            response = await cmd.reply('Only a user with the **Manage Messages and Manage Roles** privilege can use this command. :x:')
+            response = await cmd.reply(
+                'Only a user with the **Manage Messages and Manage Roles** privilege can use this command. :x:')
             await asyncio.sleep(10)
             await cmd.bot.delete_message(response)

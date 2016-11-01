@@ -118,6 +118,15 @@ commands:
       The list is sent as a DM to the user.
       Permitted ID Only.
 
+  - name:    setname
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Charlotte"
+    description:
+      Sets the username of the bot to the inputted one.
+      Permitted ID Only.
+
 events:
   - name:    pmredirect
     type:    message

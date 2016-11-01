@@ -34,7 +34,7 @@ async def reward(ev, message, args):
             query = "UPDATE POINT_SYSTEM SET POINTS=? WHERE USER_ID=?"
             ev.db.execute(query, str(points_new), str(message.author.id))
 
-            if level_should != level_check:
+            if level_should > level_check:
                 query = "UPDATE POINT_SYSTEM SET LVL=? WHERE USER_ID=?"
                 ev.db.execute(query, str(level_should), str(message.author.id))
 

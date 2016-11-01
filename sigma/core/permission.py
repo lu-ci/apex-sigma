@@ -43,3 +43,5 @@ def check_man_roles(user, channel):
     return user.permissions_in(channel).manage_roles
 def check_write(user, channel):
     return user.permissions_in(channel).send_messages
+def check_man_chan(user, channel):
+    return user.permissions_in(channel).manage_channels
