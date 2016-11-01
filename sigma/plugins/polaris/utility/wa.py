@@ -1,7 +1,7 @@
 import wolframalpha
 from config import WolframAlphaAppID
 
-async def math(cmd, message, args):
+async def wa(cmd, message, args):
     if not args:
         await cmd.reply(cmd.help())
         return
