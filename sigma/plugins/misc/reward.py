@@ -4,6 +4,8 @@ import random
 async def reward(ev, message, args):
     if message.server is None:
         return
+    if message.author.bot:
+        return
 
     query = "SELECT EXISTS (SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?);"
     info_grabber_checker = ev.db.execute(query, str(message.author.id))
@@ -32,12 +34,17 @@ async def reward(ev, message, args):
             query = "UPDATE POINT_SYSTEM SET POINTS=? WHERE USER_ID=?"
             ev.db.execute(query, str(points_new), str(message.author.id))
 
-            if level_should > level_check:
+            if level_should != level_check:
                 query = "UPDATE POINT_SYSTEM SET LVL=? WHERE USER_ID=?"
                 ev.db.execute(query, str(level_should), str(message.author.id))
 
                 query = "UPDATE POINT_SYSTEM SET LV_CHECK=? WHERE USER_ID=?"
                 ev.db.execute(query, str(level_should), str(message.author.id))
+
+                #out_text = 'Congratulations **' + message.author.name + '**!\nYou\'ve just leveled up to Level **' + str(level_should) + '**!'
+
+                #await ev.bot.start_private_message(message.author)
+                #await ev.bot.send_message(message.author, out_text)
             else:
                 break
 
