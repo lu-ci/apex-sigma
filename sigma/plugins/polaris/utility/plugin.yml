@@ -59,13 +59,13 @@ commands:
       Separate list items with a space.
 
 
-  - name: math
+  - name: wa
     global:  true
     enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 69+42"
     description:
-      Solves simple mathematical operations.
+      Makes a request to Wolfram Alpha and exports the result.
 
   - name: whoplays
     global:  true

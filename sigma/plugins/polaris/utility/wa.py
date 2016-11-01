@@ -14,4 +14,4 @@ async def math(cmd, message, args):
         except StopIteration:
             await cmd.reply('Error, not a mathematical problem.')
             return
-        await cmd.reply(result)
+        await cmd.reply('Results:\n```' + result + '\n```')
