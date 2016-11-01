@@ -21,14 +21,23 @@ Command |  Description |  Usage
 `>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
-`>>express`  |  It's for those times you want to express a feeling in Japanese and don't know how to you go {pfx:s}{cmd:s} [0-100] with the scale of your feelings and it gives you the perfect word for the situation.  |  `>>express 51`
+`>>express`  |  It's for those times you want to express a feeling in Japanese and don't know how to you go >>express [0-100] with the scale of your feelings and it gives you the perfect word for the situation.  |  `>>express 51`
 `>>jisho`  |  Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.  |  `>>jisho kawaii`
-`>>wanikani`  |  Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the %pfx%wksave command. Use help on it to get more info.  |  `>>wanikani breadstickninja`
+`>>wanikani`  |  Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the >>wksave command. Use help on it to get more info.  |  `>>wanikani breadstickninja`
 `>>wksave`  |  Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!  |  `>>wksave key 12345678901234567890123456789012`
 `>>nsfwpermit`  |  Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)  |  `>>nsfwpermit`
 `>>rule34`  |  Searches Rule34 for selected tags, if no tags are specified, it gives a random image.  |  `>>rule34 ovum`
 `>>keyvis`  |  Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.  |  `>>keyvis rewrite harvest festa`
 `>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
+`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
+`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
+`>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
+`>>coinflip`  |  Flips a coin. Nothing complex. You can try guessing the results by typing either Heads or Tails after the command.  |  `>>coinflip Heads`
+`>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
+`>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
+`>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
+`>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
+`>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
 `>>greet`  |  Toggles the greet message in the channel it is written in. Whenever a user joins the server the greet messsage will be displayed. (Server Administrator Only)  |  `>>greet`
 `>>greetmsg`  |  Sets the greet message text. Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current greet message. (Server Administrator Only)  |  `>>greetmsg Hello %user_mention% and welcoem to %server_name%!`
 `>>bye`  |  Toggles the bye message in the channel it is written in. Whenever a user leaves the server the bye messsage will be displayed. (Server Administrator Only)  |  `>>bye`
@@ -39,23 +48,21 @@ Command |  Description |  Usage
 `>>prune`  |  Deltes X number of messages posted by the mentioned person. If a user is not provided, it will prune the last X messages regardless of poster. If a number is not provided it will prune the last 100 messages. Requires the user who calls the command to have the Manage Messages permission.  |  `>>prune X @person`
 `>>mute`  |  Will not allow the person to type on the server at all. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>mute @person`
 `>>unmute`  |  Will unmute a person who was muted with the mute command. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unmute @person`
-`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
 `>>role`  |  Role control. Executes the selected function and role. create - Makes a new role on the server with the inputted name. destroy - Removes an already existing role from the server roles. give - Gives the inputted role to the mentioned user. take - Removes the inputted role from the mentioned user. auto - Sets the role which will be automatically given to the users that join the server. To remove the autorole functionality, type "Remove" as the role name. add - Adds a role to the list of self assignable roles. del - Removes a role from the list of self assignable roles. Requires the user who calls the command to have the Manage Roles permision, and Administrator if changing the Auto Role settings.  |  `>>role give Wizard @user`
-`>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
-`>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
+`>>settopic`  |  Sets the topic of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>settopic Food Talk!`
+`>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
+`>>movechannel`  |  Moves the channel where the command is executed to the requested positional number. Do keep in mind that the first channel position is 0.  |  `>>movechannel 11`
+`>>mentionrole`  |  Mentiones every person in the inputted role. Requires the user to be a server Administrator.  |  `>>mentionrole Waifus`
+`>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
+`>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
 `>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
 `>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
 `>>serverinfo`  |  Shows information about the server the command was used on.  |  `>>serverinfo`
 `>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
 `>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
-`>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
-`>>coinflip`  |  Flips a coin. Nothing complex. You can try guessing the results by typing either Heads or Tails after the command.  |  `>>coinflip Heads`
-`>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
-`>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
 `>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
-`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
 `>>math`  |  Solves simple mathematical operations.  |  `>>math 69+42`
-`>>startpoll`  |  Starts a poll with the inputted question in options. The function arguments should be separated by a semicolon and space. The question should go first.  |  `>>startpoll What should we watch tonight?; Friends; Scrubs; How I Met Your Sister-In-Law`
+`>>whoplays`  |  Generates a list of users playing the inputted game.  |  `>>whoplays League of Salt`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
 `>>img`  |  Searches Google for your inputted image query. Displays a random result.  |  `>>img Lasagna`
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`
