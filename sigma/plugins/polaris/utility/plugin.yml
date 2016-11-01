@@ -74,3 +74,12 @@ commands:
     usage:   "{pfx:s}{cmd:s} League of Salt"
     description:
       Generates a list of users playing the inputted game.
+
+  - name: avatar
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows the avatar of the user.
+      (in the form of a direct link)
