@@ -1,0 +1,15 @@
+name: Steam
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    steam
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} thealeksaradovic"
+    description:
+      Generates a a Steam Signature for the inputed Steam Community ID, the profile must not be private!

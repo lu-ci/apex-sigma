@@ -1,0 +1,25 @@
+name: Polaris Sonata Misc
+
+categories:
+  - polaris
+
+enabled: true
+
+commands:
+  - name: cat
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random cat image.
+      You know you want to use this command at least 300 times/day.
+
+  - name: dog
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Wuff, wuff, bork.
+      Cutest little puppers, loyalty and awesomeness.

@@ -1,0 +1,31 @@
+name: Blade and Soul
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    bnsstats
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} EU Lucia Konohana"
+    description:
+      The Blade and Soul module provides in-depth character information for the inputed Character.
+
+  - name:    bnsatt
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} EU Lucia Konohana"
+    description:
+      Provides highly detailed Attack Statistics for the inputed Blade and Soul Character.
+
+  - name:    bnsdef
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} EU Lucia Konohana"
+    description:
+      Provides highly detailed Defense Statistics for the inputed Blade and Soul Character.
