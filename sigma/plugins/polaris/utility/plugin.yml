@@ -107,7 +107,7 @@ commands:
 
   - name: math
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 69+42"
     description:
