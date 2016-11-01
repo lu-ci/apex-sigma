@@ -61,7 +61,7 @@ Command |  Description |  Usage
 `>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
 `>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
 `>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
-`>>math`  |  Solves simple mathematical operations.  |  `>>math 69+42`
+`>>wa`  |  Makes a request to Wolfram Alpha and exports the result.  |  `>>wa 69+42`
 `>>whoplays`  |  Generates a list of users playing the inputted game.  |  `>>whoplays League of Salt`
 `>>avatar`  |  Shows the avatar of the user. (in the form of a direct link)  |  `>>avatar @person`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
