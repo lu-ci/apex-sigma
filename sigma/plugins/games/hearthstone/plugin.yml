@@ -1,0 +1,15 @@
+name: Hearthstone
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    hearthstone
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Murloc Raider"
+    description:
+      Hearthstone card lookup. Input the card name after the command then type the number appropriate to the card you were looking for.

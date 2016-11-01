@@ -1,0 +1,25 @@
+name: Google
+
+categories:
+  - searches
+
+enabled: true
+
+commands:
+  - name:    google
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Aurora Project"
+    description:
+      Searches Google for your input.
+      Displays the first result.
+
+  - name:    img
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Lasagna"
+    description:
+      Searches Google for your inputted image query.
+      Displays a random result.

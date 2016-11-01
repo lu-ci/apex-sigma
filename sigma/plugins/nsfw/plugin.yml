@@ -1,0 +1,77 @@
+name: NSFW
+
+categories:
+  - nsfw
+
+enabled: true
+
+commands:
+  - name:    nsfwpermit
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Permits the NSFW module in the channel where the command is written to.
+      (Server Administrator Only)
+
+  - name:    rule34
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s} ovum"
+    description:
+      Searches Rule34 for selected tags, if no tags are specified,
+      it gives a random image.
+
+  - name:    keyvis
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s} rewrite harvest festa"
+    description:
+      Provides a random CG from the wanted Key Visual Arts Visual Novel,
+      if no VN is inputed, it will select a random one.
+
+  - name:    gelbooru
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s} vella mabinogi_heroes"
+    description:
+      Searches GelBooru for selected tags, if no tags are specified,
+      it gives a random image. If the wanted tag contains spaces type it
+      with an underscore instead as spaces are used to separate multiple tags.
+
+  - name:     ehentai
+    global:   true
+    enabled:  false
+    sfw:      false
+
+  - name:     hentaims
+    global:   true
+    enabled:  false
+    sfw:      false
+
+  - name:     e621
+    global:   true
+    enabled:  false
+    sfw:      false
+
+  - name:     nhentai
+    global:   true
+    enabled:  true
+    sfw:      false
+    usage:    "{pfx:s}{cmd:s} Oreimo"
+    description:
+      Searches nHentai for doujinshi for the inputed name.
+      Displays the results, cover and tags.
+
+  - name:     nyaa
+    global:   true
+    enabled:  true
+    sfw:      false
+    usage:    "{pfx:s}{cmd:s}"
+    description:
+      Provides a random Nekomimi image.
+

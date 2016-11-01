@@ -1,4 +1,4 @@
-
+steam
 wget
 requests
 Pillow
@@ -11,8 +11,13 @@ imgurpython
 praw
 cleverbot
 tornado
+pyyaml
 discord.py
 wikipedia
-
+humanfriendly
 blinker
 nose
+psutil
+cssselect
+python-twitch
+wolframalpha

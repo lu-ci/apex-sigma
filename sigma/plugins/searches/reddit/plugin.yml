@@ -1,0 +1,15 @@
+name: Reddit
+
+categories:
+  - search
+
+enabled: true
+
+commands:
+  - name:    reddit
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} minecraft"
+    description:
+      Get a random post from the inputed subreddit.

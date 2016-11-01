@@ -1,14 +1,14 @@
 * [x] Overwatch
 * [ ] Google
-* [ ] Wikipedia
+* [x] Wikipedia
 * [x] Urban Dictionary
 * [x] Blade and Soul
 * [ ] Dragon Nest
 * [ ] Warframe
-* [ ] Steam
+* [x] Steam
 * [x] Rocket League
 * [x] League of Legends
-* [ ] Counter Strike: Global Offensive
+* [x] Counter Strike: Global Offensive
 * [x] World of Warcraft
 * [ ] Diablo 3
 * [x] Osu!
@@ -19,7 +19,7 @@
 * [x] Hearthstone
 * [ ] Yu-Gi-Oh
 * [x] Bulbapedia
-* [ ] Magic
+* [x] Magic
 * [ ] Rotten Tomatoes
 * [x] My Anime List
 * [x] Reddit
