@@ -20,3 +20,4 @@ nose
 psutil
 cssselect
 python-twitch
+wolframalpha
