@@ -12,7 +12,7 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Revelation Online', 'PvE [Rev]', 'PvP [Rev]',
               'Team Instinct', 'Team Valor', 'Team Mystic', 'Pokémon',
               'Artists', 'Streamers', 'Entertainers', 'Coders', 'Cosplayers',
-              'Welcome Party', 'Cake Shop', 'Weebs']
+              'Welcome Party', 'Cake Shop', 'Weebs', ]
 timeout = 5
 
 cmd_addAssingableRole = 'addar'
@@ -23,6 +23,8 @@ async def selfrole(ev, message, args):
     if message.channel.id == '222882496113672193':
         if message.content == 'Pokemon':
             message.content = 'Pokémon'
+        if message.content == 'Entertainers':
+            message.content = 'Entertainers ✿'
         if message.author.id == ev.bot.user.id:
             return
         else:
