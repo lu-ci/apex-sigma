@@ -2,6 +2,7 @@ from sigma.core.permission import check_man_roles
 from sigma.core.permission import check_admin
 
 import asyncio
+import random
 
 
 async def role(cmd, message, args):
@@ -17,7 +18,9 @@ async def role(cmd, message, args):
                 else:
                     mode_list = ['create', 'destroy', 'give', 'take', 'auto', 'add', 'del']
                     mode = args[0].lower()
-                    role_name = args[1]
+                    role_name = ' '.join(args[1:])
+                    if message.mentions:
+                        role_name = role_name[:-(len(str(message.mentions[0].id))+4)]
                     if mode not in mode_list:
                         await cmd.reply(cmd.help())
                         return
@@ -40,9 +43,9 @@ async def role(cmd, message, args):
                                             cmd.log.error(e)
                                             await cmd.reply('I can not edit the roles of that user.\n' + str(e))
                                             return
-                                        await cmd.reply('Role ' + role_name + ' has been given to ' + target_usr.name)
+                                        await cmd.reply('Role **' + role_name + '** has been given to ' + target_usr.name)
                                     else:
-                                        await cmd.reply('Role ' + role_name + ' has not been found.')
+                                        await cmd.reply('Role **' + role_name + '** has not been found.')
                                 elif mode == 'take':
                                     role_choice = None
                                     for role_elem in message.server.roles:
@@ -55,9 +58,9 @@ async def role(cmd, message, args):
                                             cmd.log.error(e)
                                             await cmd.reply('I can not edit the roles of that user.\n' + str(e))
                                             return
-                                        await cmd.reply('Role ' + role_name + ' has been removed from ' + target_usr.name)
+                                        await cmd.reply('Role **' + role_name + '** has been removed from ' + target_usr.name)
                                     else:
-                                        await cmd.reply('Role ' + role_name + ' has not been found.')
+                                        await cmd.reply('Role **' + role_name + '** has not been found.')
                         elif mode == 'create':
                             await cmd.bot.create_role(message.server, name=role_name)
                             await cmd.reply('Role ' + role_name + ' has been created.')
@@ -68,9 +71,9 @@ async def role(cmd, message, args):
                                     role_choice = role_elem
                             if role_choice is not None:
                                 await cmd.bot.delete_role(message.server, role_choice)
-                                await cmd.reply('Role ' + role_name + ' has been destroyed.')
+                                await cmd.reply('Role **' + role_name + '** has been destroyed.')
                             else:
-                                await cmd.reply('Role ' + role_name + ' has not been found.')
+                                await cmd.reply('Role **' + role_name + '** has not been found.')
                         elif mode == 'add':
                             role_on_server = False
                             for role_res in message.server.roles:
@@ -78,23 +81,55 @@ async def role(cmd, message, args):
                                     role_on_server = True
                                     break
                             if role_on_server:
-                                add_qry = 'INSERT INTO SELF_ROLE (SERVER_ID, ROLE_NAME) VALUES (?, ?)'
-                                chk_query = 'SELECT EXISTS (SELECT ROLE_NAME, SERVER_ID FROM SELF_ROLE WHERE SERVER_ID=?);'
-                                check_results = cmd.db.execute(chk_query, message.server.id)
-                                srv_exists_in_db = 0
+                                add_qry = 'INSERT INTO SELF_ROLE (FILLER, SERVER_ID, ROLE_NAME) VALUES (?, ?, ?)'
+                                role_chk_query = 'SELECT EXISTS (SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?);'
+                                name_check_query = 'SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?'
+                                role_check_results = cmd.db.execute(role_chk_query, message.server.id)
                                 rol_exists_in_db = 0
-                                for result in check_results:
-                                    print(result)
-                                    srv_exists_in_db = result[0]
-                                    rol_exists_in_db = result[1]
-                                if srv_exists_in_db == 0 and rol_exists_in_db == 0:
-                                    cmd.db.execute(add_qry, message.server.id, role_name)
+                                filler = random.randint(100000, 999999999999)
+                                for result in role_check_results:
+                                    rol_exists_in_db = result[0]
+                                if rol_exists_in_db == 0:
+                                    cmd.db.execute(add_qry, filler, message.server.id, role_name)
                                     cmd.db.commit()
-                                    await cmd.reply('Role ' + role_name + ' added to the self role database.')
+                                    await cmd.reply('Role **' + role_name + '** added to the self role database.')
                                 else:
-                                    await cmd.reply('This role is already in the database.')
+                                    name_check_results = cmd.db.execute(name_check_query, message.server.id)
+                                    for result in name_check_results:
+                                        if result[0].lower() == role_name.lower():
+                                            await cmd.reply('This role is already in the database.')
+                                        else:
+                                            cmd.db.execute(add_qry, filler, message.server.id, role_name)
+                                            cmd.db.commit()
+                                            await cmd.reply('Role **' + role_name + '** added to the self role database.')
                         elif mode == 'del':
-                            await cmd.reply('Not yet implemented, sorry.')
+                            role_on_server = False
+                            for role_res in message.server.roles:
+                                if role_name.lower() == role_res.name.lower():
+                                    role_on_server = True
+                                    break
+                            if role_on_server:
+                                delete_query = "DELETE FROM SELF_ROLE WHERE SERVER_ID=? AND ROLE_NAME=?;"
+                                role_chk_query = 'SELECT EXISTS (SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?);'
+                                name_check_query = 'SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?'
+                                role_check_results = cmd.db.execute(role_chk_query, message.server.id)
+                                rol_exists_in_db = 0
+                                for result in role_check_results:
+                                    rol_exists_in_db = result[0]
+                                print(rol_exists_in_db)
+                                if rol_exists_in_db == 0:
+                                    await cmd.reply('No roles found for this server in the database.')
+                                else:
+                                    name_check_results = cmd.db.execute(name_check_query, message.server.id)
+                                    for result in name_check_results:
+                                        if result[0].lower() == role_name.lower():
+                                            cmd.db.execute(delete_query, message.server.id, role_name)
+                                            cmd.db.commit()
+                                            await cmd.reply(
+                                                'Role **' + role_name + '** was removed from the self role database.')
+                                        else:
+                                            await cmd.reply('This role is not in the database.')
+
                         elif mode == 'auto':
                             if check_admin:
                                 role_on_server = False
@@ -152,7 +187,7 @@ async def role(cmd, message, args):
                                             cmd.db.execute(insert_query, message.server.id, role_name)
                                             cmd.db.commit()
                                             response = await cmd.reply(
-                                                'The auto role ' + role_name + ' has been set for ' + message.server.name + '.')
+                                                'The auto role **' + role_name + '** has been set for ' + message.server.name + '.')
                                             await asyncio.sleep(10)
                                             await cmd.bot.delete_message(response)
                         else:
