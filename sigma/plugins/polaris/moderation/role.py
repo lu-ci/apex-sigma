@@ -20,7 +20,12 @@ async def role(cmd, message, args):
                     mode = args[0].lower()
                     role_name = ' '.join(args[1:])
                     if message.mentions:
-                        role_name = role_name[:-(len(str(message.mentions[0].id))+4)]
+                        mention_text = ' <@' + message.mentions[0].id + '>'
+                        role_name = role_name[:-(len(mention_text))]
+                        if role_name.endswith(' '):
+                            role_name = role_name[:-1]
+                        if role_name.startswith(' '):
+                            role_name = role_name[1:]
                     if mode not in mode_list:
                         await cmd.reply(cmd.help())
                         return
