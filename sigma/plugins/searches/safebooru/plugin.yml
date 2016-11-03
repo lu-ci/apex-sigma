@@ -1,0 +1,17 @@
+name: SafeBooru
+
+categories:
+  - searches
+
+enabled: true
+
+commands:
+  - name:    safebooru
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} cute"
+    description:
+      Searches SafeBooru for the inputted tags.
+      Tags are separated by spaces, if you want to input a tag with a space, use an underscore (_).
+      If no tags are provided, it will default to the Cute tag.

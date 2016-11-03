@@ -83,3 +83,21 @@ commands:
     description:
       Shows the avatar of the user.
       (in the form of a direct link)
+
+  - name: raffle
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Picks a random user from the current Online users as a winner for the raffle.
+      The user can be Online, Away or DND, but can not be invisible to be eligable.
+
+  - name: draw
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 5"
+    description:
+      Draws an inputted number of cards, the maximum is 10.
+      If no number is provided, the bot will draw 2.
