@@ -21,6 +21,9 @@ Command |  Description |  Usage
 `>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
+`>>quote`  |  Gives a random quote.  |  `>>quote`
+`>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
+`>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 `>>express`  |  It's for those times you want to express a feeling in Japanese and don't know how to you go [0-100] with the scale of your feelings and it gives you the perfect word for the situation.  |  `>>express 51`
 `>>jisho`  |  Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.  |  `>>jisho kawaii`
 `>>wanikani`  |  Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the wksave command. Use help on it to get more info.  |  `>>wanikani breadstickninja`
@@ -29,6 +32,8 @@ Command |  Description |  Usage
 `>>rule34`  |  Searches Rule34 for selected tags, if no tags are specified, it gives a random image.  |  `>>rule34 ovum`
 `>>keyvis`  |  Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.  |  `>>keyvis rewrite harvest festa`
 `>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
+`>>danbooru`  |  Searches DanBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>danbooru red_head`
+`>>hentai`  |  Searches both Gelbooru and Danbooru for selected tags, if no tags are specified, it gives two random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
 `>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
 `>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
 `>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
@@ -64,6 +69,8 @@ Command |  Description |  Usage
 `>>wa`  |  Makes a request to Wolfram Alpha and exports the result.  |  `>>wa 69+42`
 `>>whoplays`  |  Generates a list of users playing the inputted game.  |  `>>whoplays League of Salt`
 `>>avatar`  |  Shows the avatar of the user. (in the form of a direct link)  |  `>>avatar @person`
+`>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
+`>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
 `>>img`  |  Searches Google for your inputted image query. Displays a random result.  |  `>>img Lasagna`
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`
@@ -73,6 +80,8 @@ Command |  Description |  Usage
 `>>anime`  |  Searches MyAnimeList for anime by given name. Generates a really cool image with the details!  |  `>>anime Terror in Resonance`
 `>>manga`  |  Searches MyAnimeList for manga by given name. Generates a really cool image with the details!  |  `>>manga Silent Voice`
 `>>reddit`  |  Get a random post from the inputed subreddit.  |  `>>reddit minecraft`
+`>>safebooru`  |  Searches SafeBooru for the inputted tags. Tags are separated by spaces, if you want to input a tag with a space, use an underscore (_). If no tags are provided, it will default to the Cute tag.  |  `>>safebooru cute`
+`>>tagdef`  |  Shows the top TagDef definition for the given hashtag.  |  `>>tagdef ff`
 `>>ud`  |  Shows the Urban Dictionary definition for the given word.  |  `>>ud Alex`
 `>>vndb`  |  Searches the Visual Novel Database fot the title you inputed.  |  `>>vndb Rewrite`
 `>>wiki`  |  Searches Wikipedia and shows the summary for your query.  |  `>>wiki search`
