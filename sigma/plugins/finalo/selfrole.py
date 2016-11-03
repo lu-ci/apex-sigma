@@ -11,9 +11,9 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Black Desert Online', 'PvE [BD]', 'PvP [BD]',
               'Revelation Online', 'PvE [Rev]', 'PvP [Rev]',
               'Team Instinct', 'Team Valor', 'Team Mystic', 'Pokémon',
-              'Artists', 'Streamers', 'Entertainers', 'Coders', 'Cosplayers',
+              'Artists', 'Streamers', 'Entertainers ✿', 'Coders', 'Cosplayers',
               'Welcome Party', 'Cake Shop', 'Weebs', ]
-timeout = 5
+timeout = 10
 
 cmd_addAssingableRole = 'addar'
 cmd_removeAssingableRole = 'remar'
@@ -26,7 +26,7 @@ async def selfrole(ev, message, args):
         if message.content == 'Entertainers':
             message.content = 'Entertainers ✿'
         if message.author.id == ev.bot.user.id:
-            return
+            pass
         else:
             await ev.bot.delete_message(message)
 
@@ -43,9 +43,7 @@ async def selfrole(ev, message, args):
                     if role.name == message.content:
                         if user_has_role:
                             await ev.bot.remove_roles(message.author, role)
-                            response = await ev.reply(message.channel,
-                                                      '<@{0}> Role `{1}` removed'.format(
-                                                          message.author.id, role.name))
+                            response = await ev.reply('<@{0}> Role `{1}` removed'.format(message.author.id, role.name))
 
                             await asyncio.sleep(timeout)
                             await ev.bot.delete_message(response)
