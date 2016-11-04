@@ -128,6 +128,14 @@ commands:
       Sets the username of the bot to the inputted one.
       Permitted ID Only.
 
+  - name:    dfm
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Coffee House Jazz"
+    description:
+      Shows the details about the song currently playing on the selected music category of Discord.FM.
+
 events:
   - name:    pmredirect
     type:    message
