@@ -77,9 +77,10 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Melbourne, AU"
+    usage:   "{pfx:s}{cmd:s} Melbourne Australia"
     description:
       Shows weather data for the selected location.
+      Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.
 
   # disabled: unfinished
   - name:    github
