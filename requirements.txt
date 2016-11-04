@@ -21,3 +21,4 @@ psutil
 cssselect
 python-twitch
 wolframalpha
+geopy
