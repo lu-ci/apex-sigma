@@ -172,3 +172,12 @@ commands:
     description:
       Lists all the roles on the server and the total number of roles.
 
+  - name: getrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Wizard"
+    description:
+      Assigns you or removes you from one of the self assignable roles.
+      Self assignable roles are added via the role command.
+      A list of self assignable roles can be seen with the listselfroles command.

@@ -18,7 +18,7 @@ async def role(cmd, message, args):
                 else:
                     mode_list = ['create', 'destroy', 'give', 'take', 'auto', 'add', 'del']
                     mode = args[0].lower()
-                    role_name = ' '.join(args[1:])
+                    role_name = ' '.join(args[1:]).lower()
                     if message.mentions:
                         mention_text = ' <@' + message.mentions[0].id + '>'
                         role_name = role_name[:-(len(mention_text))]
@@ -121,7 +121,6 @@ async def role(cmd, message, args):
                                 rol_exists_in_db = 0
                                 for result in role_check_results:
                                     rol_exists_in_db = result[0]
-                                print(rol_exists_in_db)
                                 if rol_exists_in_db == 0:
                                     await cmd.reply('No roles found for this server in the database.')
                                 else:
