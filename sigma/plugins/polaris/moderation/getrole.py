@@ -34,8 +34,12 @@ async def getrole(cmd, message, args):
                             out_role = role
                     if role_on_server:
                         try:
-                            await cmd.bot.add_roles(message.author, out_role)
-                            await cmd.reply('You\'ve been assigned the **' + out_role.name + '** role.')
+                            if out_role in message.author.roles:
+                                await cmd.bot.remove_roles(message.author, out_role)
+                                await cmd.reply('The role **' + out_role.name + '** has been removed from you.')
+                            else:
+                                await cmd.bot.add_roles(message.author, out_role)
+                                await cmd.reply('You\'ve been assigned the **' + out_role.name + '** role.')
                         except Exception as e:
                             cmd.log.error(e)
                             await cmd.reply(str(e))
