@@ -27,7 +27,9 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} time text"
+    usage:   "{pfx:s}{cmd:s} 15 LEEEEROOOOY JEEEEEENKIIIIINS!"
+    description:
+      Sets a timer in seconds and displays the message inputted after it's done.
 
   - name:    donors
     global:  true
