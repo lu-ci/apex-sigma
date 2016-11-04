@@ -8,7 +8,7 @@ async def weather(cmd, message, args):
     if args:
         location = ' '.join(args)
     else:
-        cmd.reply(cmd.help())
+        await cmd.reply(cmd.help())
         return
     try:
         try:
