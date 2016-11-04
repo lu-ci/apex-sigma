@@ -42,3 +42,11 @@ commands:
       Leaves the server with the inputted id.
       Bot Special Permitted/Owner Only.
 
+  - name: evaluate
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} print('hello world')"
+    description:
+      Executes a python function. Can be very dangerous.
+      Bot Special Permitted/Owner Only.

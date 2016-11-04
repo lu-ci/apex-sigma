@@ -11,7 +11,7 @@ async def role(cmd, message, args):
         return
     else:
         try:
-            if check_man_roles:
+            if check_man_roles(message.author, message.channel):
                 if len(args) < 2:
                     await cmd.reply(cmd.help())
                     return
