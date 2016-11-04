@@ -37,6 +37,8 @@ Command |  Description |  Usage
 `>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
 `>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
 `>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
+`>>leave`  |  Leaves the server with the inputted id. Bot Special Permitted/Owner Only.  |  `>>leave 123456789`
+`>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
 `>>coinflip`  |  Flips a coin. Nothing complex. You can try guessing the results by typing either Heads or Tails after the command.  |  `>>coinflip Heads`
 `>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
@@ -48,6 +50,7 @@ Command |  Description |  Usage
 `>>bye`  |  Toggles the bye message in the channel it is written in. Whenever a user leaves the server the bye messsage will be displayed. (Server Administrator Only)  |  `>>bye`
 `>>byemsg`  |  Sets the bye message text. Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current bye message. (Server Administrator Only)  |  `>>byemsg %user_mention% has left %server_name%`
 `>>ban`  |  Bans the mentioned user. Requires the user who calls the command to have ban privileges.  |  `>>ban @person`
+`>>unban`  |  Unbans the user with the inputted name. Requires the user who calls the command to have ban privileges.  |  `>>unban @person`
 `>>softban`  |  Bans and instantly unbans the mentioned user. Requires the user who calls the command to have ban privileges.  |  `>>softban @person`
 `>>kick`  |  Kicks the mentioned user. Requires the user who calls the command to have kick privileges.  |  `>>kick @person`
 `>>prune`  |  Deltes X number of messages posted by the mentioned person. If a user is not provided, it will prune the last X messages regardless of poster. If a number is not provided it will prune the last 100 messages. Requires the user who calls the command to have the Manage Messages permission.  |  `>>prune X @person`
@@ -60,6 +63,8 @@ Command |  Description |  Usage
 `>>mentionrole`  |  Mentiones every person in the inputted role. Requires the user to be a server Administrator.  |  `>>mentionrole Waifus`
 `>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
 `>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
+`>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
+`>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
 `>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
 `>>serverinfo`  |  Shows information about the server the command was used on.  |  `>>serverinfo`
@@ -87,4 +92,5 @@ Command |  Description |  Usage
 `>>wiki`  |  Searches Wikipedia and shows the summary for your query.  |  `>>wiki search`
 `>>help`  |  Returns the list of command modules or gives you the description and usage for a selected command.  |  `>>help [command]`
 `>>echo`  |  Repeats the given text. (Bot Owner Only)  |  `>>echo Hello world!`
+`>>remind`  |  Sets a timer in seconds and displays the message inputted after it's done.  |  `>>remind 15 LEEEEROOOOY JEEEEEENKIIIIINS!`
 `>>twitch`  |  Fetches information about a streamer.  |  `>>twitch`

@@ -2,6 +2,6 @@ beta: true
 build_date: 1478183013
 version:
   major: 0
-  minor: 89
-  patch: 6
-codename: 'Chihiro'
+  minor: 90
+  patch: 8
+codename: 'Yuko'
