@@ -57,6 +57,15 @@ commands:
       Bans the mentioned user.
       Requires the user who calls the command to have ban privileges.
 
+  - name: unban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Unbans the user with the inputted name.
+      Requires the user who calls the command to have ban privileges.
+
   - name: softban
     global:  true
     enabled: true
