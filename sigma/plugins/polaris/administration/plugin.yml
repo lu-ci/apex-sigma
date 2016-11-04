@@ -33,3 +33,12 @@ commands:
     description:
       Show the statistics of the machine running the bot.
 
+  - name: leave
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 123456789"
+    description:
+      Leaves the server with the inputted id.
+      Bot Special Permitted/Owner Only.
+
