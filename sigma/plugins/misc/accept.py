@@ -8,13 +8,13 @@ async def accept(ev, message, args):
         else:
             await ev.bot.delete_message(message)
             if message.content == '>>accept':
-                for role in message.server.roles:
-                    if role.name == 'Crabigator\'s Pet':
-                        await ev.bot.add_roles(message.author, role)
+                for role_x in message.server.roles:
+                    if role_x.name == 'Crabigator\'s Pet':
+                        await ev.bot.add_roles(message.author, role_x)
                         break
-                for role in message.server.roles:
-                    if role.name == 'Guest':
-                        await ev.bot.remove_roles(message.author, role)
+                for role_y in message.server.roles:
+                    if role_y.name == 'Guest':
+                        await ev.bot.remove_roles(message.author, role_y)
                         break
                 for channel in message.server.channels:
                     if channel.is_default:
