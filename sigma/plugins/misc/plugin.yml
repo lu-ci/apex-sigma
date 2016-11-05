@@ -71,3 +71,11 @@ events:
     sfw:     true
     description:
       Calm down bro.
+
+  - name:    accept
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Accepts the terms and conditions of the WaniKani Community Discord Server.

@@ -9,7 +9,7 @@ async def kick(cmd, message, args):
         if message.author is not user_q:
             if check_kick(message.author, channel):
                 try:
-                    await cmd.bot.ban(user_q)
+                    await cmd.bot.kick(user_q)
                     await cmd.reply('User **' + user_q.name + '** has been kicked.')
                 except Exception as e:
                     cmd.log.error(e)
