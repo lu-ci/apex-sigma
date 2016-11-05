@@ -7,15 +7,21 @@ async def accept(ev, message, args):
             return
         else:
             await ev.bot.delete_message(message)
+            give_role = None
+            take_role = None
+            for role in message.server.roles:
+                if role.name == 'Crabigator\'s Pet':
+                    give_role = role
+                elif role.name == 'Guest':
+                    take_role = role
+                else:
+                    pass
+            if not give_role and not take_role:
+                return
             if message.content == '>>accept':
-                for role_x in message.server.roles:
-                    if role_x.name == 'Crabigator\'s Pet':
-                        await ev.bot.add_roles(message.author, role_x)
-                        break
-                for role_y in message.server.roles:
-                    if role_y.name == 'Guest':
-                        await ev.bot.remove_roles(message.author, role_y)
-                        break
+                await ev.bot.add_roles(message.author, give_role)
+                await asyncio.sleep(3)
+                await ev.bot.remove_roles(message.author, take_role)
                 for channel in message.server.channels:
                     if channel.is_default:
                         await ev.bot.send_message(channel,
