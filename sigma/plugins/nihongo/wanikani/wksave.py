@@ -1,6 +1,3 @@
-from sigma.core.database import IntegrityError
-
-
 async def wksave(cmd, message, args):
     coll = 'WaniKani'
     try:
