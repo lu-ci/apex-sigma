@@ -9,7 +9,7 @@ async def wksave(cmd, message, args):
         cmd.log.error(e)
         cmd.log.info('Message in private channel, unable to delete...')
 
-    user_id = str(message.author.id)
+    user_id = int(message.author.id)
 
     try:
         mode = args.pop(0)
@@ -20,7 +20,7 @@ async def wksave(cmd, message, args):
                             'Usage: `{0:s}wksave' + ' key <your api key here>` or `{0:s}wksave' + ' username <your username here>`'.format(
                 cmd.prefix))
             return
-        if mode not in ['key', 'username', 'remov']:  # remove
+        if mode not in ['key', 'username', 'remove']:  # remove
             await cmd.reply('Unknown argument')
             return
         if mode == 'key':
@@ -37,7 +37,7 @@ async def wksave(cmd, message, args):
 
         if mode == 'key':
             insert_query = {
-                'UserID': message.author.id,
+                'UserID': user_id,
                 'WKAPIKey': payload,
                 'WKUsername': None
             }
@@ -47,7 +47,7 @@ async def wksave(cmd, message, args):
             }}
         elif mode == 'username':
             insert_query = {
-                'UserID': message.author.id,
+                'UserID': user_id,
                 'WKAPIKey': None,
                 'WKUsername': payload
             }
@@ -59,7 +59,7 @@ async def wksave(cmd, message, args):
             return
 
         n = 0
-        check_exist_qry = {'UserID': message.author.id}
+        check_exist_qry = {'UserID': user_id}
         find_res = cmd.db.find(coll, check_exist_qry)
         for result in find_res:
             n += 1
@@ -67,7 +67,7 @@ async def wksave(cmd, message, args):
             cmd.db.insert_one(coll, insert_query)
             await cmd.reply(mode.capitalize() + ' Safely Stored. :key:')
         else:
-            update_target = {'UserID': message.author.id}
+            update_target = {'UserID': user_id}
             cmd.db.update_one(coll, update_target, update_query)
             await cmd.reply(mode.capitalize() + ' Updated. :key:')
 
