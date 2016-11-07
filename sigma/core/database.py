@@ -31,4 +31,15 @@ class Database(object):
         if self.db:
             self.db[collection].insert_one(data)
 
+    def find(self, collection, data):
+        if self.db:
+            result = self.db[collection].find(data)
+            return result
 
+    def update_one(self, collection, data):
+        if self.db:
+            self.db[collection].update_one(data)
+
+    def delete_one(self, collection, data):
+        if self.db:
+            self.db[collection].delete_one(data)
