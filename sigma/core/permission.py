@@ -8,7 +8,6 @@ def check_channel_nsfw(db, channel_id):
     finddata_res = db.find(coll, finddata)
     for item in finddata_res:
         n += 1
-    print(n)
     if n == 0:
         return False
     else:
