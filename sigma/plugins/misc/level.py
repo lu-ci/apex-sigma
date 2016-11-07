@@ -8,16 +8,22 @@ async def level(cmd, message, args):
         mid_msg = '. You are'
         end_msg = 'have'
 
-    query = 'SELECT LVL, LV_CHECK, POINTS FROM POINT_SYSTEM WHERE USER_ID=?'
-    number_grabber = cmd.db.execute(query, str(user_id))
-    cmd.db.commit()
-
-    level = 0
+    query = {
+        'UserID': user_id,
+        'ServerID': message.server.id
+    }
+    number_grabber = cmd.db.find('PointSystem', query)
     points = 0
-
-    for number in number_grabber:
-        level = number[0]
-        points = number[2]
-
-    msg = 'Okay, <@{:s}>{:s} **Level {:d}** and currently {:s} **{:d} Points**!'
+    for result in number_grabber:
+        try:
+            points = result['Points']
+        except:
+            pass
+    modifier = points / 1690
+    modifier = str(modifier).split('.')[0]
+    modifier = int(modifier)
+    level = points / (690 + (69 * modifier))
+    points = str(points)
+    level = str(level).split('.')[0]
+    msg = 'Okay, <@{:s}>{:s} **Level {:s}** and currently {:s} **{:s} Points**!'
     await cmd.reply(msg.format(user_id, mid_msg, level, end_msg, points))
