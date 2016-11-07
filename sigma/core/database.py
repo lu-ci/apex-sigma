@@ -36,9 +36,9 @@ class Database(object):
             result = self.db[collection].find(data)
             return result
 
-    def update_one(self, collection, data):
+    def update_one(self, collection, target, data):
         if self.db:
-            self.db[collection].update_one(data)
+            self.db[collection].update_one(target, data)
 
     def delete_one(self, collection, data):
         if self.db:
