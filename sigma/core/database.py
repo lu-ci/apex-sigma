@@ -1,4 +1,3 @@
-import os
 import pymongo
 
 from .logger import create_logger
@@ -21,7 +20,6 @@ class Database(object):
             self.connect(db_addr)
         else:
             raise DatabaseError('No database address given!')
-
 
     def connect(self, db_addr):
         self.moncli = pymongo.MongoClient(db_addr)
