@@ -1,7 +1,7 @@
 beta: true
-build_date: 1478356538
+build_date: 1478532042
 version:
   major: 0
-  minor: 90
-  patch: 11
+  minor: 93
+  patch: 6
 codename: 'Yuuko'
