@@ -4,7 +4,7 @@ import os
 
 from sigma.core import Sigma
 
-from config import Token as token
+from config import Token
 
 if __name__ == '__main__':
 
@@ -16,9 +16,9 @@ if __name__ == '__main__':
 
     client = Sigma()
 
-    if token == '':
+    if Token == '':
         sys.exit('Token not provided, please open config.py and place your token.')
     try:
-        client.run(token)
+        client.run(Token)
     except Exception as e:
         client.log.error(e)

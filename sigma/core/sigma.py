@@ -46,9 +46,8 @@ class Sigma(discord.Client):
         self.log = create_logger('Sigma')
 
     def init_databases(self):
-        db_path = 'db/server_settings.sqlite'
-        sql_file = 'db/server_settings.sql'
-        self.db = Database(db_path, sql_file)
+        db_addr = 'mongodb://localhost:27017'
+        self.db = Database(db_addr)
 
     def init_plugins(self):
         self.plugin_manager = PluginManager(self)
