@@ -28,7 +28,7 @@ async def wksave(cmd, message, args):
                 await cmd.reply('The Key Seems Invalid...')
                 return
 
-        if mode == 'remov':  # remove
+        if mode == 'remove':  # remove
             query = {'UserID': user_id}
             cmd.db.delete_one(coll, query)
 

@@ -2,7 +2,6 @@ import requests
 import json
 from lxml import html
 
-
 wk_base_url = 'https://www.wanikani.com/api/user/'
 
 
@@ -89,7 +88,7 @@ async def get_user_data(cmd, message, key=None, username=None):
     user['title'] = userinfo['title']
     user['level'] = userinfo['level']
     user['avatar'][0] = 'https://www.gravatar.com/avatar/' + \
-        userinfo['gravatar']
+                        userinfo['gravatar']
     user['creation_date'] = userinfo['creation_date']
     user['forums']['posts'] = userinfo['posts_count']
     user['forums']['topics'] = userinfo['topics_count']
@@ -131,18 +130,20 @@ async def get_key(cmd, message, args):
             return
         # a username was passed
         else:
-            query = "SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;"
-            key_cur = cmd.db.execute(query, str(user_id))
-            db_response = key_cur.fetchone()
-
-            if not db_response:
+            query = {'UserID': str(user_id)}
+            search = cmd.db.find('WaniKani', query)
+            db_response = None
+            for result in search:
+                db_response = result
+            try:
+                key = db_response['WKAPIKey']
+                username = db_response['WKUsername']
+            except:
                 await cmd.reply('No assigned key or username was found\n'
                                 'You can add it by sending me a direct message, for example\n'
-                                'For **Advanced Stats**:\n\t`{0:s}wksave key <your API key>`\nor For **Basic Stats**:\n\t`{0:s}wksave username <your username>`.'.format(cmd.prefix))
+                                'For **Advanced Stats**:\n\t`{0:s}wksave key <your API key>`\nor For **Basic Stats**:\n\t`{0:s}wksave username <your username>`.'.format(
+                    cmd.prefix))
 
                 return (None, None)
-
-            key = db_response[0]
-            username = db_response[1]
 
     return (key, username)
