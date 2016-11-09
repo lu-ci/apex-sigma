@@ -145,23 +145,17 @@ async def role(cmd, message, args):
                                     if role_name.lower() == role_res.name.lower():
                                         role_on_server = True
                                         break
-                                role_query = 'SELECT ROLE_NAME FROM AUTO_ROLE WHERE SERVER_ID=?'
-                                chk_query = 'SELECT EXISTS (SELECT SERVER_ID, ROLE_NAME FROM AUTO_ROLE WHERE SERVER_ID=?);'
-                                insert_query = 'INSERT INTO AUTO_ROLE (SERVER_ID, ROLE_NAME) VALUES (?, ?)'
-                                update_query = 'UPDATE AUTO_ROLE SET ROLE_NAME=? WHERE SERVER_ID=?'
-                                delete_query = "DELETE from AUTO_ROLE WHERE SERVER_ID=?;"
-                                check_exist = cmd.db.execute(chk_query, message.server.id)
-                                exists = None
+                                check_exist = cmd.db.find('AutoRoles', {'ServerID': message.server.id})
+                                exists = 0
                                 for result in check_exist:
-                                    exists = result[0]
+                                    exists += 1
                                 if role_name.lower() == 'remove':
                                     if exists == 0:
                                         response = await cmd.bot.send_message(message.channel, 'There are no auto role settings to remove.')
                                         await asyncio.sleep(10)
                                         await cmd.bot.delete_message(response)
                                     else:
-                                        cmd.db.execute(delete_query, message.server.id)
-                                        cmd.db.commit()
+                                        cmd.db.delete_one('AutoRoles', {'ServerID': message.server.id})
                                         response = await cmd.bot.send_message(message.channel, 'The auto role has been removed.')
                                         await asyncio.sleep(10)
                                         await cmd.bot.delete_message(response)
@@ -177,24 +171,32 @@ async def role(cmd, message, args):
                                         await cmd.bot.delete_message(response)
                                     else:
                                         if exists is not 0:
-                                            role_name_check = cmd.db.execute(role_query, message.server.id)
+                                            search_data = {
+                                                'ServerID': message.server.id,
+                                            }
+                                            role_name_check = cmd.db.find('AutoRoles', search_data)
                                             role_name_res = None
                                             for name in role_name_check:
-                                                role_name_res = name[0]
+                                                role_name_res = name['RoleName']
                                             if role_name_res.lower() == role_name.lower():
                                                 response = await cmd.bot.send_message(message.channel, 
                                                     'That role is the current Auto Role already.')
                                                 await asyncio.sleep(10)
                                                 await cmd.bot.delete_message(response)
                                             else:
-                                                cmd.db.execute(update_query, role_name, message.server.id)
-                                                cmd.db.commit()
+                                                update_query = {'$set': {
+                                                    'RoleName': role_name
+                                                }}
+                                                cmd.db.update_one('AutoRoles', {'ServerID': message.server.id}, update_query)
                                                 response = await cmd.bot.send_message(message.channel, 'The auto role has been updated.')
                                                 await asyncio.sleep(10)
                                                 await cmd.bot.delete_message(response)
                                         else:
-                                            cmd.db.execute(insert_query, message.server.id, role_name)
-                                            cmd.db.commit()
+                                            add_qry = {
+                                                'ServerID': message.server.id,
+                                                'RoleName': role_name
+                                            }
+                                            cmd.db.insert_one('AutoRoles', add_qry)
                                             response = await cmd.bot.send_message(message.channel, 
                                                 'The auto role **' + role_name + '** has been set for ' + message.server.name + '.')
                                             await asyncio.sleep(10)
