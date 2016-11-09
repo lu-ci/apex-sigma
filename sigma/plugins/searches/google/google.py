@@ -5,7 +5,7 @@ from config import GoogleCSECX
 
 async def google(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         search = ' '.join(args)
@@ -15,7 +15,7 @@ async def google(cmd, message, args):
             title = results['items'][0]['title']
             url = results['items'][0]['link']
             out = '`' + title + '`: \n<' + url + '>'
-            await cmd.reply(out)
+            await cmd.bot.send_message(message.channel, out)
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply(str(e))
+            await cmd.bot.send_message(message.channel, str(e))

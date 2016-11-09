@@ -17,4 +17,4 @@ async def wiki(cmd, message, args):
     else:
         out_text = 'Nothing could be found...'
 
-    await cmd.reply(out_text)
+    await cmd.bot.send_message(message.channel, out_text)

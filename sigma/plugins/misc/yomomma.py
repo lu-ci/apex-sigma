@@ -8,7 +8,7 @@ async def yomomma(cmd, message, args):
         joke = data['joke']
         if not joke.endswith('.'):
             joke += '.'
-        await cmd.reply(joke)
+        await cmd.bot.send_message(message.channel, joke)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply(str(e))
+        await cmd.bot.send_message(message.channel, str(e))

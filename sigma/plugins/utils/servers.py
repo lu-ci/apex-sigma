@@ -21,9 +21,9 @@ async def servers(cmd, message, args):
             out_text = out_text[:1950]
             out_text += '...'
         out_text += '\n```'
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)
     else:
-        error_msg = await cmd.reply('Insufficient permissions.')
+        error_msg = await cmd.bot.send_message(message.channel, 'Insufficient permissions.')
         await asyncio.sleep(5)
         await cmd.bot.delete_message(error_msg)
         await cmd.bot.delete_message(message)

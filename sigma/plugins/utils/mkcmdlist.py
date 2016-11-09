@@ -26,7 +26,7 @@ async def mkcmdlist(cmd, message, args):
         with open("COMMANDLIST.md", "w") as text_file:
             text_file.write(out_text)
 
-        response = await cmd.reply('Done :ok_hand:')
+        response = await cmd.bot.send_message(message.channel, 'Done :ok_hand:')
         await asyncio.sleep(5)
         await cmd.bot.delete_message(response)
     else:

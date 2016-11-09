@@ -12,8 +12,8 @@ async def raffle(cmd, message, args):
             else:
                 user_list.append(member.id)
         winner = random.choice(user_list)
-        await cmd.reply('The Winner Is <@' + winner + '>!\nCongratulations!')
+        await cmd.bot.send_message(message.channel, 'The Winner Is <@' + winner + '>!\nCongratulations!')
     else:
-        response = await cmd.reply('Only a server **Administrator** can use this command. :x:')
+        response = await cmd.bot.send_message(message.channel, 'Only a server **Administrator** can use this command. :x:')
         await asyncio.sleep(10)
         await cmd.bot.delete_message(response)

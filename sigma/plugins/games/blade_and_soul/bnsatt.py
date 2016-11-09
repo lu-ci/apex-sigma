@@ -8,7 +8,7 @@ async def bnsatt(cmd, message, attr):
 
     if not region == 'na' and not region == 'eu':
         error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + cmd.prefix + 'bnsatt [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
-        await cmd.reply(error_msg)
+        await cmd.bot.send_message(message.channel, error_msg)
     else:
         error_msg = 'Something went wrong, API is unavailable or character does not exist.'
         username = str(query[query.find(' ') + 1:]).lower()
@@ -86,6 +86,6 @@ async def bnsatt(cmd, message, attr):
                                  '\nFrost Damage: ' + cold_dmg +
                                  '\n(Base: ' + cold_dmg_base + '|Equipped: ' + cold_dmg_eqp + '|Rate: ' + cold_dmg_rate + ')' +
                                  '\n```')
-            await cmd.reply(attack_stats_text)
+            await cmd.bot.send_message(message.channel, attack_stats_text)
         except:
-            await cmd.reply(error_msg)
+            await cmd.bot.send_message(message.channel, error_msg)

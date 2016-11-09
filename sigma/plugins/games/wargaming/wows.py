@@ -16,7 +16,7 @@ async def wows(cmd, message, args):
         url_base = 'https://api.worldofwarships.' + game_region + '/wows/account/list/?application_id=' + WarGamingAppID + '&search=' + game_username
         initial_data = rg(url_base).json()
     except:
-        await cmd.reply('`' + game_region + '` is not a valid region.')
+        await cmd.bot.send_message(message.channel, '`' + game_region + '` is not a valid region.')
         return
 
     try:
@@ -31,7 +31,7 @@ async def wows(cmd, message, args):
     try:
         game_nickname = initial_data['data'][0]['nickname']
     except:
-        await cmd.reply('User `' + game_username + '` not found.')
+        await cmd.bot.send_message(message.channel, 'User `' + game_username + '` not found.')
         return
 
     account_id = initial_data['data'][0]['account_id']
@@ -99,8 +99,8 @@ async def wows(cmd, message, args):
 
         # Divider for clarity
 
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)
     except SyntaxError as e:
         cmd.log.error(e)
-        await cmd.reply('We ran into an error, the user most likely doesn\'t exist in the region, or something dun goofed.\nError: **' + str(e) + '**')
+        await cmd.bot.send_message(message.channel, 'We ran into an error, the user most likely doesn\'t exist in the region, or something dun goofed.\nError: **' + str(e) + '**')
         return

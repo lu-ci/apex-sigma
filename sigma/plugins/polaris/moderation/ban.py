@@ -10,15 +10,15 @@ async def ban(cmd, message, args):
             if check_ban(message.author, channel):
                 try:
                     await cmd.bot.ban(user_q)
-                    await cmd.reply('User **' + user_q.name + '** has been banned.')
+                    await cmd.bot.send_message(message.channel, 'User **' + user_q.name + '** has been banned.')
                 except Exception as e:
                     cmd.log.error(e)
-                    await cmd.reply(str(e))
+                    await cmd.bot.send_message(message.channel, str(e))
             else:
-                response = await cmd.reply('Only a user with **Ban** privileges can use this command. :x:')
+                response = await cmd.bot.send_message(message.channel, 'Only a user with **Ban** privileges can use this command. :x:')
                 await asyncio.sleep(10)
                 await cmd.bot.delete_message(response)
         else:
-            await cmd.reply(cmd.help())
+            await cmd.bot.send_message(message.channel, cmd.help())
     else:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())

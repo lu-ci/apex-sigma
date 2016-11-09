@@ -11,10 +11,10 @@ async def setgame(cmd, message, args):
         game = discord.Game(name=gamename)
         await cmd.bot.change_presence(game=game)
 
-        response = await cmd.reply('Done! :ok_hand:')
+        response = await cmd.bot.send_message(message.channel, 'Done! :ok_hand:')
         await asyncio.sleep(5)
         await cmd.bot.delete_message(response)
     else:
-        response = await cmd.reply('Insufficient permissions...')
+        response = await cmd.bot.send_message(message.channel, 'Insufficient permissions...')
         await asyncio.sleep(5)
         await cmd.bot.delete_message(response)

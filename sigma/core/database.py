@@ -1,5 +1,4 @@
-import os
-import sqlite3
+import pymongo
 
 from .logger import create_logger
 
@@ -13,47 +12,32 @@ class IntegrityError(DatabaseError):
 
 
 class Database(object):
-    def __init__(self, dbpath, sql_file=None):
+    def __init__(self, db_addr):
         self.db = None
         self.log = create_logger('database')
 
-        if dbpath:
-            self.connect(dbpath)
+        if db_addr:
+            self.connect(db_addr)
         else:
-            raise DatabaseError('No database file given!')
+            raise DatabaseError('No database address given!')
 
-        # perform db init
-        if sql_file:
-            if os.path.exists(sql_file):
-                sql_script = open(sql_file).read()
-                self.db.executescript(sql_script)
-                self.commit()
-            else:
-                msg = 'SQL file {:s} does not exist!'
-                raise DatabaseError(msg.format(sql_file))
+    def connect(self, db_addr):
+        self.moncli = pymongo.MongoClient(db_addr)
+        self.db = self.moncli.aurora
 
-    def connect(self, dbpath, timeout=20):
-        self.db = sqlite3.connect(dbpath, timeout=timeout)
-
-    def execute(self, sql, *args):
-        results = None
-
+    def insert_one(self, collection, data):
         if self.db:
-            try:
-                results = self.db.execute(sql, args)
-            except sqlite3.IntegrityError as e:
-                self.log.error(e)
-                raise IntegrityError
-            except sqlite3.DatabaseError as e:
-                self.log.error(e)
-                raise DatabaseError
+            self.db[collection].insert_one(data)
 
-        return results
-
-    def rollback(self):
+    def find(self, collection, data):
         if self.db:
-            self.db.rollback()
+            result = self.db[collection].find(data)
+            return result
 
-    def commit(self):
+    def update_one(self, collection, target, data):
         if self.db:
-            self.db.commit()
+            self.db[collection].update_one(target, data)
+
+    def delete_one(self, collection, data):
+        if self.db:
+            self.db[collection].delete_one(data)

@@ -18,7 +18,7 @@ async def imgur(cmd, message, args):
         chosen_item = random.choice(gallery_items).link
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('No results...')
+        await cmd.bot.send_message(message.channel, 'No results...')
         return
 
-    await cmd.reply(chosen_item)
+    await cmd.bot.send_message(message.channel, chosen_item)

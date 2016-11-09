@@ -7,7 +7,7 @@ async def roll(cmd, message, args):
             number = random.randint(0, int(args[0].replace('-', '')))
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply('Only numbers are accepted for the end range.')
+            await cmd.bot.send_message(message.channel, 'Only numbers are accepted for the end range.')
             return
     else:
         number = random.randint(0, 100)
@@ -15,4 +15,4 @@ async def roll(cmd, message, args):
     if len(num) > 1950:
         num = num[:1950] + '...'
     out_text = 'That\'s a lovely `' + num + '` you\'ve rolled there!'
-    await cmd.reply(out_text)
+    await cmd.bot.send_message(message.channel, out_text)

@@ -137,9 +137,9 @@ async def pokemon(cmd, message, args):
                         '\nWeight: ' + weight +
                         '\nType: ' + type_1 + '/' + type_2 + ' (' + icon_1 + '/' + icon_2 + ')' +
                         '\nAbilities: ' + ability_1 + ' (' + a1v + ') | ' + ability_2 + ' (' + a2v + ')\nImage: https://randompokemon.com/sprites/animated/' + poke_id + '.gif')
-        await cmd.reply(message_text)
+        await cmd.bot.send_message(message.channel, message_text)
     except:
         try:
-            await cmd.reply(str(poke['detail']))
+            await cmd.bot.send_message(message.channel, str(poke['detail']))
         except:
-            await cmd.reply('Something went wrong')
+            await cmd.bot.send_message(message.channel, 'Something went wrong')

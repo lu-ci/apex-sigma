@@ -19,7 +19,7 @@ async def es(cmd, message, args):
         scrl_stats = ''
         for stats in scrolls[scrl_input]['stats']:
             scrl_stats += '\n - ' + stats
-        await cmd.reply('```' +
+        await cmd.bot.send_message(message.channel, '```' +
                                        '\nName: ' + scrl_name + ' Enchant Scroll' +
                                        '\nType: ' + scrl_type +
                                        '\nUsable On: ' + scrl_foreqp +
@@ -28,4 +28,4 @@ async def es(cmd, message, args):
                                        '\n```')
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('Either the scroll was not found, or the blacksmith guy broke it...\nFerghus, this is the last time you touch a scroll!')
+        await cmd.bot.send_message(message.channel, 'Either the scroll was not found, or the blacksmith guy broke it...\nFerghus, this is the last time you touch a scroll!')

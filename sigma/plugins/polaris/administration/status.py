@@ -14,4 +14,4 @@ async def status(cmd, message, args):
         cpu_stat = psutil.cpu_percent(1, True)
         cpu_stats.append(cpu_stat)
     cpu_stats_text = 'CPU Stats:\n```haskell\n' + boop(cpu_stats, col_nam) + '\n```'
-    await cmd.reply(cpu_stats_text)
+    await cmd.bot.send_message(message.channel, cpu_stats_text)

@@ -15,7 +15,7 @@ async def reddit(cmd, message, args):
             url_list.append(post.url)
 
         out_tex = random.choice(url_list)
-        await cmd.reply(out_tex)
+        await cmd.bot.send_message(message.channel, out_tex)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply(str(e))
+        await cmd.bot.send_message(message.channel, str(e))

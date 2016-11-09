@@ -23,13 +23,13 @@ async def lastfm(cmd, message, args):
             top_tracks_text += '\n #' + str(i + 1) + ': ' + name + ' by ' + artist
 
         top_tracks_text += '\n```'
-        await cmd.reply(top_tracks_text)
+        await cmd.bot.send_message(message.channel, top_tracks_text)
     except Exception:
         try:
-            await cmd.reply(lfm_data['message'])
+            await cmd.bot.send_message(message.channel, lfm_data['message'])
         except Exception as e:
             if no_of_songs_in_list < int(no_of_songs):
-                await cmd.reply('There are only: `' + str(no_of_songs_in_list) + '` in your list.')
+                await cmd.bot.send_message(message.channel, 'There are only: `' + str(no_of_songs_in_list) + '` in your list.')
             else:
                 cmd.log.error(e)
-                await cmd.reply('We seem to have ran into an error.')
+                await cmd.bot.send_message(message.channel, 'We seem to have ran into an error.')

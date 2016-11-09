@@ -11,7 +11,7 @@ async def serverinfo(cmd, message, args):
             else:
                 user_count +=1
         out_list.append(['Name', serv.name])
-        out_list.append(['Channel ID', serv.id])
+        out_list.append(['Server ID', serv.id])
         out_list.append(['Created', serv.created_at])
         out_list.append(['Default Channel', serv.default_channel])
         out_list.append(['Member Count', str(user_count) + ' (+' + str(bot_count) + ' bots)'])
@@ -24,4 +24,4 @@ async def serverinfo(cmd, message, args):
             out_list.append(['AFK Channel', serv.afk_channel])
             out_list.append(['AFK Timeout', serv.afk_timeout])
         out_text = '```\n' + boop(out_list) + '\n```'
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)

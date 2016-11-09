@@ -5,7 +5,7 @@ import asyncio
 async def leave(cmd, message, args):
     if message.author.id in permitted_id:
         if not args:
-            await cmd.reply(cmd.help())
+            await cmd.bot.send_message(message.channel, cmd.help())
         else:
             search_id = args[0]
             try:
@@ -13,12 +13,12 @@ async def leave(cmd, message, args):
                     if server.id == search_id:
                         s_name = server.name
                         await cmd.bot.leave_server(server)
-                        await cmd.reply('I have left ' + s_name)
+                        await cmd.bot.send_message(message.channel, 'I have left ' + s_name)
                         return
-                await cmd.reply('No server with that ID has been found')
+                await cmd.bot.send_message(message.channel, 'No server with that ID has been found')
             except Exception as e:
                 cmd.log.error(e)
     else:
-        response = cmd.reply('Unpermitted :x:')
+        response = cmd.bot.send_message(message.channel, 'Unpermitted :x:')
         await asyncio.sleep(10)
         await cmd.bot.delete_message(response)

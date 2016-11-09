@@ -21,4 +21,4 @@ async def userinfo(cmd, message, args):
 
     out_text = '```\n' + boop(out_list) + '\n```'
 
-    await cmd.reply(out_text)
+    await cmd.bot.send_message(message.channel, out_text)

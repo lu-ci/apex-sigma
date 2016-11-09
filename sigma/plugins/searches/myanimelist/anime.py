@@ -26,16 +26,16 @@ async def anime(cmd, message, args):
             n += 1
             list_text += '\n#' + str(n) + ' ' + entry[1].text
         try:
-            await cmd.reply(list_text + '\n```\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(
+            await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(
                                 len(entries)) + ')`')
         except:
-            await cmd.reply('The list is way too big, please be more specific...')
+            await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
             return
         choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
         try:
             ani_no = int(choice.content) - 1
         except:
-            await cmd.reply('Not a number or timed out... Please start over')
+            await cmd.bot.send_message(message.channel, 'Not a number or timed out... Please start over')
             return
         if choice is None:
             return
@@ -89,13 +89,13 @@ async def anime(cmd, message, args):
         imgdraw.text((227, 222), air, (255, 255, 255), font=font)
         base.save('cache/ani/anime_' + message.author.id + '.png')
 
-        await cmd.reply_file('cache/ani/anime_' + message.author.id + '.png')
-        await cmd.reply('```\n' + synopsis[:256] + '...\n```\nMore at: <https://myanimelist.net/anime/' + ani_id + '/>\n')
+        await cmd.bot.send_file(message.channel, 'cache/ani/anime_' + message.author.id + '.png')
+        await cmd.bot.send_message(message.channel, '```\n' + synopsis[:256] + '...\n```\nMore at: <https://myanimelist.net/anime/' + ani_id + '/>\n')
         os.remove('cache/ani/anime_' + message.author.id + '.png')
     except IndexError:
-        await cmd.reply('Number out of range, please start over...')
+        await cmd.bot.send_message(message.channel, 'Number out of range, please start over...')
     except UnboundLocalError:
         pass
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('Not found or API dun goofed...')
+        await cmd.bot.send_message(message.channel, 'Not found or API dun goofed...')

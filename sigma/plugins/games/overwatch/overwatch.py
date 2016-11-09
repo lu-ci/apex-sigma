@@ -112,18 +112,18 @@ async def overwatch(cmd, message, args):
                                  '\n    - Quick: ' + qg_playtime +
                                  '\n    - Competitive: ' + cg_playtime + '```')
             # print('CMD [' + cmd_name + '] > ' + initiator_data)
-            await cmd.reply_file('cache\ow\profile_' + message.author.id + '.png')
-            await cmd.reply(overwatch_profile)
+            await cmd.bot.send_file(message.channel, 'cache\ow\profile_' + message.author.id + '.png')
+            await cmd.bot.send_message(message.channel, overwatch_profile)
         except KeyError:
             try:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
                 print(profile_json['error'])
-                await cmd.reply(profile_json['error'])
+                await cmd.bot.send_message(message.channel, profile_json['error'])
             except:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
-                await cmd.reply(
+                await cmd.bot.send_message(message.channel, 
                                                'Something went wrong.\nThe servers are most likely overloaded, please try again.')
                 # else:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
     else:
-        await cmd.reply('Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')
+        await cmd.bot.send_message(message.channel, 'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')

@@ -19,7 +19,7 @@ async def itad(cmd, message, args):
             deal_text += '\n#' + str(i + 1) + ': ' + game_title + ' on ' + shop_name + ' for ' + price_new + currency + '/' + price_old + ' (' + price_cut + '%)'
 
         deal_text += '\n```'
-        await cmd.reply(deal_text)
+        await cmd.bot.send_message(message.channel, deal_text)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('We seem to have ran into an error.')
+        await cmd.bot.send_message(message.channel, 'We seem to have ran into an error.')

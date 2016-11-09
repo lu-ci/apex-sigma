@@ -21,7 +21,7 @@ async def vndb(cmd, message, args):
             list_text += '\n#' + str(n) + ' ' + entry['name']
 
         if len(sdata) > 1:
-            await cmd.reply(list_text + '\n```')
+            await cmd.bot.send_message(message.channel, list_text + '\n```')
             choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel,
                                                         timeout=20)
             await cmd.typing()
@@ -29,7 +29,7 @@ async def vndb(cmd, message, args):
             try:
                 nh_no = int(choice.content) - 1
             except:
-                await cmd.reply(
+                await cmd.bot.send_message(message.channel, 
                                                'Not a number or timed out... Please start over')
         else:
             nh_no = 0
@@ -39,10 +39,10 @@ async def vndb(cmd, message, args):
             '.', '')
         kill = 1
     except Shosetsu.VNDBNoResults as err:
-        await cmd.reply(err)
+        await cmd.bot.send_message(message.channel, err)
         kill = 0
     except:
-        await cmd.reply('Error: ' + sys.exc_info()[0])
+        await cmd.bot.send_message(message.channel, 'Error: ' + sys.exc_info()[0])
         kill = 0
 
     if kill == 1:
@@ -76,8 +76,8 @@ async def vndb(cmd, message, args):
     base.save('cache/ani/vn_' + message.author.id + '.png')
 
     try:
-        await cmd.reply_file('cache/ani/vn_' + message.author.id + '.png')
-        await cmd.reply('Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[:300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
+        await cmd.bot.send_file(message.channel, 'cache/ani/vn_' + message.author.id + '.png')
+        await cmd.bot.send_message(message.channel, 'Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[:300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
         os.remove('cache/ani/vn_' + message.author.id + '.png')
     except:
-        await cmd.reply('Error: It goofed... =P')
+        await cmd.bot.send_message(message.channel, 'Error: It goofed... =P')

@@ -6,7 +6,7 @@ from config import GoogleCSECX
 
 async def img(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         search = ' '.join(args)
@@ -18,7 +18,7 @@ async def img(cmd, message, args):
             title = choice['title']
             url = choice['link']
             out = '`' + title + '`: \n' + url
-            await cmd.reply(out)
+            await cmd.bot.send_message(message.channel, out)
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply(str(e))
+            await cmd.bot.send_message(message.channel, str(e))

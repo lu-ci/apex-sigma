@@ -6,7 +6,7 @@ async def bulkmsg(cmd, message, args):
 
     try:
         if message.author.id in permitted_id:
-            await cmd.reply('Starting bulk sending... Stand by for confirmation')
+            await cmd.bot.send_message(message.channel, 'Starting bulk sending... Stand by for confirmation')
 
             out = []
             printer = []
@@ -25,13 +25,13 @@ async def bulkmsg(cmd, message, args):
                         printer.append('Failed: {:s}    Reason: {:s}'.format(user.name, str(e)))
                         no_f += 1
 
-            await cmd.reply('Bulk message sending complete...\n{:s}'.format(''.join(out)))
+            await cmd.bot.send_message(message.channel, 'Bulk message sending complete...\n{:s}'.format(''.join(out)))
 
             for msg in printer:
                 cmd.log.info(msg)
 
             cmd.log.info('Succeeded: {:d} Failed: {:d}'.format(no_s, no_f))
         else:
-            await cmd.reply('Not enough permissions, due to security issues, only a permitted user can use this for now...')
+            await cmd.bot.send_message(message.channel, 'Not enough permissions, due to security issues, only a permitted user can use this for now...')
     except Exception as e:
         cmd.log.error(e)
