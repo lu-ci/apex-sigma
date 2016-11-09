@@ -66,8 +66,11 @@ Command |  Description |  Usage
 `>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
 `>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
+`>>uid`  |  Shows the User ID of the mentioned user. If no user is mentioned, it will show your ID instead.  |  `>>uid @person`
 `>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
+`>>cid`  |  Shows Channel ID of the channel the command was used in.  |  `>>cid`
 `>>serverinfo`  |  Shows information about the server the command was used on.  |  `>>serverinfo`
+`>>sid`  |  Shows Server ID of the server the command was used on.  |  `>>sid`
 `>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
 `>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
 `>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
