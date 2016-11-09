@@ -130,7 +130,7 @@ async def get_key(cmd, message, args):
             return
         # a username was passed
         else:
-            query = {'UserID': str(user_id)}
+            query = {'UserID': int(user_id)}
             search = cmd.db.find('WaniKani', query)
             db_response = None
             for result in search:
