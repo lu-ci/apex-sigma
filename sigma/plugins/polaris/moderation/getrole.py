@@ -11,20 +11,17 @@ async def getrole(cmd, message, args):
                 role_name = role_name[1:]
             role_list = []
 
-            db_exists_check = 'SELECT EXISTS (SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?);'
-            db_role_select_all = 'SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?'
             exists = 0
-            db_exists_data = cmd.db.execute(db_exists_check, message.server.id)
+            db_exists_data = cmd.db.find('SelfRoles', {'ServerID': message.server.id})
             for result in db_exists_data:
-                exists = result[0]
+                exists += 1
             if exists == 0:
                 await cmd.bot.send_message(message.channel, 'No self assignable roles exist on this server.')
                 return
             else:
-                db_role_select_data = cmd.db.execute(db_role_select_all, message.server.id)
+                db_role_select_data = cmd.db.find('SelfRoles', {'ServerID': message.server.id})
                 for result in db_role_select_data:
-                    for entry in result:
-                        role_list.append(entry.lower())
+                    role_list.append(result['RoleName'])
                 if role_name in role_list:
                     role_on_server = False
                     out_role = None
@@ -45,9 +42,7 @@ async def getrole(cmd, message, args):
                             await cmd.bot.send_message(message.channel, str(e))
                     else:
                         await cmd.bot.send_message(message.channel, 'The role was found in the database but not on the server.\nRemoving from DB...')
-                        delete_query = "DELETE FROM SELF_ROLE WHERE SERVER_ID=? AND ROLE_NAME=?;"
-                        cmd.db.execute(delete_query, message.server.id, role_name)
-                        cmd.db.commit()
+                        cmd.db.delete_one('SelfRoles', {'ServerID': message.server.id, 'RoleName': role_name})
                 else:
                     await cmd.bot.send_message(message.channel, 'The role was not found in the self assignable role list of this server.')
                     return
