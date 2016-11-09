@@ -3,7 +3,7 @@ import time
 
 async def dfm(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         genre = args[0]
@@ -31,7 +31,7 @@ async def dfm(cmd, message, args):
         elif genre.startswith('met'):
             genre = 'metal-mix'
         else:
-            await cmd.reply('Unrecognized Discord.FM Category.')
+            await cmd.bot.send_message(message.channel, 'Unrecognized Discord.FM Category.')
             return
 
         info = data[genre]['current']
@@ -52,4 +52,4 @@ async def dfm(cmd, message, args):
         out_text += '\nViews: ' + views
         out_text += '\nLikes: ' + likes
         out_text += '\n```'
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)

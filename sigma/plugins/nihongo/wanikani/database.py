@@ -43,7 +43,7 @@ async def get_user_data(cmd, message, key=None, username=None):
             queue = requests.get(
                 url + '/study-queue').json()['requested_information']
         except ConnectionError as e:
-            cmd.reply('Failed to get user data.')
+            cmd.bot.send_message(message.channel, 'Failed to get user data.')
             cmd.log.error('{:s}'.format(e))
             raise e
 
@@ -71,7 +71,7 @@ async def get_user_data(cmd, message, key=None, username=None):
         if script != []:
             script = script[0].text.strip()
         else:
-            await cmd.reply("Error while parsing the page, profile not found or doesn't exist")
+            await cmd.bot.send_message(message.channel, "Error while parsing the page, profile not found or doesn't exist")
             return None
 
         script = script[script.find('var srsCounts'): script.find(
@@ -101,7 +101,7 @@ async def get_user_data(cmd, message, key=None, username=None):
     try:
         user['avatar'][1] = requests.get(user['avatar'][0]).content
     except ConnectionError as e:
-        cmd.reply('Failed to get user avatar.')
+        cmd.bot.send_message(message.channel, 'Failed to get user avatar.')
         cmd.log.error('{:s}'.format(e))
 
     return user
@@ -121,12 +121,12 @@ async def get_key(cmd, message, args):
             username = args[0]
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply('Error while parsing the input message')
+            await cmd.bot.send_message(message.channel, 'Error while parsing the input message')
             return
 
     if 'username' not in locals():
         if 'user_id' not in locals():
-            await cmd.reply('No arguments passed')
+            await cmd.bot.send_message(message.channel, 'No arguments passed')
             return
         # a username was passed
         else:
@@ -139,7 +139,7 @@ async def get_key(cmd, message, args):
                 key = db_response['WKAPIKey']
                 username = db_response['WKUsername']
             except:
-                await cmd.reply('No assigned key or username was found\n'
+                await cmd.bot.send_message(message.channel, 'No assigned key or username was found\n'
                                 'You can add it by sending me a direct message, for example\n'
                                 'For **Advanced Stats**:\n\t`{0:s}wksave key <your API key>`\nor For **Basic Stats**:\n\t`{0:s}wksave username <your username>`.'.format(
                     cmd.prefix))

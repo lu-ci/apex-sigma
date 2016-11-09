@@ -43,7 +43,7 @@ async def selfrole(ev, message, args):
                     if role.name == message.content:
                         if user_has_role:
                             await ev.bot.remove_roles(message.author, role)
-                            response = await ev.reply('<@{0}> Role `{1}` removed'.format(message.author.id, role.name))
+                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` removed'.format(message.author.id, role.name))
 
                             await asyncio.sleep(timeout)
                             await ev.bot.delete_message(response)
@@ -51,7 +51,7 @@ async def selfrole(ev, message, args):
                             return
                         else:
                             await ev.bot.add_roles(message.author, role)
-                            response = await ev.reply('<@{0}> Role `{1}` assigned'.format(message.author.id, role.name))
+                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` assigned'.format(message.author.id, role.name))
 
                             await asyncio.sleep(timeout)
                             await ev.bot.delete_message(response)

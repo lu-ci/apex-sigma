@@ -12,21 +12,21 @@ async def byemsg(cmd, message, args):
             for result in checker:
                 existance = str(result[0])
             if existance == '0':
-                await cmd.reply('No bye settings exist for this server.')
+                await cmd.bot.send_message(message.channel, 'No bye settings exist for this server.')
             else:
                 if args:
                     greet_msg = ' '.join(args)
                     upd_msg_query = "UPDATE BYE SET BYE_MSG=? WHERE SERVER_ID=?"
                     cmd.db.execute(upd_msg_query, greet_msg, message.server.id)
                     cmd.db.commit()
-                    await cmd.reply('**New Bye Message Set**')
+                    await cmd.bot.send_message(message.channel, '**New Bye Message Set**')
                 else:
                     greet_msg = ''
                     greet_grab = cmd.db.execute(msg_query, message.server.id)
                     for result in greet_grab:
                         greet_msg = result[0]
-                    await cmd.reply('**Current farewell message is:**\n```\n' + greet_msg + '\n```')
+                    await cmd.bot.send_message(message.channel, '**Current farewell message is:**\n```\n' + greet_msg + '\n```')
     else:
-        response = await cmd.reply('Only an **Administrator** can manage the bye message. :x:')
+        response = await cmd.bot.send_message(message.channel, 'Only an **Administrator** can manage the bye message. :x:')
         await asyncio.sleep(10)
         await cmd.delete_message(response)

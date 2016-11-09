@@ -18,7 +18,7 @@ async def bye(cmd, message, args):
                 if existance == '0':
                     cmd.db.execute(init_query, message.server.id, message.channel.id, 'YES', default_bye_message)
                     cmd.db.commit()
-                    await cmd.reply(
+                    await cmd.bot.send_message(message.channel, 
                         'Bye message activated for the server `' + message.server.name + '` on channel <#' + message.channel.id + '>.')
                 else:
                     chnl_check_query = "SELECT BYE_CHANNEL_ID FROM BYE WHERE SERVER_ID=?"
@@ -33,15 +33,15 @@ async def bye(cmd, message, args):
                             act_state = result[0]
                         if act_state == 'YES':
                             cmd.db.execute(upd_act_query, 'NO', message.server.id)
-                            await cmd.reply('Bye message deactivated.')
+                            await cmd.bot.send_message(message.channel, 'Bye message deactivated.')
                         elif act_state == 'NO':
                             cmd.db.execute(upd_act_query, 'YES', message.server.id)
-                            await cmd.reply(
+                            await cmd.bot.send_message(message.channel, 
                                 'Bye message activated for the server `' + message.server.name + '` on channel <#' + message.channel.id + '>.')
                     else:
                         cmd.db.execute(upd_chn_query, message.channel.id, message.server.id)
                         cmd.db.execute(upd_act_query, 'YES', message.server.id)
-                        await cmd.reply(
+                        await cmd.bot.send_message(message.channel, 
                             'Bye message activated for the server `' + message.server.name + '` on channel <#' + message.channel.id + '>.')
                         cmd.db.commit()
             else:

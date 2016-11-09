@@ -3,7 +3,7 @@ from config import MashapeKey
 
 async def tagdef(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
     else:
         hashtag = (' '.join(args)).replace('#', '')
         try:
@@ -13,7 +13,7 @@ async def tagdef(cmd, message, args):
             result = response['defs']['def']['text']
             out_text = 'The definition for **#' + hashtag + '**:'
             out_text += '\n```\n' + result + '\n```'
-            await cmd.reply(out_text)
+            await cmd.bot.send_message(message.channel, out_text)
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply('The Definition for **#' + hashtag + '** was not found.')
+            await cmd.bot.send_message(message.channel, 'The Definition for **#' + hashtag + '** was not found.')

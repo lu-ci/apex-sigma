@@ -28,4 +28,4 @@ async def joke(cmd, message, args):
         joke_json = requests.get(joke_url).json()
         joke = joke_json['joke']
 
-    await cmd.reply('Here, have a ' + joke_type + '!\n```' + joke + '\n```')
+    await cmd.bot.send_message(message.channel, 'Here, have a ' + joke_type + '!\n```' + joke + '\n```')

@@ -5,6 +5,6 @@ async def cid(cmd, message, args):
             arguments = ' '.join(args)
             if arguments.startswith('<#'):
                 chn_id = arguments[2:-1]
-        await cmd.reply('The Channel ID of <#' + chn_id + '> is `' + chn_id + '`')
+        await cmd.bot.send_message(message.channel, 'The Channel ID of <#' + chn_id + '> is `' + chn_id + '`')
     else:
-        await cmd.reply('This is unusable in Direct Messsages as direct messages have no host server.')
+        await cmd.bot.send_message(message.channel, 'This is unusable in Direct Messsages as direct messages have no host server.')

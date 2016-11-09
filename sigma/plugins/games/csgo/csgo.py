@@ -30,7 +30,7 @@ async def csgo(cmd, message, args):
         matchesLost = matchesplayed - matchesWon
         winLoseRatio = matchesWon / matchesLost
 
-        await cmd.reply('Display name: ' + displayName +
+        await cmd.bot.send_message(message.channel, 'Display name: ' + displayName +
                         '\nKills: ' + str(kills) +
                         '\nDeaths: ' + str(deaths) +
                         '\nKill Death Ratio: {:.2}'.format(KdR) +
@@ -48,4 +48,4 @@ async def csgo(cmd, message, args):
                         '\nMatch Win/Lose ratio: {:.2}'.format(winLoseRatio))
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('Something went wrong or the user was not found.')
+        await cmd.bot.send_message(message.channel, 'Something went wrong or the user was not found.')

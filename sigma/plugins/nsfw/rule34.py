@@ -18,7 +18,7 @@ async def rule34(cmd, message, args):
         posts = html.fromstring(data.content)
         choice = random.choice(posts)
 
-        await cmd.reply(str(choice.attrib['file_url']).replace('//img', 'http://img'))
+        await cmd.bot.send_message(message.channel, str(choice.attrib['file_url']).replace('//img', 'http://img'))
     except Exception as e:
         cmd.log.info(e)
-        await cmd.reply('Nothing found...')
+        await cmd.bot.send_message(message.channel, 'Nothing found...')

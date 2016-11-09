@@ -20,4 +20,4 @@ async def donors(cmd, message, args):
     out_text += '\n<https://auroraproject.xyz/donors>!'
     out_text += '\nThank you! :ribbon:'
 
-    await cmd.reply(out_text)
+    await cmd.bot.send_message(message.channel, out_text)

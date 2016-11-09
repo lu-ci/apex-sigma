@@ -17,10 +17,10 @@ async def mtg(cmd, message, args):
             n += 1
             list_text += '\n#' + str(n) + ' ' + entry['name']
         try:
-            await cmd.reply(list_text + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
+            await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
                                 len(cards)) + ')`')
         except:
-            await cmd.reply('The list is way too big, please be more specific...')
+            await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
             return
 
         choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
@@ -29,7 +29,7 @@ async def mtg(cmd, message, args):
         try:
             card_no = int(choice.content) - 1
         except:
-            await cmd.reply('Not a number or timed out... Please start over')
+            await cmd.bot.send_message(message.channel, 'Not a number or timed out... Please start over')
             return
         if choice is None:
             return
@@ -42,12 +42,12 @@ async def mtg(cmd, message, args):
             card_img_request = requests.get(card_img_url).content
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply('I was not able to get the image for the selected card...')
+            await cmd.bot.send_message(message.channel, 'I was not able to get the image for the selected card...')
             return
         card_img = Image.open(BytesIO(card_img_request))
         card_img.save('cache/mtg_' + message.author.id + '.png')
-        await cmd.reply_file('cache/mtg_' + message.author.id + '.png')
+        await cmd.bot.send_file(message.channel, 'cache/mtg_' + message.author.id + '.png')
         os.remove('cache/mtg_' + message.author.id + '.png')
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('Something went wrong...')
+        await cmd.bot.send_message(message.channel, 'Something went wrong...')

@@ -3,7 +3,7 @@ import asyncio
 
 async def inrole(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         role_input = ' '.join(args)
@@ -13,7 +13,7 @@ async def inrole(cmd, message, args):
             if role.name.lower() == role_input.lower():
                 role_choice = role
         if not role_choice:
-            response = await cmd.reply('No role by the name ' + role_input + ' was found.')
+            response = await cmd.bot.send_message(message.channel, 'No role by the name ' + role_input + ' was found.')
             await asyncio.sleep(10)
             await cmd.bot.delete_message(response)
             return
@@ -24,4 +24,4 @@ async def inrole(cmd, message, args):
                     if role == role_choice:
                         out_text += member.name + ', '
 
-            await cmd.reply(out_text[:-2])
+            await cmd.bot.send_message(message.channel, out_text[:-2])

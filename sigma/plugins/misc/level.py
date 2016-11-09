@@ -26,4 +26,4 @@ async def level(cmd, message, args):
     points = str(points)
     level = str(level).split('.')[0]
     msg = 'Okay, <@{:s}>{:s} **Level {:s}** and currently {:s} **{:s} Points**!'
-    await cmd.reply(msg.format(user_id, mid_msg, level, end_msg, points))
+    await cmd.bot.send_message(message.channel, msg.format(user_id, mid_msg, level, end_msg, points))

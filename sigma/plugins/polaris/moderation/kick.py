@@ -10,11 +10,11 @@ async def kick(cmd, message, args):
             if check_kick(message.author, channel):
                 try:
                     await cmd.bot.kick(user_q)
-                    await cmd.reply('User **' + user_q.name + '** has been kicked.')
+                    await cmd.bot.send_message(message.channel, 'User **' + user_q.name + '** has been kicked.')
                 except Exception as e:
                     cmd.log.error(e)
-                    await cmd.reply(str(e))
+                    await cmd.bot.send_message(message.channel, str(e))
             else:
-                response = await cmd.reply('Only a user with **Kick** privileges can use this command. :x:')
+                response = await cmd.bot.send_message(message.channel, 'Only a user with **Kick** privileges can use this command. :x:')
                 await asyncio.sleep(10)
                 await cmd.bot.delete_message(response)

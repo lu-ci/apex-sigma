@@ -5,4 +5,4 @@ async def uid(cmd, message, args):
     else:
         user_q = message.author
         out = 'Your User ID is `' + user_q.id + '`'
-    await cmd.reply(out)
+    await cmd.bot.send_message(message.channel, out)

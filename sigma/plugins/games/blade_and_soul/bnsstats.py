@@ -8,7 +8,7 @@ async def bnsstats(cmd, message, args):
 
     if not region == 'na' and not region == 'eu':
         error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + cmd.prefix + 'bnsstats [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
-        await cmd.reply(error_msg)
+        await cmd.bot.send_message(message.channel, error_msg)
     else:
         error_msg = 'Something went wrong, API is unavailable or character does not exist.'
         username = str(query[query.find(' ') + 1:]).lower()
@@ -95,9 +95,9 @@ async def bnsstats(cmd, message, args):
                               '\nRecovery: ' + rec +
                               '\nDebuff Defense: ' + nerf_def +
                               '\n```')
-            await cmd.reply(summary_text + attack_stats_text + def_stats_text)
+            await cmd.bot.send_message(message.channel, summary_text + attack_stats_text + def_stats_text)
             # await client.send_message(message.channel, summary_text)
             # await client.send_message(message.channel, attack_stats_text)
             # await client.send_message(message.channel, def_stats_text)
         except:
-            await cmd.reply(error_msg)
+            await cmd.bot.send_message(message.channel, error_msg)

@@ -30,7 +30,7 @@ async def hentai(cmd, message, args):
             gel_url = 'Nothing on Gelbooru'
         # Final
         out_text = 'Danbooru: ' + dan_url + '\nGelbooru: ' + gel_url
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply(str(e))
+        await cmd.bot.send_message(message.channel, str(e))

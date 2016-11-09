@@ -11,7 +11,7 @@ async def eightball(cmd, message, args):
             answer = random.choice(answers)
             out_text = '**Question**: `' + question + '`'
             out_text += '\n**Answer**: `' + answer + '`'
-            await cmd.reply(out_text)
+            await cmd.bot.send_message(message.channel, out_text)
     else:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return

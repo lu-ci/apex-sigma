@@ -6,7 +6,7 @@ async def catfact(cmd, message, args):
         resource = 'http://catfacts-api.appspot.com/api/facts'
         data = requests.get(resource).json()
         fact = data['facts'][0]
-        await cmd.reply('Did you know:\n```\n' + fact + '\n```')
+        await cmd.bot.send_message(message.channel, 'Did you know:\n```\n' + fact + '\n```')
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply(str(e))
+        await cmd.bot.send_message(message.channel, str(e))

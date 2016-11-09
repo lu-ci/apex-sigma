@@ -1,6 +1,6 @@
 async def getrole(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         try:
@@ -18,7 +18,7 @@ async def getrole(cmd, message, args):
             for result in db_exists_data:
                 exists = result[0]
             if exists == 0:
-                await cmd.reply('No self assignable roles exist on this server.')
+                await cmd.bot.send_message(message.channel, 'No self assignable roles exist on this server.')
                 return
             else:
                 db_role_select_data = cmd.db.execute(db_role_select_all, message.server.id)
@@ -36,21 +36,21 @@ async def getrole(cmd, message, args):
                         try:
                             if out_role in message.author.roles:
                                 await cmd.bot.remove_roles(message.author, out_role)
-                                await cmd.reply('The role **' + out_role.name + '** has been removed from you.')
+                                await cmd.bot.send_message(message.channel, 'The role **' + out_role.name + '** has been removed from you.')
                             else:
                                 await cmd.bot.add_roles(message.author, out_role)
-                                await cmd.reply('You\'ve been assigned the **' + out_role.name + '** role.')
+                                await cmd.bot.send_message(message.channel, 'You\'ve been assigned the **' + out_role.name + '** role.')
                         except Exception as e:
                             cmd.log.error(e)
-                            await cmd.reply(str(e))
+                            await cmd.bot.send_message(message.channel, str(e))
                     else:
-                        await cmd.reply('The role was found in the database but not on the server.\nRemoving from DB...')
+                        await cmd.bot.send_message(message.channel, 'The role was found in the database but not on the server.\nRemoving from DB...')
                         delete_query = "DELETE FROM SELF_ROLE WHERE SERVER_ID=? AND ROLE_NAME=?;"
                         cmd.db.execute(delete_query, message.server.id, role_name)
                         cmd.db.commit()
                 else:
-                    await cmd.reply('The role was not found in the self assignable role list of this server.')
+                    await cmd.bot.send_message(message.channel, 'The role was not found in the self assignable role list of this server.')
                     return
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply('An error was made.')
+            await cmd.bot.send_message(message.channel, 'An error was made.')

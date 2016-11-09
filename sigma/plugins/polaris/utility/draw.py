@@ -8,11 +8,11 @@ async def draw(cmd, message, args):
         try:
             amount = int(args[0])
         except:
-            await cmd.reply('Not a number, defaulting to 2...')
+            await cmd.bot.send_message(message.channel, 'Not a number, defaulting to 2...')
             amount = 2
     if amount > 10:
         amount = 2
-        await cmd.reply('Number exceeds the limit of 10, defaulting to 2...')
+        await cmd.bot.send_message(message.channel, 'Number exceeds the limit of 10, defaulting to 2...')
     sign_list = [':spades:', ':hearts:', ':clubs:', ':diamonds:']
     n = 0
     out_text = 'Your cards are:'
@@ -32,4 +32,4 @@ async def draw(cmd, message, args):
         card_sign = random.choice(sign_list)
         combination = '**' + card_number + '** - ' + card_sign
         out_text += '\n' + combination
-    await cmd.reply(out_text)
+    await cmd.bot.send_message(message.channel, out_text)

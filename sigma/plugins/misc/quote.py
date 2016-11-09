@@ -14,7 +14,7 @@ async def quote(cmd, message, args):
             author = 'Unknown'
         if author == '':
             author = 'Unknown'
-        await cmd.reply('```yaml\n\"' + text + '\"\n    - by ' + author + '\n```')
+        await cmd.bot.send_message(message.channel, '```yaml\n\"' + text + '\"\n    - by ' + author + '\n```')
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply(str(e))
+        await cmd.bot.send_message(message.channel, str(e))

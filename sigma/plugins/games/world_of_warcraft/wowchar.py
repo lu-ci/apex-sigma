@@ -9,7 +9,7 @@ async def wowchar(cmd, message, args):
     try:
         region_raw, realm, char_name = query.split(maxsplit=2)
     except:
-        await cmd.reply('Invalid Input Format, please reffer to the example:\n`' + cmd.prefix + 'wowchar' + ' EU Doomhammer Takamatsuku`')
+        await cmd.bot.send_message(message.channel, 'Invalid Input Format, please reffer to the example:\n`' + cmd.prefix + 'wowchar' + ' EU Doomhammer Takamatsuku`')
         return
 
     try:
@@ -206,13 +206,13 @@ async def wowchar(cmd, message, args):
         out_eqp += '\nMain Hand: \"' + item_main_hand + '\"'
         out_eqp += '\nOff Hand: \"' + item_off_hand + '\"'
 
-        await cmd.reply(
+        await cmd.bot.send_message(message.channel, 
                                        ':ticket: Basic Stats:\n```python\n' + out_data + '\n```')
-        await cmd.reply(':shirt: Equipment:\n```python\n' + out_eqp + '\n```')
+        await cmd.bot.send_message(message.channel, ':shirt: Equipment:\n```python\n' + out_eqp + '\n```')
     except:
         try:
             error_no = char_data['status']
             error_msg = char_data['reason']
-            await cmd.reply('Error: ' + str(error_no) + '\n' + error_msg)
+            await cmd.bot.send_message(message.channel, 'Error: ' + str(error_no) + '\n' + error_msg)
         except:
-            await cmd.reply('Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + cmd.prefix + 'wowchar' + ' EU Doomhammer Takamatsuku`')
+            await cmd.bot.send_message(message.channel, 'Something went wrong, most likely invalid region...\nRegions are: `US`, `EU`, `KR`, `TW`\nThe usage is, for example:\n`' + cmd.prefix + 'wowchar' + ' EU Doomhammer Takamatsuku`')

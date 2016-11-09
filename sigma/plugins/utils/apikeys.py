@@ -21,10 +21,10 @@ async def apikeys(cmd, message, args):
             await cmd.bot.send_message(message.author, out_text)
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply(str(e))
-        status = await cmd.reply('The API Key List has been sent to your DM.')
+            await cmd.bot.send_message(message.channel, str(e))
+        status = await cmd.bot.send_message(message.channel, 'The API Key List has been sent to your DM.')
     else:
-        status = await cmd.reply('Insufficient permissions. :x:')
+        status = await cmd.bot.send_message(message.channel, 'Insufficient permissions. :x:')
     await asyncio.sleep(10)
     await cmd.bot.delete_message(message)
     await cmd.bot.delete_message(status)

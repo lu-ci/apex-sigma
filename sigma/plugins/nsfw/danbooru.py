@@ -14,8 +14,8 @@ async def danbooru(cmd, message, args):
         chosen_post = random.choice(data)
         post_url = chosen_post['file_url']
         url = file_url_base + post_url
-        await cmd.reply(url)
+        await cmd.bot.send_message(message.channel, url)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply(str(e))
+        await cmd.bot.send_message(message.channel, str(e))
 

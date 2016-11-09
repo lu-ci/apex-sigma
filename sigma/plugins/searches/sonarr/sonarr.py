@@ -40,6 +40,6 @@ async def sonarr(cmd, message, args):
         out_text = 'Invalid Parameter :bug:'
 
     if snr_input == 'series':
-        await cmd.reply_file('Output.txt')
+        await cmd.bot.send_file(message.channel, 'Output.txt')
     else:
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)

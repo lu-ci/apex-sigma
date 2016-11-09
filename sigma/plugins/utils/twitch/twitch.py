@@ -32,13 +32,13 @@ async def twitch(cmd, message, args):
 
         # data End; pillow start?
         if online:
-            await cmd.reply('display name: ' + name +
+            await cmd.bot.send_message(message.channel, 'display name: ' + name +
                             '\nNow playing: ' + game +
                             '\nAvatar: ' + avatar_url +
                             '\nfollowers: ' + str(followers) +
                             '\nstream started at ' + start)
         else:
-            await cmd.reply('display name: ' + name +
+            await cmd.bot.send_message(message.channel, 'display name: ' + name +
                             '\nllast seen playing: ' + game +
                             '\nAvatar: ' + avatar_url +
                             '\nfollowers: ' + str(followers))
@@ -52,4 +52,4 @@ async def twitch(cmd, message, args):
         #
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('An unknown error occurred.\nError: ' + str(e))
+        await cmd.bot.send_message(message.channel, 'An unknown error occurred.\nError: ' + str(e))

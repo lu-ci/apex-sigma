@@ -8,7 +8,7 @@ async def weather(cmd, message, args):
     if args:
         location = ' '.join(args)
     else:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     try:
         try:
@@ -18,7 +18,7 @@ async def weather(cmd, message, args):
             longitude = loc_element.longitude
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply('Unable to retrieve coordinates for ' + location)
+            await cmd.bot.send_message(message.channel, 'Unable to retrieve coordinates for ' + location)
             return
         # Data Collection
         dark_sky_url = 'https://api.darksky.net/forecast/' + DarkSkySecretKey + '/' + str(latitude) + ',' + str(
@@ -90,7 +90,7 @@ async def weather(cmd, message, args):
         out_text += '\n```haskell\n' + out_pretty_list + '\n```'
         forecasts = '```haskell\nUpcoming: \"' + today_forecast + '\"\nThis Week: \"' + week_forecast + '\"\n```\n'
         out_text += '\nForecasts:\n' + forecasts
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('Error Retrieving the data.')
+        await cmd.bot.send_message(message.channel, 'Error Retrieving the data.')

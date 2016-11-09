@@ -7,13 +7,13 @@ import random
 
 async def role(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         try:
             if check_man_roles(message.author, message.channel):
                 if len(args) < 2:
-                    await cmd.reply(cmd.help())
+                    await cmd.bot.send_message(message.channel, cmd.help())
                     return
                 else:
                     mode_list = ['create', 'destroy', 'give', 'take', 'auto', 'add', 'del']
@@ -27,12 +27,12 @@ async def role(cmd, message, args):
                         if role_name.startswith(' '):
                             role_name = role_name[1:]
                     if mode not in mode_list:
-                        await cmd.reply(cmd.help())
+                        await cmd.bot.send_message(message.channel, cmd.help())
                         return
                     else:
                         if mode == 'give' or mode == 'take':
                             if not message.mentions:
-                                await cmd.reply(cmd.help())
+                                await cmd.bot.send_message(message.channel, cmd.help())
                                 return
                             else:
                                 target_usr = message.mentions[0]
@@ -46,12 +46,12 @@ async def role(cmd, message, args):
                                             await cmd.bot.add_roles(target_usr, role_choice)
                                         except Exception as e:
                                             cmd.log.error(e)
-                                            await cmd.reply('I can not edit the roles of that user.\n' + str(e))
+                                            await cmd.bot.send_message(message.channel, 'I can not edit the roles of that user.\n' + str(e))
                                             return
-                                        await cmd.reply(
+                                        await cmd.bot.send_message(message.channel, 
                                             'Role **' + role_name + '** has been given to ' + target_usr.name)
                                     else:
-                                        await cmd.reply('Role **' + role_name + '** has not been found.')
+                                        await cmd.bot.send_message(message.channel, 'Role **' + role_name + '** has not been found.')
                                 elif mode == 'take':
                                     role_choice = None
                                     for role_elem in message.server.roles:
@@ -62,15 +62,15 @@ async def role(cmd, message, args):
                                             await cmd.bot.remove_roles(target_usr, role_choice)
                                         except Exception as e:
                                             cmd.log.error(e)
-                                            await cmd.reply('I can not edit the roles of that user.\n' + str(e))
+                                            await cmd.bot.send_message(message.channel, 'I can not edit the roles of that user.\n' + str(e))
                                             return
-                                        await cmd.reply(
+                                        await cmd.bot.send_message(message.channel, 
                                             'Role **' + role_name + '** has been removed from ' + target_usr.name)
                                     else:
-                                        await cmd.reply('Role **' + role_name + '** has not been found.')
+                                        await cmd.bot.send_message(message.channel, 'Role **' + role_name + '** has not been found.')
                         elif mode == 'create':
                             await cmd.bot.create_role(message.server, name=role_name)
-                            await cmd.reply('Role ' + role_name + ' has been created.')
+                            await cmd.bot.send_message(message.channel, 'Role ' + role_name + ' has been created.')
                         elif mode == 'destroy':
                             role_choice = None
                             for role_elem in message.server.roles:
@@ -78,9 +78,9 @@ async def role(cmd, message, args):
                                     role_choice = role_elem
                             if role_choice is not None:
                                 await cmd.bot.delete_role(message.server, role_choice)
-                                await cmd.reply('Role **' + role_name + '** has been destroyed.')
+                                await cmd.bot.send_message(message.channel, 'Role **' + role_name + '** has been destroyed.')
                             else:
-                                await cmd.reply('Role **' + role_name + '** has not been found.')
+                                await cmd.bot.send_message(message.channel, 'Role **' + role_name + '** has not been found.')
                         elif mode == 'add':
                             role_on_server = False
                             for role_res in message.server.roles:
@@ -88,32 +88,35 @@ async def role(cmd, message, args):
                                     role_on_server = True
                                     break
                             if role_on_server:
-                                add_qry = 'INSERT INTO SELF_ROLE (FILLER, SERVER_ID, ROLE_NAME) VALUES (?, ?, ?)'
-                                role_chk_query = 'SELECT EXISTS (SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?);'
-                                name_check_query = 'SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?'
-                                role_check_results = cmd.db.execute(role_chk_query, message.server.id)
+                                role_check_results = cmd.db.find('SelfRoles', {'ServerID': message.server.id})
                                 rol_exists_in_db = 0
-                                filler = random.randint(100000, 999999999999)
+                                self_role_data = {
+                                    'ServerID': message.server.id,
+                                    'RoleName': role_name
+                                }
+                                for result in role_check_results:
+                                    rol_exists_in_db += 1
                                 for result in role_check_results:
                                     rol_exists_in_db = result[0]
                                 if rol_exists_in_db == 0:
-                                    cmd.db.execute(add_qry, filler, message.server.id, role_name)
-                                    cmd.db.commit()
-                                    await cmd.reply('Role **' + role_name + '** added to the self role database.')
+                                    cmd.db.insert_one('SelfRoles', self_role_data)
+                                    await cmd.bot.send_message(message.channel, 'Role **' + role_name + '** added to the self role database.')
                                 else:
-                                    name_check_results = cmd.db.execute(name_check_query, message.server.id)
-                                    roles_list = []
-                                    for result in name_check_results:
-                                        for entry in result:
-                                            roles_list.append(entry)
-                                    if role_name.lower() in roles_list:
-                                        await cmd.reply('This role is already in the database.')
-                                        return
-                                    else:
-                                        cmd.db.execute(add_qry, filler, message.server.id, role_name)
-                                        cmd.db.commit()
-                                        await cmd.reply(
+                                    role_search_data = {
+                                        'ServerID': message.server.id,
+                                        'RoleName': role_name
+                                    }
+                                    role_search = cmd.db.find('SelfRoles', role_search_data)
+                                    res_count = 0
+                                    for role in role_search:
+                                        res_count += 1
+                                    if res_count == 0:
+                                        cmd.db.insert_one('SelfRoles', self_role_data)
+                                        await cmd.bot.send_message(message.channel, 
                                             'Role **' + role_name + '** added to the self role database.')
+                                    else:
+                                        await cmd.bot.send_message(message.channel, 'This role is already in the database.')
+                                        return
                         elif mode == 'del':
                             role_on_server = False
                             for role_res in message.server.roles:
@@ -121,28 +124,19 @@ async def role(cmd, message, args):
                                     role_on_server = True
                                     break
                             if role_on_server:
-                                delete_query = "DELETE FROM SELF_ROLE WHERE SERVER_ID=? AND ROLE_NAME=?;"
-                                role_chk_query = 'SELECT EXISTS (SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?);'
-                                name_check_query = 'SELECT ROLE_NAME FROM SELF_ROLE WHERE SERVER_ID=?'
-                                role_check_results = cmd.db.execute(role_chk_query, message.server.id)
-                                rol_exists_in_db = 0
-                                for result in role_check_results:
-                                    rol_exists_in_db = result[0]
-                                if rol_exists_in_db == 0:
-                                    await cmd.reply('No roles found for this server in the database.')
+                                role_search_data = {
+                                    'ServerID': message.server.id,
+                                    'RoleName': role_name
+                                }
+                                role_search = cmd.db.find('SelfRoles', role_search_data)
+                                res_count = 0
+                                for role in role_search:
+                                    res_count += 1
+                                if res_count == 0:
+                                    await cmd.bot.send_message(message.channel, 'This role is not in the database.')
                                 else:
-                                    name_check_results = cmd.db.execute(name_check_query, message.server.id)
-                                    result_list = []
-                                    for result in name_check_results:
-                                        for entry in result:
-                                            result_list.append(entry)
-                                    if role_name.lower() in result_list:
-                                        cmd.db.execute(delete_query, message.server.id, role_name)
-                                        cmd.db.commit()
-                                        await cmd.reply(
-                                            'Role **' + role_name + '** was removed from the self role database.')
-                                    else:
-                                        await cmd.reply('This role is not in the database.')
+                                    cmd.db.delete_one('SelfRoles', role_search_data)
+                                    await cmd.bot.send_message(message.channel, 'The role **' + role_name + '** has been removed from the database.')
 
                         elif mode == 'auto':
                             if check_admin:
@@ -162,22 +156,22 @@ async def role(cmd, message, args):
                                     exists = result[0]
                                 if role_name.lower() == 'remove':
                                     if exists == 0:
-                                        response = await cmd.reply('There are no auto role settings to remove.')
+                                        response = await cmd.bot.send_message(message.channel, 'There are no auto role settings to remove.')
                                         await asyncio.sleep(10)
                                         await cmd.bot.delete_message(response)
                                     else:
                                         cmd.db.execute(delete_query, message.server.id)
                                         cmd.db.commit()
-                                        response = await cmd.reply('The auto role has been removed.')
+                                        response = await cmd.bot.send_message(message.channel, 'The auto role has been removed.')
                                         await asyncio.sleep(10)
                                         await cmd.bot.delete_message(response)
                                 elif role_name.lower() == 'remove' and exists == 0:
-                                    response = await cmd.reply('There are no auto role settings to remove.')
+                                    response = await cmd.bot.send_message(message.channel, 'There are no auto role settings to remove.')
                                     await asyncio.sleep(10)
                                     await cmd.bot.delete_message(response)
                                 else:
                                     if role_on_server == False:
-                                        response = await cmd.reply(
+                                        response = await cmd.bot.send_message(message.channel, 
                                             'The role ' + role_name + ' was not found on the server.')
                                         await asyncio.sleep(10)
                                         await cmd.bot.delete_message(response)
@@ -188,32 +182,32 @@ async def role(cmd, message, args):
                                             for name in role_name_check:
                                                 role_name_res = name[0]
                                             if role_name_res.lower() == role_name.lower():
-                                                response = await cmd.reply(
+                                                response = await cmd.bot.send_message(message.channel, 
                                                     'That role is the current Auto Role already.')
                                                 await asyncio.sleep(10)
                                                 await cmd.bot.delete_message(response)
                                             else:
                                                 cmd.db.execute(update_query, role_name, message.server.id)
                                                 cmd.db.commit()
-                                                response = await cmd.reply('The auto role has been updated.')
+                                                response = await cmd.bot.send_message(message.channel, 'The auto role has been updated.')
                                                 await asyncio.sleep(10)
                                                 await cmd.bot.delete_message(response)
                                         else:
                                             cmd.db.execute(insert_query, message.server.id, role_name)
                                             cmd.db.commit()
-                                            response = await cmd.reply(
+                                            response = await cmd.bot.send_message(message.channel, 
                                                 'The auto role **' + role_name + '** has been set for ' + message.server.name + '.')
                                             await asyncio.sleep(10)
                                             await cmd.bot.delete_message(response)
                         else:
-                            response = await cmd.reply(
+                            response = await cmd.bot.send_message(message.channel, 
                                 'Only a user with **Administrator** privileges can use this function. :x:')
                             await asyncio.sleep(10)
                             await cmd.bot.delete_message(response)
             else:
-                response = await cmd.reply('Only a user with the **Manage Roles** privilege can use this command. :x:')
+                response = await cmd.bot.send_message(message.channel, 'Only a user with the **Manage Roles** privilege can use this command. :x:')
                 await asyncio.sleep(10)
                 await cmd.bot.delete_message(response)
-        except Exception as e:
+        except SyntaxError as e:
             cmd.log.error(e)
-            await cmd.reply('We\'ve ran into an error.\n' + str(e))
+            await cmd.bot.send_message(message.channel, 'We\'ve ran into an error.\n' + str(e))
