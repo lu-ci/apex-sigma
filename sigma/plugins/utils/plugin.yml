@@ -142,7 +142,7 @@ events:
   - name:    pmredirect
     type:    message
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     description:
       Redirects PM info to the bot owner.
