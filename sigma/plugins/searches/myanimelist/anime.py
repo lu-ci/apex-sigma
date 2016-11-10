@@ -17,7 +17,6 @@ async def anime(cmd, message, args):
     mal_url = 'https://myanimelist.net/api/anime/search.xml?q=' + mal_input
     mal = requests.get(mal_url, auth=HTTPBasicAuth(mal_un, mal_pw))
     entries = html.fromstring(mal.content)
-    print(len(entries))
     n = 0
     list_text = 'List of anime found for `' + mal_input + '`:\n```'
 
@@ -42,7 +41,7 @@ async def anime(cmd, message, args):
     else:
         ani_no = 0
     try:
-        await cmd.typing()
+        await cmd.bot.send_typing(message.channel)
         ani_id = entries[ani_no][0].text
         name = entries[ani_no][1].text
         eps = entries[ani_no][4].text
@@ -56,12 +55,14 @@ async def anime(cmd, message, args):
 
         if air_end == '0000-00-00':
             air_end = '???'
-
         air = air_start.replace('-', '.') + ' to ' + air_end.replace('-', '.')
-        synopsis = entries[ani_no][10].text.replace('[i]', '').replace('[/i]', '').replace('<br>',
-                                                                                             '').replace(
-            '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
-                                                                                                      '-')
+        try:
+            synopsis = entries[ani_no][10].text.replace('[i]', '').replace('[/i]', '').replace('<br>',
+                                                                                                 '').replace(
+                '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
+                                                                                                          '-')
+        except:
+            synopsis = 'None'
         img = entries[ani_no][11].text
         ani_type = entries[ani_no][6].text
         status = entries[ani_no][7].text
