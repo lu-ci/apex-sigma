@@ -1,18 +1,19 @@
 from humanfriendly.tables import format_pretty_table as boop
+
+
 async def channelinfo(cmd, message, args):
     out_list = []
     if message.channel:
+        n = 0
+        nsfw = False
         chan = message.channel
-        try:
-            query = 'SELECT PERMITTED FROM NSFW WHERE CHANNEL_ID=?'
-            results = cmd.db.execute(query, chan.id)
-            perms = results.fetchone()
-            if perms and perms[0] == 'Yes':
-                nsfw = True
+        nsfw_check = cmd.db.find('NSFW', {'ChannelID': chan.id})
+        for result in nsfw_check:
+            n += 1
+            if n > 0:
+                nsfw = result['Permitted']
             else:
                 nsfw = False
-        except cmd.db.DatabaseError:
-            nsfw = False
         out_list.append(['Name', '#' + chan.name])
         out_list.append(['Channel ID', chan.id])
         out_list.append(['Created', chan.created_at])
