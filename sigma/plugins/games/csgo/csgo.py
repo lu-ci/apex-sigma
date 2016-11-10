@@ -10,9 +10,9 @@ async def csgo(cmd, message, args):
         api = WebAPI(SteamAPI)
         userID = api.call('ISteamUser.ResolveVanityURL', vanityurl=csgo_input, url_type=1)['response']['steamid']
         stats = api.call('ISteamUserStats.GetUserStatsForGame', steamid=userID, appid='730')['playerstats']['stats']
-        summery = api.call('ISteamUser.GetPlayerSummaries', steamids=userID)['response']['players'][0]
+        summary = api.call('ISteamUser.GetPlayerSummaries', steamids=userID)['response']['players'][0]
 
-        displayName = str(summery['personaname'])
+        displayName = str(summary['personaname'])
         v = 'value'
         kills = stats[0][v]
         deaths = stats[1][v]
