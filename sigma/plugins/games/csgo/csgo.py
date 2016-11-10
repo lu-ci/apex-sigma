@@ -1,6 +1,5 @@
 from steam import WebAPI
 from config import SteamAPI
-import time
 
 
 async def csgo(cmd, message, args):
