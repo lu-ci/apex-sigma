@@ -24,7 +24,7 @@ async def mtg(cmd, message, args):
             return
 
         choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
-        await cmd.typing()
+        await cmd.bot.send_typing(message.channel)
 
         try:
             card_no = int(choice.content) - 1

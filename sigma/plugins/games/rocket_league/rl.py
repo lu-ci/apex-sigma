@@ -106,10 +106,10 @@ async def rl(cmd, message, args):
         imgdraw.text((394, 146), str(str_rn_rank), (255, 255, 255), font=font3)
 
         base.save('cache/rl_' + message.author.id + '.png')
-        await cmd.bot.send_file(message.channel, message.channel, 'cache/rl_' + message.author.id + '.png')
+        await cmd.bot.send_file(message.channel, 'cache/rl_' + message.author.id + '.png')
         await cmd.bot.send_message(message.channel, 'You can find more at:\n<' + profile_url + '>')
         os.remove('cache/rl_' + message.author.id + '.png')
-    except Exception:
+    except SyntaxError:
         try:
             error = rl_data['error']
             await cmd.bot.send_message(message.channel, 'Error: ' + str(error))

@@ -21,9 +21,9 @@ async def rps(cmd, message, args):
             await cmd.bot.send_message(message.channel, 'Unrecognized sign choice.')
             return
         if my_choice == their_choice:
-            out_text += '\nIt\'s a **Draw**!'
+            out_text += '\nIt\'s a **Draw!**'
         elif my_choice == counter:
-            out_text += '\n**I win**! So sorry~ :second_place:'
+            out_text += '\n**I win!** So sorry~ :second_place:'
         else:
             out_text += '\nCongrats! **You won**! :first_place:'
         await cmd.bot.send_message(message.channel, out_text)

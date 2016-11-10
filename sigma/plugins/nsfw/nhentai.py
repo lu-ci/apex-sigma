@@ -19,7 +19,7 @@ async def nhentai(cmd, message, args):
         if len(nh.search(search)['result']) > 1:
             await cmd.bot.send_message(message.channel, list_text + '\n```')
             choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
-            await cmd.typing()
+            await cmd.bot.send_typing(message.channel)
 
             try:
                 nh_no = int(choice.content) - 1

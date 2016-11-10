@@ -2,16 +2,15 @@ from .bns import fetchStats
 
 
 # Blade and Soul Attack Details API
-async def bnsatt(cmd, message, attr):
-    query = message.content[len('bnsatt') + 1 + 3 + len(cmd.prefix):]
-    region = str(query[:query.find(' ')]).lower()
+async def bnsatt(cmd, message, args):
+    region = args[0].lower()
 
     if not region == 'na' and not region == 'eu':
         error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + cmd.prefix + 'bnsatt [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
         await cmd.bot.send_message(message.channel, error_msg)
     else:
         error_msg = 'Something went wrong, API is unavailable or character does not exist.'
-        username = str(query[query.find(' ') + 1:]).lower()
+        username = ' '.join(args[1:])
         profile = fetchStats(region, username)
 
         try:

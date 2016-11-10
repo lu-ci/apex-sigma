@@ -11,9 +11,6 @@ async def rule34(cmd, message, args):
             tags = 'nude'
 
         r34_url = 'http://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=' + tags
-
-        cmd.log.info(r34_url)
-
         data = requests.get(r34_url)
         posts = html.fromstring(data.content)
         choice = random.choice(posts)

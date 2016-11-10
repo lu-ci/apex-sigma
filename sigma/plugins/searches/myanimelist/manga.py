@@ -42,7 +42,7 @@ async def manga(cmd, message, args):
     else:
         ani_no = 0
     try:
-        await cmd.typing()
+        await cmd.bot.send_typing(message.channel)
         ani_id = entries[ani_no][0].text
         name = entries[ani_no][1].text
         chapters = entries[ani_no][4].text
@@ -55,10 +55,13 @@ async def manga(cmd, message, args):
         if air_end == '0000-00-00':
             air_end = '???'
         air = air_start.replace('-', '.') + ' to ' + air_end.replace('-', '.')
-        synopsis = entries[ani_no][11].text.replace('[i]', '').replace('[/i]', '').replace('<br>',
-                                                                                             '').replace(
-            '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
-                                                                                                      '-')
+        try:
+            synopsis = entries[ani_no][11].text.replace('[i]', '').replace('[/i]', '').replace('<br>',
+                                                                                                 '').replace(
+                '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
+                                                                                                          '-')
+        except:
+            synopsis = 'None'
         img = entries[ani_no][12].text
         ani_type = entries[ani_no][7].text
         status = entries[ani_no][8].text
