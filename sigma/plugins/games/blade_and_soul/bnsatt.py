@@ -3,7 +3,6 @@ from .bns import fetchStats
 
 # Blade and Soul Attack Details API
 async def bnsatt(cmd, message, args):
-
     region = args[0].lower()
 
     if not region == 'na' and not region == 'eu':
