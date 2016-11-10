@@ -21,7 +21,7 @@ async def level(cmd, message, args):
             pass
     modifier = points / 1690
     modifier = int(modifier)
-    level = points / (690 + (69 * modifier))
+    level = points / (169 + (69 * modifier))
     points = str(points)
     level = str(level).split('.')[0]
     msg = 'Okay, <@{:s}>{:s} **Level {:s}** and currently {:s} **{:s} Points**!'
