@@ -24,7 +24,7 @@ async def vndb(cmd, message, args):
             await cmd.bot.send_message(message.channel, list_text + '\n```')
             choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel,
                                                         timeout=20)
-            await cmd.typing()
+            await cmd.bot.send_typing(message.channel)
 
             try:
                 nh_no = int(choice.content) - 1
@@ -39,10 +39,10 @@ async def vndb(cmd, message, args):
             '.', '')
         kill = 1
     except Shosetsu.VNDBNoResults as err:
-        await cmd.bot.send_message(message.channel, err)
+        await cmd.bot.send_message(message.channel, str(err))
         kill = 0
-    except:
-        await cmd.bot.send_message(message.channel, 'Error: ' + sys.exc_info()[0])
+    except Exception as e:
+        await cmd.bot.send_message(message.channel, 'Error: ' + str(e))
         kill = 0
 
     if kill == 1:
