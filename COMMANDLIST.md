@@ -17,7 +17,10 @@ Command |  Description |  Usage
 `>>wows`  |  Shows World of Warships statistics and information for the given username.  |  `>>wows eu metallicadutch`
 `>>wowchar`  |  Shows World of Warcraft Character information and equipment.  |  `>>wowchar EU Doomhammer Takamatsuku`
 `>>dadjoke`  |  Cringe!  |  `>>dadjoke`
-`>>joke`  |  Outputs a random joke from a random source, it is totally cancerous.  |  `>>joke`
+`>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
+`>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
+`>>chucknoris`  |  Outputs a random Chuck Noris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknoris`
+`>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
 `>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
