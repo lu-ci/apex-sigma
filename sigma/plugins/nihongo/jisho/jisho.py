@@ -88,4 +88,4 @@ async def jisho(cmd, message, *args):
     else:
         output += '```'
 
-    await cmd.reply(output)
+    await cmd.bot.send_message(message.channel, output)
