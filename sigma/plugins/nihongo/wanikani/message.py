@@ -66,7 +66,7 @@ async def text_message(cmd, message, user):
             user['reviews']['next_hour'],
             user['reviews']['next_day'])
 
-    await cmd.reply('```json\n{:s}\n```'.format(out))
+    await cmd.bot.send_message(message.channel, '```json\n{:s}\n```'.format(out))
 
 
 async def draw_image(cmd, message, user):
