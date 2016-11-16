@@ -22,3 +22,4 @@ cssselect
 python-twitch
 wolframalpha
 geopy
+pymongo
