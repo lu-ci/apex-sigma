@@ -50,3 +50,12 @@ commands:
     description:
       Executes a python function. Can be very dangerous.
       Bot Special Permitted/Owner Only.
+
+  - name: send
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 200751504175398912|c:201577895196360714 Hello World!"
+    description:
+      Send a message to either a channel or user (by ID) on the server with the given ID.
+      Bot Special Permitted/Owner Only.

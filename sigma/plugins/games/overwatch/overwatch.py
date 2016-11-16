@@ -12,7 +12,7 @@ async def overwatch(cmd, message, args):
     ow_input = (str(message.content[len('overwatch') + 1 + len(cmd.prefix):])).replace('#', '-')
 
     ow_region_x, ignore, ow_name = ow_input.partition(' ')
-    ow_region = ow_region_x.replace('NA', 'US')
+    ow_region = ow_region_x.lower().replace('na', 'us')
 
     if os.path.isfile('cache/ow/avatar_' + message.author.id + '.png'):
         os.remove('cache/ow/avatar_' + message.author.id + '.png')

@@ -200,3 +200,23 @@ commands:
       Assigns you or removes you from one of the self assignable roles.
       Self assignable roles are added via the role command.
       A list of self assignable roles can be seen with the listselfroles command.
+
+
+  - name: blockinvites
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles auto-deletion of any and all discord invite links on the server.
+      Requires the user to be a server Administrator.
+
+events:
+  - name:    sfiexec
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "Activated upon detecting an invite link in a message."
+    description:
+      Removes messages with a discord invite link.
