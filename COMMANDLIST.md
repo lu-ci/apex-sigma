@@ -42,6 +42,7 @@ Command |  Description |  Usage
 `>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
 `>>leave`  |  Leaves the server with the inputted id. Bot Special Permitted/Owner Only.  |  `>>leave 123456789`
 `>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
+`>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Special Permitted/Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
 `>>coinflip`  |  Flips a coin. Nothing complex. You can try guessing the results by typing either Heads or Tails after the command.  |  `>>coinflip Heads`
 `>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
@@ -68,6 +69,7 @@ Command |  Description |  Usage
 `>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
 `>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
 `>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
+`>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Requires the user to be a server Administrator.  |  `>>blockinvites`
 `>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
 `>>uid`  |  Shows the User ID of the mentioned user. If no user is mentioned, it will show your ID instead.  |  `>>uid @person`
 `>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
