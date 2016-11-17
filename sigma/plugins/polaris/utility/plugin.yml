@@ -126,3 +126,11 @@ commands:
     description:
       Draws an inputted number of cards, the maximum is 10.
       If no number is provided, the bot will draw 2.
+
+  - name: color
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1ABC9C"
+    description:
+      Generates a color from the given HEX code or provided RGB numbers.
