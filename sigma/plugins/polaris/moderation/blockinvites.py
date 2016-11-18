@@ -3,7 +3,7 @@ from sigma.core.permission import check_admin
 
 async def blockinvites(cmd, message, args):
     if not check_admin(message.author, message.channel):
-        await cmd.bot.send_message('Insufficient permissions. :x:')
+        await cmd.bot.send_message(message.channel, 'Insufficient permissions. :x:')
         return
     else:
         active = False
