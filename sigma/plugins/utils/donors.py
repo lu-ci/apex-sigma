@@ -1,4 +1,3 @@
-from sigma.core.formatting import bold
 import yaml
 from humanfriendly.tables import format_pretty_table
 
@@ -9,7 +8,7 @@ async def donors(cmd, message, args):
     don_lst = []
     for don in donors:
         temp_lst = []
-        temp_lst.append(don)
+        temp_lst.append(don['name'])
         don_lst.append(temp_lst)
     donor_list = format_pretty_table(don_lst)
     out_text = 'The lovely people that support the **Aurora Project**:'

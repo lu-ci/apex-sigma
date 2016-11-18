@@ -7,7 +7,10 @@ def stats(bot, log=None):
     permed_ids = userlist(permitted_id)
     authors = userlist(bot.authors)
     contributors = userlist(bot.contributors)
-    donors = userlist(bot.donors)
+    don_list = []
+    donors = userlist(don_list)
+    for donor in bot.donors:
+        don_list.append(donor['name'])
     with open('VERSION') as version_file:
         content = yaml.load(version_file)
         version = content['version']
