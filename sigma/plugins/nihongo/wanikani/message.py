@@ -51,9 +51,18 @@ async def text_message(cmd, message, user):
         rad_total = user['radicals']['total']
         kan_cur = user['kanji']['current']
         kan_total = user['kanji']['total']
-        out += 'Radicals: {:d}/{:d} ({:.2f}%) | Kanji: {:d}/{:d} ({:.2f}%)\n'.format(
-            rad_cur, rad_total, (rad_cur / rad_total) * 100,
-            kan_cur, kan_total, (kan_cur / kan_total) * 100)
+
+        rad_percentage = ''
+        if rad_total:
+            rad_percentage = '({:.2f}%) '.format((rad_cur / rad_total) * 100)
+
+        kan_percentage = ''
+        if kan_total:
+            kan_percentage = '({:.2f}%) '.format((kan_cur / kan_total) * 100)
+
+        out += 'Radicals: {:d}/{:d} {:}| Kanji: {:d}/{:d} {:}\n'.format(
+            rad_cur, rad_total, rad_percentage,
+            kan_cur, kan_total, kan_percentage)
 
         out += 'Your Next Review: "{:s}"\n'.format(
             parse_date(user['reviews']['next_date']))
@@ -66,7 +75,7 @@ async def text_message(cmd, message, user):
             user['reviews']['next_hour'],
             user['reviews']['next_day'])
 
-    await cmd.reply('```json\n{:s}\n```'.format(out))
+    await cmd.bot.send_message(message.channel, '```json\n{:s}\n```'.format(out))
 
 
 async def draw_image(cmd, message, user):
@@ -166,5 +175,5 @@ async def draw_image(cmd, message, user):
 
     tmp_file = 'cache/ani/wk_{:s}.png'.format(message.author.id)
     base.save(tmp_file)
-    await cmd.reply_file(tmp_file)
+    await cmd.bot.send_file(message.channel, tmp_file)
     os.remove(tmp_file)

@@ -1,6 +1,6 @@
 async def whoplays(cmd, message, args):
     if not args:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         game_title = ' '.join(args)
@@ -21,4 +21,4 @@ async def whoplays(cmd, message, args):
         if y == 1:
             out_text.replace('are', 'is')
         out_text += '\n```\n' + gamer_list + '\n```'
-        await cmd.reply(out_text)
+        await cmd.bot.send_message(message.channel, out_text)

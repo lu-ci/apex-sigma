@@ -15,7 +15,7 @@ async def gelbooru(cmd, message, args):
         posts = html.fromstring(data.content)
         choice = random.choice(posts)
 
-        await cmd.reply(choice.attrib['file_url'])
+        await cmd.bot.send_message(message.channel, choice.attrib['file_url'])
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('Nothing found...')
+        await cmd.bot.send_message(message.channel, 'Nothing found...')

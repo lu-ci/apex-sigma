@@ -57,6 +57,15 @@ commands:
       Bans the mentioned user.
       Requires the user who calls the command to have ban privileges.
 
+  - name: unban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Unbans the user with the inputted name.
+      Requires the user who calls the command to have ban privileges.
+
   - name: softban
     global:  true
     enabled: true
@@ -172,3 +181,43 @@ commands:
     description:
       Lists all the roles on the server and the total number of roles.
 
+  - name: getrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Wizard"
+    description:
+      Assigns you or removes you from one of the self assignable roles.
+      Self assignable roles are added via the role command.
+      A list of self assignable roles can be seen with the listselfroles command.
+
+  - name: listselfroles
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Assigns you or removes you from one of the self assignable roles.
+      Self assignable roles are added via the role command.
+      A list of self assignable roles can be seen with the listselfroles command.
+
+
+  - name: blockinvites
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles auto-deletion of any and all discord invite links on the server.
+      Will not block links posted by administrators.
+      Requires the user to be a server Administrator.
+
+events:
+  - name:    sfiexec
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "Activated upon detecting an invite link in a message."
+    description:
+      Removes messages with a discord invite link.

@@ -22,6 +22,30 @@ commands:
     description:
       Shows yours or a mentioned persons Sigma level.
 
+  - name:    quote
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Gives a random quote.
+
+  - name:    catfact
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Gives a random fact about cats.
+
+  - name:    yomomma
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Provides a random Yo Momma insult.
+
 events:
   - name:    cleverbot
     type:    mention
@@ -47,3 +71,11 @@ events:
     sfw:     true
     description:
       Calm down bro.
+
+  - name:    accept
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Accepts the terms and conditions of the WaniKani Community Discord Server.

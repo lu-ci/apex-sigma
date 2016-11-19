@@ -5,7 +5,7 @@ ClientID = ''
 GitHubWebserverPort = 37812
 GitHubWebserverAddr = ''
 # API Keys and Login Details for Various Services.
-OpenWeatherMapKey = ''
+DarkSkySecretKey = ''
 MashapeKey = ''
 RiotAPIKey = ''
 GoogleAPIKey = ''

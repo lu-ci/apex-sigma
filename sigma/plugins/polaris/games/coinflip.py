@@ -19,14 +19,14 @@ async def coinflip(cmd, message, args):
     imgdraw = ImageDraw.Draw(base)
     imgdraw.text((110, 8), result.title(), (255, 255, 255), font=font)
     base.save('cache/coin_' + message.author.id + '.png')
-    await cmd.reply_file('cache/coin_' + message.author.id + '.png')
+    await cmd.bot.send_file(message.channel, 'cache/coin_' + message.author.id + '.png')
     os.remove('cache/coin_' + message.author.id + '.png')
     if args:
         choice = args[0]
         if choice.lower().startswith('t') or choice.lower().startswith('h'):
             if result == choice.lower():
-                await cmd.reply('Nice guess! :ballot_box_with_check:')
+                await cmd.bot.send_message(message.channel, 'Nice guess! :ballot_box_with_check:')
             else:
-                await cmd.reply('Better luck next time! :regional_indicator_x:')
+                await cmd.bot.send_message(message.channel, 'Better luck next time! :regional_indicator_x:')
         else:
-            await cmd.reply('**Heads** or **Tails** only, please.')
+            await cmd.bot.send_message(message.channel, '**Heads** or **Tails** only, please.')

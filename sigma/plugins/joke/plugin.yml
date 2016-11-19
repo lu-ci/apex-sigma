@@ -20,7 +20,31 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Outputs a random joke from a random source, it is totally cancerous.
+      Outputs a random joke, do not expect them to be good even slightly.
+
+  - name:    ronswanson
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random Ron Swanson quote.
+
+  - name:    chucknoris
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random Chuck Noris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.
+
+  - name:    xkcd
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random xkcd comic.
 
   - name:    pun
     global:  true

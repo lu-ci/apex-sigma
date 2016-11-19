@@ -1,2 +1,2 @@
 async def ehentai(cmd, message, args):
-    await cmd.reply('I like pizza!')
+    await cmd.bot.send_message(message.channel, 'I like pizza!')

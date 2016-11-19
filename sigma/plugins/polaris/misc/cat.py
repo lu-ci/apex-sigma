@@ -13,4 +13,4 @@ async def cat(cmd, message, args):
     out_text += image_url
     if CatAPIKey == '':
         out_text += '\n**Warning** No Api Key Is Present. Use of command is limited to 1000 per day.'
-    await cmd.reply(out_text)
+    await cmd.bot.send_message(message.channel, out_text)

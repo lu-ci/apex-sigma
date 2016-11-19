@@ -10,9 +10,9 @@ async def announce(cmd, message, args):
             for server in cmd.bot.servers:
                 await cmd.bot.send_message(server.default_channel, announcement)
                 n += 1
-            response = await cmd.reply('Announcement sent successfully to ' + str(n) + ' servers.')
+            response = await cmd.bot.send_message(message.channel, 'Announcement sent successfully to ' + str(n) + ' servers.')
             await asyncio.sleep(10)
             await cmd.bot.delete_message(response)
         else:
-            await cmd.reply(cmd.help())
+            await cmd.bot.send_message(message.channel, cmd.help())
             return

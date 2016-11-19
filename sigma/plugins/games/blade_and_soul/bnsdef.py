@@ -3,15 +3,14 @@ from .bns import fetchStats
 
 # Blade and Soul Defense Details API
 async def bnsdef(cmd, message, args):
-    query = message.content[len('bnsdef') + 1 + 3 + len(cmd.prefix):]
-    region = str(query[:query.find(' ')]).lower()
+    region = args[0].lower()
 
     if not region == 'na' and not region == 'eu':
         error_msg = 'Invalid Region: `' + region + '`\nThe command format is `' + cmd.prefix + 'bnsdef [region] [Character Name]`\nThe region can be `NA` or `EU` and the character name **CAN** contain spaces.'
-        await cmd.reply(error_msg)
+        await cmd.bot.send_message(message.channel, error_msg)
     else:
         error_msg = 'Something went wrong, API is unavailable or character does not exist.'
-        username = str(query[query.find(' ') + 1:]).lower()
+        username = ' '.join(args[1:])
         profile = fetchStats(region, username)
 
         try:
@@ -82,6 +81,6 @@ async def bnsdef(cmd, message, args):
                               '\nDebuff Defense: ' + nerf_def +
                               '\n(Rate: ' + nerf_def_rate + ')' +
                               '\n```')
-            await cmd.reply(def_stats_text)
+            await cmd.bot.send_message(message.channel, def_stats_text)
         except:
-            await cmd.reply(error_msg)
+            await cmd.bot.send_message(message.channel, error_msg)

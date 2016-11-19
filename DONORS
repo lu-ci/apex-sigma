@@ -1,10 +1,19 @@
 donors:
-  - Crunderwood
-  - Kreasu
-  - Amenophyckxs
-  - Patrice
-  - Mahum
-  - SpookyPixel
-  - Sophie
-  - Drewbie
-  - Valeth
+  - name: Crunderwood
+    avatar: "https://discordapp.com/api/users/146002691993108482/avatars/670915eb92bc3407aef07c148709e15a.jpg"
+  - name: Kreasu
+    avatar: "https://discordapp.com/api/users/191620253497819136/avatars/cd8ee657e324e21e900317ba2331cbf0.jpg"
+  - name: Amenophyckxs
+    avatar: "https://discordapp.com/api/users/95995895543246848/avatars/9bf7e3bbe74922f3ea27324158cf8f43.jpg"
+  - name: Patrice
+    avatar: "https://discordapp.com/api/users/129217348178542592/avatars/1effcf69e3286382b9615a400b698bfe.jpg"
+  - name: Mahum
+    avatar: "https://discordapp.com/api/users/213044951800479744/avatars/28a68aea208be6362575e84164106d7b.jpg"
+  - name: SpookyPixel
+    avatar: "https://discordapp.com/api/users/231499144517255168/avatars/0784f1b3bff02e7542ba4f7a00f59cc9.jpg"
+  - name: Sophie
+    avatar: "https://discordapp.com/api/users/133088040259158016/avatars/7527cee25a525bc87aef1f51473b24f6.jpg"
+  - name: Drewbie
+    avatar: "https://discordapp.com/api/users/201556233004646410/avatars/53cc60b4e918968b7b54fd641dfaddc8.jpg"
+  - name: Valeth
+    avatar: "https://discordapp.com/api/users/217078934976724992/avatars/721b59f8d36f04acc7b3c2421b42600f.jpg"

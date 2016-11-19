@@ -15,4 +15,4 @@ async def unflip(ev, message, args):
                  'ヘ(´° □°)ヘ┳━┳',
                  '┣ﾍ(≧∇≦ﾍ)… (≧∇≦)/┳━┳']
 
-        await ev.reply(random.choice(table))
+        await ev.bot.send_message(message.channel, random.choice(table))

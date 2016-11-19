@@ -7,7 +7,7 @@ async def stats(cmd, message, args):
 
     out_txt = codeblock('\n'.join(out), syntax='haskell')
 
-    stats_msg = await cmd.reply(out_txt)
+    stats_msg = await cmd.bot.send_message(message.channel, out_txt)
     await asyncio.sleep(60)
     await cmd.bot.delete_message(message)
     await cmd.bot.delete_message(stats_msg)

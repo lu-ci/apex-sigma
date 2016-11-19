@@ -9,7 +9,7 @@ async def mute(cmd, message, args):
     channel = message.channel
     server = message.server
     if not message.mentions:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
     user_q = message.mentions[0]
     overwrite = PermissionOverwrite()
@@ -21,12 +21,12 @@ async def mute(cmd, message, args):
                     if str(chan.type).lower() == 'text':
                         if check_write(user_q, chan):
                             await cmd.bot.edit_channel_permissions(chan, user_q, overwrite)
-                await cmd.reply('Execution Successful.\nUser **' + user_q.name + '** was muted')
+                await cmd.bot.send_message(message.channel, 'Execution Successful.\nUser **' + user_q.name + '** was muted')
             except Exception as e:
                 cmd.log.error(e)
-                await cmd.reply(str(e))
+                await cmd.bot.send_message(message.channel, str(e))
         else:
-            response = await cmd.reply(
+            response = await cmd.bot.send_message(message.channel, 
                 'Only a user with the **Manage Messages and Manage Roles** privilege can use this command. :x:')
             await asyncio.sleep(10)
             await cmd.bot.delete_message(response)

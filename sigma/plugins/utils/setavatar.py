@@ -36,4 +36,4 @@ async def setavatar(cmd, message, args):
             except ResourceWarning:
                 pass
             except Exception as e:
-                await cmd.reply(e)
+                await cmd.bot.send_message(message.channel, e)

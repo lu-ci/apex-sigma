@@ -2,7 +2,6 @@ import requests
 import json
 from lxml import html
 
-
 wk_base_url = 'https://www.wanikani.com/api/user/'
 
 
@@ -44,7 +43,7 @@ async def get_user_data(cmd, message, key=None, username=None):
             queue = requests.get(
                 url + '/study-queue').json()['requested_information']
         except ConnectionError as e:
-            cmd.reply('Failed to get user data.')
+            cmd.bot.send_message(message.channel, 'Failed to get user data.')
             cmd.log.error('{:s}'.format(e))
             raise e
 
@@ -72,7 +71,7 @@ async def get_user_data(cmd, message, key=None, username=None):
         if script != []:
             script = script[0].text.strip()
         else:
-            await cmd.reply("Error while parsing the page, profile not found or doesn't exist")
+            await cmd.bot.send_message(message.channel, "Error while parsing the page, profile not found or doesn't exist")
             return None
 
         script = script[script.find('var srsCounts'): script.find(
@@ -89,7 +88,7 @@ async def get_user_data(cmd, message, key=None, username=None):
     user['title'] = userinfo['title']
     user['level'] = userinfo['level']
     user['avatar'][0] = 'https://www.gravatar.com/avatar/' + \
-        userinfo['gravatar']
+                        userinfo['gravatar']
     user['creation_date'] = userinfo['creation_date']
     user['forums']['posts'] = userinfo['posts_count']
     user['forums']['topics'] = userinfo['topics_count']
@@ -102,7 +101,7 @@ async def get_user_data(cmd, message, key=None, username=None):
     try:
         user['avatar'][1] = requests.get(user['avatar'][0]).content
     except ConnectionError as e:
-        cmd.reply('Failed to get user avatar.')
+        cmd.bot.send_message(message.channel, 'Failed to get user avatar.')
         cmd.log.error('{:s}'.format(e))
 
     return user
@@ -122,27 +121,29 @@ async def get_key(cmd, message, args):
             username = args[0]
         except Exception as e:
             cmd.log.error(e)
-            await cmd.reply('Error while parsing the input message')
+            await cmd.bot.send_message(message.channel, 'Error while parsing the input message')
             return
 
     if 'username' not in locals():
         if 'user_id' not in locals():
-            await cmd.reply('No arguments passed')
+            await cmd.bot.send_message(message.channel, 'No arguments passed')
             return
         # a username was passed
         else:
-            query = "SELECT WK_KEY, WK_USERNAME from WANIKANI where USER_ID=?;"
-            key_cur = cmd.db.execute(query, str(user_id))
-            db_response = key_cur.fetchone()
-
-            if not db_response:
-                await cmd.reply('No assigned key or username was found\n'
+            query = {'UserID': int(user_id)}
+            search = cmd.db.find('WaniKani', query)
+            db_response = None
+            for result in search:
+                db_response = result
+            try:
+                key = db_response['WKAPIKey']
+                username = db_response['WKUsername']
+            except:
+                await cmd.bot.send_message(message.channel, 'No assigned key or username was found\n'
                                 'You can add it by sending me a direct message, for example\n'
-                                'For **Advanced Stats**:\n\t`{0:s}wksave key <your API key>`\nor For **Basic Stats**:\n\t`{0:s}wksave username <your username>`.'.format(cmd.prefix))
+                                'For **Advanced Stats**:\n\t`{0:s}wksave key <your API key>`\nor For **Basic Stats**:\n\t`{0:s}wksave username <your username>`.'.format(
+                    cmd.prefix))
 
                 return (None, None)
-
-            key = db_response[0]
-            username = db_response[1]
 
     return (key, username)

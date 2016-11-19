@@ -7,7 +7,7 @@ async def gravatar(cmd, message, args):
         email = args[0]
         email = email.encode('utf-8')
         gravatar_url = "https://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
-        await cmd.reply(gravatar_url)
+        await cmd.bot.send_message(message.channel, gravatar_url)
     else:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return

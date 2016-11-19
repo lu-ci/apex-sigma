@@ -13,4 +13,4 @@ async def nyaa(cmd, message, args):
     elements = root.cssselect('#posts .post-wrapper div a img')
     image = elements[0].attrib['src']
 
-    await cmd.reply(image)
+    await cmd.bot.send_message(message.channel, image)

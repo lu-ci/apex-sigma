@@ -8,7 +8,7 @@ async def rip(cmd, message, args):
     mentioned_avatar = ''
 
     if not message.mentions:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
 
     for user in message.mentions:
@@ -23,4 +23,4 @@ async def rip(cmd, message, args):
     base.paste(tomb, (0, 0), tomb)
     base.save('cache/rip/rip_' + message.author.id + '.png')
 
-    await cmd.reply_file('cache/rip/rip_' + message.author.id + '.png')
+    await cmd.bot.send_file(message.channel, 'cache/rip/rip_' + message.author.id + '.png')

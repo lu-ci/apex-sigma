@@ -21,7 +21,7 @@ async def steam(cmd, message, args):
             response = response_call['response']
             userid = response['steamid']
         except Exception as e:
-            await cmd.reply('User Not Found Or Profile Private...')
+            await cmd.bot.send_message(message.channel, 'User Not Found Or Profile Private...')
             return
         gamecount_call = steamapi.call('IPlayerService.GetOwnedGames', steamid=userid, include_appinfo=False,
                                        include_played_free_games=True, appids_filter=-1)
@@ -70,8 +70,8 @@ async def steam(cmd, message, args):
             else:
                 imgdraw.text((2, 165), '*', (102, 102, 153), font=font)
             base.save('cache/steam_' + message.author.id + '.png')
-        await cmd.reply_file('cache/steam_' + message.author.id + '.png')
+        await cmd.bot.send_file(message.channel, 'cache/steam_' + message.author.id + '.png')
         os.remove('cache/steam_' + message.author.id + '.png')
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply('An unknown error occurred.\nError: ' + str(e))
+        await cmd.bot.send_message(message.channel, 'An unknown error occurred.\nError: ' + str(e))

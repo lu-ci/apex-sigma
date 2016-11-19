@@ -12,7 +12,7 @@ async def rl(cmd, message, args):
     try:
         platform, user = rl_input.split(maxsplit=1)
     except:
-        await cmd.reply('Wrong input format!')
+        await cmd.bot.send_message(message.channel, 'Wrong input format!')
         return
 
     if platform.lower() == 'steam':
@@ -22,7 +22,7 @@ async def rl(cmd, message, args):
     elif platform.lower() == 'xbox':
         platform = '3'
     else:
-        await cmd.reply('Platform unrecognized.')
+        await cmd.bot.send_message(message.channel, 'Platform unrecognized.')
         return
 
     url_base = 'http://rltracker.pro/api/profile/get?api_key=' + RLAPIKey + '&platform=' + platform + '&id=' + user
@@ -106,12 +106,12 @@ async def rl(cmd, message, args):
         imgdraw.text((394, 146), str(str_rn_rank), (255, 255, 255), font=font3)
 
         base.save('cache/rl_' + message.author.id + '.png')
-        await cmd.reply_file(message.channel, 'cache/rl_' + message.author.id + '.png')
-        await cmd.reply('You can find more at:\n<' + profile_url + '>')
+        await cmd.bot.send_file(message.channel, 'cache/rl_' + message.author.id + '.png')
+        await cmd.bot.send_message(message.channel, 'You can find more at:\n<' + profile_url + '>')
         os.remove('cache/rl_' + message.author.id + '.png')
-    except Exception:
+    except SyntaxError:
         try:
             error = rl_data['error']
-            await cmd.reply('Error: ' + str(error))
+            await cmd.bot.send_message(message.channel, 'Error: ' + str(error))
         except Exception:
-            await cmd.reply('Could not retrieve webpage.\nUser not found or the service goofed.')
+            await cmd.bot.send_message(message.channel, 'Could not retrieve webpage.\nUser not found or the service goofed.')

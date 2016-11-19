@@ -1,0 +1,15 @@
+name: HashTag Definition
+
+categories:
+  - searches
+
+enabled: true
+
+commands:
+  - name:    tagdef
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} ff"
+    description:
+      Shows the top TagDef definition for the given hashtag.

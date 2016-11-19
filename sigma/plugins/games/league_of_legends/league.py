@@ -16,7 +16,7 @@ async def league(cmd, message, args):
         region, smnr_name = lol_input.lower().split(maxsplit=1)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.reply(str(e))
+        await cmd.bot.send_message(message.channel, str(e))
         return
 
     smnr_name_table = smnr_name.replace(' ', '')
@@ -110,11 +110,11 @@ async def league(cmd, message, args):
         except SyntaxError:
             normal_text = 'None'
         if ranked_text == 'None' and normal_text == 'None':
-            await cmd.reply('No stats found.')
+            await cmd.bot.send_message(message.channel, 'No stats found.')
         else:
-            await cmd.reply_file('cache/lol/profile_' + message.author.id + '.png')
-            await cmd.reply('Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
+            await cmd.bot.send_file(message.channel, 'cache/lol/profile_' + message.author.id + '.png')
+            await cmd.bot.send_message(message.channel, 'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
     # except Exception as e:
     except SyntaxError:
         # `cmd.log.error(e)
-        await cmd.reply('Something went wrong, PANIC!')
+        await cmd.bot.send_message(message.channel, 'Something went wrong, PANIC!')

@@ -57,8 +57,8 @@ async def express(cmd, message, args):
         if express_q > 100:
             express_q = 100
         result = table[int(express_q / 100 * (len(table) - 1))]
-        await cmd.reply(result)
+        await cmd.bot.send_message(message.channel, result)
     else:
-        await cmd.reply(cmd.help())
+        await cmd.bot.send_message(message.channel, cmd.help())
         return
 
