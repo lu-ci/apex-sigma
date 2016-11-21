@@ -7,6 +7,7 @@ Command |  Description |  Usage
 `>>csgo`  |  Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!)  |  `>>csgo thealeksaradovic`
 `>>hearthstone`  |  Hearthstone card lookup. Input the card name after the command then type the number appropriate to the card you were looking for.  |  `>>hearthstone Murloc Raider`
 `>>league`  |  Shows the players League of Legends statistics of inputed Summoner Name. You can also place a gamemode between the Region and Summoner Name to get statistics for it.  |  `>>league EUNE AXAz0r`
+`>>lolbans`  |  Shows the top League of Legends champion bans for each tier.  |  `>>lolbans`
 `>>mtg`  |  Searches the Magic The Gathering Database for the inputed card.  |  `>>mtg Archangel Avacyn`
 `>>osu`  |  Generates a signature image with the users stats for osu.  |  `>>osu AXAz0r`
 `>>overwatch`  |  Shows the Overwatch statistics of inputed Battle.Net ID. (Warning! Case Sensitive!)  |  `>>overwatch EU Aurora#22978`
@@ -36,13 +37,14 @@ Command |  Description |  Usage
 `>>keyvis`  |  Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.  |  `>>keyvis rewrite harvest festa`
 `>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
 `>>danbooru`  |  Searches DanBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>danbooru red_head`
-`>>hentai`  |  Searches both Gelbooru and Danbooru for selected tags, if no tags are specified, it gives two random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
+`>>hentai`  |  Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified, it gives three random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
 `>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
 `>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
 `>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
 `>>leave`  |  Leaves the server with the inputted id. Bot Special Permitted/Owner Only.  |  `>>leave 123456789`
 `>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
 `>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Special Permitted/Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
+`>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Special Permitted/Owner Only.  |  `>>inviteowner 200751504175398912`
 `>>coinflip`  |  Flips a coin. Nothing complex. You can try guessing the results by typing either Heads or Tails after the command.  |  `>>coinflip Heads`
 `>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
@@ -69,7 +71,7 @@ Command |  Description |  Usage
 `>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
 `>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
 `>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
-`>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Requires the user to be a server Administrator.  |  `>>blockinvites`
+`>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
 `>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
 `>>uid`  |  Shows the User ID of the mentioned user. If no user is mentioned, it will show your ID instead.  |  `>>uid @person`
 `>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
@@ -85,6 +87,8 @@ Command |  Description |  Usage
 `>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
+`>>deezer`  |  List the songs currently in the user's Flow queue. The profile ID can be found by opening your profile page on Deezer.  |  `>>deezer 938108141`
+`>>music`  |  Searches for music tracks by the given name. Lists all the results and let's you pick the one you want.  |  `>>music Lose Yourself`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
 `>>img`  |  Searches Google for your inputted image query. Displays a random result.  |  `>>img Lasagna`
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`

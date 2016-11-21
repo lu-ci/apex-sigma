@@ -59,3 +59,13 @@ commands:
     description:
       Send a message to either a channel or user (by ID) on the server with the given ID.
       Bot Special Permitted/Owner Only.
+
+  - name: inviteowner
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 200751504175398912"
+    description:
+      Creates a one-use invite link to a server the bot is a part of by inputted ID.
+      The purpose of this command is to investigate possibly abusive servers.
+      Bot Special Permitted/Owner Only.
