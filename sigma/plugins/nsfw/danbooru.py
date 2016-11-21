@@ -11,9 +11,17 @@ async def danbooru(cmd, message, args):
         resource = 'https://danbooru.donmai.us/post/index.json?&tags=' + tag
         file_url_base = 'https://danbooru.donmai.us'
         data = requests.get(resource).json()
-        chosen_post = random.choice(data)
-        post_url = chosen_post['file_url']
-        url = file_url_base + post_url
+        links = []
+        for post in data:
+            try:
+                links.append(post['file_url'])
+            except:
+                pass
+        if len(links) == 0:
+            await cmd.bot.send_message(message.channel, 'Nothing found...')
+            return
+        chosen_post = random.choice(links)
+        url = file_url_base + chosen_post
         await cmd.bot.send_message(message.channel, url)
     except Exception as e:
         cmd.log.error(e)
