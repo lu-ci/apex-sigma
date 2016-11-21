@@ -90,7 +90,7 @@ commands:
   - name:     nyaa
     global:   true
     enabled:  true
-    sfw:      false
+    sfw:      true
     usage:    "{pfx:s}{cmd:s}"
     description:
       Provides a random Nekomimi image.

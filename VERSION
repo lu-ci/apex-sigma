@@ -2,6 +2,6 @@ beta: true
 build_date: 1479436298
 version:
   major: 0
-  minor: 97
-  patch: 15
+  minor: 98
+  patch: 40
 codename: 'Ayano'

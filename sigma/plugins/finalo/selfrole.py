@@ -1,5 +1,4 @@
 import asyncio
-from config import permitted_id
 
 target_channel = ['roles']
 self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumble [DN]', 'Protect [DN]', 'PvE [DN]',
@@ -12,12 +11,9 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Revelation Online', 'PvE [Rev]', 'PvP [Rev]',
               'Team Instinct', 'Team Valor', 'Team Mystic', 'Pokémon',
               'Artists', 'Streamers', 'Entertainers ✿', 'Coders', 'Cosplayers',
-              'Welcome Party', 'Cake Shop', 'Weebs', ]
+              'Welcome Party', 'Cake Shop', 'Weebs',
+              'Singers', 'Intrumentalists', 'Showtime']
 timeout = 10
-
-cmd_addAssingableRole = 'addar'
-cmd_removeAssingableRole = 'remar'
-
 
 async def selfrole(ev, message, args):
     if message.channel.id == '222882496113672193':
