@@ -36,7 +36,7 @@ async def hentai(cmd, message, args):
             choice = random.choice(posts)
             r34_url = str(choice.attrib['file_url']).replace('//img', 'http://img')
         except:
-            r34_url = 'Nothing on Gelbooru'
+            r34_url = 'Nothing on Rule34'
         # Final
         out_text = 'Danbooru: ' + dan_url + '\nGelbooru: ' + gel_url + '\nRule34: ' + r34_url
         await cmd.bot.send_message(message.channel, out_text)

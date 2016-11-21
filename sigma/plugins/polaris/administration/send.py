@@ -58,7 +58,7 @@ async def send(cmd, message, args):
                             if found_channel == 0:
                                 await cmd.bot.send_message(message.channel, 'No channel by that ID was found on.')
                         if mode == 'u':
-                            if found_channel == 0:
+                            if found_user == 0:
                                 await cmd.bot.send_message(message.channel, 'No user by that ID was found.')
 
                 except Exception as e:
