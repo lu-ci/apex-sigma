@@ -59,8 +59,8 @@ commands:
     sfw:     false
     usage:   "{pfx:s}{cmd:s} deez_nuts"
     description:
-      Searches both Gelbooru and Danbooru for selected tags, if no tags are specified,
-      it gives two random image. If the wanted tag contains spaces type it
+      Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified,
+      it gives three random image. If the wanted tag contains spaces type it
       with an underscore instead as spaces are used to separate multiple tags.
 
   - name:     ehentai

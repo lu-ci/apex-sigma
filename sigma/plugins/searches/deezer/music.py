@@ -60,8 +60,8 @@ async def music(cmd, message, args):
             imgdraw = ImageDraw.Draw(base)
             imgdraw.text((132, -5), artist, (255, 255, 255), font=font)
             imgdraw.text((165, 44), title, (255, 255, 255), font=font)
-            imgdraw.text((261, 92), album, (255, 255, 255), font=font)
-            imgdraw.text((421, 46), duration, (255, 255, 255), font=font2)
+            imgdraw.text((262, 92), album, (255, 255, 255), font=font)
+            imgdraw.text((424, 46), duration, (255, 255, 255), font=font2)
 
             base.save('cache/track_' + message.author.id + '.png')
 
