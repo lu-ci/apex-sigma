@@ -5,7 +5,8 @@ async def help(cmd, message, args):
     help_msg = None
     timeout = 60
     if not args:
-        help_msg = await cmd.bot.send_message(message.channel, '**Command List**:\n<https://github.com/aurora-pro/apex-sigma/blob/dev/COMMANDLIST.md>')
+        help_msg = await cmd.bot.send_message(message.channel,
+                                              '**Command List**:\n<https://github.com/aurora-pro/apex-sigma/blob/dev/COMMANDLIST.md>')
 
     else:
         try:
@@ -18,6 +19,9 @@ async def help(cmd, message, args):
 
     try:
         await cmd.bot.delete_message(help_msg)
+    except Exception as e:
+        cmd.log.error('Help Message Deletion Failed {:s}'.format(e))
+    try:
         await cmd.bot.delete_message(message)
     except Exception as e:
         cmd.log.error('Help Message Deletion Failed {:s}'.format(e))
