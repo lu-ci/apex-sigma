@@ -2,7 +2,8 @@ import random
 
 
 async def slots(cmd, message, args):
-    symbols = [':sunny:', ':crescent_moon:', ':eggplant:', ':gun:', ':diamond_shape_with_a_dot_inside:', ':bell:', ':maple_leaf: ']
+    symbols = [':sunny:', ':crescent_moon:', ':eggplant:', ':gun:', ':diamond_shape_with_a_dot_inside:', ':bell:',
+               ':maple_leaf:', ':musical_note:', ':gem:', ':fleur_de_lis:', ':trident:']
     res_1 = random.choice(symbols)
     res_2 = random.choice(symbols)
     res_3 = random.choice(symbols)
