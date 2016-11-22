@@ -43,3 +43,11 @@ commands:
     description:
       Play Rock-Paper-Scissors with the bot.
       No cheating, we swear. Maybe she just doesn't like you.
+
+  - name: slots
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Spin the slot machine and test your luck!
