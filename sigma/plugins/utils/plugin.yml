@@ -138,6 +138,14 @@ commands:
     description:
       Shows the details about the song currently playing on the selected music category of Discord.FM.
 
+  - name:    bots
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Lists the bots on the server where the command is used and shows their status.
+
 events:
   - name:    pmredirect
     type:    message
