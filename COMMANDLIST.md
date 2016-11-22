@@ -52,6 +52,7 @@ Command |  Description |  Usage
 `>>slots`  |  Spin the slot machine and test your luck!  |  `>>slots`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
 `>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
+`>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
 `>>greet`  |  Toggles the greet message in the channel it is written in. Whenever a user joins the server the greet messsage will be displayed. (Server Administrator Only)  |  `>>greet`
 `>>greetmsg`  |  Sets the greet message text. Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current greet message. (Server Administrator Only)  |  `>>greetmsg Hello %user_mention% and welcoem to %server_name%!`
 `>>bye`  |  Toggles the bye message in the channel it is written in. Whenever a user leaves the server the bye messsage will be displayed. (Server Administrator Only)  |  `>>bye`
@@ -90,6 +91,7 @@ Command |  Description |  Usage
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
 `>>deezer`  |  List the songs currently in the user's Flow queue. The profile ID can be found by opening your profile page on Deezer.  |  `>>deezer 938108141`
 `>>music`  |  Searches for music tracks by the given name. Lists all the results and let's you pick the one you want.  |  `>>music Lose Yourself`
+`>>recipe`  |  Searches the internet for a recipe you desire. We'll try to provide as much info as possible. Just don't burn your food and stuff.  |  `>>recipe Chicken in Curry`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
 `>>img`  |  Searches Google for your inputted image query. Displays a random result.  |  `>>img Lasagna`
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`

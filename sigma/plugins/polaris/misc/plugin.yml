@@ -23,3 +23,14 @@ commands:
     description:
       Wuff, wuff, bork.
       Cutest little puppers, loyalty and awesomeness.
+
+  - name: numberfact
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 02/29 Date"
+    description:
+      Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random.
+      If no type is inputted, the type will be random.
+      The accepted types are trivia, date, math and year.
+      The date system is the US Month/Day ordering system.
