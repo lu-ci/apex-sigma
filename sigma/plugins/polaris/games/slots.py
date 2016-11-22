@@ -3,7 +3,8 @@ import random
 
 async def slots(cmd, message, args):
     symbols = [':sunny:', ':crescent_moon:', ':eggplant:', ':gun:', ':diamond_shape_with_a_dot_inside:', ':bell:',
-               ':maple_leaf:', ':musical_note:', ':gem:', ':fleur_de_lis:', ':trident:']
+               ':maple_leaf:', ':musical_note:', ':gem:', ':fleur_de_lis:', ':trident:', ':knife:', ':fire:',
+               ':clown:', ':radioactive:', ':green_heart:', ':telephone:', ':hamburger:', ':banana:']
     res_1 = random.choice(symbols)
     res_2 = random.choice(symbols)
     res_3 = random.choice(symbols)
@@ -38,5 +39,5 @@ async def slots(cmd, message, args):
         results = 'You\'ve been awarded ' + str(pts) + ' points.'
     else:
         results = 'Sorry, you didn\'t win anything this time...'
-    out = slot_view + '\n' + results
+    out = slot_view + '\n\n' + results
     await cmd.bot.send_message(message.channel, out)
