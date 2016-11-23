@@ -102,15 +102,6 @@ commands:
     description:
       Set the avatar picture. (Requires premission)
 
-  # disabled: obsolete?
-  - name:    mkcmdlist
-    global:  true
-    enabled: false
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Generates the Markdown file of the command list for GitHub (Owner Only).
-
   - name:    apikeys
     global:  true
     enabled: true
