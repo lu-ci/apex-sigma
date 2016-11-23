@@ -1,7 +1,7 @@
 beta: false
-build_date: 1479878979
+build_date: 1479885436
 version:
   major: 1
   minor: 1
-  patch: 15
+  patch: 17
 codename: 'Kanade'
