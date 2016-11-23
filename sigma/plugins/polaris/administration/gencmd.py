@@ -23,7 +23,7 @@ async def gencmd(cmd, message, args):
                         try:
                             for command in plugin_data['commands']:
                                 plugin_name = command['name']
-                                plugin_usage = command['usage'].replace('{pfx:s}', Prefix).replace('{cmd:s}',
+                                plugin_usage = command['usage'].replace('{pfx:s}', '>>').replace('{cmd:s}',
                                                                                                    plugin_name)
                                 plugin_desc = command['description']
                                 if category == category_curr:
