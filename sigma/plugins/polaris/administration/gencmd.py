@@ -20,7 +20,7 @@ async def gencmd(cmd, message, args):
                                 plugin_name = command['name']
                                 plugin_usage = command['usage'].replace('{pfx:s}', Prefix).replace('{cmd:s}', plugin_name)
                                 plugin_desc = command['description']
-                                out_text += '\n`' + Prefix + '' + plugin_name + '`  |  ' + plugin_desc + '  |  `' + plugin_usage + '`'
+                                out_text += '\n`>>' + plugin_name + '`  |  ' + plugin_desc + '  |  `' + plugin_usage + '`'
                                 n += 1
                         except:
                             pass
