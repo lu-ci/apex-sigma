@@ -1,6 +1,8 @@
 import os
 import yaml
 from config import Prefix, permitted_id
+
+
 async def gencmd(cmd, message, args):
     if message.author.id in permitted_id:
         directory = 'sigma/plugins'
@@ -18,7 +20,8 @@ async def gencmd(cmd, message, args):
                         try:
                             for command in plugin_data['commands']:
                                 plugin_name = command['name']
-                                plugin_usage = command['usage'].replace('{pfx:s}', Prefix).replace('{cmd:s}', plugin_name)
+                                plugin_usage = command['usage'].replace('{pfx:s}', Prefix).replace('{cmd:s}',
+                                                                                                   plugin_name)
                                 plugin_desc = command['description']
                                 out_text += '\n`>>' + plugin_name + '`  |  ' + plugin_desc + '  |  `' + plugin_usage + '`'
                                 n += 1
