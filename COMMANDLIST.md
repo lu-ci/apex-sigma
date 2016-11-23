@@ -129,6 +129,7 @@ Command |  Description |  Usage
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`
 `>>imdb`  |  Searches the Internet Movie Database for a Title of your choice.  |  `>>imdb A Clockwork Orange`
 `>>imgur`  |  Searches through Imgur posts for the given title. Do remember that it is not Image-Only  |  `>>imgur Game Grumps`
+`>>itad`  |  Lists the latest deals from IsThereAnyDeal.  |  `>>itad`
 `>>lastfm`  |  List the users top tracks from LastFM.  |  `>>lastfm axaz0r`
 `>>anime`  |  Searches MyAnimeList for anime by given name. Generates a really cool image with the details!  |  `>>anime Terror in Resonance`
 `>>manga`  |  Searches MyAnimeList for manga by given name. Generates a really cool image with the details!  |  `>>manga Silent Voice`
@@ -144,4 +145,18 @@ Command |  Description |  Usage
 `>>help`  |  Returns the list of command modules or gives you the description and usage for a selected command.  |  `>>help [command]`
 `>>echo`  |  Repeats the given text. (Bot Owner Only)  |  `>>echo Hello world!`
 `>>remind`  |  Sets a timer in seconds and displays the message inputted after it's done.  |  `>>remind 15 LEEEEROOOOY JEEEEEENKIIIIINS!`
+`>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
+`>>bulkmsg`  |  Sends the inputed message to every single person on the server. (Requires permission)  |  `>>bulkmsg Hello everyone!`
+`>>stats`  |  Shows the statistics of Sigma.  |  `>>stats`
+`>>setgame`  |  Sets the bots playing states to whatever you wish. (Requires permission)  |  `>>setgame New Game!`
+`>>servers`  |  Shows all the servers Sigma is on.  |  `>>servers`
+`>>kill`  |  Forcefully kill the bot. (Requires permission)  |  `>>kill`
+`>>weather`  |  Shows weather data for the selected location. Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.  |  `>>weather Melbourne Australia`
+`>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
+`>>setavatar`  |  Set the avatar picture. (Requires premission)  |  `>>setavatar url`
+`>>mkcmdlist`  |  Generates the Markdown file of the command list for GitHub (Owner Only).  |  `>>mkcmdlist`
+`>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Permitted ID Only.  |  `>>apikeys`
+`>>setname`  |  Sets the username of the bot to the inputted one. Permitted ID Only.  |  `>>setname Charlotte`
+`>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
+`>>bots`  |  Lists the bots on the server where the command is used and shows their status.  |  `>>bots`
 `>>twitch`  |  Fetches information about a streamer.  |  `>>twitch`
