@@ -1,7 +1,7 @@
 name: Twitch
 
 categories:
-  - utilities
+  - utils
 
 enabled: true
 

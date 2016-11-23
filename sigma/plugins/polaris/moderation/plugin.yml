@@ -1,7 +1,7 @@
-name: Polaris Sonata Administration
+name: Polaris Sonata Moderation
 
 categories:
-  - polaris
+  - moderation
 
 enabled: true
 

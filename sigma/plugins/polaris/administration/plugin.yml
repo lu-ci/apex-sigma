@@ -1,7 +1,7 @@
 name: Polaris Sonata Administration
 
 categories:
-  - polaris
+  - administration
 
 enabled: true
 
@@ -68,4 +68,13 @@ commands:
     description:
       Creates a one-use invite link to a server the bot is a part of by inputted ID.
       The purpose of this command is to investigate possibly abusive servers.
+      Bot Special Permitted/Owner Only.
+
+  - name: gencmd
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Generates the bot's COMMANDLIST.md file.
       Bot Special Permitted/Owner Only.
