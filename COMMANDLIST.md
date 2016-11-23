@@ -154,7 +154,6 @@ Command |  Description |  Usage
 `>>weather`  |  Shows weather data for the selected location. Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.  |  `>>weather Melbourne Australia`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
 `>>setavatar`  |  Set the avatar picture. (Requires premission)  |  `>>setavatar url`
-`>>mkcmdlist`  |  Generates the Markdown file of the command list for GitHub (Owner Only).  |  `>>mkcmdlist`
 `>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Permitted ID Only.  |  `>>apikeys`
 `>>setname`  |  Sets the username of the bot to the inputted one. Permitted ID Only.  |  `>>setname Charlotte`
 `>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
