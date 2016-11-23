@@ -1,0 +1,16 @@
+name: Food
+
+categories:
+  - searches
+
+enabled: true
+
+commands:
+  - name:    recipe
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Chicken in Curry"
+    description:
+      Searches the internet for a recipe you desire. We'll try to provide as much info as possible.
+      Just don't burn your food and stuff.

@@ -1,7 +1,7 @@
-beta: true
-build_date: 1479436298
+beta: false
+build_date: 1479812860
 version:
-  major: 0
-  minor: 97
-  patch: 15
-codename: 'Ayano'
+  major: 1
+  minor: 0
+  patch: 1
+codename: 'Kanade'

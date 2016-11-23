@@ -12,6 +12,6 @@ async def wa(cmd, message, args):
         try:
             result = (next(results.results).text)
         except StopIteration:
-            await cmd.bot.send_message(message.channel, 'Error, not a mathematical problem.')
+            await cmd.bot.send_message(message.channel, 'We ran into an error, we were unable to process that.')
             return
         await cmd.bot.send_message(message.channel, 'Results:\n```' + result + '\n```')
