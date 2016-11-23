@@ -8,8 +8,6 @@ async def gencmd(cmd, message, args):
         directory = 'sigma/plugins'
 
         out_text = '#Sigma\'s List of Commands'
-        out_text += '\nCommand |  Description |  Usage'
-        out_text += '\n--------|--------------|-------'
         n = 0
         category_curr = 'None'
         for root, dirs, files in os.walk(directory):
