@@ -47,35 +47,28 @@ async def keyroute(cmd, message, args):
                 else:
                     char_name = char_choice['name']
                     char_name_j = char_choice['name_j']
-                    char_desc = char_choice['description']
                     route = char_choice['route']
+                    details = char_choice['details']
+                    description = char_choice['description']
                     if route:
-                        route_out = ''
-                        for choice in route:
-                            route_out += '\n - \"' + choice.title() + '\"'
-                        route_out = route_out[:-1]
+                        route_file = cmd.resource('routes/' + route + '.txt')
+                        send_route = True
                     else:
-                        route_out = 'There Are No Choices On This Route'
-                    detail_list = []
-                    detail_list.append(['Measurements', char_choice['measurements']])
-                    detail_list.append(['Birthday', char_choice['birthday']])
-                    detail_list.append(['Hair', char_choice['hair']])
-                    detail_list.append(['Eyes', char_choice['eyes']])
-                    detail_list.append(['Body', char_choice['body']])
-                    detail_list.append(['Clothes', char_choice['clothes']])
-                    detail_list.append(['Items', char_choice['items']])
-                    detail_list.append(['Personality', char_choice['personality']])
-                    detail_list.append(['Role', char_choice['role']])
-                    detail_list.append(['Subject Of', char_choice['subject_of']])
-                    detail_list.append(['Subject Of (Sexual)', char_choice['subject_of_ex']])
-                    details = boop(detail_list)
-                    out = 'Name: **' + char_name + '** | `' + char_name_j + '`'
-                    out += '\n```\n' + details + '\n```'
-                    out += '\n```\n' + char_desc + '\n```'
-                    out += '\nThe Route Walkthrough is in the text file below.'
-                    route_out = 'Route Walkthrough for **' + char_name + '** from **' + vn_name + '** :\n```' + route_out + '\n```'
-                    with open('cache/key_route_' + message.author.id + '.txt', "w") as text_file:
-                        text_file.write(route_out)
-                    # await cmd.bot.send_message(message.channel, out)
-                    await cmd.bot.send_file(message.channel, 'cache/key_route_' + message.author.id + '.txt', content=out)
-                    os.remove('cache/key_route_' + message.author.id + '.txt')
+                        send_route = False
+                    out = 'Name: **' + char_name + '**'
+                    if char_name_j:
+                        out += ' | `' + char_name_j + '`'
+                    if details:
+                        detail_list = []
+                        for detail in sorted(details):
+                            detail_list.append([detail.title().replace('_Ex', '_(Sexual)'), details[detail].title()])
+                        details_out = boop(detail_list).replace('_', ' ')
+                        out += '\n```\n' + details_out + '\n```'
+                    if description:
+                        out += '\n```\n' + description + '\n```'
+                    if send_route:
+                        out += '\nThe Route Walkthrough is in the text file below.'
+                        await cmd.bot.send_file(message.channel, route_file, content=out)
+                    else:
+                        out += '\nThis Route has no choices or the choices are not important.'
+                        await cmd.bot.send_message(message.channel, out)
