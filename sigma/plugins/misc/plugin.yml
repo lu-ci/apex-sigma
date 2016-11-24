@@ -46,6 +46,47 @@ commands:
     description:
       Provides a random Yo Momma insult.
 
+  - name: cat
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random cat image.
+      You know you want to use this command at least 300 times/day.
+
+  - name: dog
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Wuff, wuff, bork.
+      Cutest little puppers, loyalty and awesomeness.
+
+  - name: keyroute
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Rewrite Shizuru"
+    description:
+      Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route.
+      This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite,
+      Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei.
+      Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.
+
+
+  - name: numberfact
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 02/29 Date"
+    description:
+      Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random.
+      If no type is inputted, the type will be random.
+      The accepted types are trivia, date, math and year.
+      The date system is the US Month/Day ordering system.
+
 events:
   - name:    cleverbot
     type:    mention
@@ -79,3 +120,5 @@ events:
     sfw:     true
     description:
       Accepts the terms and conditions of the WaniKani Community Discord Server.
+
+

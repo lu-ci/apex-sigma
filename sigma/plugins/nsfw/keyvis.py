@@ -4,7 +4,6 @@ from .visual_novels import key_vn_list
 
 
 async def keyvis(cmd, message, args):
-    choice = None
 
     if not args:
         choice = random.choice(list(key_vn_list.keys()))

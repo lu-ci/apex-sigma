@@ -1,0 +1,147 @@
+vns:
+
+  - name: "Air"
+    triggers:
+      - "air"
+    characters:
+      - name: "Kamio Misuzu"
+        name_j: "神尾 観鈴"
+        route:
+          - "Consider Other Tools"
+          - "Run Away"
+          - "Tell Her"
+          - "Run Away"
+          - "Transfer It Back To The Girl"
+          - "Try Calling On It"
+          - "Behave"
+          - "Show Defiance"
+          - "Answer Honestly"
+          - "I Can Drink"
+          - "Please Do"
+          - "Retry"
+          - "Go Back Along The Road"
+          - "Ask For The Ice Cream"
+          - "The Cabinets"
+          - "Try To Give Her A Proper Answer"
+          - "Help Her"
+          - "It's Super Pretty"
+          - "Show it to her"
+          - "What Kind Of Punishment?"
+          - "I'm Tired. Time To Sleep"
+          - "Bread"
+          - "The Right Side Of The Map"
+          - "Try Talking To It First"
+          - "Do it a favor. any favor"
+          - "Ask about the bandana"
+          - "Yes tell me"
+          - "Don't treat her"
+          - "Put it to practice"
+          - "Takeda Store"
+          - "Let it see the puppet show"
+          - "Probably"
+          - "Let me think about it"
+          - "Reject"
+          - "Give it to Misuzu after buying it"
+          - "Say No problem."
+          - "No thanks"
+          - "No way"
+          - "Play with your friends"
+          - "Retaliate"
+          - "Throw her out powerfully"
+          - "I'm just wasting time"
+          - "Show her the puppet show"
+          - "To the Kamio home"
+          - "I don't dislike them"
+          - "Go out and take a walk"
+          - "Go further"
+          - "Check it out"
+          - "Try to explain the situation"
+          - "Be bold and borrow the stegosaurus T-shirt"
+          - "Change back to the wet T-shirt"
+          - "Market street"
+          - "Inside the clinic"
+          - "Try to make use of this meaningless interval"
+          - "Walk towards the station"
+          - "Pick it up and return it"
+          - "Stab her"
+          - "Taste the bone"
+          - "Eat before leaving"
+          - "Leave her alone"
+          - "Accompany her till the very end"
+          - "Tease her more"
+          - "Stop asking about the bandana"
+          - "Go make money at the shopping district"
+          - "Look for Kano myself"
+          - "Practice my puppet show"
+          - "Accept"
+          - "Tell her we'll go look for Potato together"
+          - "White coat"
+          - "The cyborg has escaped from the base!"
+          - "Open it"
+          - "They have to be younger than me"
+          - "Eavesdrop some more"
+          - "Continue listening"
+          - "Use Houjutsu to open the lock"
+          - "Don't get on"
+          - "I'll continue to be with Kano"
+          - "Shrine"
+          - "Bus stop"
+      - name: "Kanna"
+        name_j: "神奈"
+      - name: "Kirishima Kano"
+        name_j: "霧島 佳乃"
+      - name: "Toono Minagi"
+        name_j: "遠野 美凪"
+      - name: "Air"
+        name_j: null
+
+  - name: "Clannad"
+    triggers:
+      - "clan"
+
+  - name: "Tomoyo After ~It's A Wonderful Life~"
+    triggers:
+      - "tomo"
+
+  - name: "Little Busters!"
+    triggers:
+      - "lit"
+    excluders:
+      - "ecs"
+      - "ex"
+
+  - name: "Little Busters! Ecstacy"
+    triggers:
+     - "ecs"
+     - "ex"
+
+  - name: "Kud Wafter"
+    triggers:
+      - "kud"
+
+  - name: "Rewrite"
+    triggers:
+      - "rewr"
+    excluders:
+      - "harv"
+
+  - name: "Rewrite Harvest Festa"
+    triggers:
+      - "harv"
+
+  - name: "Angel Beats! 1st Beat"
+    triggers:
+      - "ang"
+
+  - name: "One: Kagayaku Kisetsu e"
+    triggers:
+      - "one"
+
+  - name: "Moon."
+    triggers:
+      - "moon"
+
+  - name: "Dousei"
+    triggers:
+      - "dou"
+
