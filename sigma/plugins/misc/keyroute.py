@@ -35,7 +35,7 @@ async def keyroute(cmd, message, args):
                 vn_name = vn_choice['name']
                 char_choice = None
                 for char in vn_choice['characters']:
-                    if character in char['name'].lower():
+                    if character in char['name'].lower() or character in char['name_j'].lower():
                         char_choice = char
                         break
                 if not char_choice:
