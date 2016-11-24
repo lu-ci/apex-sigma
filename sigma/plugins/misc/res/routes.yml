@@ -8,6 +8,17 @@ vns:
         description:
           "A school girl attending the school in the town where the story takes place.
           Lives with her mother Haruko in an isolated house. Always smiling, lively and always strong."
+        measurements: "Height: 159cm, Weight: 46kg, Bust-Waist-Hips: 83-55-82cm"
+        birthday: "23. July"
+        hair: "Blond, Long, Ponytail, Short, Spiky Bangs, Straight"
+        eyes: "Cyan, Tareme"
+        body: "Average Height, Pale, Slim, Teen"
+        clothes: "Cross Necklace, Necktie, Pajamas, Ribbon Hair Tie, School Uniform"
+        items: "Stuffed Toy"
+        personality: "Energetic, Friendly, Kind"
+        role: "Daughter, Lonely, Non-blood-related Daughter"
+        subject_of: "Amnesia, Death, Disability, Nightmares, Reincarnation, Terminal Illness"
+        subject_of_ex: "Sexual Fantasy"
         route:
           - "Consider Other Tools"
           - "Run Away"

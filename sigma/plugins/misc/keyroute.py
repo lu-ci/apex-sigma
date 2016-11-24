@@ -1,5 +1,7 @@
 import yaml
 import os
+from humanfriendly.tables import format_pretty_table as boop
+
 
 async def keyroute(cmd, message, args):
     if not args:
@@ -54,9 +56,23 @@ async def keyroute(cmd, message, args):
                         route_out = route_out[:-1]
                     else:
                         route_out = 'There Are No Choices On This Route'
+                    detail_list = []
+                    detail_list.append(['Measurements', char_choice['measurements']])
+                    detail_list.append(['Birthday', char_choice['birthday']])
+                    detail_list.append(['Hair', char_choice['hair']])
+                    detail_list.append(['Eyes', char_choice['eyes']])
+                    detail_list.append(['Body', char_choice['body']])
+                    detail_list.append(['Clothes', char_choice['clothes']])
+                    detail_list.append(['Items', char_choice['items']])
+                    detail_list.append(['Personality', char_choice['personality']])
+                    detail_list.append(['Role', char_choice['role']])
+                    detail_list.append(['Subject Of', char_choice['subject_of']])
+                    detail_list.append(['Subject Of (Sexual)', char_choice['subject_of_ex']])
+                    details = boop(detail_list)
                     out = 'Name: **' + char_name + '** | `' + char_name_j + '`'
+                    out += '\n```\n' + details + '\n```'
                     out += '\n```\n' + char_desc + '\n```'
-                    out += '\nThe Route Walkthrough is in the text file below. :white_check_mark:'
+                    out += '\nThe Route Walkthrough is in the text file below.'
                     route_out = 'Route Walkthrough for **' + char_name + '** from **' + vn_name + '** :\n```' + route_out + '\n```'
                     with open('cache/key_route_' + message.author.id + '.txt', "w") as text_file:
                         text_file.write(route_out)
