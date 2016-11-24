@@ -1,0 +1,126 @@
+vns:
+  - name: "Air"
+    triggers:
+      - "air"
+    characters:
+      - name: "Kamio Misuzu"
+        name_j: "神尾 観鈴"
+        description:
+          "A school girl attending the school in the town where the story takes place.
+          Lives with her mother Haruko in an isolated house. Always smiling, lively and always strong."
+        details:
+          measurements: "Height: 159cm, Weight: 46kg, Bust-Waist-Hips: 83-55-82cm"
+          birthday: "23. July"
+          hair: "Blond, Long, Ponytail, Short, Spiky Bangs, Straight"
+          eyes: "Cyan, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Cross Necklace, Necktie, Pajamas, Ribbon Hair Tie, School Uniform"
+          items: "Stuffed Toy"
+          personality: "Energetic, Friendly, Kind"
+          role: "Daughter, Lonely, Non-blood-related Daughter"
+          subject_of: "Amnesia, Death, Disability, Nightmares, Reincarnation, Terminal Illness"
+          subject_of_ex: "Sexual Fantasy"
+        route: "air_misuzu"
+
+      - name: "Kirishima Kano"
+        name_j: "霧島 佳乃"
+        description:
+          "The younger sister of the owner of a clinic in the town that was started a long time ago.
+          Her parents are long gone, and lives with her sister, who is also a doctor.
+          She loves animals, is always with her pet dog Potato and takes care of the animals at school."
+        details:
+          measurements: "Height: 156cm, Weight: 45kg, Bust-Waist-Hips: 82-53-80cm"
+          birthday: "12. June"
+          hair: "Blue, Short, Spiky Bangs"
+          eyes: "Green, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Body Ribbon, Cross Necklace, Dress, Necktie, School Uniform, Shorts"
+          personality: "Carefree, Nature Lover, Whimsical"
+          role: "Orphan, Pet Owner, Younger Sister"
+          engages_in: "Suicide"
+          engages_in_ex: "Virgin Sex"
+          subject_of: "Possession"
+          subject_of_ex: "Missionary, Sexual Fantasy"
+        route: "air_kano"
+
+      - name: "Toono Minagi"
+        name_j: "遠野 美凪"
+        description:
+          "A tall, beautiful girl. Her lack of expression gives people an enigmatic impression, though in reality, she is warm and loving.
+          Takes part in the astronomy club at school."
+        details:
+          measurements: "Height: 169cm, Weight: 48kg, Bust-Waist-Hips: 85-58-84cm"
+          birthday: "22. December"
+          hair: "Brown, Long, Spiky Bangs"
+          eyes: "Pink, Tareme"
+          body: "Average Height, Pale, Slim, Tall, Teen"
+          clothes: "Cross Necklace, Hair Ribbon, Half-Skirt, Necktie, School Uniform, Tank Top"
+          items: "Book"
+          personality: "Docile, Kind, Reserved"
+          role: "Friend, Older Sister, Student Club Member"
+          subject_of_ex: "Sexual Fantasy"
+        route: "air_minagi"
+
+      - name: "Summer"
+        description:
+          "Once you've finished Misuzu's, Kano's and Minagi's routes, this route can be started from the main menu."
+        name_j: null
+        route: null
+        details: null
+
+      - name: "Air"
+        description:
+          "Once you've finished Summer, this route can be started from the main menu."
+        name_j: null
+        route: "air_air"
+        details: null
+
+  - name: "Clannad"
+    triggers:
+      - "clan"
+
+  - name: "Tomoyo After ~It's A Wonderful Life~"
+    triggers:
+      - "tomo"
+
+  - name: "Little Busters!"
+    triggers:
+      - "lit"
+    excluders:
+      - "ecs"
+      - "ex"
+
+  - name: "Little Busters! Ecstacy"
+    triggers:
+     - "ecs"
+     - "ex"
+
+  - name: "Kud Wafter"
+    triggers:
+      - "kud"
+
+  - name: "Rewrite"
+    triggers:
+      - "rewr"
+    excluders:
+      - "harv"
+
+  - name: "Rewrite Harvest Festa"
+    triggers:
+      - "harv"
+
+  - name: "Angel Beats! 1st Beat"
+    triggers:
+      - "ang"
+
+  - name: "One: Kagayaku Kisetsu e"
+    triggers:
+      - "one"
+
+  - name: "Moon."
+    triggers:
+      - "moon"
+
+  - name: "Dousei"
+    triggers:
+      - "dou"
