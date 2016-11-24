@@ -41,32 +41,36 @@ vns:
           engages_in_ex: "Virgin Sex"
           subject_of: "Possession"
           subject_of_ex: "Missionary, Sexual Fantasy"
-
         route: "air_kano"
 
       - name: "Toono Minagi"
         name_j: "遠野 美凪"
+        description:
+          "A tall, beautiful girl. Her lack of expression gives people an enigmatic impression, though in reality, she is warm and loving.
+          Takes part in the astronomy club at school."
         details:
-          measurements: ""
-          birthday: ""
-          hair: ""
-          eyes: ""
-          body: ""
-          clothes: ""
-          items: ""
-          personality: ""
-          role: ""
-          subject_of: ""
-          subject_of_ex: ""
-
+          measurements: "Height: 169cm, Weight: 48kg, Bust-Waist-Hips: 85-58-84cm"
+          birthday: "22. December"
+          hair: "Brown, Long, Spiky Bangs"
+          eyes: "Pink, Tareme"
+          body: "Average Height, Pale, Slim, Tall, Teen"
+          clothes: "Cross Necklace, Hair Ribbon, Half-Skirt, Necktie, School Uniform, Tank Top"
+          items: "Book"
+          personality: "Docile, Kind, Reserved"
+          role: "Friend, Older Sister, Student Club Member"
+          subject_of_ex: "Sexual Fantasy"
         route: "air_minagi"
 
       - name: "Summer"
+        description:
+          "Once you've finished Misuzu's, Kano's and Minagi's routes, this route can be started from the main menu."
         name_j: null
         route: null
         details: null
 
       - name: "Air"
+        description:
+          "Once you've finished Summer, this route can be started from the main menu."
         name_j: null
         route: "air_air"
         details: null

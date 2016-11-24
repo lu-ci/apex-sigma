@@ -37,9 +37,14 @@ async def keyroute(cmd, message, args):
                 vn_name = vn_choice['name']
                 char_choice = None
                 for char in vn_choice['characters']:
-                    if character in char['name'].lower() or character in char['name_j'].lower():
-                        char_choice = char
-                        break
+                    if char['name_j']:
+                        if character in char['name'].lower() or character in char['name_j'].lower():
+                            char_choice = char
+                            break
+                    else:
+                        if character in char['name'].lower():
+                            char_choice = char
+                            break
                 if not char_choice:
                     await cmd.bot.send_message(message.channel,
                                                'No Route by the name' + character + ' was found in **' + vn_name + '**.')
@@ -57,7 +62,7 @@ async def keyroute(cmd, message, args):
                         send_route = False
                     out = 'Name: **' + char_name + '**'
                     if char_name_j:
-                        out += ' | `' + char_name_j + '`'
+                        out += ' | **' + char_name_j + '**'
                     if details:
                         detail_list = []
                         for detail in sorted(details):
