@@ -1,5 +1,4 @@
 vns:
-
   - name: "Air"
     triggers:
       - "air"
