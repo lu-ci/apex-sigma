@@ -42,7 +42,7 @@ async def keyroute(cmd, message, args):
                         break
                 if not char_choice:
                     await cmd.bot.send_message(message.channel,
-                                               'No Character by the name' + character + ' was found in **' + vn_name + '** was found.')
+                                               'No Route by the name' + character + ' was found in **' + vn_name + '**.')
                     return
                 else:
                     char_name = char_choice['name']
