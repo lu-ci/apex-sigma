@@ -1,10 +1,8 @@
 import random
-
 from .visual_novels import key_vn_list
 
 
 async def keyvis(cmd, message, args):
-
     if not args:
         choice = random.choice(list(key_vn_list.keys()))
     else:
@@ -22,6 +20,6 @@ async def keyvis(cmd, message, args):
 
     url_base = 'https://cgv.blicky.net'
     image_url = '{:s}/{:s}/{:s}{:d}.jpg'.format(
-            url_base, item[0], '0000'[:-ran_number_length], ran_image_number)
+        url_base, item[0], '0000'[:-ran_number_length], ran_image_number)
 
     await cmd.bot.send_message(message.channel, image_url)

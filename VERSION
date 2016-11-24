@@ -2,6 +2,6 @@ beta: false
 build_date: 1479932118
 version:
   major: 1
-  minor: 1
-  patch: 19
+  minor: 3
+  patch: 16
 codename: 'Kanade'

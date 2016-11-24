@@ -5,6 +5,9 @@ vns:
     characters:
       - name: "Kamio Misuzu"
         name_j: "神尾 観鈴"
+        description:
+          "A school girl attending the school in the town where the story takes place.
+          Lives with her mother Haruko in an isolated house. Always smiling, lively and always strong."
         route:
           - "Consider Other Tools"
           - "Run Away"
@@ -85,12 +88,12 @@ vns:
           - "I'll continue to be with Kano"
           - "Shrine"
           - "Bus stop"
-      - name: "Kanna"
-        name_j: "神奈"
       - name: "Kirishima Kano"
         name_j: "霧島 佳乃"
       - name: "Toono Minagi"
         name_j: "遠野 美凪"
+      - name: "Summer"
+        name_j: null
       - name: "Air"
         name_j: null
 
@@ -143,4 +146,3 @@ vns:
   - name: "Dousei"
     triggers:
       - "dou"
-

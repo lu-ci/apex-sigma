@@ -35,6 +35,10 @@ Command |  Description |  Usage
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
+`>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
+`>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
+`>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
+`>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
@@ -70,12 +74,6 @@ Command |  Description |  Usage
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
 `>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
 `>>slots`  |  Spin the slot machine and test your luck!  |  `>>slots`
-###MISC
-Command |  Description |  Usage
---------|--------------|-------
-`>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
-`>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
-`>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
 ###MODERATION
 Command |  Description |  Usage
 --------|--------------|-------
