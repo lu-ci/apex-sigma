@@ -116,6 +116,31 @@ vns:
   - name: "Kud Wafter"
     triggers:
       - "kud"
+    characters:
+      - name: "Noumi Kudryavka"
+        name_j: "能美 クドリャフカ"
+        description:
+          "Kudryavka is a girl who is a quarter Japanese, and three-quarters Russian.
+          Her full Russian name is Kudryavka Anatolyevna Strugatskaya.
+          Her grandmother is Japanese.
+          Her grandfather was crazy about Japanese culture and per his influence on her, she came to know much about Japanese culture too, including the language.
+          Despite having a poor handle on the English language, she was able to skip a year in school due to credits obtained through studying abroad.
+          She is Riki's classmate and is in the newly-formed home economics club due to an invitation of the head of the dormitory she lives at with the other characters.
+          Kudryavka and the dormitory head are the only two members, and since the latter is often too busy, club activities are suspended and Kudryavka is the sole active member of a club on the verge of being disbanded."
+        details:
+          measurements: "Height: 145cm, Weight: 37kg, Bust-Waist-Hips: 69-51-72cm"
+          birthday: "12. June"
+          hair: "Long, Ponytail, Straight, White"
+          eyes: "Blue"
+          body: "AA Cup, Body Painting, Fang, Kid, Pale, Short, Slim"
+          clothes: "Ankle Boots, Apron, Beret, Bikini, Cloak, Hairpin, Hair Ribbon, Hair Tie, Hand Fan, Hat, Kimono, Nightgown, Pantyhose, Pleated Skirt, Ribbon Tie, Rubber Band With Beads, School Swimsuit, School Uniform, Skirt, Sports Jersey, Sports Shoes, Swimsuit, Thigh-high Stockings, Towel"
+          personality: "Airhead, Friendly, Hardworker, Low Self-esteem, Naive, Watashi"
+          role: "Classmate, Daughter, Domestic Partner, Friend, Girlfriend, Half-Japanese, Mother, Pet Owner, Russian, Student Club Member, Wife"
+          engages_in: "Athletics, Baseball, Cooking, Drawing, Escape From Confinement, Swimming"
+          subject_of: "Accident, Avoidable Death, Bullying, Confinement, Kidnapping, Mental Affliction, Teasing"
+          engages_in_ex: "Blowjob, Footjob, Handjob, Mirror Sex, Nipple Sucking, Outdoor Sex, Sixty-nine, Virgin Sex"
+          subject_of_ex: "Bukkake, Cowgirl, Cunnilingus, Doggy Style, Missionary, Quickie Fix, Seventh Posture, Sexual Fantasy"
+        route: null
 
   - name: "Rewrite"
     triggers:
