@@ -198,3 +198,11 @@ commands:
     usage:   "{pfx:s}{cmd:s} 1ABC9C"
     description:
       Generates a color from the given HEX code or provided RGB numbers.
+
+  - name:    twitch
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Fetches information about a streamer.
