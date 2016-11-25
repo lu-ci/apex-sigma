@@ -153,7 +153,4 @@ Command |  Description |  Usage
 `>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
-###UTILS
-Command |  Description |  Usage
---------|--------------|-------
 `>>twitch`  |  Fetches information about a streamer.  |  `>>twitch`
