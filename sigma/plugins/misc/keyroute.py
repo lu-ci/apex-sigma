@@ -66,7 +66,13 @@ async def keyroute(cmd, message, args):
                     if details:
                         detail_list = []
                         for detail in sorted(details):
-                            detail_list.append([detail.title().replace('_Ex', '_(Sexual)'), details[detail].title()])
+                            detail_data = details[detail]
+                            if len(detail_data) > 32 and detail != 'measurements':
+                                detail_data = detail_data[:32] + '...'
+                            detail_list.append(
+                                [detail.title().replace('_Ex', '_(Sexual)'),
+                                 detail_data.title().replace('Height: ', '').replace('Weight: ', '').replace(
+                                     'Bust-Waist-Hips: ', '')])
                         details_out = boop(detail_list).replace('_', ' ')
                         out += '\n```\n' + details_out + '\n```'
                     if description:

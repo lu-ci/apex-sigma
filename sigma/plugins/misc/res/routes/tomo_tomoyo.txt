@@ -1,0 +1,67 @@
+Route Walkthrough for **Sakagami Tomoyo** from **Tomoyo After ~It's a Wonderful Life~** :
+```
+True End:
+  -Your Choice
+  -Your Choice
+  -I'll search for her
+  -Endure it silently
+  -Your Choice
+  -Talk time
+  -Fun time
+  -Go to where the fireworks are
+  -Substitute for Tomoyo
+  -No way
+  -Talk Time
+  -Fun Time
+  -Talk time
+  -Fun Time
+  -Sub in for Kanako
+  -Your Choice ('Find another way' will skip choice 17)
+  -Listen to her advice
+  -Keep trying
+  -Your choice (though you don't have much of a choice, do try to piss him off)
+  -Tomoyo, Kanako and I
+  -Your choice
+  -Build a school
+  -Refuse it (Oh please, don't tell me you failed here of all places? Couldn't the wrong choice be more obvious?)
+Bad Ends:
+ BAD END 1 has two variations. One outside, another inside the apartment.
+ BAD END 2 has four variations. One with Tomoyo, one by yourself, one with Kanako, and another with Takafumi
+
+  -I'll search for her*
+   If you don't choose this you won't get choice 4, leading to a bad end.
+
+  -Endure it silently*
+   If you don't do this, choice 15 will invariably lead to a bad end later on.
+
+  -Go to where the fireworks are*
+   If you don't choose this you won't get choice 9, leading to a bad end.
+
+  -Substitute for Tomoyo*
+   If you don't choose this you won't get choice 10, leading to a bad end.
+
+  -No way*
+   If you don't choose this you won't get choice 15, leading to a bad end.
+
+  -Sub in for Kanako*
+   Succeeding at this will make choice 18 work.
+
+  -Your Choice*
+   Find another way will skip choice 17
+
+  -Listen to her advice*
+   Ignoring will lead to BAD END 1
+
+  -Keep trying*
+   Giving up will lead to BAD END 1.1 (same text, different location)
+
+  -Tomoyo, Kanako and I*
+   Choosing any other combination will skip choice 22, leading to BAD END 2 (with variations depending on who you're with)
+
+  -Build a school*
+   Think of possible alternatives will lead to BAD END 2 (Always by yourself version)
+
+  -Refuse it*
+   Succumbing to sexual temptations will always lead to bad ends, as it should.
+   BAD END 2 (Always Tomoyo version)
+```

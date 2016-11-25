@@ -82,6 +82,24 @@ vns:
   - name: "Tomoyo After ~It's A Wonderful Life~"
     triggers:
       - "tomo"
+    characters:
+      - name: "Sakagami Tomoyo"
+        description:
+          "The homely heroine who supports Tomoya, who has just joined the workforce out of high school.
+          She is actually very good at fighting and would win even against a group of people ganging up on her."
+        name_j: "坂上 智代"
+        route: "tomo_tomoyo"
+        details:
+          birthday: "14. October"
+          hair: "Grey, Sidehair, Spiky Bangs, Straight, Very Long"
+          eyes: "Blue, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Headband, Miniskirt, Sailor Suit, Skirt, Turtleneck Sweater"
+          personality: "Hardworker, Honest, Strict, Tsundere"
+          role: "Daughter, Full Sister, Girlfriend, Half-sister, High School Student, Older Sister, Student Council President, Widow, Wife"
+          engages_in: "Cosplay, Kigurumi, Seduction"
+          engages_in_ex: "Anilingus, Blowjob, Footjob, Handjob, Outdoor Sex, Pantyjob, Sixty-nine"
+          subject_of_ex: "Anilingus, Cowgirl, Cunnilingus, Missionary, Quickie Fix, Standing"
 
   - name: "Little Busters!"
     triggers:
