@@ -15,14 +15,6 @@ commands:
       Returns the list of command modules or gives you the description
       and usage for a selected command.
 
-  - name:    echo
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Hello world!"
-    description:
-      Repeats the given text. (Bot Owner Only)
-
   - name:    remind
     global:  true
     enabled: true
@@ -38,42 +30,12 @@ commands:
     description:
       Shows the list of the lovely people who donated to the Aurora Project.
 
-  - name:    bulkmsg
-    global:  true
-    enabled: true
-    sfw:     true
-    usage: "{pfx:s}{cmd:s} Hello everyone!"
-    description:
-      Sends the inputed message to every single person on the server. (Requires permission)
-
   - name:    stats
     global:  true
     enabled: true
     sfw:     true
     description:
       Shows the statistics of Sigma.
-
-  - name:    setgame
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} New Game!"
-    description:
-      Sets the bots playing states to whatever you wish. (Requires permission)
-
-  - name:    servers
-    global:  true
-    enabled: true
-    sfw:     true
-    description:
-      Shows all the servers Sigma is on.
-
-  - name:    kill
-    global:  true
-    enabled: true
-    sfw:     true
-    description:
-      Forcefully kill the bot. (Requires permission)
 
   - name:    weather
     global:  true
@@ -93,34 +55,6 @@ commands:
     description:
       Various github commands. (WIP)
 
-
-  - name:    setavatar
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} url"
-    description:
-      Set the avatar picture. (Requires premission)
-
-  - name:    apikeys
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows which keys are present and which are missing from the config.
-      The list is sent as a DM to the user.
-      Permitted ID Only.
-
-  - name:    setname
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Charlotte"
-    description:
-      Sets the username of the bot to the inputted one.
-      Permitted ID Only.
-
   - name:    dfm
     global:  true
     enabled: true
@@ -136,6 +70,7 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Lists the bots on the server where the command is used and shows their status.
+
   - name: userinfo
     global:  true
     enabled: true
@@ -263,12 +198,3 @@ commands:
     usage:   "{pfx:s}{cmd:s} 1ABC9C"
     description:
       Generates a color from the given HEX code or provided RGB numbers.
-
-events:
-  - name:    pmredirect
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    description:
-      Redirects PM info to the bot owner.

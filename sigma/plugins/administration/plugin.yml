@@ -78,3 +78,82 @@ commands:
     description:
       Generates the bot's COMMANDLIST.md file.
       Bot Special Permitted/Owner Only.
+
+  - name:    echo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Hello world!"
+    description:
+      Repeats the given text.
+      Bot Special Permitted/Owner Only.
+
+  - name:    bulkmsg
+    global:  true
+    enabled: true
+    sfw:     true
+    usage: "{pfx:s}{cmd:s} Hello everyone!"
+    description:
+      Sends the inputed message to every single person on the server.
+      Bot Special Permitted/Owner Only.
+
+  - name:    servers
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Shows all the servers Sigma is on.
+      Bot Special Permitted/Owner Only.
+
+  - name:    kill
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Forcefully kill the bot.
+      Bot Special Permitted/Owner Only.
+
+  - name:    setgame
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} New Game!"
+    description:
+      Sets the bots playing states to whatever you wish.
+      Bot Special Permitted/Owner Only.
+
+  - name:    setavatar
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} url"
+    description:
+      Set the avatar picture. (Requires premission)
+
+  - name:    apikeys
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows which keys are present and which are missing from the config.
+      The list is sent as a DM to the user.
+      Bot Special Permitted/Owner Only.
+
+  - name:    setname
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Charlotte"
+    description:
+      Sets the username of the bot to the inputted one.
+      Bot Special Permitted/Owner Only.
+
+events:
+  - name:    pmredirect
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Redirects PM info to the bot owner.
