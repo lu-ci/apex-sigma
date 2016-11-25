@@ -73,6 +73,8 @@ commands:
       Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route.
       This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite,
       Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei.
+      Even if the VN has only one route, the route name is still required.
+      Example being Kud in Kud Wafter and Tomoyo in Tomoyo After.
       Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.
 
 

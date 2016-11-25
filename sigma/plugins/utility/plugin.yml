@@ -1,4 +1,4 @@
-name: Polaris Sonata Utilities
+name: Utilities
 
 categories:
   - utility
@@ -6,6 +6,71 @@ categories:
 enabled: true
 
 commands:
+  - name:    help
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} [command]"
+    description:
+      Returns the list of command modules or gives you the description
+      and usage for a selected command.
+
+  - name:    remind
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 15 LEEEEROOOOY JEEEEEENKIIIIINS!"
+    description:
+      Sets a timer in seconds and displays the message inputted after it's done.
+
+  - name:    donors
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Shows the list of the lovely people who donated to the Aurora Project.
+
+  - name:    stats
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Shows the statistics of Sigma.
+
+  - name:    weather
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Melbourne Australia"
+    description:
+      Shows weather data for the selected location.
+      Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.
+
+  # disabled: unfinished
+  - name:    github
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} search <query>"
+    description:
+      Various github commands. (WIP)
+
+  - name:    dfm
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Coffee House Jazz"
+    description:
+      Shows the details about the song currently playing on the selected music category of Discord.FM.
+
+  - name:    bots
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Lists the bots on the server where the command is used and shows their status.
+
   - name: userinfo
     global:  true
     enabled: true
@@ -82,7 +147,6 @@ commands:
     description:
       The bot will select a thing from the inputed list.
       Separate list items with a space.
-
 
   - name: wa
     global:  true

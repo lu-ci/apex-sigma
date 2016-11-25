@@ -1,4 +1,23 @@
 #Sigma's List of Commands
+###ADMINISTRATION
+Command |  Description |  Usage
+--------|--------------|-------
+`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
+`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
+`>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
+`>>leave`  |  Leaves the server with the inputted id. Bot Special Permitted/Owner Only.  |  `>>leave 123456789`
+`>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
+`>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Special Permitted/Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
+`>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Special Permitted/Owner Only.  |  `>>inviteowner 200751504175398912`
+`>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Special Permitted/Owner Only.  |  `>>gencmd`
+`>>echo`  |  Repeats the given text. Bot Special Permitted/Owner Only.  |  `>>echo Hello world!`
+`>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Special Permitted/Owner Only.  |  `>>bulkmsg Hello everyone!`
+`>>servers`  |  Shows all the servers Sigma is on. Bot Special Permitted/Owner Only.  |  `>>servers`
+`>>kill`  |  Forcefully kill the bot. Bot Special Permitted/Owner Only.  |  `>>kill`
+`>>setgame`  |  Sets the bots playing states to whatever you wish. Bot Special Permitted/Owner Only.  |  `>>setgame New Game!`
+`>>setavatar`  |  Set the avatar picture. (Requires premission)  |  `>>setavatar url`
+`>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Bot Special Permitted/Owner Only.  |  `>>apikeys`
+`>>setname`  |  Sets the username of the bot to the inputted one. Bot Special Permitted/Owner Only.  |  `>>setname Charlotte`
 ###GAMES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -27,6 +46,14 @@ Command |  Description |  Usage
 `>>chucknoris`  |  Outputs a random Chuck Noris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknoris`
 `>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
 `>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
+###MINIGAMES
+Command |  Description |  Usage
+--------|--------------|-------
+`>>coinflip`  |  Flips a coin. Nothing complex. You can try guessing the results by typing either Heads or Tails after the command.  |  `>>coinflip Heads`
+`>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
+`>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
+`>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
+`>>slots`  |  Spin the slot machine and test your luck!  |  `>>slots`
 ###MISC
 Command |  Description |  Usage
 --------|--------------|-------
@@ -37,43 +64,8 @@ Command |  Description |  Usage
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
 `>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
-`>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
+`>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Even if the VN has only one route, the route name is still required. Example being Kud in Kud Wafter and Tomoyo in Tomoyo After. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
 `>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
-###NIHONGO
-Command |  Description |  Usage
---------|--------------|-------
-`>>express`  |  It's for those times you want to express a feeling in Japanese and don't know how to you go [0-100] with the scale of your feelings and it gives you the perfect word for the situation.  |  `>>express 51`
-`>>jisho`  |  Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.  |  `>>jisho kawaii`
-`>>wanikani`  |  Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the wksave command. Use help on it to get more info.  |  `>>wanikani breadstickninja`
-`>>wksave`  |  Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!  |  `>>wksave key 12345678901234567890123456789012`
-###NSFW
-Command |  Description |  Usage
---------|--------------|-------
-`>>nsfwpermit`  |  Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)  |  `>>nsfwpermit`
-`>>rule34`  |  Searches Rule34 for selected tags, if no tags are specified, it gives a random image.  |  `>>rule34 ovum`
-`>>keyvis`  |  Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.  |  `>>keyvis rewrite harvest festa`
-`>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
-`>>danbooru`  |  Searches DanBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>danbooru red_head`
-`>>hentai`  |  Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified, it gives three random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
-###ADMINISTRATION
-Command |  Description |  Usage
---------|--------------|-------
-`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
-`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
-`>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
-`>>leave`  |  Leaves the server with the inputted id. Bot Special Permitted/Owner Only.  |  `>>leave 123456789`
-`>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
-`>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Special Permitted/Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
-`>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Special Permitted/Owner Only.  |  `>>inviteowner 200751504175398912`
-`>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Special Permitted/Owner Only.  |  `>>gencmd`
-###MINIGAMES
-Command |  Description |  Usage
---------|--------------|-------
-`>>coinflip`  |  Flips a coin. Nothing complex. You can try guessing the results by typing either Heads or Tails after the command.  |  `>>coinflip Heads`
-`>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
-`>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
-`>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
-`>>slots`  |  Spin the slot machine and test your luck!  |  `>>slots`
 ###MODERATION
 Command |  Description |  Usage
 --------|--------------|-------
@@ -98,24 +90,22 @@ Command |  Description |  Usage
 `>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
 `>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
-###UTILITY
+###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
-`>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
-`>>uid`  |  Shows the User ID of the mentioned user. If no user is mentioned, it will show your ID instead.  |  `>>uid @person`
-`>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
-`>>cid`  |  Shows Channel ID of the channel the command was used in.  |  `>>cid`
-`>>serverinfo`  |  Shows information about the server the command was used on.  |  `>>serverinfo`
-`>>sid`  |  Shows Server ID of the server the command was used on.  |  `>>sid`
-`>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
-`>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
-`>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
-`>>wa`  |  Makes a request to Wolfram Alpha and exports the result.  |  `>>wa 69+42`
-`>>whoplays`  |  Generates a list of users playing the inputted game.  |  `>>whoplays League of Salt`
-`>>avatar`  |  Shows the avatar of the user. (in the form of a direct link)  |  `>>avatar @person`
-`>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
-`>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
-`>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
+`>>express`  |  It's for those times you want to express a feeling in Japanese and don't know how to you go [0-100] with the scale of your feelings and it gives you the perfect word for the situation.  |  `>>express 51`
+`>>jisho`  |  Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.  |  `>>jisho kawaii`
+`>>wanikani`  |  Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the wksave command. Use help on it to get more info.  |  `>>wanikani breadstickninja`
+`>>wksave`  |  Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!  |  `>>wksave key 12345678901234567890123456789012`
+###NSFW
+Command |  Description |  Usage
+--------|--------------|-------
+`>>nsfwpermit`  |  Permits the NSFW module in the channel where the command is written to. (Server Administrator Only)  |  `>>nsfwpermit`
+`>>rule34`  |  Searches Rule34 for selected tags, if no tags are specified, it gives a random image.  |  `>>rule34 ovum`
+`>>keyvis`  |  Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.  |  `>>keyvis rewrite harvest festa`
+`>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
+`>>danbooru`  |  Searches DanBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>danbooru red_head`
+`>>hentai`  |  Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified, it gives three random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
 ###SEARCHES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -137,23 +127,33 @@ Command |  Description |  Usage
 `>>ud`  |  Shows the Urban Dictionary definition for the given word.  |  `>>ud Alex`
 `>>vndb`  |  Searches the Visual Novel Database fot the title you inputed.  |  `>>vndb Rewrite`
 `>>wiki`  |  Searches Wikipedia and shows the summary for your query.  |  `>>wiki search`
-###UTILS
+###UTILITY
 Command |  Description |  Usage
 --------|--------------|-------
 `>>help`  |  Returns the list of command modules or gives you the description and usage for a selected command.  |  `>>help [command]`
-`>>echo`  |  Repeats the given text. (Bot Owner Only)  |  `>>echo Hello world!`
 `>>remind`  |  Sets a timer in seconds and displays the message inputted after it's done.  |  `>>remind 15 LEEEEROOOOY JEEEEEENKIIIIINS!`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
-`>>bulkmsg`  |  Sends the inputed message to every single person on the server. (Requires permission)  |  `>>bulkmsg Hello everyone!`
 `>>stats`  |  Shows the statistics of Sigma.  |  `>>stats`
-`>>setgame`  |  Sets the bots playing states to whatever you wish. (Requires permission)  |  `>>setgame New Game!`
-`>>servers`  |  Shows all the servers Sigma is on.  |  `>>servers`
-`>>kill`  |  Forcefully kill the bot. (Requires permission)  |  `>>kill`
 `>>weather`  |  Shows weather data for the selected location. Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.  |  `>>weather Melbourne Australia`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
-`>>setavatar`  |  Set the avatar picture. (Requires premission)  |  `>>setavatar url`
-`>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Permitted ID Only.  |  `>>apikeys`
-`>>setname`  |  Sets the username of the bot to the inputted one. Permitted ID Only.  |  `>>setname Charlotte`
 `>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
 `>>bots`  |  Lists the bots on the server where the command is used and shows their status.  |  `>>bots`
+`>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
+`>>uid`  |  Shows the User ID of the mentioned user. If no user is mentioned, it will show your ID instead.  |  `>>uid @person`
+`>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
+`>>cid`  |  Shows Channel ID of the channel the command was used in.  |  `>>cid`
+`>>serverinfo`  |  Shows information about the server the command was used on.  |  `>>serverinfo`
+`>>sid`  |  Shows Server ID of the server the command was used on.  |  `>>sid`
+`>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
+`>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
+`>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
+`>>wa`  |  Makes a request to Wolfram Alpha and exports the result.  |  `>>wa 69+42`
+`>>whoplays`  |  Generates a list of users playing the inputted game.  |  `>>whoplays League of Salt`
+`>>avatar`  |  Shows the avatar of the user. (in the form of a direct link)  |  `>>avatar @person`
+`>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
+`>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
+`>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
+###UTILS
+Command |  Description |  Usage
+--------|--------------|-------
 `>>twitch`  |  Fetches information about a streamer.  |  `>>twitch`
