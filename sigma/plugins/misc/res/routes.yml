@@ -147,6 +147,120 @@ vns:
       - "rewr"
     excluders:
       - "harv"
+    characters:
+      - name: "Kanbe Kotori"
+        name_j: "神戸 小鳥"
+        description:
+          "Kotarou's classmate and close friend.
+          They can easily establish a comic rhythm in their dialogue.
+          She is very talented at caring for herbs and plants."
+        details:
+          measurements: "Height: 156cm, Weight: 44kg, Bust-Waist-Hips: 83-54-83cm"
+          birthday: "26. July"
+          hair: "Ahoge, Brown, Curly, Sidehair, Spiky Bangs, Twin Braids, Very Long"
+          eyes: "Green, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Bikini, Boots, Clothing with Ribbons, Hair Flower, Hair Tie, Hoodie, Miniskirt, Pleated Skirt, School Uniform, Sweater, Thigh-high Stockings, Towel"
+          personality: "Carefree, Energetic, Friendly, Funny, Genius, Nature Lover, Pretending, Watashi"
+          role: "Childhood Friend, Classmate, Friend, High School Student, Kouhai, Lonely, Neighbor, Orphan, Pet Owner, Senpai, Wife"
+          engages_in: "Gardening, Investigation, Shopping, Sports, Swimming, Teasing"
+          subject_of: "Accident, Clinical Depression, Disappearance, Disaster, Marriage Proposal, Other Route Death, Survival"
+        route: "rwr_walk"
+
+      - name: "Konohana Lucia"
+        name_j: "此花 ルチア"
+        description:
+          "The talented class president whose name is also well-known to surrounding clubs.
+          With a clean-freak attitude, she strongly lacks tolerance when dealing with boys.
+          As a result of getting rolled up in commotion caused by Kotarou, she delivers him daily punishment.
+          Her real name is Asahi Haruka."
+        details:
+          measurements: "Height: 167cm, Weight: 52kg, Bust-Waist-Hips: 93-59-86cm"
+          birthday: "23. December"
+          hair: "Intake, Ponytail, Sidehair, Spiky Bangs, Straight, Very Long, Violet"
+          eyes: "Blue, Tareme"
+          body: "Average Height, E+ Cup, Pale, Slim, Teen"
+          clothes: "Boots, Clothing with Ribbons, Gloves, Maid's Dress, One Piece Swimsuit, Pleated Skirt, Ribbon Hair Tie, Ribbon Tie, School Uniform, Thigh-high Stockings"
+          items: "Katana"
+          personality: "Classic Tsundere, Kind, Loud, Serious, Shy, Sly, Smart, Stubborn, Watashi"
+          role: "Classmate, Class President, Cook, Girlfriend, High School Student, Honor Student, Orphan, Spy, Superhuman"
+          engages_in: "Domestic Violence, Fighting, Manslaughter, Mass Murder, Shopping, Swimming"
+          subject_of: "Bullying, Child Abuse, Clinical Depression, Disappearance, Disaster, Insanity, Obsessive–Compulsive Disorder, Other Route Death, Psychological Trauma, Survival, Teasing"
+        route: "rwr_walk"
+
+      - name: "Nakatsu Shizuru"
+        name_j: "中津 静流"
+        description:
+          "Kotarou's kouhai.
+          She has a reserved and honest disposition.
+          Even if she doesn't speak, she is able to convey herself through her behavior; she has rich facial expressions.
+          Although a member of the public morals committee, she rarely acts like one, besides as a pretext for looking after Kotarou.
+          She fawns over her favorite dish, mackerel pike."
+        details:
+          measurements: "Height: 149cm, Weight: 39kg, Bust-Waist-Hips: 75-52-73cm"
+          birthday: "18. June"
+          hair: "Blond, Odango, Parted to Side, Sidehair, Spiky Bangs, Twin Tails, Very Long"
+          eyes: "Amber, Blue, Heterochromia, Tareme"
+          body: "AA Cup, Average Height, Pale, Short, Teen"
+          clothes: "Apron, Boots, Clothing with Ribbons, Eyepatch, Headband, Maid's Dress, One Piece Swimsuit, Pantyhose, Pleated Skirt, School Uniform"
+          items: "Dual-Wield Weapon, Knife, Submachine Gun, Whistle"
+          personality: "Emotional, Food Lover, Friendly, Honest, Kind, Reserved, Shy, Smart, Watashi"
+          role: "Assassin, Discipline Committee Member, Friend, Healer, High School Student, Kouhai, Orphan, Schoolmate, Spy, Student Club Member, Superhuman"
+          engages_in: "Fighting, Swimming"
+          subject_of: "Disappearance, Disaster, Other Route Death, Survival, Teasing"
+        route: "rwr_walk"
+
+      - name: "Ootori Chihaya"
+        name_j: "鳳 ちはや"
+        description:
+          "A girl who suddenly transferred to the school Kotarou attends.
+          She has led a sheltered life and is ignorant of the ways of the world.
+          Considerably clumsy and easily getting lost, Kotarou always helps her out, but with her personality that can't stay meek they can't stop quarreling.
+          Called a power fighter for being really strong physically."
+        details:
+          measurements: "Height: 159cm, Weight: 46kg, Bust-Waist-Hips: 82-55-84cm"
+          birthday: "24. August"
+          hair: "Ahoge, Orange, Sidehair, Spiky Bangs, Straight, Twin Tails, Very Long"
+          eyes: "Blue, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Bikini, Clothing with Ribbons, Miniskirt, Necktie, Pleated Skirt, School Uniform, Tank Top, Thigh-high Stockings, Unusual Hair Ornaments, Wings"
+          personality: "Airhead, Clumsy, Desu, Food Lover, Ignorant, Loud, Stubborn, Tsundere, Watashi, Word Repetition"
+          role: "Classmate, Friend, High School Student, Master, Orphan, Superhuman, Transfer Student, Wealthy"
+          engages_in: "Cycling, Fighting, Shopping, Swimming"
+          subject_of: "Disappearance, Disaster, Other Route Death, Survival, Teasing, Wounding"
+        route: "rwr_walk"
+
+      - name: "Senri Akane"
+        name_j: "千里 朱音"
+        description:
+          "The president of the Occult Research Society who is called the witch of the academy.
+          Within the school, to some of the students she is famous for being an existence above the rules."
+        details:
+          measurements: "Height: 160cm, Weight: 47kg, Bust-Waist-Hips: 86-57-85cm"
+          birthday: "17. February"
+          hair: "Brown, Sidehair, Spiky Bangs, Straight, Very Long"
+          eyes: "Amber, Tareme"
+          body: "Average Height, D Cup, Pale, Slim, Teen"
+          clothes: "Bikini, Boots, Brooch, Cape, Clothing with Ribbons, Dress, Knee-high Socks, Pleated Skirt, Ribbon Hair Accessory, Ribbon Tie, School Uniform, Towel"
+          personality: "Blunt, Cynic, Friendly, Funny, Misanthrope, Proactive, Refined, Reserved, Smart, Watashi"
+          role: "Antagonist, Gamer, High School Student, Master, Non-blood-related Daughter, Orphan, Senpai, Student Club President, Villain, Wealthy"
+          engages_in: "Computering, Mass Murder, Planning, Swimming, Teasing"
+          subject_of: "Clinical Depression, Disappearance, Mind Control, Other Route Death"
+        route: "rwr_walk"
+
+      - name: "Moon"
+        name_j: null
+        description:
+          "Can be accessed from the main menu after completing the routes of the 5 main heroines."
+        details: null
+        route: "rwr_walk"
+
+      - name: "Terra"
+        name_j: null
+        description:
+          "Can be accessed from the main menu after completing the Moon route."
+        details: null
+        route: "rwr_walk"
 
   - name: "Rewrite Harvest Festa"
     triggers:
