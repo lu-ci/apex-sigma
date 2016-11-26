@@ -32,7 +32,7 @@ async def reward(ev, message, args):
         not_in_db = True
     else:
         not_in_db = False
-        if current_timestamp > last_use + 20:
+        if current_timestamp > last_use + 60:
             off_cooldown = True
         else:
             off_cooldown = False
