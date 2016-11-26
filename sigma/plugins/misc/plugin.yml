@@ -74,7 +74,9 @@ commands:
       This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite,
       Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei.
       Even if the VN has only one route, the route name is still required.
-      Example being Kud in Kud Wafter and Tomoyo in Tomoyo After.
+      Examples being Kud in Kud Wafter and Tomoyo in Tomoyo After.
+      Some Visual Novels are way too huge for me to make custom route files for so I provided their mega walkthroughs.
+      Examples being Clannad, Little Busters and Rewrite.
       Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.
 
 
@@ -122,5 +124,3 @@ events:
     sfw:     true
     description:
       Accepts the terms and conditions of the WaniKani Community Discord Server.
-
-
