@@ -1,19 +1,28 @@
 donors:
   - name: Crunderwood
-    avatar: "https://discordapp.com/api/users/146002691993108482/avatars/670915eb92bc3407aef07c148709e15a.jpg"
+    avatar: "https://www.gravatar.com/avatar/fbee801b533ebe094d8e020724436cae.jpg?s=128"
+    duid: 146002691993108482
   - name: Kreasu
-    avatar: "https://discordapp.com/api/users/191620253497819136/avatars/cd8ee657e324e21e900317ba2331cbf0.jpg"
+    avatar: "https://www.gravatar.com/avatar/d0fc68c19f93823ea54d3deec0180c54.jpg?s=128"
+    duid: 191620253497819136
   - name: Amenophyckxs
-    avatar: "https://discordapp.com/api/users/95995895543246848/avatars/9bf7e3bbe74922f3ea27324158cf8f43.jpg"
+    avatar: "https://www.gravatar.com/avatar/2af5424faf0dfe6f335e78a9c3f166ad.jpg?s=128"
+    duid: 95995895543246848
   - name: Patrice
-    avatar: "https://discordapp.com/api/users/129217348178542592/avatars/1effcf69e3286382b9615a400b698bfe.jpg"
+    avatar: "https://www.gravatar.com/avatar/f6fcdc6db35aa656585a8b2f89397f76.jpg?s=128"
+    duid: 129217348178542592
   - name: Mahum
-    avatar: "https://discordapp.com/api/users/213044951800479744/avatars/28a68aea208be6362575e84164106d7b.jpg"
+    avatar: "https://www.gravatar.com/avatar/d834f493bd80dc026d6e0e6815a0814a.jpg?s=128"
+    duid: 213044951800479744
   - name: SpookyPixel
-    avatar: "https://discordapp.com/api/users/231499144517255168/avatars/0784f1b3bff02e7542ba4f7a00f59cc9.jpg"
+    avatar: "https://www.gravatar.com/avatar/183bf5206f9f9a972950ab74bb32e077.jpg?s=128"
+    duid: 231499144517255168
   - name: Sophie
-    avatar: "https://discordapp.com/api/users/133088040259158016/avatars/7527cee25a525bc87aef1f51473b24f6.jpg"
+    avatar: "https://www.gravatar.com/avatar/9c519fa8012718be38a45ca38197a4b1.jpg?s=128"
+    duid: 133088040259158016
   - name: Drewbie
     avatar: "https://discordapp.com/api/users/201556233004646410/avatars/53cc60b4e918968b7b54fd641dfaddc8.jpg"
+    duid: 201556233004646410
   - name: Valeth
-    avatar: "https://discordapp.com/api/users/217078934976724992/avatars/721b59f8d36f04acc7b3c2421b42600f.jpg"
+    avatar: "https://www.gravatar.com/avatar/17d3a152085c9a4d08254acc7ee5d06e.jpg?s=128"
+    duid: 217078934976724992
