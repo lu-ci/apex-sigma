@@ -1,7 +1,7 @@
 beta: false
-build_date: 1480308535
+build_date: 1480311238
 version:
   major: 1
   minor: 7
-  patch: 1
+  patch: 7
 codename: 'Yui'

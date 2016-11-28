@@ -89,6 +89,15 @@ commands:
       Generates the bot's COMMANDLIST.md file.
       Bot Special Permitted/Owner Only.
 
+  - name: dbpointcheck
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Forces a recheck of all user point data.
+      Bot Special Permitted/Owner Only.
+
   - name:    echo
     global:  true
     enabled: true
