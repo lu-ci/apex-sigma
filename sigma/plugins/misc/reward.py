@@ -66,7 +66,7 @@ async def reward(ev, message, args):
             ev.db.insert_one(collection, insertdata)
         else:
             curr_pts = target['Points']
-            add_pts = random.randint(5, 20)
+            add_pts = random.randint(10, 50)
             new_pts = curr_pts + add_pts
             level = int(new_pts / 1690)
             updatetarget = {"UserID": message.author.id, "ServerID": message.server.id}
