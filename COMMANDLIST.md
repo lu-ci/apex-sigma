@@ -57,7 +57,7 @@ Command |  Description |  Usage
 `>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
 `>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
-`>>slots`  |  Spin the slot machine and test your luck!  |  `>>slots`
+`>>slots`  |  Spin the slot machine and test your luck! Costs 50 points to spin.  |  `>>slots`
 ###MISC
 Command |  Description |  Usage
 --------|--------------|-------
