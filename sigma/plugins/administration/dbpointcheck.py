@@ -8,7 +8,7 @@ async def dbpointcheck(cmd, message, args):
         n = 0
         for result in data:
             try:
-                result['Avatar']
+                avatar = result['Avatar']
             except:
                 for server in cmd.bot.servers:
                     for member in server.members:
