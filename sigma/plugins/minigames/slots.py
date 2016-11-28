@@ -57,7 +57,7 @@ async def slots(cmd, message, args):
             return
         symbols = [':sunny:', ':crescent_moon:', ':eggplant:', ':gun:', ':diamond_shape_with_a_dot_inside:', ':bell:',
                    ':maple_leaf:', ':musical_note:', ':gem:', ':fleur_de_lis:', ':trident:', ':knife:', ':fire:',
-                   ':clown:', ':radioactive:', ':green_heart:', ':telephone:', ':hamburger:', ':banana:']
+                   ':clown:', ':radioactive:', ':green_heart:', ':telephone:', ':hamburger:', ':banana:', ':tumbler_glass:']
         res_1 = random.choice(symbols)
         res_2 = random.choice(symbols)
         res_3 = random.choice(symbols)
