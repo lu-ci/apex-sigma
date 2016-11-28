@@ -9,7 +9,11 @@ Command |  Description |  Usage
 `>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
 `>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Special Permitted/Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
 `>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Special Permitted/Owner Only.  |  `>>inviteowner 200751504175398912`
+`>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Special Permitted/Owner Only.  |  `>>searchid 200751504175398912`
 `>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Special Permitted/Owner Only.  |  `>>gencmd`
+`>>dbpointcheck`  |  Forces a recheck of all user point data. Bot Special Permitted/Owner Only.  |  `>>dbpointcheck`
+`>>award`  |  Awards the inputted amount of points to the mentioned person. Bot Special Permitted/Owner Only.  |  `>>award 1500 @person`
+`>>take`  |  Takes away the inputted amount of points from the mentioned person. Bot Special Permitted/Owner Only.  |  `>>take 1500 @person`
 `>>echo`  |  Repeats the given text. Bot Special Permitted/Owner Only.  |  `>>echo Hello world!`
 `>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Special Permitted/Owner Only.  |  `>>bulkmsg Hello everyone!`
 `>>servers`  |  Shows all the servers Sigma is on. Bot Special Permitted/Owner Only.  |  `>>servers`
@@ -59,12 +63,13 @@ Command |  Description |  Usage
 --------|--------------|-------
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
+`>>ranking`  |  Shows the link for the servers point leaderboard.  |  `>>ranking`
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
 `>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
-`>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Even if the VN has only one route, the route name is still required. Example being Kud in Kud Wafter and Tomoyo in Tomoyo After. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
+`>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Even if the VN has only one route, the route name is still required. Examples being Kud in Kud Wafter and Tomoyo in Tomoyo After. Some Visual Novels are way too huge for me to make custom route files for so I provided their mega walkthroughs. Examples being Clannad, Little Busters and Rewrite. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
 `>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
 ###MODERATION
 Command |  Description |  Usage

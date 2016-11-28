@@ -98,6 +98,24 @@ commands:
       Forces a recheck of all user point data.
       Bot Special Permitted/Owner Only.
 
+  - name: award
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Awards the inputted amount of points to the mentioned person.
+      Bot Special Permitted/Owner Only.
+
+  - name: take
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Takes away the inputted amount of points from the mentioned person.
+      Bot Special Permitted/Owner Only.
+
   - name:    echo
     global:  true
     enabled: true
