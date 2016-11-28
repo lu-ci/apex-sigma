@@ -10,13 +10,13 @@ async def reward(ev, message, args):
     cooldown_finder_data = {
         'Type': 'Activity',
         'UserID': message.author.id,
-        'ServerID': message.server.id
+        'ServerID': message.server.id,
     }
     cooldown_insert_data = {
         'Type': 'Activity',
         'UserID': message.author.id,
         'ServerID': message.server.id,
-        'LastTimestamp': current_timestamp
+        'LastTimestamp': current_timestamp,
     }
     cooldown_data = ev.db.find('Cooldowns', cooldown_finder_data)
     n = 0
@@ -53,7 +53,10 @@ async def reward(ev, message, args):
         insertdata = {
             'UserID': message.author.id,
             'ServerID': message.server.id,
-            'Points': 0
+            'Points': 0,
+            'UserName': message.author.name,
+            'Avatar': message.author.avatar_url,
+            'Level': 0
         }
         finddata_results = ev.db.find(collection, finddata)
         for item in finddata_results:
@@ -65,7 +68,13 @@ async def reward(ev, message, args):
             curr_pts = target['Points']
             add_pts = random.randint(5, 20)
             new_pts = curr_pts + add_pts
+            level = int(new_pts / 1690)
             updatetarget = {"UserID": message.author.id, "ServerID": message.server.id}
-            updatedata = {"$set": {"Points": new_pts}}
+            updatedata = {"$set": {
+                "Points": new_pts,
+                'UserName': message.author.name,
+                'Avatar': message.author.avatar_url,
+                'Level': level
+            }}
             ev.db.update_one(collection, updatetarget, updatedata)
 

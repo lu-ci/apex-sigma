@@ -22,6 +22,14 @@ commands:
     description:
       Shows yours or a mentioned persons Sigma level.
 
+  - name:    ranking
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the link for the servers point leaderboard.
+
   - name:    quote
     global:  true
     enabled: true
