@@ -24,6 +24,10 @@ async def coinflip(cmd, message, args):
     if args:
         choice = args[0]
         if choice.lower().startswith('t') or choice.lower().startswith('h'):
+            if choice.lower().startswith('t'):
+                choice = 'tails'
+            else:
+                choice = 'heads'
             if result == choice.lower():
                 await cmd.bot.send_message(message.channel, 'Nice guess! :ballot_box_with_check:')
             else:
