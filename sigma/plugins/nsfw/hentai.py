@@ -34,7 +34,7 @@ async def hentai(cmd, message, args):
             data = requests.get(r34_url)
             posts = html.fromstring(data.content)
             choice = random.choice(posts)
-            r34_url = str(choice.attrib['file_url']).replace('//img', 'http://img')
+            r34_url = str(choice.attrib['file_url']).replace('//', 'http://')
         except:
             r34_url = 'Nothing on Rule34'
         # Final
