@@ -1,5 +1,6 @@
 import random
 import time
+from config import permitted_id
 
 
 async def slots(cmd, message, args):
@@ -57,7 +58,8 @@ async def slots(cmd, message, args):
             return
         symbols = [':sunny:', ':crescent_moon:', ':eggplant:', ':gun:', ':diamond_shape_with_a_dot_inside:', ':bell:',
                    ':maple_leaf:', ':musical_note:', ':gem:', ':fleur_de_lis:', ':trident:', ':knife:', ':fire:',
-                   ':clown:', ':radioactive:', ':green_heart:', ':telephone:', ':hamburger:', ':banana:', ':tumbler_glass:']
+                   ':clown:', ':radioactive:', ':green_heart:', ':telephone:', ':hamburger:', ':banana:',
+                   ':tumbler_glass:']
         res_1 = random.choice(symbols)
         res_2 = random.choice(symbols)
         res_3 = random.choice(symbols)
@@ -67,6 +69,12 @@ async def slots(cmd, message, args):
         if res_1 == res_2 == res_3:
             win = True
             pts = 10000
+            three_notify = 'The user **' + message.author.name + '** on **' + message.server.name + '** has just won ' + str(
+                pts) + ' on Slots!'
+            for user in cmd.bot.get_all_members():
+                if user.id == permitted_id[0]:
+                    await cmd.bot.send_message(user, three_notify)
+                    break
         elif res_1 == res_2 or res_1 == res_3 or res_2 == res_3:
             win = True
             pts = 200

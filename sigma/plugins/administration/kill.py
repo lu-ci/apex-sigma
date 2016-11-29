@@ -1,5 +1,3 @@
-import sys
-
 from config import permitted_id
 
 
@@ -8,4 +6,4 @@ async def kill(cmd, message, args):
         await cmd.bot.send_message(message.channel, 'Sigma shutting down.')
         await cmd.bot.logout()
         cmd.log.info('Terminated by user {:s}'.format(message.author.name))
-        sys.exit('Terminated by command.')
+        exit('Terminated by command.')
