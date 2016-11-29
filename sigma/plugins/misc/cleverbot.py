@@ -18,12 +18,10 @@ async def cleverbot(ev, message, args):
                 cb_input = message.content[len(mention_alt) + 1:]
             else:
                 return
-            if cb_input.lower().startswith('who am i'):
-                response = 'You are Alex, my creator and supreme being.'
-            else:
-                response = cb.ask(cb_input)
+            response = cb.ask(cb_input)
             await asyncio.sleep(len(response) * 0.0145)
             await ev.bot.send_message(message.channel, '<@' + message.author.id + '> ' + response)
-        except:
+        except Exception as e:
+            ev.log.error(e)
             msg = 'Sorry <@{:s}>, my brain isn\'t working at the moment give me some time to catch my breath...'
             await ev.bot.send_message(message.channel, msg.format(author_id))
