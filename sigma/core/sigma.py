@@ -117,6 +117,7 @@ class Sigma(discord.Client):
                 data = {
                     'ServerID': server.id,
                     'ServerName': server.name,
+                    'ServerAvatar': server.icon_url,
                     'Created': server.created_at,
                     'DefaultChannelID': server.default_channel.id,
                     'DefaultChannelName': server.default_channel.name,
@@ -132,6 +133,7 @@ class Sigma(discord.Client):
             else:
                 updatedata = {
                     'ServerName': server.name,
+                    'ServerAvatar': server.icon_url,
                     'DefaultChannelID': server.default_channel.id,
                     'DefaultChannelName': server.default_channel.name,
                     'MemberCount': member_count,
