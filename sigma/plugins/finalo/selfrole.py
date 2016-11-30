@@ -1,5 +1,4 @@
 import asyncio
-from config import permitted_id
 
 target_channel = ['roles']
 self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumble [DN]', 'Protect [DN]', 'PvE [DN]',
@@ -11,20 +10,19 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Black Desert Online', 'PvE [BD]', 'PvP [BD]',
               'Revelation Online', 'PvE [Rev]', 'PvP [Rev]',
               'Team Instinct', 'Team Valor', 'Team Mystic', 'Pokémon',
-              'Artists', 'Streamers', 'Entertainers', 'Coders', 'Cosplayers',
-              'Welcome Party', 'Cake Shop', 'Weebs']
-timeout = 5
-
-cmd_addAssingableRole = 'addar'
-cmd_removeAssingableRole = 'remar'
-
+              'Artists', 'Streamers', 'Entertainers ✿', 'Coders', 'Cosplayers',
+              'Welcome Party', 'Cake Shop', 'Weebs',
+              'Singers', 'Intrumentalists', 'Showtime']
+timeout = 10
 
 async def selfrole(ev, message, args):
     if message.channel.id == '222882496113672193':
         if message.content == 'Pokemon':
             message.content = 'Pokémon'
+        if message.content == 'Entertainers':
+            message.content = 'Entertainers ✿'
         if message.author.id == ev.bot.user.id:
-            return
+            pass
         else:
             await ev.bot.delete_message(message)
 
@@ -41,9 +39,7 @@ async def selfrole(ev, message, args):
                     if role.name == message.content:
                         if user_has_role:
                             await ev.bot.remove_roles(message.author, role)
-                            response = await ev.reply(message.channel,
-                                                      '<@{0}> Role `{1}` removed'.format(
-                                                          message.author.id, role.name))
+                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` removed'.format(message.author.id, role.name))
 
                             await asyncio.sleep(timeout)
                             await ev.bot.delete_message(response)
@@ -51,7 +47,7 @@ async def selfrole(ev, message, args):
                             return
                         else:
                             await ev.bot.add_roles(message.author, role)
-                            response = await ev.reply('<@{0}> Role `{1}` assigned'.format(message.author.id, role.name))
+                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` assigned'.format(message.author.id, role.name))
 
                             await asyncio.sleep(timeout)
                             await ev.bot.delete_message(response)

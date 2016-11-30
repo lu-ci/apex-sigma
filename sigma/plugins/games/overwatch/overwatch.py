@@ -12,7 +12,7 @@ async def overwatch(cmd, message, args):
     ow_input = (str(message.content[len('overwatch') + 1 + len(cmd.prefix):])).replace('#', '-')
 
     ow_region_x, ignore, ow_name = ow_input.partition(' ')
-    ow_region = ow_region_x.replace('NA', 'US')
+    ow_region = ow_region_x.lower().replace('na', 'us')
 
     if os.path.isfile('cache/ow/avatar_' + message.author.id + '.png'):
         os.remove('cache/ow/avatar_' + message.author.id + '.png')
@@ -25,11 +25,11 @@ async def overwatch(cmd, message, args):
     if ow_region.upper() == 'NA' or 'US' or 'EU':
         try:
             profile = (
-                'http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
+                'http://api.lootbox.eu/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
             profile_json_source = urllib.request.urlopen(profile).read().decode('utf-8')
             profile_json = json.loads(profile_json_source)
             champ_get_url = (
-                'http://127.0.0.1:9000/pc/' + ow_region.lower() + '/' + ow_name + '/quick-play/heroes').replace(' ', '')
+                'http://api.lootbox.eu/pc/' + ow_region.lower() + '/' + ow_name + '/quickplay/heroes').replace(' ', '')
             champ_get_src = urllib.request.urlopen(champ_get_url).read().decode('utf-8')
             champ_get = json.loads(champ_get_src)
             avatar_link = profile_json['data']['avatar']
@@ -112,18 +112,18 @@ async def overwatch(cmd, message, args):
                                  '\n    - Quick: ' + qg_playtime +
                                  '\n    - Competitive: ' + cg_playtime + '```')
             # print('CMD [' + cmd_name + '] > ' + initiator_data)
-            await cmd.reply_file('cache\ow\profile_' + message.author.id + '.png')
-            await cmd.reply(overwatch_profile)
+            await cmd.bot.send_file(message.channel, 'cache\ow\profile_' + message.author.id + '.png')
+            await cmd.bot.send_message(message.channel, overwatch_profile)
         except KeyError:
             try:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
                 print(profile_json['error'])
-                await cmd.reply(profile_json['error'])
+                await cmd.bot.send_message(message.channel, profile_json['error'])
             except:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
-                await cmd.reply(
+                await cmd.bot.send_message(message.channel, 
                                                'Something went wrong.\nThe servers are most likely overloaded, please try again.')
                 # else:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
     else:
-        await cmd.reply('Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')
+        await cmd.bot.send_message(message.channel, 'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')

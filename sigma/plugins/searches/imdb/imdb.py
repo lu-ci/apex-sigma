@@ -34,13 +34,13 @@ async def imdb(cmd, message, args):
                       '\nActors: ' + actors +
                       '\nMetascore: ' + score +
                       '\nIMDB Rating: ' + rating + '```')
-        await cmd.reply(movie_text + '\nPlot:\n```\n' + plot + '\n```')
+        await cmd.bot.send_message(message.channel, movie_text + '\nPlot:\n```\n' + plot + '\n```')
     except:
         if imdb_imput == '':
-            await cmd.reply('You need to specify a movie!')
+            await cmd.bot.send_message(message.channel, 'You need to specify a movie!')
         else:
             try:
-                await cmd.reply('Error: ' + request['Error'])
+                await cmd.bot.send_message(message.channel, 'Error: ' + request['Error'])
             except Exception as e:
                 cmd.log.error(e)
-                await cmd.reply('Something went horribly wrong!')
+                await cmd.bot.send_message(message.channel, 'Something went horribly wrong!')

@@ -1,0 +1,16 @@
+Route Walkthrough for **Air** from **Air** :
+```
+-Follow the girl
+-Fight
+-Go with the man
+-Go outside
+-Defend
+-Go for a walk
+-Check it out
+-Follow the man
+-Snatch the piece of paper
+-Think about the past again
+-Wander around the roost
+-Go to the right
+-Go right
+```

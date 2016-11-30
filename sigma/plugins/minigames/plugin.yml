@@ -1,0 +1,54 @@
+name: Polaris Sonata Utilities
+
+categories:
+  - minigames
+
+enabled: true
+
+commands:
+  - name: coinflip
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Heads"
+    description:
+      Flips a coin. Nothing complex.
+      You can try guessing the results by typing either Heads or Tails after the command.
+
+  - name: roll
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 701"
+    description:
+      Gives a random number from 0 to 100.
+      You can specify the highest number the function calls by adding a number after the command.
+      The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.
+
+  - name: eightball
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Will I ever travel to Venice?"
+    description:
+      The 8Ball has answers to ALL your question.
+      Come one, come all, and ask the mighty allknowing 8Ball!
+      Provide a question at the end of the command and await the miraculous answer!
+
+  - name: rps
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Rock"
+    description:
+      Play Rock-Paper-Scissors with the bot.
+      No cheating, we swear. Maybe she just doesn't like you.
+
+  - name: slots
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Spin the slot machine and test your luck!
+      Costs 50 points to spin.

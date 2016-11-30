@@ -7,10 +7,10 @@ async def nsfwpermit(cmd, message, args):
 
     if check_admin(message.author, channel):
         if set_channel_nsfw(cmd.db, channel.id):
-            await cmd.reply('The NSFW Module has been Enabled for <#' + channel.id + '>! :eggplant:')
+            await cmd.bot.send_message(message.channel, 'The NSFW Module has been Enabled for <#' + channel.id + '>! :eggplant:')
         else:
-            await cmd.reply('Permission reverted to **Disabled**! :fire:')
+            await cmd.bot.send_message(message.channel, 'Permission reverted to **Disabled**! :fire:')
     else:
-        response = await cmd.reply('Only an **Administrator** can manage permissions. :x:')
+        response = await cmd.bot.send_message(message.channel, 'Only an **Administrator** can manage permissions. :x:')
         await asyncio.sleep(10)
         await cmd.bot.delete_message(response)

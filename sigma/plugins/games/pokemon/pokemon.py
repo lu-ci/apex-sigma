@@ -5,7 +5,12 @@ async def pokemon(cmd, message, args):
     poke_input = ' '.join(args)
 
     pokemon_url = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower() + '/')
-    poke = requests.get(pokemon_url).json()
+    try:
+        poke = requests.get(pokemon_url).json()
+    except Exception as e:
+        cmd.log.error(e)
+        await cmd.bot.send_message(message.channel, 'We had trouble communicating with the API.')
+        return
 
     try:
         poke_id = str(poke['id'])
@@ -137,9 +142,9 @@ async def pokemon(cmd, message, args):
                         '\nWeight: ' + weight +
                         '\nType: ' + type_1 + '/' + type_2 + ' (' + icon_1 + '/' + icon_2 + ')' +
                         '\nAbilities: ' + ability_1 + ' (' + a1v + ') | ' + ability_2 + ' (' + a2v + ')\nImage: https://randompokemon.com/sprites/animated/' + poke_id + '.gif')
-        await cmd.reply(message_text)
+        await cmd.bot.send_message(message.channel, message_text)
     except:
         try:
-            await cmd.reply(str(poke['detail']))
+            await cmd.bot.send_message(message.channel, str(poke['detail']))
         except:
-            await cmd.reply('Something went wrong')
+            await cmd.bot.send_message(message.channel, 'Something went wrong')

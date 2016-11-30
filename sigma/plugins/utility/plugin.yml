@@ -1,0 +1,208 @@
+name: Utilities
+
+categories:
+  - utility
+
+enabled: true
+
+commands:
+  - name:    help
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} [command]"
+    description:
+      Returns the list of command modules or gives you the description
+      and usage for a selected command.
+
+  - name:    remind
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 15 LEEEEROOOOY JEEEEEENKIIIIINS!"
+    description:
+      Sets a timer in seconds and displays the message inputted after it's done.
+
+  - name:    donors
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Shows the list of the lovely people who donated to the Aurora Project.
+
+  - name:    stats
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Shows the statistics of Sigma.
+
+  - name:    weather
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Melbourne Australia"
+    description:
+      Shows weather data for the selected location.
+      Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.
+
+  # disabled: unfinished
+  - name:    github
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} search <query>"
+    description:
+      Various github commands. (WIP)
+
+  - name:    dfm
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Coffee House Jazz"
+    description:
+      Shows the details about the song currently playing on the selected music category of Discord.FM.
+
+  - name:    bots
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Lists the bots on the server where the command is used and shows their status.
+
+  - name: userinfo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows information about the mentioned user.
+      If no user is mentioned, it will show information about you, instead.
+
+  - name: uid
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows the User ID of the mentioned user.
+      If no user is mentioned, it will show your ID instead.
+
+  - name: channelinfo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows information about the channel the command was used in.
+
+  - name: cid
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows Channel ID of the channel the command was used in.
+
+  - name: serverinfo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows information about the server the command was used on.
+
+  - name: sid
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows Server ID of the server the command was used on.
+
+  - name: permissions
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows all server permissions for the mentioned user.
+      If no user is mentioned, it will show information about you, instead.
+
+  - name: invite
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the OAuth2 URL for inviting Sigma to a server.
+
+
+  - name: choose
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Pizza Burgers Both"
+    description:
+      The bot will select a thing from the inputed list.
+      Separate list items with a space.
+
+  - name: wa
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 69+42"
+    description:
+      Makes a request to Wolfram Alpha and exports the result.
+
+  - name: whoplays
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} League of Salt"
+    description:
+      Generates a list of users playing the inputted game.
+
+  - name: avatar
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows the avatar of the user.
+      (in the form of a direct link)
+
+  - name: raffle
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Picks a random user from the current Online users as a winner for the raffle.
+      The user can be Online, Away or DND, but can not be invisible to be eligable.
+
+  - name: draw
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 5"
+    description:
+      Draws an inputted number of cards, the maximum is 10.
+      If no number is provided, the bot will draw 2.
+
+  - name: color
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1ABC9C"
+    description:
+      Generates a color from the given HEX code or provided RGB numbers.
+
+  - name:    twitch
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Fetches information about a streamer.

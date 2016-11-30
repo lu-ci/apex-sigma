@@ -17,20 +17,20 @@ async def nhentai(cmd, message, args):
             list_text += '\n#' + str(n) + ' ' + entry['title']['pretty']
 
         if len(nh.search(search)['result']) > 1:
-            await cmd.reply(list_text + '\n```')
+            await cmd.bot.send_message(message.channel, list_text + '\n```')
             choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
-            await cmd.typing()
+            await cmd.bot.send_typing(message.channel)
 
             try:
                 nh_no = int(choice.content) - 1
             except:
-                await cmd.reply('Not a number or timed out... Please start over')
+                await cmd.bot.send_message(message.channel, 'Not a number or timed out... Please start over')
                 return
         else:
             nh_no = 0
 
         if nh_no > len(nh.search(search)['result']):
-            await cmd.reply('Number out of range...')
+            await cmd.bot.send_message(message.channel, 'Number out of range...')
         else:
             hen_name = nh.search(search)['result'][nh_no]['title']['pretty']
             hen_id = nh.search(search)['result'][nh_no]['id']
@@ -51,9 +51,9 @@ async def nhentai(cmd, message, args):
 
             for tags in nh.search(search)['result'][nh_no]['tags']:
                 nhen_text += '[' + str(tags['name']).title() + '] '
-            await cmd.reply_file('cache/ani/nh_' + message.author.id + '.png')
-            await cmd.reply('Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
+            await cmd.bot.send_file(message.channel, 'cache/ani/nh_' + message.author.id + '.png')
+            await cmd.bot.send_message(message.channel, 'Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
             os.remove('cache/ani/nh_' + message.author.id + '.png')
 
     except nh.nhentai.nHentaiException as e:
-        await cmd.reply(e)
+        await cmd.bot.send_message(message.channel, e)

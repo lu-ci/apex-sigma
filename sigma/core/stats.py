@@ -7,7 +7,9 @@ def stats(bot, log=None):
     permed_ids = userlist(permitted_id)
     authors = userlist(bot.authors)
     contributors = userlist(bot.contributors)
-    donors = userlist(bot.donors)
+    donor_count = 0
+    for donor in bot.donors:
+        donor_count += 1
     with open('VERSION') as version_file:
         content = yaml.load(version_file)
         version = content['version']
@@ -30,7 +32,7 @@ def stats(bot, log=None):
     tmp.append(multi('Running discord.py version: ' + discord.__version__, log))
     tmp.append(multi('Authors: {:s}'.format(authors), log))
     tmp.append(multi('Contributors: {:s}'.format(contributors), log))
-    tmp.append(multi('Donors: {:s}'.format(donors), log))
+    tmp.append(multi('Donors: ' + str(donor_count), log))
     tmp.append(multi('Bot Version: ' + version_text, log))
     tmp.append(multi('Build Date: ' + build_date, log))
     tmp.append(multi('Connected to [ {:d} ] servers'.format(bot.server_count), log))

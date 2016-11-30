@@ -1,11 +1,8 @@
 import random
-
 from .visual_novels import key_vn_list
 
 
 async def keyvis(cmd, message, args):
-    choice = None
-
     if not args:
         choice = random.choice(list(key_vn_list.keys()))
     else:
@@ -14,7 +11,7 @@ async def keyvis(cmd, message, args):
     try:
         item = key_vn_list[choice]
     except KeyError:
-        await cmd.reply('Nothing found for {:s}...'.format(
+        await cmd.bot.send_message(message.channel, 'Nothing found for {:s}...'.format(
             ', '.join(['`{:s}`'.format(x) for x in args])))
         return
 
@@ -23,6 +20,6 @@ async def keyvis(cmd, message, args):
 
     url_base = 'https://cgv.blicky.net'
     image_url = '{:s}/{:s}/{:s}{:d}.jpg'.format(
-            url_base, item[0], '0000'[:-ran_number_length], ran_image_number)
+        url_base, item[0], '0000'[:-ran_number_length], ran_image_number)
 
-    await cmd.reply(image_url)
+    await cmd.bot.send_message(message.channel, image_url)

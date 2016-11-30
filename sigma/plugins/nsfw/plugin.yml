@@ -43,6 +43,26 @@ commands:
       it gives a random image. If the wanted tag contains spaces type it
       with an underscore instead as spaces are used to separate multiple tags.
 
+  - name:    danbooru
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s} red_head"
+    description:
+      Searches DanBooru for selected tags, if no tags are specified,
+      it gives a random image. If the wanted tag contains spaces type it
+      with an underscore instead as spaces are used to separate multiple tags.
+
+  - name:    hentai
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s} deez_nuts"
+    description:
+      Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified,
+      it gives three random image. If the wanted tag contains spaces type it
+      with an underscore instead as spaces are used to separate multiple tags.
+
   - name:     ehentai
     global:   true
     enabled:  false
@@ -70,8 +90,9 @@ commands:
   - name:     nyaa
     global:   true
     enabled:  true
-    sfw:      false
+    sfw:      true
     usage:    "{pfx:s}{cmd:s}"
     description:
       Provides a random Nekomimi image.
+      They might be borderline NSFW, a warning just in case.
 
