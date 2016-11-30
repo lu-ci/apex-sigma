@@ -1,0 +1,583 @@
+Routes: Walkthrough
+
+As far as I can tell, absolutely nothing in the Mappie segments influences which of the five heroine routes you end up on (if any), not even the parts where one of the heroines accompanies you. So they're ignored in this section.
+
+I don't try to list every single choice you should make for each route, because a lot of them probably don't matter. Instead I try to list only the important choices, the ones I think are enough to guarantee you get the route no matter what else you do.
+
+I'll also point out bad ends, since why not.
+
+Kotori:
+10/3: Something She Likes
+10/4: Eat With Kotori
+10/6: It Doesn't Matter (to avoid Chihaya route)
+10/7: I Can't Answer That
+10/16: Follow Kotori
+10/18: It's Not a Big Deal (to avoid Lucia route)
+10/21: Take This Opportunity to Sleep (to avoid Lucia route)
+10/23: Follow Her
+10/25: Follow Kotori (choose Go Solo and Look for Chihaya instead to get a bad end on 10/31).
+
+During Kotori's Route:
+Only one choice, and it has only one option.
+
+Chihaya:
+10/5: Help Her Out
+10/6: Follow Her, Save Her
+10/7: I Can't Answer That, Braking
+10/18: It's Not a Big Deal (to avoid Lucia route)
+10/20: I Don't Like His Attitude, But I Want to See the Cat
+10/21: Take This Opportunity to Sleep (to avoid Lucia route)
+10/23: Watch Her Leave (to avoid Kotori route)
+10/25: Go Solo and Look for Chihaya
+11/3: I Don't Know
+11/12: Save Chihaya
+
+During Chihaya's Route:
+Three choices, each with two options. For each choice, one option leads to an immediate bad end. The bad end options are "Dodge It", "Attack Tenma Directly" and "Strengthen Myself Anyway".
+
+Lucia:
+10/6: It Doesn't Matter (to avoid Chihaya route)
+10/7: I Can't Answer That
+10/9: The Classroom's Fine
+10/16: Go to the Cafeteria
+10/18: I Wanna Know...
+10/21: Collaborate with Yoshino
+10/23: I Have to Do Something
+
+During Lucia's Route:
+No choices.
+
+Shizuru:
+Unlock this route by completing Kotori's route.
+10/6: It Doesn't Matter (to avoid Chihaya route)
+10/7: Myself
+10/18: Talk to Her, It's Not a Big Deal (to avoid Lucia route)
+10/20: Go
+10/21: Take This Opportunity to Sleep (to avoid Lucia route)
+10/23: Watch Her Leave (to avoid Kotori route)
+10/25: Go Check on Shizuru
+
+If you want to get a lot of Friends and Quests done on your initial playthrough, consider following the instructions from "Playthrough 3" (in the next section). The only thing in there you won't be able to do is get the Legendary Sukumon (prereq for Friend #90), but missing just one Friend won't prevent you from unlocking anything later.
+
+During Shizuru's Route:
+One choice, two options. Choose "Keep Going As-Is" to get an immediate bad end.
+
+Akane:
+Unlock this route by completing Chihaya's route.
+10/6: It Doesn't Matter (to avoid Chihaya route)
+10/7: The World
+10/16: Go Somewhere Else
+10/18: It's Not a Big Deal (to avoid Lucia route)
+10/21: Take This Opportunity to Sleep (to avoid Lucia route)
+10/23: Watch Her Leave (to avoid Kotori route)
+10/25: Stay Here
+
+If you want to get a lot of Friends and Quests done on your initial playthrough, consider following the instructions from "Playthrough 4" (in the next section). The only thing in there you won't be able to do is read the Oppai Ending, but you can easily leave a save on 11/7 to help you get to that ending quickly once you can unlock it.
+
+During Akane's Route:
+No choices.
+
+Moon:
+Unlock this route by completing all five heroines' routes, then choose it from the main menu.
+No choices.
+
+Terra:
+Unlock this route by completing Moon, then choose it from the main menu.
+Several choices, though only one of them gives you multiple options that actually lead to different outcomes. On that one choice, you get a bad end unless you choose "Let It Go".
+
+Oppai Ending:
+Complete all quests, then complete Quest #28: "Proof of Paranormal Phenomena" and never choose "That's Enough".
+For this reason, it's best to save Quest #28 for last (or leave a save file on 11/7 before completing it).
+
+Friends and Quests: Walkthrough
+
+This is meant to be a step-by-step guide to completing all quests and finding all friends within a reasonable number of playthroughs, so that you don't have to come up with a plan of you own based on the rather large amount of information in the lists below.
+
+Playthrough 1
+
+First, actually finish reading the entire VN. This completes Quest 31: "Rewrite".
+This should be easy to do, but if you need help consult the "Routes: Walkthrough" section above.
+Quests #2: "Tsuchinoko Sighting on Campus!?" and #8: "I Have Superpowers" are unavoidable, and 66 of the friends are unavoidable (counting all routes). You will get more quests and friends than that no matter what, but which additional ones is not predetermined. If you're curious, the unavoidable friends are: 1-26, 28-51, 58, 62-63, 81-82, 93, 96, 98-99, 101-106, and 108.
+
+Playthrough 2
+
+Second, complete Quest #29: "Spoiled end" by getting all bad ends, if you haven't already. You should be able to complete this without any help (see the "Routes: Walkthrough" section if you do need help), and it doesn't make much sense to try completing anything else alongside this, so get it out of the way now.
+
+Playthrough 3
+
+The goal here is to complete two multi-part quests (#23 and #26, which involve collecting porn books and planting seeds respectively) and a handful of friends (#64, #94 and #95) that we simply can't complete during the last playthrough. Completing quests #23 and #26 and getting friend #64 requires a Kotori-related Mappie segment, and friends #94 and #95 require a Shizuru-related scene, so we'll be going down both of their routes, kind of. I'll also throw in other random friends (like the Sukumon-related ones) which we might as well get out of the way now to simplify the last playthrough.
+
+-----10/3:
+Obtain the Legendary Sukumon from a hidden circle: eastern edge, just above path (prereq for friend #90). Note that this circle will not appear if you haven't finished the VN yet.
+-----10/4:
+Obtain friend #67 by clicking a hidden circle (south of the school).
+-----10/6:
+Choose "Follow Her" and "Save Her".
+-----10/7:
+Choose "Myself".
+Save at choice. Obtain friend #59 by choosing "Braking".
+Reload and choose "Breaking" to prevent Chihaya from showing up in the park on the 20th.
+-----10/7 Mappie:
+Porn book: 3rd floor, just left of center
+Click on a hidden triangle: 3rd floor, second visit, just right of center (prereq for friend #84).
+-----10/11 Mappie:
+Obtain friend #84 from the hidden circle just SW of the right-hand stairs.
+Obtain friend #92 from the hidden circle in the bottom left corner.
+-----10/16:
+If you haven't finished Quest #22: "Taste her plate" before, then save, choose "Go to the Cafeteria" to complete it, then reload.
+Start Quest #26: "Say it with flowers" by choosing "Follow Kotori".
+-----10/16 Mappie:
+Plant three seeds: 1st floor, two places outside (NE shore of lake, SW of westernmost tree), 2nd floor (NW classroom)
+-----10/17 Mappie:
+Before choosing either Chihaya or Shizuru, plant three seeds: south of lake, most northeasterly blue building, postbox near west edge. Also, click on a hidden circle (southwest of that blue building) to obtain friend #65.
+After choosing Chihaya, find various hidden circles: the park in the center (info #10 and friend #91), west side just under the higher yellow road (friend #66), green area at the bottom (requires friend #84, prereq for friends #85-90)
+-----10/18:
+Choose "Talk to Her".
+Choose "It's Not a Big Deal" (to avoid Lucia route).
+-----10/20:
+Choose "Go".
+If Chihaya doesn't come meet you in the park, you will be given info #6.
+-----10/21 Mappie:
+Plant one seed in the first alley: roof of 5th upper building from the left
+Obtain friend #27 by choosing "Be Honest".
+Plant two seeds in the second alley: roof of 6th upper building from the left, alley between 2nd and 3rd lower buildings from the right
+-----10/23:
+Choose "Follow Her".
+-----10/24 Mappie:
+Plant one seed in the fourth alley (after the dogs start chasing you): just under the upper building with stairs (that isn't right on the left edge)
+-----10/25:
+Save at the second choice.
+Choose "Go Check on Shizuru" and control to the 26th to obtain friends #94 and #95.
+Reload and choose "Listen to Kotori and Hurry Up" then "Follow Kotori" to get the Mappie segment.
+-----10/25 Mappie:
+Plant one seed. However, in order to actually plant the seed you must first collect several random items from other hidden circles. Oddly enough, not all of the relevant circles can be found right away, so the order matters a little.
+- Click a hidden circle near the bottom just west of the vertical yellow street to get a boomerang.
+- Click a hidden circle just under the coffee shop two blocks NE of the yellow intersection to get a magnet.
+- Click a hidden circle on the west side of a blue building directly north of the objective to get a cardboard nikuman.
+- Click a hidden circle next to a postbox near the NW corner to get an alligator clip.
+- Click a hidden circle just SE of the yellow intersection to get an AA battery.
+- Click a hidden circle on the sideways L-shaped green patch northeast of the objective. Click a second time to use these items and plant the seed.
+Obtain friend #64 by clicking on a hidden circle (top left corner, just under the coffee place).
+Porn books: east side between all the blue buildings, west side south of the road west of the hospital, top right corner
+After the Mappie segment you will automatically send Inoue a report on the cat that can see ghosts (part of Quest #24: "Seeker of the Truth").
+-----10/30:
+Choose Quest #6: "Mysterious Building in Town - Rumored Ghost Activity". During Quest #6, find a porn book and friend #107: bottom left corner of big room, 1st floor
+-----11/1:
+If you planted all the seeds, Quest #26: "Say it with flowers" is completed after talking to Kotori.
+-----11/6 Mappie:
+Porn book: just under the first horizontal portion of the path. This should complete Quest #23: "Erohim bless you".
+Obtain friends #85, #86, #87, #88, #89 and #90 from a series of five hidden circles, each of which is on the path.
+
+Playthrough 4
+
+Now we're going to try and get every single remaining quest and friend all in one playthrough (though there will be a lot of reloading). Make sure you do every single one of the following steps, even if you already have that particular friend/quest, because quite a few of them are prerequisites for others. It's easier to just do everything rather than try and work out which parts you can get away with not doing.
+
+Most of the remaining quests involve finding "info" then investigating it, and some of these investigation opportunities only appear for Akane, so we'll have to go down her route (this is why playthroughs 3 and 4 can't really be combined). There is exactly one detail with regards to which playthrough 3 is required for playthrough 4 to work: if you've never read to end of Oct 25th after choosing "Follow Kotori", you're missing part of Quest #24: "Seeker of the Truth".
+
+-----10/5:
+Obtain info #3 and friends #53, #54, #55, #56 and #57 by choosing "Recruit Members" on Oct 5th.
+-----10/6:
+Choose "It Doesn't Matter" so that Chihaya won't come to the park on 10/20.
+-----10/7:
+Choose "The World".
+-----10/7 Mappie: [be sure to execute these steps in order since you can't backtrack during this segment]
+Obtain info #9 from a hidden circle in the lake.
+Enter the school.
+Obtain friend #60 from a hidden circle (3rd floor, near bathroom).
+Go to 2nd floor.
+Obtain friend #61 from a hidden circle (2nd floor, bottom left corner).
+Obtain info #1 from a hidden triangle (2nd floor, just left of center).
+Obtain friend #68 from a hidden circle (2nd floor, right-hand bathroom).
+Visit classroom 1-C, go to 3rd floor, go to 4th floor.
+Click hidden circle (in bathroom).
+Visit classroom 3-B, go to Skywalk, then go to 5th floor.
+Obtain info #18 from a hidden circle (left-hand stairs).
+Obtain friend #69 from hidden circle (near bathroom).
+As a prereq for part of Quest #25: "Play with Yoshino", click a hidden circle in front of one of the center classroom.
+-----10/11 Mappie: [be sure to execute these steps in order since you can't backtrack during this segment]
+Obtain info #16 by clicking all four non-hidden circles in the first part.
+Complete Quest #18: Wonder #5 - "Story of the Stairs" with the hidden circle on the left-hand stairs. Send report to Inoue (part of Quest #24: "Seeker of the Truth").
+Talk to all four students. Go through three hallway segments. Kotarou and Yoshino decide to turn back.
+In each of the three remaining hallway segments, there is exactly one hidden circle. Find all three.
+The circle in the second hallway completes Quest #1: "The Terrifying Old Men". Choose "Yes" to write a report on it.
+The other two circles are part of Quest #25: "Play with Yoshino".
+After finshing the Mappie segment, you will automatically send your report on Quest #1: "The Terrifying Old Men" to Inoue (part of Quest #24: "Seeker of the Truth"), after which she will send you info #15.
+-----10/15:
+You will automatically receive info #13 if you sent Inoue reports on quests #1 and #18.
+-----10/16:
+Choose "Go Somewhere Else".
+-----10/16 Mappie:
+Click on Lucia on the 2nd floor once (not twice!), then go back to the 1st floor and click a hidden circle on the right-hand stairs to obtain info #21.
+-----10/17 Mappie:
+After choosing Chihaya, click a hidden circle in the park in the center (info #10 and friend #91).
+-----10/20:
+If Chihaya doesn't come meet you in the park, you will be given info #6.
+-----10/21:
+Save at the second choice. Complete Quest #9: "I Actually Do Have Superpowers", reload, complete Quest #10: "I'm the One Who Really Does Have Superpowers", reload, then complete Quest #13: "Doll User". It is important that you do Quest #13: "Doll User" last.
+Friends #71, #72 and #79 come with quests #9, #10 and #13 respectively.
+-----10/21 Mappie:
+Obtain info #5 from the right-most triangle in the first alley.
+After talking to Gossuri-san in the second alley, obtain info #11 from a hidden triangle on the left.
+-----10/23:
+Choose "Watch Her Leave" (to avoid Kotori route).
+-----10/25:
+Choose "Stay Here".
+-----10/27:
+Save at the choice.
+To complete Quest #25: "Play with Yoshino", choose "I'll Take It" and then "Keep Going As-Is".
+Reload and choose "No Thanks".
+Save at the next choice and complete Quest #11: "Super- and Spiritual Power Combo Pack" and Quest #12: "A Supergirl is Born" by reloading.
+Friends #73, #74, #75, #76, #77 and #78 come with Quest #11.
+You should have completed Quest #30: "100 Friends" by this point.
+-----10/30:
+Save at the choice and complete Quests #3, #4, #5, #6 and #7 by reloading (this also completes Quest #27: "Weekend Quest"). Make sure you do Quest #6: "Mysterious Building in Town - Rumored Ghost Activity" last.
+For Quest #4: "Cohabitation with Ghosts for No Money Down" - At the second choice, you must choose "Do It Anyway", then skip ahead to the end of 11/2 to actually complete the quest.
+For Quest #6: "Mysterious Building in Town - Rumored Ghost Activity" - During the Mappie segment, obtain info #19 from a hidden circle (center of big room, 2nd floor).
+Friend #97 comes with Quest #4, and friend #83 comes with Quest #5.
+Quests #4 and #7 are also part of Quest #24: "Seeker of the Truth".
+-----11/2:
+Save at the choice and complete Quests #14, #15, #16, #17 and #20 (Wonders #1, #2, #3, #4 and #7) by reloading. Do Quest #14: Wonder #1 - "Entrance to an Alternate Dimension" last.
+Friend #52 comes with Quest #16.
+-----11/5:
+Choose Quest #19: Wonder #6 - "Something Walking in the Physics Room...?". Friend #80 comes with Quest #19.
+-----11/6 Mappie:
+Locate a two-horned beetle: at the very top, between the three trees. Send the picture to Inoue (part of Quest #24: "Seeker of the Truth").
+-----11/7:
+Save here, just in case you missed something and need to come back later to get the Oppai ending.
+Choose Quest #21: Wonder #8 - "???". This is the last part of Quest #24: "Seeker of the Truth", so you should complete that as well.
+Quest #28: "Proof of Paranormal Phenomena" should be automatically completed in the next scene, if you've completed Quests #13: "Doll User", #14, #19 and #21 (Wonders #1, #6 and #8) in this playthrough (i.e., those aren't the ones you overwrote by reloading saves).
+Choices should appear immediately after completing Quest #28 which give you access to the Oppai Ending.
+Trigger the Oppai Ending by never choosing "That's Enough".
+Friend #100 comes with the Oppai Ending.
+
+Quests: List
+
+1) The Terrifying Old Men
+
+Obtain info from a hidden triangle on the second floor of the school during the Oct 7th Mappie segment. Complete the quest at a hidden circle in the second segment of the hallway (when heading back) during the Oct 11th Mappie segment.
+
+2) Tsuchinoko Sighting on Campus!?
+
+Completing this quest on 10/14 is unavoidable.
+
+3) Mysterious Flying Object Downtown!?
+
+Obtain info by choosing "Recruit Members" on Oct 5th. Complete the quest using the Oct 30th choice.
+
+4) Cohabitation with Ghosts for No Money Down
+
+Obtaining this info is unavoidable. Use the Oct 30th choice to investigate, then choose "Do It Anyway". The quest will be completed on 11/2.
+
+5) Monster in the Forest!? The Legendary Treeman!
+
+Obtain this info from the right-most triangle during the first part of the Oct 21st Mappie segment. Complete the quest using the Oct 30th choice.
+
+6) Mysterious Building in Town - Rumored Ghost Activity
+
+Obtain this info in the park during Oct 20th if you haven't met Chihaya. Complete the quest using the Oct 30th choice.
+
+7) The T-rex survived into the 20th century!
+
+Obtaining this info is unavoidable. Choose this on Oct 30th.
+
+8) I Have Superpowers
+
+Completing this quest on 10/20 is unavoidable.
+
+9) I Actually Do Have Superpowers
+
+Obtain this info from a hidden circle (in the lake) during the Oct 7th Mappie segment. Complete the quest using the Oct 21st choice.
+
+10) I'm the One Who Really Does Have Superpowers
+
+After choosing Chihaya on the Oct 17th Mappie segment, obtain this info from a hidden circle (the park in the center). Complete the quest using the Oct 21st choice.
+
+11) Super- and Spiritual Power Combo Pack
+
+Talk to Gossuri-san during the Oct 21st Mappie segment (second alley segment) then obtain info from a hidden triangle on the left. Complete this quest using the Oct 27th choice.
+
+12) A Supergirl is Born
+
+Complete this quest using the Oct 27th choice.
+
+13) Doll User
+
+Obtain info by sending Inoue reports on both Quest #18: Wonder #5 - "Story of the Stairs" and Quest #1: "The Terrifying Old Men". Complete the quest using the Oct 21st choice.
+
+14) The Seven Wonders: #1 - Entrance to an Alternate Dimension
+
+Complete this quest using a choice on Nov 2nd, 5th or 7th, assuming you're on Akane's route.
+
+15) The Seven Wonders: #2 - The Unopenable Door
+
+Obtain info by sending Inoue a report on Quest #1: "The Terrifying Old Men". Complete this quest using a choice on Nov 2nd, 5th or 7th, assuming you're on Akane's route.
+
+16) The Seven Wonders: #3 - The Beethoven Mystery
+
+Obtain info by clicking all four non-hidden circles during the first part of the Oct 11th Mappie segment. Complete this quest using a choice on Nov 2nd, 5th or 7th, assuming you're on Akane's route.
+
+17) The Seven Wonders: #4 - Hanako-san of the Toilet
+
+Complete this quest using a choice on Nov 2nd, 5th or 7th, assuming you're on Akane's route.
+
+18) The Seven Wonders: #5 - Story of the Stairs
+
+Obtain this info from a hidden circle (5th floor stairs) during the Oct 7th Mappie segment. Complete this quest with a hidden circle (stairs) during the Oct 11th Mappie segment.
+
+19) The Seven Wonders: #6 - Something Walking in the Physics Room...?
+
+Obtain info from a hidden circle (second floor) during investigation of Quest #6: "Mysterious Building in Town - Rumored Ghost Activity". Complete this quest using a choice on Nov 2nd, 5th or 7th, assuming you're on Akane's route.
+
+20) The Seven Wonders: #7 - Red Boy
+
+Complete this quest using a choice on Nov 2nd, 5th or 7th, assuming you're on Akane's route.
+
+21) The Seven Wonders: #8 - ???
+
+Obtain info from a hidden circle (first floor) during the Oct 16th Mappie segment. Note that you must click on Lucia's triangle once (not twice!) before the circle can be found. Complete this quest using a choice on Nov 2nd, 5th or 7th, assuming you're on Akane's route.
+
+22) Taste her plate
+
+On October 16th, choose "Go to the Cafeteria".
+The other plate-licking scenes are unavoidable, so this is all you need to do.
+
+23) Erohim bless you
+
+Find all porn books in Mappie segments. The easiest one to miss is during the investigation of Quest #6: "Mysterious Building in Town - Rumored Ghost Activity".
+-----10/7 Mappie:
+Porn book: 3rd floor, just left of center
+-----10/25 Mappie:
+Porn books: east side between all the blue buildings, west side S of road W of hospital, top right corner
+-----10/30:
+Choose Quest #6: "Mysterious Building in Town - Rumored Ghost Activity".
+-----10/30 Quest #6 Mappie:
+Porn book: bottom left corner of the big room on the 1st floor
+-----11/6 Mappie:
+Porn book: just under the first horizontal portion of the path. This should complete Quest #23.
+
+24) Seeker of the Truth
+
+Send Inoue the following reports:
+-Complete Quest #18: Wonder #5 - "Story of the Stairs" during Oct 11th Mappie segment
+-Complete Quest #1: "The Terrifying Old Men" during Oct 11th Mappie segment
+-Complete Quest #21: Wonder #8 - "???" after a choice (on Akane's route) on Nov 2nd, 5th or 7th.
+-Complete Quest #7: "The T-rex survived into the 20th century!" with Oct 30th choice.
+-Complete Quest #4: "Cohabitation with Ghosts for No Money Down" with Oct 30th choice (remember it isn't completed until Nov 2nd).
+-Locate a two-horned beetle during the Nov 6th Mappie segment (at the very top, between the three trees).
+-Choose "Follow Kotori" on Oct 25th (at the end of the day you send a report on the cat which can see ghosts).
+
+These cannot all be done in a single continuous playthrough, so you don't need to worry about trying to do that. Also, all the Japanese walkthroughs I saw had either more or fewer conditions than this, but my own testing implies this list is more accurate.
+
+25) Play with Yoshino
+
+-----10/7 Mappie:
+On the 5th floor, click a hidden circle in front of one of the center classroom (prereq for a circle on 10/11).
+-----10/11 Mappie:
+Talk to all four students. Go through three hallway segments. Kotarou and Yoshino decide to turn back.
+In each of the three remaining hallway segments, there is exactly one hidden circle.
+The circles in the first and third segments are part of this quest.
+-----10/27:
+Choose "I'll Take It" and then "Keep Going As-Is".
+
+26) Say it with flowers
+
+Complete this quest on Nov 1st after finding all eleven seed-planting spots.
+
+-----10/16:
+Start Quest #26 by choosing "Follow Kotori".
+-----10/16 Mappie:
+Plant three seeds: two places on the 1st floor before going inside (NE shore of lake, SW of westernmost tree) and one place on the 2nd floor (NW classroom)
+-----10/17 Mappie:
+Before choosing either Chihaya or Shizuru, plant three seeds: south of lake, most northeasterly blue building, postbox near west edge. Also, click on a hidden circle (southwest of that blue building) to obtain friend #65.
+-----10/21 Mappie:
+Plant one seed in the first alley: roof of 5th upper building from the left
+Plant two seeds in the second alley: roof of 6th upper building from the left, alley between 2nd and 3rd lower buildings from the right
+-----10/24 Mappie:
+Plant one seed in the fourth alley (after the dogs start chasing you): just under the upper building with stairs (that isn't right on the left edge)
+-----10/25 Mappie:
+Plant one seed. However, in order to actually plant the seed you must first collect several random items from other hidden circles. Oddly enough, not all of the relevant circles can be found right away, so the order matters a little.
+- Click a hidden circle near the bottom just west of the vertical yellow street to get a boomerang.
+- Click a hidden circle just under the coffee shop two blocks NE of the yellow intersection to get a magnet.
+- Click a hidden circle on the west side of a blue building directly north of the objective to get a cardboard nikuman.
+- Click a hidden circle next to a postbox near the NW corner to get an alligator clip.
+- Click a hidden circle just SE of the yellow intersection to get an AA battery.
+- Click a hidden circle on the sideways L-shaped green patch northeast of the objective. Click a second time to use these items and plant the seed.
+-----11/1:
+If you planted all the seeds, Quest #26 is completed after talking to Kotori.
+
+27) Weekend Quest
+
+Complete Quests #3, #4, #5, #6 and #7.
+
+28) Proof of Paranormal Phenomena
+
+Choose Quest #13: "Doll User" on Oct 21st. Choose Quest #14: Wonder #1 - "Entrance to an Alternate Dimension", Quest #19: Wonder #6 - "Something Walking in the Physics Room...?" and Quest #21: Wonder #8 - "???" on Nov 2nd, 5th and 7th (doesn't matter what order).
+
+-----10/5:
+Obtain info #3 by choosing "Recruit Members".
+-----10/6:
+Choose "It Doesn't Matter" so that Chihaya won't come to the park on 10/20.
+-----10/7:
+Choose "The World"
+-----10/7 Mappie:
+Obtain info #1 from a hidden triangle (2nd floor, just left of center).
+Obtain info #18 from a hidden circle (5th floor, left-hand stairs).
+-----10/11 Mappie:
+Complete Quest #18: Wonder #5 - "Story of the Stairs" with the hidden circle on the left-hand stairs. Send report to Inoue.
+Talk to all four students. Go through three hallway segments. Kotarou and Yoshino decide to turn back.
+In each of the three remaining hallway segments, there is exactly one hidden circle.
+The circle in the second hallway completes Quest #1: "The Terrifying Old Men". Choose "Yes" to write a report on it.
+After finshing the Mappie segment, you will automatically send your report on Quest #1: "The Terrifying Old Men" to Inoue, after which she will send you info #15.
+-----10/15:
+You will automatically receive info #13 if you sent Inoue reports on Quests #1: "The Terrifying Old Men" and #18: Wonder #5 - "Story of the Stairs".
+-----10/16:
+Choose "Go Somewhere Else".
+-----10/16 Mappie:
+Click on Lucia on the 2nd floor once (not twice!), then go back to the 1st floor and click a hidden circle on the right-hand stairs to obtain info #21.
+-----10/20:
+If Chihaya doesn't come meet you in the park, you will be given info #6.
+-----10/21:
+Choose Quest #13: "Doll User".
+-----10/23:
+Choose "Watch Her Leave" (to avoid Kotori route).
+-----10/25:
+Choose "Stay Here".
+-----10/30:
+Choose Quest #6: "Mysterious Building in Town - Rumored Ghost Activity".
+-----10/30 Quest #6 Mappie:
+Obtain info #19 from a hidden circle: center of big room, 2nd floor.
+-----11/2:
+Choose Quest #14: Wonder #1 - "Entrance to an Alternate Dimension".
+-----11/5:
+Choose Quest #19: Wonder #6 - "Something Walking in the Physics Room...?".
+-----11/7:
+Save here so you can come back later to get the Oppai ending once you've finished everything else.
+Choose Quest #21: Wonder #8 - "???".
+This quest should be automatically completed in the next scene.
+
+29) Spoiled end
+
+See all bad ends.
+-One bad end for not entering any character route
+-Three bad ends during fights in Chihaya's route
+-One bad end in Shizuru's route
+-One bad end in the Terra route
+
+30) 100 Friends
+
+Obtain one hundred friends.
+
+31) Rewrite
+
+Clear Terra route.
+
+Friends: List
+
+1) Kanbe Kotori - Common route.
+2) Ohtori Chihaya - Common route.
+3) Senri Akane - Common route.
+4) Nakatsu Shizuru - Common route.
+5) Konohana Lucia - Common route.
+6) Kagari (Moon) - Moon route.
+7) Kagari (Earth) - Terra route.
+8) Yoshino Haruhiko - Common route.
+9) Ohtori Sakuya - Common route.
+10) Nishikujou Touka - Common route.
+11) Midou - Chihaya route.
+12) Esaka Shugen - Common route.
+13) Chibimoth - Common route.
+14) Tsukuno - Akane route.
+15) Inoue - Common route.
+16) Imamiya Arata - Common route.
+17) Kanbe Keisuke - Kotori route.
+18) Kanbe Rikako - Common route.
+19) Brenda MacFarden - Lucia route.
+20) Suzaki Shuuichirou - Akane route.
+21) Gen-san - Common route.
+22) Man with Glasses (Sekime) - Shizuru route.
+23) Ordinary Man (Moriguchi) - Shizuru route.
+24) Man with Bandana (Marcus Noe) - Shizuru route.
+25) Old Man (Tsurumi) - Shizuru route.
+26) Hook-nosed Man (Okogi Reinin) - Shizuru route.
+27) Winter Fang - Common route. Choose "Be Honest" on 10/21.
+28) Ansai - Common route.
+29) Teacher - Common route.
+30) Tsuruhashi - Akane route.
+31) Shimako - Akane route.
+32) Fuku Iko - Terra route.
+33) Instructor Kiyomizu - Terra route.
+34) Mikuni - Terra route.
+35) Luis - Terra route.
+36) Yasumin - Terra route.
+37) Kajima Sakura - Akane route.
+38) Sakuya HB (Heavy Body) - Moon route.
+39) Zanbrako Murata & Unpappa Katou - Chihaya route.
+40) Tenjin - Chihaya route.
+41) Tenma - Chihaya route.
+42) Takasago - Akane route.
+43) Tennouji's Father - Terra route.
+44) Tennouji's Mother - Terra route.
+45) Gil - Common route.
+46) Pani - Common route.
+47) Tomoko - Common route.
+48) Saburou - Common route.
+49) Keitarou - Common route.
+50) Johnson - Common route.
+51) Yasuko - Common route.
+52) Mayumi - Common route. Choose Quest #16: Wonder #3 - "The Beethoven Mystery" on 11/2, 11/5 or 11/7.
+53) Suzuki - Common route. Choose "Recruit Members" on 10/5.
+54) First-Year Suzuki A - Common route. Choose "Recruit Members" on 10/5.
+55) First-Year Suzuki B - Common route. Choose "Recruit Members" on 10/5.
+56) Suzuki (female) - Common route. Choose "Recruit Members" on 10/5.
+57) Ex-Prez - Common route. Choose "Recruit Members" on 10/5.
+58) Lunch Lady - Common route.
+59) Bike Repairman - Common route. Choose "Follow Her" and "Save Her" on 10/6, and choose "Braking" on 10/7.
+60) Kazamatsuri Police Late-night Hotline - Common route. During the 10/7 Mappie segment, click on a hidden circle on the 3rd floor, near the bathroom.
+61) Kazamatsuri Red Dragon Alliance - Common route. During the 10/7 Mappie segment, click on a hidden circle on the 2nd floor, in the bottom left corner.
+62) Egashira - Common route.
+63) Autosave Spirit - Common route.
+64) Con Artist - Common route. Choose "Follow Kotori" on 10/25, then during the Mappie segment click on a hidden circle in the top left corner, just under the coffee place.
+65) Wandering Man - Common route. During the 10/17 Mappie segment, before choosing Chihaya or Shizuru, click on a hidden circle in the top right, just southwest of the most northeasterly blue building.
+66) Porn Book Prince - Common route. During the 10/17 Mappie segment, choose Chihaya then click on a hidden circle on the west side just under the higher yellow road.
+67) Giovanni - Common route. During the 10/4 Mappie segment, click on a hidden circle just south of the school.
+68) Lustful Boy - Common route. During the 10/7 Mappie segment, click on a hidden circle on the 2nd floor, near the right-hand bathroom.
+69) Game King - Common route. During the 10/7 Mappie segment, click on hidden circles on the 2nd, 4th and 5th floors (in that order). Each one is in or near a bathroom.
+70) Midoribashi - Common route.
+71) Yuuka - Common route. During the 10/7 Mappie segment, click on a hidden circle in the lake, then choose Quest #9: "I Actually Do Have Superpowers" on 10/21.
+72) Edogawa - Common route. During the 10/17 Mappie segment, choose Chihaya then click on a hidden circle in the park in the center, then choose Quest #10: "I'm the One Who Really Does Have Superpowers" on 10/21.
+73) Spoon - Common route. During the 10/21 Mappie segment, after talking to Gossuri-san, click on a hidden triangle on the left, then choose Quest #11: "Super- and Spiritual Power Combo Pack" on 10/27.
+74) Ballpoint Pen - Common route. During the 10/21 Mappie segment, after talking to Gossuri-san, click on a hidden triangle on the left, then choose Quest #11: "Super- and Spiritual Power Combo Pack" on 10/27.
+75) Spirit Girl - Common route. During the 10/21 Mappie segment, after talking to Gossuri-san, click on a hidden triangle on the left, then choose Quest #11: "Super- and Spiritual Power Combo Pack" on 10/27.
+76) Dry Ice Eater - Common route. During the 10/21 Mappie segment, after talking to Gossuri-san, click on a hidden triangle on the left, then choose Quest #11: "Super- and Spiritual Power Combo Pack" on 10/27.
+77) Hardcore Otaku - Common route. During the 10/21 Mappie segment, after talking to Gossuri-san, click on a hidden triangle on the left, then choose Quest #11: "Super- and Spiritual Power Combo Pack" on 10/27.
+78) Fantasy World Warrior - Common route. During the 10/21 Mappie segment, after talking to Gossuri-san, click on a hidden triangle on the left, then choose Quest #11: "Super- and Spiritual Power Combo Pack" on 10/27.
+79) Anbe - Common route. Choose Quest #13: "Doll User" on 10/21.
+80) Fujiwara - Common route. Choose Quest #19: Wonder #6 - "Something Walking in the Physics Room...?" on 11/2, 11/5 or 11/7.
+81) Hissy Cat - Common route.
+82) Pero - Terra route.
+83) Ex-Martial Artist Turned Web Designer - Common route. During the 10/21 Mappie segment, click on the right-most triangle, then choose Quest #5: "Monster in the Forest!? The Legendary Treeman!" on 10/30.
+84) Sukumon Boy - Common route. During the 10/7 Mappie segment, click on a hidden triangle on the 3rd floor (the second time you visit that floor) just right of center. Then during the 10/11 Mappie segment, click on a hidden circle just southwest of the right-hand stairs.
+85) My Sukumon - Common route. Obtain friend #84 as described above. Then during the 10/17 Mappie segment, choose Chihaya and click on a hidden circle in the green area at the bottom. Then during the 11/6 Mappie segment, click on the five hidden circles along the path.
+86) Sukumon Breeder - Common route. Obtain friend #84 as described above. Then during the 10/17 Mappie segment, choose Chihaya and click on a hidden circle in the green area at the bottom. Then during the 11/6 Mappie segment, click on the five hidden circles along the path.
+87) Lightning Shun - Common route. Obtain friend #84 as described above. Then during the 10/17 Mappie segment, choose Chihaya and click on a hidden circle in the green area at the bottom. Then during the 11/6 Mappie segment, click on the five hidden circles along the path.
+88) Whirlwind Ran - Common route. Obtain friend #84 as described above. Then during the 10/17 Mappie segment, choose Chihaya and click on a hidden circle in the green area at the bottom. Then during the 11/6 Mappie segment, click on the five hidden circles along the path.
+89) Torrent Daisaku - Common route. Obtain friend #84 as described above. Then during the 10/17 Mappie segment, choose Chihaya and click on a hidden circle in the green area at the bottom. Then during the 11/6 Mappie segment, click on the five hidden circles along the path.
+90) Sukumon Champion - Finish Rewrite, then during the 10/3 Mappie segment click on a new hidden circle near the eastern edge, just above the path. Then obtain friend #84 as described above. Then during the 10/17 Mappie segment, choose Chihaya and click on a hidden circle in the green area at the bottom. Then during the 11/6 Mappie segment, click on the five hidden circles along the path.
+91) W.G. Kazamatsuri - Common route. During the 10/17 Mappie segment, choose Chihaya then click on a hidden circle in the park in the center.
+92) Substitute - Common route. During the 10/11 Mappie segment, click on a hidden circle in the bottom left corner.
+93) Gossuri-san - Common route.
+94) Tsukamoto - Shizuru version of the common route. Choose "Go Check on Shizuru" on 10/25. Note that you don't meet her until 10/26.
+95) Ueda - Shizuru version of the common route. Choose "Go Check on Shizuru" on 10/25. Note that you don't meet her until 10/26.
+96) Chakki-san - Common route.
+97) Candy Shop Owner - Common route. Choose Quest #4: "Cohabitation with Ghosts for No Money Down" on 10/30.
+98) Black Spice Alliance Leader - Lucia version of the common route.
+99) Black Spice Alliance Member - Lucia version of the common route.
+100) Third Planet From the Magic - Creamy™Kagarin - Oppai Ending. To get that ending, complete all quests, then compelete Quest #28: "Proof of Paranormal Phenomena" and never choose "That's Enough".
+101) Nishinari - Common route.
+102) Okino-san - Kotori route.
+103) Classmates - Kotori route.
+104) Oonishi - Terra route.
+105) Kanbe Kotori (young) - Terra route.
+106) Senri Akane (young) - Terra route.
+107) Lord Erohim - Common route. Choose Quest #6: "Mysterious Building in Town - Rumored Ghost Activity" on 10/30, then during the Mappie segment click on a hidden circle in the bottom left corner of the big room on the 1st floor.
+108) Takashima - Chihaya Route.

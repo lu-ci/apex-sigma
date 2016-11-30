@@ -5,6 +5,20 @@ from PIL import ImageDraw
 import os
 
 async def coinflip(cmd, message, args):
+    find_data = {
+        'Role': 'Stats'
+    }
+    find_res = cmd.db.find('Stats', find_data)
+    count = 0
+    for res in find_res:
+        try:
+            count = res['CoinFlipCount']
+        except:
+            count = 0
+    new_count = count + 1
+    updatetarget = {"Role": 'Stats'}
+    updatedata = {"$set": {"CoinFlipCount": new_count}}
+    cmd.db.update_one('Stats', updatetarget, updatedata)
     number = random.randint(0, 1)
     if number == 1:
         result = 'heads'
@@ -24,6 +38,10 @@ async def coinflip(cmd, message, args):
     if args:
         choice = args[0]
         if choice.lower().startswith('t') or choice.lower().startswith('h'):
+            if choice.lower().startswith('t'):
+                choice = 'tails'
+            else:
+                choice = 'heads'
             if result == choice.lower():
                 await cmd.bot.send_message(message.channel, 'Nice guess! :ballot_box_with_check:')
             else:

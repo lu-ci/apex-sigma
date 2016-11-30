@@ -1,0 +1,283 @@
+vns:
+  - name: "Air"
+    triggers:
+      - "air"
+    characters:
+      - name: "Kamio Misuzu"
+        name_j: "神尾 観鈴"
+        description:
+          "A school girl attending the school in the town where the story takes place.
+          Lives with her mother Haruko in an isolated house. Always smiling, lively and always strong."
+        details:
+          measurements: "Height: 159cm, Weight: 46kg, Bust-Waist-Hips: 83-55-82cm"
+          birthday: "23. July"
+          hair: "Blond, Long, Ponytail, Short, Spiky Bangs, Straight"
+          eyes: "Cyan, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Cross Necklace, Necktie, Pajamas, Ribbon Hair Tie, School Uniform"
+          items: "Stuffed Toy"
+          personality: "Energetic, Friendly, Kind"
+          role: "Daughter, Lonely, Non-blood-related Daughter"
+          subject_of: "Amnesia, Death, Disability, Nightmares, Reincarnation, Terminal Illness"
+          subject_of_ex: "Sexual Fantasy"
+        route: "air_misuzu"
+
+      - name: "Kirishima Kano"
+        name_j: "霧島 佳乃"
+        description:
+          "The younger sister of the owner of a clinic in the town that was started a long time ago.
+          Her parents are long gone, and lives with her sister, who is also a doctor.
+          She loves animals, is always with her pet dog Potato and takes care of the animals at school."
+        details:
+          measurements: "Height: 156cm, Weight: 45kg, Bust-Waist-Hips: 82-53-80cm"
+          birthday: "12. June"
+          hair: "Blue, Short, Spiky Bangs"
+          eyes: "Green, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Body Ribbon, Cross Necklace, Dress, Necktie, School Uniform, Shorts"
+          personality: "Carefree, Nature Lover, Whimsical"
+          role: "Orphan, Pet Owner, Younger Sister"
+          engages_in: "Suicide"
+          engages_in_ex: "Virgin Sex"
+          subject_of: "Possession"
+          subject_of_ex: "Missionary, Sexual Fantasy"
+        route: "air_kano"
+
+      - name: "Toono Minagi"
+        name_j: "遠野 美凪"
+        description:
+          "A tall, beautiful girl. Her lack of expression gives people an enigmatic impression, though in reality, she is warm and loving.
+          Takes part in the astronomy club at school."
+        details:
+          measurements: "Height: 169cm, Weight: 48kg, Bust-Waist-Hips: 85-58-84cm"
+          birthday: "22. December"
+          hair: "Brown, Long, Spiky Bangs"
+          eyes: "Pink, Tareme"
+          body: "Average Height, Pale, Slim, Tall, Teen"
+          clothes: "Cross Necklace, Hair Ribbon, Half-Skirt, Necktie, School Uniform, Tank Top"
+          items: "Book"
+          personality: "Docile, Kind, Reserved"
+          role: "Friend, Older Sister, Student Club Member"
+          subject_of_ex: "Sexual Fantasy"
+        route: "air_minagi"
+
+      - name: "Summer"
+        description:
+          "Once you've finished Misuzu's, Kano's and Minagi's routes, this route can be started from the main menu."
+        name_j: null
+        route: null
+        details: null
+
+      - name: "Air"
+        description:
+          "Once you've finished Summer, this route can be started from the main menu."
+        name_j: null
+        route: "air_air"
+        details: null
+
+  - name: "Clannad"
+    triggers:
+      - "clan"
+
+  - name: "Tomoyo After ~It's A Wonderful Life~"
+    triggers:
+      - "tomo"
+    characters:
+      - name: "Sakagami Tomoyo"
+        description:
+          "The homely heroine who supports Tomoya, who has just joined the workforce out of high school.
+          She is actually very good at fighting and would win even against a group of people ganging up on her."
+        name_j: "坂上 智代"
+        route: "tomo_tomoyo"
+        details:
+          birthday: "14. October"
+          hair: "Grey, Sidehair, Spiky Bangs, Straight, Very Long"
+          eyes: "Blue, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Headband, Miniskirt, Sailor Suit, Skirt, Turtleneck Sweater"
+          personality: "Hardworker, Honest, Strict, Tsundere"
+          role: "Daughter, Full Sister, Girlfriend, Half-sister, High School Student, Older Sister, Student Council President, Widow, Wife"
+          engages_in: "Cosplay, Kigurumi, Seduction"
+          engages_in_ex: "Anilingus, Blowjob, Footjob, Handjob, Outdoor Sex, Pantyjob, Sixty-nine"
+          subject_of_ex: "Anilingus, Cowgirl, Cunnilingus, Missionary, Quickie Fix, Standing"
+
+  - name: "Little Busters!"
+    triggers:
+      - "lit"
+    excluders:
+      - "ecs"
+      - "ex"
+
+  - name: "Little Busters! Ecstacy"
+    triggers:
+     - "ecs"
+     - "ex"
+
+  - name: "Kud Wafter"
+    triggers:
+      - "kud"
+    characters:
+      - name: "Noumi Kudryavka"
+        name_j: "能美 クドリャフカ"
+        description:
+          "Kudryavka is a girl who is a quarter Japanese, and three-quarters Russian.
+          Her full Russian name is Kudryavka Anatolyevna Strugatskaya.
+          Her grandmother is Japanese.
+          Her grandfather was crazy about Japanese culture and per his influence on her, she came to know much about Japanese culture too, including the language.
+          Despite having a poor handle on the English language, she was able to skip a year in school due to credits obtained through studying abroad.
+          She is Riki's classmate and is in the newly-formed home economics club due to an invitation of the head of the dormitory she lives at with the other characters.
+          Kudryavka and the dormitory head are the only two members, and since the latter is often too busy, club activities are suspended and Kudryavka is the sole active member of a club on the verge of being disbanded."
+        details:
+          measurements: "Height: 145cm, Weight: 37kg, Bust-Waist-Hips: 69-51-72cm"
+          birthday: "12. June"
+          hair: "Long, Ponytail, Straight, White"
+          eyes: "Blue"
+          body: "AA Cup, Body Painting, Fang, Kid, Pale, Short, Slim"
+          clothes: "Ankle Boots, Apron, Beret, Bikini, Cloak, Hairpin, Hair Ribbon, Hair Tie, Hand Fan, Hat, Kimono, Nightgown, Pantyhose, Pleated Skirt, Ribbon Tie, Rubber Band With Beads, School Swimsuit, School Uniform, Skirt, Sports Jersey, Sports Shoes, Swimsuit, Thigh-high Stockings, Towel"
+          personality: "Airhead, Friendly, Hardworker, Low Self-esteem, Naive, Watashi"
+          role: "Classmate, Daughter, Domestic Partner, Friend, Girlfriend, Half-Japanese, Mother, Pet Owner, Russian, Student Club Member, Wife"
+          engages_in: "Athletics, Baseball, Cooking, Drawing, Escape From Confinement, Swimming"
+          subject_of: "Accident, Avoidable Death, Bullying, Confinement, Kidnapping, Mental Affliction, Teasing"
+          engages_in_ex: "Blowjob, Footjob, Handjob, Mirror Sex, Nipple Sucking, Outdoor Sex, Sixty-nine, Virgin Sex"
+          subject_of_ex: "Bukkake, Cowgirl, Cunnilingus, Doggy Style, Missionary, Quickie Fix, Seventh Posture, Sexual Fantasy"
+        route: null
+
+  - name: "Rewrite"
+    triggers:
+      - "rewr"
+    excluders:
+      - "harv"
+    characters:
+      - name: "Kanbe Kotori"
+        name_j: "神戸 小鳥"
+        description:
+          "Kotarou's classmate and close friend.
+          They can easily establish a comic rhythm in their dialogue.
+          She is very talented at caring for herbs and plants."
+        details:
+          measurements: "Height: 156cm, Weight: 44kg, Bust-Waist-Hips: 83-54-83cm"
+          birthday: "26. July"
+          hair: "Ahoge, Brown, Curly, Sidehair, Spiky Bangs, Twin Braids, Very Long"
+          eyes: "Green, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Bikini, Boots, Clothing with Ribbons, Hair Flower, Hair Tie, Hoodie, Miniskirt, Pleated Skirt, School Uniform, Sweater, Thigh-high Stockings, Towel"
+          personality: "Carefree, Energetic, Friendly, Funny, Genius, Nature Lover, Pretending, Watashi"
+          role: "Childhood Friend, Classmate, Friend, High School Student, Kouhai, Lonely, Neighbor, Orphan, Pet Owner, Senpai, Wife"
+          engages_in: "Gardening, Investigation, Shopping, Sports, Swimming, Teasing"
+          subject_of: "Accident, Clinical Depression, Disappearance, Disaster, Marriage Proposal, Other Route Death, Survival"
+        route: "rwr_walk"
+
+      - name: "Konohana Lucia"
+        name_j: "此花 ルチア"
+        description:
+          "The talented class president whose name is also well-known to surrounding clubs.
+          With a clean-freak attitude, she strongly lacks tolerance when dealing with boys.
+          As a result of getting rolled up in commotion caused by Kotarou, she delivers him daily punishment.
+          Her real name is Asahi Haruka."
+        details:
+          measurements: "Height: 167cm, Weight: 52kg, Bust-Waist-Hips: 93-59-86cm"
+          birthday: "23. December"
+          hair: "Intake, Ponytail, Sidehair, Spiky Bangs, Straight, Very Long, Violet"
+          eyes: "Blue, Tareme"
+          body: "Average Height, E+ Cup, Pale, Slim, Teen"
+          clothes: "Boots, Clothing with Ribbons, Gloves, Maid's Dress, One Piece Swimsuit, Pleated Skirt, Ribbon Hair Tie, Ribbon Tie, School Uniform, Thigh-high Stockings"
+          items: "Katana"
+          personality: "Classic Tsundere, Kind, Loud, Serious, Shy, Sly, Smart, Stubborn, Watashi"
+          role: "Classmate, Class President, Cook, Girlfriend, High School Student, Honor Student, Orphan, Spy, Superhuman"
+          engages_in: "Domestic Violence, Fighting, Manslaughter, Mass Murder, Shopping, Swimming"
+          subject_of: "Bullying, Child Abuse, Clinical Depression, Disappearance, Disaster, Insanity, Obsessive–Compulsive Disorder, Other Route Death, Psychological Trauma, Survival, Teasing"
+        route: "rwr_walk"
+
+      - name: "Nakatsu Shizuru"
+        name_j: "中津 静流"
+        description:
+          "Kotarou's kouhai.
+          She has a reserved and honest disposition.
+          Even if she doesn't speak, she is able to convey herself through her behavior; she has rich facial expressions.
+          Although a member of the public morals committee, she rarely acts like one, besides as a pretext for looking after Kotarou.
+          She fawns over her favorite dish, mackerel pike."
+        details:
+          measurements: "Height: 149cm, Weight: 39kg, Bust-Waist-Hips: 75-52-73cm"
+          birthday: "18. June"
+          hair: "Blond, Odango, Parted to Side, Sidehair, Spiky Bangs, Twin Tails, Very Long"
+          eyes: "Amber, Blue, Heterochromia, Tareme"
+          body: "AA Cup, Average Height, Pale, Short, Teen"
+          clothes: "Apron, Boots, Clothing with Ribbons, Eyepatch, Headband, Maid's Dress, One Piece Swimsuit, Pantyhose, Pleated Skirt, School Uniform"
+          items: "Dual-Wield Weapon, Knife, Submachine Gun, Whistle"
+          personality: "Emotional, Food Lover, Friendly, Honest, Kind, Reserved, Shy, Smart, Watashi"
+          role: "Assassin, Discipline Committee Member, Friend, Healer, High School Student, Kouhai, Orphan, Schoolmate, Spy, Student Club Member, Superhuman"
+          engages_in: "Fighting, Swimming"
+          subject_of: "Disappearance, Disaster, Other Route Death, Survival, Teasing"
+        route: "rwr_walk"
+
+      - name: "Ootori Chihaya"
+        name_j: "鳳 ちはや"
+        description:
+          "A girl who suddenly transferred to the school Kotarou attends.
+          She has led a sheltered life and is ignorant of the ways of the world.
+          Considerably clumsy and easily getting lost, Kotarou always helps her out, but with her personality that can't stay meek they can't stop quarreling.
+          Called a power fighter for being really strong physically."
+        details:
+          measurements: "Height: 159cm, Weight: 46kg, Bust-Waist-Hips: 82-55-84cm"
+          birthday: "24. August"
+          hair: "Ahoge, Orange, Sidehair, Spiky Bangs, Straight, Twin Tails, Very Long"
+          eyes: "Blue, Tareme"
+          body: "Average Height, Pale, Slim, Teen"
+          clothes: "Bikini, Clothing with Ribbons, Miniskirt, Necktie, Pleated Skirt, School Uniform, Tank Top, Thigh-high Stockings, Unusual Hair Ornaments, Wings"
+          personality: "Airhead, Clumsy, Desu, Food Lover, Ignorant, Loud, Stubborn, Tsundere, Watashi, Word Repetition"
+          role: "Classmate, Friend, High School Student, Master, Orphan, Superhuman, Transfer Student, Wealthy"
+          engages_in: "Cycling, Fighting, Shopping, Swimming"
+          subject_of: "Disappearance, Disaster, Other Route Death, Survival, Teasing, Wounding"
+        route: "rwr_walk"
+
+      - name: "Senri Akane"
+        name_j: "千里 朱音"
+        description:
+          "The president of the Occult Research Society who is called the witch of the academy.
+          Within the school, to some of the students she is famous for being an existence above the rules."
+        details:
+          measurements: "Height: 160cm, Weight: 47kg, Bust-Waist-Hips: 86-57-85cm"
+          birthday: "17. February"
+          hair: "Brown, Sidehair, Spiky Bangs, Straight, Very Long"
+          eyes: "Amber, Tareme"
+          body: "Average Height, D Cup, Pale, Slim, Teen"
+          clothes: "Bikini, Boots, Brooch, Cape, Clothing with Ribbons, Dress, Knee-high Socks, Pleated Skirt, Ribbon Hair Accessory, Ribbon Tie, School Uniform, Towel"
+          personality: "Blunt, Cynic, Friendly, Funny, Misanthrope, Proactive, Refined, Reserved, Smart, Watashi"
+          role: "Antagonist, Gamer, High School Student, Master, Non-blood-related Daughter, Orphan, Senpai, Student Club President, Villain, Wealthy"
+          engages_in: "Computering, Mass Murder, Planning, Swimming, Teasing"
+          subject_of: "Clinical Depression, Disappearance, Mind Control, Other Route Death"
+        route: "rwr_walk"
+
+      - name: "Moon"
+        name_j: null
+        description:
+          "Can be accessed from the main menu after completing the routes of the 5 main heroines."
+        details: null
+        route: "rwr_walk"
+
+      - name: "Terra"
+        name_j: null
+        description:
+          "Can be accessed from the main menu after completing the Moon route."
+        details: null
+        route: "rwr_walk"
+
+  - name: "Rewrite Harvest Festa"
+    triggers:
+      - "harv"
+
+  - name: "Angel Beats! 1st Beat"
+    triggers:
+      - "ang"
+
+  - name: "One: Kagayaku Kisetsu e"
+    triggers:
+      - "one"
+
+  - name: "Moon."
+    triggers:
+      - "moon"
+
+  - name: "Dousei"
+    triggers:
+      - "dou"

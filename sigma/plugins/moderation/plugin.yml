@@ -1,7 +1,7 @@
-name: Polaris Sonata Administration
+name: Polaris Sonata Moderation
 
 categories:
-  - polaris
+  - moderation
 
 enabled: true
 
@@ -111,6 +111,24 @@ commands:
     usage:   "{pfx:s}{cmd:s} @person"
     description:
       Will unmute a person who was muted with the mute command.
+      Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
+
+  - name: blind
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Will disable a persons ability to read any and all channels.
+      Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
+
+  - name: unblind
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Will deactivate the blind set on a user.
       Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
 
   - name: role

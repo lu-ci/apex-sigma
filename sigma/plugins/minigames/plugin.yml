@@ -1,7 +1,7 @@
 name: Polaris Sonata Utilities
 
 categories:
-  - polaris
+  - minigames
 
 enabled: true
 
@@ -51,3 +51,4 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Spin the slot machine and test your luck!
+      Costs 50 points to spin.
