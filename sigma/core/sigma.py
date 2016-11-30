@@ -76,6 +76,27 @@ class Sigma(discord.Client):
         except FileNotFoundError:
             pass
 
+    def make_stats(self):
+        check_res = self.db.find('Stats', {'Role': 'Stats'})
+        n = 0
+        for res in check_res:
+            n += 1
+        if n == 0:
+            stats_data_full = {
+                'Role': 'Stats',
+                'ServerCount': self.server_count,
+                'UserCount': self.member_count,
+            }
+            self.db.insert_one('Stats', stats_data_full)
+        else:
+            stats_data_update = {
+                'ServerCount': self.server_count,
+                'UserCount': self.member_count,
+            }
+            updatetarget = {"Role": 'Stats'}
+            updatedata = {"$set": stats_data_update}
+            self.db.update_one('Stats', updatetarget, updatedata)
+
     async def on_voice_state_update(self, before, after):
         pass
 
@@ -96,6 +117,8 @@ class Sigma(discord.Client):
         self.log.info('-----------------------------------')
         stats(self, self.log)
         self.log.info('-----------------------------------')
+        self.make_stats()
+        self.log.info('Updated Stats')
         self.log.info('Successfully connected to Discord!')
 
     async def on_message(self, message):
