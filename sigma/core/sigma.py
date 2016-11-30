@@ -97,6 +97,57 @@ class Sigma(discord.Client):
             updatedata = {"$set": stats_data_update}
             self.db.update_one('Stats', updatetarget, updatedata)
 
+    def make_server_list(self):
+        for server in self.servers:
+            member_count = 0
+            bot_count = 0
+            srch_data = {
+                'ServerID': server.id
+            }
+            serv_found = 0
+            search = self.db.find('Servers', srch_data)
+            for res in search:
+                serv_found += 1
+            for member in server.members:
+                if member.bot:
+                    bot_count += 1
+                else:
+                    member_count += 1
+            if serv_found == 0:
+                data = {
+                    'ServerID': server.id,
+                    'ServerName': server.name,
+                    'ServerAvatar': server.icon_url,
+                    'Created': server.created_at,
+                    'DefaultChannelID': server.default_channel.id,
+                    'DefaultChannelName': server.default_channel.name,
+                    'MemberCount': member_count,
+                    'BotCount': bot_count,
+                    'Owner': server.owner.name,
+                    'OwnerID': server.owner_id,
+                    'Region': str(server.region),
+                    'SecLevel': str(server.verification_level),
+                    'MFALevel': str(server.mfa_level)
+                }
+                self.db.insert_one('Servers', data)
+            else:
+                updatedata = {
+                    'ServerName': server.name,
+                    'ServerAvatar': server.icon_url,
+                    'DefaultChannelID': server.default_channel.id,
+                    'DefaultChannelName': server.default_channel.name,
+                    'MemberCount': member_count,
+                    'BotCount': bot_count,
+                    'Owner': server.owner.name,
+                    'OwnerID': server.owner_id,
+                    'Region': str(server.region),
+                    'SecLevel': str(server.verification_level),
+                    'MFALevel': str(server.mfa_level)
+                }
+                updatetarget = {"ServerID": server.id}
+                updatedata = {"$set": updatedata}
+                self.db.update_one('Stats', updatetarget, updatedata)
+
     async def on_voice_state_update(self, before, after):
         pass
 
@@ -119,6 +170,8 @@ class Sigma(discord.Client):
         self.log.info('-----------------------------------')
         self.make_stats()
         self.log.info('Updated Stats')
+        self.make_server_list()
+        self.log.info('Updated Server List')
         self.log.info('Successfully connected to Discord!')
 
     async def on_message(self, message):
