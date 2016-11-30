@@ -21,6 +21,20 @@ async def cleverbot(ev, message, args):
             response = cb.ask(cb_input)
             await asyncio.sleep(len(response) * 0.0145)
             await ev.bot.send_message(message.channel, '<@' + message.author.id + '> ' + response)
+            find_data = {
+                'Role': 'Stats'
+            }
+            find_res = ev.db.find('Stats', find_data)
+            count = 0
+            for res in find_res:
+                try:
+                    count = res['CBCount']
+                except:
+                    count = 0
+            new_count = count + 1
+            updatetarget = {"Role": 'Stats'}
+            updatedata = {"$set": {"CBCount": new_count}}
+            ev.db.update_one('Stats', updatetarget, updatedata)
         except Exception as e:
             ev.log.error(e)
             msg = 'Sorry <@{:s}>, my brain isn\'t working at the moment give me some time to catch my breath...'
