@@ -194,3 +194,11 @@ events:
     sfw:     true
     description:
       Redirects PM info to the bot owner.
+
+  - name:    cmd_count_filler
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Fills the command counter statistics.
