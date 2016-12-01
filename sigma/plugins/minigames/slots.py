@@ -127,7 +127,7 @@ async def slots(cmd, message, args):
             updatetarget = {"UserID": message.author.id, "ServerID": message.server.id}
             updatedata = {"$set": {"Points": new_pts}}
             cmd.db.update_one(collection, updatetarget, updatedata)
-            results = 'Sorry, you didn\'t win anything this time...'
+            results = 'Sorry, you didn\'t win anything this time...\n**50 Points** have been deducted from you.'
         out = slot_view + '\n\n' + results
         await cmd.bot.send_message(message.channel, out)
     else:
