@@ -12,7 +12,20 @@ async def wanikani(cmd, message, args):
     key, username = await get_key(cmd, message, args)
 
     user = await get_user_data(cmd, message, key, username)
-
+    find_data = {
+        'Role': 'Stats'
+    }
+    find_res = cmd.db.find('Stats', find_data)
+    count = 0
+    for res in find_res:
+        try:
+            count = res['WKCount']
+        except:
+            count = 0
+    new_count = count + 1
+    updatetarget = {"Role": 'Stats'}
+    updatedata = {"$set": {"WKCount": new_count}}
+    cmd.db.update_one('Stats', updatetarget, updatedata)
     if user:
         if show_text:
             await text_message(cmd, message, user)
