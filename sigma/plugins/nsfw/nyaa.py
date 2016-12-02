@@ -13,4 +13,19 @@ async def nyaa(cmd, message, args):
     elements = root.cssselect('#posts .post-wrapper div a img')
     image = elements[0].attrib['src']
 
+    find_data = {
+        'Role': 'Stats'
+    }
+    find_res = cmd.db.find('Stats', find_data)
+    count = 0
+    for res in find_res:
+        try:
+            count = res['NekoCount']
+        except:
+            count = 0
+    new_count = count + 1
+    updatetarget = {"Role": 'Stats'}
+    updatedata = {"$set": {"NekoCount": new_count}}
+    cmd.db.update_one('Stats', updatetarget, updatedata)
+
     await cmd.bot.send_message(message.channel, image)
