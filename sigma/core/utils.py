@@ -1,4 +1,4 @@
-from config import permitted_id, permitted_roles
+from config import permitted_id
 
 
 def checkPermissions(user):
@@ -7,12 +7,6 @@ def checkPermissions(user):
     for id in permitted_id:
         if id == user.id:
             return True
-
-    # Checking a list of permitted roles
-    for permitted_role in permitted_roles:
-        for user_role in user.roles:
-            if user_role.name == permitted_role:
-                return True
 
     return False
 

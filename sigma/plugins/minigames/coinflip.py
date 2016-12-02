@@ -5,20 +5,7 @@ from PIL import ImageDraw
 import os
 
 async def coinflip(cmd, message, args):
-    find_data = {
-        'Role': 'Stats'
-    }
-    find_res = cmd.db.find('Stats', find_data)
-    count = 0
-    for res in find_res:
-        try:
-            count = res['CoinFlipCount']
-        except:
-            count = 0
-    new_count = count + 1
-    updatetarget = {"Role": 'Stats'}
-    updatedata = {"$set": {"CoinFlipCount": new_count}}
-    cmd.db.update_one('Stats', updatetarget, updatedata)
+    cmd.db.add_stats('CoinFlipCount')
     number = random.randint(0, 1)
     if number == 1:
         result = 'heads'
