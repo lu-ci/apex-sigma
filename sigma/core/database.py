@@ -41,3 +41,21 @@ class Database(object):
     def delete_one(self, collection, data):
         if self.db:
             self.db[collection].delete_one(data)
+
+    def add_stats(self, statname):
+        if self.db:
+            collection = 'Stats'
+            find_data = {
+                'Role': 'Stats'
+            }
+            find_res = self.db[collection].find(find_data)
+            count = 0
+            for res in find_res:
+                try:
+                    count = res[statname]
+                except:
+                    count = 0
+            new_count = count + 1
+            updatetarget = {"Role": 'Stats'}
+            updatedata = {"$set": {statname: new_count}}
+            self.db[collection].update_one(updatetarget, updatedata)

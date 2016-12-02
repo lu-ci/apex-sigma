@@ -4,20 +4,7 @@ from config import permitted_id
 
 
 async def slots(cmd, message, args):
-    find_data = {
-        'Role': 'Stats'
-    }
-    find_res = cmd.db.find('Stats', find_data)
-    count = 0
-    for res in find_res:
-        try:
-            count = res['SlotsCount']
-        except:
-            count = 0
-    new_count = count + 1
-    updatetarget = {"Role": 'Stats'}
-    updatedata = {"$set": {"SlotsCount": new_count}}
-    cmd.db.update_one('Stats', updatetarget, updatedata)
+    cmd.db.add_stats('SlotsCount')
     current_timestamp = int(time.time())
     cooldown_finder_data = {
         'Type': 'Slots',

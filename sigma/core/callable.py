@@ -66,20 +66,7 @@ class Callable(object):
             msg = await getattr(self.module, self.name)(self, message, *args)
 
         if not self.sfw and check_channel_nsfw(self.db, channel.id):
-            find_data = {
-                'Role': 'Stats'
-            }
-            find_res = self.db.find('Stats', find_data)
-            count = 0
-            for res in find_res:
-                try:
-                    count = res['NSFWCount']
-                except:
-                    count = 0
-            new_count = count + 1
-            updatetarget = {"Role": 'Stats'}
-            updatedata = {"$set": {"NSFWCount": new_count}}
-            self.db.update_one('Stats', updatetarget, updatedata)
+            self.db.add_stats('NSFWCount')
 
         if msg:
             await self.bot.send_typing(channel)
