@@ -1,8 +1,9 @@
 from config import permitted_id
+from sigma.core.permission import check_admin
 
 
 async def award(cmd, message, args):
-    if message.author.id in permitted_id:
+    if message.author.id in permitted_id or check_admin(message.author, message.channel):
         if message.mentions:
             target = message.mentions[0]
             if target.bot:
