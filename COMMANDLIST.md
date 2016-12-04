@@ -12,7 +12,7 @@ Command |  Description |  Usage
 `>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Special Permitted/Owner Only.  |  `>>searchid 200751504175398912`
 `>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Special Permitted/Owner Only.  |  `>>gencmd`
 `>>dbpointcheck`  |  Forces a recheck of all user point data. Bot Special Permitted/Owner Only.  |  `>>dbpointcheck`
-`>>award`  |  Awards the inputted amount of points to the mentioned person. Bot Special Permitted/Owner Only.  |  `>>award 1500 @person`
+`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator or Bot Special Permitted/Owner Only.  |  `>>award 1500 @person`
 `>>take`  |  Takes away the inputted amount of points from the mentioned person. Bot Special Permitted/Owner Only.  |  `>>take 1500 @person`
 `>>echo`  |  Repeats the given text. Bot Special Permitted/Owner Only.  |  `>>echo Hello world!`
 `>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Special Permitted/Owner Only.  |  `>>bulkmsg Hello everyone!`
@@ -47,7 +47,7 @@ Command |  Description |  Usage
 `>>dadjoke`  |  Cringe!  |  `>>dadjoke`
 `>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
 `>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
-`>>chucknoris`  |  Outputs a random Chuck Noris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknoris`
+`>>chucknorris`  |  Outputs a random Chuck Norris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknorris`
 `>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
 `>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
 ###MINIGAMES

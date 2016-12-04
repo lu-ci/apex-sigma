@@ -30,13 +30,13 @@ commands:
     description:
       Outputs a random Ron Swanson quote.
 
-  - name:    chucknoris
+  - name:    chucknorris
     global:  true
     enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Outputs a random Chuck Noris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.
+      Outputs a random Chuck Norris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.
 
   - name:    xkcd
     global:  true

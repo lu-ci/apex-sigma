@@ -105,7 +105,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 1500 @person"
     description:
       Awards the inputted amount of points to the mentioned person.
-      Bot Special Permitted/Owner Only.
+      Server Administrator or Bot Special Permitted/Owner Only.
 
   - name: take
     global:  true

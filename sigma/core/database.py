@@ -135,3 +135,40 @@ class Database(object):
                 last_stamp = target['LastTimestamp']
                 cd_time = (last_stamp + cooldown) - curr_stamp
                 return cd_time
+
+    def add_points(self, server, user, points):
+        if self.db:
+            target = None
+            n = 0
+            collection = 'PointSystem'
+            finddata = {
+                'UserID': user.id,
+                'ServerID': server.id
+            }
+            insertdata = {
+                'UserID': user.id,
+                'ServerID': server.id,
+                'Points': 0,
+                'UserName': user.name,
+                'Avatar': user.avatar_url,
+                'Level': 0
+            }
+            finddata_results = self.db[collection].find(finddata)
+            for item in finddata_results:
+                n += 1
+                target = item
+            if n == 0:
+                self.db[collection].insert_one(insertdata)
+            else:
+                curr_pts = target['Points']
+                add_pts = points
+                new_pts = curr_pts + add_pts
+                level = int(new_pts / 1690)
+                updatetarget = {"UserID": user.id, "ServerID": server.id}
+                updatedata = {"$set": {
+                    "Points": new_pts,
+                    'UserName': user.name,
+                    'Avatar': user.avatar_url,
+                    'Level': level
+                }}
+                self.db[collection].update_one(updatetarget, updatedata)
