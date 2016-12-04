@@ -2,6 +2,6 @@ beta: false
 build_date: 1480858898
 version:
   major: 1
-  minor: 15
-  patch: 32
+  minor: 16
+  patch: 2
 codename: 'Kudryavka'
