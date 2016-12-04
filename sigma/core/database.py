@@ -1,4 +1,5 @@
 import pymongo
+import time
 
 from .logger import create_logger
 
@@ -59,3 +60,78 @@ class Database(object):
             updatetarget = {"Role": 'Stats'}
             updatedata = {"$set": {statname: new_count}}
             self.db[collection].update_one(updatetarget, updatedata)
+
+    def set_cooldown(self, sid, uid, command):
+        if self.db:
+            timestamp = int(time.time())
+            collection = 'Cooldowns'
+            find_data = {
+                'ServerID': sid,
+                'UserID': uid,
+                'Type': command
+            }
+            find_results = self.db[collection].find(find_data)
+            n = 0
+            for res in find_results:
+                n += 1
+            if n == 0:
+                data = {
+                    'ServerID': sid,
+                    'UserID': uid,
+                    'Type': command,
+                    'LastTimestamp': timestamp
+                }
+                self.db[collection].insert_one(data)
+            else:
+                updatetarget = {
+                    'ServerID': sid,
+                    'UserID': uid,
+                    'Type': command}
+                updatedata = {"$set": {'LastTimestamp': timestamp}}
+                self.db[collection].update_one(updatetarget, updatedata)
+
+    def on_cooldown(self, sid, uid, command, cooldown):
+        if self.db:
+            collection = 'Cooldowns'
+            find_data = {
+                'ServerID': sid,
+                'UserID': uid,
+                'Type': command
+            }
+            find_results = self.db[collection].find(find_data)
+            n = 0
+            target = None
+            for res in find_results:
+                n += 1
+                target = res
+            if n == 0:
+                return False
+            else:
+                curr_stamp = int(time.time())
+                last_stamp = target['LastTimestamp']
+                if (last_stamp + cooldown) < curr_stamp:
+                    return False
+                else:
+                    return True
+
+    def get_cooldown(self, sid, uid, command, cooldown):
+        if self.db:
+            collection = 'Cooldowns'
+            find_data = {
+                'ServerID': sid,
+                'UserID': uid,
+                'Type': command
+            }
+            find_results = self.db[collection].find(find_data)
+            n = 0
+            target = None
+            for res in find_results:
+                n += 1
+                target = res
+            if n == 0:
+                return 0
+            else:
+                curr_stamp = int(time.time())
+                last_stamp = target['LastTimestamp']
+                cd_time = (last_stamp + cooldown) - curr_stamp
+                return cd_time
