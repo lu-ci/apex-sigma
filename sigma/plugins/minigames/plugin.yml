@@ -52,3 +52,14 @@ commands:
     description:
       Spin the slot machine and test your luck!
       Costs 50 points to spin.
+
+  - name: sloths
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Same as slots, but super slow, reeeeeeally slow...
+      We are talking 5 seconds to spin the rows and 10-20 spins.
+      Spin the slot machine and test your luck!
+      Costs 50 points to spin.

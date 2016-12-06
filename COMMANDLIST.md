@@ -58,6 +58,7 @@ Command |  Description |  Usage
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
 `>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
 `>>slots`  |  Spin the slot machine and test your luck! Costs 50 points to spin.  |  `>>slots`
+`>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the slot machine and test your luck! Costs 50 points to spin.  |  `>>sloths`
 ###MISC
 Command |  Description |  Usage
 --------|--------------|-------
