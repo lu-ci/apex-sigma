@@ -7,7 +7,7 @@ async def evaluate(cmd, message, args):
             await cmd.bot.send_message(message.channel, cmd.help())
         else:
             try:
-                execution = ' '.join(args)
+                execution = " ".join(args)
                 output = eval(execution)
                 out_text = 'Executed.'
                 try:

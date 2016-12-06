@@ -1,6 +1,7 @@
 import random
 import time
 from config import permitted_id
+import asyncio
 
 
 async def slots(cmd, message, args):
@@ -61,15 +62,43 @@ async def slots(cmd, message, args):
                    ':maple_leaf:', ':musical_note:', ':gem:', ':fleur_de_lis:', ':trident:', ':knife:', ':fire:',
                    ':clown:', ':radioactive:', ':green_heart:', ':telephone:', ':hamburger:', ':banana:',
                    ':tumbler_glass:']
+        rand_done = 0
         res_1 = random.choice(symbols)
         res_2 = random.choice(symbols)
         res_3 = random.choice(symbols)
+        res_4 = random.choice(symbols)
+        res_5 = random.choice(symbols)
+        res_6 = random.choice(symbols)
+        res_7 = random.choice(symbols)
+        res_8 = random.choice(symbols)
+        res_9 = random.choice(symbols)
 
-        slot_view = ':arrow_forward: ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' :arrow_backward:'
+        slot_view = ':pause_button: ' + res_4 + ' ' + res_5 + ' ' + res_6 + ' :pause_button:'
+        slot_view += '\n:arrow_forward: ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' :arrow_backward:'
+        slot_view += '\n:pause_button: ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' :pause_button:'
+        slot_spinner = await cmd.bot.send_message(message.channel, slot_view)
+        spin_amt = random.randint(4, 8)
+        while rand_done < spin_amt:
+            await asyncio.sleep(1)
+            rand_done += 1
+            res_7 = res_1
+            res_8 = res_2
+            res_9 = res_3
+            res_1 = res_4
+            res_2 = res_5
+            res_3 = res_6
+            res_4 = random.choice(symbols)
+            res_5 = random.choice(symbols)
+            res_6 = random.choice(symbols)
+
+            slot_view = ':pause_button: ' + res_4 + ' ' + res_5 + ' ' + res_6 + ' :pause_button:'
+            slot_view += '\n:arrow_forward: ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' :arrow_backward:'
+            slot_view += '\n:pause_button: ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' :pause_button:'
+            await cmd.bot.edit_message(slot_spinner, slot_view)
 
         if res_1 == res_2 == res_3:
             win = True
-            pts = 10000
+            pts = 18000
             three_notify = 'The user **' + message.author.name + '** on **' + message.server.name + '** has just won ' + str(
                 pts) + ' on Slots!'
             for user in cmd.bot.get_all_members():
@@ -78,7 +107,7 @@ async def slots(cmd, message, args):
                     break
         elif res_1 == res_2 or res_1 == res_3 or res_2 == res_3:
             win = True
-            pts = 200
+            pts = 900
         else:
             win = False
             pts = 0
@@ -114,9 +143,9 @@ async def slots(cmd, message, args):
             updatetarget = {"UserID": message.author.id, "ServerID": message.server.id}
             updatedata = {"$set": {"Points": new_pts}}
             cmd.db.update_one(collection, updatetarget, updatedata)
-            results = 'Sorry, you didn\'t win anything this time...\n**50 Points** have been deducted from you.'
+            results = 'Sorry, you didn\'t win anything this time...\nYou lost **50 Points**.'
         out = slot_view + '\n\n' + results
-        await cmd.bot.send_message(message.channel, out)
+        await cmd.bot.edit_message(slot_spinner, out)
     else:
         timeout = (last_use + 20) - current_timestamp
         await cmd.bot.send_message(message.channel,
