@@ -149,7 +149,7 @@ async def draw_image(cmd, message, user):
 
         if int(user['reviews']['now']) > 150:
             review_color = (255, 174, 35)
-            review_font = font1
+            review_font = font2
             review_pos = (420, 108)
 
         imgdraw.text((11, 110), 'Next Hour: {:d}'.format(
