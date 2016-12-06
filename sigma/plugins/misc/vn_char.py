@@ -16,13 +16,6 @@ def key_char_parse(char_id):
     except IndexError:
         bloodtype = None
 
-    print(name)
-    print(kanji_name)
-    print(img)
-    print(gender)
-    print(bloodtype)
-    print()
-
     table = root.cssselect('.chardetails table')[0]
     for row in table:
         if row.tag == 'tr':
@@ -59,4 +52,13 @@ def key_char_parse(char_id):
                             value.append(span.text + span[0].text)
     desc = root.cssselect('.chardetails table td.chardesc')[0][1].text
 
-    return desc
+    character = {
+        'URL': url,
+        'Name': name,
+        'Name_J': kanji_name,
+        'Image': img,
+        'Gender': gender,
+        'Blood_Type': bloodtype,
+        'Description': desc
+    }
+    return character

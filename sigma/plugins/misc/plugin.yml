@@ -74,7 +74,7 @@ commands:
 
   - name: keyroute
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Rewrite Shizuru"
     description:
