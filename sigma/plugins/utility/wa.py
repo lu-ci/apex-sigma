@@ -21,4 +21,6 @@ async def wa(cmd, message, args):
             cmd.log.error(e)
             await cmd.bot.send_message(message.channel, 'We ran into an error, we were unable to process that.\n' + str(e))
             return
+        if len(result) > 1950:
+            result = result[:1950]
         await cmd.bot.send_message(message.channel, 'Results:\n```' + result + '\n```')
