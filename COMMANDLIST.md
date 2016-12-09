@@ -98,6 +98,17 @@ Command |  Description |  Usage
 `>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
 `>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
+###MUSIC
+Command |  Description |  Usage
+--------|--------------|-------
+`>>summon`  |  Summons the bot into your voice channel.  |  `>>summon`
+`>>disconnect`  |  Disconnects the bot from your voice channel.  |  `>>disconnect`
+`>>move`  |  Moves the bot to your voice channel.  |  `>>move`
+`>>play`  |  Plays a song from a YouTube link or keyword search.  |  `>>play`
+`>>stop`  |  Stops the currently playing song.  |  `>>stop`
+`>>pause`  |  Pauses the currently playing song.  |  `>>pause`
+`>>resume`  |  Resumes the currently playing song.  |  `>>resume`
+`>>volume`  |  Sets the bots volume if it is playing something.  |  `>>volume 67`
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
@@ -161,4 +172,5 @@ Command |  Description |  Usage
 `>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
+`>>colour`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>colour 1ABC9C`
 `>>twitch`  |  Fetches information about a streamer.  |  `>>twitch`
