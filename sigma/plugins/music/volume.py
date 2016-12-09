@@ -6,7 +6,7 @@ async def volume(cmd, message, args):
     if player:
         if not args:
             vol = player.volume
-            await cmd.bot.send_message(message.channel, 'The player volume is **' + str(vol * 100) + '%**.')
+            await cmd.bot.send_message(message.channel, 'The player volume is **' + str(int(vol) * 100) + '%**.')
         else:
             try:
                 vol = int(args[0]) / 100
@@ -17,7 +17,7 @@ async def volume(cmd, message, args):
                 await cmd.bot.send_message(message.channel, 'Invalid volume input.')
                 return
             else:
-                print(vol)
                 player.volume = vol
+                await cmd.bot.send_message(message.channel, 'Volume set to ' + str(int(vol)) + '%.')
     else:
         await cmd.bot.send_message(message.channel, 'Nothing is playing at the moment.')

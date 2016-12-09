@@ -38,6 +38,30 @@ commands:
     description:
       Plays a song from a YouTube link or keyword search.
 
+  - name:    stop
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Stops the currently playing song.
+
+  - name:    pause
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Pauses the currently playing song.
+
+  - name:    resume
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Resumes the currently playing song.
+
   - name:    volume
     global:  true
     enabled: true
