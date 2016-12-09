@@ -2,6 +2,7 @@ from apiclient import discovery
 from config import GoogleAPIKey
 from .backend import get_player, make_yt_player, player_exists, delete_player
 
+
 async def play(cmd, message, args):
     if not args:
         await cmd.bot.send_message(message.channel, 'No arguments provided, provide a YouTube link or Keyword Search.')

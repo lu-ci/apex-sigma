@@ -17,11 +17,13 @@ async def player_exists(server_id):
     else:
         return False
 
+
 async def delete_player(server_id):
     global players
     exists = await player_exists(server_id)
     if exists:
         del players[server_id]
+
 
 async def make_yt_player(server_id, voice, url):
     global players
