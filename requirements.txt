@@ -23,3 +23,4 @@ python-twitch
 wolframalpha
 geopy
 pymongo
+google-api-python-client

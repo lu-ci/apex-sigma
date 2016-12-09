@@ -1,6 +1,7 @@
 from apiclient import discovery
 from config import GoogleAPIKey
-from .backend import play_yt
+from .backend import get_player, make_yt_player, player_exists, delete_player
+
 
 async def play(cmd, message, args):
     if not args:
@@ -9,11 +10,21 @@ async def play(cmd, message, args):
     if cmd.bot.is_voice_connected(message.server):
         voice = cmd.bot.voice_client_in(message.server)
     else:
-        voice = await cmd.bot.join_voice_channel(message.author.voice_channel)
+        try:
+            voice = await cmd.bot.join_voice_channel(message.author.voice_channel)
+        except:
+            cmd.bot.send_message(message.channel, 'You are not in a voice channel.')
+            return
     request = ' '.join(args)
     if request.startswith('https://you'):
-        pl = await play_yt(voice, request)
-        video_name = pl.title()
+        if player_exists(message.server.id):
+            player = await get_player(message.server.id)
+            player.stop()
+            player = await make_yt_player(message.server.id, voice, request)
+        else:
+            player = await make_yt_player(message.server.id, voice, request)
+        video_name = player.title()
+        player.start()
     else:
         youtube = discovery.build('youtube', 'v3', developerKey=GoogleAPIKey)
         search_response = youtube.search().list(q=request, part='id,snippet').execute()
@@ -25,5 +36,12 @@ async def play(cmd, message, args):
                 video_name = search_result["snippet"]["title"]
                 break
         video_url = "https://www.youtube.com/watch?v=" + video_id
-        await play_yt(voice, video_url)
+        existence = await player_exists(message.server.id)
+        if existence:
+            player = await make_yt_player(message.server.id, voice, video_url)
+            player.start()
+        else:
+            player = await make_yt_player(message.server.id, voice, video_url)
+            player.start()
+
     await cmd.bot.send_message(message.channel, 'Playing **' + video_name + '**')
