@@ -37,3 +37,11 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Plays a song from a YouTube link or keyword search.
+
+  - name:    volume
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 67"
+    description:
+      Sets the bots volume if it is playing something.
