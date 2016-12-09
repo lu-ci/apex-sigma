@@ -16,13 +16,14 @@ async def play(cmd, message, args):
             cmd.bot.send_message(message.channel, 'You are not in a voice channel.')
             return
     request = ' '.join(args)
-    if request.startswith('https://you'):
-        if player_exists(message.server.id):
-            player = await get_player(message.server.id)
-            player.stop()
+    if request.startswith('https://'):
+        existence = await player_exists(message.server.id)
+        if existence:
             player = await make_yt_player(message.server.id, voice, request)
+            player.start()
         else:
             player = await make_yt_player(message.server.id, voice, request)
+            player.start()
         video_name = player.title()
         player.start()
     else:
