@@ -24,7 +24,10 @@ async def play(cmd, message, args):
         else:
             player = await make_yt_player(message.server.id, voice, request)
             player.start()
-        video_name = player.title()
+        try:
+            video_name = player.title()
+        except:
+            video_name = 'Playlist'
         player.start()
     else:
         youtube = discovery.build('youtube', 'v3', developerKey=GoogleAPIKey)
