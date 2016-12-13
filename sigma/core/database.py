@@ -172,3 +172,60 @@ class Database(object):
                     'Level': level
                 }}
                 self.db[collection].update_one(updatetarget, updatedata)
+
+    def take_points(self, server, user, points):
+        if self.db:
+            target = None
+            n = 0
+            collection = 'PointSystem'
+            finddata = {
+                'UserID': user.id,
+                'ServerID': server.id
+            }
+            insertdata = {
+                'UserID': user.id,
+                'ServerID': server.id,
+                'Points': 0,
+                'UserName': user.name,
+                'Avatar': user.avatar_url,
+                'Level': 0
+            }
+            finddata_results = self.db[collection].find(finddata)
+            for item in finddata_results:
+                n += 1
+                target = item
+            if n == 0:
+                self.db[collection].insert_one(insertdata)
+            else:
+                curr_pts = target['Points']
+                rem_pts = points
+                new_pts = curr_pts - rem_pts
+                level = int(new_pts / 1690)
+                updatetarget = {"UserID": user.id, "ServerID": server.id}
+                updatedata = {"$set": {
+                    "Points": new_pts,
+                    'UserName': user.name,
+                    'Avatar': user.avatar_url,
+                    'Level': level
+                }}
+                self.db[collection].update_one(updatetarget, updatedata)
+
+    def get_points(self, server, user):
+        if self.db:
+            target = None
+            n = 0
+            collection = 'PointSystem'
+            finddata = {
+                'UserID': user.id,
+                'ServerID': server.id
+            }
+            search = self.db[collection].find(finddata)
+            for res in search:
+                n += 1
+                target = res
+            if n == 0:
+                return 0
+            else:
+                points = target['Points']
+                return points
+
