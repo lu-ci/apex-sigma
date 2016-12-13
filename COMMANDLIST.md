@@ -65,6 +65,7 @@ Command |  Description |  Usage
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
 `>>ranking`  |  Shows the link for the servers point leaderboard.  |  `>>ranking`
+`>>give`  |  Transfer a chosen amount of points between you and the mentioned user.  |  `>>give 50 @person`
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
@@ -104,7 +105,7 @@ Command |  Description |  Usage
 `>>summon`  |  Summons the bot into your voice channel.  |  `>>summon`
 `>>disconnect`  |  Disconnects the bot from your voice channel.  |  `>>disconnect`
 `>>move`  |  Moves the bot to your voice channel.  |  `>>move`
-`>>play`  |  Plays a song from a YouTube link or keyword search.  |  `>>play`
+`>>play`  |  Plays a song from a YouTube link or keyword search.  |  `>>play Ryder or Riot`
 `>>stop`  |  Stops the currently playing song.  |  `>>stop`
 `>>pause`  |  Pauses the currently playing song.  |  `>>pause`
 `>>resume`  |  Resumes the currently playing song.  |  `>>resume`
