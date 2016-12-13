@@ -18,7 +18,8 @@ async def take(cmd, message, args):
             for result in data:
                 curr_pts = result['Points']
             try:
-                new_pts = curr_pts - abs(int(args[0]))
+                amount = abs(int(args[0]))
+                new_pts = curr_pts - amount
             except:
                 await cmd.bot.send_message(message.channel, 'Not a valid point number input.')
                 return
@@ -30,8 +31,8 @@ async def take(cmd, message, args):
                 'Points': new_pts
             }}
             cmd.db.update_one('PointSystem', updatetarget, updatedata)
-            await cmd.bot.send_message(message.channel, 'Okay <@' + message.author.id + '>. I have taken away **' + args[
-                0] + '** points from <@' + target.id + '>!')
+            await cmd.bot.send_message(message.channel, 'Okay <@' + message.author.id + '>. I have taken away **' + str(
+                amount) + '** points from <@' + target.id + '>!')
             try:
                 await cmd.bot.send_message(target, 'Sorry...! :fire:\n**' + args[
                     0] + '** points have been taken away from you on **' + message.server.name + '** by **' + message.author.name + '**.')
