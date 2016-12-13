@@ -19,6 +19,7 @@ async def award(cmd, message, args):
                 curr_pts = result['Points']
             try:
                 amount = abs(int(args[0]))
+                print(amount)
                 new_pts = curr_pts + amount
             except:
                 await cmd.bot.send_message(message.channel, 'Not a valid point number input.')
@@ -28,8 +29,8 @@ async def award(cmd, message, args):
                 'Points': new_pts
             }}
             cmd.db.update_one('PointSystem', updatetarget, updatedata)
-            await cmd.bot.send_message(message.channel, 'Okay <@' + message.author.id + '>. I have given **' + args[
-                0] + '** points to <@' + target.id + '>!')
+            await cmd.bot.send_message(message.channel, 'Okay <@' + message.author.id + '>. I have given **' + str(
+                amount) + '** points to <@' + target.id + '>!')
             try:
                 await cmd.bot.send_message(target, 'Congrats! :gem:\nYou have been given **' + str(
                     amount) + '** points on **' + message.server.name + '** by **' + message.author.name + '**.')

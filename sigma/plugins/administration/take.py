@@ -34,8 +34,8 @@ async def take(cmd, message, args):
             await cmd.bot.send_message(message.channel, 'Okay <@' + message.author.id + '>. I have taken away **' + str(
                 amount) + '** points from <@' + target.id + '>!')
             try:
-                await cmd.bot.send_message(target, 'Sorry...! :fire:\n**' + args[
-                    0] + '** points have been taken away from you on **' + message.server.name + '** by **' + message.author.name + '**.')
+                await cmd.bot.send_message(target, 'Sorry...! :fire:\n**' + str(
+                    amount) + '** points have been taken away from you on **' + message.server.name + '** by **' + message.author.name + '**.')
             except:
                 pass
         else:
