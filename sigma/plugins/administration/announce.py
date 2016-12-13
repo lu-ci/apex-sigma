@@ -14,7 +14,7 @@ async def announce(cmd, message, args):
                 except Exception as e:
                     cmd.log.error(e)
                     pass
-                await asyncio.sleep(1)
+                await asyncio.sleep(0.25)
             await cmd.bot.send_message(message.channel, 'Announcement sent successfully to ' + str(n) + ' servers.')
         else:
             await cmd.bot.send_message(message.channel, cmd.help())
