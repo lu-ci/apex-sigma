@@ -18,7 +18,7 @@ async def take(cmd, message, args):
             for result in data:
                 curr_pts = result['Points']
             try:
-                new_pts = curr_pts - int(args[0])
+                new_pts = curr_pts - abs(int(args[0]))
             except:
                 await cmd.bot.send_message(message.channel, 'Not a valid point number input.')
                 return
