@@ -2,26 +2,26 @@
 ###ADMINISTRATION
 Command |  Description |  Usage
 --------|--------------|-------
-`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
-`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
-`>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
-`>>leave`  |  Leaves the server with the inputted id. Bot Special Permitted/Owner Only.  |  `>>leave 123456789`
-`>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
-`>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Special Permitted/Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
-`>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Special Permitted/Owner Only.  |  `>>inviteowner 200751504175398912`
-`>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Special Permitted/Owner Only.  |  `>>searchid 200751504175398912`
-`>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Special Permitted/Owner Only.  |  `>>gencmd`
-`>>dbpointcheck`  |  Forces a recheck of all user point data. Bot Special Permitted/Owner Only.  |  `>>dbpointcheck`
-`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator or Bot Special Permitted/Owner Only.  |  `>>award 1500 @person`
-`>>take`  |  Takes away the inputted amount of points from the mentioned person. Bot Special Permitted/Owner Only.  |  `>>take 1500 @person`
-`>>echo`  |  Repeats the given text. Bot Special Permitted/Owner Only.  |  `>>echo Hello world!`
-`>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Special Permitted/Owner Only.  |  `>>bulkmsg Hello everyone!`
-`>>servers`  |  Shows all the servers Sigma is on. Bot Special Permitted/Owner Only.  |  `>>servers`
-`>>kill`  |  Forcefully kill the bot. Bot Special Permitted/Owner Only.  |  `>>kill`
-`>>setgame`  |  Sets the bots playing states to whatever you wish. Bot Special Permitted/Owner Only.  |  `>>setgame New Game!`
-`>>setavatar`  |  Set the avatar picture. (Requires premission)  |  `>>setavatar url`
-`>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Bot Special Permitted/Owner Only.  |  `>>apikeys`
-`>>setname`  |  Sets the username of the bot to the inputted one. Bot Special Permitted/Owner Only.  |  `>>setname Charlotte`
+`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Owner Only.  |  `>>announce Hello World!`
+`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Owner Only.  |  `>>ping`
+`>>status`  |  Show the CPU statistics of the machine running the bot. Bot Owner Only.  |  `>>status`
+`>>leave`  |  Leaves the server with the inputted id. Bot Owner Only.  |  `>>leave 123456789`
+`>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Owner Only.  |  `>>evaluate print('hello world')`
+`>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
+`>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Owner Only.  |  `>>inviteowner 200751504175398912`
+`>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Owner Only.  |  `>>searchid 200751504175398912`
+`>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Owner Only.  |  `>>gencmd`
+`>>dbpointcheck`  |  Forces a recheck of all user point data. Bot Owner Only.  |  `>>dbpointcheck`
+`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator or Bot Owner.  |  `>>award 1500 @person`
+`>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator or Bot Owner.  |  `>>take 1500 @person`
+`>>echo`  |  Repeats the given text. Bot Owner Only.  |  `>>echo Hello world!`
+`>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Owner Only.  |  `>>bulkmsg Hello everyone!`
+`>>servers`  |  Shows all the servers Sigma is on. Bot Owner Only.  |  `>>servers`
+`>>kill`  |  Forcefully kill the bot. Bot Owner Only.  |  `>>kill`
+`>>setgame`  |  Sets the bots playing states to whatever you wish. Bot Owner Only.  |  `>>setgame New Game!`
+`>>setavatar`  |  Set the avatar picture. Bot Owner Only.  |  `>>setavatar url`
+`>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Bot Owner Only.  |  `>>apikeys`
+`>>setname`  |  Sets the username of the bot to the inputted one. Bot Owner Only.  |  `>>setname Charlotte`
 ###GAMES
 Command |  Description |  Usage
 --------|--------------|-------

@@ -13,7 +13,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Hello World!"
     description:
       It will post your inputed message to the default text channel of every server the bot is connected to.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: ping
     global:  true
@@ -23,7 +23,7 @@ commands:
     description:
       Shows the latency between the server hosting the bot and Google.
       Windows host only for now.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: status
     global:  true
@@ -31,7 +31,8 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Show the statistics of the machine running the bot.
+      Show the CPU statistics of the machine running the bot.
+      Bot Owner Only.
 
   - name: leave
     global:  true
@@ -40,7 +41,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 123456789"
     description:
       Leaves the server with the inputted id.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: evaluate
     global:  true
@@ -49,7 +50,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} print('hello world')"
     description:
       Executes a python function. Can be very dangerous.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: send
     global:  true
@@ -58,7 +59,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 200751504175398912|c:201577895196360714 Hello World!"
     description:
       Send a message to either a channel or user (by ID) on the server with the given ID.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: inviteowner
     global:  true
@@ -68,7 +69,7 @@ commands:
     description:
       Creates a one-use invite link to a server the bot is a part of by inputted ID.
       The purpose of this command is to investigate possibly abusive servers.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: searchid
     global:  true
@@ -78,7 +79,7 @@ commands:
     description:
       Searches for a persons User ID within all servers.
       The purpose of this command is to investigate possibly abusive servers and users.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: gencmd
     global:  true
@@ -87,7 +88,7 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Generates the bot's COMMANDLIST.md file.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: dbpointcheck
     global:  true
@@ -96,7 +97,7 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Forces a recheck of all user point data.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name: award
     global:  true
@@ -105,7 +106,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 1500 @person"
     description:
       Awards the inputted amount of points to the mentioned person.
-      Server Administrator or Bot Special Permitted/Owner Only.
+      Server Administrator or Bot Owner.
 
   - name: take
     global:  true
@@ -114,7 +115,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 1500 @person"
     description:
       Takes away the inputted amount of points from the mentioned person.
-      Bot Special Permitted/Owner Only.
+      Server Administrator or Bot Owner.
 
   - name:    echo
     global:  true
@@ -123,7 +124,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Hello world!"
     description:
       Repeats the given text.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name:    bulkmsg
     global:  true
@@ -132,7 +133,7 @@ commands:
     usage: "{pfx:s}{cmd:s} Hello everyone!"
     description:
       Sends the inputed message to every single person on the server.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name:    servers
     global:  true
@@ -140,7 +141,7 @@ commands:
     sfw:     true
     description:
       Shows all the servers Sigma is on.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name:    kill
     global:  true
@@ -148,7 +149,7 @@ commands:
     sfw:     true
     description:
       Forcefully kill the bot.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name:    setgame
     global:  true
@@ -157,7 +158,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} New Game!"
     description:
       Sets the bots playing states to whatever you wish.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name:    setavatar
     global:  true
@@ -165,7 +166,8 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} url"
     description:
-      Set the avatar picture. (Requires premission)
+      Set the avatar picture.
+      Bot Owner Only.
 
   - name:    apikeys
     global:  true
@@ -175,7 +177,7 @@ commands:
     description:
       Shows which keys are present and which are missing from the config.
       The list is sent as a DM to the user.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
   - name:    setname
     global:  true
@@ -184,7 +186,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Charlotte"
     description:
       Sets the username of the bot to the inputted one.
-      Bot Special Permitted/Owner Only.
+      Bot Owner Only.
 
 events:
   - name:    pmredirect
