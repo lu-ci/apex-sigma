@@ -230,6 +230,15 @@ commands:
       Will not block links posted by administrators.
       Requires the user to be a server Administrator.
 
+  - name: unflip
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles automatic unfliping of tables
+      Requires the user to be a server Administrator.
+
 events:
   - name:    sfiexec
     type:    message

@@ -125,7 +125,7 @@ events:
     description:
       Get levels by chatting in a channel.
 
-  - name:    unflip
+  - name:    unflip_control
     type:    message
     global:  true
     enabled: true
