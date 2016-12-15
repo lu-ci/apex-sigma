@@ -144,7 +144,7 @@ async def sloths(cmd, message, args):
             updatetarget = {"UserID": message.author.id, "ServerID": message.server.id}
             updatedata = {"$set": {"Points": new_pts}}
             cmd.db.update_one(collection, updatetarget, updatedata)
-            results = 'Sorry, you didn\'t win anything this time...\nYou lost **50 Points**.'
+            results = 'Sorry, you didn\'t win anything this time...\nYou lost **10 Points**.'
         out = slot_view + '\n\n' + results
         await cmd.bot.edit_message(slot_spinner, out)
     else:
