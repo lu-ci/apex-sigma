@@ -95,6 +95,10 @@ class Sigma(discord.Client):
 
         self.log.info('-----------------------------------')
         stats(self, self.log)
+        servers = []
+        for srv in self.servers:
+            servers.append(srv)
+        self.db.init_server_settings(servers)
         self.log.info('-----------------------------------')
         self.log.info('Successfully connected to Discord!')
 

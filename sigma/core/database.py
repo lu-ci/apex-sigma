@@ -229,3 +229,59 @@ class Database(object):
                 points = target['Points']
                 return points
 
+    def init_server_settings(self, servers):
+        if self.db:
+            for server in servers:
+                search = self.db['ServerSettings'].find({'ServerID': server.id})
+                n = 0
+                for res in search:
+                    n += 1
+                if n == 0:
+                    default_settings = {
+                        'ServerID': server.id,
+                        'Greet': True,
+                        'GreetMessage': 'Hello %user_mention%, welcome to %server_name%',
+                        'GreetChannel': None,
+                        'GreetPM': False,
+                        'Bye': True,
+                        'ByeMessage': '%user_mention% has left the server.',
+                        'ByeChannel': None,
+                        'CleverBot': True,
+                        'Unflip': False,
+                        'ShopEnabled': True,
+                        'ShopItems': None,
+                        'RandomEvents': False,
+                        'EventChance': 1,
+                        'ChatAnalysis': True,
+                        'MarkovCollect': True,
+                        'BlockInvites': False,
+                        'AntiSpam': False,
+                        'IsBlacklisted': False,
+                        'BlacklistedChannels': None,
+                        'BlacklistedUsers': None
+                    }
+                    self.db['ServerSettings'].insert_one(default_settings)
+
+    def get_settings(self, server_id, setting):
+        if self.db:
+            collection = 'ServerSettings'
+            finddata = {
+                'ServerID': server_id,
+            }
+            search = self.db[collection].find(finddata)
+            n = 0
+            target = None
+            for res in search:
+                n += 1
+                target = res
+            if target:
+                return target[setting]
+            else:
+                return None
+
+    def set_settings(self, server_id, setting, setting_variable):
+        if self.db:
+            collection = 'ServerSettings'
+            updatetarget = {'ServerID': server_id}
+            updatedata = {'$set': {setting: setting_variable}}
+            self.db[collection].update_one(updatetarget, updatedata)

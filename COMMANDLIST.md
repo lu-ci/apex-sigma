@@ -57,8 +57,8 @@ Command |  Description |  Usage
 `>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
 `>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
-`>>slots`  |  Spin the slot machine and test your luck! Costs 50 points to spin.  |  `>>slots`
-`>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the slot machine and test your luck! Costs 50 points to spin.  |  `>>sloths`
+`>>slots`  |  Spin the slot machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>slots`
+`>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the sloths machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sloths`
 ###MISC
 Command |  Description |  Usage
 --------|--------------|-------
@@ -99,6 +99,7 @@ Command |  Description |  Usage
 `>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
 `>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
+`>>unflip`  |  Toggles automatic unfliping of tables Requires the user to be a server Administrator.  |  `>>unflip`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------
