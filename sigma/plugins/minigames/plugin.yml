@@ -51,7 +51,10 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Spin the slot machine and test your luck!
-      Costs 50 points to spin.
+      Costs 10 points to spin.
+      Rewards 200 for 2 matching, and 4000 for 3 matching.
+      Can only be spun once every 20 seconds.
+      Only the middle row counts, as indicated by the arrows.
 
   - name: sloths
     global:  true
@@ -61,5 +64,9 @@ commands:
     description:
       Same as slots, but super slow, reeeeeeally slow...
       We are talking 5 seconds to spin the rows and 10-20 spins.
-      Spin the slot machine and test your luck!
-      Costs 50 points to spin.
+      Spin the sloths machine and test your luck!
+      Costs 10 points to spin.
+      Rewards 200 for 2 matching, and 4000 for 3 matching.
+      Can only be spun once every 20 seconds.
+      Only the middle row counts, as indicated by the arrows.
+

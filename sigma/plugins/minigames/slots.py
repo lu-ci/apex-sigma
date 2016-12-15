@@ -54,7 +54,7 @@ async def slots(cmd, message, args):
         for item in finddata_results:
             target = item
         curr_pts = target['Points']
-        if curr_pts < 50:
+        if curr_pts < 10:
             await cmd.bot.send_message(message.channel,
                                        'I\'m sorry <@' + message.author.id + '>. I\'m afraid I can\'t let you do that.\nYou don\'t have enough points.')
             return
@@ -98,7 +98,7 @@ async def slots(cmd, message, args):
 
         if res_1 == res_2 == res_3:
             win = True
-            pts = 18000
+            pts = 4000
             three_notify = 'The user **' + message.author.name + '** on **' + message.server.name + '** has just won ' + str(
                 pts) + ' on Slots!'
             for user in cmd.bot.get_all_members():
@@ -107,7 +107,7 @@ async def slots(cmd, message, args):
                     break
         elif res_1 == res_2 or res_1 == res_3 or res_2 == res_3:
             win = True
-            pts = 900
+            pts = 200
         else:
             win = False
             pts = 0
@@ -139,7 +139,7 @@ async def slots(cmd, message, args):
             for item in finddata_results:
                 target = item
             curr_pts = target['Points']
-            new_pts = curr_pts - 50
+            new_pts = curr_pts - 10
             updatetarget = {"UserID": message.author.id, "ServerID": message.server.id}
             updatedata = {"$set": {"Points": new_pts}}
             cmd.db.update_one(collection, updatetarget, updatedata)
