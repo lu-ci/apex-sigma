@@ -1,32 +1,17 @@
-import asyncio
+from sigma.core.permission import check_admin
 
 
 async def byemsg(cmd, message, args):
-    if message.server is not None:
-        admin_check = message.author.permissions_in(message.channel).administrator
-        if admin_check is True:
-            msg_query = 'SELECT BYE_MSG FROM BYE WHERE SERVER_ID=?'
-            chk_query = "SELECT EXISTS (SELECT SERVER_ID, BYE_CHANNEL_ID, ACTIVE, BYE_MSG FROM BYE WHERE SERVER_ID=?);"
-            checker = cmd.db.execute(chk_query, message.server.id)
-            existance = '0'
-            for result in checker:
-                existance = str(result[0])
-            if existance == '0':
-                await cmd.bot.send_message(message.channel, 'No bye settings exist for this server.')
+    if message.server:
+        if not args:
+            greet_message = cmd.db.get_settings(message.server.id, 'ByeMessage')
+            await cmd.bot.send_message(message.channel,
+                                       'The current bye message is:\n```\n' + greet_message + '\n```')
+        else:
+            if not check_admin(message.author, message.channel):
+                await cmd.bot.send_message(message.channel, ':x: Insufficient permissions.\nServer admin only.')
+                return
             else:
-                if args:
-                    greet_msg = ' '.join(args)
-                    upd_msg_query = "UPDATE BYE SET BYE_MSG=? WHERE SERVER_ID=?"
-                    cmd.db.execute(upd_msg_query, greet_msg, message.server.id)
-                    cmd.db.commit()
-                    await cmd.bot.send_message(message.channel, '**New Bye Message Set**')
-                else:
-                    greet_msg = ''
-                    greet_grab = cmd.db.execute(msg_query, message.server.id)
-                    for result in greet_grab:
-                        greet_msg = result[0]
-                    await cmd.bot.send_message(message.channel, '**Current farewell message is:**\n```\n' + greet_msg + '\n```')
-    else:
-        response = await cmd.bot.send_message(message.channel, 'Only an **Administrator** can manage the bye message. :x:')
-        await asyncio.sleep(10)
-        await cmd.delete_message(response)
+                new_message = ' '.join(args)
+                cmd.db.set_settings(message.server.id, 'ByeMessage', new_message)
+                await cmd.bot.send_message(message.channel, 'The new bye message has been set.')
