@@ -259,6 +259,17 @@ commands:
       The channel can be blacklisted by either mention or ID.
       Requires the user to be a server Administrator.
 
+  - name: cleverbot
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the CleverBot functionality of the bot on the server.
+      This is used by starting a message by mentioning a bot.
+      Example being [@Sigma how are you today?]
+      Requires the user to be a server Administrator.
+
 events:
   - name:    sfiexec
     type:    message

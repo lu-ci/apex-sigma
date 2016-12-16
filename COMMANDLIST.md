@@ -103,6 +103,7 @@ Command |  Description |  Usage
 `>>unflip`  |  Toggles automatic unfliping of tables Requires the user to be a server Administrator.  |  `>>unflip`
 `>>ignoreuser`  |  Disallows a user from using the bot on your server. The user can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignoreuser @person`
 `>>ignorechannel`  |  Disallows commands to be used in the specified channel. The channel can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignorechannel 123456789123456789`
+`>>cleverbot`  |  Toggles the CleverBot functionality of the bot on the server. This is used by starting a message by mentioning a bot. Example being [@Sigma how are you today?] Requires the user to be a server Administrator.  |  `>>cleverbot`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------
