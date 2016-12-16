@@ -221,11 +221,3 @@ events:
     sfw:     true
     description:
       Fills the server statistics.
-
-  - name:    server_settings_refresher
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    description:
-      Checks the db for missing server settings.

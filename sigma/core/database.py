@@ -262,6 +262,39 @@ class Database(object):
                     }
                     self.db['ServerSettings'].insert_one(default_settings)
 
+    def add_new_server_settings(self, server):
+        if self.db:
+            search = self.db['ServerSettings'].find({'ServerID': server.id})
+            n = 0
+            for res in search:
+                n += 1
+            if n == 0:
+                default_settings = {
+                    'ServerID': server.id,
+                    'Greet': True,
+                    'GreetMessage': 'Hello %user_mention%, welcome to %server_name%',
+                    'GreetChannel': server.default_channel.id,
+                    'GreetPM': False,
+                    'Bye': True,
+                    'ByeMessage': '%user_mention% has left the server.',
+                    'ByeChannel': server.default_channel.id,
+                    'CleverBot': True,
+                    'Unflip': False,
+                    'ShopEnabled': True,
+                    'ShopItems': None,
+                    'RandomEvents': False,
+                    'EventChance': 1,
+                    'ChatAnalysis': True,
+                    'MarkovCollect': True,
+                    'BlockInvites': False,
+                    'AntiSpam': False,
+                    'IsBlacklisted': False,
+                    'BlacklistedChannels': None,
+                    'BlacklistedUsers': None
+                }
+                self.db['ServerSettings'].insert_one(default_settings)
+
+
     def get_settings(self, server_id, setting):
         if self.db:
             collection = 'ServerSettings'
@@ -278,6 +311,7 @@ class Database(object):
                 return target[setting]
             else:
                 return None
+
 
     def set_settings(self, server_id, setting, setting_variable):
         if self.db:
