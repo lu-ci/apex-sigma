@@ -239,6 +239,26 @@ commands:
       Toggles automatic unfliping of tables
       Requires the user to be a server Administrator.
 
+  - name: ignoreuser
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Disallows a user from using the bot on your server.
+      The user can be blacklisted by either mention or ID.
+      Requires the user to be a server Administrator.
+
+  - name: ignorechannel
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 123456789123456789"
+    description:
+      Disallows commands to be used in the specified channel.
+      The channel can be blacklisted by either mention or ID.
+      Requires the user to be a server Administrator.
+
 events:
   - name:    sfiexec
     type:    message
