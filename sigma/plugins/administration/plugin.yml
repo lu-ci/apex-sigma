@@ -188,6 +188,15 @@ commands:
       Sets the username of the bot to the inputted one.
       Bot Owner Only.
 
+  - name:    blacksrv
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 123456789123456789"
+    description:
+      Blacklists a connected server disallowing it to use any and all commands.
+      Bot Owner Only.
+
 events:
   - name:    pmredirect
     type:    message

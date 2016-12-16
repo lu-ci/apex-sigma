@@ -22,6 +22,7 @@ Command |  Description |  Usage
 `>>setavatar`  |  Set the avatar picture. Bot Owner Only.  |  `>>setavatar url`
 `>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Bot Owner Only.  |  `>>apikeys`
 `>>setname`  |  Sets the username of the bot to the inputted one. Bot Owner Only.  |  `>>setname Charlotte`
+`>>blacksrv`  |  Blacklists a connected server disallowing it to use any and all commands. Bot Owner Only.  |  `>>blacksrv 123456789123456789`
 ###GAMES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -100,6 +101,8 @@ Command |  Description |  Usage
 `>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
 `>>unflip`  |  Toggles automatic unfliping of tables Requires the user to be a server Administrator.  |  `>>unflip`
+`>>ignoreuser`  |  Disallows a user from using the bot on your server. The user can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignoreuser @person`
+`>>ignorechannel`  |  Disallows commands to be used in the specified channel. The channel can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignorechannel 123456789123456789`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------
