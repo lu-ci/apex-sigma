@@ -108,7 +108,7 @@ commands:
       The date system is the US Month/Day ordering system.
 
 events:
-  - name:    cleverbot
+  - name:    cleverbot_control
     type:    mention
     global:  true
     enabled: true
