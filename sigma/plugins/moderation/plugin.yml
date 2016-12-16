@@ -279,3 +279,21 @@ events:
     usage:   "Activated upon detecting an invite link in a message."
     description:
       Removes messages with a discord invite link.
+
+  - name:    member_join_control
+    type:    member_join
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "Activated upon a user joining the server."
+    description:
+      Controls greetings.
+
+  - name:    member_leave_control
+    type:    member_leave
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "Activated upon a user leaving the server."
+    description:
+      Controls goodbyes.

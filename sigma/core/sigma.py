@@ -136,3 +136,15 @@ class Sigma(discord.Client):
             except KeyError:
                 # no such command
                 pass
+
+    async def on_member_join(self, member):
+        for ev_name, event in self.plugin_manager.events['member_join'].items():
+            await event.call_sp(member)
+
+    async def on_member_remove(self, member):
+        for ev_name, event in self.plugin_manager.events['member_leave'].items():
+            await event.call_sp(member)
+
+    async def on_server_join(self, server):
+        self.db.add_new_server_settings(server)
+        self.log.info('New Server Added: ' + server.name)

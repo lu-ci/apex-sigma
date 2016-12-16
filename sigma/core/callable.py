@@ -85,3 +85,6 @@ class Callable(object):
         if msg:
             await self.bot.send_typing(channel)
             await self.bot.send_message(channel, msg)
+
+    async def call_sp(self, member):
+        msg = await getattr(self.module, self.name)(self, member)
