@@ -61,17 +61,19 @@ class Callable(object):
         msg = None
         black_channel = False
         black_user = False
-        channel_blacklist = self.db.get_settings(message.server.id, 'BlacklistedChannels')
-        if not channel_blacklist:
-            channel_blacklist = []
-        user_blacklist = self.db.get_settings(message.server.id, 'BlacklistedUsers')
-        if not user_blacklist:
-            user_blacklist = []
-        if message.author.id in user_blacklist:
-            black_user = True
-        if message.channel.id in channel_blacklist:
-            black_channel = True
-        server_is_black = self.db.get_settings(message.server.id, 'IsBlacklisted')
+        server_is_black = False
+        if message.server:
+            channel_blacklist = self.db.get_settings(message.server.id, 'BlacklistedChannels')
+            if not channel_blacklist:
+                channel_blacklist = []
+            user_blacklist = self.db.get_settings(message.server.id, 'BlacklistedUsers')
+            if not user_blacklist:
+                user_blacklist = []
+            if message.author.id in user_blacklist:
+                black_user = True
+            if message.channel.id in channel_blacklist:
+                black_channel = True
+            server_is_black = self.db.get_settings(message.server.id, 'IsBlacklisted')
         if black_channel or black_user or server_is_black:
             return
         if not self.sfw and not check_channel_nsfw(self.db, channel.id):
