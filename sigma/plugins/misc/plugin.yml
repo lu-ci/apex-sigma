@@ -116,6 +116,14 @@ commands:
       Will make the bot write an X amout of something, up to a char limit ofc.
       And the max spam count being 20.
 
+  - name: hearts
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Goddamn it Ace!
+
 events:
   - name:    cleverbot_control
     type:    mention
