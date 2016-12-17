@@ -129,7 +129,8 @@ class Sigma(discord.Client):
                                   message.author, message.author.id,
                                   message.server.name, message.server.id, message.channel)
                 else:
-                    msg = 'User %s [%s], used the command.'
+                    msg = 'User %s [%s], used a command.'
+                    self.log.info('能美 クドリャフカ')
                     self.log.info(msg.format(cmd),
                                   message.author,
                                   message.author.id)

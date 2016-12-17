@@ -19,7 +19,7 @@ def create_logger(name):
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(formatter)
 
-    file_handler = logging.FileHandler(log_file)
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
     file_handler.setFormatter(formatter)
 
     logger = logging.getLogger(name)
