@@ -107,6 +107,15 @@ commands:
       The accepted types are trivia, date, math and year.
       The date system is the US Month/Day ordering system.
 
+  - name: spam
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 5 <3"
+    description:
+      Will make the bot write an X amout of something, up to a char limit ofc.
+      And the max spam count being 20.
+
 events:
   - name:    cleverbot_control
     type:    mention
