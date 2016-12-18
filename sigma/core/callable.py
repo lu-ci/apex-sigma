@@ -63,6 +63,8 @@ class Callable(object):
         black_channel = False
         black_user = False
         server_is_black = False
+        if message.author.bot:
+            return
         if message.server:
             channel_blacklist = self.db.get_settings(message.server.id, 'BlacklistedChannels')
             if not channel_blacklist:
