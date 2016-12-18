@@ -21,7 +21,7 @@ async def member_join_control(ev, member):
         await ev.bot.send_message(target_channel, greet_message)
     if autorole:
         target = None
-        for role in member.server.rolse:
+        for role in member.server.roles:
             if role.name.lower() == autorole.lower():
                 target = role
                 break
