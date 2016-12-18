@@ -12,7 +12,7 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Team Instinct', 'Team Valor', 'Team Mystic', 'Pokémon',
               'Artists', 'Streamers', 'Entertainers ✿', 'Coders', 'Cosplayers',
               'Welcome Party', 'Cake Shop', 'Weebs',
-              'Singers', 'Instrumentalists', 'Showtime']
+              'Singers', 'Instrumentalists', 'Showtime', 'Writers']
 timeout = 10
 
 async def selfrole(ev, message, args):
