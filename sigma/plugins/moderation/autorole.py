@@ -29,7 +29,7 @@ async def autorole(cmd, message, args):
     role_qry_low = role_qry.lower()
     if role_qry_low == 'disable':
         cmd.db.set_settings(message.server.id, 'AutoRole', None)
-        out_content = discord.Embed(type='rich', color=0x33CC33,
+        out_content = discord.Embed(type='rich', color=0x66cc66,
                                     title=':white_check_mark: Auto Role Disabled and Cleaned.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return

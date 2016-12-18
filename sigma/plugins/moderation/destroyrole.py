@@ -22,7 +22,7 @@ async def destroyrole(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=out_content)
     else:
         await cmd.bot.delete_role(message.server, target_role)
-        out_content = discord.Embed(type='rich', color=0x33CC33,
+        out_content = discord.Embed(type='rich', color=0x66cc66,
                                     title=':white_check_mark: Role ' + role_qry + ' destroyed.')
         await cmd.bot.create_role(message.server, name=role_qry)
         await cmd.bot.send_message(message.channel, None, embed=out_content)
