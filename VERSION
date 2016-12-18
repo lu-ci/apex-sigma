@@ -2,6 +2,6 @@ beta: false
 build_date: 1482090556
 version:
   major: 1
-  minor: 40
-  patch: 10
+  minor: 41
+  patch: 01
 codename: 'Komari'
