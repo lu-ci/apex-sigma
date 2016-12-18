@@ -131,21 +131,13 @@ commands:
       Will deactivate the blind set on a user.
       Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
 
-  - name: role
+  - name: autorole
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} give Wizard @user"
+    usage:   "{pfx:s}{cmd:s} Wizard"
     description:
-      Role control. Executes the selected function and role.
-      create - Makes a new role on the server with the inputted name.
-      destroy - Removes an already existing role from the server roles.
-      give - Gives the inputted role to the mentioned user.
-      take - Removes the inputted role from the mentioned user.
-      auto - Sets the role which will be automatically given to the users that join the server. To remove the autorole functionality, type "Remove" as the role name.
-      add - Adds a role to the list of self assignable roles.
-      del - Removes a role from the list of self assignable roles.
-      Requires the user who calls the command to have the Manage Roles permision, and Administrator if changing the Auto Role settings.
+      Sets the role that should be given to the users that join the server.
 
   - name: settopic
     global:  true
