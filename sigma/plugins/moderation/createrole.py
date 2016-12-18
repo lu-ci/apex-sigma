@@ -1,6 +1,6 @@
 import discord
 from sigma.core.permission import check_man_roles
-from sigma.core.rolecheck import role_exists
+from sigma.core.rolecheck import matching_role
 
 
 async def createrole(cmd, message, args):
@@ -15,9 +15,9 @@ async def createrole(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     role_qry = ' '.join(args)
-    exists = role_exists(message.server, role_qry)
+    exists = matching_role(message.server, role_qry)
     if exists:
-        out_content = discord.Embed(type='rich', color=0xFF9900, title=':exclamation: Error')
+        out_content = discord.Embed(type='rich', color=0xFF9900, title=':warning: Error')
         out_content.add_field(name='Role Exists', value='A role with the name **' + role_qry + '** already exists.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
     else:

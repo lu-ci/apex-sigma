@@ -1,4 +1,5 @@
 from sigma.core.permission import check_admin
+from sigma.core.rolecheck import matching_role
 import discord
 
 
@@ -8,24 +9,36 @@ async def autorole(cmd, message, args):
                                     title=':no_entry: Insufficient Permissions. Server Admin Only.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
+    try:
+        current_role = cmd.db.get_settings(message.server.id, 'AutoRole')
+    except KeyError:
+        cmd.db.set_settings(message.server.id, 'AutoRole', None)
+        current_role = None
     if not args:
-        out_content = discord.Embed(type='rich', color=0xDB0000, title=':exclamation: Error')
-        out_content.add_field(name='Not Enough Arguments', value=cmd.help())
-        await cmd.bot.send_message(message.channel, None, embed=out_content)
-        return
+        if current_role:
+            out_content = discord.Embed(type='rich', color=0x0099FF,
+                                        title=':information_source: Current Auto Role: ' + current_role)
+            await cmd.bot.send_message(message.channel, None, embed=out_content)
+            return
+        else:
+            out_content = discord.Embed(type='rich', color=0x0099FF,
+                                        title=':information_source: No Auto Role Set')
+            await cmd.bot.send_message(message.channel, None, embed=out_content)
+            return
     role_qry = ' '.join(args)
     role_qry_low = role_qry.lower()
-    target_role = None
-    current_role = cmd.db.get_settings(message.server.id, 'AutoRole')
+    if role_qry_low == 'disable':
+        cmd.db.set_settings(message.server.id, 'AutoRole', None)
+        out_content = discord.Embed(type='rich', color=0x33CC33,
+                                    title=':white_check_mark: Auto Role Disabled and Cleaned.')
+        await cmd.bot.send_message(message.channel, None, embed=out_content)
+        return
+    target_role = matching_role(message.server, role_qry)
     if current_role.lower() == role_qry_low:
         out_content = discord.Embed(type='rich', color=0xFF9900, title=':warning: Error')
         out_content.add_field(name='Present Role', value='This Role is already the Auto Role for this server.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
-    for role in message.server.roles:
-        if role.name.lower() == role_qry_low:
-            target_role = role
-            break
     if target_role:
         cmd.db.set_settings(message.server.id, 'AutoRole', role_qry)
         out_content = discord.Embed(type='rich', color=0x33CC33)

@@ -180,7 +180,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Lewd"
+    usage:   "{pfx:s}{cmd:s} @person Lewd"
     description:
       Assigns a role to a user.
       Requires the user who calls the command to have the Manage Roles permision.
@@ -189,7 +189,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Dude"
+    usage:   "{pfx:s}{cmd:s} @person Dude"
     description:
       Removes a role from a user.
       Requires the user who calls the command to have the Manage Roles permision.
