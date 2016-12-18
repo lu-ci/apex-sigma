@@ -31,7 +31,7 @@ Command |  Description |  Usage
 `>>bnsdef`  |  Provides highly detailed Defense Statistics for the inputed Blade and Soul Character.  |  `>>bnsdef EU Lucia Konohana`
 `>>csgo`  |  Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!)  |  `>>csgo thealeksaradovic`
 `>>hearthstone`  |  Hearthstone card lookup. Input the card name after the command then type the number appropriate to the card you were looking for.  |  `>>hearthstone Murloc Raider`
-`>>league`  |  Shows the players League of Legends statistics of inputed Summoner Name. You can also place a gamemode between the Region and Summoner Name to get statistics for it.  |  `>>league EUNE AXAz0r`
+`>>league`  |  Shows the players League of Legends statistics of inputed Summoner Name.  |  `>>league EUNE AXAz0r`
 `>>lolbans`  |  Shows the top League of Legends champion bans for each tier.  |  `>>lolbans`
 `>>mtg`  |  Searches the Magic The Gathering Database for the inputed card.  |  `>>mtg Archangel Avacyn`
 `>>osu`  |  Generates a signature image with the users stats for osu.  |  `>>osu AXAz0r`
@@ -90,7 +90,13 @@ Command |  Description |  Usage
 `>>unmute`  |  Will unmute a person who was muted with the mute command. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unmute @person`
 `>>blind`  |  Will disable a persons ability to read any and all channels. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>blind @person`
 `>>unblind`  |  Will deactivate the blind set on a user. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unblind @person`
-`>>role`  |  Role control. Executes the selected function and role. create - Makes a new role on the server with the inputted name. destroy - Removes an already existing role from the server roles. give - Gives the inputted role to the mentioned user. take - Removes the inputted role from the mentioned user. auto - Sets the role which will be automatically given to the users that join the server. To remove the autorole functionality, type "Remove" as the role name. add - Adds a role to the list of self assignable roles. del - Removes a role from the list of self assignable roles. Requires the user who calls the command to have the Manage Roles permision, and Administrator if changing the Auto Role settings.  |  `>>role give Wizard @user`
+`>>autorole`  |  Sets the role that should be given to the users that join the server. Requires the user who calls the command to have the Administrator permision.  |  `>>autorole Wizard`
+`>>createrole`  |  Creates a new role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>createrole Cheese`
+`>>destroyrole`  |  Destroy an existing role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>destroyrole Blergh`
+`>>addselfrole`  |  Makes a role self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>addselfrole Cheese`
+`>>delselfrole`  |  Makes a role no longer self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>delselfrole Cheese`
+`>>giverole`  |  Assigns a role to a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>giverole @person Lewd`
+`>>takerole`  |  Removes a role from a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>takerole @person Dude`
 `>>settopic`  |  Sets the topic of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>settopic Food Talk!`
 `>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
 `>>movechannel`  |  Moves the channel where the command is executed to the requested positional number. Do keep in mind that the first channel position is 0.  |  `>>movechannel 11`

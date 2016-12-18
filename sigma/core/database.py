@@ -249,7 +249,7 @@ class Database(object):
                         'CleverBot': True,
                         'Unflip': False,
                         'ShopEnabled': True,
-                        'ShopItems': None,
+                        'ShopItems': [],
                         'RandomEvents': False,
                         'EventChance': 1,
                         'ChatAnalysis': True,
@@ -257,8 +257,10 @@ class Database(object):
                         'BlockInvites': False,
                         'AntiSpam': False,
                         'IsBlacklisted': False,
-                        'BlacklistedChannels': None,
-                        'BlacklistedUsers': None
+                        'BlacklistedChannels': [],
+                        'BlacklistedUsers': [],
+                        'AutoRole': None,
+                        'SelfRoles': []
                     }
                     self.db['ServerSettings'].insert_one(default_settings)
 
@@ -281,7 +283,7 @@ class Database(object):
                     'CleverBot': True,
                     'Unflip': False,
                     'ShopEnabled': True,
-                    'ShopItems': None,
+                    'ShopItems': [],
                     'RandomEvents': False,
                     'EventChance': 1,
                     'ChatAnalysis': True,
@@ -289,8 +291,10 @@ class Database(object):
                     'BlockInvites': False,
                     'AntiSpam': False,
                     'IsBlacklisted': False,
-                    'BlacklistedChannels': None,
-                    'BlacklistedUsers': None
+                    'BlacklistedChannels': [],
+                    'BlacklistedUsers': [],
+                    'AutoRole': None,
+                    'SelfRoles': []
                 }
                 self.db['ServerSettings'].insert_one(default_settings)
 

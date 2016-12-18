@@ -1,3 +1,4 @@
+import discord
 import os
 from importlib import import_module
 
@@ -77,7 +78,8 @@ class Callable(object):
         if black_channel or black_user or server_is_black:
             return
         if not self.sfw and not check_channel_nsfw(self.db, channel.id):
-            msg = 'Channel does not have NSFW permissions set, sorry.'
+            embed_content = discord.Embed(title=':eggplant: Channel does not have NSFW permissions set, sorry.', color=0x9933FF)
+            await self.bot.send_message(channel, None, embed=embed_content)
         else:
             msg = await getattr(self.module, self.name)(self, message, *args)
 
@@ -85,7 +87,6 @@ class Callable(object):
             self.db.add_stats('NSFWCount')
 
         if msg:
-            await self.bot.send_typing(channel)
             await self.bot.send_message(channel, msg)
 
     async def call_sp(self, member):
