@@ -1,4 +1,3 @@
-import asyncio
 import discord
 from config import permitted_id
 
