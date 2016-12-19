@@ -1,4 +1,5 @@
 import asyncio
+import discord
 
 target_channel = ['roles']
 self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumble [DN]', 'Protect [DN]', 'PvE [DN]',
@@ -14,6 +15,7 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Welcome Party', 'Cake Shop', 'Weebs',
               'Singers', 'Instrumentalists', 'Showtime', 'Writers']
 timeout = 10
+
 
 async def selfrole(ev, message, args):
     if message.channel.id == '222882496113672193':
@@ -39,7 +41,9 @@ async def selfrole(ev, message, args):
                     if role.name == message.content:
                         if user_has_role:
                             await ev.bot.remove_roles(message.author, role)
-                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` removed'.format(message.author.id, role.name))
+                            embed = discord.Embed(title=':white_check_mark: ' + role.name + ' has been added to you.',
+                                                  color=0x66cc66)
+                            response = await ev.bot.send_message(message.channel, None, embed=embed)
 
                             await asyncio.sleep(timeout)
                             await ev.bot.delete_message(response)
@@ -47,7 +51,10 @@ async def selfrole(ev, message, args):
                             return
                         else:
                             await ev.bot.add_roles(message.author, role)
-                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` assigned'.format(message.author.id, role.name))
+                            embed = discord.Embed(
+                                title=':warning: ' + role.name + ' has been removed from you as you already had it.',
+                                color=0xFF9900)
+                            response = await ev.bot.send_message(message.channel, None, embed=embed)
 
                             await asyncio.sleep(timeout)
                             await ev.bot.delete_message(response)
