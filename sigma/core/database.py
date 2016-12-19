@@ -161,7 +161,7 @@ class Database(object):
                 self.db[collection].insert_one(insertdata)
             else:
                 curr_pts = target['Points']
-                add_pts = points
+                add_pts = abs(points)
                 new_pts = curr_pts + add_pts
                 level = int(new_pts / 1690)
                 updatetarget = {"UserID": user.id, "ServerID": server.id}
@@ -198,7 +198,7 @@ class Database(object):
                 self.db[collection].insert_one(insertdata)
             else:
                 curr_pts = target['Points']
-                rem_pts = points
+                rem_pts = abs(points)
                 new_pts = curr_pts - rem_pts
                 level = int(new_pts / 1690)
                 updatetarget = {"UserID": user.id, "ServerID": server.id}
@@ -298,7 +298,6 @@ class Database(object):
                 }
                 self.db['ServerSettings'].insert_one(default_settings)
 
-
     def get_settings(self, server_id, setting):
         if self.db:
             collection = 'ServerSettings'
@@ -315,7 +314,6 @@ class Database(object):
                 return target[setting]
             else:
                 return None
-
 
     def set_settings(self, server_id, setting, setting_variable):
         if self.db:

@@ -1,6 +1,5 @@
+import discord
 from config import permitted_id
-
-from sigma.core.formatting import codeblock
 
 
 async def pmredirect(ev, message, args):
@@ -16,8 +15,9 @@ async def pmredirect(ev, message, args):
             # very expensive operation
             for user in ev.bot.get_all_members():
                 if user.id == permitted_id[0]:
-                    private_msg_to_owner = await ev.bot.start_private_message(user=user)
-                    msg = '**{:s}** (ID: {:s}):\n{:s}\n'
-                    await ev.bot.send_message(private_msg_to_owner, msg.format(
-                        author.name, author.id, codeblock(message.content)))
+                    embed = discord.Embed(title=':information_source: Message Recieved', color=0x0099FF)
+                    embed.add_field(
+                        name=message.author.name + '#' + message.author.discriminator + ' (' + message.author.id + ')',
+                        value=message.content)
+                    await ev.bot.send_message(user, None, embed=embed)
                     break

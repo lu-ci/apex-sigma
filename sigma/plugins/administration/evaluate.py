@@ -1,5 +1,6 @@
 from config import permitted_id
-import asyncio
+import discord
+
 
 async def evaluate(cmd, message, args):
     if message.author.id in permitted_id:
@@ -9,16 +10,19 @@ async def evaluate(cmd, message, args):
             try:
                 execution = " ".join(args)
                 output = eval(execution)
-                out_text = 'Executed.'
-                try:
-                    out_text += '\n```\n' + str(output) + '\n```'
-                except:
-                    pass
-                await cmd.bot.send_message(message.channel, out_text)
+                status = discord.Embed(title=':white_check_mark: Executed', color=0x66CC66)
+                if output:
+                    try:
+                        status.add_field(name='Results', value='\n```\n' + str(output) + '\n```')
+                    except:
+                        pass
             except Exception as e:
                 cmd.log.error(e)
-                await cmd.bot.send_message(message.channel, 'Execution failed.\n' + str(e))
+                status = discord.Embed(type='rich', color=0xDB0000,
+                                       title=':exclamation: Error.')
+                status.add_field(name='Execution Failed', value=str(e))
+            await cmd.bot.send_message(message.channel, None, embed=status)
     else:
-        response = await cmd.bot.send_message(message.channel, 'Unpermitted. :x:')
-        await asyncio.sleep(10)
-        await cmd.bot.delete_message(response)
+        status = discord.Embed(type='rich', color=0xDB0000,
+                               title=':no_entry: Insufficient Permissions. Bot Owner or Server Admin Only.')
+        await cmd.bot.send_message(message.channel, None, embed=status)

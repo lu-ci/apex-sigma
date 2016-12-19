@@ -11,11 +11,9 @@ Command |  Description |  Usage
 `>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Owner Only.  |  `>>inviteowner 200751504175398912`
 `>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Owner Only.  |  `>>searchid 200751504175398912`
 `>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Owner Only.  |  `>>gencmd`
-`>>dbpointcheck`  |  Forces a recheck of all user point data. Bot Owner Only.  |  `>>dbpointcheck`
 `>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator or Bot Owner.  |  `>>award 1500 @person`
 `>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator or Bot Owner.  |  `>>take 1500 @person`
 `>>echo`  |  Repeats the given text. Bot Owner Only.  |  `>>echo Hello world!`
-`>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Owner Only.  |  `>>bulkmsg Hello everyone!`
 `>>servers`  |  Shows all the servers Sigma is on. Bot Owner Only.  |  `>>servers`
 `>>kill`  |  Forcefully kill the bot. Bot Owner Only.  |  `>>kill`
 `>>setgame`  |  Sets the bots playing states to whatever you wish. Bot Owner Only.  |  `>>setgame New Game!`
@@ -79,6 +77,7 @@ Command |  Description |  Usage
 --------|--------------|-------
 `>>greet`  |  Toggles the greet message in the channel it is written in. Whenever a user joins the server the greet messsage will be displayed. (Server Administrator Only)  |  `>>greet`
 `>>greetmsg`  |  Sets the greet message text. Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current greet message. (Server Administrator Only)  |  `>>greetmsg Hello %user_mention% and welcoem to %server_name%!`
+`>>greetpm`  |  Toggles if the greet message should be sent as a PM to the user instead of writing it in the channel. (Server Administrator Only)  |  `>>greetpm`
 `>>bye`  |  Toggles the bye message in the channel it is written in. Whenever a user leaves the server the bye messsage will be displayed. (Server Administrator Only)  |  `>>bye`
 `>>byemsg`  |  Sets the bye message text. Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current bye message. (Server Administrator Only)  |  `>>byemsg %user_mention% has left %server_name%`
 `>>ban`  |  Bans the mentioned user. Requires the user who calls the command to have ban privileges.  |  `>>ban @person`
@@ -90,7 +89,7 @@ Command |  Description |  Usage
 `>>unmute`  |  Will unmute a person who was muted with the mute command. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unmute @person`
 `>>blind`  |  Will disable a persons ability to read any and all channels. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>blind @person`
 `>>unblind`  |  Will deactivate the blind set on a user. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unblind @person`
-`>>autorole`  |  Sets the role that should be given to the users that join the server. Requires the user who calls the command to have the Administrator permision.  |  `>>autorole Wizard`
+`>>autorole`  |  Sets the role that should be given to the users that join the server. To disable the autorole input disable as the role name. Requires the user who calls the command to have the Administrator permision.  |  `>>autorole Wizard`
 `>>createrole`  |  Creates a new role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>createrole Cheese`
 `>>destroyrole`  |  Destroy an existing role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>destroyrole Blergh`
 `>>addselfrole`  |  Makes a role self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>addselfrole Cheese`
@@ -103,8 +102,8 @@ Command |  Description |  Usage
 `>>mentionrole`  |  Mentiones every person in the inputted role. Requires the user to be a server Administrator.  |  `>>mentionrole Waifus`
 `>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
 `>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
-`>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
-`>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
+`>>togglerole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addselfrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>togglerole Wizard`
+`>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
 `>>unflip`  |  Toggles automatic unfliping of tables Requires the user to be a server Administrator.  |  `>>unflip`
 `>>ignoreuser`  |  Disallows a user from using the bot on your server. The user can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignoreuser @person`
