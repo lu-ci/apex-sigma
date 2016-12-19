@@ -15,7 +15,6 @@ Command |  Description |  Usage
 `>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator or Bot Owner.  |  `>>award 1500 @person`
 `>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator or Bot Owner.  |  `>>take 1500 @person`
 `>>echo`  |  Repeats the given text. Bot Owner Only.  |  `>>echo Hello world!`
-`>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Owner Only.  |  `>>bulkmsg Hello everyone!`
 `>>servers`  |  Shows all the servers Sigma is on. Bot Owner Only.  |  `>>servers`
 `>>kill`  |  Forcefully kill the bot. Bot Owner Only.  |  `>>kill`
 `>>setgame`  |  Sets the bots playing states to whatever you wish. Bot Owner Only.  |  `>>setgame New Game!`

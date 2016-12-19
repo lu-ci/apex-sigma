@@ -126,15 +126,6 @@ commands:
       Repeats the given text.
       Bot Owner Only.
 
-  - name:    bulkmsg
-    global:  true
-    enabled: true
-    sfw:     true
-    usage: "{pfx:s}{cmd:s} Hello everyone!"
-    description:
-      Sends the inputed message to every single person on the server.
-      Bot Owner Only.
-
   - name:    servers
     global:  true
     enabled: true
