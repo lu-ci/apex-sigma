@@ -117,14 +117,6 @@ commands:
       Repeats the given text.
       Bot Owner Only.
 
-  - name:    servers
-    global:  true
-    enabled: true
-    sfw:     true
-    description:
-      Shows all the servers Sigma is on.
-      Bot Owner Only.
-
   - name:    kill
     global:  true
     enabled: true
