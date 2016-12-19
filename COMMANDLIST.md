@@ -11,7 +11,6 @@ Command |  Description |  Usage
 `>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Owner Only.  |  `>>inviteowner 200751504175398912`
 `>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Owner Only.  |  `>>searchid 200751504175398912`
 `>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Owner Only.  |  `>>gencmd`
-`>>dbpointcheck`  |  Forces a recheck of all user point data. Bot Owner Only.  |  `>>dbpointcheck`
 `>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator or Bot Owner.  |  `>>award 1500 @person`
 `>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator or Bot Owner.  |  `>>take 1500 @person`
 `>>echo`  |  Repeats the given text. Bot Owner Only.  |  `>>echo Hello world!`
