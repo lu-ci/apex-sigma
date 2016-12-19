@@ -138,6 +138,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Wizard"
     description:
       Sets the role that should be given to the users that join the server.
+      To disable the autorole input disable as the role name.
       Requires the user who calls the command to have the Administrator permision.
 
   - name: createrole
