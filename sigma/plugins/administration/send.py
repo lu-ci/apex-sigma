@@ -1,4 +1,5 @@
 import asyncio
+import discord
 from config import permitted_id
 
 
@@ -13,6 +14,7 @@ async def send(cmd, message, args):
                 return
             else:
                 try:
+                    server = None
                     locator_content = args[0]
                     text_content = ' '.join(args[1:])
                     split_locator = locator_content.split('|')
@@ -35,8 +37,10 @@ async def send(cmd, message, args):
                                     if channel.id == target_id:
                                         found_channel += 1
                                         await cmd.bot.send_message(channel, text_content)
-                                        await cmd.bot.send_message(message.channel,
-                                                                   'Message has been sent to **' + channel.name + '** on **' + server.name + '**.')
+                                        embed = discord.Embed(title=':information_source: Message Sent', color=0x0099FF)
+                                        embed.add_field(name='Server', value=server.name)
+                                        embed.add_field(name='Channel', value='#' + channel.name)
+                                        await cmd.bot.send_message(message.channel, None, embed=embed)
                                         break
                             elif mode == 'u':
                                 for user in server.members:
@@ -44,28 +48,39 @@ async def send(cmd, message, args):
                                         found_user += 1
                                         await cmd.bot.start_private_message(user=user)
                                         await cmd.bot.send_message(user, text_content)
-                                        await cmd.bot.send_message(message.channel,
-                                                                   'Message has been sent to **' + user.name + '** on **' + server.name + '**.')
+                                        embed = discord.Embed(title=':information_source: Message Sent', color=0x0099FF)
+                                        embed.add_field(name='Server', value=server.name)
+                                        embed.add_field(name='User', value=user.name + '#' + user.discriminator)
+                                        await cmd.bot.send_message(message.channel, None, embed=embed)
                                         break
                             else:
-                                await cmd.bot.send_message(message.channel,
-                                                           'Invalid mode.\nUse either `c` for channel, or `u` for user.')
+                                embed = discord.Embed(title=':exclamation: Error', color=0xDB0000)
+                                embed.add_field(name='Invalid Mode',
+                                                value='Use either **C** for Channel or **U** for User.')
+                                await cmd.bot.send_message(message.channel, None, embed=embed)
                     if found_server == 0:
-                        await cmd.bot.send_message(message.channel, 'No server by that ID was found.')
+                        embed = discord.Embed(title=':exclamation: No server with that ID found.', color=0xDB0000)
+                        await cmd.bot.send_message(message.channel, None, embed=embed)
                         return
                     else:
                         if mode == 'c':
                             if found_channel == 0:
-                                await cmd.bot.send_message(message.channel, 'No channel by that ID was found on.')
+                                embed = discord.Embed(
+                                    title=':exclamation: No channel with that ID was found on ' + server.name + '.',
+                                    color=0xDB0000)
+                                await cmd.bot.send_message(message.channel, None, embed=embed)
                         if mode == 'u':
                             if found_user == 0:
-                                await cmd.bot.send_message(message.channel, 'No user by that ID was found.')
-
+                                embed = discord.Embed(
+                                    title=':exclamation: No user with that ID was found on ' + server.name + '.',
+                                    color=0xDB0000)
+                                await cmd.bot.send_message(message.channel, None, embed=embed)
                 except Exception as e:
                     cmd.log.error(e)
-                    await cmd.bot.send_message(message.channel, str(e))
+                    embed = discord.Embed(color=0xDB0000)
+                    embed.add_field(name=':exclamation: Error', value=str(e))
                     return
     else:
-        response = await cmd.bot.send_message(message.channel, 'Insufficient permissions. :x:')
-        await asyncio.sleep(10)
-        await cmd.bot.delete_message(response)
+        out = discord.Embed(type='rich', color=0xDB0000,
+                            title=':no_entry: Insufficient Permissions. Bot Owner Only.')
+        await cmd.bot.send_message(message.channel, None, embed=out)
