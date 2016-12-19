@@ -27,6 +27,15 @@ commands:
       If no arguments are inputed it will show the current greet message.
       (Server Administrator Only)
 
+  - name: greetpm
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles if the greet message should be sent as a PM to the user instead of writing it in the channel.
+      (Server Administrator Only)
+
   - name: bye
     global:  true
     enabled: true
