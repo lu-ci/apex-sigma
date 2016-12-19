@@ -79,6 +79,7 @@ async def send(cmd, message, args):
                     cmd.log.error(e)
                     embed = discord.Embed(color=0xDB0000)
                     embed.add_field(name=':exclamation: Error', value=str(e))
+                    await cmd.bot.send_message(message.channel, None, embed=embed)
                     return
     else:
         out = discord.Embed(type='rich', color=0xDB0000,
