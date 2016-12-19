@@ -1,7 +1,6 @@
 import os
 import requests
-from io import BytesIO
-from PIL import Image
+import discord
 
 from config import MashapeKey
 
@@ -21,10 +20,10 @@ async def hearthstone(cmd, message, args):
                 n += 1
                 card_list += ('\n#' + str(n) + ': ' + card['name'])
             try:
-                await cmd.bot.send_message(message.channel, card_list + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
+                selector = await cmd.bot.send_message(message.channel, card_list + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
                                                    len(response)) + ')`')
                 choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
-
+                await cmd.bot.delete_message(selector)
                 try:
                     card_no = int(choice.content) - 1
                 except:
@@ -50,24 +49,20 @@ async def hearthstone(cmd, message, args):
             return
 
     try:
+        card_name = response[card_no]['name']
         card_img_url = response[card_no]['img']
-        card_img_request = requests.get(card_img_url).content
-        card_img = Image.open(BytesIO(card_img_request))
-        card_img.save('cache/hs_' + message.author.id + '.png')
+        embed = discord.Embed(title=card_name,color=0x1ABC9C)
+        embed.set_image(url=card_img_url)
 
         try:
             flavor_text = response[card_no]['flavor']
         except:
-            flavor_text = ''
-
-        await cmd.bot.send_file(message.channel, 'cache/hs_' + message.author.id + '.png')
-        os.remove('cache/hs_' + message.author.id + '.png')
-
-        if flavor_text == '':
-            return
-        else:
+            flavor_text = None
+        print(flavor_text)
+        if flavor_text:
             flavor_out = '```\n' + flavor_text + '\n```'
-            await cmd.bot.send_message(message.channel, flavor_out)
+            embed.add_field(name='Info', value=flavor_out)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
     except:
         try:
             error = str(response['error'])
