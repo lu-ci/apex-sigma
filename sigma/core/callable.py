@@ -1,6 +1,7 @@
 import discord
 import os
 from importlib import import_module
+from config import permitted_id
 
 from .permission import check_channel_nsfw
 
@@ -77,8 +78,9 @@ class Callable(object):
             if message.channel.id in channel_blacklist:
                 black_channel = True
             server_is_black = self.db.get_settings(message.server.id, 'IsBlacklisted')
-        if black_channel or black_user or server_is_black:
-            return
+        if message.author.id not in permitted_id:
+            if black_channel or black_user or server_is_black:
+                return
         if not self.sfw and not check_channel_nsfw(self.db, channel.id):
             embed_content = discord.Embed(title=':eggplant: Channel does not have NSFW permissions set, sorry.', color=0x9933FF)
             await self.bot.send_message(channel, None, embed=embed_content)
