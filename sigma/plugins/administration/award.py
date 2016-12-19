@@ -1,42 +1,39 @@
 from config import permitted_id
 from sigma.core.permission import check_admin
+import discord
 
 
 async def award(cmd, message, args):
-    if message.author.id in permitted_id or check_admin(message.author, message.channel):
-        if message.mentions:
-            target = message.mentions[0]
-            if target.bot:
-                await cmd.bot.send_message(message.channel, 'Can\'t award bots.')
-                return
-            qry = {
-                'ServerID': message.server.id,
-                'UserID': target.id
-            }
-            data = cmd.db.find('PointSystem', qry)
-            curr_pts = 0
-            for result in data:
-                curr_pts = result['Points']
-            try:
-                amount = abs(int(args[0]))
-                print(amount)
-                new_pts = curr_pts + amount
-            except:
-                await cmd.bot.send_message(message.channel, 'Not a valid point number input.')
-                return
-            updatetarget = {"UserID": target.id, "ServerID": message.server.id}
-            updatedata = {"$set": {
-                'Points': new_pts
-            }}
-            cmd.db.update_one('PointSystem', updatetarget, updatedata)
-            await cmd.bot.send_message(message.channel, 'Okay <@' + message.author.id + '>. I have given **' + str(
-                amount) + '** points to <@' + target.id + '>!')
-            try:
-                await cmd.bot.send_message(target, 'Congrats! :gem:\nYou have been given **' + str(
-                    amount) + '** points on **' + message.server.name + '** by **' + message.author.name + '**.')
-            except:
-                pass
+    if message.server:
+        if message.author.id in permitted_id or check_admin(message.author, message.channel):
+            if message.mentions:
+                target = message.mentions[0]
+                if target.bot:
+                    out = discord.Embed(title=':exclamation: Can\'t award bots.', color=0xDB0000)
+                    await cmd.bot.send_message(message.channel, None, embed=out)
+                    return
+                try:
+                    amount = abs(int(args[0]))
+                except:
+                    out = discord.Embed(title=':exclamation: Invalid Input.', color=0xDB0000)
+                    await cmd.bot.send_message(message.channel, None, embed=out)
+                    return
+                cmd.db.add_points(message.server, target, amount)
+                out = discord.Embed(title=':white_check_mark: Done', color=0x66CC66)
+                out.add_field(name='Sent To', value=target.name + '#' + target.discriminator)
+                out.add_field(name='Amount', value=str(amount))
+                await cmd.bot.send_message(message.channel, None, embed=out)
+                try:
+                    out = discord.Embed(title=':gem: You Were Given Points', color=0x0099FF)
+                    out.add_field(name='Server', value=message.server.name)
+                    out.add_field(name='From', value=message.author.name + '#' + message.author.discriminator)
+                    out.add_field(name='Amount', value=str(amount))
+                    await cmd.bot.send_message(target, None, embed=out)
+                except:
+                    pass
+            else:
+                await cmd.bot.send_message(message.channel, cmd.help())
         else:
-            await cmd.bot.send_message(message.channel, cmd.help())
-    else:
-        await cmd.bot.send_message(message.channel, 'Insufficient Permissions.')
+            status = discord.Embed(type='rich', color=0xDB0000,
+                                   title=':no_entry: Insufficient Permissions. Bot Owner or Server Admin Only.')
+            await cmd.bot.send_message(message.channel, None, embed=status)
