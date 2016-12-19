@@ -1,6 +1,7 @@
 import os
 import yaml
-from config import Prefix, permitted_id
+import discord
+from config import permitted_id
 
 
 async def gencmd(cmd, message, args):
@@ -41,4 +42,6 @@ async def gencmd(cmd, message, args):
                             pass
                         with open("COMMANDLIST.md", "w") as text_file:
                             text_file.write(out_text)
-        await cmd.bot.send_message(message.channel, 'Commands Exported: ' + str(n))
+        status = discord.Embed(title=':white_check_mark: Executed', color=0x66CC66)
+        status.add_field(name='Commands Exported', value=str(n))
+        await cmd.bot.send_message(message.channel, None, embed=status)
