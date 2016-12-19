@@ -31,7 +31,6 @@ async def delselfrole(cmd, message, args):
             cmd.db.set_settings(message.server.id, 'SelfRoles', self_roles)
             out_content = discord.Embed(type='rich', color=0x66cc66,
                                         title=':white_check_mark: Role **' + target_role.name + '** removed from the self assignable roles list.')
-            await cmd.bot.create_role(message.server, name=role_qry)
             await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
             out_content = discord.Embed(type='rich', color=0xFF9900, title=':warning: Error')
