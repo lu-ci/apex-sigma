@@ -1,4 +1,3 @@
-import os
 import requests
 import discord
 
@@ -58,7 +57,6 @@ async def hearthstone(cmd, message, args):
             flavor_text = response[card_no]['flavor']
         except:
             flavor_text = None
-        print(flavor_text)
         if flavor_text:
             flavor_out = '```\n' + flavor_text + '\n```'
             embed.add_field(name='Info', value=flavor_out)
