@@ -2,7 +2,7 @@ import discord
 from sigma.core.rolecheck import matching_role, user_matching_role
 
 
-async def getrole(cmd, message, args):
+async def togglerole(cmd, message, args):
     if not args:
         out_content = discord.Embed(type='rich', color=0xDB0000, title=':exclamation: Error')
         out_content.add_field(name='Not Enough Arguments', value=cmd.help())
