@@ -1,4 +1,5 @@
 from config import permitted_id
+import discord
 
 
 async def blacksrv(cmd, message, args):
@@ -15,12 +16,16 @@ async def blacksrv(cmd, message, args):
             black = cmd.db.get_settings(target.id, 'IsBlacklisted')
             if black:
                 cmd.db.set_settings(target.id, 'IsBlacklisted', False)
-                await cmd.bot.send_message(message.channel,
-                                           ':unlock: Server **' + target.name + '** has been **un-blacklisted**.')
+                embed = discord.Embed(title=':unlock: Server ' + target.name + ' has been un-blacklisted.',
+                                      color=0xFF9900)
             else:
                 cmd.db.set_settings(target.id, 'IsBlacklisted', True)
-                await cmd.bot.send_message(message.channel, ':lock: Server **' + target.name + '** has been **blacklisted**.')
+                embed = discord.Embed(title=':lock: Server ' + target.name + ' has been blacklisted.', color=0xFF9900)
         else:
-            await cmd.bot.send_message(message.channel, ':notebook: No server by that ID was found.')
+            embed = discord.Embed(type='rich', color=0xDB0000,
+                                  title=':exclamation: No server by that ID was found.')
+        await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
-        await cmd.bot.send_message(message.channel, ':no_entry_sign: Insufficient permissions.')
+        out_content = discord.Embed(type='rich', color=0xDB0000,
+                                    title=':no_entry: Insufficient Permissions. Bot Owner Only.')
+        await cmd.bot.send_message(message.channel, None, embed=out_content)
