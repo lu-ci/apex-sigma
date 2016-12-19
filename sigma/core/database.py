@@ -298,7 +298,6 @@ class Database(object):
                 }
                 self.db['ServerSettings'].insert_one(default_settings)
 
-
     def get_settings(self, server_id, setting):
         if self.db:
             collection = 'ServerSettings'
@@ -315,7 +314,6 @@ class Database(object):
                 return target[setting]
             else:
                 return None
-
 
     def set_settings(self, server_id, setting, setting_variable):
         if self.db:
