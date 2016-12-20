@@ -1,25 +1,4 @@
 #Sigma's List of Commands
-###ADMINISTRATION
-Command |  Description |  Usage
---------|--------------|-------
-`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Owner Only.  |  `>>announce Hello World!`
-`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Owner Only.  |  `>>ping`
-`>>status`  |  Show the CPU statistics of the machine running the bot. Bot Owner Only.  |  `>>status`
-`>>leave`  |  Leaves the server with the inputted id. Bot Owner Only.  |  `>>leave 123456789`
-`>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Owner Only.  |  `>>evaluate print('hello world')`
-`>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
-`>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Owner Only.  |  `>>inviteowner 200751504175398912`
-`>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Owner Only.  |  `>>searchid 200751504175398912`
-`>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Owner Only.  |  `>>gencmd`
-`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator or Bot Owner.  |  `>>award 1500 @person`
-`>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator or Bot Owner.  |  `>>take 1500 @person`
-`>>echo`  |  Repeats the given text. Bot Owner Only.  |  `>>echo Hello world!`
-`>>kill`  |  Forcefully kill the bot. Bot Owner Only.  |  `>>kill`
-`>>setgame`  |  Sets the bots playing states to whatever you wish. Bot Owner Only.  |  `>>setgame New Game!`
-`>>setavatar`  |  Set the avatar picture. Bot Owner Only.  |  `>>setavatar url`
-`>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Bot Owner Only.  |  `>>apikeys`
-`>>setname`  |  Sets the username of the bot to the inputted one. Bot Owner Only.  |  `>>setname Charlotte`
-`>>blacksrv`  |  Blacklists a connected server disallowing it to use any and all commands. Bot Owner Only.  |  `>>blacksrv 123456789123456789`
 ###GAMES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -108,6 +87,8 @@ Command |  Description |  Usage
 `>>ignoreuser`  |  Disallows a user from using the bot on your server. The user can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignoreuser @person`
 `>>ignorechannel`  |  Disallows commands to be used in the specified channel. The channel can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignorechannel 123456789123456789`
 `>>cleverbot`  |  Toggles the CleverBot functionality of the bot on the server. This is used by starting a message by mentioning a bot. Example being [@Sigma how are you today?] Requires the user to be a server Administrator.  |  `>>cleverbot`
+`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
+`>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------

@@ -90,24 +90,6 @@ commands:
       Generates the bot's COMMANDLIST.md file.
       Bot Owner Only.
 
-  - name: award
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 1500 @person"
-    description:
-      Awards the inputted amount of points to the mentioned person.
-      Server Administrator or Bot Owner.
-
-  - name: take
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 1500 @person"
-    description:
-      Takes away the inputted amount of points from the mentioned person.
-      Server Administrator or Bot Owner.
-
   - name:    echo
     global:  true
     enabled: true
