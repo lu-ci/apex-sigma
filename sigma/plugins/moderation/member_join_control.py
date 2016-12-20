@@ -8,6 +8,7 @@ async def member_join_control(ev, member):
         ev.db.set_settings(server.id, 'AutoRole', None)
         autorole = None
     if greet:
+        ev.db.add_stats('GreetCount')
         greet_message = ev.db.get_settings(server.id, 'GreetMessage')
         greet_message = greet_message.replace('%user_mention%', '<@' + member.id + '>').replace('%server_name%',
                                                                                                 server.name)
