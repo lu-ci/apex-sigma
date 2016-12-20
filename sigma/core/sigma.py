@@ -104,7 +104,7 @@ class Sigma(discord.Client):
 
     async def on_message(self, message):
         self.change_presence()
-
+        self.db.add_stats('MSGCount')
         args = message.content.split(' ')
 
         # handle mention events

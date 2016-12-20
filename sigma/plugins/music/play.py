@@ -7,6 +7,7 @@ async def play(cmd, message, args):
     if not args:
         await cmd.bot.send_message(message.channel, 'No arguments provided, provide a YouTube link or Keyword Search.')
         return
+    cmd.db.add_stats('MusicCount')
     if cmd.bot.is_voice_connected(message.server):
         voice = cmd.bot.voice_client_in(message.server)
     else:
