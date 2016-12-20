@@ -327,6 +327,24 @@ commands:
       Example being [@Sigma how are you today?]
       Requires the user to be a server Administrator.
 
+  - name: award
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Awards the inputted amount of points to the mentioned person.
+      Server Administrator Only.
+
+  - name: take
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Takes away the inputted amount of points from the mentioned person.
+      Server Administrator Only.
+
 events:
   - name:    sfiexec
     type:    message
