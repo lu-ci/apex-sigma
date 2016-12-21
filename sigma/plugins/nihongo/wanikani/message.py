@@ -13,21 +13,21 @@ def parse_date(time, fmt='%B %d, %Y %H:%M'):
         return 'Unknown'
 
 
-def get_rank_info(level, location=174):
+def get_rank_info(level, location=174, color=(27, 111, 95)):
     if level == 60:
-        return ('発明', location, '_en', (0, 204, 255))
+        return ('発明', location, '_en', color)
     elif level >= 51:
-        return ('現実', location, '_re', (0, 153, 255))
+        return ('現実', location, '_re', color)
     elif level >= 41:
-        return ('天堂', location, '_par', (0, 102, 255))
+        return ('天堂', location, '_par', color)
     elif level >= 31:
-        return ('地獄', location, '_he', (51, 102, 255))
+        return ('地獄', location, '_he', color)
     elif level >= 21:
-        return ('死', 184, '_de', (102, 102, 255))
+        return ('死', 184, '_de', color)
     elif level >= 11:
-        return ('苦', 184, '_pai', (153, 102, 255))
+        return ('苦', 184, '_pai', color)
     else:
-        return ('快', 184, '_pl', (204, 51, 255))
+        return ('快', 184, '_pl', color)
 
 
 async def text_message(cmd, message, user):
@@ -78,19 +78,34 @@ async def text_message(cmd, message, user):
     await cmd.bot.send_message(message.channel, '```json\n{:s}\n```'.format(out))
 
 
-async def draw_image(cmd, message, user):
-    rank_category, kanji_loc, ov_color, txt_color = get_rank_info(user['level'])
-
+async def draw_image(cmd, message, user, clr):
+    user_color = clr
+    clr1 = int(user_color[:2], 16)
+    clr2 = int(user_color[2:-2], 16)
+    clr3 = int(user_color[4:], 16)
+    if clr1 > 180 or clr2 > 180 or clr3 > 180:
+        clr1 += - 65
+        clr2 += - 65
+        clr3 += - 65
+    transed_color = (clr1, clr2, clr3)
+    rank_category, kanji_loc, ov_color, txt_color = get_rank_info(user['level'], color=transed_color)
+    inv_color = (255 - txt_color[0], 255 - txt_color[1], 255 - txt_color[2])
     img_type = 'big' if user['method'] == 'api' else 'small'
+    if img_type == 'big':
+        base_size = (450, 132)
+    else:
+        base_size = (450, 87)
+    color_base_size = (450, 87)
 
     # load images and fonts
     try:
         # TODO: use default avatar image if it could not be downloaded
-        ava = Image.open(BytesIO(user['avatar'][1]))
-        base = Image.open(
-            cmd.resource('img/base_wk_{:s}.png'.format(img_type)))
+        ava_raw = Image.open(BytesIO(user['avatar'][1]))
+        ava = ava_raw.resize((78, 78), Image.ANTIALIAS)
+        base = Image.new('RGBA', base_size, (0, 0, 0, 0))
+        color_base = Image.new('RGB', color_base_size, transed_color)
         overlay = Image.open(
-            cmd.resource('img/overlay_wk_{:s}{:s}.png'.format(img_type, ov_color)))
+            cmd.resource('img/overlay_wk_{:s}.png'.format(img_type)))
     except IOError as e:
         cmd.log.error('{:s}'.format(str(e)))
         raise e
@@ -113,10 +128,11 @@ async def draw_image(cmd, message, user):
         cmd.log.error('{:s}'.format(str(e)))
         raise e
 
+    base.paste(color_base, (9, 0))
     base.paste(ava, (15, 5))
     base.paste(overlay, (0, 0), overlay)
 
-    review_color = (255, 255, 255)
+    review_color = txt_color
     review_font = font2
     review_pos = (420, 110)
 
@@ -145,30 +161,30 @@ async def draw_image(cmd, message, user):
     if user['method'] == 'api':
         imgdraw.text((11, 88), 'Next Review: {:s}'.format(
             parse_date(user['reviews']['next_date'])),
-            (255, 255, 255), font=font2)
+                     txt_color, font=font2)
 
         if int(user['reviews']['now']) > 150:
-            review_color = (255, 174, 35)
+            review_color = inv_color
             review_font = font2
 
         imgdraw.text((11, 110), 'Next Hour: {:d}'.format(
-            user['reviews']['next_hour']), (255, 255, 255), font=font4)
+            user['reviews']['next_hour']), txt_color, font=font4)
         imgdraw.text((136, 110), 'Next Day: {:d}'.format(
-            user['reviews']['next_day']), (255, 255, 255), font=font4)
+            user['reviews']['next_day']), txt_color, font=font4)
 
         imgdraw.text((252, 88), 'Radical: {:d}/{:d}'.format(
             user['radicals']['current'],
             user['radicals']['total']),
-            (255, 255, 255), font=font2)
+                     txt_color, font=font2)
 
         imgdraw.text((363, 88), 'Kanji: {:d}/{:d}'.format(
             user['kanji']['current'],
             user['kanji']['total']),
-            (255, 255, 255), font=font2)
+                     txt_color, font=font2)
 
         imgdraw.text((252, 110), 'Lessons: {:d}'.format(
-            user['lessons']['now']), (255, 255, 255), font=font2)
-        imgdraw.text((363, 110), 'Reviews: ', (255, 255, 255), font=font2)
+            user['lessons']['now']), txt_color, font=font2)
+        imgdraw.text((363, 110), 'Reviews: ', txt_color, font=font2)
         imgdraw.text(review_pos, str(user['reviews'][
                      'now']), review_color, font=review_font)
 
