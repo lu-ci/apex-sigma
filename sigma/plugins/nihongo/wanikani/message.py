@@ -83,13 +83,22 @@ async def draw_image(cmd, message, user, clr):
     clr1 = int(user_color[:2], 16)
     clr2 = int(user_color[2:-2], 16)
     clr3 = int(user_color[4:], 16)
-    if clr1 > 180 or clr2 > 180 or clr3 > 180:
-        clr1 += - 65
-        clr2 += - 65
-        clr3 += - 65
+    clr_barier = 160
+    clr_redu = 50
+    if clr1 > clr_barier or clr2 > clr_barier or clr3 > clr_barier:
+        clr1 += - clr_redu
+        clr2 += - clr_redu
+        clr3 += - clr_redu
     transed_color = (clr1, clr2, clr3)
     rank_category, kanji_loc, ov_color, txt_color = get_rank_info(user['level'], color=transed_color)
-    inv_color = (255 - txt_color[0], 255 - txt_color[1], 255 - txt_color[2])
+    inv1 = 255 - clr1
+    inv2 = 255 - clr2
+    inv3 = 255 - clr3
+    if inv1 > clr_barier or inv2 > clr_barier or inv3 > clr_barier:
+        inv1 += - clr_redu
+        inv2 += - clr_redu
+        inv3 += - clr_redu
+    inv_color = (inv1, inv2, inv3)
     img_type = 'big' if user['method'] == 'api' else 'small'
     if img_type == 'big':
         base_size = (450, 132)
