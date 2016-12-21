@@ -18,7 +18,11 @@ async def wanikani(cmd, message, args):
             await text_message(cmd, message, user)
         else:
             try:
-                await draw_image(cmd, message, user)
+                if message.mentions:
+                    clr = str(message.mentions[0].color)[1:]
+                else:
+                    clr = str(message.author.color)[1:]
+                await draw_image(cmd, message, user, clr)
             except OSError:
                 # failed to generate image
                 await text_message(cmd, message, user)
