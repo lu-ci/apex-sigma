@@ -1,4 +1,5 @@
 import requests
+import discord
 import json
 from lxml import html
 
@@ -71,7 +72,8 @@ async def get_user_data(cmd, message, key=None, username=None):
         if script != []:
             script = script[0].text.strip()
         else:
-            await cmd.bot.send_message(message.channel, "Error while parsing the page, profile not found or doesn't exist")
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: Error while parsing the page, profile not found or doesn\'t exist')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
             return None
 
         script = script[script.find('var srsCounts'): script.find(
@@ -121,12 +123,14 @@ async def get_key(cmd, message, args):
             username = args[0]
         except Exception as e:
             cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, 'Error while parsing the input message')
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: Error while parsing the input message.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
             return
 
     if 'username' not in locals():
         if 'user_id' not in locals():
-            await cmd.bot.send_message(message.channel, 'No arguments passed')
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: No arguments passed.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         # a username was passed
         else:
@@ -139,10 +143,9 @@ async def get_key(cmd, message, args):
                 key = db_response['WKAPIKey']
                 username = db_response['WKUsername']
             except:
-                await cmd.bot.send_message(message.channel, 'No assigned key or username was found\n'
-                                'You can add it by sending me a direct message, for example\n'
-                                'For **Advanced Stats**:\n\t`{0:s}wksave key <your API key>`\nor For **Basic Stats**:\n\t`{0:s}wksave username <your username>`.'.format(
-                    cmd.prefix))
+                embed = discord.Embed(color=0xDB0000, title=':exclamation: No Assigned Key or Username Found')
+                embed.add_field(name='To Add A Key', value='Use `' + cmd.prefix + 'wksave key YOUR_API_KEY_HERE`')
+                await cmd.bot.send_message(message.channel, None, embed=embed)
 
                 return (None, None)
 

@@ -108,7 +108,6 @@ async def draw_image(cmd, message, user, clr):
 
     # load images and fonts
     try:
-        # TODO: use default avatar image if it could not be downloaded
         ava_raw = Image.open(BytesIO(user['avatar'][1]))
         ava = ava_raw.resize((78, 78), Image.ANTIALIAS)
         base = Image.new('RGBA', base_size, (0, 0, 0, 0))
