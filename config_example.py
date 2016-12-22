@@ -1,6 +1,8 @@
 # token and client ID for Bot
 Token = ''
-ClientID = ''
+# MongoDB Address and Port
+MongoAddress = '127.0.0.1'
+MongoPort = 27017
 # GitHub WebHook Server Settings.
 GitHubWebserverPort = 37812
 GitHubWebserverAddr = ''
