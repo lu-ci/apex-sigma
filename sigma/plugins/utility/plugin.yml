@@ -37,6 +37,13 @@ commands:
     description:
       Shows the statistics of Sigma.
 
+  - name:    ingame
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Shows the top played games on the server.
+
   - name:    weather
     global:  true
     enabled: true
