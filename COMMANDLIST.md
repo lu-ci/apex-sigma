@@ -144,6 +144,7 @@ Command |  Description |  Usage
 `>>remind`  |  Sets a timer in seconds and displays the message inputted after it's done.  |  `>>remind 15 LEEEEROOOOY JEEEEEENKIIIIINS!`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
 `>>stats`  |  Shows the statistics of Sigma.  |  `>>stats`
+`>>ingame`  |  Shows the top played games on the server.  |  `>>ingame`
 `>>weather`  |  Shows weather data for the selected location. Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.  |  `>>weather Melbourne Australia`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
 `>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
