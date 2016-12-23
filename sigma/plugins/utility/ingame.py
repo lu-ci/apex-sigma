@@ -32,7 +32,7 @@ async def ingame(cmd, message, args):
     for key, value in reversed(sorted_games):
         if n < 5:
             out += '\n**' + key + '**\n - ' + str(value) + ' Playing | ' + \
-                   str(((value / game_count) * 10000) // 100).split('.')[
+                   str(((value / playing_count) * 10000) // 100).split('.')[
                        0] + '%'
             n += 1
     embed.add_field(name='Current Gaming Statistics on ' + message.server.name, value=out, inline=True)
