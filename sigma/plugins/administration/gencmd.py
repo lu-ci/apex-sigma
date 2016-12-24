@@ -23,22 +23,23 @@ async def gencmd(cmd, message, args):
                             pass
                         try:
                             if category != 'administration':
-                                for command in plugin_data['commands']:
-                                    plugin_name = command['name']
-                                    try:
-                                        plugin_usage = command['usage'].replace('{pfx:s}', '>>').replace('{cmd:s}', plugin_name)
-                                    except:
-                                        plugin_usage = '>>' + plugin_name
-                                    plugin_desc = command['description']
-                                    if category == category_curr:
-                                        pass
-                                    else:
-                                        category_curr = category
-                                        out_text += '\n###' + category.upper()
-                                        out_text += '\nCommand |  Description |  Usage'
-                                        out_text += '\n--------|--------------|-------'
-                                    out_text += '\n`>>' + plugin_name + '`  |  ' + plugin_desc + '  |  `' + plugin_usage + '`'
-                                    n += 1
+                                if plugin_data['enabled']:
+                                    for command in plugin_data['commands']:
+                                        plugin_name = command['name']
+                                        try:
+                                            plugin_usage = command['usage'].replace('{pfx:s}', '>>').replace('{cmd:s}', plugin_name)
+                                        except:
+                                            plugin_usage = '>>' + plugin_name
+                                        plugin_desc = command['description']
+                                        if category == category_curr:
+                                            pass
+                                        else:
+                                            category_curr = category
+                                            out_text += '\n###' + category.upper()
+                                            out_text += '\nCommand |  Description |  Usage'
+                                            out_text += '\n--------|--------------|-------'
+                                        out_text += '\n`>>' + plugin_name + '`  |  ' + plugin_desc + '  |  `' + plugin_usage + '`'
+                                        n += 1
                         except:
                             pass
                         with open("COMMANDLIST.md", "w") as text_file:

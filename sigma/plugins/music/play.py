@@ -1,6 +1,6 @@
 from apiclient import discovery
 from config import GoogleAPIKey
-from .backend import get_player, make_yt_player, player_exists, delete_player
+from .backend import make_yt_player, player_exists
 
 
 async def play(cmd, message, args):
