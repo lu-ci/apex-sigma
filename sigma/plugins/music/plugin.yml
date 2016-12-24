@@ -38,6 +38,14 @@ commands:
     description:
       Plays a song from a YouTube link or keyword search.
 
+  - name:    playlocal
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} some_song.mp3"
+    description:
+      Plays a song from the host machine.
+
   - name:    stop
     global:  true
     enabled: true
