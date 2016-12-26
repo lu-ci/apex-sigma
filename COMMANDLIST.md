@@ -89,6 +89,18 @@ Command |  Description |  Usage
 `>>cleverbot`  |  Toggles the CleverBot functionality of the bot on the server. This is used by starting a message by mentioning a bot. Example being [@Sigma how are you today?] Requires the user to be a server Administrator.  |  `>>cleverbot`
 `>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
 `>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
+###MUSIC
+Command |  Description |  Usage
+--------|--------------|-------
+`>>summon`  |  Summons the bot into your voice channel.  |  `>>summon`
+`>>disconnect`  |  Disconnects the bot from your voice channel.  |  `>>disconnect`
+`>>move`  |  Moves the bot to your voice channel.  |  `>>move`
+`>>play`  |  Plays a song from a YouTube link or keyword search.  |  `>>play Ryder or Riot`
+`>>playlocal`  |  Plays a song from the host machine.  |  `>>playlocal some_song.mp3`
+`>>stop`  |  Stops the currently playing song.  |  `>>stop`
+`>>pause`  |  Pauses the currently playing song.  |  `>>pause`
+`>>resume`  |  Resumes the currently playing song.  |  `>>resume`
+`>>volume`  |  Sets the bots volume if it is playing something.  |  `>>volume 67`
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------

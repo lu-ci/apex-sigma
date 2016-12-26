@@ -10,6 +10,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     usage:   "{pfx:s}{cmd:s} [command]"
     description:
       Returns the list of command modules or gives you the description

@@ -3,7 +3,7 @@ import os
 from importlib import import_module
 from config import permitted_id
 
-from .permission import check_channel_nsfw
+from .permission import check_channel_nsfw, check_server_donor, is_self
 
 
 class NotEnabledError(RuntimeError):
@@ -15,6 +15,9 @@ class Callable(object):
         self.enabled = False
         self.glob = False
         self.sfw = True
+        self.admin = False
+        self.donor = False
+        self.pmable = False
         self.usage = 'No usage info available.'
         self.desc = 'No description available.'
 
@@ -47,6 +50,12 @@ class Callable(object):
             self.desc = info['description']
 
         self.sfw = info['sfw']
+        if 'admin' in info:
+            self.admin = info['admin']
+        if 'donor' in info:
+            self.donor = info['donor']
+        if 'pmable' in info:
+            self.pmable = info['pmable']
 
         module_path = os.path.join(self.path, self.name)
         self.modpath = module_path.replace('/', '.').replace('\\', '.')
@@ -82,7 +91,29 @@ class Callable(object):
             if black_channel or black_user or server_is_black:
                 return
         if not self.sfw and not check_channel_nsfw(self.db, channel.id):
-            embed_content = discord.Embed(title=':eggplant: Channel does not have NSFW permissions set, sorry.', color=0x9933FF)
+            embed_content = discord.Embed(title=':eggplant: Channel does not have NSFW permissions set, sorry.',
+                                          color=0x9933FF)
+            await self.bot.send_message(channel, None, embed=embed_content)
+        if self.admin and message.author.id not in permitted_id:
+            bot_owner_text = 'Bot Owner commands are usable only by the owners of the bot as the name implies.'
+            bot_owner_text += '\nThe bot owner is the person hosting the bot on their machine.'
+            bot_owner_text += '\nThis is **not the discord server owner**, and it is **not the person who invited the bot** to the server.'
+            bot_owner_text += '\nThere is no way for you to become a bot owner.'
+            embed_content = discord.Embed(title=':no_entry: Unpermitted', color=0xDB0000)
+            embed_content.add_field(name='Bot Owner Only', value=bot_owner_text)
+            await self.bot.send_message(channel, None, embed=embed_content)
+        if self.donor and not check_server_donor(self.db, message.server.id):
+            donor_deny_info = 'Some commands are limited to only be usable by donors.'
+            donor_deny_info += '\nYou can become a donor by donating via our [`Paypal.Me`](https://www.paypal.me/AleksaRadovic) page.'
+            donor_deny_info += '\nDonating allows use of donor functions for a limited time.'
+            donor_deny_info += '\n1 Cent = One Hour (Currency of Calculation is Euro)'
+            donor_deny_info += '\nIn a nutshell, donating 7.2Eur would give you a month of donor functions.'
+            embed_content = discord.Embed(title=':warning: Unpermitted', color=0xFF9900)
+            embed_content.add_field(name='Donor Only', value=donor_deny_info)
+            await self.bot.send_message(channel, None, embed=embed_content)
+        if not self.pmable and not message.server and not is_self(self, message.author, self.bot.user):
+            embed_content = discord.Embed(title=':no_entry: This Function Is Not Usable in Direct Messages.',
+                                          color=0xDB0000)
             await self.bot.send_message(channel, None, embed=embed_content)
         else:
             try:

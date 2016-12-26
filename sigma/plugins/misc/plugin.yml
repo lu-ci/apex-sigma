@@ -114,6 +114,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  false
     usage:   "@bot message"
     description:
       Interact with cleverbot.
@@ -123,6 +124,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Get levels by chatting in a channel.
 
@@ -131,6 +133,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Calm down bro.
 
@@ -138,6 +141,7 @@ events:
     type:    message
     global:  true
     enabled: true
+    pmable:  true
     sfw:     true
     description:
       Accepts the terms and conditions of the WaniKani Community Discord Server.

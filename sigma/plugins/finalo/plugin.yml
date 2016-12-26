@@ -10,6 +10,7 @@ events:
     type:    message
     global:  true
     enabled: true
+    pmable:  true
     sfw:     true
     usage:   "Used by writing a role name in the FinalOrder roles channel."
     description:

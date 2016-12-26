@@ -3,13 +3,14 @@ name: Music
 categories:
   - music
 
-enabled: false
+enabled: true
 
 commands:
   - name:    summon
     global:  true
     enabled: true
     sfw:     true
+    donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Summons the bot into your voice channel.
@@ -18,6 +19,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Disconnects the bot from your voice channel.
@@ -26,6 +28,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Moves the bot to your voice channel.
@@ -33,6 +36,7 @@ commands:
   - name:    play
     global:  true
     enabled: true
+    donor:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
@@ -41,6 +45,7 @@ commands:
   - name:    playlocal
     global:  true
     enabled: true
+    donor:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} some_song.mp3"
     description:
@@ -50,6 +55,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Stops the currently playing song.
@@ -58,6 +64,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Pauses the currently playing song.
@@ -66,6 +73,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Resumes the currently playing song.
@@ -73,6 +81,7 @@ commands:
   - name:    volume
     global:  true
     enabled: true
+    donor:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 67"
     description:
