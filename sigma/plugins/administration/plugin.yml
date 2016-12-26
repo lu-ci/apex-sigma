@@ -10,6 +10,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    admin:   true
     usage:   "{pfx:s}{cmd:s} Hello World!"
     description:
       It will post your inputed message to the default text channel of every server the bot is connected to.
@@ -19,6 +20,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    admin:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Shows the latency between the server hosting the bot and Google.
@@ -29,6 +31,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    admin:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Show the CPU statistics of the machine running the bot.
@@ -38,6 +41,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    admin:   true
     usage:   "{pfx:s}{cmd:s} 123456789"
     description:
       Leaves the server with the inputted id.
@@ -47,6 +51,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    admin:   true
     usage:   "{pfx:s}{cmd:s} print('hello world')"
     description:
       Executes a python function. Can be very dangerous.
@@ -56,6 +61,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    admin:   true
     usage:   "{pfx:s}{cmd:s} 200751504175398912|c:201577895196360714 Hello World!"
     description:
       Send a message to either a channel or user (by ID) on the server with the given ID.
@@ -64,6 +70,7 @@ commands:
   - name: inviteowner
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 200751504175398912"
     description:
@@ -74,6 +81,7 @@ commands:
   - name: searchid
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 200751504175398912"
     description:
@@ -84,6 +92,7 @@ commands:
   - name: gencmd
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
@@ -93,6 +102,7 @@ commands:
   - name:    echo
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Hello world!"
     description:
@@ -101,6 +111,7 @@ commands:
 
   - name:    kill
     global:  true
+    admin:   true
     enabled: true
     sfw:     true
     description:
@@ -110,6 +121,7 @@ commands:
   - name:    setgame
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} New Game!"
     description:
@@ -120,6 +132,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    admin:   true
     usage:   "{pfx:s}{cmd:s} url"
     description:
       Set the avatar picture.
@@ -128,6 +141,7 @@ commands:
   - name:    apikeys
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
@@ -138,6 +152,7 @@ commands:
   - name:    setname
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Charlotte"
     description:
@@ -147,6 +162,7 @@ commands:
   - name:    blacksrv
     global:  true
     enabled: true
+    admin:   true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 123456789123456789"
     description:
@@ -159,6 +175,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Redirects PM info to the bot owner.
 
@@ -167,6 +184,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Fills the command counter statistics.
 
@@ -175,5 +193,6 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Fills the server statistics.

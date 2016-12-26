@@ -351,6 +351,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     usage:   "Activated upon detecting an invite link in a message."
     description:
       Removes messages with a discord invite link.
@@ -360,6 +361,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  false
     usage:   "Activated upon a user joining the server."
     description:
       Controls greetings.
@@ -369,6 +371,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  false
     usage:   "Activated upon a user leaving the server."
     description:
       Controls goodbyes.
