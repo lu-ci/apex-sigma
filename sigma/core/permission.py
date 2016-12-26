@@ -24,10 +24,10 @@ def is_self(self, author, bot_user):
     else:
         return False
 
+
 def check_server_donor(db, server_id):
     n = 0
     item = None
-    is_donor = False
     coll = 'DonorTracker'
     finddata = {
         'ServerID': server_id
@@ -38,13 +38,14 @@ def check_server_donor(db, server_id):
     if n == 0:
         is_donor = False
     else:
-        expiration_ts = item['Expires']
+        expiration_ts = item['Expiration']
         current_ts = int(time.time())
-        if expiration_ts < current_ts:
+        if expiration_ts > current_ts:
             is_donor = True
         else:
             is_donor = False
     return is_donor
+
 
 def set_channel_nsfw(db, channel_id):
     success = False
