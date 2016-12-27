@@ -94,6 +94,7 @@ class Callable(object):
             embed_content = discord.Embed(title=':eggplant: Channel does not have NSFW permissions set, sorry.',
                                           color=0x9933FF)
             await self.bot.send_message(channel, None, embed=embed_content)
+            return
         if self.admin and message.author.id not in permitted_id:
             bot_owner_text = 'Bot Owner commands are usable only by the owners of the bot as the name implies.'
             bot_owner_text += '\nThe bot owner is the person hosting the bot on their machine.'
@@ -102,6 +103,7 @@ class Callable(object):
             embed_content = discord.Embed(title=':no_entry: Unpermitted', color=0xDB0000)
             embed_content.add_field(name='Bot Owner Only', value=bot_owner_text)
             await self.bot.send_message(channel, None, embed=embed_content)
+            return
         if self.donor and not check_server_donor(self.db, message.server.id):
             donor_deny_info = 'Some commands are limited to only be usable by donors.'
             donor_deny_info += '\nYou can become a donor by donating via our [`Paypal.Me`](https://www.paypal.me/AleksaRadovic) page.'
@@ -111,15 +113,16 @@ class Callable(object):
             embed_content = discord.Embed(title=':warning: Unpermitted', color=0xFF9900)
             embed_content.add_field(name='Donor Only', value=donor_deny_info)
             await self.bot.send_message(channel, None, embed=embed_content)
+            return
         if not self.pmable and not message.server and not is_self(self, message.author, self.bot.user):
             embed_content = discord.Embed(title=':no_entry: This Function Is Not Usable in Direct Messages.',
                                           color=0xDB0000)
             await self.bot.send_message(channel, None, embed=embed_content)
-        else:
-            try:
-                msg = await getattr(self.module, self.name)(self, message, *args)
-            except Exception as e:
-                self.log.error(str(e))
+            return
+        try:
+            msg = await getattr(self.module, self.name)(self, message, *args)
+        except Exception as e:
+            self.log.error(str(e))
 
         if not self.sfw and check_channel_nsfw(self.db, channel.id):
             self.db.add_stats('NSFWCount')
