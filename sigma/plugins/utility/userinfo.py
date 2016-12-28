@@ -1,4 +1,5 @@
-from humanfriendly.tables import format_pretty_table as boop
+import discord
+
 async def userinfo(cmd, message, args):
     out_list = []
     if args:
@@ -19,6 +20,8 @@ async def userinfo(cmd, message, args):
     out_list.append(['Color', str(user_q.color)])
     out_list.append(['Is Bot', user_q.bot])
 
-    out_text = '```\n' + boop(out_list) + '\n```'
+    embed = discord.Embed(title=user_q.name + ' Information', color=user_q.color)
+    for item in out_list:
+        embed.add_field(name=str(item[0]), value='```python\n' + str(item[1]) + '\n```')
 
-    await cmd.bot.send_message(message.channel, out_text)
+    await cmd.bot.send_message(message.channel, None, embed=embed)
