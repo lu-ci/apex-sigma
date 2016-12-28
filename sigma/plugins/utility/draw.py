@@ -1,21 +1,22 @@
 import random
+import discord
 
 
 async def draw(cmd, message, args):
+    embed = discord.Embed(color=0x1ABC9C)
     if not args:
         amount = 2
     else:
         try:
             amount = int(args[0])
         except:
-            await cmd.bot.send_message(message.channel, 'Not a number, defaulting to 2...')
+            embed.set_footer(text='Not a number, defaulted to 2.')
             amount = 2
     if amount > 10:
         amount = 2
-        await cmd.bot.send_message(message.channel, 'Number exceeds the limit of 10, defaulting to 2...')
+        embed.set_footer(text='Number exceeded the limit of 10, defaulted to 2.')
     sign_list = [':spades:', ':hearts:', ':clubs:', ':diamonds:']
     n = 0
-    out_text = 'Your cards are:'
     while n < amount:
         n += 1
         card_number = random.randint(1, 14)
@@ -31,5 +32,5 @@ async def draw(cmd, message, args):
             card_number = str(card_number)
         card_sign = random.choice(sign_list)
         combination = '**' + card_number + '** - ' + card_sign
-        out_text += '\n' + combination
-    await cmd.bot.send_message(message.channel, out_text)
+        embed.add_field(name= 'Card #' + str(n), value=combination)
+    await cmd.bot.send_message(message.channel, None, embed=embed)

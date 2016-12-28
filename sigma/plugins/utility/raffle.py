@@ -1,5 +1,5 @@
-import asyncio
 import random
+import discord
 from sigma.core.permission import check_admin
 
 async def raffle(cmd, message, args):
@@ -7,13 +7,15 @@ async def raffle(cmd, message, args):
         user_list = []
         for member in message.server.members:
             status = str(member.status)
-            if status == 'offline':
-                pass
-            else:
-                user_list.append(member.id)
+            if not member.bot:
+                if status == 'offline':
+                    pass
+                else:
+                    user_list.append(member.id)
         winner = random.choice(user_list)
-        await cmd.bot.send_message(message.channel, 'The Winner Is <@' + winner + '>!\nCongratulations!')
+        embed = discord.Embed(title=':tada: Congrats! You won the raffle!', color=0x1ABC9C)
+        await cmd.bot.send_message(message.channel, 'Hey <@' + winner + '>!', embed=embed)
     else:
-        response = await cmd.bot.send_message(message.channel, 'Only a server **Administrator** can use this command. :x:')
-        await asyncio.sleep(10)
-        await cmd.bot.delete_message(response)
+        out_content = discord.Embed(type='rich', color=0xDB0000,
+                                    title=':no_entry: Insufficient Permissions. Server Admin Only.')
+        await cmd.bot.send_message(message.channel, None, embed=out_content)
