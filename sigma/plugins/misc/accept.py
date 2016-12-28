@@ -1,4 +1,6 @@
 import asyncio
+import discord
+from config import permitted_id
 
 
 async def accept(ev, message, args):
@@ -16,6 +18,12 @@ async def accept(ev, message, args):
                 return
         if message.content == '>>accept':
             await ev.bot.add_roles(message.author, give_role)
+            for member in message.server.members:
+                if member.id == permitted_id[0]:
+                    embed = discord.Embed(
+                        title=':information_source: ' + message.author.name + ' has accepted the terms on WKCD.',
+                        color=0x0099FF)
+                    await ev.bot.send_message(member, None, embed=embed)
             for channel in message.server.channels:
                 if channel.is_default:
                     await ev.bot.send_message(channel,
