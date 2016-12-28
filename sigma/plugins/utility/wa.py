@@ -1,4 +1,5 @@
 import wolframalpha
+import discord
 from config import WolframAlphaAppID
 
 
@@ -10,17 +11,19 @@ async def wa(cmd, message, args):
         wa_q = ' '.join(args)
         wac = wolframalpha.Client(WolframAlphaAppID)
         results = wac.query(wa_q)
-        result = ''
         try:
+            out_content = discord.Embed(type='rich', color=0x66cc66, title=':white_check_mark: Processing Done')
             for res in results.results:
                 if int(res['@numsubpods']) == 1:
-                    result += '\n' + res['@title'] + ': ' + res['subpod']['plaintext']
+                    out_content.add_field(name=res['@title'],
+                                          value='```\n' + res['subpod']['plaintext'][:1950] + '\n```')
                 else:
-                    result += '\n' + res['@title'] + ': ' + res['subpod'][0]['img']['@title']
+                    out_content.add_field(name=res['@title'],
+                                          value='```\n' + res['subpod'][0]['img']['@title'][:1950] + '\n```')
         except Exception as e:
             cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, 'We ran into an error, we were unable to process that.\n' + str(e))
+            out_content = discord.Embed(type='rich', color=0xDB0000,
+                                        title=':bug: We ran into an error, we were unable to process that.')
+            await cmd.bot.send_message(message.channel, None, embed=out_content)
             return
-        if len(result) > 1950:
-            result = result[:1950]
-        await cmd.bot.send_message(message.channel, 'Results:\n```' + result + '\n```')
+        await cmd.bot.send_message(message.channel, None, embed=out_content)
