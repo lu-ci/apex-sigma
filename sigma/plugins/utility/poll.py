@@ -12,13 +12,13 @@ async def poll(cmd, message, args):
     if all_qry.endswith(';'):
         all_qry = all_qry[:-1]
     poll_name = all_qry.split('; ')[0]
-    choice_qry = ' '.join(args[1:])
+    choice_qry = '; '.join(all_qry.split('; ')[1:])
     if choice_qry.endswith(';'):
         choice_qry = choice_qry[:-1]
     poll_choices = choice_qry.split('; ')
     if len(poll_choices) < 2:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':exclamation: Not enough arguments choice present.')
+                                    title=':exclamation: Not enough arguments present.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     if len(poll_choices) > 9:
