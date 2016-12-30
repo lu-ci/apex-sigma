@@ -54,14 +54,6 @@ commands:
     description:
       Gives a random fact about cats.
 
-  - name:    yomomma
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Provides a random Yo Momma insult.
-
   - name: cat
     global:  true
     enabled: true

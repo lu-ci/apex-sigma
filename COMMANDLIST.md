@@ -24,6 +24,7 @@ Command |  Description |  Usage
 `>>dadjoke`  |  Cringe!  |  `>>dadjoke`
 `>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
 `>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
+`>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 `>>chucknorris`  |  Outputs a random Chuck Norris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknorris`
 `>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
 `>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
@@ -45,7 +46,6 @@ Command |  Description |  Usage
 `>>give`  |  Transfer a chosen amount of points between you and the mentioned user.  |  `>>give 50 @person`
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
-`>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
 `>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
 `>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Even if the VN has only one route, the route name is still required. Examples being Kud in Kud Wafter and Tomoyo in Tomoyo After. Some Visual Novels are way too huge for me to make custom route files for so I provided their mega walkthroughs. Examples being Clannad, Little Busters and Rewrite. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
@@ -75,7 +75,8 @@ Command |  Description |  Usage
 `>>giverole`  |  Assigns a role to a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>giverole @person Lewd`
 `>>takerole`  |  Removes a role from a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>takerole @person Dude`
 `>>settopic`  |  Sets the topic of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>settopic Food Talk!`
-`>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
+`>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the command to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
+`>>clrrole`  |  Sets the color of the inputted role. Requires the user who calls the command to have the Manage Roles permission.  |  `>>clrrole 1ABC9C Cutie Pies`
 `>>movechannel`  |  Moves the channel where the command is executed to the requested positional number. Do keep in mind that the first channel position is 0.  |  `>>movechannel 11`
 `>>mentionrole`  |  Mentiones every person in the inputted role. Requires the user to be a server Administrator.  |  `>>mentionrole Waifus`
 `>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
@@ -159,6 +160,7 @@ Command |  Description |  Usage
 `>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
 `>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
 `>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
+`>>poll`  |  Creates a poll with the items from the inputted list. Separate list items with a semicolon and a space.  |  `>>poll Want to eat?; Yes; No; Hand me the cheese`
 `>>wa`  |  Makes a request to Wolfram Alpha and exports the result.  |  `>>wa 69+42`
 `>>whoplays`  |  Generates a list of users playing the inputted game.  |  `>>whoplays League of Salt`
 `>>avatar`  |  Shows the avatar of the user. (in the form of a direct link)  |  `>>avatar @person`
