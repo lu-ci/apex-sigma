@@ -10,6 +10,12 @@ async def help(cmd, message, args):
         help_out.add_field(name='Website', value='[**LINK**](https://auroraproject.xyz/)')
         help_out.add_field(name='Commands', value='[**LINK**](https://auroraproject.xyz/commands)')
         help_out.add_field(name='GitHub', value='[**LINK**](https://github.com/aurora-pro/apex-sigma)')
+        help_out.add_field(name='AP Discord', value='[**LINK**](https://discordapp.com/invite/Ze9EfTd)')
+        help_out.add_field(name='Add Me To Discord',
+                           value='[**LINK**](https://discordapp.com/oauth2/authorize?client_id=' + cmd.bot.user.id + '&scope=bot&permissions=8)')
+        if message.server:
+            help_out.add_field(name='Ranking For This Server',
+                               value='[**LINK**](https://auroraproject.xyz/ranking?sid=' + message.server.id + ')')
         help_out.set_footer(
             text='For additional info and help on how to use a command use [' + Prefix + 'help COMMAND].')
         await cmd.bot.send_message(message.channel, None, embed=help_out)
