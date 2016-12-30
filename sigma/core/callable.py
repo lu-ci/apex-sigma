@@ -123,13 +123,14 @@ class Callable(object):
             msg = await getattr(self.module, self.name)(self, message, *args)
         except Exception as e:
             try:
+                self.log.error(str(e))
                 error_embed = discord.Embed(color=0xDB0000)
                 error_embed.add_field(name=':exclamation: An Error Occurred!', value='```\n' + str(e) + '\n```')
                 error_embed.set_footer(
                     text='For more information you can go to the AP Discord server and ask us, the link is in the help.')
                 await self.bot.send_message(channel, None, embed=error_embed)
             except:
-                self.log.error(str(e))
+                pass
 
         if not self.sfw and check_channel_nsfw(self.db, channel.id):
             self.db.add_stats('NSFWCount')
