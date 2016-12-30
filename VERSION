@@ -1,7 +1,7 @@
 beta: false
-build_date: 1483109332
+build_date: 1483113700
 version:
   major: 1
-  minor: 58
-  patch: 2306
+  minor: 59
+  patch: 2361
 codename: 'Mio'

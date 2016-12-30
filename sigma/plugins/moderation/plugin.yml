@@ -220,7 +220,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} pepperoni_pizza"
     description:
       Sets the name of the text channel the command is used in.
-      Requires the user who calls the ccommand to have the Manage Channels permission.
+      Requires the user who calls the command to have the Manage Channels permission.
 
   - name: clrrole
     global:  true
@@ -228,8 +228,8 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 1ABC9C Cutie Pies"
     description:
-      Sets the name of the text channel the command is used in.
-      Requires the user who calls the ccommand to have the Manage Channels permission.
+      Sets the color of the inputted role.
+      Requires the user who calls the command to have the Manage Roles permission.
 
   - name: movechannel
     global:  true

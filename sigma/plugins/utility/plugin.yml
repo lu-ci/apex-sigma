@@ -157,6 +157,15 @@ commands:
       The bot will select a thing from the inputed list.
       Separate list items with a space.
 
+  - name: poll
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Want to eat?; Yes; No; Hand me the cheese"
+    description:
+      Creates a poll with the items from the inputted list.
+      Separate list items with a semicolon and a space.
+
   - name: wa
     global:  true
     enabled: true
