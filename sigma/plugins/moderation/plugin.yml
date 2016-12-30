@@ -222,6 +222,15 @@ commands:
       Sets the name of the text channel the command is used in.
       Requires the user who calls the ccommand to have the Manage Channels permission.
 
+  - name: clrrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1ABC9C Cutie Pies"
+    description:
+      Sets the name of the text channel the command is used in.
+      Requires the user who calls the ccommand to have the Manage Channels permission.
+
   - name: movechannel
     global:  true
     enabled: true
