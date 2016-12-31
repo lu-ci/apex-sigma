@@ -76,7 +76,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
-    pmable:  false
+    pmable:  true
     usage:   "Activates based on set server event chance"
     description:
       Controls the servers random events.
