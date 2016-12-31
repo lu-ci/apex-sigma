@@ -70,3 +70,13 @@ commands:
       Can only be spun once every 20 seconds.
       Only the middle row counts, as indicated by the arrows.
 
+events:
+  - name:    random_event_control
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activates based on set server event chance"
+    description:
+      Controls the servers random events.
