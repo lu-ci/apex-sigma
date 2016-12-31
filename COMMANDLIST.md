@@ -88,6 +88,8 @@ Command |  Description |  Usage
 `>>ignoreuser`  |  Disallows a user from using the bot on your server. The user can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignoreuser @person`
 `>>ignorechannel`  |  Disallows commands to be used in the specified channel. The channel can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignorechannel 123456789123456789`
 `>>cleverbot`  |  Toggles the CleverBot functionality of the bot on the server. This is used by starting a message by mentioning a bot. Example being [@Sigma how are you today?] Requires the user to be a server Administrator.  |  `>>cleverbot`
+`>>events`  |  Toggles the Random Events appearing on the server. The percentage chance an event might appear is controlled by the eventchance command. Requires the user to be a server Administrator.  |  `>>events`
+`>>eventchance`  |  Sets the chance by which random events might apear. The chance can be set from 1 to 100. Requires the user to be a server Administrator.  |  `>>eventchance 15`
 `>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
 `>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
 ###MUSIC
