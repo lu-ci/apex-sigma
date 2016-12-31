@@ -1,0 +1,21 @@
+events:
+  - event_text: "Something happened! Pick a choice!"
+    choices:
+      - choice_text: "Do this"
+        positive: true
+        points: 690
+        result_text: "Yay something lovely happened."
+      - choice_text: "Do that"
+        positive: false
+        points: 666
+        result_text: "FUCK you screwed up."
+  - event_text: "Something else happened! Pick a choice!"
+    choices:
+      - choice_text: "Do blargh"
+        positive: true
+        points: 1
+        result_text: "Yay something lovely happened."
+      - choice_text: "Do schmahogona"
+        positive: false
+        points: 1
+        result_text: "FUCK you screwed up."
