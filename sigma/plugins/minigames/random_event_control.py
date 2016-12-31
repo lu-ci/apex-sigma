@@ -1,0 +1,59 @@
+import discord
+import yaml
+import random
+
+events_active = []
+
+
+async def random_event_control(ev, message, args):
+    if message.server:
+        events_enabled = ev.db.get_settings(message.server.id, 'RandomEvents')
+        if events_enabled:
+            event_id = message.server.id + message.author.id
+            global events_active
+            if event_id in events_active:
+                return
+            chance = ev.db.get_settings(message.server.id, 'EventChance')
+            rolled_number = random.randint(1, 100)
+            if rolled_number <= chance:
+                with open(ev.resource('events.yml')) as events_file:
+                    event_data = yaml.load(events_file)
+                event = random.choice(event_data['events'])
+                event_embed = discord.Embed(color=0x1abc9c, title='💠 An event!')
+                choice_text_out = ''
+                n = 0
+                for choice in event['choices']:
+                    n += 1
+                    choice_text_out += '\n' + str(n) + ': ' + choice['choice_text']
+                event_embed.add_field(name=event['event_text'], value=choice_text_out)
+                event_embed.set_footer(text='Answer by inputting the number corresponding to your choice.')
+                await ev.bot.send_message(message.channel, 'Hey ' + message.author.mention + '! An event has appeared!',
+                                          embed=event_embed)
+                events_active.append(event_id)
+                reply = await ev.bot.wait_for_message(timeout=20, author=message.author)
+                answer = reply.content
+                try:
+                    answer_number = int(answer)
+                    if answer_number < 1:
+                        answer_number = 1
+                except:
+                    out = discord.Embed(title=':exclamation: Invalid number input', color=0xDB0000)
+                    await ev.bot.send_message(message.channel, None, embed=out)
+                    events_active.remove(event_id)
+                    return
+                answer_index = answer_number - 1
+                result = event['choices'][answer_index]
+                choice_text = result['choice_text']
+                positive = result['positive']
+                point_amount = result['points']
+                result_text = result['result_text']
+                result_embed = discord.Embed(color=0x1abc9c, title='You chose to ' + choice_text.lower())
+                if positive:
+                    ev.db.add_points(message.server, message.author, point_amount)
+                    result_embed.set_footer(text='You have been awarded ' + str(point_amount) + ' points.')
+                else:
+                    ev.db.take_points(message.server, message.author, point_amount)
+                    result_embed.set_footer(text='You lost ' + str(point_amount) + ' points.')
+                events_active.remove(event_id)
+                result_embed.add_field(name='The following happened', value=result_text)
+                await ev.bot.send_message(message.channel, None, embed=result_embed)
