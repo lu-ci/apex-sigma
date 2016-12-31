@@ -25,7 +25,7 @@ async def random_event_control(ev, message, args):
                 for choice in event['choices']:
                     n += 1
                     choice_text_out += '\n' + str(n) + ': ' + choice['choice_text']
-                event_embed.add_field(name=event['event_text'] + '\nWhat do you do?', value=choice_text_out)
+                event_embed.add_field(name=event['event_text'], value=choice_text_out)
                 event_embed.set_footer(text='Answer by inputting the number corresponding to your choice.')
                 await ev.bot.send_message(message.channel, 'Hey ' + message.author.mention + '! An event has appeared!',
                                           embed=event_embed)
