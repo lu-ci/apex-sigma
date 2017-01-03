@@ -54,27 +54,8 @@ class Sigma(discord.Client):
         self.plugin_manager = PluginManager(self)
 
     def create_cache(self):
-        if not os.path.exists('cache/lol/'):
-            os.makedirs('cache/lol/')
-        if not os.path.exists('cache/ow/'):
-            os.makedirs('cache/ow/')
-        if not os.path.exists('cache/rip/'):
-            os.makedirs('cache/rip/')
-        if not os.path.exists('cache/ani/'):
-            os.makedirs('cache/ani/')
-
-        folder = 'cache/ow'
-
-        try:
-            for the_file in os.listdir(folder):
-                file_path = os.path.join(folder, the_file)
-                try:
-                    if os.path.isfile(file_path):
-                        os.unlink(file_path)
-                except Exception as e:
-                    self.log.error(e)
-        except FileNotFoundError:
-            pass
+        if not os.path.exists('cache/'):
+            os.makedirs('cache/')
 
     async def on_voice_state_update(self, before, after):
         pass

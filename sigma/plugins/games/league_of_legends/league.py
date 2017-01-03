@@ -42,8 +42,6 @@ async def league(cmd, message, args):
             league_name = 'No League'
             league_tier = 'No Rank'
         # Image Start
-        if os.path.isfile('cache/lol/profile_' + message.author.id + '.png'):
-            os.remove('cache/lol/profile_' + message.author.id + '.png')
         avatar = requests.get(icon_url).content
         base = Image.open(cmd.resource('img/base.png'))
         overlay = Image.open(cmd.resource('img/overlay_lol.png'))
@@ -61,7 +59,7 @@ async def league(cmd, message, args):
         imgdraw.text((130, 38), smnr_name, (255, 255, 255), font=font)
         imgdraw.text((130, 70), league_name + ' - ' + league_tier, (255, 255, 255), font=font2)
         imgdraw.text((326, 38), smnr_lvl, (255, 255, 255), font=font3)
-        base.save('cache\lol\profile_' + message.author.id + '.png')
+        base.save('cache\lol_profile_' + message.author.id + '.png')
         # Image End
 
         try:
@@ -112,7 +110,8 @@ async def league(cmd, message, args):
         if ranked_text == 'None' and normal_text == 'None':
             await cmd.bot.send_message(message.channel, 'No stats found.')
         else:
-            await cmd.bot.send_file(message.channel, 'cache/lol/profile_' + message.author.id + '.png')
+            await cmd.bot.send_file(message.channel, 'cache/lol_profile_' + message.author.id + '.png')
+            os.remove('cache/lol_profile_' + message.author.id + '.png')
             await cmd.bot.send_message(message.channel, 'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
     # except Exception as e:
     except SyntaxError:
