@@ -13,7 +13,9 @@ from config import mal_pw
 
 async def anime(cmd, message, args):
     mal_input = ' '.join(args)
-
+    if mal_input == '':
+        await cmd.bot.send_message(message.channel, cmd.help())
+        return
     mal_url = 'https://myanimelist.net/api/anime/search.xml?q=' + mal_input
     mal = requests.get(mal_url, auth=HTTPBasicAuth(mal_un, mal_pw))
     entries = html.fromstring(mal.content)

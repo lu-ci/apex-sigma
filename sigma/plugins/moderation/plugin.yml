@@ -1,4 +1,4 @@
-name: Polaris Sonata Moderation
+name: Moderation
 
 categories:
   - moderation
@@ -25,6 +25,15 @@ commands:
       Sets the greet message text.
       Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server.
       If no arguments are inputed it will show the current greet message.
+      (Server Administrator Only)
+
+  - name: greetpm
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles if the greet message should be sent as a PM to the user instead of writing it in the channel.
       (Server Administrator Only)
 
   - name: bye
@@ -131,21 +140,69 @@ commands:
       Will deactivate the blind set on a user.
       Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
 
-  - name: role
+  - name: autorole
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} give Wizard @user"
+    usage:   "{pfx:s}{cmd:s} Wizard"
     description:
-      Role control. Executes the selected function and role.
-      create - Makes a new role on the server with the inputted name.
-      destroy - Removes an already existing role from the server roles.
-      give - Gives the inputted role to the mentioned user.
-      take - Removes the inputted role from the mentioned user.
-      auto - Sets the role which will be automatically given to the users that join the server. To remove the autorole functionality, type "Remove" as the role name.
-      add - Adds a role to the list of self assignable roles.
-      del - Removes a role from the list of self assignable roles.
-      Requires the user who calls the command to have the Manage Roles permision, and Administrator if changing the Auto Role settings.
+      Sets the role that should be given to the users that join the server.
+      To disable the autorole input disable as the role name.
+      Requires the user who calls the command to have the Administrator permision.
+
+  - name: createrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Cheese"
+    description:
+      Creates a new role on the server.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: destroyrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Blergh"
+    description:
+      Destroy an existing role on the server.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: addselfrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Cheese"
+    description:
+      Makes a role self assignable.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: delselfrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Cheese"
+    description:
+      Makes a role no longer self assignable.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: giverole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person Lewd"
+    description:
+      Assigns a role to a user.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: takerole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person Dude"
+    description:
+      Removes a role from a user.
+      Requires the user who calls the command to have the Manage Roles permision.
 
   - name: settopic
     global:  true
@@ -163,7 +220,16 @@ commands:
     usage:   "{pfx:s}{cmd:s} pepperoni_pizza"
     description:
       Sets the name of the text channel the command is used in.
-      Requires the user who calls the ccommand to have the Manage Channels permission.
+      Requires the user who calls the command to have the Manage Channels permission.
+
+  - name: clrrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1ABC9C Cutie Pies"
+    description:
+      Sets the color of the inputted role.
+      Requires the user who calls the command to have the Manage Roles permission.
 
   - name: movechannel
     global:  true
@@ -199,14 +265,14 @@ commands:
     description:
       Lists all the roles on the server and the total number of roles.
 
-  - name: getrole
+  - name: togglerole
     global:  true
     enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Wizard"
     description:
       Assigns you or removes you from one of the self assignable roles.
-      Self assignable roles are added via the role command.
+      Self assignable roles are added via the addselfrole command.
       A list of self assignable roles can be seen with the listselfroles command.
 
   - name: listselfroles
@@ -216,7 +282,7 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Assigns you or removes you from one of the self assignable roles.
-      Self assignable roles are added via the role command.
+      Self assignable roles are added via the addrole command.
       A list of self assignable roles can be seen with the listselfroles command.
 
 
@@ -230,12 +296,111 @@ commands:
       Will not block links posted by administrators.
       Requires the user to be a server Administrator.
 
+  - name: unflip
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles automatic unfliping of tables
+      Requires the user to be a server Administrator.
+
+  - name: ignoreuser
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Disallows a user from using the bot on your server.
+      The user can be blacklisted by either mention or ID.
+      Requires the user to be a server Administrator.
+
+  - name: ignorechannel
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 123456789123456789"
+    description:
+      Disallows commands to be used in the specified channel.
+      The channel can be blacklisted by either mention or ID.
+      Requires the user to be a server Administrator.
+
+  - name: cleverbot
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the CleverBot functionality of the bot on the server.
+      This is used by starting a message by mentioning a bot.
+      Example being [@Sigma how are you today?]
+      Requires the user to be a server Administrator.
+
+  - name: events
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the Random Events appearing on the server.
+      The percentage chance an event might appear is controlled by the eventchance command.
+      Requires the user to be a server Administrator.
+
+  - name: eventchance
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 15"
+    description:
+      Sets the chance by which random events might apear.
+      The chance can be set from 1 to 100.
+      Requires the user to be a server Administrator.
+
+  - name: award
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Awards the inputted amount of points to the mentioned person.
+      Server Administrator Only.
+
+  - name: take
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Takes away the inputted amount of points from the mentioned person.
+      Server Administrator Only.
+
 events:
   - name:    sfiexec
     type:    message
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     usage:   "Activated upon detecting an invite link in a message."
     description:
       Removes messages with a discord invite link.
+
+  - name:    member_join_control
+    type:    member_join
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user joining the server."
+    description:
+      Controls greetings.
+
+  - name:    member_leave_control
+    type:    member_leave
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user leaving the server."
+    description:
+      Controls goodbyes.

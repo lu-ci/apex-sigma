@@ -1,10 +1,16 @@
+import discord
+
+
 async def cid(cmd, message, args):
-    if message.server:
-        chn_id = message.channel.id
-        if args:
-            arguments = ' '.join(args)
-            if arguments.startswith('<#'):
-                chn_id = arguments[2:-1]
-        await cmd.bot.send_message(message.channel, 'The Channel ID of <#' + chn_id + '> is `' + chn_id + '`')
-    else:
-        await cmd.bot.send_message(message.channel, 'This is unusable in Direct Messsages as direct messages have no host server.')
+    chn_id = message.channel.id
+    name = 'None'
+    if args:
+        arguments = ' '.join(args)
+        if arguments.startswith('<#'):
+            chn_id = arguments[2:-1]
+    for channel in message.server.channels:
+        if channel.id == chn_id:
+            name = channel.name
+    embed = discord.Embed(color=0x0099FF)
+    embed.add_field(name=':information_source: #' + name, value='`' + chn_id + '`')
+    await cmd.bot.send_message(message.channel, None, embed=embed)

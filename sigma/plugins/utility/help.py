@@ -1,30 +1,30 @@
-import asyncio
+import discord
 from config import Prefix
 
-async def help(cmd, message, args):
-    help_msg = None
-    timeout = 60
-    if not args:
-        help_out = '**Website:**\n<https://auroraproject.xyz/>'
-        help_out += '\n**Command List**:\n<https://auroraproject.xyz/#commands>'
-        help_out += '\n**Command List (GitHub)**:\n<https://github.com/aurora-pro/apex-sigma/blob/dev/COMMANDLIST.md>'
-        help_out += '\n\nTo get help with a certain command, you can type `' + Prefix + 'help COMMAND`'
-        help_msg = await cmd.bot.send_message(message.channel, help_out)
 
+async def help(cmd, message, args):
+    if not args:
+        help_out = discord.Embed(type='rich', title=':grey_question: Help', color=0x1B6F5F)
+        help_out.set_author(name='Apex Sigma', url='https://auroraproject.xyz/',
+                            icon_url='https://i.imgur.com/s0aVvn7.png')
+        help_out.add_field(name='Website', value='[**LINK**](https://auroraproject.xyz/)')
+        help_out.add_field(name='Commands', value='[**LINK**](https://auroraproject.xyz/commands)')
+        help_out.add_field(name='GitHub', value='[**LINK**](https://github.com/aurora-pro/apex-sigma)')
+        help_out.add_field(name='AP Discord', value='[**LINK**](https://discordapp.com/invite/Ze9EfTd)')
+        help_out.add_field(name='Add Me To Discord',
+                           value='[**LINK**](https://discordapp.com/oauth2/authorize?client_id=' + cmd.bot.user.id + '&scope=bot&permissions=8)')
+        if message.server:
+            help_out.add_field(name='Ranking For This Server',
+                               value='[**LINK**](https://auroraproject.xyz/ranking?sid=' + message.server.id + ')')
+        help_out.set_footer(
+            text='For additional info and help on how to use a command use [' + Prefix + 'help COMMAND].')
+        await cmd.bot.send_message(message.channel, None, embed=help_out)
     else:
         try:
-            help_msg = await cmd.bot.send_message(message.channel, cmd.bot.plugin_manager.commands[args[0]].help())
+            help_out = discord.Embed(type='rich', title=':book: ' + args[0].title() + ' Help', color=0x1B6F5F)
+            help_out.add_field(name=args[0].title(), value=cmd.bot.plugin_manager.commands[args[0]].help())
+            await cmd.bot.send_message(message.channel, None, embed=help_out)
         except:
-            help_msg = await cmd.bot.send_message(message.channel, 'No such command...')
-            timeout = 15
-
-    await asyncio.sleep(timeout)
-
-    try:
-        await cmd.bot.delete_message(help_msg)
-    except Exception as e:
-        cmd.log.error('Help Message Deletion Failed {:s}'.format(e))
-    try:
-        await cmd.bot.delete_message(message)
-    except Exception as e:
-        cmd.log.error('Help Message Deletion Failed {:s}'.format(e))
+            out_content = discord.Embed(type='rich', color=0xDB0000,
+                                        title=':mag: No such command was found...')
+            await cmd.bot.send_message(message.channel, None, embed=out_content)

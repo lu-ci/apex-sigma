@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+import discord
 
 
 async def color(cmd, message, args):

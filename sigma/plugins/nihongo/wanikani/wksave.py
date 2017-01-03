@@ -1,3 +1,6 @@
+import discord
+
+
 async def wksave(cmd, message, args):
     coll = 'WaniKani'
     try:
@@ -13,23 +16,25 @@ async def wksave(cmd, message, args):
         payload = ' '.join(args)
 
         if not mode:
-            await cmd.bot.send_message(message.channel, 'Bind your Discord profile and your API key or username\n'
-                            'Usage: `{0:s}wksave' + ' key <your api key here>` or `{0:s}wksave' + ' username <your username here>`'.format(
-                cmd.prefix))
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: No mode was inputted.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         if mode not in ['key', 'username', 'remove']:  # remove
-            await cmd.bot.send_message(message.channel, 'Unknown argument')
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: Unknown Argument.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         if mode == 'key':
             if len(payload) < 32 or len(payload) > 32:
-                await cmd.bot.send_message(message.channel, 'The Key Seems Invalid...')
+                embed = discord.Embed(color=0xDB0000, title=':exclamation: The key seems invalid.')
+                await cmd.bot.send_message(message.channel, None, embed=embed)
                 return
 
         if mode == 'remove':  # remove
             query = {'UserID': user_id}
             cmd.db.delete_one(coll, query)
 
-            await cmd.bot.send_message(message.channel, 'Record deleted')
+            embed = discord.Embed(color=0xDB0000, title=':x: Record deleted.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
             return
 
         if mode == 'key':
@@ -62,12 +67,14 @@ async def wksave(cmd, message, args):
             n += 1
         if n == 0:
             cmd.db.insert_one(coll, insert_query)
-            await cmd.bot.send_message(message.channel, mode.capitalize() + ' Safely Stored. :key:')
+            embed = discord.Embed(color=0x0099FF, title=':key: ' + mode.capitalize() + ' Safely Stored.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
             update_target = {'UserID': user_id}
             cmd.db.update_one(coll, update_target, update_query)
-            await cmd.bot.send_message(message.channel, mode.capitalize() + ' Updated. :key:')
-
+            embed = discord.Embed(color=0x0099FF, title=':key: ' + mode.capitalize() + ' Updated.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, 'Error while parsing the input message')
+        embed = discord.Embed(color=0xDB0000, title=':exclamation: Error while parsing the input message.')
+        await cmd.bot.send_message(message.channel, None, embed=embed)

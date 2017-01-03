@@ -1,0 +1,88 @@
+name: Music
+
+categories:
+  - music
+
+enabled: true
+
+commands:
+  - name:    summon
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Summons the bot into your voice channel.
+
+  - name:    disconnect
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Disconnects the bot from your voice channel.
+
+  - name:    move
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Moves the bot to your voice channel.
+
+  - name:    play
+    global:  true
+    enabled: true
+    donor:   true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Ryder or Riot"
+    description:
+      Plays a song from a YouTube link or keyword search.
+
+  - name:    playlocal
+    global:  true
+    enabled: true
+    donor:   true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} some_song.mp3"
+    description:
+      Plays a song from the host machine.
+
+  - name:    stop
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Stops the currently playing song.
+
+  - name:    pause
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Pauses the currently playing song.
+
+  - name:    resume
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Resumes the currently playing song.
+
+  - name:    volume
+    global:  true
+    enabled: true
+    donor:   true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 67"
+    description:
+      Sets the bots volume if it is playing something.

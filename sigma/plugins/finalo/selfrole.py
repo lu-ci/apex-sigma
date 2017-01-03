@@ -1,6 +1,6 @@
 import asyncio
+import discord
 
-target_channel = ['roles']
 self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumble [DN]', 'Protect [DN]', 'PvE [DN]',
               'Raids [DN]', 'Nests [DN]', 'Dailies [DN]', 'Starlight [DN]',
               'Blade and Soul', 'PvP [BNS]', 'PvE [BNS]',
@@ -12,8 +12,9 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Team Instinct', 'Team Valor', 'Team Mystic', 'Pokémon',
               'Artists', 'Streamers', 'Entertainers ✿', 'Coders', 'Cosplayers',
               'Welcome Party', 'Cake Shop', 'Weebs',
-              'Singers', 'Intrumentalists', 'Showtime']
+              'Singers', 'Instrumentalists', 'Showtime', 'Writers']
 timeout = 10
+
 
 async def selfrole(ev, message, args):
     if message.channel.id == '222882496113672193':
@@ -26,30 +27,33 @@ async def selfrole(ev, message, args):
         else:
             await ev.bot.delete_message(message)
 
-        if message.channel.name in target_channel:  # if message is in the designated channel
-            if message.content in self_roles:  # if message has the correct keyword
-                user_has_role = False
-                for role in message.author.roles:
-                    if role.name == message.content:
-                        if role.name in self_roles:  # if user has a role
-                            user_has_role = True
-                            break
+        if message.content in self_roles:  # if message has the correct keyword
+            user_has_role = False
+            for role in message.author.roles:
+                if role.name == message.content:
+                    if role.name in self_roles:  # if user has a role
+                        user_has_role = True
+                        break
 
-                for role in message.server.roles:
-                    if role.name == message.content:
-                        if user_has_role:
-                            await ev.bot.remove_roles(message.author, role)
-                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` removed'.format(message.author.id, role.name))
+            for role in message.server.roles:
+                if role.name == message.content:
+                    if user_has_role:
+                        await ev.bot.remove_roles(message.author, role)
+                        embed = discord.Embed(
+                            title=':warning: ' + role.name + ' has been removed from you as you already had it.',
+                            color=0xFF9900)
+                        response = await ev.bot.send_message(message.channel, None, embed=embed)
+                        await asyncio.sleep(timeout)
+                        await ev.bot.delete_message(response)
 
-                            await asyncio.sleep(timeout)
-                            await ev.bot.delete_message(response)
+                        return
+                    else:
+                        await ev.bot.add_roles(message.author, role)
+                        embed = discord.Embed(title=':white_check_mark: ' + role.name + ' has been added to you.',
+                                              color=0x66cc66)
+                        response = await ev.bot.send_message(message.channel, None, embed=embed)
 
-                            return
-                        else:
-                            await ev.bot.add_roles(message.author, role)
-                            response = await ev.bot.send_message(message.channel, '<@{0}> Role `{1}` assigned'.format(message.author.id, role.name))
+                        await asyncio.sleep(timeout)
+                        await ev.bot.delete_message(response)
 
-                            await asyncio.sleep(timeout)
-                            await ev.bot.delete_message(response)
-
-                            return
+                        return

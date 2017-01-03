@@ -1,6 +1,7 @@
 import os
 import yaml
-from config import Prefix, permitted_id
+import discord
+from config import permitted_id
 
 
 async def gencmd(cmd, message, args):
@@ -21,24 +22,28 @@ async def gencmd(cmd, message, args):
                         except:
                             pass
                         try:
-                            for command in plugin_data['commands']:
-                                plugin_name = command['name']
-                                try:
-                                    plugin_usage = command['usage'].replace('{pfx:s}', '>>').replace('{cmd:s}', plugin_name)
-                                except:
-                                    plugin_usage = '>>' + plugin_name
-                                plugin_desc = command['description']
-                                if category == category_curr:
-                                    pass
-                                else:
-                                    category_curr = category
-                                    out_text += '\n###' + category.upper()
-                                    out_text += '\nCommand |  Description |  Usage'
-                                    out_text += '\n--------|--------------|-------'
-                                out_text += '\n`>>' + plugin_name + '`  |  ' + plugin_desc + '  |  `' + plugin_usage + '`'
-                                n += 1
+                            if category != 'administration':
+                                if plugin_data['enabled']:
+                                    for command in plugin_data['commands']:
+                                        plugin_name = command['name']
+                                        try:
+                                            plugin_usage = command['usage'].replace('{pfx:s}', '>>').replace('{cmd:s}', plugin_name)
+                                        except:
+                                            plugin_usage = '>>' + plugin_name
+                                        plugin_desc = command['description']
+                                        if category == category_curr:
+                                            pass
+                                        else:
+                                            category_curr = category
+                                            out_text += '\n###' + category.upper()
+                                            out_text += '\nCommand |  Description |  Usage'
+                                            out_text += '\n--------|--------------|-------'
+                                        out_text += '\n`>>' + plugin_name + '`  |  ' + plugin_desc + '  |  `' + plugin_usage + '`'
+                                        n += 1
                         except:
                             pass
                         with open("COMMANDLIST.md", "w") as text_file:
                             text_file.write(out_text)
-        await cmd.bot.send_message(message.channel, 'Commands Exported: ' + str(n))
+        status = discord.Embed(title=':white_check_mark: Executed', color=0x66CC66)
+        status.add_field(name='Commands Exported', value=str(n))
+        await cmd.bot.send_message(message.channel, None, embed=status)

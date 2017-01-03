@@ -18,7 +18,8 @@ class PluginManager(object):
         self.events = {
             'mention': {},
             'message': {},
-            'server_join': {}
+            'member_join': {},
+            'member_leave': {}
         }
 
         self.get_plugin_dirs()
