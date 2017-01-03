@@ -24,3 +24,6 @@ wolframalpha
 geopy
 pymongo
 google-api-python-client
+Google-Search-API
+google
+protobuf
