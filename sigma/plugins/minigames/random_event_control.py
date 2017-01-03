@@ -31,6 +31,14 @@ async def random_event_control(ev, message, args):
                                           embed=event_embed)
                 events_active.append(event_id)
                 reply = await ev.bot.wait_for_message(timeout=20, author=message.author)
+                if not reply:
+                    out = discord.Embed(title=':clock10: Sorry, you timed out...', color=0x777777)
+                    await ev.bot.send_message(message.channel, None, embed=out)
+                    return
+                if not reply.content:
+                    out = discord.Embed(title=':exclamation: Sorry, I couldn\'t read that...', color=0xDB0000)
+                    await ev.bot.send_message(message.channel, None, embed=out)
+                    return
                 answer = reply.content
                 try:
                     answer_number = int(answer)
