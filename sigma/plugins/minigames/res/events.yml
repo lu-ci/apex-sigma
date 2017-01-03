@@ -6,8 +6,8 @@ events:
       - choice_text: "Investigate"
         positive: false
         points: 400
-        result_text: "You find the student but he outsmarts you and decides to offer your soul the dark overlord ChinChin."
-      - choice_text: "Send someone else to investigate"
+        result_text: "You find the student but he outsmarts you and decides to offer your soul to the dark overlord ChinChin."
+      - choice_text: "Send someone to check it out"
         positive: false
         points: 300
         result_text: "The guy you sent to investigate was never heard of again."
@@ -21,11 +21,11 @@ events:
       "You're innocently sitting in front of your PC and chatting on Discord, when all of a sudden a huge hole opens up next to you.
       Do you..."
     choices:
-      - choice_text: "Jump in Head first"
+      - choice_text: "Jump straight in"
         positive: true
         points: 400
         result_text:
-          "What the **** were you thinking?
+          "What the fuck were you thinking? Ooh~ you got luck!
           You land in a huge body of water and find some gold at the bottom."
       - choice_text: "Stick your head in"
         positive: false
@@ -91,3 +91,16 @@ events:
         positive: false
         points: 250
         result_text: "Since you never tried anything nuanced you always just lived in your masters shadow and deeply regret the choices you made in life."
+  - event_text:
+      "While riding in the elevator the power goes out and you don't have your phone with you.
+      The store downstairs is having a Doritos sale and is closing in 10 minutes. What shall you do?"
+    choices:
+      - choice_text: "Try to pry open the door."
+        positive: false
+        points: 500
+        result_text: "Trying to open the doors leads to the elevator suddenly jerking and rising a bit.
+        Now it is stuck between floors and an even bigger problem to fix than before."
+      - choice_text: "Wait for somebody to notice and fix the elevator."
+        positive: true
+        points: 400
+        result_text: "You succeeded in creating a new, great alloy and will soon be known all throughout the land as the greatest blacksmith to ever exist."
