@@ -12,6 +12,8 @@ from config import mal_pw
 
 
 async def anime(cmd, message, args):
+    list_message = None
+    choice = None
     mal_input = ' '.join(args)
     if mal_input == '':
         await cmd.bot.send_message(message.channel, cmd.help())
@@ -27,8 +29,9 @@ async def anime(cmd, message, args):
             n += 1
             list_text += '\n#' + str(n) + ' ' + entry[1].text
         try:
-            await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(
-                                len(entries)) + ')`')
+            list_message = await cmd.bot.send_message(message.channel,
+                                                      list_text + '\n```\nPlease type the number corresponding to the anime of your choice `(1 - ' + str(
+                                                          len(entries)) + ')`')
         except:
             await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
             return
@@ -43,6 +46,13 @@ async def anime(cmd, message, args):
     else:
         ani_no = 0
     try:
+        if list_message:
+            await cmd.bot.delete_message(list_message)
+        if choice:
+            try:
+                await cmd.bot.delete_message(choice)
+            except:
+                pass
         await cmd.bot.send_typing(message.channel)
         ani_id = entries[ani_no][0].text
         name = entries[ani_no][1].text
@@ -60,11 +70,12 @@ async def anime(cmd, message, args):
         air = air_start.replace('-', '.') + ' to ' + air_end.replace('-', '.')
         try:
             synopsis = entries[ani_no][10].text.replace('[i]', '').replace('[/i]', '').replace('<br>',
-                                                                                                 '').replace(
+                                                                                               '').replace(
                 '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
                                                                                                           '-')
         except:
             synopsis = 'None'
+
         img = entries[ani_no][11].text
         ani_type = entries[ani_no][6].text
         status = entries[ani_no][7].text
@@ -93,7 +104,8 @@ async def anime(cmd, message, args):
         base.save('cache/anime_' + message.author.id + '.png')
 
         await cmd.bot.send_file(message.channel, 'cache/anime_' + message.author.id + '.png')
-        await cmd.bot.send_message(message.channel, '```\n' + synopsis[:256] + '...\n```\nMore at: <https://myanimelist.net/anime/' + ani_id + '/>\n')
+        await cmd.bot.send_message(message.channel, '```\n' + synopsis[
+                                                              :256] + '...\n```\nMore at: <https://myanimelist.net/anime/' + ani_id + '/>\n')
         os.remove('cache/anime_' + message.author.id + '.png')
     except IndexError:
         await cmd.bot.send_message(message.channel, 'Number out of range, please start over...')
