@@ -12,6 +12,8 @@ from config import mal_pw
 
 
 async def manga(cmd, message, args):
+    list_message = None
+    choice = None
     mal_input = ' '.join(args)
     if mal_input == '':
         await cmd.bot.send_message(message.channel, cmd.help())
@@ -27,7 +29,7 @@ async def manga(cmd, message, args):
             n += 1
             list_text += '\n#' + str(n) + ' ' + entry[1].text
         try:
-            await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the manga of your choice `(1 - ' + str(
+            list_message = await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the manga of your choice `(1 - ' + str(
                                 len(entries)) + ')`')
         except:
             await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
@@ -44,6 +46,13 @@ async def manga(cmd, message, args):
     else:
         ani_no = 0
     try:
+        if list_message:
+            await cmd.bot.delete_message(list_message)
+        if choice:
+            try:
+                await cmd.bot.delete_message(choice)
+            except:
+                pass
         await cmd.bot.send_typing(message.channel)
         ani_id = entries[ani_no][0].text
         name = entries[ani_no][1].text
@@ -86,10 +95,10 @@ async def manga(cmd, message, args):
         imgdraw.text((227, 166), 'Chapters: ' + chapters + ' Volumes: ' + volumes, (255, 255, 255), font=font)
         imgdraw.text((227, 194), 'Score: ' + score, (255, 255, 255), font=font)
         imgdraw.text((227, 222), air, (255, 255, 255), font=font)
-        base.save('cache/ani/anime_' + message.author.id + '.png')
-        await cmd.bot.send_file(message.channel, 'cache/ani/anime_' + message.author.id + '.png')
+        base.save('cache/manga_' + message.author.id + '.png')
+        await cmd.bot.send_file(message.channel, 'cache/manga_' + message.author.id + '.png')
         await cmd.bot.send_message(message.channel, '```\n' + synopsis[:256] + '...\n```\nMore at: <https://myanimelist.net/manga/' + ani_id + '/>\n')
-        os.remove('cache/ani/anime_' + message.author.id + '.png')
+        os.remove('cache/manga_' + message.author.id + '.png')
     except IndexError:
         await cmd.bot.send_message(message.channel, 'Number out of range, please start over...')
     except UnboundLocalError:
