@@ -86,10 +86,10 @@ async def manga(cmd, message, args):
         imgdraw.text((227, 166), 'Chapters: ' + chapters + ' Volumes: ' + volumes, (255, 255, 255), font=font)
         imgdraw.text((227, 194), 'Score: ' + score, (255, 255, 255), font=font)
         imgdraw.text((227, 222), air, (255, 255, 255), font=font)
-        base.save('cache/ani/anime_' + message.author.id + '.png')
-        await cmd.bot.send_file(message.channel, 'cache/ani/anime_' + message.author.id + '.png')
+        base.save('cache/manga_' + message.author.id + '.png')
+        await cmd.bot.send_file(message.channel, 'cache/manga_' + message.author.id + '.png')
         await cmd.bot.send_message(message.channel, '```\n' + synopsis[:256] + '...\n```\nMore at: <https://myanimelist.net/manga/' + ani_id + '/>\n')
-        os.remove('cache/ani/anime_' + message.author.id + '.png')
+        os.remove('cache/manga_' + message.author.id + '.png')
     except IndexError:
         await cmd.bot.send_message(message.channel, 'Number out of range, please start over...')
     except UnboundLocalError:
