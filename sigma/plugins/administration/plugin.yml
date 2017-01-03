@@ -197,12 +197,3 @@ events:
     pmable:  true
     description:
       Fills the command counter statistics.
-
-  - name:    servers_updater
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    pmable:  true
-    description:
-      Fills the server statistics.
