@@ -2,8 +2,11 @@ import yaml
 from config import permitted_id
 import discord
 import datetime
+import sys
+
 
 def stats(bot, log=None):
+    tmp = []
     permed_ids = userlist(permitted_id)
     authors = userlist(bot.authors)
     contributors = userlist(bot.contributors)
@@ -25,10 +28,9 @@ def stats(bot, log=None):
         version_text += 'Beta '
     version_text += v_full + ' Codename ' + codename
 
-
-    tmp = []
     tmp.append(multi('Logged In As: \"' + bot.user.name + '\"', log))
     tmp.append(multi('Bot User ID: ' + bot.user.id, log))
+    tmp.append(multi('Running Python version: ' + sys.version.split(' ')[0], log))
     tmp.append(multi('Running discord.py version: ' + discord.__version__, log))
     tmp.append(multi('Authors: {:s}'.format(authors), log))
     tmp.append(multi('Contributors: {:s}'.format(contributors), log))
@@ -44,6 +46,7 @@ def stats(bot, log=None):
 
 def userlist(lst):
     return ', '.join(['"{:s}"'.format(x) for x in lst])
+
 
 def multi(msg, log=None):
     if log:
