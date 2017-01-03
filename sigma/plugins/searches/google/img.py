@@ -21,4 +21,4 @@ async def img(cmd, message, args):
             await cmd.bot.send_message(message.channel, out)
         except Exception as e:
             cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, str(e))
+            await cmd.bot.send_message(message.channel, 'Could not parse the results. The daily limit might have been reached.')

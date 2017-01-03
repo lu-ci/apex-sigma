@@ -6,22 +6,11 @@ async def sfiexec(ev, message, args):
         if check_admin(message.author, message.channel):
             return
         else:
-            n = 0
-            search_data = {
-                'ServerID': message.server.id
-            }
-            search = ev.db.find('ServerFilterInvites', search_data)
-            active = False
-            for result in search:
-                n += 1
+            active = ev.db.get_settings(message.server.id, 'BlockInvites')
+            if active:
                 try:
-                    active = result['Active']
-                except:
-                    pass
-            if n == 0:
-                return
-            else:
-                if active:
                     await ev.bot.delete_message(message)
-                else:
-                    return
+                except Exception as e:
+                    ev.log.error(e)
+            else:
+                return

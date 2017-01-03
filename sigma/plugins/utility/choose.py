@@ -1,13 +1,12 @@
 import random
-import asyncio
+import discord
 
 
 async def choose(cmd, message, args):
     if args:
         choice = random.choice(args)
-        out_message = await cmd.bot.send_message(message.channel, 'Uuuuum...')
-        await asyncio.sleep(3)
-        await cmd.bot.edit_message(out_message, 'I\'ll have to go with **' + choice + '**.')
+        embed = discord.Embed(color=0x1ABC9C, title=':thinking: I choose... ' + choice)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
         await cmd.bot.send_message(message.channel, cmd.help())
         return

@@ -30,6 +30,14 @@ commands:
     description:
       Shows the link for the servers point leaderboard.
 
+  - name: give
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 50 @person"
+    description:
+      Transfer a chosen amount of points between you and the mentioned user.
+
   - name:    quote
     global:  true
     enabled: true
@@ -45,14 +53,6 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Gives a random fact about cats.
-
-  - name:    yomomma
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Provides a random Yo Momma insult.
 
   - name: cat
     global:  true
@@ -99,12 +99,14 @@ commands:
       The accepted types are trivia, date, math and year.
       The date system is the US Month/Day ordering system.
 
+
 events:
-  - name:    cleverbot
+  - name:    cleverbot_control
     type:    mention
     global:  true
     enabled: true
     sfw:     true
+    pmable:  false
     usage:   "@bot message"
     description:
       Interact with cleverbot.
@@ -114,14 +116,16 @@ events:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Get levels by chatting in a channel.
 
-  - name:    unflip
+  - name:    unflip_control
     type:    message
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Calm down bro.
 
@@ -129,6 +133,7 @@ events:
     type:    message
     global:  true
     enabled: true
+    pmable:  true
     sfw:     true
     description:
       Accepts the terms and conditions of the WaniKani Community Discord Server.

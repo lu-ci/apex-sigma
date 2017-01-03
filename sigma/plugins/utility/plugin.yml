@@ -10,6 +10,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     usage:   "{pfx:s}{cmd:s} [command]"
     description:
       Returns the list of command modules or gives you the description
@@ -36,6 +37,13 @@ commands:
     sfw:     true
     description:
       Shows the statistics of Sigma.
+
+  - name:    ingame
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Shows the top played games on the server.
 
   - name:    weather
     global:  true
@@ -134,6 +142,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Shows the OAuth2 URL for inviting Sigma to a server.
@@ -147,6 +156,15 @@ commands:
     description:
       The bot will select a thing from the inputed list.
       Separate list items with a space.
+
+  - name: poll
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Want to eat?; Yes; No; Hand me the cheese"
+    description:
+      Creates a poll with the items from the inputted list.
+      Separate list items with a semicolon and a space.
 
   - name: wa
     global:  true
@@ -192,6 +210,14 @@ commands:
       If no number is provided, the bot will draw 2.
 
   - name: color
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1ABC9C"
+    description:
+      Generates a color from the given HEX code or provided RGB numbers.
+
+  - name: colour
     global:  true
     enabled: true
     sfw:     true

@@ -1,27 +1,4 @@
 #Sigma's List of Commands
-###ADMINISTRATION
-Command |  Description |  Usage
---------|--------------|-------
-`>>announce`  |  It will post your inputed message to the default text channel of every server the bot is connected to. Bot Special Permitted/Owner Only.  |  `>>announce Hello World!`
-`>>ping`  |  Shows the latency between the server hosting the bot and Google. Windows host only for now. Bot Special Permitted/Owner Only.  |  `>>ping`
-`>>status`  |  Show the statistics of the machine running the bot.  |  `>>status`
-`>>leave`  |  Leaves the server with the inputted id. Bot Special Permitted/Owner Only.  |  `>>leave 123456789`
-`>>evaluate`  |  Executes a python function. Can be very dangerous. Bot Special Permitted/Owner Only.  |  `>>evaluate print('hello world')`
-`>>send`  |  Send a message to either a channel or user (by ID) on the server with the given ID. Bot Special Permitted/Owner Only.  |  `>>send 200751504175398912|c:201577895196360714 Hello World!`
-`>>inviteowner`  |  Creates a one-use invite link to a server the bot is a part of by inputted ID. The purpose of this command is to investigate possibly abusive servers. Bot Special Permitted/Owner Only.  |  `>>inviteowner 200751504175398912`
-`>>searchid`  |  Searches for a persons User ID within all servers. The purpose of this command is to investigate possibly abusive servers and users. Bot Special Permitted/Owner Only.  |  `>>searchid 200751504175398912`
-`>>gencmd`  |  Generates the bot's COMMANDLIST.md file. Bot Special Permitted/Owner Only.  |  `>>gencmd`
-`>>dbpointcheck`  |  Forces a recheck of all user point data. Bot Special Permitted/Owner Only.  |  `>>dbpointcheck`
-`>>award`  |  Awards the inputted amount of points to the mentioned person. Bot Special Permitted/Owner Only.  |  `>>award 1500 @person`
-`>>take`  |  Takes away the inputted amount of points from the mentioned person. Bot Special Permitted/Owner Only.  |  `>>take 1500 @person`
-`>>echo`  |  Repeats the given text. Bot Special Permitted/Owner Only.  |  `>>echo Hello world!`
-`>>bulkmsg`  |  Sends the inputed message to every single person on the server. Bot Special Permitted/Owner Only.  |  `>>bulkmsg Hello everyone!`
-`>>servers`  |  Shows all the servers Sigma is on. Bot Special Permitted/Owner Only.  |  `>>servers`
-`>>kill`  |  Forcefully kill the bot. Bot Special Permitted/Owner Only.  |  `>>kill`
-`>>setgame`  |  Sets the bots playing states to whatever you wish. Bot Special Permitted/Owner Only.  |  `>>setgame New Game!`
-`>>setavatar`  |  Set the avatar picture. (Requires premission)  |  `>>setavatar url`
-`>>apikeys`  |  Shows which keys are present and which are missing from the config. The list is sent as a DM to the user. Bot Special Permitted/Owner Only.  |  `>>apikeys`
-`>>setname`  |  Sets the username of the bot to the inputted one. Bot Special Permitted/Owner Only.  |  `>>setname Charlotte`
 ###GAMES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -30,7 +7,7 @@ Command |  Description |  Usage
 `>>bnsdef`  |  Provides highly detailed Defense Statistics for the inputed Blade and Soul Character.  |  `>>bnsdef EU Lucia Konohana`
 `>>csgo`  |  Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!)  |  `>>csgo thealeksaradovic`
 `>>hearthstone`  |  Hearthstone card lookup. Input the card name after the command then type the number appropriate to the card you were looking for.  |  `>>hearthstone Murloc Raider`
-`>>league`  |  Shows the players League of Legends statistics of inputed Summoner Name. You can also place a gamemode between the Region and Summoner Name to get statistics for it.  |  `>>league EUNE AXAz0r`
+`>>league`  |  Shows the players League of Legends statistics of inputed Summoner Name.  |  `>>league EUNE AXAz0r`
 `>>lolbans`  |  Shows the top League of Legends champion bans for each tier.  |  `>>lolbans`
 `>>mtg`  |  Searches the Magic The Gathering Database for the inputed card.  |  `>>mtg Archangel Avacyn`
 `>>osu`  |  Generates a signature image with the users stats for osu.  |  `>>osu AXAz0r`
@@ -47,7 +24,8 @@ Command |  Description |  Usage
 `>>dadjoke`  |  Cringe!  |  `>>dadjoke`
 `>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
 `>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
-`>>chucknoris`  |  Outputs a random Chuck Noris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknoris`
+`>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
+`>>chucknorris`  |  Outputs a random Chuck Norris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknorris`
 `>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
 `>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
 ###MINIGAMES
@@ -57,16 +35,17 @@ Command |  Description |  Usage
 `>>roll`  |  Gives a random number from 0 to 100. You can specify the highest number the function calls by adding a number after the command. The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.  |  `>>roll 701`
 `>>eightball`  |  The 8Ball has answers to ALL your question. Come one, come all, and ask the mighty allknowing 8Ball! Provide a question at the end of the command and await the miraculous answer!  |  `>>eightball Will I ever travel to Venice?`
 `>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
-`>>slots`  |  Spin the slot machine and test your luck! Costs 50 points to spin.  |  `>>slots`
+`>>slots`  |  Spin the slot machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>slots`
+`>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the sloths machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sloths`
 ###MISC
 Command |  Description |  Usage
 --------|--------------|-------
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
 `>>ranking`  |  Shows the link for the servers point leaderboard.  |  `>>ranking`
+`>>give`  |  Transfer a chosen amount of points between you and the mentioned user.  |  `>>give 50 @person`
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
-`>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
 `>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
 `>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Even if the VN has only one route, the route name is still required. Examples being Kud in Kud Wafter and Tomoyo in Tomoyo After. Some Visual Novels are way too huge for me to make custom route files for so I provided their mega walkthroughs. Examples being Clannad, Little Busters and Rewrite. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
@@ -76,6 +55,7 @@ Command |  Description |  Usage
 --------|--------------|-------
 `>>greet`  |  Toggles the greet message in the channel it is written in. Whenever a user joins the server the greet messsage will be displayed. (Server Administrator Only)  |  `>>greet`
 `>>greetmsg`  |  Sets the greet message text. Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current greet message. (Server Administrator Only)  |  `>>greetmsg Hello %user_mention% and welcoem to %server_name%!`
+`>>greetpm`  |  Toggles if the greet message should be sent as a PM to the user instead of writing it in the channel. (Server Administrator Only)  |  `>>greetpm`
 `>>bye`  |  Toggles the bye message in the channel it is written in. Whenever a user leaves the server the bye messsage will be displayed. (Server Administrator Only)  |  `>>bye`
 `>>byemsg`  |  Sets the bye message text. Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current bye message. (Server Administrator Only)  |  `>>byemsg %user_mention% has left %server_name%`
 `>>ban`  |  Bans the mentioned user. Requires the user who calls the command to have ban privileges.  |  `>>ban @person`
@@ -87,16 +67,43 @@ Command |  Description |  Usage
 `>>unmute`  |  Will unmute a person who was muted with the mute command. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unmute @person`
 `>>blind`  |  Will disable a persons ability to read any and all channels. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>blind @person`
 `>>unblind`  |  Will deactivate the blind set on a user. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unblind @person`
-`>>role`  |  Role control. Executes the selected function and role. create - Makes a new role on the server with the inputted name. destroy - Removes an already existing role from the server roles. give - Gives the inputted role to the mentioned user. take - Removes the inputted role from the mentioned user. auto - Sets the role which will be automatically given to the users that join the server. To remove the autorole functionality, type "Remove" as the role name. add - Adds a role to the list of self assignable roles. del - Removes a role from the list of self assignable roles. Requires the user who calls the command to have the Manage Roles permision, and Administrator if changing the Auto Role settings.  |  `>>role give Wizard @user`
+`>>autorole`  |  Sets the role that should be given to the users that join the server. To disable the autorole input disable as the role name. Requires the user who calls the command to have the Administrator permision.  |  `>>autorole Wizard`
+`>>createrole`  |  Creates a new role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>createrole Cheese`
+`>>destroyrole`  |  Destroy an existing role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>destroyrole Blergh`
+`>>addselfrole`  |  Makes a role self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>addselfrole Cheese`
+`>>delselfrole`  |  Makes a role no longer self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>delselfrole Cheese`
+`>>giverole`  |  Assigns a role to a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>giverole @person Lewd`
+`>>takerole`  |  Removes a role from a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>takerole @person Dude`
 `>>settopic`  |  Sets the topic of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>settopic Food Talk!`
-`>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
+`>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the command to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
+`>>clrrole`  |  Sets the color of the inputted role. Requires the user who calls the command to have the Manage Roles permission.  |  `>>clrrole 1ABC9C Cutie Pies`
 `>>movechannel`  |  Moves the channel where the command is executed to the requested positional number. Do keep in mind that the first channel position is 0.  |  `>>movechannel 11`
 `>>mentionrole`  |  Mentiones every person in the inputted role. Requires the user to be a server Administrator.  |  `>>mentionrole Waifus`
 `>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
 `>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
-`>>getrole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>getrole Wizard`
-`>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the role command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
+`>>togglerole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addselfrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>togglerole Wizard`
+`>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
+`>>unflip`  |  Toggles automatic unfliping of tables Requires the user to be a server Administrator.  |  `>>unflip`
+`>>ignoreuser`  |  Disallows a user from using the bot on your server. The user can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignoreuser @person`
+`>>ignorechannel`  |  Disallows commands to be used in the specified channel. The channel can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignorechannel 123456789123456789`
+`>>cleverbot`  |  Toggles the CleverBot functionality of the bot on the server. This is used by starting a message by mentioning a bot. Example being [@Sigma how are you today?] Requires the user to be a server Administrator.  |  `>>cleverbot`
+`>>events`  |  Toggles the Random Events appearing on the server. The percentage chance an event might appear is controlled by the eventchance command. Requires the user to be a server Administrator.  |  `>>events`
+`>>eventchance`  |  Sets the chance by which random events might apear. The chance can be set from 1 to 100. Requires the user to be a server Administrator.  |  `>>eventchance 15`
+`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
+`>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
+###MUSIC
+Command |  Description |  Usage
+--------|--------------|-------
+`>>summon`  |  Summons the bot into your voice channel.  |  `>>summon`
+`>>disconnect`  |  Disconnects the bot from your voice channel.  |  `>>disconnect`
+`>>move`  |  Moves the bot to your voice channel.  |  `>>move`
+`>>play`  |  Plays a song from a YouTube link or keyword search.  |  `>>play Ryder or Riot`
+`>>playlocal`  |  Plays a song from the host machine.  |  `>>playlocal some_song.mp3`
+`>>stop`  |  Stops the currently playing song.  |  `>>stop`
+`>>pause`  |  Pauses the currently playing song.  |  `>>pause`
+`>>resume`  |  Resumes the currently playing song.  |  `>>resume`
+`>>volume`  |  Sets the bots volume if it is playing something.  |  `>>volume 67`
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
@@ -141,6 +148,7 @@ Command |  Description |  Usage
 `>>remind`  |  Sets a timer in seconds and displays the message inputted after it's done.  |  `>>remind 15 LEEEEROOOOY JEEEEEENKIIIIINS!`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
 `>>stats`  |  Shows the statistics of Sigma.  |  `>>stats`
+`>>ingame`  |  Shows the top played games on the server.  |  `>>ingame`
 `>>weather`  |  Shows weather data for the selected location. Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.  |  `>>weather Melbourne Australia`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
 `>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
@@ -154,10 +162,12 @@ Command |  Description |  Usage
 `>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
 `>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
 `>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
+`>>poll`  |  Creates a poll with the items from the inputted list. Separate list items with a semicolon and a space.  |  `>>poll Want to eat?; Yes; No; Hand me the cheese`
 `>>wa`  |  Makes a request to Wolfram Alpha and exports the result.  |  `>>wa 69+42`
 `>>whoplays`  |  Generates a list of users playing the inputted game.  |  `>>whoplays League of Salt`
 `>>avatar`  |  Shows the avatar of the user. (in the form of a direct link)  |  `>>avatar @person`
 `>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
+`>>colour`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>colour 1ABC9C`
 `>>twitch`  |  Fetches information about a streamer.  |  `>>twitch`

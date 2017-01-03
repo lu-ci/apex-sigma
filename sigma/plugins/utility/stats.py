@@ -1,13 +1,13 @@
 from sigma.core.stats import stats as sigma_stats
 from sigma.core.formatting import codeblock
-import asyncio
+import discord
+
 
 async def stats(cmd, message, args):
+    sigma_avatar = cmd.bot.user.avatar_url
     out = sigma_stats(cmd.bot)
-
+    embed = discord.Embed(color=0x1abc9c)
+    embed.set_author(name='Apex Sigma', url='https://auroraproject.xyz/', icon_url=sigma_avatar)
     out_txt = codeblock('\n'.join(out), syntax='haskell')
-
-    stats_msg = await cmd.bot.send_message(message.channel, out_txt)
-    await asyncio.sleep(60)
-    await cmd.bot.delete_message(message)
-    await cmd.bot.delete_message(stats_msg)
+    embed.add_field(name='Stats', value=out_txt)
+    await cmd.bot.send_message(message.channel, None, embed=embed)
