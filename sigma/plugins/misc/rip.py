@@ -1,4 +1,5 @@
 import requests
+import os
 from PIL import Image
 from io import BytesIO
 
@@ -19,8 +20,10 @@ async def rip(cmd, message, args):
     base = Image.open(cmd.resource('img/base.png'))
     tomb = Image.open(cmd.resource('img/tombstone.png'))
     avatar_img = Image.open(BytesIO(user_avatar))
-    base.paste(avatar_img, (52, 160))
+    avatar_img = avatar_img.resize((108, 108), Image.ANTIALIAS)
+    base.paste(avatar_img, (60, 164))
     base.paste(tomb, (0, 0), tomb)
-    base.save('cache/rip/rip_' + message.author.id + '.png')
+    base.save('cache/rip_' + message.author.id + '.png')
 
-    await cmd.bot.send_file(message.channel, 'cache/rip/rip_' + message.author.id + '.png')
+    await cmd.bot.send_file(message.channel, 'cache/rip_' + message.author.id + '.png')
+    os.remove('cache/rip_' + message.author.id + '.png')
