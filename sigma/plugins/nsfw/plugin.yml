@@ -63,21 +63,6 @@ commands:
       it gives three random image. If the wanted tag contains spaces type it
       with an underscore instead as spaces are used to separate multiple tags.
 
-  - name:     ehentai
-    global:   true
-    enabled:  false
-    sfw:      false
-
-  - name:     hentaims
-    global:   true
-    enabled:  false
-    sfw:      false
-
-  - name:     e621
-    global:   true
-    enabled:  false
-    sfw:      false
-
   - name:     nhentai
     global:   true
     enabled:  true

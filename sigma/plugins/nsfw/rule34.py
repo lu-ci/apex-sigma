@@ -1,4 +1,5 @@
 import requests
+import discord
 import random
 from lxml import html
 
@@ -14,8 +15,13 @@ async def rule34(cmd, message, args):
         data = requests.get(r34_url)
         posts = html.fromstring(data.content)
         choice = random.choice(posts)
-
-        await cmd.bot.send_message(message.channel, str(choice.attrib['file_url']).replace('//', 'http://'))
+        url = str(choice.attrib['file_url']).replace('//', 'http://')
+        embed = discord.Embed(color=0x9933FF)
+        embed.set_image(url=url)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
     except Exception as e:
         cmd.log.info(e)
-        await cmd.bot.send_message(message.channel, 'Nothing found...')
+        embed = discord.Embed(color=0x696969, title=':mag: Search for ' + tags + ' yielded no results.')
+        embed.set_footer(
+            text='Remember to replace spaces in tags with an underscore, as a space separates multiple tags')
+        await cmd.bot.send_message(message.channel, None, embed=embed)
