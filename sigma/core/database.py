@@ -149,8 +149,6 @@ class Database(object):
                 'UserID': user.id,
                 'ServerID': server.id,
                 'Points': 0,
-                'UserName': user.name,
-                'Avatar': user.avatar_url,
                 'Level': 0
             }
             finddata_results = self.db[collection].find(finddata)
@@ -167,8 +165,6 @@ class Database(object):
                 updatetarget = {"UserID": user.id, "ServerID": server.id}
                 updatedata = {"$set": {
                     "Points": new_pts,
-                    'UserName': user.name,
-                    'Avatar': user.avatar_url,
                     'Level': level
                 }}
                 self.db[collection].update_one(updatetarget, updatedata)
@@ -186,8 +182,6 @@ class Database(object):
                 'UserID': user.id,
                 'ServerID': server.id,
                 'Points': 0,
-                'UserName': user.name,
-                'Avatar': user.avatar_url,
                 'Level': 0
             }
             finddata_results = self.db[collection].find(finddata)
@@ -204,8 +198,6 @@ class Database(object):
                 updatetarget = {"UserID": user.id, "ServerID": server.id}
                 updatedata = {"$set": {
                     "Points": new_pts,
-                    'UserName': user.name,
-                    'Avatar': user.avatar_url,
                     'Level': level
                 }}
                 self.db[collection].update_one(updatetarget, updatedata)
@@ -228,6 +220,52 @@ class Database(object):
             else:
                 points = target['Points']
                 return points
+
+    def refactor_users(self, usrgen):
+        self.db['UserList'].drop()
+        for user in usrgen:
+            data = {
+                'UserID': user.id,
+                'UserName': user.name,
+                'Avatar': user.avatar_url,
+                'Discriminator': user.discriminator
+            }
+            self.db['UserList'].insert_one(data)
+
+    def refactor_servers(self, servers):
+        self.db['ServerList'].drop()
+        for server in servers:
+            data = {
+                'ServerID': server.id,
+                'Icon': server.icon_url,
+                'ServerName': server.name,
+                'Owner': server.owner.name,
+                'OwnerID': server.owner.id
+            }
+            self.db['ServerList'].insert_one(data)
+
+    def update_server_details(self, server):
+        data = {
+            'ServerID': server.id,
+            'Icon': server.icon_url,
+            'ServerName': server.name,
+            'Owner': server.owner.name,
+            'OwnerID': server.owner.id
+        }
+        updatetarget = {'ServerID': server.id}
+        updatedata = {'$set': data}
+        self.db['ServerList'].update_one(updatetarget, updatedata)
+
+    def update_user_details(self, user):
+        data = {
+            'UserID': user.id,
+            'UserName': user.name,
+            'Avatar': user.avatar_url,
+            'Discriminator': user.discriminator
+        }
+        updatetarget = {'User': user.id}
+        updatedata = {'$set': data}
+        self.db['UserList'].update_one(updatetarget, updatedata)
 
     def init_server_settings(self, servers):
         if self.db:

@@ -80,10 +80,16 @@ class Sigma(discord.Client):
         for srv in self.servers:
             servers.append(srv)
         self.db.init_server_settings(servers)
+        user_generator = self.get_all_members()
+        self.db.refactor_users(user_generator)
+        self.db.refactor_servers(servers)
         self.log.info('-----------------------------------')
         self.log.info('Successfully connected to Discord!')
 
     async def on_message(self, message):
+        self.db.update_user_details(message.author)
+        if message.server:
+            self.db.update_server_details(message.server)
         self.change_presence()
         self.db.add_stats('MSGCount')
         args = message.content.split(' ')
@@ -128,4 +134,5 @@ class Sigma(discord.Client):
 
     async def on_server_join(self, server):
         self.db.add_new_server_settings(server)
+        self.db.update_user_details(server)
         self.log.info('New Server Added: ' + server.name)
