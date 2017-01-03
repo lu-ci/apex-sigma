@@ -1,4 +1,5 @@
 import requests
+import discord
 
 
 async def jisho(cmd, message, *args):
@@ -7,7 +8,9 @@ async def jisho(cmd, message, *args):
     request = requests.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q)
 
     if request.text.find('503 Service Unavailable') != -1:
-        await cmd.bot.send_message(message.channel, 'Jisho responded with 503 Service Unavailable')
+        embed_content = discord.Embed(title=':exclamation: Jisho responded with 503 Service Unavailable.',
+                                      color=0xDB0000)
+        await cmd.bot.send_message(message.channel, None, embed=embed_content)
         return
 
     request = request.json()
@@ -16,7 +19,9 @@ async def jisho(cmd, message, *args):
     if request['data']:
         request = request['data'][0]
     else:
-        await cmd.bot.send_message(message.channel, "Sorry, couldn't find anything matching `{}`".format(jisho_q))
+        embed_content = discord.Embed(title="Sorry, couldn't find anything matching `{}`".format(jisho_q),
+                                      color=0xDB0000)
+        await cmd.bot.send_message(message.channel, None, embed=embed_content)
         return
 
     output = '```'
@@ -73,7 +78,7 @@ async def jisho(cmd, message, *args):
     if len(request['senses']) > 5:
         hidden = len(request['senses']) - 5
         if hidden == 1:
-            output += '\n- {} definition is hidden' .format(hidden)
+            output += '\n- {} definition is hidden'.format(hidden)
         else:
             output += '\n- {} definitions are hidden'.format(hidden)
 
@@ -87,5 +92,6 @@ async def jisho(cmd, message, *args):
         output += '\n\nOther forms ' + other_forms[:-1] + '```'  # account for extra comma
     else:
         output += '```'
-
-    await cmd.bot.send_message(message.channel, output)
+    embed = discord.Embed(color=0x1abc9c)
+    embed.add_field(name=':books: Search for ' + jisho_q, value=output)
+    await cmd.bot.send_message(message.channel, None, embed=embed)
