@@ -37,6 +37,7 @@ Command |  Description |  Usage
 `>>rps`  |  Play Rock-Paper-Scissors with the bot. No cheating, we swear. Maybe she just doesn't like you.  |  `>>rps Rock`
 `>>slots`  |  Spin the slot machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>slots`
 `>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the sloths machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sloths`
+`>>sluts`  |  Same as slots, but with icons associated with women... Do not ask why this is a thing, it just is, i regret everything. Spin the sluts machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sluts`
 ###MISC
 Command |  Description |  Usage
 --------|--------------|-------
