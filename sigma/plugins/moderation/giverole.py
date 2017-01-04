@@ -32,7 +32,6 @@ async def giverole(cmd, message, args):
             await cmd.bot.add_roles(target_user, target_role)
             out_content = discord.Embed(type='rich', color=0x66cc66,
                                         title=':white_check_mark: Role ' + role_qry + ' given to **' + target_user.name + '**.')
-            await cmd.bot.create_role(message.server, name=role_qry)
             await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
             out_content = discord.Embed(type='rich', color=0xFF9900, title=':exclamation: Error')
