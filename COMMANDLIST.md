@@ -125,6 +125,9 @@ Command |  Description |  Usage
 `>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
 `>>danbooru`  |  Searches DanBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>danbooru red_head`
 `>>hentai`  |  Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified, it gives three random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
+`>>e621`  |  Searches e621 for the given tags. If not tag is given, it will display a random image.  |  `>>e621 knot_safe`
+`>>konachan`  |  Searches Konachan for the given tags. If not tag is given, it will display a random image.  |  `>>konachan kawaii`
+`>>yandere`  |  Searches Yande.Re for the given tags. If not tag is given, it will display a random image.  |  `>>yandere kawaii`
 `>>boobs`  |  Outputs a random image with boobs, naturally NSFW.  |  `>>boobs`
 `>>butts`  |  LOOK AT ALL THE FINE ASS. Mmmm... Aaaaasssss~  |  `>>butts`
 `>>nhentai`  |  Searches nHentai for doujinshi for the inputed name. Displays the results, cover and tags.  |  `>>nhentai Oreimo`

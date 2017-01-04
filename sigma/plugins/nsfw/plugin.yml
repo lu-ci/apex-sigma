@@ -81,6 +81,15 @@ commands:
       Searches Konachan for the given tags.
       If not tag is given, it will display a random image.
 
+  - name:    yandere
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s} kawaii"
+    description:
+      Searches Yande.Re for the given tags.
+      If not tag is given, it will display a random image.
+
   - name:    boobs
     global:  true
     enabled: true
