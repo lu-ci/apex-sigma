@@ -63,6 +63,22 @@ commands:
       it gives three random image. If the wanted tag contains spaces type it
       with an underscore instead as spaces are used to separate multiple tags.
 
+  - name:    boobs
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random image with boobs, naturally NSFW.
+
+  - name:    butts
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      LOOK AT ALL THE FINE ASS. Mmmm... Aaaaasssss~
+
   - name:     nhentai
     global:   true
     enabled:  true
