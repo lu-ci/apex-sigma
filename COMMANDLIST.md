@@ -44,6 +44,11 @@ Command |  Description |  Usage
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
 `>>ranking`  |  Shows the link for the servers point leaderboard.  |  `>>ranking`
 `>>give`  |  Transfer a chosen amount of points between you and the mentioned user.  |  `>>give 50 @person`
+`>>toggleshop`  |  Activates or Deactivates the shop on the server. (Server Administrator Only)  |  `>>toggleshop`
+`>>shopadd`  |  Adds an item to the servers role shop. The items here can be purchased with the points you get from activity and gambling. (Server Administrator Only)  |  `>>shopadd 15000 Glitch King`
+`>>shopremove`  |  Removes an item from the servers role shop. (Server Administrator Only)  |  `>>shopremove Glitch Prince`
+`>>shoplist`  |  Shows the list of roles purchasable on the current server.  |  `>>shoplist`
+`>>shopbuy`  |  Buys an item from the shop by item name.  |  `>>shopbuy That One Guy`
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`

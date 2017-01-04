@@ -7,4 +7,6 @@ async def osu(cmd, message, args):
     sig_url = 'https://lemmmy.pw/osusig/sig.php?colour=hex' + user_color + '&uname=' + osu_input
     embed = discord.Embed(color=message.author.color)
     embed.set_image(url=sig_url)
+    embed.set_author(name=osu_input.upper() + '\'s Osu! Profile', url='https://osu.ppy.sh/u/' + osu_input,
+                     icon_url='http://w.ppy.sh/c/c9/Logo.png')
     await cmd.bot.send_message(message.channel, None, embed=embed)
