@@ -70,6 +70,20 @@ commands:
       Can only be spun once every 20 seconds.
       Only the middle row counts, as indicated by the arrows.
 
+  - name: sluts
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Same as slots, but with icons associated with women...
+      Do not ask why this is a thing, it just is, i regret everything.
+      Spin the sluts machine and test your luck!
+      Costs 10 points to spin.
+      Rewards 200 for 2 matching, and 4000 for 3 matching.
+      Can only be spun once every 20 seconds.
+      Only the middle row counts, as indicated by the arrows.
+
 events:
   - name:    random_event_control
     type:    message
