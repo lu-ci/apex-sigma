@@ -38,6 +38,15 @@ commands:
     description:
       Transfer a chosen amount of points between you and the mentioned user.
 
+  - name: toggleshop
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Activates or Deactivates the shop on the server.
+      (Server Administrator Only)
+
   - name:    quote
     global:  true
     enabled: true
