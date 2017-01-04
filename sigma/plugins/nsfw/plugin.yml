@@ -63,6 +63,15 @@ commands:
       it gives three random image. If the wanted tag contains spaces type it
       with an underscore instead as spaces are used to separate multiple tags.
 
+  - name:    e621
+    global:  true
+    enabled: true
+    sfw:     false
+    usage:   "{pfx:s}{cmd:s} knot_safe"
+    description:
+      Searches e621 for the given tags.
+      If not tag is given, it will display a random image.
+
   - name:    boobs
     global:  true
     enabled: true
