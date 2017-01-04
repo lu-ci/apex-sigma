@@ -74,6 +74,14 @@ commands:
     description:
       Shows the list of roles purchasable on the current server.
 
+  - name: shopbuy
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} That One Guy"
+    description:
+      Buys an item from the shop by item name.
+
   - name:    quote
     global:  true
     enabled: true
