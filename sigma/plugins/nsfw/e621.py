@@ -7,7 +7,7 @@ import requests
 async def e621(cmd, message, args):
     url_base = 'http://e621.net/post/index.xml'
     if args:
-        url = url_base + '?tags=' + '+'.join(args).replace(' ', '_')
+        url = url_base + '?tags=' + '+'.join(args)
     else:
         url = url_base + '?tags=nude'
     data = requests.get(url).content
