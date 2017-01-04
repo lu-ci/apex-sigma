@@ -66,6 +66,14 @@ commands:
       Removes an item from the servers role shop.
       (Server Administrator Only)
 
+  - name: shoplist
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the list of roles purchasable on the current server.
+
   - name:    quote
     global:  true
     enabled: true
