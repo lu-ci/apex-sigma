@@ -25,6 +25,6 @@ async def help(cmd, message, args):
             help_out.add_field(name=args[0].title(), value=cmd.bot.plugin_manager.commands[args[0]].help())
             await cmd.bot.send_message(message.channel, None, embed=help_out)
         except:
-            out_content = discord.Embed(type='rich', color=0xDB0000,
+            out_content = discord.Embed(type='rich', color=0x696969,
                                         title=':mag: No such command was found...')
             await cmd.bot.send_message(message.channel, None, embed=out_content)
