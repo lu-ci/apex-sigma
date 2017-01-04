@@ -19,7 +19,7 @@ async def colour(cmd, message, args):
                 return
         else:
             try:
-                clr = str(args[0])
+                clr = str(args[0]).replace('#', '')
                 part1 = clr[:2]
                 part1 = int(part1, 16)
                 part2 = clr[2:-2]
