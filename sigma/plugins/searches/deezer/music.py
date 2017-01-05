@@ -44,33 +44,27 @@ async def music(cmd, message, args):
             album = album[:19] + '...'
         cover = album_data['cover_medium']
         cover = cover.replace('250x250', '128x128')
-        try:
-            artist_photo_raw = requests.get(photo).content
-            artist_photo = Image.open(BytesIO(artist_photo_raw))
-            cover_art_raw = requests.get(cover).content
-            cover_art = Image.open(BytesIO(cover_art_raw))
-            base = Image.open(cmd.resource('img/base.png'))
-            overlay = Image.open(cmd.resource('img/overlay.png'))
-            base.paste(artist_photo, (0, 0))
-            base.paste(cover_art, (512, 0))
-            base.paste(overlay, (0, 0), overlay)
-            font = ImageFont.truetype("NotoSansCJKjp-Medium.otf", 24)
-            font2 = ImageFont.truetype("NotoSansCJKjp-Medium.otf", 20)
+        artist_photo_raw = requests.get(photo).content
+        artist_photo = Image.open(BytesIO(artist_photo_raw))
+        cover_art_raw = requests.get(cover).content
+        cover_art = Image.open(BytesIO(cover_art_raw))
+        base = Image.open(cmd.resource('img/base.png'))
+        overlay = Image.open(cmd.resource('img/overlay.png'))
+        base.paste(artist_photo, (0, 0))
+        base.paste(cover_art, (512, 0))
+        base.paste(overlay, (0, 0), overlay)
+        font = ImageFont.truetype("NotoSansCJKjp-Medium.otf", 24)
+        font2 = ImageFont.truetype("NotoSansCJKjp-Medium.otf", 20)
 
-            imgdraw = ImageDraw.Draw(base)
-            imgdraw.text((132, -5), artist, (255, 255, 255), font=font)
-            imgdraw.text((165, 44), title, (255, 255, 255), font=font)
-            imgdraw.text((262, 92), album, (255, 255, 255), font=font)
-            imgdraw.text((424, 46), duration, (255, 255, 255), font=font2)
+        imgdraw = ImageDraw.Draw(base)
+        imgdraw.text((132, -5), artist, (255, 255, 255), font=font)
+        imgdraw.text((165, 44), title, (255, 255, 255), font=font)
+        imgdraw.text((262, 92), album, (255, 255, 255), font=font)
+        imgdraw.text((424, 46), duration, (255, 255, 255), font=font2)
 
-            base.save('cache/track_' + message.author.id + '.png')
+        base.save('cache/track_' + message.author.id + '.png')
 
-            await cmd.bot.send_file(message.channel, 'cache/track_' + message.author.id + '.png')
-            await cmd.bot.send_message(message.channel, 'Track Preview: <' + preview + '>')
+        await cmd.bot.send_file(message.channel, 'cache/track_' + message.author.id + '.png')
+        await cmd.bot.send_message(message.channel, 'Track Preview: <' + preview + '>')
 
-            os.remove('cache/track_' + message.author.id + '.png')
-
-        except Exception as e:
-            cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, str(e).encode('utf-8'))
-            return
+        os.remove('cache/track_' + message.author.id + '.png')
