@@ -65,6 +65,7 @@ class Sigma(discord.Client):
 
     async def on_ready(self):
         self.log.info('Checking API Keys...')
+        self.db.init_stats_table()
         gamename = self.prefix + 'help'
         game = discord.Game(name=gamename)
         await self.change_presence(game=game)
@@ -83,6 +84,7 @@ class Sigma(discord.Client):
         user_generator = self.get_all_members()
         self.db.refactor_users(user_generator)
         self.db.refactor_servers(servers)
+        self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('-----------------------------------')
         self.log.info('Successfully connected to Discord!')
 
@@ -127,12 +129,15 @@ class Sigma(discord.Client):
     async def on_member_join(self, member):
         for ev_name, event in self.plugin_manager.events['member_join'].items():
             self.db.update_user_details(member)
+            self.db.update_population_stats(self.servers, self.get_all_members())
             await event.call_sp(member)
 
     async def on_member_remove(self, member):
         for ev_name, event in self.plugin_manager.events['member_leave'].items():
+            self.db.update_population_stats(self.servers, self.get_all_members())
             await event.call_sp(member)
 
     async def on_server_join(self, server):
         self.db.add_new_server_settings(server)
+        self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('New Server Added: ' + server.name)
