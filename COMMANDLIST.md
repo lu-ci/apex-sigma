@@ -17,7 +17,6 @@ Command |  Description |  Usage
 `>>steam`  |  Generates a a Steam Signature for the inputed Steam Community ID, the profile must not be private!  |  `>>steam thealeksaradovic`
 `>>es`  |  Vindictus Enchant Scroll Search.  |  `>>es Righteous`
 `>>wows`  |  Shows World of Warships statistics and information for the given username.  |  `>>wows eu metallicadutch`
-`>>wowchar`  |  Shows World of Warcraft Character information and equipment.  |  `>>wowchar EU Doomhammer Takamatsuku`
 ###FUN
 Command |  Description |  Usage
 --------|--------------|-------
