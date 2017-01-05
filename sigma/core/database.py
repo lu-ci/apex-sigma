@@ -267,40 +267,27 @@ class Database(object):
         updatedata = {'$set': data}
         self.db['UserList'].update_one(updatetarget, updatedata)
 
-    def init_server_settings(self, servers):
-        if self.db:
-            for server in servers:
-                search = self.db['ServerSettings'].find({'ServerID': server.id})
-                n = 0
-                for res in search:
-                    n += 1
-                if n == 0:
-                    default_settings = {
-                        'ServerID': server.id,
-                        'Greet': True,
-                        'GreetMessage': 'Hello %user_mention%, welcome to %server_name%',
-                        'GreetChannel': server.default_channel.id,
-                        'GreetPM': False,
-                        'Bye': True,
-                        'ByeMessage': '%user_mention% has left the server.',
-                        'ByeChannel': server.default_channel.id,
-                        'CleverBot': True,
-                        'Unflip': False,
-                        'ShopEnabled': True,
-                        'ShopItems': [],
-                        'RandomEvents': False,
-                        'EventChance': 1,
-                        'ChatAnalysis': True,
-                        'MarkovCollect': True,
-                        'BlockInvites': False,
-                        'AntiSpam': False,
-                        'IsBlacklisted': False,
-                        'BlacklistedChannels': [],
-                        'BlacklistedUsers': [],
-                        'AutoRole': None,
-                        'SelfRoles': []
-                    }
-                    self.db['ServerSettings'].insert_one(default_settings)
+    def init_stats_table(self):
+        search = self.db['Stats'].find_one({'Role': 'Stats'})
+        if not search:
+            self.db['Stats'].insert_one({'Role': 'Stats'})
+        else:
+            return
+
+    def update_population_stats(self, servers, members):
+        collection = 'Stats'
+        server_count = 0
+        member_count = 0
+        for server in servers:
+            server_count += 1
+        for member in members:
+            member_count += 1
+        updatetarget = {"Role": 'Stats'}
+        updatedata = {"$set": {'ServerCount': server_count}}
+        self.db[collection].update_one(updatetarget, updatedata)
+        updatetarget = {"Role": 'Stats'}
+        updatedata = {"$set": {'UserCount': member_count}}
+        self.db[collection].update_one(updatetarget, updatedata)
 
     def add_new_server_settings(self, server):
         if self.db:
@@ -335,6 +322,11 @@ class Database(object):
                     'SelfRoles': []
                 }
                 self.db['ServerSettings'].insert_one(default_settings)
+
+    def init_server_settings(self, servers):
+        if self.db:
+            for server in servers:
+                self.add_new_server_settings(server)
 
     def get_settings(self, server_id, setting):
         if self.db:
