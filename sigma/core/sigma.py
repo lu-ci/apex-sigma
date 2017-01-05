@@ -104,7 +104,7 @@ class Sigma(discord.Client):
             await event.call(message, args)
 
         if message.content.startswith(pfx):
-            cmd = args.pop(0).lstrip(pfx)
+            cmd = args.pop(0).lstrip(pfx).lower()
 
             try:
                 task = self.plugin_manager.commands[cmd].call(message, args)
