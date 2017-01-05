@@ -92,15 +92,37 @@ events:
         points: 250
         result_text: "Since you never tried anything nuanced you always just lived in your masters shadow and deeply regret the choices you made in life."
   - event_text:
-      "While riding in the elevator the power goes out and you don't have your phone with you.
-      The store downstairs is having a Doritos sale and is closing in 10 minutes. What shall you do?"
+      "You see 2 low level slimes in the distance while scavanging for food, what do you do?"
     choices:
-      - choice_text: "Try to pry open the door."
-        positive: false
-        points: 500
-        result_text: "Trying to open the doors leads to the elevator suddenly jerking and rising a bit.
-        Now it is stuck between floors and an even bigger problem to fix than before."
-      - choice_text: "Wait for somebody to notice and fix the elevator."
+      - choice_text: "Go Around Them"
         positive: true
-        points: 400
-        result_text: "You succeeded in creating a new, great alloy and will soon be known all throughout the land as the greatest blacksmith to ever exist."
+        points: 200
+        result_text: "You take a detour and find a grove filled with berry bushes."
+      - choice_text: "Fight Them"
+        positive: true
+        points: 450
+        result_text: "Mamma slime drops down on you from the tree above. You end up nearly suffocated in her goo."
+      - choice_text: "Turn Back"
+        positive: true
+        points: 10
+        result_text: "A strongly uneventful day. You did return with food safely, however."
+  - event_text:
+      "This really weird girl is sitting on a bench in the park across the street each and every night for the past week. What will you do?"
+    choices:
+      - choice_text: "Mind Your Own Business"
+        positive: false
+        points: 250
+        result_text: "You never saw her again, rumors say she simply moved away."
+      - choice_text: "Bring Her Some Tea And Hang Out"
+        positive: true
+        points: 600
+        result_text: "She initially tries to turn you down but the two of you end up chatting for hours. You gained a new friend!"
+      - choice_text: "Go And Ask If She Is Ok"
+        positive: true
+        points: 250
+        result_text: "She finds your intrusion a bit unsettling. You explain that you live across the street and how you felt curious.
+                      She tells you she used to live there as a child and enjoys spending time at the place that was once her playground."
+      - choice_text: "Confront Her Agressively"
+        positive: false
+        points: 350
+        result_text: "You raise your voice as you approach her. She ends up being frightened, the next second, you are face down on the ground... Do not randomly pick fights..."
