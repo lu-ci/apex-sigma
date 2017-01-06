@@ -38,6 +38,13 @@ commands:
     description:
       Shows the statistics of Sigma.
 
+  - name:    md5
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Hashes whatever you input with md5.
+
   - name:    ingame
     global:  true
     enabled: true
