@@ -196,7 +196,7 @@ async def draw_image(cmd, message, user, clr):
         imgdraw.text(review_pos, str(user['reviews'][
                      'now']), review_color, font=review_font)
 
-    tmp_file = 'cache/ani/wk_{:s}.png'.format(message.author.id)
+    tmp_file = 'cache/wk_{:s}.png'.format(message.author.id)
     base.save(tmp_file)
     await cmd.bot.send_file(message.channel, tmp_file)
     os.remove(tmp_file)
