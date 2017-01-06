@@ -1,0 +1,37 @@
+name: Moderation
+
+categories:
+  - moderation
+
+enabled: true
+
+events:
+  - name:    log_message
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    usage:   "Activated upon a user sending a message."
+    description:
+      Controls message logging.
+
+  - name:    log_member_join
+    type:    member_join
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user joining the server."
+    description:
+      Controls leave logging.
+
+  - name:    log_member_leave
+    type:    member_leave
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user leaving the server."
+    description:
+      Controls leave logging.

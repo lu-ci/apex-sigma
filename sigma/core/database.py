@@ -35,6 +35,11 @@ class Database(object):
             result = self.db[collection].find(data)
             return result
 
+    def find_one(self, collection, data):
+        if self.db:
+            result = self.db[collection].find_one(data)
+            return result
+
     def update_one(self, collection, target, data):
         if self.db:
             self.db[collection].update_one(target, data)
@@ -135,6 +140,45 @@ class Database(object):
                 last_stamp = target['LastTimestamp']
                 cd_time = (last_stamp + cooldown) - curr_stamp
                 return cd_time
+
+    def log_message(self, message):
+        logdata = {
+            'Type': 'Message',
+            'ServerID': message.server.id,
+            'ServerName': message.server.name,
+            'ChannelID': message.channel.id,
+            'ChannelName': message.channel.name,
+            'MessageID': message.id,
+            'AuthorID': message.author.id,
+            'AuthorName': message.author.name,
+            'AuthorDiscriminator': message.author.discriminator,
+            'Content': message.content,
+            'Timestamp': int(time.time())
+        }
+        if message.attachments:
+            att_url = message.attachments[0]['url']
+            logdata.update({'AttachmentURL': att_url})
+        self.db['Logs'].insert_one(logdata)
+
+    def member_log_data_gen(self, log_type, member):
+        logdata = {
+            'Type': log_type,
+            'ServerID': member.server.id,
+            'ServerName': member.server.name,
+            'MemberID': member.id,
+            'MemberName': member.name,
+            'MemberDiscriminator': member.discriminator,
+            'Timestamp': int(time.time())
+        }
+        return logdata
+
+    def log_join(self, member):
+        logdata = self.member_log_data_gen('MemberJoin', member)
+        self.db['Logs'].insert_one(logdata)
+
+    def log_leave(self, member):
+        logdata = self.member_log_data_gen('MemberLeave', member)
+        self.db['Logs'].insert_one(logdata)
 
     def add_points(self, server, user, points):
         if self.db:
@@ -319,7 +363,8 @@ class Database(object):
                     'BlacklistedChannels': [],
                     'BlacklistedUsers': [],
                     'AutoRole': None,
-                    'SelfRoles': []
+                    'SelfRoles': [],
+                    'LoggingEnabled': False
                 }
                 self.db['ServerSettings'].insert_one(default_settings)
 
