@@ -36,6 +36,14 @@ async def bjdraw(cmd, message, args):
     embed.add_field(name=em_p_nam, value=em_p_val)
     embed.add_field(name=em_h_nam, value=em_h_val)
 
+    if new_h_score == 21 or new_p_score > 21:
+        embed = discord.Embed(color=0xDB0000, title=':exclamation: You lost!')
+        embed.add_field(name=em_p_nam, value=em_p_val)
+        embed.add_field(name=em_h_nam, value=em_h_val)
+        del_bj(instance['InstanceID'])
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
+
     if new_p_score == 21 or new_h_score > 21:
         prize = (instance['Bet'] // 5) + instance['Bet']
         cmd.db.add_points(message.server, message.author, prize)
@@ -43,13 +51,6 @@ async def bjdraw(cmd, message, args):
         embed.add_field(name=em_p_nam, value=em_p_val)
         embed.add_field(name=em_h_nam, value=em_h_val)
         embed.set_footer(text='You have been awarded ' + str(prize) + ' points.')
-        del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
-        return
-    if new_h_score == 21 or new_p_score > 21:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: You lost!')
-        embed.add_field(name=em_p_nam, value=em_p_val)
-        embed.add_field(name=em_h_nam, value=em_h_val)
         del_bj(instance['InstanceID'])
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
