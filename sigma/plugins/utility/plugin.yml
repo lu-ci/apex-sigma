@@ -42,6 +42,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    usage:   "{pfx:s}{cmd:s} I like cheese and spaghetti code!"
     description:
       Hashes whatever you input with md5.
 

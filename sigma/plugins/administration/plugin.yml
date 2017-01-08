@@ -16,27 +16,6 @@ commands:
       It will post your inputed message to the default text channel of every server the bot is connected to.
       Bot Owner Only.
 
-  - name: ping
-    global:  true
-    enabled: true
-    sfw:     true
-    admin:   true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows the latency between the server hosting the bot and Google.
-      Windows host only for now.
-      Bot Owner Only.
-
-  - name: status
-    global:  true
-    enabled: true
-    sfw:     true
-    admin:   true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Show the CPU statistics of the machine running the bot.
-      Bot Owner Only.
-
   - name: leave
     global:  true
     enabled: true

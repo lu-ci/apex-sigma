@@ -53,7 +53,6 @@ Command |  Description |  Usage
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
 `>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
-`>>keyroute`  |  Shows the choices to make in a Visual Arts Key visual novel to get the desired characters route. This applies to Air, Clannad, Tomoyo After, Little Busters, Little Busters EX, Kud Wafter, Rewrite, Rewrite Harvest Festa, Angel Beats, One, Moon, Dousei. Even if the VN has only one route, the route name is still required. Examples being Kud in Kud Wafter and Tomoyo in Tomoyo After. Some Visual Novels are way too huge for me to make custom route files for so I provided their mega walkthroughs. Examples being Clannad, Little Busters and Rewrite. Warning! Contains a FUCKTON of spoilers, like, serious bullshittery.  |  `>>keyroute Rewrite Shizuru`
 `>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
 ###MODERATION
 Command |  Description |  Usage
@@ -162,6 +161,7 @@ Command |  Description |  Usage
 `>>remind`  |  Sets a timer in seconds and displays the message inputted after it's done.  |  `>>remind 15 LEEEEROOOOY JEEEEEENKIIIIINS!`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
 `>>stats`  |  Shows the statistics of Sigma.  |  `>>stats`
+`>>md5`  |  Hashes whatever you input with md5.  |  `>>md5 I like cheese and spaghetti code!`
 `>>ingame`  |  Shows the top played games on the server.  |  `>>ingame`
 `>>weather`  |  Shows weather data for the selected location. Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.  |  `>>weather Melbourne Australia`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
