@@ -59,7 +59,7 @@ async def league(cmd, message, args):
         imgdraw.text((130, 38), smnr_name, (255, 255, 255), font=font)
         imgdraw.text((130, 70), league_name + ' - ' + league_tier, (255, 255, 255), font=font2)
         imgdraw.text((326, 38), smnr_lvl, (255, 255, 255), font=font3)
-        base.save('cache\lol_profile_' + message.author.id + '.png')
+        base.save('cache/lol_profile_' + message.author.id + '.png')
         # Image End
 
         try:
