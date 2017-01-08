@@ -14,6 +14,11 @@ async def bjfold(cmd, message, args):
     p_pts = instance['PlayerScore']
     h_pts = instance['HouseScore']
 
+    if h_pts > p_pts:
+        embed = discord.Embed(color=0xDB0000, title=':exclamation: You folded while the dealer was ahead!')
+        del_bj(instance['InstanceID'])
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
     player_drawn = random.choice(deck)
     p_sym, p_suit, p_val = player_drawn
     deck.remove(player_drawn)
@@ -29,6 +34,7 @@ async def bjfold(cmd, message, args):
     em_h_nam = 'Dealer Drew ' + h_suit + h_sym
     new_h_score = h_pts + h_val
     em_h_val = '```yaml\nHouse Score: \n  - ' + str(new_h_score) + '\n```'
+
 
     while new_h_score <= new_p_score:
         bj_data = {
