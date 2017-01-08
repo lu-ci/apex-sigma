@@ -35,7 +35,6 @@ async def bjfold(cmd, message, args):
     new_h_score = h_pts + h_val
     em_h_val = '```yaml\nHouse Score: \n  - ' + str(new_h_score) + '\n```'
 
-
     while new_h_score <= new_p_score:
         bj_data = {
             'InstanceID': instance['InstanceID'],
@@ -52,18 +51,18 @@ async def bjfold(cmd, message, args):
         em_h_nam = 'Dealer Drew ' + h_suit + h_sym
         new_h_score += h_val
         em_h_val = '```yaml\nHouse Score: \n  - ' + str(new_h_score) + '\n```'
-        if new_h_score > 21:
-            prize = (instance['Bet'] // 5) + instance['Bet']
-            cmd.db.add_points(message.server, message.author, prize)
-            embed = discord.Embed(color=0x0099FF, title=':gem: The dealer busted out!')
-            embed.add_field(name=em_p_nam, value=em_p_val)
-            embed.add_field(name=em_h_nam, value=em_h_val)
-            embed.set_footer(text='You have been awarded ' + str(prize) + ' points.')
-            del_bj(instance['InstanceID'])
-            await cmd.bot.send_message(message.channel, None, embed=embed)
-            break
-    embed = discord.Embed(color=0xDB0000, title=':exclamation: The dealer overtook you!')
-    embed.add_field(name=em_p_nam, value=em_p_val)
-    embed.add_field(name=em_h_nam, value=em_h_val)
-    del_bj(instance['InstanceID'])
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    if new_h_score > 21:
+        prize = (instance['Bet'] // 5) + instance['Bet']
+        cmd.db.add_points(message.server, message.author, prize)
+        embed = discord.Embed(color=0x0099FF, title=':gem: The dealer busted out!')
+        embed.add_field(name=em_p_nam, value=em_p_val)
+        embed.add_field(name=em_h_nam, value=em_h_val)
+        embed.set_footer(text='You have been awarded ' + str(prize) + ' points.')
+        del_bj(instance['InstanceID'])
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+    else:
+        embed = discord.Embed(color=0xDB0000, title=':exclamation: The dealer overtook you!')
+        embed.add_field(name=em_p_nam, value=em_p_val)
+        embed.add_field(name=em_h_nam, value=em_h_val)
+        del_bj(instance['InstanceID'])
+        await cmd.bot.send_message(message.channel, None, embed=embed)
