@@ -2,6 +2,7 @@ import discord
 import hashlib
 import random
 from sigma.core.permission import check_admin
+from config import MainServerURL
 
 
 async def logs(cmd, message, args):
@@ -10,7 +11,7 @@ async def logs(cmd, message, args):
                                     title=':no_entry: Insufficient Permissions. Server Admin Only.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
-    base_url = 'https://auroraproject.xyz/'
+    base_url = MainServerURL
     admin_id = message.author.id
     server_id = message.server.id
     find_data = {
