@@ -54,7 +54,7 @@ commands:
       You can specify the amount you want to bet on the game.
       Use bjdraw to draw a card.
       Use bjfold to fold and hope the dealer busts.
-      And you can use bjquit to quit the game, in which case your buyin will be refunded.
+      And you can use bjquit to quit the game, in which case half your buyin will be refunded.
 
   - name: bjdraw
     global:  true
@@ -79,6 +79,7 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Quits your current blackjack game.
+      Refunds half of your bet value.
 
   - name: slots
     global:  true
