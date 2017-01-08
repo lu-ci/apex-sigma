@@ -33,5 +33,6 @@ reddit_pw = ''
 TwitchClientID = ''
 # Bot Prefix for Commands.
 Prefix = '>>'
+MainServerURL = 'localhost'
 # Permitted IDs.
 permitted_id = ['1234567891234569']
