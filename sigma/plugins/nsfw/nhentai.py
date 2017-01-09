@@ -47,13 +47,13 @@ async def nhentai(cmd, message, args):
 
             base.paste(nh_cover, (100, 0))
             base.paste(overlay, (0, 0), overlay)
-            base.save('cache/ani/nh_' + message.author.id + '.png')
+            base.save('cache/nh_' + message.author.id + '.png')
 
             for tags in nh.search(search)['result'][nh_no]['tags']:
                 nhen_text += '[' + str(tags['name']).title() + '] '
-            await cmd.bot.send_file(message.channel, 'cache/ani/nh_' + message.author.id + '.png')
+            await cmd.bot.send_file(message.channel, 'cache/nh_' + message.author.id + '.png')
             await cmd.bot.send_message(message.channel, 'Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
-            os.remove('cache/ani/nh_' + message.author.id + '.png')
+            os.remove('cache/nh_' + message.author.id + '.png')
 
     except nh.nhentai.nHentaiException as e:
         await cmd.bot.send_message(message.channel, e)
