@@ -86,11 +86,12 @@ async def draw_image(cmd, message, user, clr):
     clr2 = int(user_color[2:-2], 16)
     clr3 = int(user_color[4:], 16)
     clr_barier = 160
-    clr_redu = 50
-    if clr1 > clr_barier and clr2 > clr_barier and clr3 > clr_barier:
-        clr1 += - clr_redu
-        clr2 += - clr_redu
-        clr3 += - clr_redu
+    barriered_count = 0
+    clr_list = [clr1, clr2, clr3]
+    for clr in clr_list:
+        if clr > clr_barier:
+            barriered_count += 1
+    if barriered_count >= 2:
         dark = True
     transed_color = (clr1, clr2, clr3)
     rank_category, kanji_loc, ov_color, txt_color = get_rank_info(user['level'], color=transed_color)
