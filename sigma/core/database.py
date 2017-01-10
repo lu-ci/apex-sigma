@@ -343,7 +343,6 @@ class Database(object):
                 default_settings = {
                     'ServerID': server.id,
                     'Greet': True,
-                    'RequiredRole': None,
                     'GreetMessage': 'Hello %user_mention%, welcome to %server_name%',
                     'GreetChannel': server.default_channel.id,
                     'GreetPM': False,
