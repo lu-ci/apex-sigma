@@ -5,6 +5,7 @@ import discord
 import yaml
 
 from config import Prefix as pfx, MongoAddress, MongoPort
+from sigma.core.rolecheck import user_matching_role
 
 from .plugman import PluginManager
 from .database import Database
@@ -91,7 +92,18 @@ class Sigma(discord.Client):
     async def on_message(self, message):
         self.db.update_user_details(message.author)
         if message.server:
-            self.db.update_server_details(message.server)
+            try:
+                req_role = self.db.get_settings(message.server.id, 'RequiredRole')
+            except KeyError:
+                self.db.set_settings(message.server.id, 'RequiredRole', None)
+                req_role = None
+            if req_role:
+                urole = user_matching_role(message.author, req_role)
+                if not urole:
+                    self.log.info(message.author.name + ' Ignored')
+                    return
+
+        self.db.update_server_details(message.server)
         self.change_presence()
         self.db.add_stats('MSGCount')
         args = message.content.split(' ')

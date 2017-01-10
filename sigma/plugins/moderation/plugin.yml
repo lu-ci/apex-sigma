@@ -384,6 +384,17 @@ commands:
       This is deactivated by default.
       Server Administrator Only.
 
+  - name: reqrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Bot Commander"
+    description:
+      Sets a role that is required for some to use Sigma.
+      If a user does not have this role, Sigma will ignore them entirely.
+      Type reqrole disable to disable the role requirement.
+      Server Administrator Only.
+
   - name: logs
     global:  true
     enabled: true

@@ -2,6 +2,6 @@ beta: false
 build_date: 1484050242
 version:
   major: 1
-  minor: 71
-  patch: 3629
+  minor: 72
+  patch: 3644
 codename: 'Ayu'
