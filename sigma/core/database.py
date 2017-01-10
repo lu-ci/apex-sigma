@@ -271,7 +271,7 @@ class Database(object):
             data = {
                 'UserID': user.id,
                 'UserName': user.name,
-                'Avatar': user.avatar_url.split('.')[0] + '.png',
+                'Avatar': '.'.join(user.avatar_url.split('.')[:-1]) + '.png',
                 'Discriminator': user.discriminator
             }
             self.db['UserList'].insert_one(data)
