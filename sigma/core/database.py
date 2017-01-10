@@ -268,10 +268,14 @@ class Database(object):
     def refactor_users(self, usrgen):
         self.db['UserList'].drop()
         for user in usrgen:
+            if user.avatar_url != '':
+                user_ava = '.'.join(user.avatar_url.split('.')[:-1]) + '.png'
+            else:
+                user_ava = user.default_avatar_url
             data = {
                 'UserID': user.id,
                 'UserName': user.name,
-                'Avatar': '.'.join(user.avatar_url.split('.')[:-1]) + '.png',
+                'Avatar': user_ava,
                 'Discriminator': user.discriminator
             }
             self.db['UserList'].insert_one(data)
