@@ -22,7 +22,14 @@ async def reqrole(cmd, message, args):
                                   color=0xFF9900)
         await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
-        mat_role = matching_role(message.server, ' '.join(args))
+        role_input = ' '.join(args)
+        if role_input.lower() == 'disable':
+            cmd.db.set_settings(message.server.id, 'RequiredRole', None)
+            embed = discord.Embed(title=':white_check_mark: Required Role Removed',
+                                  color=0x33CC33)
+            await cmd.bot.send_message(message.channel, None, embed=embed)
+            return
+        mat_role = matching_role(message.server, role_input)
         if not mat_role:
             embed = discord.Embed(title=':exclamation: That role was not found on the server.',
                                   color=0xDB0000)
