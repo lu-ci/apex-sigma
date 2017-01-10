@@ -80,24 +80,23 @@ async def text_message(cmd, message, user):
 
 async def draw_image(cmd, message, user, clr):
     user_color = clr
+    dark = False
+    rank_color = (255, 255, 255)
     clr1 = int(user_color[:2], 16)
     clr2 = int(user_color[2:-2], 16)
     clr3 = int(user_color[4:], 16)
     clr_barier = 160
     clr_redu = 50
-    if clr1 > clr_barier or clr2 > clr_barier or clr3 > clr_barier:
+    if clr1 > clr_barier and clr2 > clr_barier and clr3 > clr_barier:
         clr1 += - clr_redu
         clr2 += - clr_redu
         clr3 += - clr_redu
+        dark = True
     transed_color = (clr1, clr2, clr3)
     rank_category, kanji_loc, ov_color, txt_color = get_rank_info(user['level'], color=transed_color)
     inv1 = 255 - clr1
     inv2 = 255 - clr2
     inv3 = 255 - clr3
-    if inv1 > clr_barier or inv2 > clr_barier or inv3 > clr_barier:
-        inv1 += - clr_redu
-        inv2 += - clr_redu
-        inv3 += - clr_redu
     inv_color = (inv1, inv2, inv3)
     img_type = 'big' if user['method'] == 'api' else 'small'
     if img_type == 'big':
@@ -112,8 +111,13 @@ async def draw_image(cmd, message, user, clr):
         ava = ava_raw.resize((78, 78), Image.ANTIALIAS)
         base = Image.new('RGBA', base_size, (0, 0, 0, 0))
         color_base = Image.new('RGB', color_base_size, transed_color)
-        overlay = Image.open(
-            cmd.resource('img/overlay_wk_{:s}.png'.format(img_type)))
+        if dark:
+            rank_color = (38, 38, 38)
+            overlay = Image.open(
+                cmd.resource('img/overlay_wk_{:s}_dark.png'.format(img_type)))
+        else:
+            overlay = Image.open(
+                cmd.resource('img/overlay_wk_{:s}.png'.format(img_type)))
     except IOError as e:
         cmd.log.error('{:s}'.format(str(e)))
         raise e
@@ -164,7 +168,7 @@ async def draw_image(cmd, message, user, clr):
         txt_color, font=font2)
 
     imgdraw.text((kanji_loc, 52), rank_category,
-                 (255, 255, 255), font=font3)
+                 rank_color, font=font3)
 
     if user['method'] == 'api':
         imgdraw.text((11, 88), 'Next Review: {:s}'.format(
