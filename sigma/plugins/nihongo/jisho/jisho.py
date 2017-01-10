@@ -55,7 +55,11 @@ async def jisho(cmd, message, *args):
         etc = []
         output += '{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
         if request['senses'][i]['parts_of_speech']:
-            etc.append(', '.join(request['senses'][i]['parts_of_speech']))
+            parts_of_speech = ''
+            for part_of_speech in request['senses'][i]['parts_of_speech']:
+                if part_of_speech:
+                    parts_of_speech += part_of_speech + ', '
+            etc.append(parts_of_speech[:-2])
 
         if request['senses'][i]['tags']:
             try:
