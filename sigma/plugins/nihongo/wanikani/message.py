@@ -15,19 +15,19 @@ def parse_date(time, fmt='%B %d, %Y %H:%M'):
 
 def get_rank_info(level, location=174, color=(27, 111, 95)):
     if level == 60:
-        return ('発明', location, '_en', color)
+        return '発明', location, '_en', color
     elif level >= 51:
-        return ('現実', location, '_re', color)
+        return '現実', location, '_re', color
     elif level >= 41:
-        return ('天堂', location, '_par', color)
+        return '天堂', location, '_par', color
     elif level >= 31:
-        return ('地獄', location, '_he', color)
+        return '地獄', location, '_he', color
     elif level >= 21:
-        return ('死', 184, '_de', color)
+        return '死', 184, '_de', color
     elif level >= 11:
-        return ('苦', 184, '_pai', color)
+        return '苦', 184, '_pai', color
     else:
-        return ('快', 184, '_pl', color)
+        return '快', 184, '_pl', color
 
 
 async def text_message(cmd, message, user):
@@ -85,7 +85,7 @@ async def draw_image(cmd, message, user, clr):
     clr1 = int(user_color[:2], 16)
     clr2 = int(user_color[2:-2], 16)
     clr3 = int(user_color[4:], 16)
-    clr_barier = 160
+    clr_barier = 150
     barriered_count = 0
     clr_list = [clr1, clr2, clr3]
     for clr in clr_list:
@@ -95,10 +95,6 @@ async def draw_image(cmd, message, user, clr):
         dark = True
     transed_color = (clr1, clr2, clr3)
     rank_category, kanji_loc, ov_color, txt_color = get_rank_info(user['level'], color=transed_color)
-    inv1 = 255 - clr1
-    inv2 = 255 - clr2
-    inv3 = 255 - clr3
-    inv_color = (inv1, inv2, inv3)
     img_type = 'big' if user['method'] == 'api' else 'small'
     if img_type == 'big':
         base_size = (450, 132)
@@ -166,7 +162,7 @@ async def draw_image(cmd, message, user, clr):
 
     imgdraw.text((250, 60), 'Joined: {:s}'.format(
         parse_date(user['creation_date'], fmt='%B %d, %Y')),
-        txt_color, font=font2)
+                 txt_color, font=font2)
 
     imgdraw.text((kanji_loc, 52), rank_category,
                  rank_color, font=font3)
@@ -177,7 +173,7 @@ async def draw_image(cmd, message, user, clr):
                      txt_color, font=font2)
 
         if int(user['reviews']['now']) > 150:
-            review_color = inv_color
+            review_color = (255, 0, 0)
             review_font = font2
 
         imgdraw.text((11, 110), 'Next Hour: {:d}'.format(
@@ -199,7 +195,7 @@ async def draw_image(cmd, message, user, clr):
             user['lessons']['now']), txt_color, font=font2)
         imgdraw.text((363, 110), 'Reviews: ', txt_color, font=font2)
         imgdraw.text(review_pos, str(user['reviews'][
-                     'now']), review_color, font=review_font)
+                                         'now']), review_color, font=review_font)
 
     tmp_file = 'cache/wk_{:s}.png'.format(message.author.id)
     base.save(tmp_file)
