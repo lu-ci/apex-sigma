@@ -9,8 +9,11 @@ def matching_role(server, role_name):
 
 def user_matching_role(user, role_name):
     match = None
-    for role in user.roles:
-        if role.name.lower() == role_name.lower():
-            match = role
-            break
-    return match
+    try:
+        for role in user.roles:
+            if role.name.lower() == role_name.lower():
+                match = role
+                break
+        return match
+    except:
+        return match
