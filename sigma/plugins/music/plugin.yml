@@ -10,7 +10,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    donor:   true
+    donor:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Summons the bot into your voice channel.
@@ -19,7 +19,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    donor:   true
+    donor:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Disconnects the bot from a voice channel.
@@ -28,7 +28,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    donor:   true
+    donor:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Moves the bot to your voice channel if she is in another one.
@@ -37,7 +37,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    donor:   true
+    donor:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Tells the bot to start playing the songs in the queue.
@@ -46,7 +46,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    donor:   true
+    donor:   false
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
       Adds a song to the playing queue either by URL or Name.
