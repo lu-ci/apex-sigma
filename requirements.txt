@@ -12,7 +12,7 @@ praw
 cleverbot
 tornado
 pyyaml
-discord.py
+discord.py[voice]
 wikipedia
 humanfriendly
 blinker
@@ -27,3 +27,4 @@ google-api-python-client
 git+https://github.com/abenassi/Google-Search-API
 google
 protobuf
+youtube_dl

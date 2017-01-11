@@ -1,10 +1,14 @@
-from .backend import delete_player
+import discord
+from .music_controller import del_player, get_player
 
 
 async def disconnect(cmd, message, args):
-    if cmd.bot.is_voice_connected(message.server):
-        voice = cmd.bot.voice_client_in(message.server)
-        await voice.disconnect()
-        await delete_player(message.server.id)
+    voice_connected = cmd.bot.is_voice_connected(message.server)
+    if voice_connected:
+        voice_instance = cmd.bot.voice_client_in(message.server)
+        vc_name = voice_instance.channel.name
+        await voice_instance.disconnect()
+        embed = discord.Embed(title=':white_check_mark: Disconnected from ' + vc_name, color=0x66CC66)
     else:
-        await cmd.bot.send_message(message.channel, 'I am not connected to any voice channel.')
+        embed = discord.Embed(title=':warning: I am not in a voice channel currently', color=0xFF9900)
+    await cmd.bot.send_message(message.channel, None, embed=embed)
