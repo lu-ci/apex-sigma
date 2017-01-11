@@ -22,7 +22,7 @@ commands:
     donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Disconnects the bot from your voice channel.
+      Disconnects the bot from a voice channel.
 
   - name:    move
     global:  true
@@ -31,58 +31,22 @@ commands:
     donor:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Moves the bot to your voice channel.
+      Moves the bot to your voice channel if she is in another one.
 
   - name:    play
     global:  true
     enabled: true
-    donor:   true
     sfw:     true
+    donor:   true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Tells the bot to start playing the songs in the queue.
+
+  - name:    qadd
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   true
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
-      Plays a song from a YouTube link or keyword search.
-
-  - name:    playlocal
-    global:  true
-    enabled: true
-    donor:   true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} some_song.mp3"
-    description:
-      Plays a song from the host machine.
-
-  - name:    stop
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Stops the currently playing song.
-
-  - name:    pause
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Pauses the currently playing song.
-
-  - name:    resume
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Resumes the currently playing song.
-
-  - name:    volume
-    global:  true
-    enabled: true
-    donor:   true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 67"
-    description:
-      Sets the bots volume if it is playing something.
+      Adds a song to the playing queue either by URL or Name.

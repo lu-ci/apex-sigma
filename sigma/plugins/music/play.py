@@ -1,52 +1,39 @@
-from apiclient import discovery
-from config import GoogleAPIKey
-from .backend import make_yt_player, player_exists
+import discord
+import asyncio
+import datetime
+from .music_controller import get_player, get_queue, del_from_queue, make_yt_player
 
 
 async def play(cmd, message, args):
-    if not args:
-        await cmd.bot.send_message(message.channel, 'No arguments provided, provide a YouTube link or Keyword Search.')
+    if not message.author.voice_channel:
+        embed = discord.Embed(
+            title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
         return
-    cmd.db.add_stats('MusicCount')
-    if cmd.bot.is_voice_connected(message.server):
-        voice = cmd.bot.voice_client_in(message.server)
-    else:
-        try:
-            voice = await cmd.bot.join_voice_channel(message.author.voice_channel)
-        except:
-            cmd.bot.send_message(message.channel, 'You are not in a voice channel.')
-            return
-    request = ' '.join(args)
-    if request.startswith('https://'):
-        existence = await player_exists(message.server.id)
-        if existence:
-            player = await make_yt_player(message.server.id, voice, request)
-            player.start()
-        else:
-            player = await make_yt_player(message.server.id, voice, request)
-            player.start()
-        try:
-            video_name = player.title()
-        except:
-            video_name = 'Playlist'
-        player.start()
-    else:
-        youtube = discovery.build('youtube', 'v3', developerKey=GoogleAPIKey)
-        search_response = youtube.search().list(q=request, part='id,snippet').execute()
-        video_id = None
-        video_name = None
-        for search_result in search_response.get("items", []):
-            if search_result["id"]["kind"] == "youtube#video":
-                video_id = search_result["id"]["videoId"]
-                video_name = search_result["snippet"]["title"]
-                break
-        video_url = "https://www.youtube.com/watch?v=" + video_id
-        existence = await player_exists(message.server.id)
-        if existence:
-            player = await make_yt_player(message.server.id, voice, video_url)
-            player.start()
-        else:
-            player = await make_yt_player(message.server.id, voice, video_url)
-            player.start()
-
-    await cmd.bot.send_message(message.channel, 'Playing **' + video_name + '**')
+    srv_queue = get_queue(message.server)
+    voice_connected = cmd.bot.is_voice_connected(message.server)
+    if not voice_connected:
+        embed = discord.Embed(title=':warning: I am not in a voice channel currently', color=0xFF9900)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
+    if len(srv_queue) == 0:
+        embed = discord.Embed(
+            title=':warning: The queue is empty', color=0xFF9900)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
+    while len(srv_queue) != 0:
+        item_info = srv_queue[0]
+        item_type = item_info['Type']
+        item_req = item_info['Requester']
+        item_url = item_info['Location']
+        voice_instance = cmd.bot.voice_client_in(message.server)
+        await make_yt_player(message.server, voice_instance, item_url)
+        player = get_player(message.server)
+        player.play()
+        embed = discord.Embed(title='ℹ Now Playing From ' + item_type)
+        embed.add_field(name='Title', value=player.title)
+        embed.set_footer(
+            text='Requested by ' + item_req + '. Duration: ' + str(datetime.timedelta(seconds=player.duration)))
+        while not player.is_done():
+            await asyncio.sleep(3)
+        del_from_queue(message.server, 0)
