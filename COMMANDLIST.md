@@ -106,14 +106,10 @@ Command |  Description |  Usage
 Command |  Description |  Usage
 --------|--------------|-------
 `>>summon`  |  Summons the bot into your voice channel.  |  `>>summon`
-`>>disconnect`  |  Disconnects the bot from your voice channel.  |  `>>disconnect`
-`>>move`  |  Moves the bot to your voice channel.  |  `>>move`
-`>>play`  |  Plays a song from a YouTube link or keyword search.  |  `>>play Ryder or Riot`
-`>>playlocal`  |  Plays a song from the host machine.  |  `>>playlocal some_song.mp3`
-`>>stop`  |  Stops the currently playing song.  |  `>>stop`
-`>>pause`  |  Pauses the currently playing song.  |  `>>pause`
-`>>resume`  |  Resumes the currently playing song.  |  `>>resume`
-`>>volume`  |  Sets the bots volume if it is playing something.  |  `>>volume 67`
+`>>disconnect`  |  Disconnects the bot from a voice channel.  |  `>>disconnect`
+`>>move`  |  Moves the bot to your voice channel if she is in another one.  |  `>>move`
+`>>play`  |  Tells the bot to start playing the songs in the queue.  |  `>>play`
+`>>qadd`  |  Adds a song to the playing queue either by URL or Name.  |  `>>qadd Ryder or Riot`
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
