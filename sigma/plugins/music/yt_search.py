@@ -1,11 +1,12 @@
 from apiclient import discovery
-from oauth2client.client import GoogleCredentials
 from config import GoogleAPIKey
 
 
 def search_youtube(query):
-    credentials = GoogleCredentials.get_application_default()
-    youtube = discovery.build('youtube', 'v3', credentials=credentials)
+    dev_key = GoogleAPIKey
+    service_name = "youtube"
+    version = "v3"
+    youtube = discovery.build(service_name, version, developerKey=dev_key)
     search_response = youtube.search().list(q=query, part='id,snippet').execute()
     video_id = None
     video_name = None
