@@ -1,7 +1,7 @@
 import discord
 import asyncio
 import datetime
-from .music_controller import get_player, get_queue, del_from_queue, make_yt_player
+from .music_controller import get_player, get_queue, del_from_queue, make_yt_player, del_player
 
 
 async def play(cmd, message, args):
@@ -29,11 +29,14 @@ async def play(cmd, message, args):
         voice_instance = cmd.bot.voice_client_in(message.server)
         await make_yt_player(message.server, voice_instance, item_url)
         player = get_player(message.server)
-        player.play()
-        embed = discord.Embed(title='ℹ Now Playing From ' + item_type)
+        player.start()
+        embed = discord.Embed(title='ℹ Now Playing From ' + item_type, color=0x0099FF)
         embed.add_field(name='Title', value=player.title)
         embed.set_footer(
             text='Requested by ' + item_req + '. Duration: ' + str(datetime.timedelta(seconds=player.duration)))
+        await cmd.bot.send_message(message.channel, None, embed=embed)
         while not player.is_done():
             await asyncio.sleep(3)
+        player.stop()
+        del_player(message.server)
         del_from_queue(message.server, 0)

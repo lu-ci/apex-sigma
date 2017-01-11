@@ -1,5 +1,3 @@
-import asyncio
-
 players = {}
 queues = {}
 
@@ -26,7 +24,8 @@ def del_player(server):
 def del_from_queue(server, order_number):
     if server.id in queues:
         queue = queues[server.id]
-        queue.remove(order_number)
+        item = queue[order_number]
+        queue.remove(item)
 
 
 def purge_queue(server):

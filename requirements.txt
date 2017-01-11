@@ -12,7 +12,7 @@ praw
 cleverbot
 tornado
 pyyaml
-discord.py
+discord.py[voice]
 wikipedia
 humanfriendly
 blinker
