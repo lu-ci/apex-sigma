@@ -50,3 +50,12 @@ commands:
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
       Adds a song to the playing queue either by URL or Name.
+
+  - name:    vol
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s} 69"
+    description:
+      Sets the volume of the current music player.

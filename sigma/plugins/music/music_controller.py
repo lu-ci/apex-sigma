@@ -1,5 +1,6 @@
 players = {}
 queues = {}
+volumes = {}
 
 
 def get_player(server):
@@ -14,6 +15,17 @@ def get_queue(server):
         return queues[server.id]
     else:
         return []
+
+
+def get_volume(server):
+    if server.id in volumes:
+        return volumes[server.id]
+    else:
+        return None
+
+
+def set_volume(server, volume):
+    volumes.update({server.id: volume})
 
 
 def del_player(server):
