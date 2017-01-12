@@ -1,6 +1,20 @@
 players = {}
 queues = {}
 volumes = {}
+ytdl_params = {
+    'format': 'bestaudio/best',
+    'extractaudio': True,
+    'audioformat': 'mp3',
+    'restrictfilenames': True,
+    'noplaylist': True,
+    'nocheckcertificate': True,
+    'ignoreerrors': False,
+    'logtostderr': False,
+    'quiet': True,
+    'no_warnings': True,
+    'default_search': 'auto',
+    'source_address': '0.0.0.0'
+}
 
 
 def get_player(server):
@@ -45,7 +59,7 @@ def purge_queue(server):
         del queues[server.id]
 
 
-def add_to_queue(server, requester, player_type, address):
+def add_to_queue(server, requester, player_type, address, title):
     if server.id in queues:
         queue = queues[server.id]
     else:
@@ -53,12 +67,13 @@ def add_to_queue(server, requester, player_type, address):
     queue_data = {
         'Type': player_type,
         'Requester': requester,
-        'Location': address
+        'Location': address,
+        'Title': title
     }
     queue.append(queue_data)
     queues.update({server.id: queue})
 
 
 async def make_yt_player(server, voice, url):
-    player = await voice.create_ytdl_player(url)
+    player = await voice.create_ytdl_player(url, ytdl_options=ytdl_params)
     players.update({server.id: player})

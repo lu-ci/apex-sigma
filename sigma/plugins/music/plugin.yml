@@ -42,7 +42,7 @@ commands:
     description:
       Tells the bot to start playing the songs in the queue.
 
-  - name:    qadd
+  - name:    queue
     global:  true
     enabled: true
     sfw:     true
@@ -59,3 +59,12 @@ commands:
     usage:   "{pfx:s}{cmd:s} 69"
     description:
       Sets the volume of the current music player.
+
+  - name:    next
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Skips the currently playing song.

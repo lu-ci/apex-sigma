@@ -27,11 +27,6 @@ async def vol(cmd, message, args):
             title=':exclamation: Invalid volume input', color=0xDB0000)
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
-    if new_vol < 1 or new_vol > 200:
-        embed = discord.Embed(
-            title=':exclamation: Invalid volume input', color=0xDB0000)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
-        return
     player.volume = new_vol
     set_volume(message.server, new_vol)
     embed = discord.Embed(
