@@ -1,7 +1,7 @@
 beta: false
-build_date: 1484177150
+build_date: 1484232374
 version:
   major: 1
-  minor: 74
-  patch: 4199
-codename: 'Ayu'
+  minor: 75
+  patch: 4441
+codename: 'Nayuki'

@@ -109,7 +109,9 @@ Command |  Description |  Usage
 `>>disconnect`  |  Disconnects the bot from a voice channel.  |  `>>disconnect`
 `>>move`  |  Moves the bot to your voice channel if she is in another one.  |  `>>move`
 `>>play`  |  Tells the bot to start playing the songs in the queue.  |  `>>play`
-`>>qadd`  |  Adds a song to the playing queue either by URL or Name.  |  `>>qadd Ryder or Riot`
+`>>queue`  |  Adds a song to the playing queue either by URL or Name.  |  `>>queue Ryder or Riot`
+`>>vol`  |  Sets the volume of the current music player.  |  `>>vol 69`
+`>>next`  |  Skips the currently playing song.  |  `>>next`
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
