@@ -1,9 +1,10 @@
 from apiclient import discovery
-from oauth2client.client import GoogleCredentials
+from oauth2client.service_account import ServiceAccountCredentials
+from config import GoogleAuthFileLocation
 
 
 def search_youtube(query):
-    credentials = GoogleCredentials.get_application_default()
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(GoogleAuthFileLocation)
     service_name = "youtube"
     version = "v3"
     youtube = discovery.build(service_name, version, credentials=credentials)
