@@ -85,7 +85,7 @@ async def draw_image(cmd, message, user, clr):
     clr1 = int(user_color[:2], 16)
     clr2 = int(user_color[2:-2], 16)
     clr3 = int(user_color[4:], 16)
-    clr_barier = 110
+    clr_barier = 150
     barriered_count = 0
     clr_list = [clr1, clr2, clr3]
     for clr in clr_list:
