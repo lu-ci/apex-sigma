@@ -2,7 +2,11 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-[![PaypalMe](https://img.shields.io/badge/PayPal-.Me-blue.svg)](https://www.paypal.me/AleksaRadovic) [![DiscordPy](https://img.shields.io/badge/discord-py-blue.svg)](https://github.com/Rapptz/discord.py) [![DiscordPy](https://discordapp.com/api/guilds/200751504175398912/widget.png?style=shield)](https://discord.gg/0k4npTwMvTpv9wrh) [![Code Climate](https://codeclimate.com/github/aurora-pro/apex-sigma/badges/gpa.svg)](https://codeclimate.com/github/aurora-pro/apex-sigma) [![Issue Count](https://codeclimate.com/github/aurora-pro/apex-sigma/badges/issue_count.svg)](https://codeclimate.com/github/aurora-pro/apex-sigma) [![Build Status](https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master)](https://travis-ci.org/aurora-pro/apex-sigma)
+<a href="https://www.paypal.me/AleksaRadovic"><img src="https://img.shields.io/badge/PayPal-.Me-blue.svg"></a>
+[![DiscordPy](https://img.shields.io/badge/discord-py-blue.svg)](https://github.com/Rapptz/discord.py) [![DiscordPy](https://discordapp.com/api/guilds/200751504175398912/widget.png?style=shield)](https://discord.gg/0k4npTwMvTpv9wrh)
+[![Code Climate](https://codeclimate.com/github/aurora-pro/apex-sigma/badges/gpa.svg)](https://codeclimate.com/github/aurora-pro/apex-sigma)
+[![Issue Count](https://codeclimate.com/github/aurora-pro/apex-sigma/badges/issue_count.svg)](https://codeclimate.com/github/aurora-pro/apex-sigma)
+[![Build Status](https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master)](https://travis-ci.org/aurora-pro/apex-sigma)
 </p>
 
 # Sigma - The API Giant Discord bot
