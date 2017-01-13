@@ -2,9 +2,6 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-<a href="https://discordapp.com/oauth2/authorize?client_id=216437513709944832&scope=bot&permissions=8"><img src="https://i.imgur.com/JRG5fi0.png" /></a>
-</p>
-<p align="center">
 <img src="https://img.shields.io/badge/Sigma-2.75-orange.svg" />
 <img src="https://img.shields.io/badge/Codename-Nayuki-orange.svg" />
 </p>
