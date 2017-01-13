@@ -14,6 +14,14 @@ commands:
     description:
       Cringe!
 
+  - name:    mrs
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      FUCKING BOZHA!
+
   - name:    joke
     global:  true
     enabled: true
