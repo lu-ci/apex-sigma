@@ -2,11 +2,16 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-<a href="https://www.paypal.me/AleksaRadovic"><img src="https://img.shields.io/badge/PayPal-.Me-blue.svg"></a>
-[![DiscordPy](https://img.shields.io/badge/discord-py-blue.svg)](https://github.com/Rapptz/discord.py) [![DiscordPy](https://discordapp.com/api/guilds/200751504175398912/widget.png?style=shield)](https://discord.gg/0k4npTwMvTpv9wrh)
-[![Code Climate](https://codeclimate.com/github/aurora-pro/apex-sigma/badges/gpa.svg)](https://codeclimate.com/github/aurora-pro/apex-sigma)
-[![Issue Count](https://codeclimate.com/github/aurora-pro/apex-sigma/badges/issue_count.svg)](https://codeclimate.com/github/aurora-pro/apex-sigma)
-[![Build Status](https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master)](https://travis-ci.org/aurora-pro/apex-sigma)
+<a href="https://www.paypal.me/AleksaRadovic"><img src="https://img.shields.io/badge/PayPal-.Me-blue.svg" /></a>
+<a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.6-blue.svg" /></a>
+<a href="https://github.com/Rapptz/discord.py"><img src="https://img.shields.io/badge/discord-py-blue.svg" /></a>
+<a href="https://discordapp.com/invite/Ze9EfTd"><img src="https://discordapp.com/api/guilds/200751504175398912/widget.png?style=shield" /></a>
+</p>
+<p align="center">
+<a href="https://codeclimate.com/github/aurora-pro/apex-sigma"><img src="https://codeclimate.com/github/aurora-pro/apex-sigma/badges/gpa.svg" /></a>
+<a href="https://codeclimate.com/github/aurora-pro/apex-sigma"><img src="https://codeclimate.com/github/aurora-pro/apex-sigma/badges/issue_count.svg" /></a>
+<a href="https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master"><img src="https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master" /></a>
+<a href='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50'><img src='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50/badge.svg?style=flat-square' alt="Dependency Status" /></a>
 </p>
 
 # Sigma - The API Giant Discord bot
