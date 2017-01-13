@@ -2,6 +2,9 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
+<a href="https://discordapp.com/oauth2/authorize?client_id=216437513709944832&scope=bot&permissions=8"><img src="https://i.imgur.com/JRG5fi0.png" /></a>
+</p>
+<p align="center">
 <img src="https://img.shields.io/badge/Sigma-2.75-orange.svg" />
 <img src="https://img.shields.io/badge/Codename-Nayuki-orange.svg" />
 </p>
@@ -16,11 +19,6 @@
 <a href="https://codeclimate.com/github/aurora-pro/apex-sigma"><img src="https://codeclimate.com/github/aurora-pro/apex-sigma/badges/issue_count.svg" /></a>
 <a href="https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master"><img src="https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master" /></a>
 <a href='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50'><img src='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50/badge.svg?style=flat-square' alt="Dependency Status" /></a>
-</p>
-
-# Want to add me?
-<p align="center">
-<a href="https://discordapp.com/oauth2/authorize?client_id=216437513709944832&scope=bot&permissions=8"><img src="https://i.imgur.com/JRG5fi0.png" />
 </p>
 
 # Sigma - The API Giant Discord bot
