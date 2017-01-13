@@ -33,6 +33,7 @@ async def play(cmd, message, args):
         if def_vol:
             player.volume = def_vol
         player.start()
+        cmd.db.add_stats('MusicCount')
         embed = discord.Embed(title='ℹ Now Playing From ' + item_type, color=0x0099FF)
         embed.add_field(name='Title', value=player.title)
         embed.set_footer(

@@ -3,6 +3,7 @@ from config import Prefix, MainServerURL
 
 
 async def help(cmd, message, args):
+    cmd.db.add_stats('HelpCount')
     if not args:
         help_out = discord.Embed(type='rich', title=':grey_question: Help', color=0x1B6F5F)
         help_out.set_author(name='Apex Sigma', url=MainServerURL,
