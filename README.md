@@ -1,5 +1,9 @@
 
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
+# Want to add me?
+<p align="center">
+<a href="https://discordapp.com/oauth2/authorize?client_id=216437513709944832&scope=bot&permissions=8"><img src="https://i.imgur.com/JRG5fi0.png" />
+</p>
 
 <p align="center">
 <img src="https://img.shields.io/badge/Sigma-2.75-orange.svg" />
@@ -34,11 +38,6 @@
 * **NSFW** - I doubt this module needs explanation. In a nutshell, it's explicit content.
 * **Searches** - All sorts of neat search commands to get you stuff you need, from Wikipedia to Recipes.
 * **Utility** - Modules to get quick info on a user or server, show a color hex, someone's avatar, and the such.
-
-# Want to add me?
-<p align="center">
-<a href="https://discordapp.com/oauth2/authorize?client_id=216437513709944832&scope=bot&permissions=8"><img src="https://i.imgur.com/JRG5fi0.png" />
-</p>
 
 # License
 Released under the [Mozilla Public License 2.0](LICENSE).
