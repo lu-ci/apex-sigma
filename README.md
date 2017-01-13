@@ -2,6 +2,10 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
+<img src="https://img.shields.io/badge/Sigma-2.75-orange.svg" />
+<img src="https://img.shields.io/badge/Codename-Nayuki-orange.svg" />
+</p>
+<p align="center">
 <a href="https://www.paypal.me/AleksaRadovic"><img src="https://img.shields.io/badge/PayPal-.Me-blue.svg" /></a>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.6-blue.svg" /></a>
 <a href="https://github.com/Rapptz/discord.py"><img src="https://img.shields.io/badge/discord-py-blue.svg" /></a>
@@ -33,7 +37,7 @@
 
 # Want to add me?
 <p align="center">
-[![AddMeButton](https://i.imgur.com/JRG5fi0.png)](https://discordapp.com/oauth2/authorize?client_id=216437513709944832&scope=bot&permissions=8)
+<a href="https://discordapp.com/oauth2/authorize?client_id=216437513709944832&scope=bot&permissions=8"><img src="https://i.imgur.com/JRG5fi0.png" />
 </p>
 
 # License
