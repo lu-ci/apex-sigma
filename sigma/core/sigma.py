@@ -130,12 +130,18 @@ class Sigma(discord.Client):
         for ev_name, event in self.plugin_manager.events['member_join'].items():
             self.db.update_user_details(member)
             self.db.update_population_stats(self.servers, self.get_all_members())
-            await event.call_sp(member)
+            try:
+                await event.call_sp(member)
+            except Exception as e:
+                self.log.error(e)
 
     async def on_member_remove(self, member):
         for ev_name, event in self.plugin_manager.events['member_leave'].items():
             self.db.update_population_stats(self.servers, self.get_all_members())
-            await event.call_sp(member)
+            try:
+                await event.call_sp(member)
+            except Exception as e:
+                self.log.error(e)
 
     async def on_server_join(self, server):
         self.db.add_new_server_settings(server)

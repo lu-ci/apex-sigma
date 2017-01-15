@@ -17,5 +17,5 @@ class Command(Callable):
 
     def help(self):
         usage = self.usage.format(pfx=self.prefix, cmd=self.name)
-        return 'Usage: {:s}\n{:s}'.format(
+        return 'Example: {:s}\n{:s}'.format(
             code(usage), codeblock(self.desc))
