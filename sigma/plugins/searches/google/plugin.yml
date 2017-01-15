@@ -23,3 +23,11 @@ commands:
     description:
       Searches Google for your inputted image query.
       Displays a random result.
+
+  - name:    yt
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} WAT"
+    description:
+      Searches YouTube for you.

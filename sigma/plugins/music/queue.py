@@ -1,6 +1,6 @@
 import discord
 from .music_controller import get_queue, add_to_queue
-from .yt_search import search_youtube
+from sigma.plugins.searches.google.yt_search import search_youtube
 
 
 async def queue(cmd, message, args):

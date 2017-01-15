@@ -21,6 +21,7 @@ Command |  Description |  Usage
 Command |  Description |  Usage
 --------|--------------|-------
 `>>dadjoke`  |  Cringe!  |  `>>dadjoke`
+`>>mrs`  |  FUCKING BOZHA!  |  `>>mrs`
 `>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
 `>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
@@ -143,6 +144,7 @@ Command |  Description |  Usage
 `>>recipe`  |  Searches the internet for a recipe you desire. We'll try to provide as much info as possible. Just don't burn your food and stuff.  |  `>>recipe Chicken in Curry`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
 `>>img`  |  Searches Google for your inputted image query. Displays a random result.  |  `>>img Lasagna`
+`>>yt`  |  Searches YouTube for you.  |  `>>yt WAT`
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`
 `>>imdb`  |  Searches the Internet Movie Database for a Title of your choice.  |  `>>imdb A Clockwork Orange`
 `>>imgur`  |  Searches through Imgur posts for the given title. Do remember that it is not Image-Only  |  `>>imgur Game Grumps`
