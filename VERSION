@@ -2,6 +2,6 @@ beta: false
 build_date: 1484572938
 version:
   major: 1
-  minor: 77
-  patch: 4505
+  minor: 78
+  patch: 4509
 codename: 'Nayuki'
