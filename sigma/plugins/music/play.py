@@ -32,6 +32,8 @@ async def play(cmd, message, args):
         def_vol = get_volume(message.server)
         if def_vol:
             player.volume = def_vol
+        if not player:
+            return
         player.start()
         cmd.db.add_stats('MusicCount')
         embed = discord.Embed(title='ℹ Now Playing From ' + item_type, color=0x0099FF)

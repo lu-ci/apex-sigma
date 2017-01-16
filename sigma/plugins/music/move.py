@@ -11,7 +11,7 @@ async def move(cmd, message, args):
                 embed = discord.Embed(title=':warning: I am already in ' + vc_name, color=0xFF9900)
             else:
                 await voice_instance.move_to(message.author.voice_channel)
-                new_vc_name = cmd.bot.voice_client_in(message.server).channel.name
+                new_vc_name = message.author.voice_channel.name
                 embed = discord.Embed(title=':white_check_mark: Moved from ' + vc_name + ' to ' + new_vc_name,
                                       color=0x66CC66)
         else:
