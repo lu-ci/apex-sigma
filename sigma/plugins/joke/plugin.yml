@@ -22,6 +22,14 @@ commands:
     description:
       FUCKING BOZHA!
 
+  - name:    kmm
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      FUCKING MOHA!
+
   - name:    joke
     global:  true
     enabled: true
