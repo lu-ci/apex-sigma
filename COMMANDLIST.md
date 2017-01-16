@@ -22,6 +22,7 @@ Command |  Description |  Usage
 --------|--------------|-------
 `>>dadjoke`  |  Cringe!  |  `>>dadjoke`
 `>>mrs`  |  FUCKING BOZHA!  |  `>>mrs`
+`>>kmm`  |  FUCKING MOHA!  |  `>>kmm`
 `>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
 `>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
