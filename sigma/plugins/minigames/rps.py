@@ -1,4 +1,6 @@
 import random
+import discord
+
 
 async def rps(cmd, message, args):
     if not args:
@@ -7,7 +9,6 @@ async def rps(cmd, message, args):
     else:
         sign_list = ['rock', 'paper', 'scissors']
         my_choice = random.choice(sign_list)
-        out_text = 'I choose **' + my_choice + '**!'
         if args[0].lower().startswith('r'):
             their_choice = 'rock'
             counter = 'paper'
@@ -21,9 +22,11 @@ async def rps(cmd, message, args):
             await cmd.bot.send_message(message.channel, 'Unrecognized sign choice.')
             return
         if my_choice == their_choice:
-            out_text += '\nIt\'s a **Draw!**'
+            embed = discord.Embed(color=0xFF9900, title=':fire: It\'s a draw!')
         elif my_choice == counter:
-            out_text += '\n**I win!** So sorry~ :second_place:'
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: You lose!')
         else:
-            out_text += '\nCongrats! **You won**! :first_place:'
-        await cmd.bot.send_message(message.channel, out_text)
+            embed = discord.Embed(color=0x0099FF, title=':gem: You win!')
+        embed.add_field(name='User\'s Choice', value='**' + their_choice.title() + '**')
+        embed.add_field(name='Sigma\'s Choice', value='**' + my_choice.title() + '**')
+        await cmd.bot.send_message(message.channel, None, embed=embed)
