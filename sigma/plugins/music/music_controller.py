@@ -75,5 +75,8 @@ def add_to_queue(server, requester, player_type, address, title):
 
 
 async def make_yt_player(server, voice, url):
-    player = await voice.create_ytdl_player(url, ytdl_options=ytdl_params)
-    players.update({server.id: player})
+    try:
+        player = await voice.create_ytdl_player(url, ytdl_options=ytdl_params)
+        players.update({server.id: player})
+    except:
+        pass
