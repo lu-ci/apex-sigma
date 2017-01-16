@@ -1,6 +1,6 @@
 import json
-import asyncio
 import random
+import discord
 
 
 async def dadjoke(cmd, message, args):
@@ -9,12 +9,10 @@ async def dadjoke(cmd, message, args):
         jokes = json.loads(jokes)
         joke_list = jokes['JOKES']
         end_joke_choice = random.choice(joke_list)
-        end_joke = (end_joke_choice['setup'])
-        punchline = ('\n\n' + end_joke_choice['punchline'])
+        end_joke = end_joke_choice['setup']
+        punchline = end_joke_choice['punchline']
 
         cmd.db.add_stats('CancerCount')
-
-        joke_msg = await cmd.bot.send_message(message.channel,
-                                              'I can\'t believe I\'m doing this...\n```' + end_joke + '```')
-        await asyncio.sleep(3)
-        await cmd.bot.edit_message(joke_msg, 'I can\'t believe I\'m doing this...\n```' + end_joke + punchline + '```')
+        embed = discord.Embed(color=0x1abc9c)
+        embed.add_field(name='😖 Have An Awful Dad Joke', value='```yaml\n\"' + end_joke + '\"\n\n - \"' + punchline + '\"\n```')
+        await cmd.bot.send_message(message.channel, None, embed=embed)
