@@ -13,20 +13,20 @@ class IntegrityError(DatabaseError):
 
 
 class Database(object):
-    def __init__(self, db_addr, auth, unam, pwd):
+    def __init__(self, db_addr, port, auth, unam, pwd):
         self.db = None
         self.log = create_logger('database')
 
         if db_addr:
-            self.connect(db_addr, auth, unam, pwd)
+            self.connect(db_addr, port, auth, unam, pwd)
         else:
             raise DatabaseError('No database address given!')
 
-    def connect(self, db_addr, auth, unam, pwd):
+    def connect(self, db_addr, port, auth, unam, pwd):
         if not auth:
             self.moncli = pymongo.MongoClient(db_addr)
         else:
-            self.moncli = pymongo.MongoClient('mongodb://' + unam + ':' + pwd + '@' + db_addr)
+            self.moncli = pymongo.MongoClient('mongodb://' + unam + ':' + pwd + '@' + db_addr + ':' + str(port) + '/')
         self.db = self.moncli.aurora
 
     def insert_one(self, collection, data):
