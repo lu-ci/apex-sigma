@@ -2,9 +2,14 @@ import discord
 import asyncio
 import datetime
 from .music_controller import get_player, get_queue, del_from_queue, make_yt_player, del_player, get_volume
+from config import Prefix
 
 
 async def play(cmd, message, args):
+    if args:
+        embed = discord.Embed(color=0xDB0000, title=':exclamation: Use ' + Prefix + 'queue to add stuff.')
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
     if not message.author.voice_channel:
         embed = discord.Embed(
             title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
@@ -29,11 +34,11 @@ async def play(cmd, message, args):
         voice_instance = cmd.bot.voice_client_in(message.server)
         await make_yt_player(message.server, voice_instance, item_url)
         player = get_player(message.server)
+        if not player:
+            return
         def_vol = get_volume(message.server)
         if def_vol:
             player.volume = def_vol
-        if not player:
-            return
         player.start()
         cmd.db.add_stats('MusicCount')
         embed = discord.Embed(title='ℹ Now Playing From ' + item_type, color=0x0099FF)
