@@ -3,7 +3,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/badge/Sigma-2.79-orange.svg" />
-<img src="https://img.shields.io/badge/Codename-Nayuki-orange.svg" />
+<img src="https://img.shields.io/badge/Codename-Makoto-orange.svg" />
 </p>
 <p align="center">
 <a href="https://www.paypal.me/AleksaRadovic"><img src="https://img.shields.io/badge/PayPal-.Me-blue.svg" /></a>
