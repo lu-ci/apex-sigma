@@ -38,13 +38,13 @@ commands:
     description:
       Shows the statistics of Sigma.
 
-  - name:    md5
+  - name:    hash
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} I like cheese and spaghetti code!"
+    usage:   "{pfx:s}{cmd:s} md5 I like cheese and spaghetti code!"
     description:
-      Hashes whatever you input with md5.
+      Hashes whatever you input with the selected hashing algorithm.
 
   - name:    ingame
     global:  true
