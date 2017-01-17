@@ -4,7 +4,7 @@ import time
 import discord
 import yaml
 
-from config import Prefix as pfx, MongoAddress, MongoPort
+from config import Prefix as pfx, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass
 
 from .plugman import PluginManager
 from .database import Database
@@ -48,7 +48,7 @@ class Sigma(discord.Client):
     def init_databases(self):
         db_url = os.getenv('DATABASE_URL')
         db_addr = db_url or 'mongodb://' + MongoAddress + ':' + str(MongoPort)
-        self.db = Database(db_addr)
+        self.db = Database(db_addr, MongoAuth, MongoUser, MongoPass)
 
     def init_plugins(self):
         self.plugin_manager = PluginManager(self)
