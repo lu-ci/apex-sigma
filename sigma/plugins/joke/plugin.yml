@@ -14,21 +14,14 @@ commands:
     description:
       Cringe!
 
-  - name:    mrs
+  - name:    sbo
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
+    usage:   "{pfx:s}{cmd:s} mrs"
     description:
-      FUCKING BOZHA!
-
-  - name:    kmm
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      FUCKING MOHA!
+      For playing soundboard items.
+      No list for possible choices exists yet, but soon.
 
   - name:    joke
     global:  true
