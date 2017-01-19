@@ -55,8 +55,8 @@ async def smite(cmd, message, args):
         ranked_leaves_row.append(rank_data['Leaves'])
         ranked_points_row.append(rank_data['Points'])
         ranked_tier_row.append(rank_data['Tier'])
-    ranked_table_raw = [ranked_wins_row, ranked_losses_row, ranked_leaves_row, ranked_points_row, ranked_tier_row]
-    pretty_rank = boop(ranked_table_raw, column_names=ranked_table_head)
+    ranked_table_raw = [ranked_table_head, ranked_wins_row, ranked_losses_row, ranked_leaves_row, ranked_points_row, ranked_tier_row]
+    pretty_rank = boop(ranked_table_raw)
     smite_ranked_stats = ('```haskell\n' + pretty_rank + '\n```')
     embed = discord.Embed(color=0xffce00)
     embed.set_author(name=player_name, icon_url=avatar, url=avatar)
