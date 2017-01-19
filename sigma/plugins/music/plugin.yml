@@ -60,7 +60,7 @@ commands:
     description:
       Resumes a paused song.
 
-  - name:    disconnect
+  - name:    stop
     global:  true
     enabled: true
     sfw:     true

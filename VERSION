@@ -2,6 +2,6 @@ beta: false
 build_date: 1484827336
 version:
   major: 1
-  minor: 82
-  patch: 4633
+  minor: 83
+  patch: 4671
 codename: 'Makoto'
