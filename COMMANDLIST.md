@@ -7,6 +7,7 @@ Command |  Description |  Usage
 `>>bnsdef`  |  Provides highly detailed Defense Statistics for the inputed Blade and Soul Character.  |  `>>bnsdef EU Lucia Konohana`
 `>>csgo`  |  Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!)  |  `>>csgo thealeksaradovic`
 `>>hearthstone`  |  Hearthstone card lookup. Input the card name after the command then type the number appropriate to the card you were looking for.  |  `>>hearthstone Murloc Raider`
+`>>smite`  |  Shows statistics about the inputted Smite username.  |  `>>smite AXAz0r`
 `>>league`  |  Shows the players League of Legends statistics of inputed Summoner Name.  |  `>>league EUNE AXAz0r`
 `>>lolbans`  |  Shows the top League of Legends champion bans for each tier.  |  `>>lolbans`
 `>>mtg`  |  Searches the Magic The Gathering Database for the inputed card.  |  `>>mtg Archangel Avacyn`

@@ -1,0 +1,23 @@
+name: HiRez Games
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    smite
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} AXAz0r"
+    description:
+      Shows statistics about the inputted Smite username.
+
+  - name:    paladins
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} AXAz0r"
+    description:
+      Shows statistics about the inputted Paladins username.
