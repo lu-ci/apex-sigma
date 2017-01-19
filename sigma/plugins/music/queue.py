@@ -6,6 +6,11 @@ from sigma.plugins.searches.google.yt_search import search_youtube
 async def queue(cmd, message, args):
     current_queue = get_queue(message.server)
     queue_amount = len(current_queue)
+    if not message.author.voice_channel:
+        embed = discord.Embed(
+            title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
     if not args:
         if queue_amount == 0:
             embed = discord.Embed(color=0x0099FF, title=':information_source: The queue is empty.')

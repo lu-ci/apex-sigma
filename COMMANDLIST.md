@@ -112,6 +112,9 @@ Command |  Description |  Usage
 `>>disconnect`  |  Disconnects the bot from a voice channel.  |  `>>disconnect`
 `>>move`  |  Moves the bot to your voice channel if she is in another one.  |  `>>move`
 `>>play`  |  Tells the bot to start playing the songs in the queue.  |  `>>play`
+`>>pause`  |  Pauses the currently playing song.  |  `>>pause`
+`>>resume`  |  Resumes a paused song.  |  `>>resume`
+`>>stop`  |  Stops the music and disconnects the bot from the voice channel.  |  `>>stop`
 `>>queue`  |  Adds a song to the playing queue either by URL or Name.  |  `>>queue Ryder or Riot`
 `>>vol`  |  Sets the volume of the current music player.  |  `>>vol 69`
 `>>next`  |  Skips the currently playing song.  |  `>>next`
