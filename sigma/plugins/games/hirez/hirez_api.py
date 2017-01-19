@@ -44,7 +44,7 @@ def new_session():
 
 def get_session():
     curr_stamp = arrow.utcnow().timestamp
-    if not api_session['SessionID'] or api_session['GeneratedStamp'] < (curr_stamp + 890):
+    if not api_session['SessionID'] or (api_session['GeneratedStamp'] + 980) < curr_stamp:
         print('HiRez API Session Invalid, Making a New One...')
         new_session()
         session_id = api_session['SessionID']

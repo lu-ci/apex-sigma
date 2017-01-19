@@ -16,7 +16,7 @@ commands:
 
   - name:    paladins
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} AXAz0r"
     description:
