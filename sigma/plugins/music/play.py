@@ -18,14 +18,21 @@ async def play(cmd, message, args):
     srv_queue = get_queue(message.server)
     voice_connected = cmd.bot.is_voice_connected(message.server)
     if not voice_connected:
-        embed = discord.Embed(title=':warning: I am not in a voice channel currently', color=0xFF9900)
+        await cmd.bot.join_voice_channel(message.author.voice_channel)
+        embed = discord.Embed(title=':white_check_mark: Joined ' + message.author.voice_channel.name, color=0x66cc66)
         await cmd.bot.send_message(message.channel, None, embed=embed)
-        return
     if len(srv_queue) == 0:
         embed = discord.Embed(
             title=':warning: The queue is empty', color=0xFF9900)
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
+    player = get_player(message.server)
+    if player:
+        if player.is_playing():
+            embed = discord.Embed(
+                title=':warning: Already playing in ' + cmd.bot.voice_client_in(message.server).channel.name, color=0xFF9900)
+            await cmd.bot.send_message(message.channel, None, embed=embed)
+            return
     while len(srv_queue) != 0:
         item_info = srv_queue[0]
         item_type = item_info['Type']
@@ -47,7 +54,8 @@ async def play(cmd, message, args):
             text='Requested by ' + item_req + '. Duration: ' + str(datetime.timedelta(seconds=player.duration)))
         await cmd.bot.send_message(message.channel, None, embed=embed)
         while not player.is_done():
-            await asyncio.sleep(3)
+            await asyncio.sleep(2)
         player.stop()
         del_player(message.server)
         del_from_queue(message.server, 0)
+        await voice_instance.disconnect()

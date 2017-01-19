@@ -42,6 +42,15 @@ commands:
     description:
       Tells the bot to start playing the songs in the queue.
 
+  - name:    disconnect
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Stops the music and disconnects the bot from the voice channel.
+
   - name:    queue
     global:  true
     enabled: true
