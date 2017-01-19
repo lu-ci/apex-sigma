@@ -13,12 +13,15 @@ async def smite(cmd, message, args):
     hr_ts = make_timestamp()
     signature = make_signature('getplayer')
     data_url = smite_base_url + 'getplayerJson/' + HiRezDevID + '/' + signature + '/' + session_id + '/' + hr_ts + '/' + username
-    data = requests.get(data_url).json()[0]
+    data = requests.get(data_url).json()
     if len(data) == 0:
         embed = discord.Embed(color=0xDB0000, title=':exclamation: Player ' + username + ' was not found.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
-    avatar = data['Avatar_URL']
+    data = data[0]
+    avatar = message.author.default_avatar_url
+    if 'Avatar_URL' in data:
+        avatar = data['Avatar_URL']
     player_name = data['Name']
     region = data['Region']
     status = data['Personal_Status_Message']
@@ -28,6 +31,8 @@ async def smite(cmd, message, args):
     losses = data['Losses']
     mastery = data['MasteryLevel']
     team = data['Team_Name']
+    achis = data['Total_Achievements']
+    worshs = data['Total_Worshippers']
     smite_general_stats = ('```yaml\nName: ' + player_name +
                            '\nRegion: ' + region +
                            '\nLevel: ' + str(level) +
@@ -38,6 +43,8 @@ async def smite(cmd, message, args):
                            '\n  - Won: ' + str(wins) +
                            '\n  - Lost: ' + str(losses) +
                            '\n  - Left: ' + str(leaves) +
+                           '\n  - Achievements: ' + str(achis) +
+                           '\n  - Worshipers: ' + str(worshs) +
                            '\n```')
     ranked_inices = ['RankedConquest', 'RankedDuel', 'RankedJoust']
     ranked_table_head = ['']
