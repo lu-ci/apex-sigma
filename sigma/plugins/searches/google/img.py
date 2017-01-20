@@ -1,5 +1,6 @@
 import requests
 import random
+import discord
 from config import GoogleAPIKey
 from config import GoogleCSECX
 
@@ -16,9 +17,15 @@ async def img(cmd, message, args):
             result_items = results['items']
             choice = random.choice(result_items)
             title = choice['title']
+            if len(title) > 48:
+                title = title[:48] + '...'
             url = choice['link']
-            out = '`' + title + '`: \n' + url
-            await cmd.bot.send_message(message.channel, out)
+            embed = discord.Embed(color=0x1abc9c, title=title)
+            embed.set_image(url=url)
+            await cmd.bot.send_message(message.channel, None, embed=embed)
         except Exception as e:
             cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, 'Could not parse the results. The daily limit might have been reached.')
+            embed = discord.Embed(color=0xDB0000)
+            embed.add_field(name=':exclamation: Error',
+                            value='Could not parse the results. The daily limit might have been reached.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
