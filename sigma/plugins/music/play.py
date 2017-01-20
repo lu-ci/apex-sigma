@@ -33,12 +33,12 @@ async def play(cmd, message, args):
                 title=':warning: Already playing in ' + cmd.bot.voice_client_in(message.server).channel.name, color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
+    voice_instance = cmd.bot.voice_client_in(message.server)
     while len(srv_queue) != 0:
         item_info = srv_queue[0]
         item_type = item_info['Type']
         item_req = item_info['Requester']
         item_url = item_info['Location']
-        voice_instance = cmd.bot.voice_client_in(message.server)
         await make_yt_player(message.server, voice_instance, item_url)
         player = get_player(message.server)
         if not player:
@@ -58,4 +58,4 @@ async def play(cmd, message, args):
         player.stop()
         del_player(message.server)
         del_from_queue(message.server, 0)
-        await voice_instance.disconnect()
+    await voice_instance.disconnect()
