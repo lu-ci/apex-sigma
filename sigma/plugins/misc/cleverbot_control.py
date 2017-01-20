@@ -1,7 +1,7 @@
 import asyncio
 from cleverbot import Cleverbot
 
-cb = Cleverbot()
+cb = Cleverbot('Apex-Sigma')
 
 
 async def cleverbot_control(ev, message, args):
