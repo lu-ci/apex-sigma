@@ -8,7 +8,6 @@ async def cleverbot_control(ev, message, args):
     if active:
         mention = '<@' + ev.bot.user.id + '>'
         mention_alt = '<@!' + ev.bot.user.id + '>'
-        author_id = message.author.id
         if message.content.startswith(mention) or message.content.startswith(mention_alt):
             await ev.bot.send_typing(message.channel)
 
