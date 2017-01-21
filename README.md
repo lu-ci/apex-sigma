@@ -2,8 +2,8 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-<img src="https://img.shields.io/badge/Sigma-1.83-orange.svg" />
-<img src="https://img.shields.io/badge/Codename-Makoto-orange.svg" />
+<img src="https://img.shields.io/badge/Sigma-1.91-orange.svg" />
+<img src="https://img.shields.io/badge/Codename-Sayuri-orange.svg" />
 </p>
 <p align="center">
 <a href="https://www.paypal.me/AleksaRadovic"><img src="https://img.shields.io/badge/PayPal-.Me-blue.svg" /></a>
