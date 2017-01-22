@@ -2,7 +2,7 @@ from discord import Embed
 
 cache = []
 
-async def joke(cmd, message, args):
+async def bash(cmd, message, args):
     if len(cache) == 0:
         import lxml.html as l, requests
 
