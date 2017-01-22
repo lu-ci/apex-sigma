@@ -90,6 +90,14 @@ commands:
     description:
       Gives a random quote.
 
+  - name:    bash
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Displays a random bash quote.
+
   - name:    catfact
     global:  true
     enabled: true

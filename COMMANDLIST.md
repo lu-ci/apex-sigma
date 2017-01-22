@@ -57,6 +57,7 @@ Command |  Description |  Usage
 `>>shoplist`  |  Shows the list of roles purchasable on the current server.  |  `>>shoplist`
 `>>shopbuy`  |  Buys an item from the shop by item name.  |  `>>shopbuy That One Guy`
 `>>quote`  |  Gives a random quote.  |  `>>quote`
+`>>bash`  |  Displays a random bash quote.  |  `>>bash`
 `>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
 `>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
 `>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
