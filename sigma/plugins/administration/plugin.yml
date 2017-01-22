@@ -158,6 +158,17 @@ commands:
       Adds X hours of donor support time to the server with the inputted ID.
       Bot Owner Only.
 
+
+  - name:    qme
+    global:  true
+    enabled: true
+    admin:   false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Generates a quote using a markov chain generated from stuff the bot owners said.
+      Bot Owner Only.
+
 events:
   - name:    pmredirect
     type:    message
@@ -176,3 +187,12 @@ events:
     pmable:  true
     description:
       Fills the command counter statistics.
+
+  - name:    owner_markov_collector
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Fills owner inputs for markov processing.
