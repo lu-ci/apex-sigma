@@ -1,7 +1,7 @@
 import discord
 import asyncio
 import datetime
-from .music_controller import get_player, get_queue, del_from_queue, make_yt_player, del_player, get_volume
+from .music_controller import get_player, get_queue, del_from_queue, make_yt_player, del_player, get_volume, purge_queue
 from config import Prefix
 
 
@@ -58,4 +58,5 @@ async def play(cmd, message, args):
         player.stop()
         del_player(message.server)
         del_from_queue(message.server, 0)
+    purge_queue(message.server)
     await voice_instance.disconnect()
