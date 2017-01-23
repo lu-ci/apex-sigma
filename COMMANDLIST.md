@@ -113,10 +113,13 @@ Command |  Description |  Usage
 `>>disconnect`  |  Disconnects the bot from a voice channel.  |  `>>disconnect`
 `>>move`  |  Moves the bot to your voice channel if she is in another one.  |  `>>move`
 `>>play`  |  Tells the bot to start playing the songs in the queue.  |  `>>play`
+`>>playing`  |  Shows the currently playing song in the music player.  |  `>>playing`
+`>>shuffle`  |  Shuffles the song queue.  |  `>>shuffle`
 `>>pause`  |  Pauses the currently playing song.  |  `>>pause`
 `>>resume`  |  Resumes a paused song.  |  `>>resume`
 `>>stop`  |  Stops the music and disconnects the bot from the voice channel.  |  `>>stop`
 `>>queue`  |  Adds a song to the playing queue either by URL or Name.  |  `>>queue Ryder or Riot`
+`>>autoplaylist`  |  Adds the entire autoplaylist to the music queue. For those who want to listen to nice music but are too lazy to add some.  |  `>>autoplaylist`
 `>>vol`  |  Sets the volume of the current music player.  |  `>>vol 69`
 `>>next`  |  Skips the currently playing song.  |  `>>next`
 ###NIHONGO
