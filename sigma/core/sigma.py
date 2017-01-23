@@ -46,7 +46,6 @@ class Sigma(discord.Client):
         self.log = create_logger('Sigma')
 
     def init_databases(self):
-        db_url = os.getenv('DATABASE_URL')
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
 
     def init_plugins(self):
@@ -65,9 +64,6 @@ class Sigma(discord.Client):
     async def on_ready(self):
         self.log.info('Checking API Keys...')
         self.db.init_stats_table()
-        gamename = self.prefix + 'help'
-        game = discord.Game(name=gamename)
-        await self.change_presence(game=game)
         self.create_cache()
         for server in self.servers:
             self.server_count += 1

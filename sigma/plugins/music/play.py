@@ -34,7 +34,7 @@ async def play(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
     voice_instance = cmd.bot.voice_client_in(message.server)
-    while len(srv_queue) != 0:
+    while get_queue(message.server) and len(get_queue(message.server)) != 0:
         item_info = srv_queue[0]
         item_type = item_info['Type']
         item_req = item_info['Requester']
