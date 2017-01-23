@@ -42,6 +42,24 @@ commands:
     description:
       Tells the bot to start playing the songs in the queue.
 
+  - name:    playing
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the currently playing song in the music player.
+
+  - name:    shuffle
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shuffles the song queue.
+
   - name:    pause
     global:  true
     enabled: true
@@ -77,6 +95,16 @@ commands:
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
       Adds a song to the playing queue either by URL or Name.
+
+  - name:    autoplaylist
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Adds the entire autoplaylist to the music queue.
+      For those who want to listen to nice music but are too lazy to add some.
 
   - name:    vol
     global:  true
