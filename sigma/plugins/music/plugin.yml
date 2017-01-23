@@ -78,6 +78,16 @@ commands:
     description:
       Adds a song to the playing queue either by URL or Name.
 
+  - name:    autoplaylist
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Adds the entire autoplaylist to the music queue.
+      For those who want to listen to nice music but are too lazy to add some.
+
   - name:    vol
     global:  true
     enabled: true

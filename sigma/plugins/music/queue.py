@@ -17,8 +17,11 @@ async def queue(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         queue_text = '```yaml\n'
+        n = 0
         for item in current_queue:
-            queue_text += '\n\'' + item['Title'] + '\'\n  - ' + item['Requester']
+            n += 1
+            if n <= 5:
+                queue_text += '\n\'' + item['Title'] + '\'\n  - ' + item['Requester']
         queue_text += '\n```'
         embed = discord.Embed(color=0x0099FF)
         embed.add_field(name=':information_source: Current Queue For ' + message.server.name, value=queue_text,
