@@ -19,11 +19,13 @@ async def help(cmd, message, args):
                                value='[**LINK**](' + MainServerURL + 'ranking?sid=' + message.server.id + ')')
         help_out.set_footer(
             text='For additional info and help on how to use a command use [' + Prefix + 'help COMMAND_NAME] (Example: ' + Prefix + 'help slots).')
+        help_out.set_image(url='http://i.imgur.com/TRSdGni.png')
         await cmd.bot.send_message(message.channel, None, embed=help_out)
     else:
         try:
-            help_out = discord.Embed(type='rich', title=':book: ' + args[0].title() + ' Help', color=0x1B6F5F)
-            help_out.add_field(name=args[0].title(), value=cmd.bot.plugin_manager.commands[args[0].lower()].help())
+            help_out = discord.Embed(type='rich', title=':book: ' + args[0].upper() + ' Help', color=0x1B6F5F)
+            help_out.add_field(name='Command Usage Example and Information',
+                               value=cmd.bot.plugin_manager.commands[args[0].lower()].help())
             await cmd.bot.send_message(message.channel, None, embed=help_out)
         except:
             out_content = discord.Embed(type='rich', color=0x696969,
