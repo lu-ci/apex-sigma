@@ -5,6 +5,7 @@ import os
 import lxml
 import asyncio
 import codecs
+import string
 
 
 async def evaluate(cmd, message, args):
