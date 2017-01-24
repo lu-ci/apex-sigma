@@ -49,7 +49,7 @@ class Sigma(discord.Client):
     async def update_discordlist(self):
         payload = {
             "token": DiscordListToken,
-            "servers": len(self.bot.servers)
+            "servers": len(self.servers)
         }
         url = "https://bots.discordlist.net/api.php"
         resp = await aiohttp.post(url, data=payload)
