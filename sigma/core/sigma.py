@@ -95,7 +95,7 @@ class Sigma(discord.Client):
         self.log.info('Updating Bot Population Stats...')
         self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('Updating Bot Listing APIs...')
-        self.update_discordlist()
+        await self.update_discordlist()
         self.log.info('-----------------------------------')
         self.log.info('Finished Loading Successfully Connected to Discord!')
 
@@ -155,7 +155,7 @@ class Sigma(discord.Client):
                 self.log.error(e)
 
     async def on_server_join(self, server):
-        self.update_discordlist()
+        await self.update_discordlist()
         self.db.add_new_server_settings(server)
         self.db.update_server_details(server)
         self.db.update_population_stats(self.servers, self.get_all_members())
