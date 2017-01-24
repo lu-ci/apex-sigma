@@ -5,7 +5,7 @@ import discord
 import yaml
 import aiohttp
 
-from config import Prefix as pfx, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken
+from config import Prefix as pfx, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
 
 from .plugman import PluginManager
 from .database import Database
@@ -47,13 +47,14 @@ class Sigma(discord.Client):
         self.log = create_logger('Sigma')
 
     async def update_discordlist(self):
-        payload = {
-            "token": DiscordListToken,
-            "servers": len(self.servers)
-        }
-        url = "https://bots.discordlist.net/api.php"
-        resp = await aiohttp.post(url, data=payload)
-        resp.close()
+        if not DevMode:
+            payload = {
+                "token": DiscordListToken,
+                "servers": len(self.servers)
+            }
+            url = "https://bots.discordlist.net/api.php"
+            resp = await aiohttp.post(url, data=payload)
+            resp.close()
 
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
@@ -96,6 +97,12 @@ class Sigma(discord.Client):
         self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('Updating Bot Listing APIs...')
         await self.update_discordlist()
+        self.log.info('Launching On-Ready Plguins...')
+        for ev_name, event in self.plugin_manager.events['ready'].items():
+            try:
+                await event.call_ready()
+            except Exception as e:
+                self.log.error(e)
         self.log.info('-----------------------------------')
         self.log.info('Finished Loading Successfully Connected to Discord!')
 
@@ -138,17 +145,17 @@ class Sigma(discord.Client):
                 pass
 
     async def on_member_join(self, member):
+        self.db.update_user_details(member)
+        self.db.update_population_stats(self.servers, self.get_all_members())
         for ev_name, event in self.plugin_manager.events['member_join'].items():
-            self.db.update_user_details(member)
-            self.db.update_population_stats(self.servers, self.get_all_members())
             try:
                 await event.call_sp(member)
             except Exception as e:
                 self.log.error(e)
 
     async def on_member_remove(self, member):
+        self.db.update_population_stats(self.servers, self.get_all_members())
         for ev_name, event in self.plugin_manager.events['member_leave'].items():
-            self.db.update_population_stats(self.servers, self.get_all_members())
             try:
                 await event.call_sp(member)
             except Exception as e:

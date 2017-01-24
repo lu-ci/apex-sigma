@@ -23,7 +23,8 @@ class Plugin(object):
             'mention': {},
             'message': {},
             'member_join': {},
-            'member_leave': {}
+            'member_leave': {},
+            'ready': {}
         }
         self.modules = []
         self.path = path

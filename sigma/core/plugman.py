@@ -19,7 +19,8 @@ class PluginManager(object):
             'mention': {},
             'message': {},
             'member_join': {},
-            'member_leave': {}
+            'member_leave': {},
+            'ready': {}
         }
 
         self.get_plugin_dirs()
