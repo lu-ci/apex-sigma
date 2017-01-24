@@ -1,5 +1,6 @@
 import discord
 import operator
+from humanfriendly.tables import format_pretty_table as boop
 
 
 async def ingame(cmd, message, args):
@@ -27,15 +28,22 @@ async def ingame(cmd, message, args):
     embed = discord.Embed(color=0x1ABC9C)
     sorted_games = sorted(games.items(), key=operator.itemgetter(1))
     n = 0
-    out = ''
+    out_table_list = []
     game_count = len(sorted_games)
     for key, value in reversed(sorted_games):
         if n < 5:
-            out += '\n**' + key + '**\n - ' + str(value) + ' Playing | ' + \
-                   str(((value / playing_count) * 10000) // 100).split('.')[
-                       0] + '%'
             n += 1
-    embed.add_field(name='Current Gaming Statistics on ' + message.server.name, value=out, inline=True)
-    embed.set_footer(text=str(playing_count) + ' members, out of ' + str(online_count) + ' online, are playing ' + str(
-        game_count) + ' different games.')
+            if len(key) > 32:
+                key = key[:32] + '...'
+            out_table_list.append(
+                [str(n), key.title(), value, str(((value / playing_count) * 10000) // 100).split('.')[0] + '%'])
+    out = boop(out_table_list)
+    general_head = ['Online', 'In Game', 'Unique Games']
+    general_stats_list = [[online_count, playing_count, game_count]]
+    general_stats_out = boop(general_stats_list, general_head)
+    embed.add_field(name='👾 Current Gaming Statistics on ' + message.server.name,
+                    value='```haskell\n' + general_stats_out + '\n```',
+                    inline=False)
+    embed.add_field(name='🎮 By Game...', value='```haskell\n' + out + '\n```',
+                    inline=False)
     await cmd.bot.send_message(message.channel, None, embed=embed)
