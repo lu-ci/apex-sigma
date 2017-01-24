@@ -30,7 +30,8 @@ async def play(cmd, message, args):
     if player:
         if player.is_playing():
             embed = discord.Embed(
-                title=':warning: Already playing in ' + cmd.bot.voice_client_in(message.server).channel.name, color=0xFF9900)
+                title=':warning: Already playing in ' + cmd.bot.voice_client_in(message.server).channel.name,
+                color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
     voice_instance = cmd.bot.voice_client_in(message.server)
