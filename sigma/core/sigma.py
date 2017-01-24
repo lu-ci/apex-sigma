@@ -144,5 +144,6 @@ class Sigma(discord.Client):
 
     async def on_server_join(self, server):
         self.db.add_new_server_settings(server)
+        self.db.update_server_details(server)
         self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('New Server Added: ' + server.name)
