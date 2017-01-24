@@ -38,9 +38,8 @@ async def ingame(cmd, message, args):
             out_table_list.append(
                 [str(n), key.title(), value, str(((value / playing_count) * 10000) // 100).split('.')[0] + '%'])
     out = boop(out_table_list)
-    general_head = ['Online', 'In Game', 'Unique Games']
-    general_stats_list = [[online_count, playing_count, game_count]]
-    general_stats_out = boop(general_stats_list, general_head)
+    general_stats_list = [['Online', online_count], ['In-Game', playing_count], ['Unique Games', game_count]]
+    general_stats_out = boop(general_stats_list)
     embed.add_field(name='👾 Current Gaming Statistics on ' + message.server.name,
                     value='```haskell\n' + general_stats_out + '\n```',
                     inline=False)
