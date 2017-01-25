@@ -37,4 +37,4 @@
 * **Utility** - Modules to get quick info on a user or server, show a color hex, someone's avatar, and the such.
 
 # License
-Released under the [Mozilla Public License 2.0](LICENSE).
+Released under the [Mozilla Public License 2.0](LICENSE.md).
