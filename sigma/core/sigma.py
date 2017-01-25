@@ -181,8 +181,8 @@ class Sigma(discord.Client):
         self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('New Server Added: ' + server.name)
 
-    async def on_member_update(self, member):
-        self.db.update_user_details(member)
+    async def on_member_update(self, before, after):
+        self.db.update_user_details(after)
 
-    async def on_server_update(self, server):
-        self.db.update_server_details(server)
+    async def on_server_update(self, before, after):
+        self.db.update_server_details(after)
