@@ -2,7 +2,7 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-<img src="https://img.shields.io/badge/Sigma-1.93-orange.svg" />
+<img src="https://img.shields.io/badge/Sigma-1.94-orange.svg" />
 <img src="https://img.shields.io/badge/Codename-Sayuri-orange.svg" />
 </p>
 <p align="center">

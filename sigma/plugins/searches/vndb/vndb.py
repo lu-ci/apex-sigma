@@ -72,11 +72,11 @@ async def vndb(cmd, message, args):
     overlay = Image.open(cmd.resource('img/overlay_vn.png'))
     base.paste(vn_cover, (110, 0))
     base.paste(overlay, (0, 0), overlay)
-    base.save('cache/ani/vn_' + message.author.id + '.png')
+    base.save('cache/vn_' + message.author.id + '.png')
 
     try:
-        await cmd.bot.send_file(message.channel, 'cache/ani/vn_' + message.author.id + '.png')
+        await cmd.bot.send_file(message.channel, 'cache/vn_' + message.author.id + '.png')
         await cmd.bot.send_message(message.channel, 'Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[:300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
-        os.remove('cache/ani/vn_' + message.author.id + '.png')
+        os.remove('cache/vn_' + message.author.id + '.png')
     except:
         await cmd.bot.send_message(message.channel, 'Error: It goofed... =P')

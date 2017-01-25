@@ -1,11 +1,11 @@
 import os
 import yaml
-import discord
-from config import permitted_id
+from config import DevMode
 
 
-async def gencmd(cmd, message, args):
-    if message.author.id in permitted_id:
+async def gencmd(ev):
+    if DevMode:
+        ev.log.info('Generating Command List...')
         directory = 'sigma/plugins'
 
         out_text = '#Sigma\'s List of Commands'
@@ -44,6 +44,5 @@ async def gencmd(cmd, message, args):
                             pass
                         with open("COMMANDLIST.md", "w") as text_file:
                             text_file.write(out_text)
-        status = discord.Embed(title=':white_check_mark: Executed', color=0x66CC66)
-        status.add_field(name='Commands Exported', value=str(n))
-        await cmd.bot.send_message(message.channel, None, embed=status)
+        ev.log.info('Command List Generated Successfully With ' + str(n) + ' Commands.')
+

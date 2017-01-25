@@ -68,16 +68,6 @@ commands:
       The purpose of this command is to investigate possibly abusive servers and users.
       Bot Owner Only.
 
-  - name: gencmd
-    global:  true
-    enabled: true
-    admin:   true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Generates the bot's COMMANDLIST.md file.
-      Bot Owner Only.
-
   - name:    echo
     global:  true
     enabled: true
@@ -196,3 +186,21 @@ events:
     pmable:  true
     description:
       Fills owner inputs for markov processing.
+
+  - name:    version_updater
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Automatically updates the version file.
+
+  - name:    gencmd
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Generates the command list MD file.

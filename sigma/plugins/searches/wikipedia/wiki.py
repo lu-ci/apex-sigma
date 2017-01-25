@@ -1,20 +1,12 @@
 import wikipedia
-
-from sigma.core.formatting import code, codeblock
+import discord
 
 
 async def wiki(cmd, message, args):
     q = ' '.join(args).lower()
-
     result = wikipedia.summary(q)
-
-    if result is not None:
-        if len(result) >= 650:
-            result = result[:650] + ' ...'
-
-        out_text = 'Your search results for {:s}:\n{:s}'.format(
-                code(q), codeblock(result))
-    else:
-        out_text = 'Nothing could be found...'
-
-    await cmd.bot.send_message(message.channel, out_text)
+    if len(result) >= 650:
+        result = result[:650] + '...'
+    embed = discord.Embed(color=0x1abc9c)
+    embed.add_field(name='Wikipedia Search For `' + q + '`', value='```\n' + result + '\n```')
+    await cmd.bot.send_message(message.channel, None, embed=embed)
