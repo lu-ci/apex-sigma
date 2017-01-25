@@ -74,20 +74,22 @@ async def wows(cmd, message, args):
         max_frags_ship_tier = '0'
 
     # Divider for clarity
+    
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='Nickname', value='```python\n' + game_nickname + '\n```')
-    embed.add_field(name='Join Date', value='```python\n' + join_date_conv + '\n```')
     embed.add_field(name='Level', value='```python\n' + str(leveling_tier) + '\n```')
+    embed.add_field(name='Join Date', value='```python\n' + join_date_conv + '\n```', inline=False)
     embed.add_field(name='Distance', value='```python\n' + str(distance) + ' KM' + '\n```')
     embed.add_field(name='Battles', value='```python\n' + str(battle_count) + '\n```')
-    embed.add_field(name='Last Battle', value='```python\n' + last_battle_conv + '\n```')
     embed.add_field(name='Max XP From a Battle', value='```python\n' + str(max_xp) + '\n```')
-    embed.add_field(name='Max Kills', value='```python\n' + str(max_spotted_dmg) + '\n```')
-    embed.add_field(name='Total Kills', value='```python\n' + str(max_frags) + '\n```')
+    embed.add_field(name='Max Spotted Damange', value='```python\n' + str(max_spotted_dmg) + '\n```')
+    embed.add_field(name='Max Kills In a Battle', value='```python\n' + str(max_frags) + '\n```')
+    embed.add_field(name='Total Kills', value='```python\n' + str(frags) + '\n```')
     embed.add_field(name='Ship With Most Kills',
                     value='```python\n' + max_frags_ship_name + ' (Tier ' + str(max_frags_ship_tier) + ')' + '\n```')
     embed.add_field(name='Total Shots', value='```python\n' + str(shots) + '\n```')
     embed.add_field(name='Total Hits', value='```python\n' + str(hits) + '\n```')
+    embed.add_field(name='Last Battle', value='```python\n' + last_battle_conv + '\n```')
 
     # Divider for clarity
 
