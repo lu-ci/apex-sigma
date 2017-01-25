@@ -13,7 +13,8 @@ self_roles = ['Dragon Nest', 'PvP [DN]', '4v4 [DN]', 'Wipeout [DN]', 'Guild Rumb
               'Artists', 'Streamers', 'Entertainers ✿', 'Coders', 'Cosplayers',
               'Welcome Party', 'Cake Shop', 'Weebs',
               'Singers', 'Instrumentalists', 'Showtime', 'Writers',
-              'Connect', 'Musical', 'Engage']
+              'Connect', 'Musical', 'Engage',
+              'PST', 'EST', 'UTC', 'CST', 'CET']
 timeout = 10
 
 
