@@ -14,13 +14,8 @@ async def music(cmd, message, args):
     else:
         search = ' '.join(args)
     qry_url = 'http://api.deezer.com/search/track?q=' + search
-    try:
-        data = requests.get(qry_url).json()
-        data = data['data']
-    except Exception as e:
-        await cmd.bot.send_message(message.channel,
-                                   'We couldn\'t parse the page. The API might be unreachable at the moment.')
-        return
+    data = requests.get(qry_url).json()
+    data = data['data']
     if len(data) == 0:
         await cmd.bot.send_message(message.channel, 'Nothing found.')
         return
@@ -41,8 +36,7 @@ async def music(cmd, message, args):
     album = album_data['title']
     if len(album) > 20:
         album = album[:19] + '...'
-    cover = album_data['cover_medium']
-    cover = cover.replace('250x250', '128x128')
+    cover = photo
     artist_photo_raw = requests.get(photo).content
     artist_photo = Image.open(BytesIO(artist_photo_raw))
     cover_art_raw = requests.get(cover).content

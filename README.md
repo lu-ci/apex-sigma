@@ -2,8 +2,8 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-<img src="https://img.shields.io/badge/Sigma-1.94-1abc9c.svg?style=flat-square?colorB=1abc9c?style=flat-square" />
-<img src="https://img.shields.io/badge/Codename-Sayuri-1B6F5F.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Sigma-1.95-1abc9c.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Codename-Mai-1B6F5F.svg?style=flat-square" />
 <img src="https://img.shields.io/badge/License-GPLv3-red.svg?style=flat-square" />
 </p>
 <p align="center">
@@ -37,4 +37,4 @@
 * **Utility** - Modules to get quick info on a user or server, show a color hex, someone's avatar, and the such.
 
 # License
-Released under the [Mozilla Public License 2.0](LICENSE).
+Released under the [GNU General Public License version 3](LICENSE.md).
