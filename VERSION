@@ -1,7 +1,7 @@
 beta: false
-build_date: 1485344538
+build_date: 1485345597
+codename: Sayuri
 version:
   major: 1
   minor: 93
-  patch: 4878
-codename: 'Sayuri'
+  patch: 4883
