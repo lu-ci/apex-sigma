@@ -1,12 +1,16 @@
-# token and client ID for Bot
+# Discord Bot Token
 Token = ''
-# MongoDB Address and Port
+# Database Access Details
 MongoAddress = '127.0.0.1'
 MongoPort = 27017
-# GitHub WebHook Server Settings.
-GitHubWebserverPort = 37812
-GitHubWebserverAddr = ''
-# API Keys and Login Details for Various Services.
+MongoAuth = False
+MongoUser = ''
+MongoPass = ''
+DevMode = False
+DiscordListToken = ''
+GitHubWebserverPort = 8080
+GitHubWebserverAddr = '127.0.0.1'
+# API Keys
 DarkSkySecretKey = ''
 MashapeKey = ''
 RiotAPIKey = ''
@@ -16,6 +20,8 @@ GoogleCSECX = ''
 WolframAlphaAppID = ''
 RedditClientID = ''
 RedditClientSecret = ''
+HiRezDevID = ''
+HiRezAuthKey = ''
 LastFMAPIKey = ''
 ITADKey = ''
 SteamAPI = ''
@@ -25,15 +31,15 @@ RLAPIKey = ''
 ImgurClientID = ''
 ImgurClientSecret = ''
 WarGamingAppID = ''
+TwitchClientID = ''
+OSUAPIKey = ''
 Food2ForkAPIKey = ''
 CatAPIKey = ''
 mal_un = ''
 mal_pw = ''
-reddit_un = ''
-reddit_pw = ''
-TwitchClientID = ''
-# Bot Prefix for Commands.
+MainServerURL = 'https://localhost:5000/'
+# Bot Command Prefix
 Prefix = '>>'
-MainServerURL = 'localhost'
-# Permitted IDs.
-permitted_id = ['1234567891234569']
+# Owner IDs
+permitted_id = ['123456789123456789']
+
