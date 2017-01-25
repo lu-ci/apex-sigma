@@ -74,7 +74,7 @@ async def wows(cmd, message, args):
         max_frags_ship_tier = '0'
 
     # Divider for clarity
-    
+
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='Nickname', value='```python\n' + game_nickname + '\n```')
     embed.add_field(name='Level', value='```python\n' + str(leveling_tier) + '\n```')
