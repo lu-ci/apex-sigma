@@ -146,5 +146,5 @@ class Callable(object):
     async def call_sp(self, member):
         msg = await getattr(self.module, self.name)(self, member)
 
-    async def call_ready(self,):
+    async def call_ready(self):
         response = await getattr(self.module, self.name)(self)

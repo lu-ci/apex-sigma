@@ -12,7 +12,6 @@ from .database import Database
 from .logger import create_logger
 from .stats import stats
 
-bot_ready = False
 
 # Apex Sigma: The Database Giant Discord Bot.
 # Copyright (C) 2017  Aurora Project
@@ -122,71 +121,68 @@ class Sigma(discord.Client):
                 self.log.error(e)
         self.log.info('-----------------------------------')
         self.log.info('Finished Loading Successfully Connected to Discord!')
-        global bot_ready
-        bot_ready = True
 
     async def on_message(self, message):
-        if bot_ready:
-            self.db.update_user_details(message.author)
-            if message.server:
-                self.db.update_server_details(message.server)
-            self.change_presence()
-            self.db.add_stats('MSGCount')
-            args = message.content.split(' ')
+        self.change_presence()
+        self.db.add_stats('MSGCount')
+        args = message.content.split(' ')
 
-            # handle mention events
-            if self.user.mentioned_in(message):
-                for ev_name, event in self.plugin_manager.events['mention'].items():
-                    await event.call(message, args)
-
-            # handle raw message events
-            for ev_name, event in self.plugin_manager.events['message'].items():
+        # handle mention events
+        if self.user.mentioned_in(message):
+            for ev_name, event in self.plugin_manager.events['mention'].items():
                 await event.call(message, args)
 
-            if message.content.startswith(pfx):
-                cmd = args.pop(0).lstrip(pfx).lower()
+        # handle raw message events
+        for ev_name, event in self.plugin_manager.events['message'].items():
+            await event.call(message, args)
 
-                try:
-                    task = self.plugin_manager.commands[cmd].call(message, args)
-                    self.loop.create_task(task)
+        if message.content.startswith(pfx):
+            cmd = args.pop(0).lstrip(pfx).lower()
 
-                    if message.server:
-                        msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s channel'
-                        self.log.info(msg.format(cmd),
-                                      message.author, message.author.id,
-                                      message.server.name, message.server.id, message.channel)
-                    else:
-                        msg = 'User %s [%s], used the {:s} command in a private message channel.'
-                        self.log.info(msg.format(cmd),
-                                      message.author,
-                                      message.author.id)
-                except KeyError:
-                    # no such command
-                    pass
+            try:
+                task = self.plugin_manager.commands[cmd].call(message, args)
+                self.loop.create_task(task)
+
+                if message.server:
+                    msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s channel'
+                    self.log.info(msg.format(cmd),
+                                  message.author, message.author.id,
+                                  message.server.name, message.server.id, message.channel)
+                else:
+                    msg = 'User %s [%s], used the {:s} command in a private message channel.'
+                    self.log.info(msg.format(cmd),
+                                  message.author,
+                                  message.author.id)
+            except KeyError:
+                # no such command
+                pass
 
     async def on_member_join(self, member):
-        if bot_ready:
-            self.db.update_user_details(member)
-            self.db.update_population_stats(self.servers, self.get_all_members())
-            for ev_name, event in self.plugin_manager.events['member_join'].items():
-                try:
-                    await event.call_sp(member)
-                except Exception as e:
-                    self.log.error(e)
+        self.db.update_user_details(member)
+        self.db.update_population_stats(self.servers, self.get_all_members())
+        for ev_name, event in self.plugin_manager.events['member_join'].items():
+            try:
+                await event.call_sp(member)
+            except Exception as e:
+                self.log.error(e)
 
     async def on_member_remove(self, member):
-        if bot_ready:
-            self.db.update_population_stats(self.servers, self.get_all_members())
-            for ev_name, event in self.plugin_manager.events['member_leave'].items():
-                try:
-                    await event.call_sp(member)
-                except Exception as e:
-                    self.log.error(e)
+        self.db.update_population_stats(self.servers, self.get_all_members())
+        for ev_name, event in self.plugin_manager.events['member_leave'].items():
+            try:
+                await event.call_sp(member)
+            except Exception as e:
+                self.log.error(e)
 
     async def on_server_join(self, server):
-        if bot_ready:
-            await self.update_discordlist()
-            self.db.add_new_server_settings(server)
-            self.db.update_server_details(server)
-            self.db.update_population_stats(self.servers, self.get_all_members())
-            self.log.info('New Server Added: ' + server.name)
+        await self.update_discordlist()
+        self.db.add_new_server_settings(server)
+        self.db.update_server_details(server)
+        self.db.update_population_stats(self.servers, self.get_all_members())
+        self.log.info('New Server Added: ' + server.name)
+
+    async def on_member_update(self, member):
+        self.db.update_user_details(member)
+
+    async def on_server_update(self, server):
+        self.db.update_server_details(server)
