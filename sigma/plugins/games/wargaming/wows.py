@@ -1,24 +1,20 @@
 import datetime
 from requests import get as rg
-
+import discord
 from config import WarGamingAppID
 
 
 async def wows(cmd, message, args):
     q = ' '.join(args).lower()
-
     game_region, game_username = q.split(maxsplit=1)
-
     if game_region == 'na':
         game_region = 'com'
-
     try:
         url_base = 'https://api.worldofwarships.' + game_region + '/wows/account/list/?application_id=' + WarGamingAppID + '&search=' + game_username
         initial_data = rg(url_base).json()
     except:
         await cmd.bot.send_message(message.channel, '`' + game_region + '` is not a valid region.')
         return
-
     try:
         if initial_data['status'].lower() == 'ok':
             pass
@@ -27,17 +23,15 @@ async def wows(cmd, message, args):
     except Exception as e:
         cmd.log.error(e)
         return
-
     try:
         game_nickname = initial_data['data'][0]['nickname']
     except:
         await cmd.bot.send_message(message.channel, 'User `' + game_username + '` not found.')
         return
-
     account_id = initial_data['data'][0]['account_id']
-    url_second = 'https://api.worldofwarships.' + game_region + '/wows/account/info/?application_id=' + WarGamingAppID + '&account_id=' + str(account_id)
+    url_second = 'https://api.worldofwarships.' + game_region + '/wows/account/info/?application_id=' + WarGamingAppID + '&account_id=' + str(
+        account_id)
     main_data = rg(url_second).json()
-
     try:
         if main_data['status'].lower() == 'ok':
             pass
@@ -46,61 +40,55 @@ async def wows(cmd, message, args):
     except Exception as e:
         cmd.log.error(e)
         return
-    try:
-        data = main_data['data'][str(account_id)]
-        last_battle = data['last_battle_time']
-        last_battle_conv = datetime.datetime.fromtimestamp(last_battle).strftime('%B %d, %Y %H:%M')
-        leveling_tier = data['leveling_tier']
-        join_date = data['created_at']
-        join_date_conv = datetime.datetime.fromtimestamp(join_date).strftime('%B %d, %Y %H:%M')
+    data = main_data['data'][str(account_id)]
+    last_battle = data['last_battle_time']
+    last_battle_conv = datetime.datetime.fromtimestamp(last_battle).strftime('%B %d, %Y %H:%M')
+    leveling_tier = data['leveling_tier']
+    join_date = data['created_at']
+    join_date_conv = datetime.datetime.fromtimestamp(join_date).strftime('%B %d, %Y %H:%M')
 
-        stats = data['statistics']
-        distance = stats['distance']
-        battle_count = stats['battles']
+    stats = data['statistics']
+    distance = stats['distance']
+    battle_count = stats['battles']
 
-        pvp_stats = stats['pvp']
-        max_xp = pvp_stats['max_xp']
-        max_spotted_dmg = pvp_stats['max_damage_scouting']
+    pvp_stats = stats['pvp']
+    max_xp = pvp_stats['max_xp']
+    max_spotted_dmg = pvp_stats['max_damage_scouting']
 
-        main_battery = pvp_stats['main_battery']
-        max_frags = main_battery['max_frags_battle']
-        frags = main_battery['frags']
-        hits = main_battery['hits']
-        max_frags_ship_id = main_battery['max_frags_ship_id']
-        shots = main_battery['shots']
+    main_battery = pvp_stats['main_battery']
+    max_frags = main_battery['max_frags_battle']
+    frags = main_battery['frags']
+    hits = main_battery['hits']
+    max_frags_ship_id = main_battery['max_frags_ship_id']
+    shots = main_battery['shots']
 
-        max_frags_ship_url = 'https://api.worldofwarships.' + game_region + '/wows/encyclopedia/ships/?application_id=' + WarGamingAppID + '&ship_id=' + str(max_frags_ship_id)
-        max_frags_ship_data = rg(max_frags_ship_url).json()
+    max_frags_ship_url = 'https://api.worldofwarships.' + game_region + '/wows/encyclopedia/ships/?application_id=' + WarGamingAppID + '&ship_id=' + str(
+        max_frags_ship_id)
+    max_frags_ship_data = rg(max_frags_ship_url).json()
 
-        if max_frags_ship_id is not None:
-            max_frags_ship_name = max_frags_ship_data['data'][str(max_frags_ship_id)]['name']
-            max_frags_ship_tier = max_frags_ship_data['data'][str(max_frags_ship_id)]['tier']
-        else:
-            max_frags_ship_name = 'None'
-            max_frags_ship_tier = '0'
+    if max_frags_ship_id is not None:
+        max_frags_ship_name = max_frags_ship_data['data'][str(max_frags_ship_id)]['name']
+        max_frags_ship_tier = max_frags_ship_data['data'][str(max_frags_ship_id)]['tier']
+    else:
+        max_frags_ship_name = 'None'
+        max_frags_ship_tier = '0'
 
-        # Divider for clarity
+    # Divider for clarity
+    embed = discord.Embed(color=0x1abc9c)
+    embed.add_field(name='Nickname', value='```python\n' + game_nickname + '\n```')
+    embed.add_field(name='Join Date', value='```python\n' + join_date_conv + '\n```')
+    embed.add_field(name='Level', value='```python\n' + str(leveling_tier) + '\n```')
+    embed.add_field(name='Distance', value='```python\n' + str(distance) + ' KM' + '\n```')
+    embed.add_field(name='Battles', value='```python\n' + str(battle_count) + '\n```')
+    embed.add_field(name='Last Battle', value='```python\n' + last_battle_conv + '\n```')
+    embed.add_field(name='Max XP From a Battle', value='```python\n' + str(max_xp) + '\n```')
+    embed.add_field(name='Max Kills', value='```python\n' + str(max_spotted_dmg) + '\n```')
+    embed.add_field(name='Total Kills', value='```python\n' + str(max_frags) + '\n```')
+    embed.add_field(name='Ship With Most Kills',
+                    value='```python\n' + max_frags_ship_name + ' (Tier ' + str(max_frags_ship_tier) + ')' + '\n```')
+    embed.add_field(name='Total Shots', value='```python\n' + str(shots) + '\n```')
+    embed.add_field(name='Total Hits', value='```python\n' + str(hits) + '\n```')
 
-        out_text = '```haskell'
-        out_text += '\nNickname: ' + game_nickname
-        out_text += '\nJoin Date: ' + join_date_conv
-        out_text += '\nLevel: ' + str(leveling_tier)
-        out_text += '\nDistance: ' + str(distance) + ' KM'
-        out_text += '\nBattles: ' + str(battle_count)
-        out_text += '\nLast Battle: ' + last_battle_conv
-        out_text += '\nMax XP From a Battle: ' + str(max_xp)
-        out_text += '\nMax DMG To Spotted Ship: ' + str(max_spotted_dmg)
-        out_text += '\nMax Kills: ' + str(max_frags)
-        out_text += '\nTotal Kills: ' + str(frags)
-        out_text += '\nShip With Most Kills: ' + max_frags_ship_name + ' (Tier ' + str(max_frags_ship_tier) + ')'
-        out_text += '\nTotal Shots: ' + str(shots)
-        out_text += '\nTotal Hits: ' + str(hits)
-        out_text += '\n```'
+    # Divider for clarity
 
-        # Divider for clarity
-
-        await cmd.bot.send_message(message.channel, out_text)
-    except SyntaxError as e:
-        cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, 'We ran into an error, the user most likely doesn\'t exist in the region, or something dun goofed.\nError: **' + str(e) + '**')
-        return
+    await cmd.bot.send_message(message.channel, None, embed=embed)
