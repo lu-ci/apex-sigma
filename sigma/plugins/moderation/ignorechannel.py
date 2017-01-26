@@ -1,3 +1,4 @@
+import discord
 from sigma.core.permission import check_admin
 
 
@@ -17,26 +18,27 @@ async def ignorechannel(cmd, message, args):
                 target = chan
                 break
         if not target:
-            await cmd.bot.send_message(message.channel, ':notebook: No channel like that was found on this server.')
-            return
+            embed = discord.Embed(color=0x696969, title=':notebook: No channel like that was found on this server.')
         else:
             if target == message.author:
-                await cmd.bot.send_message(message.channel, 'You can\'t blacklist yourself.')
+                embed = discord.Embed(title=':warning: You Can\'t Blacklist Yourself', color=0xFF9900)
+                await cmd.bot.send_message(message.channel, None, embed=embed)
                 return
             if target == cmd.bot.user:
-                await cmd.bot.send_message(message.channel, 'You can\'t blacklist me.')
+                embed = discord.Embed(title=':warning: You Can\'t Blacklist Me', color=0xFF9900)
+                await cmd.bot.send_message(message.channel, None, embed=embed)
                 return
             black = cmd.db.get_settings(message.server.id, 'BlacklistedChannels')
             if not black:
                 black = []
             if target.id in black:
                 black.remove(target.id)
-                await cmd.bot.send_message(message.channel,
-                                           ':unlock: The channel **' + target.name + '** has been **un-blacklisted**.')
+                embed = discord.Embed(title=':unlock: ' + target.name + 'has been un-blacklisted.', color=0xFF9900)
             else:
                 black.append(target.id)
-                await cmd.bot.send_message(message.channel,
-                                           ':lock: The channel **' + target.name + '** has been **blacklisted**.')
+                embed = discord.Embed(title=':lock: ' + target.name + 'has been blacklisted.', color=0xFF9900)
             cmd.db.set_settings(message.server.id, 'BlacklistedChannels', black)
     else:
-        await cmd.bot.send_message(message.channel, ':x: Insufficient Permissions.\nServer admin only.')
+        embed = discord.Embed(type='rich', color=0xDB0000,
+                              title=':no_entry: Insufficient Permissions. Server Admin Only.')
+    await cmd.bot.send_message(message.channel, None, embed=embed)
