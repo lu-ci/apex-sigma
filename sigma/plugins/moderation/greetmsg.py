@@ -1,17 +1,17 @@
+import discord
 from sigma.core.permission import check_admin
 
 
 async def greetmsg(cmd, message, args):
-    if message.server:
-        if not args:
-            greet_message = cmd.db.get_settings(message.server.id, 'GreetMessage')
-            await cmd.bot.send_message(message.channel,
-                                       'The current greet message is:\n```\n' + greet_message + '\n```')
+    if not args:
+        greet_message = cmd.db.get_settings(message.server.id, 'GreetMessage')
+        embed = discord.Embed(color=0x0099FF)
+        embed.add_field(name=':information_source: Current Greet Message', value='```\n' + greet_message + '\n```')
+    else:
+        if not check_admin(message.author, message.channel):
+            embed = discord.Embed(title=':no_entry: Unpermitted', color=0xDB0000)
         else:
-            if not check_admin(message.author, message.channel):
-                await cmd.bot.send_message(message.channel, ':x: Insufficient permissions.\nServer admin only.')
-                return
-            else:
-                new_message = ' '.join(args)
-                cmd.db.set_settings(message.server.id, 'GreetMessage', new_message)
-                await cmd.bot.send_message(message.channel, 'The new greet message has been set.')
+            new_message = ' '.join(args)
+            cmd.db.set_settings(message.server.id, 'GreetMessage', new_message)
+            embed = discord.Embed(title=':white_check_mark: New Greet Message Set', color=0x66CC66)
+    await cmd.bot.send_message(message.channel, None, embed=embed)

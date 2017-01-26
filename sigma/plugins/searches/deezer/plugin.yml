@@ -22,4 +22,3 @@ commands:
     usage:   "{pfx:s}{cmd:s} Lose Yourself"
     description:
       Searches for music tracks by the given name.
-      Lists all the results and let's you pick the one you want.

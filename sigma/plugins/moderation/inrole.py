@@ -1,4 +1,4 @@
-import asyncio
+import discord
 
 
 async def inrole(cmd, message, args):
@@ -7,21 +7,19 @@ async def inrole(cmd, message, args):
         return
     else:
         role_input = ' '.join(args)
-        out_text = ''
         role_choice = None
+        user_list = ''
         for role in message.server.roles:
             if role.name.lower() == role_input.lower():
                 role_choice = role
         if not role_choice:
-            response = await cmd.bot.send_message(message.channel, 'No role by the name ' + role_input + ' was found.')
-            await asyncio.sleep(10)
-            await cmd.bot.delete_message(response)
-            return
+            embed = discord.Embed(color=0x696969, title=':notebook: No channel like that was found on this server.')
         else:
-            out_text += 'The following users are in **' + role_choice.name + '**.\n\n'
+            embed = discord.Embed(color=0x0099FF)
             for member in message.server.members:
                 for role in member.roles:
                     if role == role_choice:
-                        out_text += member.name + ', '
-
-            await cmd.bot.send_message(message.channel, out_text[:-2])
+                        user_list += '\n - ' + member.name
+            embed.add_field(name=':information_source: The Following Users Are In ' + role_choice.name,
+                            value='```haskell\n' + user_list + '\n```')
+        await cmd.bot.send_message(message.channel, None, embed=embed)
