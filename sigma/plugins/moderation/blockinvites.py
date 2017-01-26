@@ -4,8 +4,7 @@ from sigma.core.permission import check_admin
 
 async def blockinvites(cmd, message, args):
     if not check_admin(message.author, message.channel):
-        await cmd.bot.send_message(message.channel, ':x: Insufficient permissions.\nServer admin only.')
-        return
+        embed = discord.Embed(title=':no_entry: Unpermitted. Server Admin Only.', color=0xDB0000)
     else:
         active = cmd.db.get_settings(message.server.id, 'BlockInvites')
         if active:
