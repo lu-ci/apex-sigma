@@ -104,8 +104,6 @@ Command |  Description |  Usage
 `>>eventchance`  |  Sets the chance by which random events might apear. The chance can be set from 1 to 100. Requires the user to be a server Administrator.  |  `>>eventchance 15`
 `>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
 `>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
-`>>logging`  |  Toggles if the bot should log stuff that happens on the server. This is deactivated by default. Server Administrator Only.  |  `>>logging`
-`>>logs`  |  Sends you a special access token in a direct message so you can access the logs on your server. This will also show you your User ID. Both are needed to access the logs. Server Administrator Only.  |  `>>logs`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------
