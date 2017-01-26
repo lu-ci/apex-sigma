@@ -2,7 +2,7 @@ import discord
 from sigma.core.permission import check_admin
 
 
-async def byemsg(cmd, message, args):
+async def greetmsg(cmd, message, args):
     if not args:
         greet_message = cmd.db.get_settings(message.server.id, 'GreetMessage')
         embed = discord.Embed(color=0x0099FF)
