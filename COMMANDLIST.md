@@ -147,7 +147,7 @@ Command |  Description |  Usage
 Command |  Description |  Usage
 --------|--------------|-------
 `>>deezer`  |  List the songs currently in the user's Flow queue. The profile ID can be found by opening your profile page on Deezer.  |  `>>deezer 938108141`
-`>>music`  |  Searches for music tracks by the given name. Lists all the results and let's you pick the one you want.  |  `>>music Lose Yourself`
+`>>music`  |  Searches for music tracks by the given name.  |  `>>music Lose Yourself`
 `>>recipe`  |  Searches the internet for a recipe you desire. We'll try to provide as much info as possible. Just don't burn your food and stuff.  |  `>>recipe Chicken in Curry`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
 `>>img`  |  Searches Google for your inputted image query. Displays a random result.  |  `>>img Lasagna`
