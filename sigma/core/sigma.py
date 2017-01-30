@@ -117,16 +117,14 @@ class Sigma(discord.Client):
         self.log.info('Checking API Keys...')
         self.db.init_stats_table()
         self.create_cache()
+        servers = []
         for server in self.servers:
             self.server_count += 1
+            servers.append(server)
             for member in server.members:
                 self.member_count += 1
-
         self.log.info('-----------------------------------')
         stats(self, self.log)
-        servers = []
-        for srv in self.servers:
-            servers.append(srv)
         self.db.init_server_settings(servers)
         user_generator = self.get_all_members()
         self.log.info('-----------------------------------')
@@ -212,6 +210,7 @@ class Sigma(discord.Client):
             self.db.update_server_details(server)
             self.db.update_population_stats(self.servers, self.get_all_members())
             self.log.info('New Server Added: ' + server.name)
+            self.db.init_server_settings(self.servers)
 
     async def on_member_update(self, before, after):
         if bot_ready:
