@@ -309,7 +309,7 @@ class Database(object):
         if exists:
             self.db['ServerList'].update_one(updatetarget, updatedata)
         else:
-            self.db['ServerList'].insert_one(updatedata)
+            self.db['ServerList'].insert_one(data)
 
     def update_user_details(self, user):
         exists = self.find_one('UserList', {'UserID': user.id})
@@ -324,7 +324,7 @@ class Database(object):
         if exists:
             self.db['UserList'].update_one(updatetarget, updatedata)
         else:
-            self.db['UserList'].insert_one(updatedata)
+            self.db['UserList'].insert_one(data)
 
     def init_stats_table(self):
         search = self.db['Stats'].find_one({'Role': 'Stats'})
