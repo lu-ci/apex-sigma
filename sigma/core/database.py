@@ -296,6 +296,7 @@ class Database(object):
             self.db['ServerList'].insert_one(data)
 
     def update_server_details(self, server):
+        exists = self.find_one('ServerList', {'ServerID': server.id})
         data = {
             'ServerID': server.id,
             'Icon': server.icon_url,
@@ -305,9 +306,13 @@ class Database(object):
         }
         updatetarget = {'ServerID': server.id}
         updatedata = {'$set': data}
-        self.db['ServerList'].update_one(updatetarget, updatedata)
+        if exists:
+            self.db['ServerList'].update_one(updatetarget, updatedata)
+        else:
+            self.db['ServerList'].insert_one(updatetarget, updatedata)
 
     def update_user_details(self, user):
+        exists = self.find_one('UserList', {'UserID': user.id})
         data = {
             'UserID': user.id,
             'UserName': user.name,
@@ -316,7 +321,10 @@ class Database(object):
         }
         updatetarget = {'User': user.id}
         updatedata = {'$set': data}
-        self.db['UserList'].update_one(updatetarget, updatedata)
+        if exists:
+            self.db['UserList'].update_one(updatetarget, updatedata)
+        else:
+            self.db['UserList'].insert_one(updatetarget, updatedata)
 
     def init_stats_table(self):
         search = self.db['Stats'].find_one({'Role': 'Stats'})
