@@ -12,7 +12,7 @@ async def img(cmd, message, args):
     else:
         search = ' '.join(args)
         results = requests.get(
-            'https://www.googleapis.com/customsearch/v1?q=' + search + '&cx=' + GoogleCSECX + '&searchType=image' + '&key=' + GoogleAPIKey).json()
+            'https://www.googleapis.com/customsearch/v1?q=' + search + '&cx=' + GoogleCSECX + '&searchType=image&safe=high' + '&key=' + GoogleAPIKey).json()
         try:
             result_items = results['items']
             choice = random.choice(result_items)
@@ -25,7 +25,6 @@ async def img(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=embed)
         except Exception as e:
             cmd.log.error(e)
-            embed = discord.Embed(color=0xDB0000)
-            embed.add_field(name=':exclamation: Error',
-                            value='Could not parse the results. The daily limit might have been reached.')
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: Daily Limit Reached.')
+            embed.set_footer(text='Google limits this API feature, and we hit that limit.')
             await cmd.bot.send_message(message.channel, None, embed=embed)
