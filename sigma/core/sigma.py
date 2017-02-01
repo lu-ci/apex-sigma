@@ -180,7 +180,7 @@ class Sigma(discord.Client):
                             msg = 'User %s [%s], used the {:s} command in a private message channel with [%s] arguments'
                             self.log.info(msg.format(cmd), message.author, message.author.id, ' '.join(args))
                         else:
-                            msg = 'User %s [%s], used the {:s} command in a private message channel with [%s] arguments'
+                            msg = 'User %s [%s], used the {:s} command in a private message channel'
                             self.log.info(msg.format(cmd), message.author, message.author.id)
                 except KeyError:
                     # no such command
