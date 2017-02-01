@@ -136,14 +136,14 @@ class Sigma(discord.Client):
         self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('Updating Bot Listing APIs...')
         await self.update_discordlist()
-        self.log.info('Launching On-Ready Plguins...')
+        self.log.info('Launching On-Ready Plugins...')
         for ev_name, event in self.plugin_manager.events['ready'].items():
             try:
                 await event.call_ready()
             except Exception as e:
                 self.log.error(e)
         self.log.info('-----------------------------------')
-        self.log.info('Finished Loading Successfully Connected to Discord!')
+        self.log.info('Finished Loading and Successfully Connected to Discord!')
         global bot_ready
         bot_ready = True
 
