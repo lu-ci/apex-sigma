@@ -41,6 +41,7 @@ commands:
   - name:    hash
     global:  true
     enabled: true
+    pmable:  true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} md5 I like cheese and spaghetti code!"
     description:
