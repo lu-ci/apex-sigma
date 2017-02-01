@@ -166,21 +166,22 @@ class Sigma(discord.Client):
 
                 try:
                     if self.check_black(message):
-                        self.log.info('Access Denied Due To User Being Found In A Blacklist.')
+                        self.log.info('Access Denied Due To User or Channel Being Found In A Blacklist.')
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
 
                     if message.server:
-                        msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s channel'
+                        msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s [%s] with [%s] arguments'
                         self.log.info(msg.format(cmd),
                                       message.author, message.author.id,
-                                      message.server.name, message.server.id, message.channel)
+                                      message.server.name, message.server.id, message.channel, message.channel.id,
+                                      ' '.join(args))
                     else:
-                        msg = 'User %s [%s], used the {:s} command in a private message channel.'
+                        msg = 'User %s [%s], used the {:s} command in a private message channel with [%s] arguments'
                         self.log.info(msg.format(cmd),
                                       message.author,
-                                      message.author.id)
+                                      message.author.id, ' '.join(args))
                 except KeyError:
                     # no such command
                     pass
@@ -188,6 +189,8 @@ class Sigma(discord.Client):
     async def on_member_join(self, member):
         if bot_ready:
             self.db.update_population_stats(self.servers, self.get_all_members())
+            msg = 'User %s [%s] has joined %s [%s]'
+            self.log.info(msg, member.name, member.id, member.server.name, member.server.id)
             for ev_name, event in self.plugin_manager.events['member_join'].items():
                 try:
                     await event.call_sp(member)
@@ -197,6 +200,8 @@ class Sigma(discord.Client):
     async def on_member_remove(self, member):
         if bot_ready:
             self.db.update_population_stats(self.servers, self.get_all_members())
+            msg = 'User %s [%s] has left %s [%s]'
+            self.log.info(msg, member.name, member.id, member.server.name, member.server.id)
             for ev_name, event in self.plugin_manager.events['member_leave'].items():
                 try:
                     await event.call_sp(member)
@@ -209,8 +214,16 @@ class Sigma(discord.Client):
             self.db.add_new_server_settings(server)
             self.db.update_server_details(server)
             self.db.update_population_stats(self.servers, self.get_all_members())
-            self.log.info('New Server Added: ' + server.name)
+            msg = 'Invited To %s [%s]'
+            self.log.info(msg, server.name, server.id)
             self.db.init_server_settings(self.servers)
+
+    async def on_server_remove(self, server):
+        if bot_ready:
+            await self.update_discordlist()
+            self.db.update_population_stats(self.servers, self.get_all_members())
+            msg = 'Removed From %s [%s]'
+            self.log.info(msg, server.name, server.id)
 
     async def on_member_update(self, before, after):
         if bot_ready:
