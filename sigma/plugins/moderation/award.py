@@ -17,11 +17,6 @@ async def award(cmd, message, args):
                 out = discord.Embed(title=':exclamation: Invalid Input.', color=0xDB0000)
                 await cmd.bot.send_message(message.channel, None, embed=out)
                 return
-            current_points = cmd.db.get_points(message.server, target)
-            if current_points < amount:
-                out = discord.Embed(title=':exclamation: They don\'t have that many points.', color=0xDB0000)
-                await cmd.bot.send_message(message.channel, None, embed=out)
-                return
             cmd.db.add_points(message.server, target, amount)
             out = discord.Embed(title=':white_check_mark: Done', color=0x66CC66)
             out.add_field(name='Sent To', value=target.name + '#' + target.discriminator)
