@@ -313,10 +313,14 @@ class Database(object):
 
     def update_user_details(self, user):
         exists = self.find_one('UserList', {'UserID': user.id})
+        if user.avatar_url != '':
+            user_ava = '.'.join(user.avatar_url.split('.')[:-1]) + '.png'
+        else:
+            user_ava = user.default_avatar_url
         data = {
             'UserID': user.id,
             'UserName': user.name,
-            'Avatar': user.avatar_url,
+            'Avatar': user_ava,
             'Discriminator': user.discriminator
         }
         updatetarget = {'User': user.id}
