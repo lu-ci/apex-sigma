@@ -117,21 +117,15 @@ class Sigma(discord.Client):
         self.log.info('Checking API Keys...')
         self.db.init_stats_table()
         self.create_cache()
-        servers = []
-        for server in self.servers:
-            self.server_count += 1
-            servers.append(server)
-            for member in server.members:
-                self.member_count += 1
         self.log.info('-----------------------------------')
         stats(self, self.log)
-        self.db.init_server_settings(servers)
+        self.db.init_server_settings(self.servers)
         user_generator = self.get_all_members()
         self.log.info('-----------------------------------')
         self.log.info('Updating User Database...')
         self.db.refactor_users(user_generator)
         self.log.info('Updating Server Database...')
-        self.db.refactor_servers(servers)
+        self.db.refactor_servers(self.servers)
         self.log.info('Updating Bot Population Stats...')
         self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('Updating Bot Listing APIs...')
@@ -172,16 +166,22 @@ class Sigma(discord.Client):
                         self.loop.create_task(task)
 
                     if message.server:
-                        msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s [%s] with [%s] arguments'
-                        self.log.info(msg.format(cmd),
-                                      message.author, message.author.id,
-                                      message.server.name, message.server.id, message.channel, message.channel.id,
-                                      ' '.join(args))
+                        if args:
+                            msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s [%s] with [%s] arguments'
+                            self.log.info(msg.format(cmd), message.author, message.author.id, message.server.name,
+                                          message.server.id, message.channel, message.channel.id,
+                                          ' '.join(args))
+                        else:
+                            msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s [%s]'
+                            self.log.info(msg.format(cmd), message.author, message.author.id, message.server.name,
+                                          message.server.id, message.channel, message.channel.id)
                     else:
-                        msg = 'User %s [%s], used the {:s} command in a private message channel with [%s] arguments'
-                        self.log.info(msg.format(cmd),
-                                      message.author,
-                                      message.author.id, ' '.join(args))
+                        if args:
+                            msg = 'User %s [%s], used the {:s} command in a private message channel with [%s] arguments'
+                            self.log.info(msg.format(cmd), message.author, message.author.id, ' '.join(args))
+                        else:
+                            msg = 'User %s [%s], used the {:s} command in a private message channel with [%s] arguments'
+                            self.log.info(msg.format(cmd), message.author, message.author.id)
                 except KeyError:
                     # no such command
                     pass
