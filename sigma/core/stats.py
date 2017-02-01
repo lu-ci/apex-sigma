@@ -37,8 +37,8 @@ def stats(bot, log=None):
     tmp.append(multi('Donors: ' + str(donor_count), log))
     tmp.append(multi('Bot Version: ' + version_text, log))
     tmp.append(multi('Build Date: ' + build_date, log))
-    tmp.append(multi('Connected to [ {:d} ] servers'.format(bot.server_count), log))
-    tmp.append(multi('Serving [ {:d} ] users'.format(bot.member_count), log))
+    tmp.append(multi('Connected to [ {:d} ] servers'.format(len(bot.servers)), log))
+    tmp.append(multi('Serving [ {:d} ] users'.format(len(list(bot.get_all_members()))), log))
     tmp.append(multi('Permitted IDs: {:s}'.format(permed_ids), log))
 
     return tmp
