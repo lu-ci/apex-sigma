@@ -204,3 +204,12 @@ events:
     pmable:  true
     description:
       Generates the command list MD file.
+
+  - name:    playing_status
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Sets the now playing status on launch.
