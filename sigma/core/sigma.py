@@ -164,23 +164,25 @@ class Sigma(discord.Client):
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
-
+                    entitiy = 'User'
+                    if message.author.bot:
+                        entitiy = 'Bot'
                     if message.server:
                         if args:
-                            msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s [%s] with [%s] arguments'
+                            msg = 'CMD: ' + entitiy + ' %s [%s] on server %s [%s], used the {:s} command on #%s [%s] with [%s] arguments'
                             self.log.info(msg.format(cmd), message.author, message.author.id, message.server.name,
                                           message.server.id, message.channel, message.channel.id,
                                           ' '.join(args))
                         else:
-                            msg = 'User %s [%s] on server %s [%s], used the {:s} command on #%s [%s]'
+                            msg = 'CMD: ' + entitiy + ' %s [%s] on server %s [%s], used the {:s} command on #%s [%s]'
                             self.log.info(msg.format(cmd), message.author, message.author.id, message.server.name,
                                           message.server.id, message.channel, message.channel.id)
                     else:
                         if args:
-                            msg = 'User %s [%s], used the {:s} command in a private message channel with [%s] arguments'
+                            msg = 'CMD: ' + entitiy + ' %s [%s], used the {:s} command in a private message channel with [%s] arguments'
                             self.log.info(msg.format(cmd), message.author, message.author.id, ' '.join(args))
                         else:
-                            msg = 'User %s [%s], used the {:s} command in a private message channel'
+                            msg = 'CMD: ' + entitiy + ' %s [%s], used the {:s} command in a private message channel'
                             self.log.info(msg.format(cmd), message.author, message.author.id)
                 except KeyError:
                     # no such command
@@ -188,8 +190,11 @@ class Sigma(discord.Client):
 
     async def on_member_join(self, member):
         if bot_ready:
+            entitiy = 'User'
+            if member.bot:
+                entitiy = 'Bot'
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'User %s#%s [%s] has joined %s [%s]'
+            msg = 'JOIN: ' + entitiy + ' %s#%s [%s] has joined %s [%s]'
             self.log.info(msg, member.name, member.discriminator, member.id, member.server.name, member.server.id)
             for ev_name, event in self.plugin_manager.events['member_join'].items():
                 try:
@@ -199,8 +204,12 @@ class Sigma(discord.Client):
 
     async def on_member_remove(self, member):
         if bot_ready:
+            if bot_ready:
+                entitiy = 'User'
+                if member.bot:
+                    entitiy = 'Bot'
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'User %s#%s [%s] has left %s [%s]'
+            msg = 'LEAVE: ' + entitiy + ' %s#%s [%s] has left %s [%s]'
             self.log.info(msg, member.name, member.discriminator, member.id, member.server.name, member.server.id)
             for ev_name, event in self.plugin_manager.events['member_leave'].items():
                 try:
@@ -214,7 +223,7 @@ class Sigma(discord.Client):
             self.db.add_new_server_settings(server)
             self.db.update_server_details(server)
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'Invited To %s [%s]'
+            msg = 'INVITE: Invited To %s [%s]'
             self.log.info(msg, server.name, server.id)
             self.db.init_server_settings(self.servers)
 
@@ -222,7 +231,7 @@ class Sigma(discord.Client):
         if bot_ready:
             await self.update_discordlist()
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'Removed From %s [%s]'
+            msg = 'REMOVE: Removed From %s [%s]'
             self.log.info(msg, server.name, server.id)
 
     async def on_member_update(self, before, after):
