@@ -189,8 +189,8 @@ class Sigma(discord.Client):
     async def on_member_join(self, member):
         if bot_ready:
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'User %s [%s] has joined %s [%s]'
-            self.log.info(msg, member.name, member.id, member.server.name, member.server.id)
+            msg = 'User %s#%s [%s] has joined %s [%s]'
+            self.log.info(msg, member.name, member.discriminator, member.id, member.server.name, member.server.id)
             for ev_name, event in self.plugin_manager.events['member_join'].items():
                 try:
                     await event.call_sp(member)
@@ -200,8 +200,8 @@ class Sigma(discord.Client):
     async def on_member_remove(self, member):
         if bot_ready:
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'User %s [%s] has left %s [%s]'
-            self.log.info(msg, member.name, member.id, member.server.name, member.server.id)
+            msg = 'User %s#%s [%s] has left %s [%s]'
+            self.log.info(msg, member.name, member.discriminator, member.id, member.server.name, member.server.id)
             for ev_name, event in self.plugin_manager.events['member_leave'].items():
                 try:
                     await event.call_sp(member)
