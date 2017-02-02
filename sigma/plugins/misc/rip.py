@@ -15,6 +15,8 @@ async def rip(cmd, message, args):
     for user in message.mentions:
         result = result + 'The Avatar of ' + user.display_name + " is " + user.avatar_url
         mentioned_avatar = user.avatar_url
+        if mentioned_avatar == '':
+            mentioned_avatar = user.default_avatar_url
 
     user_avatar = requests.get(mentioned_avatar).content
     base = Image.open(cmd.resource('img/base.png'))
