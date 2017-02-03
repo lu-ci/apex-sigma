@@ -36,7 +36,8 @@ async def music(cmd, message, args):
     album = album_data['title']
     if len(album) > 20:
         album = album[:19] + '...'
-    cover = photo
+    cover = album_data['cover_medium']
+    cover = cover.replace('250x250', '128x128')
     artist_photo_raw = requests.get(photo).content
     artist_photo = Image.open(BytesIO(artist_photo_raw))
     cover_art_raw = requests.get(cover).content
