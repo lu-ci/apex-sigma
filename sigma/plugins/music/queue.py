@@ -28,7 +28,7 @@ async def queue(cmd, message, args):
                         inline=True)
         await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
-        requester = message.author.name + message.author.discriminator
+        requester = message.author.name + '#' + message.author.discriminator
         qry = ' '.join(args)
         video_url, video_id, video_title = search_youtube(qry)
         add_to_queue(message.server, requester, 'YouTube', video_url, video_title)
