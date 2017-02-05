@@ -178,15 +178,6 @@ events:
     description:
       Fills the command counter statistics.
 
-  - name:    owner_markov_collector
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    pmable:  true
-    description:
-      Fills owner inputs for markov processing.
-
   - name:    version_updater
     type:    ready
     global:  true
