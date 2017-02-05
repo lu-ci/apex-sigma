@@ -1,3 +1,6 @@
+import discord
+
+
 async def roles(cmd, message, args):
     n = 0
     role_list = ''
@@ -7,6 +10,7 @@ async def roles(cmd, message, args):
     role_list = role_list[:-2].replace('@', '')
     if len(role_list) > 1800:
         role_list = role_list[:1800] + '...'
-    out_text = 'There is a total of **' + str(n) + '** roles on **' + message.server.name + '**:\n'
-    out_text += '```\n' + role_list + '\n```'
-    await cmd.bot.send_message(message.channel, out_text)
+    embed = discord.Embed(color=0x1ABC9C)
+    embed.add_field(name='There Are ' + str(n) + ' roles on ' + message.server.name,
+                    value='```\n' + role_list + '\n```')
+    await cmd.bot.send_message(message.channel, None, embed=embed)
