@@ -107,7 +107,7 @@ class Callable(object):
             return
         try:
             msg = await getattr(self.module, self.name)(self, message, *args)
-        except SyntaxError as e:
+        except Exception as e:
             try:
                 self.log.error(str(e))
                 error_embed = discord.Embed(color=0xDB0000)
