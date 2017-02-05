@@ -90,7 +90,6 @@ Command |  Description |  Usage
 `>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the command to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
 `>>clrrole`  |  Sets the color of the inputted role. Requires the user who calls the command to have the Manage Roles permission.  |  `>>clrrole 1ABC9C Cutie Pies`
 `>>movechannel`  |  Moves the channel where the command is executed to the requested positional number. Do keep in mind that the first channel position is 0.  |  `>>movechannel 11`
-`>>mentionrole`  |  Mentiones every person in the inputted role. Requires the user to be a server Administrator.  |  `>>mentionrole Waifus`
 `>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
 `>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
 `>>togglerole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addselfrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>togglerole Wizard`

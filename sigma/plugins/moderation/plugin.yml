@@ -240,15 +240,6 @@ commands:
       Moves the channel where the command is executed to the requested positional number.
       Do keep in mind that the first channel position is 0.
 
-  - name: mentionrole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Waifus"
-    description:
-      Mentiones every person in the inputted role.
-      Requires the user to be a server Administrator.
-
   - name: inrole
     global:  true
     enabled: true
