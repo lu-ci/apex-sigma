@@ -14,6 +14,8 @@ async def give(cmd, message, args):
     target_user = message.mentions[0]
     if target_user.bot:
         return
+    if target_user == message.author:
+        return 
     amount = abs(int(args[0]))
     curr_points = cmd.db.get_points(message.server, message.author)
     if amount > curr_points:
