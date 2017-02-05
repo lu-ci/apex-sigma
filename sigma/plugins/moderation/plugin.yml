@@ -102,6 +102,7 @@ commands:
       Deltes X number of messages posted by the mentioned person.
       If a user is not provided, it will prune the last X messages regardless of poster.
       If a number is not provided it will prune the last 100 messages.
+      If neither number nor user is provided, it will prune the bots messages.
       Requires the user who calls the command to have the Manage Messages permission.
 
   - name: mute
