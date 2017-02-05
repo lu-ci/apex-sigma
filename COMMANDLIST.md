@@ -74,7 +74,7 @@ Command |  Description |  Usage
 `>>unban`  |  Unbans the user with the inputted name. Requires the user who calls the command to have ban privileges.  |  `>>unban @person`
 `>>softban`  |  Bans and instantly unbans the mentioned user. Requires the user who calls the command to have ban privileges.  |  `>>softban @person`
 `>>kick`  |  Kicks the mentioned user. Requires the user who calls the command to have kick privileges.  |  `>>kick @person`
-`>>prune`  |  Deltes X number of messages posted by the mentioned person. If a user is not provided, it will prune the last X messages regardless of poster. If a number is not provided it will prune the last 100 messages. Requires the user who calls the command to have the Manage Messages permission.  |  `>>prune X @person`
+`>>prune`  |  Deltes X number of messages posted by the mentioned person. If a user is not provided, it will prune the last X messages regardless of poster. If a number is not provided it will prune the last 100 messages. If neither number nor user is provided, it will prune the bots messages. Requires the user who calls the command to have the Manage Messages permission.  |  `>>prune X @person`
 `>>mute`  |  Will not allow the person to type on the server at all. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>mute @person`
 `>>unmute`  |  Will unmute a person who was muted with the mute command. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unmute @person`
 `>>blind`  |  Will disable a persons ability to read any and all channels. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>blind @person`
