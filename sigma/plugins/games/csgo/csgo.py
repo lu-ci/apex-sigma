@@ -4,6 +4,8 @@ import discord
 
 
 async def csgo(cmd, message, args):
+    if not args:
+        return
     csgo_input = ' '.join(args)
 
     try:
