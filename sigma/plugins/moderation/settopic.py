@@ -1,4 +1,4 @@
-import asyncio
+import discord
 from sigma.core.permission import check_man_chan
 
 
@@ -9,15 +9,12 @@ async def settopic(cmd, message, args):
     else:
         if check_man_chan(message.author, message.channel):
             topic = ' '.join(args)
-            try:
-                await cmd.bot.edit_channel(message.channel, topic=topic)
-                response = await cmd.bot.send_message(message.channel, 
-                    'The topic of **' + message.channel.name + '** was set to ```' + topic + '```')
-            except Exception as e:
-                response = await cmd.bot.send_message(message.channel, str(e))
-            await asyncio.sleep(10)
-            await cmd.bot.delete_message(response)
+            await cmd.bot.edit_channel(message.channel, topic=topic)
+            embed = discord.Embed(color=0x66CC66)
+            embed.add_field(name=':white_check_mark: #' + message.channel.name + ' topic changed to:',
+                            value='```\n' + topic + '\n```')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
-            response = await cmd.bot.send_message(message.channel, 'Only a user with the **Manage Channels** permission can use this command. :x:')
-            await asyncio.sleep(10)
-            await cmd.bot.delete_message(response)
+            out_content = discord.Embed(type='rich', color=0xDB0000,
+                                        title=':no_entry: Insufficient Permissions. Manage Channels Permission Required.')
+            await cmd.bot.send_message(message.channel, None, embed=out_content)

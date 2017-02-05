@@ -1,10 +1,12 @@
+import discord
+
+
 async def whoplays(cmd, message, args):
     if not args:
         await cmd.bot.send_message(message.channel, cmd.help())
         return
     else:
         game_title = ' '.join(args)
-        out_text = ''
         gamer_list = ''
         x = 0
         y = 0
@@ -17,8 +19,12 @@ async def whoplays(cmd, message, args):
         gamer_list = gamer_list[:-2]
         if gamer_list == '':
             gamer_list = 'None'
-        out_text += 'Out of ' + str(x) + ' people that are currently in-game, ' + str(y) + ' are playing ' + game_title + ':'
+        point = 'are'
         if y == 1:
-            out_text.replace('are', 'is')
-        out_text += '\n```\n' + gamer_list + '\n```'
-        await cmd.bot.send_message(message.channel, out_text)
+            point = 'is'
+        title = 'Out of ' + str(x) + ' people that ' + point + ' currently in-game, ' + str(
+            y) + ' are playing ' + game_title + ':'
+        gamers = '```\n' + gamer_list + '\n```'
+        embed = discord.Embed(color=0x1ABC9C)
+        embed.add_field(name=title, value=gamers)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
