@@ -20,6 +20,11 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             not_on_cd = True
     # Spinnage
     if not_on_cd:
+        player_points = cmd.bot.get_points(message.server, message.author)
+        if player_points < bet_amt:
+            embed = discord.Embed(color=0xDB0000, title=':exclamation: Not Enough Points')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
+            return
         cmd.db.add_stats('SlotsCount')
         embed_colors = [0x990000, 0x0066FF, 0x009900, 0xff9900, 0xCC33FF, 0x990033]
         slot_embed = discord.Embed(color=random.choice(embed_colors))
@@ -85,23 +90,6 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         elif res_1 == res_2 or res_1 == res_3 or res_2 == res_3:
             win = True
             pts = bet_amt * 20
-            win_notify_channel_object = None
-            for server in cmd.bot.servers:
-                for channel in server.channels:
-                    if channel.id == win_notify_channel:
-                        win_notify_channel_object = channel
-                        break
-            if win_notify_channel_object:
-                win_notify_embed = discord.Embed(color=0x0099FF, title=':gem: We have a winner!')
-                win_notify_embed.add_field(name='User', value=message.author.name)
-                win_notify_embed.add_field(name='Server', value=message.server.name)
-                win_notify_embed.add_field(name='Amount', value=str(pts))
-                embed_icon = message.author.default_avatar_url
-                if message.author.avatar_url != '':
-                    embed_icon = message.author.avatar_url
-                win_notify_embed.set_author(name=message.author.name, icon_url=embed_icon)
-                win_notify_embed.set_footer(text='With a bet amount of ' + str(bet_amt) + '!')
-                await cmd.bot.send_message(win_notify_channel_object, None, embed=win_notify_embed)
         else:
             win = False
             pts = 0
@@ -115,3 +103,10 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             slot_embed.set_field_at(0, name=':bomb: You Lost...', value=slot_view)
             slot_embed.set_footer(text='You lost the ' + str(bet_amt) + ' points that you bet.')
             await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
+    else:
+        cd_timestamp = slot_back_data[message.author.id]
+        current_time = arrow.utcnow().timestamp
+        timeout_amt = cd_timestamp + 20 - current_time
+        embed = discord.Embed(color=0xDB0000, title=':exclamation: You can\'t spin for another ' + str(timeout_amt))
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
