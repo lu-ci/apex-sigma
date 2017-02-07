@@ -140,6 +140,8 @@ class Sigma(discord.Client):
         self.log.info('Finished Loading and Successfully Connected to Discord!')
         global bot_ready
         bot_ready = True
+        if os.getenv('DEV_BUILD_ENV'):
+            exit()
 
     async def on_message(self, message):
         if bot_ready:
