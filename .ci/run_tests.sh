@@ -8,3 +8,4 @@ echo 'Launching Sigma'
 python run.py
 echo 'Sigma Launched'
 echo 'Done Testing'
+coverage run run.py

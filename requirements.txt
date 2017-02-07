@@ -29,3 +29,5 @@ google
 protobuf
 youtube_dl
 PyMarkovChain
+codeclimate-test-reporter
+coverage
