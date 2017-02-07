@@ -10,4 +10,4 @@ async def dog(cmd, message, args):
     with Image.open(BytesIO(doggie_image)) as img:
         img.save('cache/pupper_' + message.author.id + '.png')
     await cmd.bot.send_file(message.channel, 'cache/pupper_' + message.author.id + '.png')
-    os.remove('cache/pupper_' + message.author.id + '.png')
+    os.remove('cache/pupper_' + message.id + '.png')
