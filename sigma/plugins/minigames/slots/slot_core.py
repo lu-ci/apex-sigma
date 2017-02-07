@@ -20,7 +20,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             not_on_cd = True
     # Spinnage
     if not_on_cd:
-        player_points = cmd.bot.get_points(message.server, message.author)
+        player_points = cmd.db.get_points(message.server, message.author)
         if player_points < bet_amt:
             embed = discord.Embed(color=0xDB0000, title=':exclamation: Not Enough Points')
             await cmd.bot.send_message(message.channel, None, embed=embed)
@@ -107,6 +107,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         cd_timestamp = slot_back_data[message.author.id]
         current_time = arrow.utcnow().timestamp
         timeout_amt = cd_timestamp + 20 - current_time
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: You can\'t spin for another ' + str(timeout_amt))
+        embed = discord.Embed(color=0xDB0000,
+                              title=':exclamation: You can\'t spin for another ' + str(timeout_amt) + ' seconds!')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
