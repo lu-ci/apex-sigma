@@ -204,10 +204,9 @@ class Sigma(discord.Client):
 
     async def on_member_remove(self, member):
         if bot_ready:
-            if bot_ready:
-                entitiy = 'User'
-                if member.bot:
-                    entitiy = 'Bot'
+            entitiy = 'User'
+            if member.bot:
+                entitiy = 'Bot'
             self.db.update_population_stats(self.servers, self.get_all_members())
             msg = 'LEAVE: ' + entitiy + ' %s#%s [%s] has left %s [%s]'
             self.log.info(msg, member.name, member.discriminator, member.id, member.server.name, member.server.id)
