@@ -141,6 +141,7 @@ class Sigma(discord.Client):
         global bot_ready
         bot_ready = True
         if os.getenv('DEV_BUILD_ENV'):
+            self.log.info('Testing Build Environment Detected')
             exit()
 
     async def on_message(self, message):
