@@ -41,9 +41,9 @@ Command |  Description |  Usage
 `>>bjdraw`  |  Draws the next card for your blackjack game.  |  `>>bjdraw`
 `>>bjfold`  |  Fold and see the end results of the dealer.  |  `>>bjfold`
 `>>bjquit`  |  Quits your current blackjack game. Refunds half of your bet value.  |  `>>bjquit`
-`>>slots`  |  Spin the slot machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>slots`
-`>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the sloths machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sloths`
-`>>sluts`  |  Same as slots, but with icons associated with women... Do not ask why this is a thing, it just is, i regret everything. Spin the sluts machine and test your luck! Costs 10 points to spin. Rewards 200 for 2 matching, and 4000 for 3 matching. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sluts`
+`>>slots`  |  Spin the slot machine and test your luck! You can specify the amount you want to bet, this default to 10 if nothing specified. Rewards Bet Amount x 20 for 2 of the same. Rewards Bet Amount x 400 for 3 of the same. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>slots`
+`>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the sloths machine and test your luck! You can specify the amount you want to bet, this default to 10 if nothing specified. Rewards Bet Amount x 20 for 2 of the same. Rewards Bet Amount x 400 for 3 of the same. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sloths`
+`>>sluts`  |  Same as slots, but with icons associated with women... Do not ask why this is a thing, it just is, i regret everything. Spin the sluts machine and test your luck! You can specify the amount you want to bet, this default to 10 if nothing specified. Rewards Bet Amount x 20 for 2 of the same. Rewards Bet Amount x 400 for 3 of the same. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sluts`
 ###MISC
 Command |  Description |  Usage
 --------|--------------|-------
