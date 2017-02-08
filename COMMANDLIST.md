@@ -1,4 +1,23 @@
 #Sigma's List of Commands
+###FUN
+Command |  Description |  Usage
+--------|--------------|-------
+`>>dadjoke`  |  Cringe!  |  `>>dadjoke`
+`>>sbo`  |  For playing soundboard items. No list for possible choices exists yet, but soon. Take a look at our github to find all the soundfiles.  |  `>>sbo ow/dva/nerf this`
+`>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
+`>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
+`>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
+`>>chucknorris`  |  Outputs a random Chuck Norris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknorris`
+`>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
+`>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
+`>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
+`>>quote`  |  Gives a random quote.  |  `>>quote`
+`>>bash`  |  Displays a random bash quote.  |  `>>bash`
+`>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
+`>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
+`>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
+`>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
+`>>nyaa`  |  Provides a random Nekomimi image. They might be borderline NSFW, a warning just in case.  |  `>>nyaa`
 ###GAMES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -19,17 +38,6 @@ Command |  Description |  Usage
 `>>steam`  |  Generates a a Steam Signature for the inputed Steam Community ID, the profile must not be private!  |  `>>steam thealeksaradovic`
 `>>es`  |  Vindictus Enchant Scroll Search.  |  `>>es Righteous`
 `>>wows`  |  Shows World of Warships statistics and information for the given username.  |  `>>wows eu metallicadutch`
-###FUN
-Command |  Description |  Usage
---------|--------------|-------
-`>>dadjoke`  |  Cringe!  |  `>>dadjoke`
-`>>sbo`  |  For playing soundboard items. No list for possible choices exists yet, but soon.  |  `>>sbo mrs`
-`>>joke`  |  Outputs a random joke, do not expect them to be good even slightly.  |  `>>joke`
-`>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
-`>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
-`>>chucknorris`  |  Outputs a random Chuck Norris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.  |  `>>chucknorris`
-`>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
-`>>pun`  |  Gives you some random pun, beware.  |  `>>pun`
 ###MINIGAMES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -44,29 +52,11 @@ Command |  Description |  Usage
 `>>slots`  |  Spin the slot machine and test your luck! You can specify the amount you want to bet, this default to 10 if nothing specified. Rewards Bet Amount x 20 for 2 of the same. Rewards Bet Amount x 400 for 3 of the same. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>slots`
 `>>sloths`  |  Same as slots, but super slow, reeeeeeally slow... We are talking 5 seconds to spin the rows and 10-20 spins. Spin the sloths machine and test your luck! You can specify the amount you want to bet, this default to 10 if nothing specified. Rewards Bet Amount x 20 for 2 of the same. Rewards Bet Amount x 400 for 3 of the same. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sloths`
 `>>sluts`  |  Same as slots, but with icons associated with women... Do not ask why this is a thing, it just is, i regret everything. Spin the sluts machine and test your luck! You can specify the amount you want to bet, this default to 10 if nothing specified. Rewards Bet Amount x 20 for 2 of the same. Rewards Bet Amount x 400 for 3 of the same. Can only be spun once every 20 seconds. Only the middle row counts, as indicated by the arrows.  |  `>>sluts`
-###MISC
-Command |  Description |  Usage
---------|--------------|-------
-`>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
-`>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
-`>>ranking`  |  Shows the link for the servers point leaderboard.  |  `>>ranking`
-`>>give`  |  Transfer a chosen amount of points between you and the mentioned user.  |  `>>give 50 @person`
-`>>toggleshop`  |  Activates or Deactivates the shop on the server. (Server Administrator Only)  |  `>>toggleshop`
-`>>shopadd`  |  Adds an item to the servers role shop. The items here can be purchased with the points you get from activity and gambling. (Server Administrator Only)  |  `>>shopadd 15000 Glitch King`
-`>>shopremove`  |  Removes an item from the servers role shop. (Server Administrator Only)  |  `>>shopremove Glitch Prince`
-`>>shoplist`  |  Shows the list of roles purchasable on the current server.  |  `>>shoplist`
-`>>shopbuy`  |  Buys an item from the shop by item name.  |  `>>shopbuy That One Guy`
-`>>quote`  |  Gives a random quote.  |  `>>quote`
-`>>bash`  |  Displays a random bash quote.  |  `>>bash`
-`>>catfact`  |  Gives a random fact about cats.  |  `>>catfact`
-`>>cat`  |  Outputs a random cat image. You know you want to use this command at least 300 times/day.  |  `>>cat`
-`>>dog`  |  Wuff, wuff, bork. Cutest little puppers, loyalty and awesomeness.  |  `>>dog`
-`>>numberfact`  |  Shows a fact for the inputted number and type, if no arguments are inputed, the number and type will be random. If no type is inputted, the type will be random. The accepted types are trivia, date, math and year. The date system is the US Month/Day ordering system.  |  `>>numberfact 02/29 Date`
 ###MODERATION
 Command |  Description |  Usage
 --------|--------------|-------
 `>>greet`  |  Toggles the greet message in the channel it is written in. Whenever a user joins the server the greet messsage will be displayed. (Server Administrator Only)  |  `>>greet`
-`>>greetmsg`  |  Sets the greet message text. Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current greet message. (Server Administrator Only)  |  `>>greetmsg Hello %user_mention% and welcoem to %server_name%!`
+`>>greetmsg`  |  Sets the greet message text. Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current greet message. (Server Administrator Only)  |  `>>greetmsg Hello %user_mention% and welcome to %server_name%!`
 `>>greetpm`  |  Toggles if the greet message should be sent as a PM to the user instead of writing it in the channel. (Server Administrator Only)  |  `>>greetpm`
 `>>bye`  |  Toggles the bye message in the channel it is written in. Whenever a user leaves the server the bye messsage will be displayed. (Server Administrator Only)  |  `>>bye`
 `>>byemsg`  |  Sets the bye message text. Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server. If no arguments are inputed it will show the current bye message. (Server Administrator Only)  |  `>>byemsg %user_mention% has left %server_name%`
@@ -79,21 +69,9 @@ Command |  Description |  Usage
 `>>unmute`  |  Will unmute a person who was muted with the mute command. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unmute @person`
 `>>blind`  |  Will disable a persons ability to read any and all channels. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>blind @person`
 `>>unblind`  |  Will deactivate the blind set on a user. Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.  |  `>>unblind @person`
-`>>autorole`  |  Sets the role that should be given to the users that join the server. To disable the autorole input disable as the role name. Requires the user who calls the command to have the Administrator permision.  |  `>>autorole Wizard`
-`>>createrole`  |  Creates a new role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>createrole Cheese`
-`>>destroyrole`  |  Destroy an existing role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>destroyrole Blergh`
-`>>addselfrole`  |  Makes a role self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>addselfrole Cheese`
-`>>delselfrole`  |  Makes a role no longer self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>delselfrole Cheese`
-`>>giverole`  |  Assigns a role to a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>giverole @person Lewd`
-`>>takerole`  |  Removes a role from a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>takerole @person Dude`
 `>>settopic`  |  Sets the topic of the text channel the command is used in. Requires the user who calls the ccommand to have the Manage Channels permission.  |  `>>settopic Food Talk!`
 `>>setchannelname`  |  Sets the name of the text channel the command is used in. Requires the user who calls the command to have the Manage Channels permission.  |  `>>setchannelname pepperoni_pizza`
-`>>clrrole`  |  Sets the color of the inputted role. Requires the user who calls the command to have the Manage Roles permission.  |  `>>clrrole 1ABC9C Cutie Pies`
 `>>movechannel`  |  Moves the channel where the command is executed to the requested positional number. Do keep in mind that the first channel position is 0.  |  `>>movechannel 11`
-`>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
-`>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
-`>>togglerole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addselfrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>togglerole Wizard`
-`>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
 `>>blockinvites`  |  Toggles auto-deletion of any and all discord invite links on the server. Will not block links posted by administrators. Requires the user to be a server Administrator.  |  `>>blockinvites`
 `>>unflip`  |  Toggles automatic unfliping of tables Requires the user to be a server Administrator.  |  `>>unflip`
 `>>ignoreuser`  |  Disallows a user from using the bot on your server. The user can be blacklisted by either mention or ID. Requires the user to be a server Administrator.  |  `>>ignoreuser @person`
@@ -101,8 +79,6 @@ Command |  Description |  Usage
 `>>cleverbot`  |  Toggles the CleverBot functionality of the bot on the server. This is used by starting a message by mentioning a bot. Example being [@Sigma how are you today?] Requires the user to be a server Administrator.  |  `>>cleverbot`
 `>>events`  |  Toggles the Random Events appearing on the server. The percentage chance an event might appear is controlled by the eventchance command. Requires the user to be a server Administrator.  |  `>>events`
 `>>eventchance`  |  Sets the chance by which random events might apear. The chance can be set from 1 to 100. Requires the user to be a server Administrator.  |  `>>eventchance 15`
-`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
-`>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------
@@ -141,7 +117,29 @@ Command |  Description |  Usage
 `>>boobs`  |  Outputs a random image with boobs, naturally NSFW.  |  `>>boobs`
 `>>butts`  |  LOOK AT ALL THE FINE ASS. Mmmm... Aaaaasssss~  |  `>>butts`
 `>>nhentai`  |  Searches nHentai for doujinshi for the inputed name. Displays the results, cover and tags.  |  `>>nhentai Oreimo`
-`>>nyaa`  |  Provides a random Nekomimi image. They might be borderline NSFW, a warning just in case.  |  `>>nyaa`
+###POINTS
+Command |  Description |  Usage
+--------|--------------|-------
+`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
+`>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
+`>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
+`>>ranking`  |  Shows the link for the servers point leaderboard.  |  `>>ranking`
+`>>give`  |  Transfer a chosen amount of points between you and the mentioned user.  |  `>>give 50 @person`
+###ROLES
+Command |  Description |  Usage
+--------|--------------|-------
+`>>autorole`  |  Sets the role that should be given to the users that join the server. To disable the autorole input disable as the role name. Requires the user who calls the command to have the Administrator permision.  |  `>>autorole Wizard`
+`>>createrole`  |  Creates a new role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>createrole Cheese`
+`>>destroyrole`  |  Destroy an existing role on the server. Requires the user who calls the command to have the Manage Roles permision.  |  `>>destroyrole Blergh`
+`>>addselfrole`  |  Makes a role self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>addselfrole Cheese`
+`>>delselfrole`  |  Makes a role no longer self assignable. Requires the user who calls the command to have the Manage Roles permision.  |  `>>delselfrole Cheese`
+`>>giverole`  |  Assigns a role to a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>giverole @person Lewd`
+`>>takerole`  |  Removes a role from a user. Requires the user who calls the command to have the Manage Roles permision.  |  `>>takerole @person Dude`
+`>>togglerole`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addselfrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>togglerole Wizard`
+`>>listselfroles`  |  Assigns you or removes you from one of the self assignable roles. Self assignable roles are added via the addrole command. A list of self assignable roles can be seen with the listselfroles command.  |  `>>listselfroles`
+`>>inrole`  |  Lists the users in the specified role.  |  `>>inrole Waifus`
+`>>roles`  |  Lists all the roles on the server and the total number of roles.  |  `>>roles`
+`>>clrrole`  |  Sets the color of the inputted role. Requires the user who calls the command to have the Manage Roles permission.  |  `>>clrrole 1ABC9C Cutie Pies`
 ###SEARCHES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -164,6 +162,14 @@ Command |  Description |  Usage
 `>>ud`  |  Shows the Urban Dictionary definition for the given word.  |  `>>ud Alex`
 `>>vndb`  |  Searches the Visual Novel Database fot the title you inputed.  |  `>>vndb Rewrite`
 `>>wiki`  |  Searches Wikipedia and shows the summary for your query.  |  `>>wiki search`
+###SHOP
+Command |  Description |  Usage
+--------|--------------|-------
+`>>toggleshop`  |  Activates or Deactivates the shop on the server. (Server Administrator Only)  |  `>>toggleshop`
+`>>shopadd`  |  Adds an item to the servers role shop. The items here can be purchased with the points you get from activity and gambling. (Server Administrator Only)  |  `>>shopadd 15000 Glitch King`
+`>>shopremove`  |  Removes an item from the servers role shop. (Server Administrator Only)  |  `>>shopremove Glitch Prince`
+`>>shoplist`  |  Shows the list of roles purchasable on the current server.  |  `>>shoplist`
+`>>shopbuy`  |  Buys an item from the shop by item name.  |  `>>shopbuy That One Guy`
 ###UTILITY
 Command |  Description |  Usage
 --------|--------------|-------

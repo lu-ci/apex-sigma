@@ -1,0 +1,16 @@
+name: Misc
+
+categories:
+  - misc
+
+enabled: true
+
+events:
+  - name:    accept
+    type:    message
+    global:  true
+    enabled: true
+    pmable:  true
+    sfw:     true
+    description:
+      Accepts the terms and conditions of the WaniKani Community Discord Server.

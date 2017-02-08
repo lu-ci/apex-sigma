@@ -1,0 +1,116 @@
+name: Roles
+
+categories:
+  - roles
+
+enabled: true
+
+commands:
+  - name: autorole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Wizard"
+    description:
+      Sets the role that should be given to the users that join the server.
+      To disable the autorole input disable as the role name.
+      Requires the user who calls the command to have the Administrator permision.
+
+  - name: createrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Cheese"
+    description:
+      Creates a new role on the server.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: destroyrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Blergh"
+    description:
+      Destroy an existing role on the server.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: addselfrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Cheese"
+    description:
+      Makes a role self assignable.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: delselfrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Cheese"
+    description:
+      Makes a role no longer self assignable.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: giverole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person Lewd"
+    description:
+      Assigns a role to a user.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: takerole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person Dude"
+    description:
+      Removes a role from a user.
+      Requires the user who calls the command to have the Manage Roles permision.
+
+  - name: togglerole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Wizard"
+    description:
+      Assigns you or removes you from one of the self assignable roles.
+      Self assignable roles are added via the addselfrole command.
+      A list of self assignable roles can be seen with the listselfroles command.
+
+  - name: listselfroles
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Assigns you or removes you from one of the self assignable roles.
+      Self assignable roles are added via the addrole command.
+      A list of self assignable roles can be seen with the listselfroles command.
+
+  - name: inrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Waifus"
+    description:
+      Lists the users in the specified role.
+
+  - name: roles
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Lists all the roles on the server and the total number of roles.
+
+  - name: clrrole
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1ABC9C Cutie Pies"
+    description:
+      Sets the color of the inputted role.
+      Requires the user who calls the command to have the Manage Roles permission.
