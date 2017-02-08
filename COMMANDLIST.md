@@ -15,7 +15,7 @@ Command |  Description |  Usage
 `>>osu`  |  Generates a signature image with the users stats for osu.  |  `>>osu AXAz0r`
 `>>overwatch`  |  Shows the Overwatch statistics of inputed Battle.Net ID. (Warning! Case Sensitive!)  |  `>>overwatch EU Aurora#22978`
 `>>pokemon`  |  Shows details for the inputed Pokemon as well as a cute little GIF of them.  |  `>>pokemon Snorlax`
-`>>rl`  |  Rocket league information for the inputed user on the inputed platform, which can be Steam, XBOX or PSN.  |  `>>rl Steam IconicDauntless`
+`>>rl`  |  Rocket league information for the inputed user on the inputed platform, which can be Steam, XBOX or PSN.  |  `>>rl Steam IconicUltimatum`
 `>>steam`  |  Generates a a Steam Signature for the inputed Steam Community ID, the profile must not be private!  |  `>>steam thealeksaradovic`
 `>>es`  |  Vindictus Enchant Scroll Search.  |  `>>es Righteous`
 `>>wows`  |  Shows World of Warships statistics and information for the given username.  |  `>>wows eu metallicadutch`
