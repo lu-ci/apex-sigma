@@ -79,6 +79,7 @@ Command |  Description |  Usage
 `>>cleverbot`  |  Toggles the CleverBot functionality of the bot on the server. This is used by starting a message by mentioning a bot. Example being [@Sigma how are you today?] Requires the user to be a server Administrator.  |  `>>cleverbot`
 `>>events`  |  Toggles the Random Events appearing on the server. The percentage chance an event might appear is controlled by the eventchance command. Requires the user to be a server Administrator.  |  `>>events`
 `>>eventchance`  |  Sets the chance by which random events might apear. The chance can be set from 1 to 100. Requires the user to be a server Administrator.  |  `>>eventchance 15`
+`>>warn`  |  Warns a user for the inputted reason. Warning stack, and upon exceeding the set limit, the user is kicked.  |  `>>warn @person For Not Liking Cheese`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------
