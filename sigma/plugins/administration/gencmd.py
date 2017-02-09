@@ -1,6 +1,5 @@
 import os
 import yaml
-import operator
 from config import DevMode
 
 

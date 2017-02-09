@@ -148,7 +148,6 @@ commands:
       Adds X hours of donor support time to the server with the inputted ID.
       Bot Owner Only.
 
-
   - name:    qme
     global:  true
     enabled: true
