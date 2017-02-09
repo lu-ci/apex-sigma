@@ -97,7 +97,6 @@ Command |  Description |  Usage
 `>>stop`  |  Stops the music and disconnects the bot from the voice channel.  |  `>>stop`
 `>>summon`  |  Summons the bot into your voice channel.  |  `>>summon`
 `>>vol`  |  Sets the volume of the current music player.  |  `>>vol 69`
-`>>volume`  |  Sets the volume of the current music player.  |  `>>volume 69`
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
@@ -180,7 +179,6 @@ Command |  Description |  Usage
 `>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
 `>>cid`  |  Shows Channel ID of the channel the command was used in.  |  `>>cid`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
-`>>colour`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>colour 1ABC9C`
 `>>commands`  |  Shows the commands in a specific module group.  |  `>>commands Games`
 `>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`

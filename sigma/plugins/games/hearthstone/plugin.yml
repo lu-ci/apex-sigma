@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    hearthstone
+    alts:
+      - "hs"
     global:  true
     enabled: true
     sfw:     true

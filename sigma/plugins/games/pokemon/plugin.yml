@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    pokemon
+    alts:
+      - "pkmn"
     global:  true
     enabled: true
     sfw:     true

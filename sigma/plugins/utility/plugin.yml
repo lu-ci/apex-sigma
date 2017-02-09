@@ -25,6 +25,8 @@ commands:
       Sets a timer in seconds and displays the message inputted after it's done.
 
   - name:    donors
+    alts:
+      - "dons"
     global:  true
     enabled: true
     sfw:     true
@@ -48,6 +50,8 @@ commands:
       Hashes whatever you input with the selected hashing algorithm.
 
   - name:    ingame
+    alts:
+      - "ign"
     global:  true
     enabled: true
     sfw:     true
@@ -89,6 +93,8 @@ commands:
       Lists the bots on the server where the command is used and shows their status.
 
   - name: userinfo
+    alts:
+      - "uinfo"
     global:  true
     enabled: true
     sfw:     true
@@ -98,6 +104,8 @@ commands:
       If no user is mentioned, it will show information about you, instead.
 
   - name: uid
+    alts:
+      - "userid"
     global:  true
     enabled: true
     sfw:     true
@@ -107,6 +115,8 @@ commands:
       If no user is mentioned, it will show your ID instead.
 
   - name: channelinfo
+    alts:
+      - "cinfo"
     global:  true
     enabled: true
     sfw:     true
@@ -115,6 +125,8 @@ commands:
       Shows information about the channel the command was used in.
 
   - name: cid
+    alts:
+      - "channelid"
     global:  true
     enabled: true
     sfw:     true
@@ -123,6 +135,8 @@ commands:
       Shows Channel ID of the channel the command was used in.
 
   - name: serverinfo
+    alts:
+      - "sinfo"
     global:  true
     enabled: true
     sfw:     true
@@ -131,6 +145,8 @@ commands:
       Shows information about the server the command was used on.
 
   - name: sid
+    alts:
+      - "serverid"
     global:  true
     enabled: true
     sfw:     true
@@ -139,6 +155,8 @@ commands:
       Shows Server ID of the server the command was used on.
 
   - name: permissions
+    alts:
+      - "perms"
     global:  true
     enabled: true
     sfw:     true
@@ -148,6 +166,8 @@ commands:
       If no user is mentioned, it will show information about you, instead.
 
   - name: invite
+    alts:
+      - "inv"
     global:  true
     enabled: true
     sfw:     true
@@ -176,6 +196,9 @@ commands:
       Separate list items with a semicolon and a space.
 
   - name: wa
+    alts:
+      - "wolfram"
+      - "wolframalpha"
     global:  true
     enabled: true
     sfw:     true
@@ -192,6 +215,8 @@ commands:
       Generates a list of users playing the inputted game.
 
   - name: avatar
+    alts:
+      - "av"
     global:  true
     enabled: true
     sfw:     true
@@ -228,6 +253,8 @@ commands:
       Shows the list of all the module groups in Sigma.
 
   - name: commands
+    alts:
+      - "cmds"
     global:  true
     enabled: true
     sfw:     true
@@ -237,14 +264,8 @@ commands:
       Shows the commands in a specific module group.
 
   - name: color
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 1ABC9C"
-    description:
-      Generates a color from the given HEX code or provided RGB numbers.
-
-  - name: colour
+    alts:
+      - "colour"
     global:  true
     enabled: true
     sfw:     true

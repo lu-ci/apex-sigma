@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    summon
+    alts:
+      - "smn"
     global:  true
     enabled: true
     sfw:     true
@@ -16,6 +18,8 @@ commands:
       Summons the bot into your voice channel.
 
   - name:    disconnect
+    alts:
+      - "dc"
     global:  true
     enabled: true
     sfw:     true
@@ -25,6 +29,8 @@ commands:
       Disconnects the bot from a voice channel.
 
   - name:    move
+    alts:
+      - "mv"
     global:  true
     enabled: true
     sfw:     true
@@ -88,6 +94,8 @@ commands:
       Stops the music and disconnects the bot from the voice channel.
 
   - name:    queue
+    alts:
+      - "add"
     global:  true
     enabled: true
     sfw:     true
@@ -97,6 +105,9 @@ commands:
       Adds a song to the playing queue either by URL or Name.
 
   - name:    autoplaylist
+    alts:
+      - "autopls"
+      - "apls"
     global:  true
     enabled: true
     sfw:     true
@@ -107,15 +118,8 @@ commands:
       For those who want to listen to nice music but are too lazy to add some.
 
   - name:    vol
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s} 69"
-    description:
-      Sets the volume of the current music player.
-
-  - name:    volume
+    alts:
+      - "volume"
     global:  true
     enabled: true
     sfw:     true
@@ -125,6 +129,8 @@ commands:
       Sets the volume of the current music player.
 
   - name:    next
+    alts:
+      - "skip"
     global:  true
     enabled: true
     sfw:     true

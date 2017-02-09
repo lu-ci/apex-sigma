@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    league
+    alts:
+      - "lol"
     global:  true
     enabled: true
     sfw:     true
@@ -15,6 +17,8 @@ commands:
       Shows the players League of Legends statistics of inputed Summoner Name.
 
   - name:    lolbans
+    alts:
+      - "lolb"
     global:  true
     enabled: true
     sfw:     true
