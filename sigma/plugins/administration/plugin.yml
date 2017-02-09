@@ -6,6 +6,26 @@ categories:
 enabled: true
 
 commands:
+  - name: awardpts
+    global:  true
+    enabled: true
+    sfw:     true
+    admin:   true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Awards the inputted amount of points to the mentioned person.
+      Server Administrator Only.
+
+  - name: takepts
+    global:  true
+    enabled: true
+    sfw:     true
+    admin:   true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Takes away the inputted amount of points from the mentioned person.
+      Server Administrator Only.
+
   - name: announce
     global:  true
     enabled: true
