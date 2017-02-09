@@ -17,7 +17,7 @@ init:
 
 install:
   - "%PYTHON%\\python.exe -m pip install wheel"
-  - ""%PYTHON%\\python.exe - pip install -U -r requirements.txt"
+  - "%PYTHON%\\python.exe - pip install -U -r requirements.txt"
 
 test_script:
   - "%PYTHON%\\python.exe run.py"
