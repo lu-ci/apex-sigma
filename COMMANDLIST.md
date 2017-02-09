@@ -123,11 +123,9 @@ Command |  Description |  Usage
 ###POINTS
 Command |  Description |  Usage
 --------|--------------|-------
-`>>award`  |  Awards the inputted amount of points to the mentioned person. Server Administrator Only.  |  `>>award 1500 @person`
 `>>give`  |  Transfer a chosen amount of points between you and the mentioned user.  |  `>>give 50 @person`
 `>>level`  |  Shows yours or a mentioned persons Sigma level.  |  `>>level @person`
 `>>ranking`  |  Shows the link for the servers point leaderboard.  |  `>>ranking`
-`>>take`  |  Takes away the inputted amount of points from the mentioned person. Server Administrator Only.  |  `>>take 1500 @person`
 ###ROLES
 Command |  Description |  Usage
 --------|--------------|-------

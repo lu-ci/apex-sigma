@@ -3,7 +3,7 @@ from sigma.core.permission import check_admin
 import discord
 
 
-async def award(cmd, message, args):
+async def awardpts(cmd, message, args):
     if message.author.id in permitted_id or check_admin(message.author, message.channel):
         if message.mentions:
             target = message.mentions[0]
