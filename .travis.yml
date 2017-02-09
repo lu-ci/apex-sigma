@@ -9,6 +9,3 @@ addons:
     repo_token: dff9b8abcb61bfe5d5f2fe7855804301d776810022ea16101bb21ccc43064405
 services:
   - mongodb
-
-after_sucess:
-  - CODECLIMATE_REPO_TOKEN=dff9b8abcb61bfe5d5f2fe7855804301d776810022ea16101bb21ccc43064405 codeclimate-test-reporter
