@@ -2,13 +2,13 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-<img src="https://img.shields.io/badge/Sigma-2.01-1abc9c.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Sigma-2.00-1abc9c.svg?style=flat-square" />
 <img src="https://img.shields.io/badge/Codename-Kaori-1B6F5F.svg?style=flat-square" />
 <img src="https://img.shields.io/badge/License-GPLv3-red.svg?style=flat-square" />
 </p>
 <p align="center">
 <a href="https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master"><img src="https://travis-ci.org/aurora-pro/apex-sigma.svg?style=flat-square" /></a>
-<a href="https://ci.appveyor.com/project/AXAz0r/apex-sigma"><img src="https://ci.appveyor.com/api/projects/status/07kqcwpn07eyetcl?svg=true?style=flat-square" /></a>
+<a href="https://ci.appveyor.com/project/AXAz0r/apex-sigma-eogfm"><img src="https://ci.appveyor.com/api/projects/status/s3861v84u4olvili?svg=true" /></a>
 </p>
 <p align="center">
 <a href="https://codeclimate.com/github/aurora-pro/apex-sigma"><img src="https://codeclimate.com/github/aurora-pro/apex-sigma/badges/gpa.svg?style=flat-square" /></a>
