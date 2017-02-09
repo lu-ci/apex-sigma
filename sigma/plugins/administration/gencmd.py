@@ -1,5 +1,6 @@
 import os
 import yaml
+import operator
 from config import DevMode
 
 
@@ -24,7 +25,7 @@ async def gencmd(ev):
                         try:
                             if category != 'administration':
                                 if plugin_data['enabled']:
-                                    for command in plugin_data['commands']:
+                                    for command in sorted(plugin_data['commands'], key=lambda x: x['name']):
                                         plugin_name = command['name']
                                         try:
                                             plugin_usage = command['usage'].replace('{pfx:s}', '>>').replace('{cmd:s}', plugin_name)
