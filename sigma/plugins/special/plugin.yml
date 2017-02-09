@@ -1,7 +1,7 @@
-name: Misc
+name: Special
 
 categories:
-  - misc
+  - special
 
 enabled: true
 
@@ -14,3 +14,12 @@ events:
     sfw:     true
     description:
       Accepts the terms and conditions of the WaniKani Community Discord Server.
+
+  - name:    selfrole
+    type:    message
+    global:  true
+    enabled: true
+    pmable:  true
+    sfw:     true
+    description:
+      Assigns the given role (if available) to the user that wrote it in the Final Order Roles channel.

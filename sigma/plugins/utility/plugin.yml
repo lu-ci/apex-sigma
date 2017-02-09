@@ -218,6 +218,24 @@ commands:
       Draws an inputted number of cards, the maximum is 10.
       If no number is provided, the bot will draw 2.
 
+  - name: modules
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the list of all the module groups in Sigma.
+
+  - name: commands
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    usage:   "{pfx:s}{cmd:s} Games"
+    description:
+      Shows the commands in a specific module group.
+
   - name: color
     global:  true
     enabled: true

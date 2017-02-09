@@ -183,6 +183,7 @@ Command |  Description |  Usage
 `>>cid`  |  Shows Channel ID of the channel the command was used in.  |  `>>cid`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
 `>>colour`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>colour 1ABC9C`
+`>>commands`  |  Shows the commands in a specific module group.  |  `>>commands Games`
 `>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
@@ -191,6 +192,7 @@ Command |  Description |  Usage
 `>>help`  |  Returns the list of command modules or gives you the description and usage for a selected command.  |  `>>help [command]`
 `>>ingame`  |  Shows the top played games on the server.  |  `>>ingame`
 `>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
+`>>modules`  |  Shows the list of all the module groups in Sigma.  |  `>>modules`
 `>>permissions`  |  Shows all server permissions for the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>permissions @person`
 `>>poll`  |  Creates a poll with the items from the inputted list. Separate list items with a semicolon and a space.  |  `>>poll Want to eat?; Yes; No; Hand me the cheese`
 `>>raffle`  |  Picks a random user from the current Online users as a winner for the raffle. The user can be Online, Away or DND, but can not be invisible to be eligable.  |  `>>raffle`
