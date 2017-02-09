@@ -68,7 +68,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         subtext = ''
         if res_1 == res_2 == res_3:
             win = True
-            pts = bet_amt * 80
+            pts = bet_amt * 210
             subtext += 'Your major victory has been recorded on the `#slot-wins` channel of Sigma\'s official server.'
             win_notify_channel_object = None
             for server in cmd.bot.servers:
@@ -87,7 +87,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
                 await cmd.bot.send_message(win_notify_channel_object, None, embed=win_notify_embed)
         elif res_1 == res_2 or res_1 == res_3 or res_2 == res_3:
             win = True
-            pts = bet_amt * 6
+            pts = bet_amt * 12
         else:
             win = False
             pts = 0
