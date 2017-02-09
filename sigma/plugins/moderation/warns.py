@@ -31,5 +31,5 @@ async def warns(cmd, message, args):
         else:
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ ' + target.name + ' Was Warned For...',
-                            value='```\n' + ' '.join(warned_users[target.id]['Reasons']) + '\n```')
+                            value='```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
     await cmd.bot.send_message(message.channel, None, embed=embed)

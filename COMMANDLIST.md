@@ -81,6 +81,7 @@ Command |  Description |  Usage
 `>>eventchance`  |  Sets the chance by which random events might apear. The chance can be set from 1 to 100. Requires the user to be a server Administrator.  |  `>>eventchance 15`
 `>>warn`  |  Warns a user for the inputted reason. Warning stack, and upon exceeding the set limit, the user is kicked.  |  `>>warn @person For Not Liking Cheese`
 `>>warns`  |  Lists warned users. If a user is mentioned with the command, it will show warnings for that user.  |  `>>warns @person`
+`>>warnlimit`  |  Sets the new warning limit.  |  `>>warnlimit 3`
 ###MUSIC
 Command |  Description |  Usage
 --------|--------------|-------
