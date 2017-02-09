@@ -12,6 +12,8 @@ async def warn(cmd, message, args):
         return
     target = message.mentions[0]
     warning_text = ' '.join(args).replace(target.mention, '')[1:]
+    if not warning_text or warning_text == '':
+        warning_text = 'No Reason Given'
     try:
         warn_limit = cmd.db.get_settings(message.server.id, 'WarnLimit')
     except KeyError:

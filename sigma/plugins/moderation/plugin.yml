@@ -247,6 +247,15 @@ commands:
       Warns a user for the inputted reason.
       Warning stack, and upon exceeding the set limit, the user is kicked.
 
+  - name: warns
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Lists warned users.
+      If a user is mentioned with the command, it will show warnings for that user.
+
 events:
   - name:    sfiexec
     type:    message
