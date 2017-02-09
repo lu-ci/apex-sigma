@@ -12,4 +12,4 @@ install:
 
 test_script:
   - "%CMD_IN_ENV% pip install -U -r requirements.txt"
-  - "%CMD_IN_ENV% python run.py"
+  - "%PYTHON%\\python.exe run.py"
