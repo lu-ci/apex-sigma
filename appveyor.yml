@@ -14,11 +14,9 @@ init:
 
 install:
   - "%PYTHON%\\python.exe -m pip install wheel"
-  - "%PYTHON%/Scripts/pip.exe install nose"
-  - "%PYTHON%/Scripts/pip.exe install coverage"
+  - "%CMD_IN_ENV% pip install -U -r requirements.txt"
 
 test_script:
-  - "%CMD_IN_ENV% pip install -U -r requirements.txt"
   - "%PYTHON%\\python.exe run.py"
 
 on_success:
