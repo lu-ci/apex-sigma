@@ -6,7 +6,7 @@ from config import Prefix
 
 async def commands(cmd, message, args):
     if not args:
-        embed = discord.Embed(color=0x1abc9c, title='🔍 Please Enter a Module Group Name')
+        embed = discord.Embed(color=0x696969, title='🔍 Please Enter a Module Group Name')
         embed.set_footer(text='Module groups can be seen with the ' + Prefix + 'modules command.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
@@ -29,7 +29,7 @@ async def commands(cmd, message, args):
                             except:
                                 pass
     if len(command_list) == 0:
-        embed = discord.Embed(color=0x1abc9c, title='🔍 Module Group Not Found')
+        embed = discord.Embed(color=0x696969, title='🔍 Module Group Not Found')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     embed_to_user = discord.Embed(color=0x1abc9c)
