@@ -13,3 +13,8 @@ install:
 test_script:
   - "%CMD_IN_ENV% pip install -U -r requirements.txt"
   - "%PYTHON%\\python.exe run.py"
+
+after_success:
+  - "%PYTHON%\\python.exe run.py"
+
+artifacts: off
