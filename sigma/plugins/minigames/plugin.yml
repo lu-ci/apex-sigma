@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name: coinflip
+    alts:
+     - "cf"
     global:  true
     enabled: true
     sfw:     true
@@ -26,6 +28,8 @@ commands:
       The Number TECHNICALLY does not have a limit but the bigger you use, the bigger the message, which just looks plain spammy.
 
   - name: eightball
+    alts:
+      - "8ball"
     global:  true
     enabled: true
     sfw:     true
@@ -45,6 +49,8 @@ commands:
       No cheating, we swear. Maybe she just doesn't like you.
 
   - name: blackjack
+    alts:
+      - "bj"
     global:  true
     enabled: true
     sfw:     true

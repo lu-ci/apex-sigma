@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    anime
+    alts:
+      - "animu"
     global:  true
     enabled: true
     sfw:     true
@@ -16,6 +18,8 @@ commands:
       Generates a really cool image with the details!
 
   - name:    manga
+    alts:
+      - "mango"
     global:  true
     enabled: true
     sfw:     true

@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name: awardpts
+    alts:
+      - "apts"
     global:  true
     enabled: true
     sfw:     true
@@ -17,6 +19,8 @@ commands:
       Server Administrator Only.
 
   - name: takepts
+    alts:
+      - "tpts"
     global:  true
     enabled: true
     sfw:     true
@@ -27,6 +31,8 @@ commands:
       Server Administrator Only.
 
   - name: announce
+    alts:
+      - "ann"
     global:  true
     enabled: true
     sfw:     true
@@ -47,6 +53,12 @@ commands:
       Bot Owner Only.
 
   - name: evaluate
+    alts:
+      - "eval"
+      - "py"
+      - "python"
+      - "code"
+      - "exec"
     global:  true
     enabled: true
     sfw:     true
@@ -67,6 +79,8 @@ commands:
       Bot Owner Only.
 
   - name: inviteowner
+    alts:
+      - "invown"
     global:  true
     enabled: true
     admin:   true
@@ -78,6 +92,8 @@ commands:
       Bot Owner Only.
 
   - name: searchid
+    alts:
+      - "srchid"
     global:  true
     enabled: true
     admin:   true
@@ -118,6 +134,8 @@ commands:
       Bot Owner Only.
 
   - name:    setavatar
+    alts:
+      - "setav"
     global:  true
     enabled: true
     sfw:     true

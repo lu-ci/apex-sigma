@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    level
+    alts:
+      - "lvl"
     global:  true
     enabled: true
     sfw:     true

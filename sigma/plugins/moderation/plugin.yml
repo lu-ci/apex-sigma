@@ -17,6 +17,8 @@ commands:
       (Server Administrator Only)
 
   - name: greetmsg
+    alts:
+     - "gmsg"
     global:  true
     enabled: true
     sfw:     true
@@ -28,6 +30,8 @@ commands:
       (Server Administrator Only)
 
   - name: greetpm
+    alts:
+     - "gpm"
     global:  true
     enabled: true
     sfw:     true
@@ -47,6 +51,8 @@ commands:
       (Server Administrator Only)
 
   - name: byemsg
+    alts:
+     - "bmsg"
     global:  true
     enabled: true
     sfw:     true
@@ -76,6 +82,8 @@ commands:
       Requires the user who calls the command to have ban privileges.
 
   - name: softban
+    alts:
+      - "sb"
     global:  true
     enabled: true
     sfw:     true
@@ -94,6 +102,9 @@ commands:
       Requires the user who calls the command to have kick privileges.
 
   - name: prune
+    alts:
+      - "clear"
+      - "purge"
     global:  true
     enabled: true
     sfw:     true
@@ -142,6 +153,9 @@ commands:
       Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
 
   - name: settopic
+    alts:
+      - "settop"
+      - "topic"
     global:  true
     enabled: true
     sfw:     true
@@ -151,6 +165,9 @@ commands:
       Requires the user who calls the ccommand to have the Manage Channels permission.
 
   - name: setchannelname
+    alts:
+      - "scn"
+      - "channame"
     global:  true
     enabled: true
     sfw:     true
@@ -160,6 +177,8 @@ commands:
       Requires the user who calls the command to have the Manage Channels permission.
 
   - name: movechannel
+    alts:
+      - "movech"
     global:  true
     enabled: true
     sfw:     true
@@ -169,6 +188,8 @@ commands:
       Do keep in mind that the first channel position is 0.
 
   - name: blockinvites
+    alts:
+      - "blockinv"
     global:  true
     enabled: true
     sfw:     true
@@ -188,6 +209,8 @@ commands:
       Requires the user to be a server Administrator.
 
   - name: ignoreuser
+    alts:
+      - "ignoreusr"
     global:  true
     enabled: true
     sfw:     true
@@ -198,6 +221,8 @@ commands:
       Requires the user to be a server Administrator.
 
   - name: ignorechannel
+    alts:
+      - "ignorech"
     global:  true
     enabled: true
     sfw:     true
@@ -208,6 +233,8 @@ commands:
       Requires the user to be a server Administrator.
 
   - name: cleverbot
+    alts:
+      - "cb"
     global:  true
     enabled: true
     sfw:     true
@@ -229,6 +256,8 @@ commands:
       Requires the user to be a server Administrator.
 
   - name: eventchance
+    alts:
+      - "evchance"
     global:  true
     enabled: true
     sfw:     true

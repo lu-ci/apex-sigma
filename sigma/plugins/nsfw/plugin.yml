@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    nsfwpermit
+    alts:
+      - "nsfw"
     global:  true
     enabled: true
     sfw:     true
@@ -16,6 +18,8 @@ commands:
       (Server Administrator Only)
 
   - name:    rule34
+    alts:
+      - "r34"
     global:  true
     enabled: true
     sfw:     false
@@ -34,6 +38,8 @@ commands:
       if no VN is inputed, it will select a random one.
 
   - name:    gelbooru
+    alts:
+      - "gelb"
     global:  true
     enabled: true
     sfw:     false
@@ -44,6 +50,8 @@ commands:
       with an underscore instead as spaces are used to separate multiple tags.
 
   - name:    danbooru
+    alts:
+      - "danb"
     global:  true
     enabled: true
     sfw:     false
@@ -73,6 +81,8 @@ commands:
       If not tag is given, it will display a random image.
 
   - name:    konachan
+    alts:
+      - "kchan"
     global:  true
     enabled: true
     sfw:     false
@@ -82,6 +92,8 @@ commands:
       If not tag is given, it will display a random image.
 
   - name:    yandere
+    alts:
+      - "yre"
     global:  true
     enabled: true
     sfw:     false
@@ -91,6 +103,10 @@ commands:
       If not tag is given, it will display a random image.
 
   - name:    boobs
+    alts:
+     - "tits"
+     - "breasts"
+     - "boob"
     global:  true
     enabled: true
     sfw:     false
@@ -99,6 +115,10 @@ commands:
       Outputs a random image with boobs, naturally NSFW.
 
   - name:    butts
+    alts:
+      - "butt"
+      - "ass"
+      - "asses"
     global:  true
     enabled: true
     sfw:     false
@@ -107,6 +127,8 @@ commands:
       LOOK AT ALL THE FINE ASS. Mmmm... Aaaaasssss~
 
   - name:     nhentai
+    alts:
+      - "nh"
     global:   true
     enabled:  true
     sfw:      false

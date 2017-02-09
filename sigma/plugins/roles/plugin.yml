@@ -17,6 +17,8 @@ commands:
       Requires the user who calls the command to have the Administrator permision.
 
   - name: createrole
+    alts:
+      - "crtrl"
     global:  true
     enabled: true
     sfw:     true
@@ -26,6 +28,8 @@ commands:
       Requires the user who calls the command to have the Manage Roles permision.
 
   - name: destroyrole
+    alts:
+      - "desrl"
     global:  true
     enabled: true
     sfw:     true
@@ -35,6 +39,8 @@ commands:
       Requires the user who calls the command to have the Manage Roles permision.
 
   - name: addselfrole
+    alts:
+      - "asr"
     global:  true
     enabled: true
     sfw:     true
@@ -44,6 +50,8 @@ commands:
       Requires the user who calls the command to have the Manage Roles permision.
 
   - name: delselfrole
+    alts:
+      - "dsr"
     global:  true
     enabled: true
     sfw:     true
@@ -53,6 +61,8 @@ commands:
       Requires the user who calls the command to have the Manage Roles permision.
 
   - name: giverole
+    alts:
+      - "gvrl"
     global:  true
     enabled: true
     sfw:     true
@@ -62,6 +72,8 @@ commands:
       Requires the user who calls the command to have the Manage Roles permision.
 
   - name: takerole
+    alts:
+      - "tkrl"
     global:  true
     enabled: true
     sfw:     true
@@ -71,6 +83,8 @@ commands:
       Requires the user who calls the command to have the Manage Roles permision.
 
   - name: togglerole
+    alts:
+      - "trl"
     global:  true
     enabled: true
     sfw:     true
@@ -81,6 +95,8 @@ commands:
       A list of self assignable roles can be seen with the listselfroles command.
 
   - name: listselfroles
+    alts:
+      - "lsrl"
     global:  true
     enabled: true
     sfw:     true
@@ -107,6 +123,9 @@ commands:
       Lists all the roles on the server and the total number of roles.
 
   - name: clrrole
+    alts:
+      - "colorrole"
+      - "clrrl"
     global:  true
     enabled: true
     sfw:     true

@@ -10,6 +10,8 @@ enabled: true
 
 commands:
   - name:    wanikani
+    alts:
+      - "wk"
     global:  true
     enabled: true
     sfw:     true
