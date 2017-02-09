@@ -3,16 +3,21 @@ from sigma.core.permission import check_kick
 
 
 async def warns(cmd, message, args):
-    if not check_kick(message.author, message.channel):
-        out_content = discord.Embed(color=0xDB0000,
-                                    title=':no_entry: Users With Kick Permissions Only.')
-        await cmd.bot.send_message(message.channel, None, embed=out_content)
-        return
     try:
         warned_users = cmd.db.get_settings(message.server.id, 'WarnedUsers')
     except KeyError:
         cmd.db.set_settings(message.server.id, 'WarnedUsers', {})
         warned_users = {}
+    if not check_kick(message.author, message.channel):
+        target = message.author
+        if target.id not in warned_users:
+            embed = discord.Embed(color=0x0099FF, title='ℹ You Were Never Warned')
+        else:
+            embed = discord.Embed(color=0x0099FF)
+            embed.add_field(name='ℹ You Were Warned For...',
+                            value='```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
     if not message.mentions:
         if len(warned_users) == 0:
             embed = discord.Embed(color=0x0099FF, title='ℹ There Are No Warned Users')
