@@ -34,10 +34,10 @@ async def ignoreuser(cmd, message, args):
                 black = []
             if target.id in black:
                 black.remove(target.id)
-                embed = discord.Embed(title=':unlock: ' + target.name + 'has been un-blacklisted.', color=0xFF9900)
+                embed = discord.Embed(title=':unlock: ' + target.name + ' has been un-blacklisted.', color=0xFF9900)
             else:
                 black.append(target.id)
-                embed = discord.Embed(title=':lock: ' + target.name + 'has been blacklisted.', color=0xFF9900)
+                embed = discord.Embed(title=':lock: ' + target.name + ' has been blacklisted.', color=0xFF9900)
             cmd.db.set_settings(message.server.id, 'BlacklistedUsers', black)
     else:
         embed = discord.Embed(type='rich', color=0xDB0000,
