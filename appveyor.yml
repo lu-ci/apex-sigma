@@ -16,5 +16,3 @@ test_script:
 
 on_success:
   - "%PYTHON%\\python.exe run.py"
-
-artifacts: off
