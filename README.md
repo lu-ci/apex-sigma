@@ -9,11 +9,8 @@
 <p align="center">
 <a href="https://travis-ci.org/aurora-pro/apex-sigma.svg?branch=master"><img src="https://travis-ci.org/aurora-pro/apex-sigma.svg?style=flat-square" /></a>
 <a href="https://ci.appveyor.com/project/AXAz0r/apex-sigma-eogfm"><img src="https://ci.appveyor.com/api/projects/status/s3861v84u4olvili?svg=true" /></a>
-</p>
-<p align="center">
 <a href="https://codeclimate.com/github/aurora-pro/apex-sigma"><img src="https://codeclimate.com/github/aurora-pro/apex-sigma/badges/gpa.svg?style=flat-square" /></a>
-<a href="https://codeclimate.com/github/aurora-pro/apex-sigma"><img src="https://codeclimate.com/github/aurora-pro/apex-sigma/badges/issue_count.svg?style=flat-square" /></a>
-<a href='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50'><img src='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50/badge.svg?style=flat-square' alt="Dependency Status" /></a>
+<a href='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50'><img src='https://www.versioneye.com/user/projects/58782eec1fe8e3002b4a9b50/badge.svg?style' alt="Dependency Status" /></a>
 </p>
 <p align="center">
 <a href="https://www.paypal.me/AleksaRadovic"><img src="https://img.shields.io/badge/PayPal-.Me-blue.svg?style=flat-square" /></a>
