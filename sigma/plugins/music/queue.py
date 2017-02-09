@@ -30,7 +30,20 @@ async def queue(cmd, message, args):
     else:
         requester = message.author.name + '#' + message.author.discriminator
         qry = ' '.join(args)
-        video_url, video_id, video_title = search_youtube(qry)
+        if 'list=' in qry:
+            embed = discord.Embed(
+                title=':warning: You can\'t queue lists.', color=0xFF9900)
+            await cmd.bot.send_message(message.channel, None, embed=embed)
+            return
+        if qry.startswith('https://yout') or ('https://www.yout'):
+            try:
+                await cmd.bot.delete_message(message)
+            except:
+                pass
+            video_url = qry
+            video_title = 'Requested from Direct Link'
+        else:
+            video_url, video_id, video_title = search_youtube(qry)
         add_to_queue(message.server, requester, 'YouTube', video_url, video_title)
         embed = discord.Embed(title=':white_check_mark: Added To Queue', color=0x66CC66)
         embed.add_field(name='Title', value='**' + video_title + '**', inline=False)
