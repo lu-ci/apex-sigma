@@ -383,7 +383,9 @@ class Database(object):
                     'BlacklistedUsers': [],
                     'AutoRole': None,
                     'SelfRoles': [],
-                    'LoggingEnabled': False
+                    'LoggingEnabled': False,
+                    'WarnedUsers': {},
+                    'WarnLimit': 2
                 }
                 self.db['ServerSettings'].insert_one(default_settings)
 

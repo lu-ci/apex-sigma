@@ -115,6 +115,15 @@ commands:
     description:
       Sets the volume of the current music player.
 
+  - name:    volume
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s} 69"
+    description:
+      Sets the volume of the current music player.
+
   - name:    next
     global:  true
     enabled: true

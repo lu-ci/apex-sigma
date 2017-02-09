@@ -20,7 +20,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Hello %user_mention% and welcoem to %server_name%!"
+    usage:   "{pfx:s}{cmd:s} Hello %user_mention% and welcome to %server_name%!"
     description:
       Sets the greet message text.
       Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server.
@@ -141,70 +141,6 @@ commands:
       Will deactivate the blind set on a user.
       Requires the user who calls the command to have the Manage Messages permision as well as Manage Roles.
 
-  - name: autorole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Wizard"
-    description:
-      Sets the role that should be given to the users that join the server.
-      To disable the autorole input disable as the role name.
-      Requires the user who calls the command to have the Administrator permision.
-
-  - name: createrole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Cheese"
-    description:
-      Creates a new role on the server.
-      Requires the user who calls the command to have the Manage Roles permision.
-
-  - name: destroyrole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Blergh"
-    description:
-      Destroy an existing role on the server.
-      Requires the user who calls the command to have the Manage Roles permision.
-
-  - name: addselfrole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Cheese"
-    description:
-      Makes a role self assignable.
-      Requires the user who calls the command to have the Manage Roles permision.
-
-  - name: delselfrole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Cheese"
-    description:
-      Makes a role no longer self assignable.
-      Requires the user who calls the command to have the Manage Roles permision.
-
-  - name: giverole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person Lewd"
-    description:
-      Assigns a role to a user.
-      Requires the user who calls the command to have the Manage Roles permision.
-
-  - name: takerole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person Dude"
-    description:
-      Removes a role from a user.
-      Requires the user who calls the command to have the Manage Roles permision.
-
   - name: settopic
     global:  true
     enabled: true
@@ -223,15 +159,6 @@ commands:
       Sets the name of the text channel the command is used in.
       Requires the user who calls the command to have the Manage Channels permission.
 
-  - name: clrrole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 1ABC9C Cutie Pies"
-    description:
-      Sets the color of the inputted role.
-      Requires the user who calls the command to have the Manage Roles permission.
-
   - name: movechannel
     global:  true
     enabled: true
@@ -240,43 +167,6 @@ commands:
     description:
       Moves the channel where the command is executed to the requested positional number.
       Do keep in mind that the first channel position is 0.
-
-  - name: inrole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Waifus"
-    description:
-      Lists the users in the specified role.
-
-  - name: roles
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Lists all the roles on the server and the total number of roles.
-
-  - name: togglerole
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Wizard"
-    description:
-      Assigns you or removes you from one of the self assignable roles.
-      Self assignable roles are added via the addselfrole command.
-      A list of self assignable roles can be seen with the listselfroles command.
-
-  - name: listselfroles
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Assigns you or removes you from one of the self assignable roles.
-      Self assignable roles are added via the addrole command.
-      A list of self assignable roles can be seen with the listselfroles command.
-
 
   - name: blockinvites
     global:  true
@@ -348,23 +238,31 @@ commands:
       The chance can be set from 1 to 100.
       Requires the user to be a server Administrator.
 
-  - name: award
+  - name: warn
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    usage:   "{pfx:s}{cmd:s} @person For Not Liking Cheese"
     description:
-      Awards the inputted amount of points to the mentioned person.
-      Server Administrator Only.
+      Warns a user for the inputted reason.
+      Warning stack, and upon exceeding the set limit, the user is kicked.
 
-  - name: take
+  - name: warns
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    usage:   "{pfx:s}{cmd:s} @person"
     description:
-      Takes away the inputted amount of points from the mentioned person.
-      Server Administrator Only.
+      Lists warned users.
+      If a user is mentioned with the command, it will show warnings for that user.
+
+  - name: warnlimit
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 3"
+    description:
+      Sets the new warning limit.
 
 events:
   - name:    sfiexec

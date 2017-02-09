@@ -1,0 +1,59 @@
+name: Points
+
+categories:
+  - points
+
+enabled: true
+
+commands:
+  - name: award
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Awards the inputted amount of points to the mentioned person.
+      Server Administrator Only.
+
+  - name: take
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 1500 @person"
+    description:
+      Takes away the inputted amount of points from the mentioned person.
+      Server Administrator Only.
+
+  - name:    level
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows yours or a mentioned persons Sigma level.
+
+  - name:    ranking
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the link for the servers point leaderboard.
+
+  - name: give
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 50 @person"
+    description:
+      Transfer a chosen amount of points between you and the mentioned user.
+
+events:
+  - name:    reward
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Get levels by chatting in a channel.

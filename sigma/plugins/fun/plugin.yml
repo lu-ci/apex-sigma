@@ -1,11 +1,77 @@
-name: Misc
+name: Fun
 
 categories:
-  - misc
+  - fun
 
 enabled: true
 
 commands:
+  - name:    dadjoke
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Cringe!
+
+  - name:    sbo
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} ow/dva/nerf this"
+    description:
+      For playing soundboard items.
+      No list for possible choices exists yet, but soon.
+      Take a look at our github to find all the soundfiles.
+
+  - name:    joke
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random joke, do not expect them to be good even slightly.
+
+  - name:    ronswanson
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random Ron Swanson quote.
+
+  - name:    yomomma
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Provides a random Yo Momma insult.
+
+  - name:    chucknorris
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random Chuck Norris joke. We use Chuck jokes instead of Bruce Lee cause obviously Bruce is no joke.
+
+  - name:    xkcd
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random xkcd comic.
+
+  - name:    pun
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Gives you some random pun, beware.
+
   - name:    rip
     global:  true
     enabled: true
@@ -13,74 +79,6 @@ commands:
     usage:   "{pfx:s}{cmd:s} @person"
     description:
       Generates a tombstone with the mentioned users avatar.
-
-  - name:    level
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person"
-    description:
-      Shows yours or a mentioned persons Sigma level.
-
-  - name:    ranking
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows the link for the servers point leaderboard.
-
-  - name: give
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 50 @person"
-    description:
-      Transfer a chosen amount of points between you and the mentioned user.
-
-  - name: toggleshop
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Activates or Deactivates the shop on the server.
-      (Server Administrator Only)
-
-  - name: shopadd
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 15000 Glitch King"
-    description:
-      Adds an item to the servers role shop.
-      The items here can be purchased with the points you get from activity and gambling.
-      (Server Administrator Only)
-
-  - name: shopremove
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Glitch Prince"
-    description:
-      Removes an item from the servers role shop.
-      (Server Administrator Only)
-
-  - name: shoplist
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows the list of roles purchasable on the current server.
-
-  - name: shopbuy
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} That One Guy"
-    description:
-      Buys an item from the shop by item name.
 
   - name:    quote
     global:  true
@@ -135,6 +133,15 @@ commands:
       The accepted types are trivia, date, math and year.
       The date system is the US Month/Day ordering system.
 
+  - name:     nyaa
+    global:   true
+    enabled:  true
+    sfw:      true
+    usage:    "{pfx:s}{cmd:s}"
+    description:
+      Provides a random Nekomimi image.
+      They might be borderline NSFW, a warning just in case.
+
 events:
   - name:    cleverbot_control
     type:    mention
@@ -146,15 +153,6 @@ events:
     description:
       Interact with cleverbot.
 
-  - name:    reward
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    pmable:  true
-    description:
-      Get levels by chatting in a channel.
-
   - name:    unflip_control
     type:    message
     global:  true
@@ -163,12 +161,3 @@ events:
     pmable:  true
     description:
       Calm down bro.
-
-  - name:    accept
-    type:    message
-    global:  true
-    enabled: true
-    pmable:  true
-    sfw:     true
-    description:
-      Accepts the terms and conditions of the WaniKani Community Discord Server.

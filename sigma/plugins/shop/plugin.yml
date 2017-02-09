@@ -1,0 +1,52 @@
+name: Shop
+
+categories:
+  - shop
+
+enabled: true
+
+commands:
+
+  - name: toggleshop
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Activates or Deactivates the shop on the server.
+      (Server Administrator Only)
+
+  - name: shopadd
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 15000 Glitch King"
+    description:
+      Adds an item to the servers role shop.
+      The items here can be purchased with the points you get from activity and gambling.
+      (Server Administrator Only)
+
+  - name: shopremove
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Glitch Prince"
+    description:
+      Removes an item from the servers role shop.
+      (Server Administrator Only)
+
+  - name: shoplist
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the list of roles purchasable on the current server.
+
+  - name: shopbuy
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} That One Guy"
+    description:
+      Buys an item from the shop by item name.
