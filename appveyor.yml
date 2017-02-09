@@ -9,8 +9,13 @@ environment:
       DISTUTILS_USE_SDK: "1"
     - PYTHON: "C:\\Python36-x64"
 
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
 install:
   - "%PYTHON%\\python.exe -m pip install wheel"
+  - "%PYTHON%/Scripts/pip.exe install nose"
+  - "%PYTHON%/Scripts/pip.exe install coverage"
 
 test_script:
   - "%CMD_IN_ENV% pip install -U -r requirements.txt"
