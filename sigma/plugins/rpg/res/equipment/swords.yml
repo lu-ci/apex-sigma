@@ -1,0 +1,145 @@
+- name: "Pleb Shortsword"
+  level: 0
+  tier: 0
+  npc_value:
+    sell: 0
+    buy: 0
+  stats:
+    single:
+      weight: 410
+      damage:
+        physical: 12
+        magic: 0
+      modifiers:
+        bal: 43
+        crit: 6
+        str: 7
+        int: 0
+        agi: 0
+    dual:
+      weight: 430
+      damage:
+        physical: 11
+        magic: 0
+      modifiers:
+        bal: 45
+        crit: 7
+        str: 8
+        int: 0
+        agi: 5
+- name: "Rusty Longsword"
+  level: 2
+  tier: 1
+  npc_value:
+    sell: 0
+    buy: 15
+  stats:
+    single:
+      weight: 340
+      damage:
+        physical: 13
+        magic: 0
+      modifiers:
+        bal: 47
+        crit: 6
+        str: 8
+        int: 0
+        agi: 0
+    dual:
+      weight: 680
+      damage:
+        physical: 12
+        magic: 0
+      modifiers:
+        bal: 49
+        crit: 8
+        str: 9
+        int: 0
+        agi: 6
+- name: "Foul Longsword"
+  level: 4
+  tier: 1
+  npc_value:
+    sell: 0
+    buy: 15
+  stats:
+    single:
+      weight: 350
+      damage:
+        physical: 14
+        magic: 0
+      modifiers:
+        bal: 50
+        crit: 7
+        str: 8
+        int: 0
+        agi: 0
+    dual:
+      weight: 680
+      damage:
+        physical: 13
+        magic: 0
+      modifiers:
+        bal: 53
+        crit: 8
+        str: 9
+        int: 0
+        agi: 6
+- name: "Veteran Longsword"
+  level: 5
+  tier: 1
+  npc_value:
+    sell: 0
+    buy: 30
+  stats:
+    single:
+      weight: 390
+      damage:
+        physical: 14
+        magic: 0
+      modifiers:
+        bal: 50
+        crit: 10
+        str: 3
+        int: 0
+        agi: 19
+    dual:
+      weight: 780
+      damage:
+        physical: 13
+        magic: 0
+      modifiers:
+        bal: 45
+        crit: 8
+        str: 10
+        int: 5
+        agi: 18
+- name: "Gracious Longsword"
+  level: 6
+  tier: 1
+  npc_value:
+    sell: 0
+    buy: 48
+  stats:
+    single:
+      weight: 350
+      damage:
+        physical: 15
+        magic: 0
+      modifiers:
+        bal: 53
+        crit: 7
+        str: 9
+        int: 0
+        agi: 0
+    dual:
+      weight: 740
+      damage:
+        physical: 14
+        magic: 0
+      modifiers:
+        bal: 56
+        crit: 9
+        str: 11
+        int: 0
+        agi: 7
