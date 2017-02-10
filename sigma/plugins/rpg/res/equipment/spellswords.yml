@@ -1,0 +1,544 @@
+- level: 1
+  name: Trainee's Spellsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 7140
+    modifiers:
+      agi: 0
+      bal: 42
+      crit: 6
+      int: 7
+      str: 0
+  tier: 0
+- level: 2
+  name: Crimson Blade Longblade
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 7810
+    modifiers:
+      agi: 0
+      bal: 44
+      crit: 6
+      int: 8
+      str: 0
+  tier: 0
+- level: 9
+  name: Kobold Spellsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 10
+    modifiers:
+      agi: 23
+      bal: 53
+      crit: 12
+      int: 3
+      str: 0
+  tier: 0
+- level: 10
+  name: Gnoll Chieftain Spellsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 10
+    modifiers:
+      agi: 0
+      bal: 58
+      crit: 11
+      int: 12
+      str: 0
+  tier: 0
+- level: 12
+  name: Goblin Scimitar Spellsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 12
+    modifiers:
+      agi: 9
+      bal: 60
+      crit: 19
+      int: 18
+      str: 0
+  tier: 0
+- level: 16
+  name: Red Metal Spellsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 13
+    modifiers:
+      agi: 30
+      bal: 60
+      crit: 16
+      int: 4
+      str: 0
+  tier: 0
+- level: 20
+  name: Vampire Spellsword
+  npc_value:
+    buy: 3843
+    sell: 207
+  stats:
+    damage:
+      magic: 0
+      physical: 13
+    modifiers:
+      agi: 10
+      bal: 62
+      crit: 21
+      int: 21
+      str: 0
+  tier: 0
+- level: 22
+  name: Bone Spiked Spellsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 33
+      bal: 63
+      crit: 18
+      int: 4
+      str: 0
+  tier: 0
+- level: 30
+  name: Blood Seeker
+  npc_value:
+    buy: 6183
+    sell: 333
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 25
+      bal: 65
+      crit: 26
+      int: 25
+      str: 0
+  tier: 1
+- level: 35
+  name: Black Scar Longblade
+  npc_value:
+    buy: 6740
+    sell: 363
+  stats:
+    damage:
+      magic: 0
+      physical: 18
+    modifiers:
+      agi: 12
+      bal: 80
+      crit: 28
+      int: 30
+      str: 0
+  tier: 1
+- level: 39
+  name: 'Blood Seeker: The Ruins'
+  npc_value:
+    buy: 93128
+    sell: 5015
+  stats:
+    damage:
+      magic: 0
+      physical: 21
+    modifiers:
+      agi: 22
+      bal: 67
+      crit: 31
+      int: 36
+      str: 0
+  tier: 1
+- level: 40
+  name: Quisia Longblade
+  npc_value:
+    buy: 7780
+    sell: 419
+  stats:
+    damage:
+      magic: 0
+      physical: 22
+    modifiers:
+      agi: 18
+      bal: 68
+      crit: 32
+      int: 35
+      str: 0
+  tier: 1
+- level: 41
+  name: Emaighsoch Spellsword
+  npc_value:
+    buy: 8412
+    sell: 453
+  stats:
+    damage:
+      magic: 0
+      physical: 23
+    modifiers:
+      agi: 23
+      bal: 68
+      crit: 34
+      int: 39
+      str: 0
+  tier: 1
+- level: 44
+  name: Nightmare Spellsword
+  npc_value:
+    buy: 79201
+    sell: 4265
+  stats:
+    damage:
+      magic: 0
+      physical: 25
+    modifiers:
+      agi: 20
+      bal: 69
+      crit: 36
+      int: 39
+      str: 0
+  tier: 1
+- level: 48
+  name: Crasher Spellsword
+  npc_value:
+    buy: 63880
+    sell: 3440
+  stats:
+    damage:
+      magic: 0
+      physical: 27
+    modifiers:
+      agi: 22
+      bal: 70
+      crit: 38
+      int: 43
+      str: 0
+  tier: 2
+- level: 50
+  name: Ivory Spellsword
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 0
+      physical: 28
+    modifiers:
+      agi: 23
+      bal: 71
+      crit: 41
+      int: 40
+      str: 0
+  tier: 2
+- level: 55
+  name: Monark Spellsword
+  npc_value:
+    buy: 88950
+    sell: 4790
+  stats:
+    damage:
+      magic: 0
+      physical: 32
+    modifiers:
+      agi: 51
+      bal: 71
+      crit: 30
+      int: 75
+      str: 0
+  tier: 2
+- level: 60
+  name: Alluring Spellsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 38
+    modifiers:
+      agi: 20
+      bal: 72
+      crit: 37
+      int: 76
+      str: 0
+  tier: 2
+- level: 60
+  name: Black Hammer Spellsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 37
+    modifiers:
+      agi: 33
+      bal: 75
+      crit: 34
+      int: 72
+      str: 0
+  tier: 2
+- level: 60
+  name: Chiulin Spellsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 37
+    modifiers:
+      agi: 47
+      bal: 71
+      crit: 36
+      int: 77
+      str: 0
+  tier: 2
+- level: 60
+  name: Dreamwalker Spellsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 36
+    modifiers:
+      agi: 36
+      bal: 73
+      crit: 36
+      int: 71
+      str: 0
+  tier: 2
+- level: 60
+  name: Raider's Spellsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 35
+    modifiers:
+      agi: 41
+      bal: 66
+      crit: 45
+      int: 89
+      str: 0
+  tier: 2
+- level: 60
+  name: Silver Fox
+  npc_value:
+    buy: 152738
+    sell: 8225
+  stats:
+    damage:
+      magic: 0
+      physical: 38
+    modifiers:
+      agi: 41
+      bal: 71
+      crit: 34
+      int: 85
+      str: 0
+  tier: 2
+- level: 70
+  name: Champion Spellsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 50
+    modifiers:
+      agi: 61
+      bal: 75
+      crit: 33
+      int: 99
+      str: 0
+  tier: 3
+- level: 70
+  name: Equilibrium
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 51
+    modifiers:
+      agi: 45
+      bal: 73
+      crit: 34
+      int: 103
+      str: 0
+  tier: 3
+- level: 70
+  name: Majesty Spellsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 50
+    modifiers:
+      agi: 51
+      bal: 71
+      crit: 35
+      int: 115
+      str: 0
+  tier: 3
+- level: 70
+  name: Nighthawk Spellsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 49
+    modifiers:
+      agi: 55
+      bal: 74
+      crit: 37
+      int: 97
+      str: 0
+  tier: 3
+- level: 70
+  name: Rafflesia
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 49
+    modifiers:
+      agi: 60
+      bal: 76
+      crit: 35
+      int: 98
+      str: 0
+  tier: 3
+- level: 70
+  name: Saintly Spellsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 50
+    modifiers:
+      agi: 49
+      bal: 72
+      crit: 35
+      int: 99
+      str: 0
+  tier: 3
+- level: 80
+  name: Armageddon Spellsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 63
+    modifiers:
+      agi: 58
+      bal: 73
+      crit: 35
+      int: 130
+      str: 0
+  tier: 3
+- level: 80
+  name: Heremon Spellsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 65
+    modifiers:
+      agi: 63
+      bal: 74
+      crit: 37
+      int: 119
+      str: 0
+  tier: 3
+- level: 80
+  name: Neptunus
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 64
+    modifiers:
+      agi: 66
+      bal: 78
+      crit: 35
+      int: 115
+      str: 0
+  tier: 3
+- level: 80
+  name: Noblesse Spellsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 66
+    modifiers:
+      agi: 65
+      bal: 75
+      crit: 35
+      int: 119
+      str: 0
+  tier: 3
+- level: 80
+  name: Skeleton Spellsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 62
+    modifiers:
+      agi: 65
+      bal: 75
+      crit: 36
+      int: 115
+      str: 0
+  tier: 3
