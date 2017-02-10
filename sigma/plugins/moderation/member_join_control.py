@@ -10,8 +10,10 @@ async def member_join_control(ev, member):
     if greet:
         ev.db.add_stats('GreetCount')
         greet_message = ev.db.get_settings(server.id, 'GreetMessage')
-        greet_message = greet_message.replace('%user_mention%', '<@' + member.id + '>').replace('%server_name%',
-                                                                                                server.name)
+        greet_message = greet_message.replace('%user_mention%', member.mention).replace('%server_name%',
+                                                                                        server.name).replace(
+            '%USER_MENTION%', member.mention).replace('%SERVER_NAME%',
+                                                      server.name.upper())
         if not greet_pm:
             greet_channel = ev.db.get_settings(server.id, 'GreetChannel')
             if not greet_channel:

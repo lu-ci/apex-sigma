@@ -1,0 +1,720 @@
+- level: 1
+  name: Trainee's Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 13
+    modifiers:
+      agi: 0
+      bal: 40
+      crit: 0
+      int: 3
+      str: 7
+  tier: 0
+- level: 2
+  name: Crimson Blade Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 0
+      bal: 43
+      crit: 7
+      int: 3
+      str: 8
+  tier: 0
+- level: 4
+  name: Foul Snowpaw Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 0
+      bal: 46
+      crit: 8
+      int: 3
+      str: 9
+  tier: 0
+- level: 9
+  name: Kobold Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 19
+    modifiers:
+      agi: 23
+      bal: 52
+      crit: 12
+      int: 6
+      str: 3
+  tier: 0
+- level: 10
+  name: Gnoll Chieftain Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 20
+    modifiers:
+      agi: 0
+      bal: 68
+      crit: 11
+      int: 4
+      str: 12
+  tier: 0
+- level: 12
+  name: Goblin Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 22
+    modifiers:
+      agi: 9
+      bal: 50
+      crit: 19
+      int: 0
+      str: 18
+  tier: 0
+- level: 14
+  name: Red Bearer Greatsword
+  npc_value:
+    buy: 3602
+    sell: 194
+  stats:
+    damage:
+      magic: 0
+      physical: 23
+    modifiers:
+      agi: 9
+      bal: 51
+      crit: 20
+      int: 0
+      str: 19
+  tier: 0
+- level: 16
+  name: Red Metal Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 25
+    modifiers:
+      agi: 30
+      bal: 68
+      crit: 16
+      int: 8
+      str: 4
+  tier: 0
+- level: 20
+  name: Vampire Greatsword
+  npc_value:
+    buy: 3843
+    sell: 207
+  stats:
+    damage:
+      magic: 0
+      physical: 25
+    modifiers:
+      agi: 10
+      bal: 57
+      crit: 21
+      int: 0
+      str: 21
+  tier: 0
+- level: 22
+  name: Bone Spiked Greatsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 27
+    modifiers:
+      agi: 33
+      bal: 75
+      crit: 18
+      int: 9
+      str: 4
+  tier: 0
+- level: 26
+  name: Dim Gray Greatsword
+  npc_value:
+    buy: 6090
+    sell: 328
+  stats:
+    damage:
+      magic: 0
+      physical: 29
+    modifiers:
+      agi: 11
+      bal: 70
+      crit: 24
+      int: 10
+      str: 7
+  tier: 1
+- level: 30
+  name: Eclipse
+  npc_value:
+    buy: 61838
+    sell: 3330
+  stats:
+    damage:
+      magic: 0
+      physical: 31
+    modifiers:
+      agi: 12
+      bal: 68
+      crit: 26
+      int: 0
+      str: 25
+  tier: 1
+- level: 35
+  name: Black Scar Greatsword
+  npc_value:
+    buy: 6740
+    sell: 363
+  stats:
+    damage:
+      magic: 0
+      physical: 34
+    modifiers:
+      agi: 12
+      bal: 68
+      crit: 28
+      int: 0
+      str: 30
+  tier: 1
+- level: 39
+  name: Total Eclipse
+  npc_value:
+    buy: 93128
+    sell: 5015
+  stats:
+    damage:
+      magic: 0
+      physical: 40
+    modifiers:
+      agi: 14
+      bal: 74
+      crit: 30
+      int: 0
+      str: 36
+  tier: 1
+- level: 41
+  name: Ewynsoch Greatsword
+  npc_value:
+    buy: 6165
+    sell: 332
+  stats:
+    damage:
+      magic: 0
+      physical: 42
+    modifiers:
+      agi: 13
+      bal: 62
+      crit: 30
+      int: 0
+      str: 49
+  tier: 1
+- level: 44
+  name: Nightmare Greatsword
+  npc_value:
+    buy: 79201
+    sell: 4265
+  stats:
+    damage:
+      magic: 0
+      physical: 44
+    modifiers:
+      agi: 16
+      bal: 75
+      crit: 33
+      int: 0
+      str: 39
+  tier: 1
+- level: 48
+  name: Crasher Greatsword
+  npc_value:
+    buy: 6388
+    sell: 344
+  stats:
+    damage:
+      magic: 0
+      physical: 48
+    modifiers:
+      agi: 15
+      bal: 70
+      crit: 34
+      int: 0
+      str: 56
+  tier: 2
+- level: 50
+  name: Ivory Greatsword
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 0
+      physical: 52
+    modifiers:
+      agi: 16
+      bal: 74
+      crit: 36
+      int: 0
+      str: 60
+  tier: 2
+- level: 52
+  name: Matur Greatsword
+  npc_value:
+    buy: 9099
+    sell: 490
+  stats:
+    damage:
+      magic: 0
+      physical: 53
+    modifiers:
+      agi: 16
+      bal: 70
+      crit: 36
+      int: 0
+      str: 58
+  tier: 2
+- level: 55
+  name: Monark Greatsword
+  npc_value:
+    buy: 8895
+    sell: 479
+  stats:
+    damage:
+      magic: 0
+      physical: 54
+    modifiers:
+      agi: 15
+      bal: 66
+      crit: 37
+      int: 0
+      str: 57
+  tier: 2
+- level: 57
+  name: Taonu Greatsword
+  npc_value:
+    buy: 6388
+    sell: 344
+  stats:
+    damage:
+      magic: 0
+      physical: 54
+    modifiers:
+      agi: 17
+      bal: 74
+      crit: 38
+      int: 0
+      str: 62
+  tier: 2
+- level: 60
+  name: Black Hammer Greatsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 65
+    modifiers:
+      agi: 0
+      bal: 67
+      crit: 30
+      int: 0
+      str: 74
+  tier: 2
+- level: 60
+  name: Chiulin Greatsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 68
+    modifiers:
+      agi: 21
+      bal: 66
+      crit: 36
+      int: 0
+      str: 78
+  tier: 2
+- level: 60
+  name: Dreamwalker Greatsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 69
+    modifiers:
+      agi: 12
+      bal: 65
+      crit: 34
+      int: 0
+      str: 81
+  tier: 2
+- level: 60
+  name: K-9
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 0
+      physical: 66
+    modifiers:
+      agi: 17
+      bal: 66
+      crit: 37
+      int: 0
+      str: 85
+  tier: 2
+- level: 60
+  name: Raider's Greatsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 63
+    modifiers:
+      agi: 0
+      bal: 57
+      crit: 42
+      int: 0
+      str: 91
+  tier: 2
+- level: 60
+  name: Shager
+  npc_value:
+    buy: 61838
+    sell: 3330
+  stats:
+    damage:
+      magic: 0
+      physical: 67
+    modifiers:
+      agi: 4
+      bal: 62
+      crit: 37
+      int: 0
+      str: 86
+  tier: 2
+- level: 70
+  name: Archaic
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 80
+    modifiers:
+      agi: 36
+      bal: 63
+      crit: 37
+      int: 0
+      str: 100
+  tier: 3
+- level: 70
+  name: Champion Greatsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 79
+    modifiers:
+      agi: 32
+      bal: 63
+      crit: 36
+      int: 0
+      str: 98
+  tier: 3
+- level: 70
+  name: Glissade
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 82
+    modifiers:
+      agi: 3
+      bal: 63
+      crit: 36
+      int: 0
+      str: 104
+  tier: 3
+- level: 70
+  name: Majesty Greatsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 79
+    modifiers:
+      agi: 29
+      bal: 63
+      crit: 34
+      int: 0
+      str: 133
+  tier: 3
+- level: 70
+  name: Nighthawk Greatsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 78
+    modifiers:
+      agi: 31
+      bal: 63
+      crit: 37
+      int: 0
+      str: 97
+  tier: 3
+- level: 70
+  name: Sudden
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 79
+    modifiers:
+      agi: 35
+      bal: 64
+      crit: 33
+      int: 0
+      str: 90
+  tier: 3
+- level: 80
+  name: Armageddon Greatsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 98
+    modifiers:
+      agi: 51
+      bal: 65
+      crit: 40
+      int: 0
+      str: 142
+  tier: 3
+- level: 80
+  name: Heremon Greatsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 100
+    modifiers:
+      agi: 59
+      bal: 64
+      crit: 40
+      int: 0
+      str: 121
+  tier: 3
+- level: 80
+  name: Noblesse Greatsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 96
+    modifiers:
+      agi: 50
+      bal: 65
+      crit: 42
+      int: 0
+      str: 110
+  tier: 3
+- level: 80
+  name: Rattler
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 97
+    modifiers:
+      agi: 50
+      bal: 65
+      crit: 41
+      int: 0
+      str: 116
+  tier: 3
+- level: 80
+  name: Skeleton Greatsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 94
+    modifiers:
+      agi: 59
+      bal: 64
+      crit: 41
+      int: 0
+      str: 112
+  tier: 3
+- level: 40
+  name: Pawn Goblin Greatsword
+  npc_value:
+    buy: 3602
+    sell: 194
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 18
+      bal: 0
+      crit: 60
+      int: 8
+      str: 0
+  tier: 1
+- level: 50
+  name: Knight Bone Spiked Greatsword
+  npc_value:
+    buy: 45310
+    sell: 2440
+  stats:
+    damage:
+      magic: 0
+      physical: 20
+    modifiers:
+      agi: 25
+      bal: 0
+      crit: 63
+      int: 11
+      str: 0
+  tier: 2
+- level: 60
+  name: Bishop Vampire Greatsword
+  npc_value:
+    buy: 62395
+    sell: 3360
+  stats:
+    damage:
+      magic: 0
+      physical: 24
+    modifiers:
+      agi: 32
+      bal: 0
+      crit: 66
+      int: 14
+      str: 3
+  tier: 2
+- level: 65
+  name: Rook Black Scar Greatsword
+  npc_value:
+    buy: 90621
+    sell: 4880
+  stats:
+    damage:
+      magic: 0
+      physical: 27
+    modifiers:
+      agi: 39
+      bal: 0
+      crit: 69
+      int: 17
+      str: 4
+  tier: 2
+- level: 70
+  name: Queen Nightmare Greatsword
+  npc_value:
+    buy: 122933
+    sell: 6620
+  stats:
+    damage:
+      magic: 0
+      physical: 30
+    modifiers:
+      agi: 46
+      bal: 0
+      crit: 72
+      int: 20
+      str: 5
+  tier: 3
+- level: 75
+  name: King Ivory Greatsword
+  npc_value:
+    buy: 187371
+    sell: 10090
+  stats:
+    damage:
+      magic: 0
+      physical: 32
+    modifiers:
+      agi: 53
+      bal: 0
+      crit: 75
+      int: 23
+      str: 6
+  tier: 3
+- level: 80
+  name: Emperor Dreamwalker Greatsword
+  npc_value:
+    buy: 272607
+    sell: 14680
+  stats:
+    damage:
+      magic: 0
+      physical: 36
+    modifiers:
+      agi: 60
+      bal: 0
+      crit: 78
+      int: 26
+      str: 7
+  tier: 3

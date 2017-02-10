@@ -1,0 +1,1040 @@
+- level: 0
+  name: Short Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 11
+      physical: 10
+    modifiers:
+      agi: 7
+      bal: 42
+      crit: 7
+      int: 11
+      str: 0
+  tier: 0
+- level: 2
+  name: Wooden Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 12
+      physical: 11
+    modifiers:
+      agi: 7
+      bal: 46
+      crit: 7
+      int: 12
+      str: 0
+  tier: 0
+- level: 4
+  name: Crimson Blade Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 13
+      physical: 12
+    modifiers:
+      agi: 8
+      bal: 49
+      crit: 8
+      int: 13
+      str: 0
+  tier: 0
+- level: 4
+  name: Foul Snowpaw Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 14
+      physical: 13
+    modifiers:
+      agi: 8
+      bal: 53
+      crit: 8
+      int: 14
+      str: 0
+  tier: 0
+- level: 5
+  name: Slingshot Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 13
+      physical: 13
+    modifiers:
+      agi: 4
+      bal: 54
+      crit: 12
+      int: 17
+      str: 4
+  tier: 0
+- level: 7
+  name: Ebeloch Staff
+  npc_value:
+    buy: 2915
+    sell: 157
+  stats:
+    damage:
+      magic: 14
+      physical: 14
+    modifiers:
+      agi: 4
+      bal: 45
+      crit: 10
+      int: 15
+      str: 4
+  tier: 0
+- level: 7
+  name: New Friendship Staff
+  npc_value:
+    buy: 2321
+    sell: 125
+  stats:
+    damage:
+      magic: 15
+      physical: 14
+    modifiers:
+      agi: 9
+      bal: 56
+      crit: 9
+      int: 14
+      str: 0
+  tier: 0
+- level: 8
+  name: Aodhan's Staff
+  npc_value:
+    buy: 3249
+    sell: 175
+  stats:
+    damage:
+      magic: 15
+      physical: 15
+    modifiers:
+      agi: 4
+      bal: 48
+      crit: 10
+      int: 16
+      str: 4
+  tier: 0
+- level: 9
+  name: Echeloch Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 15
+      physical: 16
+    modifiers:
+      agi: 4
+      bal: 50
+      crit: 11
+      int: 17
+      str: 4
+  tier: 0
+- level: 10
+  name: Battle Mage Staff
+  npc_value:
+    buy: 2896
+    sell: 156
+  stats:
+    damage:
+      magic: 17
+      physical: 17
+    modifiers:
+      agi: 5
+      bal: 56
+      crit: 12
+      int: 19
+      str: 5
+  tier: 0
+- level: 10
+  name: Beginner Alchemist Staff
+  npc_value:
+    buy: 3138
+    sell: 169
+  stats:
+    damage:
+      magic: 18
+      physical: 19
+    modifiers:
+      agi: 5
+      bal: 49
+      crit: 17
+      int: 28
+      str: 0
+  tier: 0
+- level: 10
+  name: Howling Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 19
+      physical: 18
+    modifiers:
+      agi: 11
+      bal: 70
+      crit: 11
+      int: 18
+      str: 0
+  tier: 0
+- level: 10
+  name: Jagged Tooth Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 20
+      physical: 19
+    modifiers:
+      agi: 11
+      bal: 63
+      crit: 10
+      int: 18
+      str: 0
+  tier: 0
+- level: 10
+  name: Quiremigal Staff
+  npc_value:
+    buy: 3249
+    sell: 175
+  stats:
+    damage:
+      magic: 16
+      physical: 17
+    modifiers:
+      agi: 5
+      bal: 53
+      crit: 11
+      int: 18
+      str: 5
+  tier: 0
+- level: 12
+  name: Strawberry Staff
+  npc_value:
+    buy: 3361
+    sell: 181
+  stats:
+    damage:
+      magic: 19
+      physical: 20
+    modifiers:
+      agi: 5
+      bal: 51
+      crit: 18
+      int: 29
+      str: 0
+  tier: 0
+- level: 14
+  name: Red Bearer Staff
+  npc_value:
+    buy: 3379
+    sell: 182
+  stats:
+    damage:
+      magic: 19
+      physical: 21
+    modifiers:
+      agi: 5
+      bal: 53
+      crit: 18
+      int: 30
+      str: 0
+  tier: 0
+- level: 16
+  name: Emuloch Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 21
+      physical: 21
+    modifiers:
+      agi: 7
+      bal: 85
+      crit: 19
+      int: 26
+      str: 7
+  tier: 0
+- level: 16
+  name: Staff of Life
+  npc_value:
+    buy: 5979
+    sell: 322
+  stats:
+    damage:
+      magic: 20
+      physical: 21
+    modifiers:
+      agi: 5
+      bal: 54
+      crit: 18
+      int: 31
+      str: 0
+  tier: 0
+- level: 20
+  name: Rune Staff
+  npc_value:
+    buy: 3602
+    sell: 194
+  stats:
+    damage:
+      magic: 22
+      physical: 23
+    modifiers:
+      agi: 6
+      bal: 57
+      crit: 20
+      int: 33
+      str: 0
+  tier: 0
+- level: 22
+  name: Crystal Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 24
+      physical: 23
+    modifiers:
+      agi: 7
+      bal: 77
+      crit: 17
+      int: 26
+      str: 7
+  tier: 0
+- level: 24
+  name: Odd Eye
+  npc_value:
+    buy: 4308
+    sell: 232
+  stats:
+    damage:
+      magic: 24
+      physical: 28
+    modifiers:
+      agi: 11
+      bal: 70
+      crit: 24
+      int: 22
+      str: 11
+  tier: 1
+- level: 25
+  name: Forest Invader Staff
+  npc_value:
+    buy: 7780
+    sell: 419
+  stats:
+    damage:
+      magic: 24
+      physical: 26
+    modifiers:
+      agi: 7
+      bal: 70
+      crit: 24
+      int: 35
+      str: 0
+  tier: 1
+- level: 28
+  name: Blood Prince Staff
+  npc_value:
+    buy: 59795
+    sell: 3220
+  stats:
+    damage:
+      magic: 25
+      physical: 27
+    modifiers:
+      agi: 7
+      bal: 67
+      crit: 23
+      int: 38
+      str: 0
+  tier: 1
+- level: 30
+  name: Maios Staff
+  npc_value:
+    buy: 61838
+    sell: 3330
+  stats:
+    damage:
+      magic: 26
+      physical: 27
+    modifiers:
+      agi: 14
+      bal: 72
+      crit: 23
+      int: 41
+      str: 0
+  tier: 1
+- level: 30
+  name: Watchtower
+  npc_value:
+    buy: 61838
+    sell: 3330
+  stats:
+    damage:
+      magic: 26
+      physical: 28
+    modifiers:
+      agi: 7
+      bal: 70
+      crit: 24
+      int: 40
+      str: 0
+  tier: 1
+- level: 31
+  name: Crest of Twilight
+  npc_value:
+    buy: 4531
+    sell: 244
+  stats:
+    damage:
+      magic: 27
+      physical: 32
+    modifiers:
+      agi: 0
+      bal: 63
+      crit: 24
+      int: 27
+      str: 27
+  tier: 1
+- level: 33
+  name: Argontel Staff
+  npc_value:
+    buy: 40668
+    sell: 2190
+  stats:
+    damage:
+      magic: 29
+      physical: 31
+    modifiers:
+      agi: 7
+      bal: 56
+      crit: 19
+      int: 40
+      str: 0
+  tier: 1
+- level: 35
+  name: Fine Steel Staff
+  npc_value:
+    buy: 4995
+    sell: 269
+  stats:
+    damage:
+      magic: 30
+      physical: 36
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 27
+      int: 30
+      str: 30
+  tier: 1
+- level: 37
+  name: Blooming Staff
+  npc_value:
+    buy: 90807
+    sell: 4890
+  stats:
+    damage:
+      magic: 33
+      physical: 39
+    modifiers:
+      agi: 0
+      bal: 74
+      crit: 28
+      int: 33
+      str: 33
+  tier: 1
+- level: 38
+  name: Marshmallow Staff
+  npc_value:
+    buy: 5923
+    sell: 319
+  stats:
+    damage:
+      magic: 35
+      physical: 42
+    modifiers:
+      agi: 0
+      bal: 67
+      crit: 26
+      int: 36
+      str: 36
+  tier: 1
+- level: 39
+  name: 'Watchtower: The Witch'
+  npc_value:
+    buy: 93128
+    sell: 5015
+  stats:
+    damage:
+      magic: 36
+      physical: 43
+    modifiers:
+      agi: 0
+      bal: 77
+      crit: 30
+      int: 36
+      str: 36
+  tier: 1
+- level: 40
+  name: Quisia Staff
+  npc_value:
+    buy: 7780
+    sell: 419
+  stats:
+    damage:
+      magic: 37
+      physical: 43
+    modifiers:
+      agi: 0
+      bal: 75
+      crit: 29
+      int: 35
+      str: 40
+  tier: 1
+- level: 41
+  name: Emaighsoch Staff
+  npc_value:
+    buy: 8412
+    sell: 453
+  stats:
+    damage:
+      magic: 38
+      physical: 46
+    modifiers:
+      agi: 0
+      bal: 72
+      crit: 28
+      int: 39
+      str: 39
+  tier: 1
+- level: 50
+  name: Ivory Staff
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 41
+      physical: 49
+    modifiers:
+      agi: 0
+      bal: 77
+      crit: 30
+      int: 42
+      str: 42
+  tier: 2
+- level: 50
+  name: Kielu Staff
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 40
+      physical: 48
+    modifiers:
+      agi: 0
+      bal: 73
+      crit: 33
+      int: 43
+      str: 32
+  tier: 2
+- level: 55
+  name: Moon Eater
+  npc_value:
+    buy: 8895
+    sell: 479
+  stats:
+    damage:
+      magic: 43
+      physical: 52
+    modifiers:
+      agi: 0
+      bal: 75
+      crit: 31
+      int: 45
+      str: 42
+  tier: 2
+- level: 57
+  name: Taonu Staff
+  npc_value:
+    buy: 9377
+    sell: 505
+  stats:
+    damage:
+      magic: 45
+      physical: 54
+    modifiers:
+      agi: 0
+      bal: 84
+      crit: 32
+      int: 46
+      str: 46
+  tier: 2
+- level: 59
+  name: Firework Launcher
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 53
+      physical: 48
+    modifiers:
+      agi: 18
+      bal: 68
+      crit: 37
+      int: 75
+      str: 5
+  tier: 2
+- level: 60
+  name: Dreamwalker Staff
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 61
+      physical: 52
+    modifiers:
+      agi: 31
+      bal: 68
+      crit: 39
+      int: 94
+      str: 16
+  tier: 2
+- level: 60
+  name: Fobellow Tin Staff
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 55
+      physical: 50
+    modifiers:
+      agi: 12
+      bal: 70
+      crit: 39
+      int: 85
+      str: 7
+  tier: 2
+- level: 60
+  name: Ingkara Staff
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 62
+      physical: 56
+    modifiers:
+      agi: 36
+      bal: 68
+      crit: 25
+      int: 88
+      str: 10
+  tier: 2
+- level: 60
+  name: Raider's Staff
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 64
+      physical: 48
+    modifiers:
+      agi: 0
+      bal: 58
+      crit: 49
+      int: 91
+      str: 18
+  tier: 2
+- level: 60
+  name: Rakum Rakish
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 62
+      physical: 56
+    modifiers:
+      agi: 27
+      bal: 67
+      crit: 33
+      int: 98
+      str: 10
+  tier: 2
+- level: 60
+  name: Teten Staff
+  npc_value:
+    buy: 152738
+    sell: 8225
+  stats:
+    damage:
+      magic: 60
+      physical: 48
+    modifiers:
+      agi: 15
+      bal: 63
+      crit: 44
+      int: 93
+      str: 17
+  tier: 2
+- level: 70
+  name: Champion Staff
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 73
+      physical: 62
+    modifiers:
+      agi: 41
+      bal: 69
+      crit: 38
+      int: 109
+      str: 24
+  tier: 3
+- level: 70
+  name: Joyous Crook
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 74
+      physical: 63
+    modifiers:
+      agi: 37
+      bal: 70
+      crit: 39
+      int: 108
+      str: 25
+  tier: 3
+- level: 70
+  name: Majesty Staff
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 73
+      physical: 61
+    modifiers:
+      agi: 48
+      bal: 70
+      crit: 39
+      int: 137
+      str: 23
+  tier: 3
+- level: 70
+  name: Nighthawk Staff
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 72
+      physical: 62
+    modifiers:
+      agi: 30
+      bal: 72
+      crit: 40
+      int: 102
+      str: 20
+  tier: 3
+- level: 70
+  name: Royal Bird Staff
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 73
+      physical: 63
+    modifiers:
+      agi: 37
+      bal: 70
+      crit: 39
+      int: 112
+      str: 25
+  tier: 3
+- level: 70
+  name: Seal Maker
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 72
+      physical: 61
+    modifiers:
+      agi: 48
+      bal: 70
+      crit: 43
+      int: 105
+      str: 23
+  tier: 3
+- level: 80
+  name: Armageddon Staff
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 91
+      physical: 81
+    modifiers:
+      agi: 54
+      bal: 72
+      crit: 43
+      int: 141
+      str: 60
+  tier: 3
+- level: 80
+  name: Crown Staff
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 91
+      physical: 81
+    modifiers:
+      agi: 54
+      bal: 72
+      crit: 43
+      int: 120
+      str: 60
+  tier: 3
+- level: 80
+  name: Heremon Staff
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 88
+      physical: 80
+    modifiers:
+      agi: 44
+      bal: 73
+      crit: 44
+      int: 113
+      str: 48
+  tier: 3
+- level: 80
+  name: Noblesse Staff
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 93
+      physical: 83
+    modifiers:
+      agi: 55
+      bal: 71
+      crit: 41
+      int: 123
+      str: 62
+  tier: 3
+- level: 80
+  name: Skeleton Staff
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 89
+      physical: 80
+    modifiers:
+      agi: 53
+      bal: 74
+      crit: 42
+      int: 118
+      str: 59
+  tier: 3
+- level: 40
+  name: Pawn Strawberry Staff
+  npc_value:
+    buy: 22284
+    sell: 1200
+  stats:
+    damage:
+      magic: 16
+      physical: 16
+    modifiers:
+      agi: 0
+      bal: 0
+      crit: 0
+      int: 0
+      str: 31
+  tier: 1
+- level: 50
+  name: Knight Crystal Staff
+  npc_value:
+    buy: 45310
+    sell: 2440
+  stats:
+    damage:
+      magic: 20
+      physical: 20
+    modifiers:
+      agi: 0
+      bal: 0
+      crit: 0
+      int: 0
+      str: 33
+  tier: 2
+- level: 60
+  name: Bishop Red Bearer Staff
+  npc_value:
+    buy: 62395
+    sell: 3360
+  stats:
+    damage:
+      magic: 24
+      physical: 24
+    modifiers:
+      agi: 3
+      bal: 0
+      crit: 0
+      int: 0
+      str: 35
+  tier: 2
+- level: 65
+  name: Rook Argontel Staff
+  npc_value:
+    buy: 90621
+    sell: 4880
+  stats:
+    damage:
+      magic: 27
+      physical: 27
+    modifiers:
+      agi: 4
+      bal: 0
+      crit: 0
+      int: 0
+      str: 36
+  tier: 2
+- level: 70
+  name: Queen Emaighsoch Staff
+  npc_value:
+    buy: 122933
+    sell: 6620
+  stats:
+    damage:
+      magic: 30
+      physical: 30
+    modifiers:
+      agi: 5
+      bal: 0
+      crit: 0
+      int: 0
+      str: 37
+  tier: 3
+- level: 75
+  name: King Ivory Staff
+  npc_value:
+    buy: 187371
+    sell: 10090
+  stats:
+    damage:
+      magic: 32
+      physical: 32
+    modifiers:
+      agi: 6
+      bal: 0
+      crit: 0
+      int: 0
+      str: 38
+  tier: 3
+- level: 80
+  name: Emperor Rakum Rakish
+  npc_value:
+    buy: 272607
+    sell: 14680
+  stats:
+    damage:
+      magic: 36
+      physical: 36
+    modifiers:
+      agi: 7
+      bal: 0
+      crit: 0
+      int: 0
+      str: 40
+  tier: 3
+- level: 1
+  name: Crowbar Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 17
+      physical: 15
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 10
+      int: 8
+      str: 0
+  tier: 0
+- level: 1
+  name: Toy Staff
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 17
+      physical: 15
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 10
+      int: 7
+      str: 0
+  tier: 0
+- level: 2
+  name: Children's Day Howling
+  npc_value:
+    buy: 1299
+    sell: 70
+  stats:
+    damage:
+      magic: 19
+      physical: 15
+    modifiers:
+      agi: 11
+      bal: 70
+      crit: 11
+      int: 18
+      str: 0
+  tier: 0

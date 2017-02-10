@@ -1,0 +1,544 @@
+- level: 0
+  name: Wooden Shield
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 1330
+    modifiers:
+      agi: 1
+      bal: 0
+      crit: 0
+      int: 0
+      str: 3
+  tier: 0
+- level: 4
+  name: Crimson Blade Shield
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 1780
+    modifiers:
+      agi: 1
+      bal: 0
+      crit: 0
+      int: 0
+      str: 10
+  tier: 0
+- level: 8
+  name: Small Shield
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 2090
+    modifiers:
+      agi: 1
+      bal: 0
+      crit: 0
+      int: 0
+      str: 16
+  tier: 0
+- level: 12
+  name: Kobold Buckler
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 2380
+    modifiers:
+      agi: 1
+      bal: 0
+      crit: 0
+      int: 0
+      str: 22
+  tier: 0
+- level: 18
+  name: Spiked Shield
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 3380
+    modifiers:
+      agi: 2
+      bal: 0
+      crit: 0
+      int: 0
+      str: 42
+  tier: 0
+- level: 20
+  name: Round Shield
+  npc_value:
+    buy: 2321
+    sell: 125
+  stats:
+    damage:
+      magic: 0
+      physical: 2980
+    modifiers:
+      agi: 3
+      bal: 0
+      crit: 0
+      int: 0
+      str: 32
+  tier: 0
+- level: 26
+  name: Steel Buckler
+  npc_value:
+    buy: 2878
+    sell: 155
+  stats:
+    damage:
+      magic: 0
+      physical: 3400
+    modifiers:
+      agi: 4
+      bal: 0
+      crit: 0
+      int: 0
+      str: 45
+  tier: 1
+- level: 28
+  name: Eagle Heart
+  npc_value:
+    buy: 53295
+    sell: 2870
+  stats:
+    damage:
+      magic: 0
+      physical: 4080
+    modifiers:
+      agi: 4
+      bal: 0
+      crit: 0
+      int: 0
+      str: 48
+  tier: 1
+- level: 32
+  name: Iron Shield
+  npc_value:
+    buy: 3435
+    sell: 185
+  stats:
+    damage:
+      magic: 0
+      physical: 3840
+    modifiers:
+      agi: 4
+      bal: 0
+      crit: 0
+      int: 0
+      str: 50
+  tier: 1
+- level: 40
+  name: Barbarian Small Shield
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 0
+      physical: 5000
+    modifiers:
+      agi: 5
+      bal: 10
+      crit: 0
+      int: 0
+      str: 60
+  tier: 1
+- level: 44
+  name: Blood Skin Shield
+  npc_value:
+    buy: 7929
+    sell: 427
+  stats:
+    damage:
+      magic: 0
+      physical: 5430
+    modifiers:
+      agi: 5
+      bal: 30
+      crit: 49
+      int: 0
+      str: 0
+  tier: 1
+- level: 44
+  name: Slit Plated Shield
+  npc_value:
+    buy: 5700
+    sell: 307
+  stats:
+    damage:
+      magic: 0
+      physical: 4730
+    modifiers:
+      agi: 5
+      bal: 8
+      crit: 16
+      int: 0
+      str: 50
+  tier: 1
+- level: 48
+  name: Ewynsoch Shield
+  npc_value:
+    buy: 6165
+    sell: 332
+  stats:
+    damage:
+      magic: 0
+      physical: 5040
+    modifiers:
+      agi: 5
+      bal: 0
+      crit: 72
+      int: 0
+      str: 0
+  tier: 2
+- level: 50
+  name: Lion Shield
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 5500
+    modifiers:
+      agi: 8
+      bal: 10
+      crit: 60
+      int: 0
+      str: 0
+  tier: 2
+- level: 52
+  name: Knight Shield
+  npc_value:
+    buy: 66294
+    sell: 3570
+  stats:
+    damage:
+      magic: 0
+      physical: 5330
+    modifiers:
+      agi: 6
+      bal: 27
+      crit: 36
+      int: 0
+      str: 23
+  tier: 2
+- level: 60
+  name: Chiulin Battle Shield
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 7500
+    modifiers:
+      agi: 8
+      bal: 29
+      crit: 35
+      int: 0
+      str: 25
+  tier: 2
+- level: 60
+  name: Fomor Commander Training Shield
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 0
+      physical: 7450
+    modifiers:
+      agi: 8
+      bal: 27
+      crit: 36
+      int: 0
+      str: 23
+  tier: 2
+- level: 60
+  name: Jirkal Body Shield
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 7260
+    modifiers:
+      agi: 8
+      bal: 35
+      crit: 10
+      int: 0
+      str: 63
+  tier: 2
+- level: 60
+  name: Jirkal Left Hand Shield
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 7050
+    modifiers:
+      agi: 8
+      bal: 29
+      crit: 40
+      int: 0
+      str: 35
+  tier: 2
+- level: 60
+  name: Jirkal Right Hand Shield
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 7250
+    modifiers:
+      agi: 8
+      bal: 29
+      crit: 29
+      int: 0
+      str: 55
+  tier: 2
+- level: 60
+  name: Quitairok Small Shield
+  npc_value:
+    buy: 152738
+    sell: 8225
+  stats:
+    damage:
+      magic: 0
+      physical: 7200
+    modifiers:
+      agi: 4
+      bal: 21
+      crit: 53
+      int: 0
+      str: 31
+  tier: 2
+- level: 60
+  name: Raider's Shield
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 6820
+    modifiers:
+      agi: 14
+      bal: 38
+      crit: 12
+      int: 0
+      str: 56
+  tier: 2
+- level: 60
+  name: Save the Queen
+  npc_value:
+    buy: 152738
+    sell: 8225
+  stats:
+    damage:
+      magic: 0
+      physical: 7160
+    modifiers:
+      agi: 11
+      bal: 33
+      crit: 24
+      int: 0
+      str: 40
+  tier: 2
+- level: 70
+  name: Altar Shield
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 9160
+    modifiers:
+      agi: 10
+      bal: 43
+      crit: 40
+      int: 0
+      str: 30
+  tier: 3
+- level: 70
+  name: Godwing Targe
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 10
+    modifiers:
+      agi: 11
+      bal: 26
+      crit: 58
+      int: 0
+      str: 34
+  tier: 3
+- level: 70
+  name: Kraken's Small Shield
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 11
+    modifiers:
+      agi: 7
+      bal: 32
+      crit: 50
+      int: 0
+      str: 30
+  tier: 3
+- level: 70
+  name: Majesty Shield
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 12
+    modifiers:
+      agi: 9
+      bal: 42
+      crit: 30
+      int: 0
+      str: 27
+  tier: 3
+- level: 70
+  name: Nighthawk Small Shield
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 12
+    modifiers:
+      agi: 9
+      bal: 35
+      crit: 45
+      int: 0
+      str: 35
+  tier: 3
+- level: 80
+  name: Armageddon Shield
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 7
+      bal: 50
+      crit: 83
+      int: 0
+      str: 56
+  tier: 3
+- level: 80
+  name: Heremon Small Shield
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 6
+      bal: 55
+      crit: 60
+      int: 0
+      str: 50
+  tier: 3
+- level: 80
+  name: Noblesse Shield
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 9
+      bal: 74
+      crit: 105
+      int: 0
+      str: 52
+  tier: 3
+- level: 80
+  name: Pirate Small Shield
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 15
+    modifiers:
+      agi: 9
+      bal: 49
+      crit: 70
+      int: 0
+      str: 63
+  tier: 3
+- level: 80
+  name: Skeleton Shield
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 8
+      bal: 64
+      crit: 90
+      int: 0
+      str: 82
+  tier: 3
+- level: 1
+  name: Toy Shield
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 1330
+    modifiers:
+      agi: 1
+      bal: 0
+      crit: 0
+      int: 0
+      str: 3
+  tier: 0

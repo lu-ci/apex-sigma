@@ -1,0 +1,720 @@
+- level: 1
+  name: Trainee Twin Spear
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 10
+      int: 0
+      str: 10
+  tier: 0
+- level: 12
+  name: Supply Twin Spears
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 19
+    modifiers:
+      agi: 9
+      bal: 58
+      crit: 19
+      int: 0
+      str: 18
+  tier: 0
+- level: 24
+  name: Veteran's Twin Spears
+  npc_value:
+    buy: 4531
+    sell: 244
+  stats:
+    damage:
+      magic: 0
+      physical: 24
+    modifiers:
+      agi: 5
+      bal: 59
+      crit: 24
+      int: 20
+      str: 25
+  tier: 1
+- level: 25
+  name: Royal Guard Twin Spear
+  npc_value:
+    buy: 3602
+    sell: 194
+  stats:
+    damage:
+      magic: 0
+      physical: 24
+    modifiers:
+      agi: 5
+      bal: 60
+      crit: 25
+      int: 21
+      str: 26
+  tier: 1
+- level: 27
+  name: Short Pike Twin Spear
+  npc_value:
+    buy: 3435
+    sell: 185
+  stats:
+    damage:
+      magic: 0
+      physical: 25
+    modifiers:
+      agi: 52
+      bal: 53
+      crit: 23
+      int: 0
+      str: 68
+  tier: 1
+- level: 27
+  name: The Reaper
+  npc_value:
+    buy: 4066
+    sell: 219
+  stats:
+    damage:
+      magic: 0
+      physical: 25
+    modifiers:
+      agi: 5
+      bal: 62
+      crit: 26
+      int: 21
+      str: 26
+  tier: 1
+- level: 29
+  name: Black Breeze Twin Spears
+  npc_value:
+    buy: 4066
+    sell: 219
+  stats:
+    damage:
+      magic: 0
+      physical: 26
+    modifiers:
+      agi: 5
+      bal: 63
+      crit: 26
+      int: 22
+      str: 27
+  tier: 1
+- level: 30
+  name: Executioner
+  npc_value:
+    buy: 53295
+    sell: 2870
+  stats:
+    damage:
+      magic: 0
+      physical: 26
+    modifiers:
+      agi: 6
+      bal: 77
+      crit: 32
+      int: 24
+      str: 30
+  tier: 1
+- level: 31
+  name: Dim Gray Twin Spears
+  npc_value:
+    buy: 3435
+    sell: 185
+  stats:
+    damage:
+      magic: 0
+      physical: 26
+    modifiers:
+      agi: 55
+      bal: 56
+      crit: 25
+      int: 0
+      str: 73
+  tier: 1
+- level: 33
+  name: Blood Lancer
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 29
+    modifiers:
+      agi: 6
+      bal: 70
+      crit: 29
+      int: 24
+      str: 30
+  tier: 1
+- level: 35
+  name: Black Scar Twin Spears
+  npc_value:
+    buy: 3435
+    sell: 185
+  stats:
+    damage:
+      magic: 0
+      physical: 30
+    modifiers:
+      agi: 69
+      bal: 77
+      crit: 34
+      int: 0
+      str: 91
+  tier: 1
+- level: 37
+  name: Golden Scale Twin Spear
+  npc_value:
+    buy: 6852
+    sell: 369
+  stats:
+    damage:
+      magic: 0
+      physical: 33
+    modifiers:
+      agi: 69
+      bal: 70
+      crit: 31
+      int: 0
+      str: 91
+  tier: 1
+- level: 40
+  name: Crescent Bane Twin Spears
+  npc_value:
+    buy: 8895
+    sell: 479
+  stats:
+    damage:
+      magic: 0
+      physical: 41
+    modifiers:
+      agi: 60
+      bal: 65
+      crit: 40
+      int: 0
+      str: 80
+  tier: 1
+- level: 40
+  name: Long Blade Twin Spears
+  npc_value:
+    buy: 7780
+    sell: 419
+  stats:
+    damage:
+      magic: 0
+      physical: 39
+    modifiers:
+      agi: 90
+      bal: 81
+      crit: 41
+      int: 0
+      str: 118
+  tier: 1
+- level: 42
+  name: Blood Lord Twin Spears
+  npc_value:
+    buy: 68523
+    sell: 3690
+  stats:
+    damage:
+      magic: 0
+      physical: 43
+    modifiers:
+      agi: 90
+      bal: 77
+      crit: 37
+      int: 0
+      str: 118
+  tier: 1
+- level: 48
+  name: Gale Weaver
+  npc_value:
+    buy: 95264
+    sell: 5130
+  stats:
+    damage:
+      magic: 0
+      physical: 45
+    modifiers:
+      agi: 95
+      bal: 70
+      crit: 40
+      int: 0
+      str: 0
+  tier: 2
+- level: 50
+  name: Ivory Twin Spears
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 0
+      physical: 49
+    modifiers:
+      agi: 105
+      bal: 74
+      crit: 42
+      int: 0
+      str: 0
+  tier: 2
+- level: 55
+  name: Crescent Moonlight Twin Spears
+  npc_value:
+    buy: 8895
+    sell: 479
+  stats:
+    damage:
+      magic: 0
+      physical: 49
+    modifiers:
+      agi: 0
+      bal: 75
+      crit: 40
+      int: 0
+      str: 60
+  tier: 2
+- level: 57
+  name: Taonu Twin Spears
+  npc_value:
+    buy: 9526
+    sell: 513
+  stats:
+    damage:
+      magic: 0
+      physical: 51
+    modifiers:
+      agi: 108
+      bal: 80
+      crit: 46
+      int: 0
+      str: 0
+  tier: 2
+- level: 59
+  name: Gremlin Skewers
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 0
+      physical: 54
+    modifiers:
+      agi: 12
+      bal: 65
+      crit: 33
+      int: 0
+      str: 67
+  tier: 2
+- level: 60
+  name: Braid Tassel Twin Spears
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 61
+    modifiers:
+      agi: 25
+      bal: 65
+      crit: 39
+      int: 0
+      str: 79
+  tier: 2
+- level: 60
+  name: Chiulin Twin Spears
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 61
+    modifiers:
+      agi: 25
+      bal: 65
+      crit: 43
+      int: 0
+      str: 79
+  tier: 2
+- level: 60
+  name: Jagursh's Bloodletters
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 0
+      physical: 61
+    modifiers:
+      agi: 23
+      bal: 65
+      crit: 37
+      int: 0
+      str: 76
+  tier: 2
+- level: 60
+  name: Piasraspear
+  npc_value:
+    buy: 152738
+    sell: 8225
+  stats:
+    damage:
+      magic: 0
+      physical: 58
+    modifiers:
+      agi: 23
+      bal: 75
+      crit: 41
+      int: 0
+      str: 83
+  tier: 2
+- level: 60
+  name: Raider's Twin Spears
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 54
+    modifiers:
+      agi: 21
+      bal: 56
+      crit: 48
+      int: 0
+      str: 87
+  tier: 2
+- level: 60
+  name: Stoneshell Twin Spears
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 61
+    modifiers:
+      agi: 26
+      bal: 70
+      crit: 45
+      int: 0
+      str: 80
+  tier: 2
+- level: 70
+  name: Avenging Twin Spears
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 72
+    modifiers:
+      agi: 52
+      bal: 71
+      crit: 38
+      int: 0
+      str: 98
+  tier: 3
+- level: 70
+  name: Champion Twin Spears
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 69
+    modifiers:
+      agi: 28
+      bal: 70
+      crit: 39
+      int: 0
+      str: 81
+  tier: 3
+- level: 70
+  name: Infinity Twin Spears
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 70
+    modifiers:
+      agi: 46
+      bal: 70
+      crit: 43
+      int: 0
+      str: 98
+  tier: 3
+- level: 70
+  name: Madness
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 73
+    modifiers:
+      agi: 34
+      bal: 70
+      crit: 40
+      int: 0
+      str: 101
+  tier: 3
+- level: 70
+  name: Majesty Twin Spears
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 71
+    modifiers:
+      agi: 47
+      bal: 70
+      crit: 0
+      int: 0
+      str: 135
+  tier: 3
+- level: 70
+  name: Nighthawk Twin Spears
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 71
+    modifiers:
+      agi: 40
+      bal: 71
+      crit: 40
+      int: 0
+      str: 95
+  tier: 3
+- level: 80
+  name: Armageddon Twin Spears
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 91
+    modifiers:
+      agi: 54
+      bal: 72
+      crit: 41
+      int: 0
+      str: 143
+  tier: 3
+- level: 80
+  name: Heremon Twin Spears
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 96
+    modifiers:
+      agi: 40
+      bal: 74
+      crit: 40
+      int: 0
+      str: 113
+  tier: 3
+- level: 80
+  name: Noblesse Twin Spears
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 96
+    modifiers:
+      agi: 56
+      bal: 70
+      crit: 40
+      int: 0
+      str: 116
+  tier: 3
+- level: 80
+  name: Polmain
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 92
+    modifiers:
+      agi: 53
+      bal: 72
+      crit: 42
+      int: 0
+      str: 110
+  tier: 3
+- level: 80
+  name: Skeleton Twin Spears
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 90
+    modifiers:
+      agi: 52
+      bal: 71
+      crit: 41
+      int: 0
+      str: 109
+  tier: 3
+- level: 40
+  name: Pawn Supply Twin Spears
+  npc_value:
+    buy: 22284
+    sell: 1200
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 18
+      bal: 0
+      crit: 60
+      int: 8
+      str: 0
+  tier: 1
+- level: 50
+  name: Knight Veteran Twin Spears
+  npc_value:
+    buy: 45310
+    sell: 2440
+  stats:
+    damage:
+      magic: 0
+      physical: 20
+    modifiers:
+      agi: 25
+      bal: 0
+      crit: 63
+      int: 11
+      str: 0
+  tier: 2
+- level: 60
+  name: Bishop Executioner
+  npc_value:
+    buy: 62395
+    sell: 3360
+  stats:
+    damage:
+      magic: 0
+      physical: 24
+    modifiers:
+      agi: 32
+      bal: 0
+      crit: 66
+      int: 14
+      str: 3
+  tier: 2
+- level: 65
+  name: Rook Blood Lancer
+  npc_value:
+    buy: 90621
+    sell: 4880
+  stats:
+    damage:
+      magic: 0
+      physical: 27
+    modifiers:
+      agi: 39
+      bal: 0
+      crit: 69
+      int: 17
+      str: 4
+  tier: 2
+- level: 70
+  name: Queen Blood Lord Twin Spears
+  npc_value:
+    buy: 122933
+    sell: 6620
+  stats:
+    damage:
+      magic: 0
+      physical: 30
+    modifiers:
+      agi: 46
+      bal: 0
+      crit: 72
+      int: 20
+      str: 5
+  tier: 3
+- level: 75
+  name: King Ivory Twin Spears
+  npc_value:
+    buy: 187371
+    sell: 10090
+  stats:
+    damage:
+      magic: 0
+      physical: 32
+    modifiers:
+      agi: 53
+      bal: 0
+      crit: 75
+      int: 23
+      str: 6
+  tier: 3
+- level: 80
+  name: Emperor Braid Tassel Twin Spears
+  npc_value:
+    buy: 272607
+    sell: 14680
+  stats:
+    damage:
+      magic: 0
+      physical: 36
+    modifiers:
+      agi: 60
+      bal: 0
+      crit: 78
+      int: 26
+      str: 7
+  tier: 3
+- level: 1
+  name: Toy Twin Spears
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 10
+      int: 0
+      str: 10
+  tier: 0

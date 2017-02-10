@@ -1,0 +1,416 @@
+- level: 12
+  name: Supply Twin Chainblades
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 19
+    modifiers:
+      agi: 8
+      bal: 41
+      crit: 15
+      int: 0
+      str: 15
+  tier: 0
+- level: 20
+  name: The Vampire
+  npc_value:
+    buy: 3602
+    sell: 194
+  stats:
+    damage:
+      magic: 0
+      physical: 22
+    modifiers:
+      agi: 17
+      bal: 46
+      crit: 20
+      int: 0
+      str: 19
+  tier: 0
+- level: 24
+  name: Veteran Twin Chainblades
+  npc_value:
+    buy: 2321
+    sell: 125
+  stats:
+    damage:
+      magic: 0
+      physical: 24
+    modifiers:
+      agi: 20
+      bal: 53
+      crit: 15
+      int: 9
+      str: 22
+  tier: 1
+- level: 35
+  name: Impaler
+  npc_value:
+    buy: 68523
+    sell: 3690
+  stats:
+    damage:
+      magic: 0
+      physical: 31
+    modifiers:
+      agi: 23
+      bal: 55
+      crit: 29
+      int: 0
+      str: 34
+  tier: 1
+- level: 44
+  name: Dark Wing
+  npc_value:
+    buy: 77808
+    sell: 4190
+  stats:
+    damage:
+      magic: 0
+      physical: 40
+    modifiers:
+      agi: 25
+      bal: 57
+      crit: 38
+      int: 0
+      str: 50
+  tier: 1
+- level: 50
+  name: Ivory Twin Chainblades
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 0
+      physical: 48
+    modifiers:
+      agi: 26
+      bal: 63
+      crit: 32
+      int: 0
+      str: 70
+  tier: 2
+- level: 60
+  name: Invader
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 65
+    modifiers:
+      agi: 29
+      bal: 65
+      crit: 49
+      int: 0
+      str: 82
+  tier: 2
+- level: 60
+  name: Raider's Twin Chainblades
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 64
+    modifiers:
+      agi: 28
+      bal: 63
+      crit: 48
+      int: 0
+      str: 80
+  tier: 2
+- level: 60
+  name: Ruin Seeker
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 62
+    modifiers:
+      agi: 28
+      bal: 62
+      crit: 47
+      int: 0
+      str: 78
+  tier: 2
+- level: 70
+  name: Champion Twin Chainblades
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 70
+    modifiers:
+      agi: 42
+      bal: 65
+      crit: 44
+      int: 0
+      str: 106
+  tier: 3
+- level: 70
+  name: Majesty Twin Chainblades
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 71
+    modifiers:
+      agi: 37
+      bal: 66
+      crit: 0
+      int: 0
+      str: 130
+  tier: 3
+- level: 70
+  name: Nighthawk Twin Chainblades
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 73
+    modifiers:
+      agi: 35
+      bal: 67
+      crit: 45
+      int: 0
+      str: 105
+  tier: 3
+- level: 70
+  name: Screamer
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 75
+    modifiers:
+      agi: 36
+      bal: 69
+      crit: 46
+      int: 0
+      str: 108
+  tier: 3
+- level: 70
+  name: Squasher
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 69
+    modifiers:
+      agi: 33
+      bal: 64
+      crit: 43
+      int: 0
+      str: 100
+  tier: 3
+- level: 80
+  name: Armageddon Twin Chainblades
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 93
+    modifiers:
+      agi: 36
+      bal: 66
+      crit: 43
+      int: 0
+      str: 144
+  tier: 3
+- level: 80
+  name: Heremon Twin Chainblades
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 95
+    modifiers:
+      agi: 36
+      bal: 67
+      crit: 45
+      int: 0
+      str: 116
+  tier: 3
+- level: 80
+  name: Noblesse Twin Chainblades
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 97
+    modifiers:
+      agi: 37
+      bal: 64
+      crit: 43
+      int: 0
+      str: 119
+  tier: 3
+- level: 80
+  name: Prayer
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 92
+    modifiers:
+      agi: 35
+      bal: 66
+      crit: 44
+      int: 0
+      str: 113
+  tier: 3
+- level: 80
+  name: Skeleton Twin Chainblades
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 91
+    modifiers:
+      agi: 35
+      bal: 64
+      crit: 44
+      int: 0
+      str: 112
+  tier: 3
+- level: 40
+  name: Pawn Supply Twin Blades
+  npc_value:
+    buy: 22284
+    sell: 1200
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 18
+      bal: 0
+      crit: 60
+      int: 8
+      str: 0
+  tier: 1
+- level: 50
+  name: Knight Veteran Twin Blades
+  npc_value:
+    buy: 45310
+    sell: 2440
+  stats:
+    damage:
+      magic: 0
+      physical: 20
+    modifiers:
+      agi: 25
+      bal: 0
+      crit: 63
+      int: 11
+      str: 0
+  tier: 2
+- level: 60
+  name: Bishop Vampire
+  npc_value:
+    buy: 62395
+    sell: 3360
+  stats:
+    damage:
+      magic: 0
+      physical: 24
+    modifiers:
+      agi: 32
+      bal: 0
+      crit: 66
+      int: 14
+      str: 3
+  tier: 2
+- level: 65
+  name: Rook Impaler
+  npc_value:
+    buy: 90621
+    sell: 4880
+  stats:
+    damage:
+      magic: 0
+      physical: 27
+    modifiers:
+      agi: 39
+      bal: 0
+      crit: 69
+      int: 17
+      str: 4
+  tier: 2
+- level: 70
+  name: Queen Dark Wing
+  npc_value:
+    buy: 122933
+    sell: 6620
+  stats:
+    damage:
+      magic: 0
+      physical: 30
+    modifiers:
+      agi: 46
+      bal: 0
+      crit: 72
+      int: 20
+      str: 5
+  tier: 3
+- level: 75
+  name: King Ivory Twin Blades
+  npc_value:
+    buy: 187371
+    sell: 10090
+  stats:
+    damage:
+      magic: 0
+      physical: 32
+    modifiers:
+      agi: 53
+      bal: 0
+      crit: 75
+      int: 23
+      str: 6
+  tier: 3
+- level: 80
+  name: Emperor Invader
+  npc_value:
+    buy: 272607
+    sell: 14680
+  stats:
+    damage:
+      magic: 0
+      physical: 36
+    modifiers:
+      agi: 60
+      bal: 0
+      crit: 78
+      int: 26
+      str: 7
+  tier: 3

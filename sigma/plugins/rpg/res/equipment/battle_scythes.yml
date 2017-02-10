@@ -1,0 +1,672 @@
+- level: 12
+  name: Supply Scythe
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 19
+      physical: 19
+    modifiers:
+      agi: 0
+      bal: 58
+      crit: 19
+      int: 18
+      str: 18
+  tier: 0
+- level: 24
+  name: Veteran's Battle Scythe
+  npc_value:
+    buy: 3119
+    sell: 168
+  stats:
+    damage:
+      magic: 20
+      physical: 23
+    modifiers:
+      agi: 0
+      bal: 59
+      crit: 20
+      int: 19
+      str: 19
+  tier: 1
+- level: 25
+  name: Forest Invader Scythe
+  npc_value:
+    buy: 2878
+    sell: 155
+  stats:
+    damage:
+      magic: 24
+      physical: 24
+    modifiers:
+      agi: 0
+      bal: 60
+      crit: 21
+      int: 35
+      str: 20
+  tier: 1
+- level: 25
+  name: Red Bearer Battle Scythe
+  npc_value:
+    buy: 3119
+    sell: 168
+  stats:
+    damage:
+      magic: 21
+      physical: 24
+    modifiers:
+      agi: 0
+      bal: 60
+      crit: 21
+      int: 20
+      str: 20
+  tier: 1
+- level: 27
+  name: Crimson Blade Scythe
+  npc_value:
+    buy: 4141
+    sell: 223
+  stats:
+    damage:
+      magic: 21
+      physical: 25
+    modifiers:
+      agi: 0
+      bal: 62
+      crit: 21
+      int: 20
+      str: 20
+  tier: 1
+- level: 30
+  name: Crescent Moon
+  npc_value:
+    buy: 46425
+    sell: 2500
+  stats:
+    damage:
+      magic: 24
+      physical: 28
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 24
+      int: 23
+      str: 23
+  tier: 1
+- level: 30
+  name: Meses Scythe
+  npc_value:
+    buy: 46425
+    sell: 2500
+  stats:
+    damage:
+      magic: 26
+      physical: 27
+    modifiers:
+      agi: 0
+      bal: 72
+      crit: 23
+      int: 26
+      str: 22
+  tier: 1
+- level: 35
+  name: Death Crown
+  npc_value:
+    buy: 5143
+    sell: 277
+  stats:
+    damage:
+      magic: 27
+      physical: 31
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 26
+      int: 31
+      str: 32
+  tier: 1
+- level: 39
+  name: Ruins Scythe
+  npc_value:
+    buy: 7279
+    sell: 392
+  stats:
+    damage:
+      magic: 32
+      physical: 37
+    modifiers:
+      agi: 0
+      bal: 74
+      crit: 27
+      int: 37
+      str: 38
+  tier: 1
+- level: 40
+  name: Alteron Scythe
+  npc_value:
+    buy: 92850
+    sell: 5000
+  stats:
+    damage:
+      magic: 34
+      physical: 39
+    modifiers:
+      agi: 0
+      bal: 73
+      crit: 24
+      int: 38
+      str: 34
+  tier: 1
+- level: 40
+  name: Quisia Scythe
+  npc_value:
+    buy: 7780
+    sell: 419
+  stats:
+    damage:
+      magic: 35
+      physical: 40
+    modifiers:
+      agi: 0
+      bal: 75
+      crit: 20
+      int: 35
+      str: 35
+  tier: 1
+- level: 41
+  name: Cave Walker
+  npc_value:
+    buy: 6648
+    sell: 358
+  stats:
+    damage:
+      magic: 34
+      physical: 39
+    modifiers:
+      agi: 0
+      bal: 63
+      crit: 23
+      int: 39
+      str: 41
+  tier: 1
+- level: 44
+  name: Wind Scythe
+  npc_value:
+    buy: 61466
+    sell: 3310
+  stats:
+    damage:
+      magic: 35
+      physical: 40
+    modifiers:
+      agi: 0
+      bal: 77
+      crit: 29
+      int: 40
+      str: 42
+  tier: 1
+- level: 50
+  name: Ivory Scythe
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 42
+      physical: 48
+    modifiers:
+      agi: 0
+      bal: 77
+      crit: 29
+      int: 47
+      str: 50
+  tier: 2
+- level: 50
+  name: Kielu Scythe
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 39
+      physical: 47
+    modifiers:
+      agi: 0
+      bal: 73
+      crit: 25
+      int: 42
+      str: 45
+  tier: 2
+- level: 57
+  name: Taonu Scythe
+  npc_value:
+    buy: 6648
+    sell: 358
+  stats:
+    damage:
+      magic: 43
+      physical: 50
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 30
+      int: 49
+      str: 51
+  tier: 2
+- level: 60
+  name: Black Hammer Scythe
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 59
+      physical: 54
+    modifiers:
+      agi: 0
+      bal: 68
+      crit: 32
+      int: 66
+      str: 59
+  tier: 2
+- level: 60
+  name: Braid Tassel Battle Scythe
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 65
+      physical: 59
+    modifiers:
+      agi: 0
+      bal: 67
+      crit: 30
+      int: 70
+      str: 45
+  tier: 2
+- level: 60
+  name: Fobellow Tin Scythe
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 50
+      physical: 55
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 37
+      int: 62
+      str: 50
+  tier: 2
+- level: 60
+  name: Lionoteeth
+  npc_value:
+    buy: 152738
+    sell: 8225
+  stats:
+    damage:
+      magic: 65
+      physical: 52
+    modifiers:
+      agi: 0
+      bal: 54
+      crit: 31
+      int: 69
+      str: 43
+  tier: 2
+- level: 60
+  name: Raider's Scythe
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 71
+      physical: 58
+    modifiers:
+      agi: 0
+      bal: 51
+      crit: 28
+      int: 70
+      str: 37
+  tier: 2
+- level: 60
+  name: Rakrak Claw
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 60
+      physical: 54
+    modifiers:
+      agi: 36
+      bal: 68
+      crit: 30
+      int: 68
+      str: 10
+  tier: 2
+- level: 60
+  name: Scythe of Caresses
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 68
+      physical: 53
+    modifiers:
+      agi: 0
+      bal: 57
+      crit: 34
+      int: 67
+      str: 50
+  tier: 2
+- level: 60
+  name: Silent Shadow
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 65
+      physical: 59
+    modifiers:
+      agi: 15
+      bal: 67
+      crit: 30
+      int: 71
+      str: 43
+  tier: 2
+- level: 70
+  name: Champion Scythe
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 77
+      physical: 61
+    modifiers:
+      agi: 0
+      bal: 61
+      crit: 34
+      int: 67
+      str: 48
+  tier: 3
+- level: 70
+  name: Dragonscale Scythe
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 77
+      physical: 60
+    modifiers:
+      agi: 26
+      bal: 67
+      crit: 36
+      int: 65
+      str: 48
+  tier: 3
+- level: 70
+  name: Encross
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 78
+      physical: 62
+    modifiers:
+      agi: 23
+      bal: 67
+      crit: 30
+      int: 60
+      str: 52
+  tier: 3
+- level: 70
+  name: Light Splitter
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 80
+      physical: 63
+    modifiers:
+      agi: 0
+      bal: 67
+      crit: 30
+      int: 70
+      str: 50
+  tier: 3
+- level: 70
+  name: Nighthawk Scythe
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 76
+      physical: 61
+    modifiers:
+      agi: 0
+      bal: 65
+      crit: 35
+      int: 72
+      str: 45
+  tier: 3
+- level: 80
+  name: Armageddon Scythe
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 96
+      physical: 80
+    modifiers:
+      agi: 49
+      bal: 68
+      crit: 39
+      int: 125
+      str: 80
+  tier: 3
+- level: 80
+  name: Avian Scythe
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 96
+      physical: 80
+    modifiers:
+      agi: 49
+      bal: 68
+      crit: 40
+      int: 80
+      str: 80
+  tier: 3
+- level: 80
+  name: Heremon Scythe
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 97
+      physical: 82
+    modifiers:
+      agi: 40
+      bal: 70
+      crit: 38
+      int: 92
+      str: 84
+  tier: 3
+- level: 80
+  name: Noblesse Scythe
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 98
+      physical: 83
+    modifiers:
+      agi: 50
+      bal: 67
+      crit: 39
+      int: 82
+      str: 82
+  tier: 3
+- level: 80
+  name: Skeleton Scythe
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 95
+      physical: 80
+    modifiers:
+      agi: 49
+      bal: 69
+      crit: 39
+      int: 79
+      str: 79
+  tier: 3
+- level: 40
+  name: Pawn Supply Battle Scythe
+  npc_value:
+    buy: 22284
+    sell: 1200
+  stats:
+    damage:
+      magic: 16
+      physical: 16
+    modifiers:
+      agi: 0
+      bal: 0
+      crit: 0
+      int: 0
+      str: 31
+  tier: 1
+- level: 50
+  name: Knight Veteran Battle Scythe
+  npc_value:
+    buy: 45310
+    sell: 2440
+  stats:
+    damage:
+      magic: 20
+      physical: 20
+    modifiers:
+      agi: 0
+      bal: 0
+      crit: 0
+      int: 0
+      str: 33
+  tier: 2
+- level: 60
+  name: Bishop Red Bearer Battle Scythe
+  npc_value:
+    buy: 62395
+    sell: 3360
+  stats:
+    damage:
+      magic: 24
+      physical: 24
+    modifiers:
+      agi: 3
+      bal: 0
+      crit: 0
+      int: 0
+      str: 35
+  tier: 2
+- level: 65
+  name: Rook Death Crown
+  npc_value:
+    buy: 90621
+    sell: 4880
+  stats:
+    damage:
+      magic: 27
+      physical: 27
+    modifiers:
+      agi: 4
+      bal: 0
+      crit: 0
+      int: 0
+      str: 36
+  tier: 2
+- level: 70
+  name: Queen Windmill
+  npc_value:
+    buy: 122933
+    sell: 6620
+  stats:
+    damage:
+      magic: 30
+      physical: 30
+    modifiers:
+      agi: 5
+      bal: 0
+      crit: 0
+      int: 0
+      str: 37
+  tier: 3
+- level: 75
+  name: King Ivory Scythe
+  npc_value:
+    buy: 187371
+    sell: 10090
+  stats:
+    damage:
+      magic: 32
+      physical: 32
+    modifiers:
+      agi: 6
+      bal: 0
+      crit: 0
+      int: 0
+      str: 38
+  tier: 3
+- level: 80
+  name: Emperor Braid Tassel Battle Scythe
+  npc_value:
+    buy: 272607
+    sell: 14680
+  stats:
+    damage:
+      magic: 36
+      physical: 36
+    modifiers:
+      agi: 7
+      bal: 0
+      crit: 0
+      int: 0
+      str: 40
+  tier: 3
+- level: 1
+  name: Toy Battle Scythe
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 21
+      physical: 23
+    modifiers:
+      agi: 0
+      bal: 70
+      crit: 21
+      int: 27
+      str: 21
+  tier: 0
