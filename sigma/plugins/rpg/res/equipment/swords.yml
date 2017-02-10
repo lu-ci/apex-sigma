@@ -1,145 +1,1040 @@
-- name: "Pleb Shortsword"
-  level: 0
-  tier: 0
+- level: 0
+  name: Shortsword
   npc_value:
-    sell: 0
     buy: 0
+    sell: 0
   stats:
-    single:
-      weight: 410
-      damage:
-        physical: 12
-        magic: 0
-      modifiers:
-        bal: 43
-        crit: 6
-        str: 7
-        int: 0
-        agi: 0
-    dual:
-      weight: 430
-      damage:
-        physical: 11
-        magic: 0
-      modifiers:
-        bal: 45
-        crit: 7
-        str: 8
-        int: 0
-        agi: 5
-- name: "Rusty Longsword"
-  level: 2
-  tier: 1
+    damage:
+      magic: 0
+      physical: 12
+    modifiers:
+      agi: 0
+      bal: 43
+      crit: 6
+      int: 0
+      str: 7
+  tier: 0
+- level: 1
+  name: Horn Render
   npc_value:
-    sell: 278
-    buy: 15
+    buy: 0
+    sell: 0
   stats:
-    single:
-      weight: 340
-      damage:
-        physical: 13
-        magic: 0
-      modifiers:
-        bal: 47
-        crit: 6
-        str: 8
-        int: 0
-        agi: 0
-    dual:
-      weight: 680
-      damage:
-        physical: 12
-        magic: 0
-      modifiers:
-        bal: 49
-        crit: 8
-        str: 9
-        int: 0
-        agi: 6
-- name: "Foul Longsword"
-  level: 4
-  tier: 1
+    damage:
+      magic: 0
+      physical: 22
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 16
+      int: 0
+      str: 0
+  tier: 0
+- level: 2
+  name: Crimson Blade Longsword
   npc_value:
-    sell: 278
-    buy: 15
+    buy: 278
+    sell: 15
   stats:
-    single:
-      weight: 350
-      damage:
-        physical: 14
-        magic: 0
-      modifiers:
-        bal: 50
-        crit: 7
-        str: 8
-        int: 0
-        agi: 0
-    dual:
-      weight: 680
-      damage:
-        physical: 13
-        magic: 0
-      modifiers:
-        bal: 53
-        crit: 8
-        str: 9
-        int: 0
-        agi: 6
-- name: "Veteran Longsword"
-  level: 5
-  tier: 1
+    damage:
+      magic: 0
+      physical: 13
+    modifiers:
+      agi: 0
+      bal: 47
+      crit: 6
+      int: 0
+      str: 8
+  tier: 0
+- level: 4
+  name: Foul Snowpaw Longsword
   npc_value:
-    sell: 557
-    buy: 30
+    buy: 278
+    sell: 15
   stats:
-    single:
-      weight: 390
-      damage:
-        physical: 14
-        magic: 0
-      modifiers:
-        bal: 50
-        crit: 10
-        str: 3
-        int: 5
-        agi: 19
-    dual:
-      weight: 780
-      damage:
-        physical: 13
-        magic: 0
-      modifiers:
-        bal: 45
-        crit: 8
-        str: 10
-        int: 5
-        agi: 18
-- name: "Gracious Longsword"
-  level: 6
-  tier: 1
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 0
+      bal: 50
+      crit: 7
+      int: 0
+      str: 8
+  tier: 0
+- level: 5
+  name: Veteran Longsword
   npc_value:
-    sell: 891
-    buy: 48
+    buy: 0
+    sell: 0
   stats:
-    single:
-      weight: 350
-      damage:
-        physical: 15
-        magic: 0
-      modifiers:
-        bal: 53
-        crit: 7
-        str: 9
-        int: 0
-        agi: 0
-    dual:
-      weight: 740
-      damage:
-        physical: 14
-        magic: 0
-      modifiers:
-        bal: 56
-        crit: 9
-        str: 11
-        int: 0
-        agi: 7
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 19
+      bal: 50
+      crit: 10
+      int: 5
+      str: 3
+  tier: 0
+- level: 6
+  name: Fluted Longsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 0
+      bal: 53
+      crit: 7
+      int: 0
+      str: 9
+  tier: 0
+- level: 7
+  name: Ebeloch Longsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 19
+      bal: 51
+      crit: 10
+      int: 5
+      str: 3
+  tier: 0
+- level: 7
+  name: Restored Friendship Sword
+  npc_value:
+    buy: 1522
+    sell: 82
+  stats:
+    damage:
+      magic: 0
+      physical: 15
+    modifiers:
+      agi: 0
+      bal: 54
+      crit: 8
+      int: 0
+      str: 9
+  tier: 0
+- level: 8
+  name: Aodhan's Sword
+  npc_value:
+    buy: 2451
+    sell: 132
+  stats:
+    damage:
+      magic: 0
+      physical: 15
+    modifiers:
+      agi: 20
+      bal: 54
+      crit: 11
+      int: 5
+      str: 3
+  tier: 0
+- level: 9
+  name: Echeloch Longsword
+  npc_value:
+    buy: 2451
+    sell: 132
+  stats:
+    damage:
+      magic: 0
+      physical: 17
+    modifiers:
+      agi: 23
+      bal: 61
+      crit: 12
+      int: 6
+      str: 3
+  tier: 0
+- level: 9
+  name: Quiremigal Longsword
+  npc_value:
+    buy: 2451
+    sell: 132
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 22
+      bal: 58
+      crit: 12
+      int: 6
+      str: 3
+  tier: 0
+- level: 10
+  name: Iron Longsword
+  npc_value:
+    buy: 3379
+    sell: 182
+  stats:
+    damage:
+      magic: 0
+      physical: 17
+    modifiers:
+      agi: 7
+      bal: 50
+      crit: 16
+      int: 0
+      str: 16
+  tier: 0
+- level: 10
+  name: Jagged Tooth Longsword
+  npc_value:
+    buy: 1522
+    sell: 82
+  stats:
+    damage:
+      magic: 0
+      physical: 20
+    modifiers:
+      agi: 0
+      bal: 72
+      crit: 10
+      int: 0
+      str: 12
+  tier: 0
+- level: 10
+  name: Kobold Shortsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 18
+    modifiers:
+      agi: 24
+      bal: 64
+      crit: 13
+      int: 6
+      str: 3
+  tier: 0
+- level: 10
+  name: Sword of Salvation
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 18
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 11
+      int: 0
+      str: 12
+  tier: 0
+- level: 12
+  name: Goblin Scimitar
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 20
+    modifiers:
+      agi: 9
+      bal: 58
+      crit: 19
+      int: 0
+      str: 18
+  tier: 0
+- level: 14
+  name: Red Bearer Longsword
+  npc_value:
+    buy: 3602
+    sell: 194
+  stats:
+    damage:
+      magic: 0
+      physical: 21
+    modifiers:
+      agi: 9
+      bal: 60
+      crit: 20
+      int: 0
+      str: 19
+  tier: 0
+- level: 16
+  name: Emuloch Longsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 22
+    modifiers:
+      agi: 30
+      bal: 88
+      crit: 18
+      int: 8
+      str: 4
+  tier: 0
+- level: 16
+  name: Red Metal Longsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 22
+    modifiers:
+      agi: 30
+      bal: 80
+      crit: 16
+      int: 8
+      str: 4
+  tier: 0
+- level: 16
+  name: Sword of Life
+  npc_value:
+    buy: 5626
+    sell: 303
+  stats:
+    damage:
+      magic: 0
+      physical: 21
+    modifiers:
+      agi: 9
+      bal: 62
+      crit: 20
+      int: 0
+      str: 19
+  tier: 0
+- level: 18
+  name: Broadsword
+  npc_value:
+    buy: 4066
+    sell: 219
+  stats:
+    damage:
+      magic: 0
+      physical: 22
+    modifiers:
+      agi: 13
+      bal: 80
+      crit: 25
+      int: 13
+      str: 13
+  tier: 0
+- level: 20
+  name: Vampire Blade
+  npc_value:
+    buy: 3843
+    sell: 207
+  stats:
+    damage:
+      magic: 0
+      physical: 23
+    modifiers:
+      agi: 10
+      bal: 66
+      crit: 21
+      int: 0
+      str: 21
+  tier: 0
+- level: 22
+  name: Bone Spiked Longsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 25
+    modifiers:
+      agi: 33
+      bal: 88
+      crit: 18
+      int: 9
+      str: 4
+  tier: 0
+- level: 25
+  name: Outcry
+  npc_value:
+    buy: 2878
+    sell: 155
+  stats:
+    damage:
+      magic: 0
+      physical: 25
+    modifiers:
+      agi: 0
+      bal: 75
+      crit: 25
+      int: 0
+      str: 25
+  tier: 1
+- level: 26
+  name: Dust Weaver
+  npc_value:
+    buy: 6090
+    sell: 328
+  stats:
+    damage:
+      magic: 0
+      physical: 26
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 27
+      int: 90
+      str: 0
+  tier: 1
+- level: 28
+  name: Blood Prince Longsword
+  npc_value:
+    buy: 59795
+    sell: 3220
+  stats:
+    damage:
+      magic: 0
+      physical: 27
+    modifiers:
+      agi: 12
+      bal: 88
+      crit: 29
+      int: 0
+      str: 25
+  tier: 1
+- level: 30
+  name: Ainle Longsword
+  npc_value:
+    buy: 6183
+    sell: 333
+  stats:
+    damage:
+      magic: 0
+      physical: 28
+    modifiers:
+      agi: 12
+      bal: 80
+      crit: 26
+      int: 0
+      str: 25
+  tier: 1
+- level: 35
+  name: Akanan Longsword
+  npc_value:
+    buy: 61281
+    sell: 3300
+  stats:
+    damage:
+      magic: 0
+      physical: 32
+    modifiers:
+      agi: 10
+      bal: 70
+      crit: 28
+      int: 0
+      str: 31
+  tier: 1
+- level: 35
+  name: Dual Faced King
+  npc_value:
+    buy: 6740
+    sell: 363
+  stats:
+    damage:
+      magic: 0
+      physical: 30
+    modifiers:
+      agi: 12
+      bal: 80
+      crit: 28
+      int: 0
+      str: 30
+  tier: 1
+- level: 38
+  name: Bastard Sword
+  npc_value:
+    buy: 5700
+    sell: 307
+  stats:
+    damage:
+      magic: 0
+      physical: 34
+    modifiers:
+      agi: 23
+      bal: 64
+      crit: 29
+      int: 0
+      str: 31
+  tier: 1
+- level: 39
+  name: 'Ainle Longsword: The Blood Prince Slayer'
+  npc_value:
+    buy: 93128
+    sell: 5015
+  stats:
+    damage:
+      magic: 0
+      physical: 37
+    modifiers:
+      agi: 14
+      bal: 88
+      crit: 31
+      int: 0
+      str: 36
+  tier: 1
+- level: 41
+  name: Ewynsoch Long Sword
+  npc_value:
+    buy: 6165
+    sell: 332
+  stats:
+    damage:
+      magic: 0
+      physical: 38
+    modifiers:
+      agi: 26
+      bal: 72
+      crit: 32
+      int: 0
+      str: 35
+  tier: 1
+- level: 44
+  name: Nightmare
+  npc_value:
+    buy: 7929
+    sell: 427
+  stats:
+    damage:
+      magic: 0
+      physical: 40
+    modifiers:
+      agi: 16
+      bal: 88
+      crit: 34
+      int: 0
+      str: 39
+  tier: 1
+- level: 48
+  name: Silence
+  npc_value:
+    buy: 8895
+    sell: 479
+  stats:
+    damage:
+      magic: 0
+      physical: 43
+    modifiers:
+      agi: 29
+      bal: 80
+      crit: 36
+      int: 0
+      str: 39
+  tier: 2
+- level: 50
+  name: Ivory Long Sword
+  npc_value:
+    buy: 93685
+    sell: 5045
+  stats:
+    damage:
+      magic: 0
+      physical: 47
+    modifiers:
+      agi: 32
+      bal: 84
+      crit: 38
+      int: 0
+      str: 43
+  tier: 2
+- level: 55
+  name: Monark Longsword
+  npc_value:
+    buy: 8895
+    sell: 479
+  stats:
+    damage:
+      magic: 0
+      physical: 48
+    modifiers:
+      agi: 30
+      bal: 75
+      crit: 41
+      int: 0
+      str: 40
+  tier: 2
+- level: 57
+  name: Taonu Longsword
+  npc_value:
+    buy: 8895
+    sell: 479
+  stats:
+    damage:
+      magic: 0
+      physical: 49
+    modifiers:
+      agi: 33
+      bal: 84
+      crit: 41
+      int: 0
+      str: 44
+  tier: 2
+- level: 60
+  name: Babel
+  npc_value:
+    buy: 152738
+    sell: 8225
+  stats:
+    damage:
+      magic: 0
+      physical: 57
+    modifiers:
+      agi: 0
+      bal: 72
+      crit: 35
+      int: 0
+      str: 87
+  tier: 2
+- level: 60
+  name: Chiulin Longsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 60
+    modifiers:
+      agi: 25
+      bal: 78
+      crit: 30
+      int: 0
+      str: 75
+  tier: 2
+- level: 60
+  name: Dreamwalker Longsword
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 0
+      physical: 60
+    modifiers:
+      agi: 0
+      bal: 78
+      crit: 31
+      int: 0
+      str: 83
+  tier: 2
+- level: 60
+  name: Fomor Commander Training Sword
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 0
+      physical: 52
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 28
+      int: 0
+      str: 63
+  tier: 2
+- level: 60
+  name: Holy Defender
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 61
+    modifiers:
+      agi: 0
+      bal: 78
+      crit: 30
+      int: 0
+      str: 79
+  tier: 2
+- level: 60
+  name: Raider's Longsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 58
+    modifiers:
+      agi: 0
+      bal: 67
+      crit: 39
+      int: 0
+      str: 92
+  tier: 2
+- level: 60
+  name: Stoneshell Longsword
+  npc_value:
+    buy: 136303
+    sell: 7340
+  stats:
+    damage:
+      magic: 0
+      physical: 60
+    modifiers:
+      agi: 0
+      bal: 78
+      crit: 31
+      int: 0
+      str: 81
+  tier: 2
+- level: 60
+  name: Sword-Breaker
+  npc_value:
+    buy: 13630
+    sell: 734
+  stats:
+    damage:
+      magic: 0
+      physical: 54
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 25
+      int: 0
+      str: 68
+  tier: 2
+- level: 70
+  name: Dancing Rose
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 70
+    modifiers:
+      agi: 40
+      bal: 77
+      crit: 31
+      int: 0
+      str: 90
+  tier: 3
+- level: 70
+  name: Destiny Blade
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 68
+    modifiers:
+      agi: 44
+      bal: 80
+      crit: 37
+      int: 0
+      str: 99
+  tier: 3
+- level: 70
+  name: Incorruptible
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 72
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 35
+      int: 0
+      str: 102
+  tier: 3
+- level: 70
+  name: Majesty Longsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 72
+    modifiers:
+      agi: 45
+      bal: 80
+      crit: 0
+      int: 0
+      str: 132
+  tier: 3
+- level: 70
+  name: Nighthawk Longsword
+  npc_value:
+    buy: 198569
+    sell: 10693
+  stats:
+    damage:
+      magic: 0
+      physical: 69
+    modifiers:
+      agi: 48
+      bal: 75
+      crit: 35
+      int: 0
+      str: 95
+  tier: 3
+- level: 80
+  name: Armageddon Longsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 91
+    modifiers:
+      agi: 52
+      bal: 78
+      crit: 39
+      int: 0
+      str: 141
+  tier: 3
+- level: 80
+  name: Heremon Longsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 93
+    modifiers:
+      agi: 60
+      bal: 78
+      crit: 39
+      int: 0
+      str: 118
+  tier: 3
+- level: 80
+  name: Noblesse Longsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 95
+    modifiers:
+      agi: 54
+      bal: 74
+      crit: 39
+      int: 0
+      str: 122
+  tier: 3
+- level: 80
+  name: Peacock
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 91
+    modifiers:
+      agi: 51
+      bal: 78
+      crit: 40
+      int: 0
+      str: 115
+  tier: 3
+- level: 80
+  name: Skeleton Longsword
+  npc_value:
+    buy: 427110
+    sell: 23000
+  stats:
+    damage:
+      magic: 0
+      physical: 90
+    modifiers:
+      agi: 50
+      bal: 78
+      crit: 39
+      int: 0
+      str: 120
+  tier: 3
+- level: 40
+  name: Pawn Goblin Scimitar
+  npc_value:
+    buy: 22284
+    sell: 1200
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 18
+      bal: 0
+      crit: 60
+      int: 8
+      str: 0
+  tier: 1
+- level: 50
+  name: Knight Bone Spiked Longsword
+  npc_value:
+    buy: 45310
+    sell: 2440
+  stats:
+    damage:
+      magic: 0
+      physical: 20
+    modifiers:
+      agi: 25
+      bal: 0
+      crit: 63
+      int: 11
+      str: 0
+  tier: 2
+- level: 60
+  name: Bishop Dust Weaver
+  npc_value:
+    buy: 62395
+    sell: 3360
+  stats:
+    damage:
+      magic: 0
+      physical: 24
+    modifiers:
+      agi: 32
+      bal: 0
+      crit: 66
+      int: 14
+      str: 3
+  tier: 2
+- level: 65
+  name: Rook Dual Faced King
+  npc_value:
+    buy: 90621
+    sell: 4880
+  stats:
+    damage:
+      magic: 0
+      physical: 27
+    modifiers:
+      agi: 39
+      bal: 0
+      crit: 69
+      int: 17
+      str: 4
+  tier: 2
+- level: 70
+  name: Queen Nightmare Longsword
+  npc_value:
+    buy: 122933
+    sell: 6620
+  stats:
+    damage:
+      magic: 0
+      physical: 30
+    modifiers:
+      agi: 46
+      bal: 0
+      crit: 72
+      int: 20
+      str: 5
+  tier: 3
+- level: 75
+  name: King Ivory Long Sword
+  npc_value:
+    buy: 187371
+    sell: 10090
+  stats:
+    damage:
+      magic: 0
+      physical: 32
+    modifiers:
+      agi: 53
+      bal: 0
+      crit: 75
+      int: 23
+      str: 6
+  tier: 3
+- level: 80
+  name: Emperor Fomor Commander Training Sword
+  npc_value:
+    buy: 272607
+    sell: 14680
+  stats:
+    damage:
+      magic: 0
+      physical: 36
+    modifiers:
+      agi: 60
+      bal: 0
+      crit: 78
+      int: 26
+      str: 7
+  tier: 3
+- level: 1
+  name: Crowbar
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 4
+      bal: 80
+      crit: 10
+      int: 0
+      str: 4
+  tier: 0
+- level: 1
+  name: Toy Longsword
+  npc_value:
+    buy: 0
+    sell: 0
+  stats:
+    damage:
+      magic: 0
+      physical: 14
+    modifiers:
+      agi: 4
+      bal: 80
+      crit: 11
+      int: 0
+      str: 0
+  tier: 0
+- level: 2
+  name: Children's Day Saber
+  npc_value:
+    buy: 1225
+    sell: 66
+  stats:
+    damage:
+      magic: 0
+      physical: 16
+    modifiers:
+      agi: 0
+      bal: 80
+      crit: 11
+      int: 0
+      str: 12
+  tier: 0
