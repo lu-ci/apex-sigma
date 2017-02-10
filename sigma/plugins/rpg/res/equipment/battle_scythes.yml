@@ -5,7 +5,7 @@
     sell: 0
   stats:
     damage:
-      magic: 0
+      magic: 19
       physical: 19
     modifiers:
       agi: 0
@@ -21,7 +21,7 @@
     sell: 168
   stats:
     damage:
-      magic: 0
+      magic: 20
       physical: 23
     modifiers:
       agi: 0
@@ -37,7 +37,7 @@
     sell: 155
   stats:
     damage:
-      magic: 0
+      magic: 24
       physical: 24
     modifiers:
       agi: 0
@@ -53,7 +53,7 @@
     sell: 168
   stats:
     damage:
-      magic: 0
+      magic: 21
       physical: 24
     modifiers:
       agi: 0
@@ -69,7 +69,7 @@
     sell: 223
   stats:
     damage:
-      magic: 0
+      magic: 21
       physical: 25
     modifiers:
       agi: 0
@@ -85,7 +85,7 @@
     sell: 2500
   stats:
     damage:
-      magic: 0
+      magic: 24
       physical: 28
     modifiers:
       agi: 0
@@ -101,7 +101,7 @@
     sell: 2500
   stats:
     damage:
-      magic: 0
+      magic: 26
       physical: 27
     modifiers:
       agi: 0
@@ -117,7 +117,7 @@
     sell: 277
   stats:
     damage:
-      magic: 0
+      magic: 27
       physical: 31
     modifiers:
       agi: 0
@@ -133,7 +133,7 @@
     sell: 392
   stats:
     damage:
-      magic: 0
+      magic: 32
       physical: 37
     modifiers:
       agi: 0
@@ -149,7 +149,7 @@
     sell: 5000
   stats:
     damage:
-      magic: 0
+      magic: 34
       physical: 39
     modifiers:
       agi: 0
@@ -165,7 +165,7 @@
     sell: 419
   stats:
     damage:
-      magic: 0
+      magic: 35
       physical: 40
     modifiers:
       agi: 0
@@ -181,7 +181,7 @@
     sell: 358
   stats:
     damage:
-      magic: 0
+      magic: 34
       physical: 39
     modifiers:
       agi: 0
@@ -197,7 +197,7 @@
     sell: 3310
   stats:
     damage:
-      magic: 0
+      magic: 35
       physical: 40
     modifiers:
       agi: 0
@@ -213,7 +213,7 @@
     sell: 5045
   stats:
     damage:
-      magic: 0
+      magic: 42
       physical: 48
     modifiers:
       agi: 0
@@ -229,7 +229,7 @@
     sell: 5045
   stats:
     damage:
-      magic: 0
+      magic: 39
       physical: 47
     modifiers:
       agi: 0
@@ -245,7 +245,7 @@
     sell: 358
   stats:
     damage:
-      magic: 0
+      magic: 43
       physical: 50
     modifiers:
       agi: 0
@@ -261,7 +261,7 @@
     sell: 734
   stats:
     damage:
-      magic: 0
+      magic: 59
       physical: 54
     modifiers:
       agi: 0
@@ -277,7 +277,7 @@
     sell: 7340
   stats:
     damage:
-      magic: 0
+      magic: 65
       physical: 59
     modifiers:
       agi: 0
@@ -293,7 +293,7 @@
     sell: 734
   stats:
     damage:
-      magic: 0
+      magic: 50
       physical: 55
     modifiers:
       agi: 0
@@ -309,7 +309,7 @@
     sell: 8225
   stats:
     damage:
-      magic: 0
+      magic: 65
       physical: 52
     modifiers:
       agi: 0
@@ -325,7 +325,7 @@
     sell: 7340
   stats:
     damage:
-      magic: 0
+      magic: 71
       physical: 58
     modifiers:
       agi: 0
@@ -341,7 +341,7 @@
     sell: 7340
   stats:
     damage:
-      magic: 0
+      magic: 60
       physical: 54
     modifiers:
       agi: 36
@@ -357,7 +357,7 @@
     sell: 7340
   stats:
     damage:
-      magic: 0
+      magic: 68
       physical: 53
     modifiers:
       agi: 0
@@ -373,7 +373,7 @@
     sell: 7340
   stats:
     damage:
-      magic: 0
+      magic: 65
       physical: 59
     modifiers:
       agi: 15
@@ -389,7 +389,7 @@
     sell: 10693
   stats:
     damage:
-      magic: 0
+      magic: 77
       physical: 61
     modifiers:
       agi: 0
@@ -405,7 +405,7 @@
     sell: 10693
   stats:
     damage:
-      magic: 0
+      magic: 77
       physical: 60
     modifiers:
       agi: 26
@@ -421,7 +421,7 @@
     sell: 10693
   stats:
     damage:
-      magic: 0
+      magic: 78
       physical: 62
     modifiers:
       agi: 23
@@ -437,7 +437,7 @@
     sell: 10693
   stats:
     damage:
-      magic: 0
+      magic: 80
       physical: 63
     modifiers:
       agi: 0
@@ -453,7 +453,7 @@
     sell: 10693
   stats:
     damage:
-      magic: 0
+      magic: 76
       physical: 61
     modifiers:
       agi: 0
@@ -469,7 +469,7 @@
     sell: 23000
   stats:
     damage:
-      magic: 0
+      magic: 96
       physical: 80
     modifiers:
       agi: 49
@@ -485,7 +485,7 @@
     sell: 23000
   stats:
     damage:
-      magic: 0
+      magic: 96
       physical: 80
     modifiers:
       agi: 49
@@ -501,7 +501,7 @@
     sell: 23000
   stats:
     damage:
-      magic: 0
+      magic: 97
       physical: 82
     modifiers:
       agi: 40
@@ -517,7 +517,7 @@
     sell: 23000
   stats:
     damage:
-      magic: 0
+      magic: 98
       physical: 83
     modifiers:
       agi: 50
@@ -533,7 +533,7 @@
     sell: 23000
   stats:
     damage:
-      magic: 0
+      magic: 95
       physical: 80
     modifiers:
       agi: 49
@@ -549,7 +549,7 @@
     sell: 1200
   stats:
     damage:
-      magic: 0
+      magic: 16
       physical: 16
     modifiers:
       agi: 0
@@ -565,7 +565,7 @@
     sell: 2440
   stats:
     damage:
-      magic: 0
+      magic: 20
       physical: 20
     modifiers:
       agi: 0
@@ -581,7 +581,7 @@
     sell: 3360
   stats:
     damage:
-      magic: 0
+      magic: 24
       physical: 24
     modifiers:
       agi: 3
@@ -597,7 +597,7 @@
     sell: 4880
   stats:
     damage:
-      magic: 0
+      magic: 27
       physical: 27
     modifiers:
       agi: 4
@@ -613,7 +613,7 @@
     sell: 6620
   stats:
     damage:
-      magic: 0
+      magic: 30
       physical: 30
     modifiers:
       agi: 5
@@ -629,7 +629,7 @@
     sell: 10090
   stats:
     damage:
-      magic: 0
+      magic: 32
       physical: 32
     modifiers:
       agi: 6
@@ -645,7 +645,7 @@
     sell: 14680
   stats:
     damage:
-      magic: 0
+      magic: 36
       physical: 36
     modifiers:
       agi: 7
@@ -661,7 +661,7 @@
     sell: 0
   stats:
     damage:
-      magic: 0
+      magic: 21
       physical: 23
     modifiers:
       agi: 0
