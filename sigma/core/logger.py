@@ -3,8 +3,11 @@ from time import time
 from datetime import datetime as date
 import logging
 
-
 log_fmt = '%(levelname)-6s %(asctime)s %(name)-20s %(message)s'
+
+if os.getenv('LOGTARGET_JOURNAL'):
+    log_fmt = '%(levelname)-6s %(name)-20s %(message)s'
+
 log_dir = 'log'
 
 if not os.path.exists(log_dir):
