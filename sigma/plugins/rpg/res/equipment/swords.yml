@@ -101,7 +101,7 @@
         bal: 50
         crit: 10
         str: 3
-        int: 0
+        int: 5
         agi: 19
     dual:
       weight: 780
