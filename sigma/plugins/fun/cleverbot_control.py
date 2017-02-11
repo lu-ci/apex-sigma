@@ -10,13 +10,7 @@ sigma = chatterbot.ChatBot(
     logic_adapters=[
         {
             "import_path": "chatterbot.logic.BestMatch"
-        },
-        {
-            "import_path": "chatterbot.logic.MathematicalEvaluation"
-        },
-        {
-            "import_path": "chatterbot.logic.TimeLogicAdapter"
-        },
+        }
     ],
     database='./chatterbot.db'
 )
