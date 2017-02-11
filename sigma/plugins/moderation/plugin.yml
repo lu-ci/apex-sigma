@@ -267,32 +267,6 @@ commands:
       The chance can be set from 1 to 100.
       Requires the user to be a server Administrator.
 
-  - name: warn
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person For Not Liking Cheese"
-    description:
-      Warns a user for the inputted reason.
-      Warning stack, and upon exceeding the set limit, the user is kicked.
-
-  - name: warns
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person"
-    description:
-      Lists warned users.
-      If a user is mentioned with the command, it will show warnings for that user.
-
-  - name: warnlimit
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 3"
-    description:
-      Sets the new warning limit.
-
 events:
   - name:    sfiexec
     type:    message
