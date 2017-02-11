@@ -1,4 +1,5 @@
 import discord
+import arrow
 from sigma.core.permission import check_kick
 
 
@@ -28,13 +29,15 @@ async def warn(cmd, message, args):
         warn_data = {
             'UserID': warned_users[target.id]['UserID'],
             'Warns': warned_users[target.id]['Warns'] + 1,
-            'Reasons': warned_users[target.id]['Reasons'] + [warning_text]
+            'Reasons': warned_users[target.id]['Reasons'] + [warning_text],
+            'Timestamp': arrow.utcnow().timestamp
         }
     else:
         warn_data = {
             'UserID': target.id,
             'Warns': 1,
-            'Reasons': [warning_text]
+            'Reasons': [warning_text],
+            'Timestamp': arrow.utcnow().timestamp
         }
     warned_users.update({target.id: warn_data})
     if warned_users[target.id]['Warns'] > warn_limit:
