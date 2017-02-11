@@ -13,6 +13,7 @@ from .database import Database
 from .logger import create_logger
 from .stats import stats
 from .command_alts import load_alternate_command_names
+from .blacklist import check_black
 
 bot_ready = False
 
@@ -87,28 +88,6 @@ class Sigma(discord.Client):
         if not os.path.exists('cache/'):
             os.makedirs('cache/')
 
-    def check_black(self, message):
-        black_channel = False
-        black_user = False
-        server_is_black = False
-        black = False
-        if message.server:
-            channel_blacklist = self.db.get_settings(message.server.id, 'BlacklistedChannels')
-            if not channel_blacklist:
-                channel_blacklist = []
-            user_blacklist = self.db.get_settings(message.server.id, 'BlacklistedUsers')
-            if not user_blacklist:
-                user_blacklist = []
-            if message.author.id in user_blacklist:
-                black_user = True
-            if message.channel.id in channel_blacklist:
-                black_channel = True
-            server_is_black = self.db.get_settings(message.server.id, 'IsBlacklisted')
-        if message.author.id not in permitted_id:
-            if black_channel or black_user or server_is_black:
-                black = True
-        return black
-
     async def on_voice_state_update(self, before, after):
         pass
 
@@ -165,7 +144,7 @@ class Sigma(discord.Client):
                 if cmd in self.alts:
                     cmd = self.alts[cmd]
                 try:
-                    if self.check_black(message):
+                    if check_black(self.db, message):
                         self.log.info('Access Denied Due To User or Channel Being Found In A Blacklist.')
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
