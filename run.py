@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-import sys
+#!/usr/bin/env python3.6
 import os
 
 from sigma.core import Sigma
@@ -9,16 +8,14 @@ from config import Token
 if __name__ == '__main__':
 
     if not os.path.isfile('config.py'):
-        sys.exit(
-            'Fatal Error: config.py is not present.\nIf you didn\'t already, rename config_example.py to config.py, fill out your credentials and try again.')
+        print('Fatal Error: No config file!\nRename and edit the config_example.py before running Sigma!')
+        exit(404)
     else:
         print('config.py present, continuing...')
 
     client = Sigma()
 
-    if Token == '':
-        sys.exit('Token not provided, please open config.py and place your token.')
-    try:
-        client.run(Token)
-    except Exception as e:
-        client.log.error(e)
+    if not Token or Token == '':
+        print('Token not provided, please open config.py and place your token.')
+        exit(410)
+    client.run(Token)
