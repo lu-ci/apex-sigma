@@ -12,6 +12,8 @@ from .plugman import PluginManager
 from .database import Database
 from .logger import create_logger
 from .stats import stats
+from .command_alts import load_alternate_command_names
+from .blacklist import check_black
 
 bot_ready = False
 
@@ -38,7 +40,7 @@ class Sigma(discord.Client):
     def __init__(self):
         super().__init__()
         self.prefix = pfx
-        self.alts = {}
+        self.alts = load_alternate_command_names()
         self.init_logger()
         self.init_databases()
         self.init_plugins()
@@ -76,22 +78,6 @@ class Sigma(discord.Client):
             resp = await aiohttp.post(url, data=payload)
             resp.close()
 
-    def load_alternate_command_names(self):
-        directory = 'sigma/plugins'
-        for root, dirs, files in os.walk(directory):
-            for file in files:
-                if file == 'plugin.yml':
-                    file_path = (os.path.join(root, file))
-                    with open(file_path) as plugin_file:
-                        plugin_data = yaml.load(plugin_file)
-                        if plugin_data['enabled']:
-                            if 'commands' in plugin_data:
-                                for command in plugin_data['commands']:
-                                    if 'alts' in command:
-                                        for alt in command['alts']:
-                                            plugin_name = command['name']
-                                            self.alts.update({alt: plugin_name})
-
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
 
@@ -101,28 +87,6 @@ class Sigma(discord.Client):
     def create_cache(self):
         if not os.path.exists('cache/'):
             os.makedirs('cache/')
-
-    def check_black(self, message):
-        black_channel = False
-        black_user = False
-        server_is_black = False
-        black = False
-        if message.server:
-            channel_blacklist = self.db.get_settings(message.server.id, 'BlacklistedChannels')
-            if not channel_blacklist:
-                channel_blacklist = []
-            user_blacklist = self.db.get_settings(message.server.id, 'BlacklistedUsers')
-            if not user_blacklist:
-                user_blacklist = []
-            if message.author.id in user_blacklist:
-                black_user = True
-            if message.channel.id in channel_blacklist:
-                black_channel = True
-            server_is_black = self.db.get_settings(message.server.id, 'IsBlacklisted')
-        if message.author.id not in permitted_id:
-            if black_channel or black_user or server_is_black:
-                black = True
-        return black
 
     async def on_voice_state_update(self, before, after):
         pass
@@ -139,8 +103,6 @@ class Sigma(discord.Client):
         self.db.init_server_settings(self.servers)
         user_generator = self.get_all_members()
         self.log.info('-----------------------------------')
-        self.log.info('Loading Command Alternatives...')
-        self.load_alternate_command_names()
         self.log.info('Updating User Database...')
         self.db.refactor_users(user_generator)
         self.log.info('Updating Server Database...')
@@ -182,7 +144,7 @@ class Sigma(discord.Client):
                 if cmd in self.alts:
                     cmd = self.alts[cmd]
                 try:
-                    if self.check_black(message):
+                    if check_black(self.db, message):
                         self.log.info('Access Denied Due To User or Channel Being Found In A Blacklist.')
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
