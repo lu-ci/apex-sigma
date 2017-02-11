@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-docker attach --sig-proxy=false apexsigma_bot_1
