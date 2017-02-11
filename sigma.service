@@ -1,0 +1,12 @@
+[Unit]
+Description=Sigma bot
+After=mongod.service
+
+[Service]
+User=sigma
+Environment=LOGTARGET_JOURNAL=1
+ExecStart=/home/sigma/apex-sigma/run.sh
+Restart=on-failure
+
+[Install]
+WantedBy=mulit-user.target
