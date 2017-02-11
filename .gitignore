@@ -13,6 +13,7 @@ sigma.env
 # Database & Storage
 db/*
 !db/server_settings.sql
+chatterbot.db
 
 # Logfiles
 log/*
