@@ -241,3 +241,12 @@ events:
     pmable:  true
     description:
       Sets the now playing status on launch.
+
+  - name:    chatter_trainer
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Trains the AI of Sigma.
