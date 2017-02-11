@@ -33,6 +33,7 @@ async def chatter_trainer(ev, message, args):
                     train_list.append(text_data)
                 else:
                     sigma.trainer.train(train_list)
-                    ev.log.info('New Training Data Recorded')
+                    ev.log.info('New Training Data Recorded From #{:s} on {:s}'.format(message.channel.name,
+                                                                                       message.server.name))
                     train_list = [text_data]
                 train_dict.update({message.channel.id: train_list})
