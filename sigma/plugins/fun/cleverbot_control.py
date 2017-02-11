@@ -1,7 +1,26 @@
-from cleverbot import Cleverbot
+import chatterbot
+import yaml
 
-cb = Cleverbot('Apex-Sigma')
+with open('VERSION') as version_file:
+    data = yaml.load(version_file)
+    codename = data['codename']
 
+sigma = chatterbot.ChatBot(
+    codename,
+    logic_adapters=[
+        {
+            "import_path": "chatterbot.logic.BestMatch"
+        },
+        {
+            "import_path": "chatterbot.logic.MathematicalEvaluation"
+        },
+        {
+            "import_path": "chatterbot.logic.TimeLogicAdapter"
+        },
+    ],
+    database='./chatterbot.db'
+)
+sigma.initialize()
 
 async def cleverbot_control(ev, message, args):
     active = ev.db.get_settings(message.server.id, 'CleverBot')
@@ -10,13 +29,5 @@ async def cleverbot_control(ev, message, args):
         mention = '<@' + ev.bot.user.id + '>'
         mention_alt = '<@!' + ev.bot.user.id + '>'
         if message.content.startswith(mention) or message.content.startswith(mention_alt):
-            await ev.bot.send_typing(message.channel)
-
-            if message.content.startswith(mention):
-                cb_input = message.content[len(mention) + 1:]
-            elif message.content.startswith(mention_alt):
-                cb_input = message.content[len(mention_alt) + 1:]
-            else:
-                return
-            response = cb.ask(cb_input)
-            await ev.bot.send_message(message.channel, '<@' + message.author.id + '> ' + response)
+            response = sigma.get_response(' '.join(args[1:]))
+            await ev.bot.send_message(message.channel, response)
