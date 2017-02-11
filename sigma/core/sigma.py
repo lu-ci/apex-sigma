@@ -33,6 +33,7 @@ bot_ready = False
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # I love spaghetti!
+# Valebu pls, no take my spaghetti... :'(
 class Sigma(discord.Client):
     def __init__(self):
         super().__init__()

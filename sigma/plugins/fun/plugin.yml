@@ -136,6 +136,7 @@ commands:
     alts:
       - "woof"
       - "bork"
+      - "bark"
       - "pupper"
       - "puppy"
       - "doggie"
