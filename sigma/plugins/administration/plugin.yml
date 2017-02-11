@@ -245,7 +245,7 @@ events:
   - name:    chatter_trainer
     type:    message
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     pmable:  true
     description:
