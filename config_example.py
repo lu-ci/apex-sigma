@@ -42,6 +42,6 @@ CatAPIKey = getenv('CatAPIKey') or ''
 mal_un = getenv('mal_un') or ''
 mal_pw = getenv('mal_pw') or ''
 # Bot Control Settings
-MainServerURL = getenv('MainServerURL') or 'localhost'
+MainServerURL = getenv('MainServerURL') or 'http://localhost/'
 Prefix = '>>'
 permitted_id = ['123456789123456789']
