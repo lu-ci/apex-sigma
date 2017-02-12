@@ -1,16 +1,20 @@
-import time
+import discord
+from time import time
+
+from config import permitted_id
 
 
 def check_channel_nsfw(db, channel_id):
     n = 0
     item = None
-    coll = 'NSFW'
     finddata = {
         'ChannelID': channel_id,
     }
-    finddata_res = db.find(coll, finddata)
+    finddata_res = db.find('NSFW', finddata)
+
     for item in finddata_res:
         n += 1
+
     if n == 0:
         return False
     else:
@@ -28,22 +32,21 @@ def is_self(self, author, bot_user):
 def check_server_donor(db, server_id):
     n = 0
     item = None
-    coll = 'DonorTracker'
     finddata = {
         'ServerID': server_id
     }
-    finddata_res = db.find(coll, finddata)
+    finddata_res = db.find('DonorTracker', finddata)
+
     for item in finddata_res:
         n += 1
+
     if n == 0:
         is_donor = False
     else:
         expiration_ts = item['Expiration']
-        current_ts = int(time.time())
-        if expiration_ts > current_ts:
-            is_donor = True
-        else:
-            is_donor = False
+        current_ts    = int(time())
+        is_donor      = expiration_ts > current_ts
+
     return is_donor
 
 
@@ -56,8 +59,10 @@ def set_channel_nsfw(db, channel_id):
         'ChannelID': channel_id,
     }
     finddata_res = db.find(coll, finddata)
+
     for item in finddata_res:
         n += 1
+
     if n == 0:
         insertdata = {
             'ChannelID': channel_id,
@@ -66,16 +71,17 @@ def set_channel_nsfw(db, channel_id):
         db.insert_one(coll, insertdata)
         success = True
     else:
-        active = item['Permitted']
+        permitted = item['Permitted']
         updatetarget = {"ChannelID": channel_id}
-        updatepermit = {"$set": {"Permitted": True}}
-        updateunpermit = {"$set": {"Permitted": False}}
-        if active:
-            db.update_one(coll, updatetarget, updateunpermit)
-        else:
-            db.update_one(coll, updatetarget, updatepermit)
-            success = True
+        updatepermit = {"$set": {"Permitted": not permitted}}
+        db.update_one(coll, updatetarget, updatepermit)
+        success = not permitted
+
     return success
+
+
+def check_bot_owner(user):
+    return user.id in permitted_id
 
 
 def check_admin(user, channel):
@@ -104,3 +110,42 @@ def check_write(user, channel):
 
 def check_man_chan(user, channel):
     return user.permissions_in(channel).manage_channels
+
+
+def check_permitted(self, user, channel, server):
+    if not self.perm['sfw'] and not check_channel_nsfw(self.db, channel.id):
+        title = ':eggplant: Channel does not have NSFW permissions set, sorry.'
+        embed_content = discord.Embed(title=title, color=0x9933FF)
+        self.log.info('Access Denied Due To Channel Not Having NSFW Permissions.')
+        return (False, embed_content)
+
+    if self.perm['admin'] and not check_bot_owner(user):
+        title = ':no_entry: Unpermitted'
+        msg = 'Bot Owne r commands are usable only by the owners of the bot as the name implies.'
+        msg += '\nThe bot owner is the person hosting the bot on their machine.'
+        msg += '\nThis is **not the discord server owner**, and it is **not the person who invited the bot** to the server.'
+        msg += '\nThere is no way for you to become a bot owner.'
+        embed_content = discord.Embed(title=title, color=0xDB0000)
+        embed_content.add_field(name='Bot Owner Only', value=msg)
+        self.log.info('Access Denied To A Bot Owner Only Command.')
+        return (False, embed_content)
+
+    if self.perm['donor'] and not check_server_donor(self.db, server.id):
+        title = ':warning: Unpermitted'
+        msg = 'Some commands are limited to only be usable by donors.'
+        msg += '\nYou can become a donor by donating via our [`Paypal.Me`](https://www.paypal.me/AleksaRadovic) page.'
+        msg += '\nDonating allows use of donor functions for a limited time.'
+        msg += '\n1 Cent = One Hour (Currency of Calculation is Euro)'
+        msg += '\nIn a nutshell, donating 7.2Eur would give you a month of donor functions.'
+        embed_content = discord.Embed(title=title, color=0xFF9900)
+        embed_content.add_field(name='Donor Only', value=msg)
+        self.log.info('Access Denied To A Donor Only Command.')
+        return (False, embed_content)
+
+    if not self.perm['pmable'] and not server and not is_self(self, user, self.bot.user):
+        title = ':no_entry: This Function Is Not Usable in Direct Messages.'
+        embed_content = discord.Embed(title=title, color=0xDB0000)
+        self.log.info('Access Denied To A DM Incompatible Command.')
+        return (False, embed_content)
+
+    return (True, None)

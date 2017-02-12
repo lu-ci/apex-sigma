@@ -32,8 +32,8 @@ async def play(cmd, message, args):
             title=':warning: The queue is empty', color=0xFF9900)
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
-    initializing.append(message.server.id)
     player = get_player(message.server)
+    initializing.append(message.server.id)
     if player:
         if player.is_playing():
             embed = discord.Embed(
