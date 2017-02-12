@@ -1,4 +1,4 @@
-from os import getenv
+from os import getenv, path
 
 # This always points to the directory of the application
 # where the config.py file is located
