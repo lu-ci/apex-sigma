@@ -1,5 +1,9 @@
 from os import getenv
 
+# This always points to the directory of the application
+# where the config.py file is located
+AppRoot = path.abspath(path.dirname(__file__))
+
 # Bot Token
 Token = getenv('DiscordBotToken') or ''
 # API Keys

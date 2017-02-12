@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-docker-compose run -u sigma --rm --entrypoint "bash $*" bot
