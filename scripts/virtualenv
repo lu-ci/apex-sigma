@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-ENVNAME='sigma.env'
-
-virtualenv --prompt=sigma "$ENVNAME"
-
-echo "Now source the ${SHELL##*/} script in $ENVNAME/bin"
