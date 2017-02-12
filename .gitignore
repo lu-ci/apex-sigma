@@ -22,7 +22,9 @@ log.txt
 # Misc
 *.xml
 cache/*
-fonts/*
+*.ttf
+*.ttc
+*.otf
 
 # still required?
 avatar.png
