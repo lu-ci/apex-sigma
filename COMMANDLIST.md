@@ -180,12 +180,14 @@ Command |  Description |  Usage
 `>>cid`  |  Shows Channel ID of the channel the command was used in.  |  `>>cid`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
 `>>commands`  |  Shows the commands in a specific module group.  |  `>>commands Games`
+`>>decimaltohex`  |  Converts a decimal number to hex.  |  `>>decimaltohex BEEEEF`
 `>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
 `>>hash`  |  Hashes whatever you input with the selected hashing algorithm.  |  `>>hash md5 I like cheese and spaghetti code!`
 `>>help`  |  Returns the list of command modules or gives you the description and usage for a selected command.  |  `>>help [command]`
+`>>hextodecimal`  |  Converts hex into a decimal number.  |  `>>hextodecimal BEEEEF`
 `>>ingame`  |  Shows the top played games on the server.  |  `>>ingame`
 `>>invite`  |  Shows the OAuth2 URL for inviting Sigma to a server.  |  `>>invite`
 `>>modules`  |  Shows the list of all the module groups in Sigma.  |  `>>modules`
