@@ -71,7 +71,7 @@ class Database(object):
         on_cooldown_node(self.db, sid, uid, command, cooldown)
 
     def get_cooldown(self, sid, uid, command, cooldown):
-        get_cooldown_node(self.db, sid, uid, command, cooldown)
+        return get_cooldown_node(self.db, sid, uid, command, cooldown)
 
     def add_points(self, server, user, points):
         add_points_node(self.db, server, user, points)
@@ -80,7 +80,7 @@ class Database(object):
         take_points_node(self.db, server, user, points)
 
     def get_points(self, server, user):
-        get_points_node(self.db, server, user)
+        return get_points_node(self.db, server, user)
 
     def refactor_users(self, usrgen):
         refactor_users_node(self.db, usrgen)
@@ -101,7 +101,7 @@ class Database(object):
         init_server_settings_node(self.db, servers)
 
     def get_settings(self, server_id, setting):
-        get_settings_node(self.db, server_id, setting)
+        return get_settings_node(self.db, server_id, setting)
 
     def set_settings(self, server_id, setting, setting_variable):
         set_settings_node(self.db, server_id, setting, setting_variable)

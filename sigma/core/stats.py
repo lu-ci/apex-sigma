@@ -10,9 +10,7 @@ def stats(bot, log=None):
     permed_ids = userlist(permitted_id)
     authors = userlist(bot.authors)
     contributors = userlist(bot.contributors)
-    donor_count = 0
-    for donor in bot.donors:
-        donor_count += 1
+    donor_count = len(bot.donors)
     with open('VERSION') as version_file:
         content = yaml.load(version_file)
         version = content['version']
@@ -27,7 +25,6 @@ def stats(bot, log=None):
     if beta_state:
         version_text += 'Beta '
     version_text += v_full + ' Codename ' + codename
-
     tmp.append(multi('Logged In As: \"' + bot.user.name + '\"', log))
     tmp.append(multi('Bot User ID: ' + bot.user.id, log))
     tmp.append(multi('Running Python version: ' + sys.version.split(' ')[0], log))
