@@ -2,8 +2,6 @@ import discord
 import requests
 import lxml.html as l
 
-rankings = []
-
 
 async def bhranking(cmd, message, args):
     regions = ['global', 'us-e', 'eu', 'sea', 'br2', 'aus', 'us-w']
@@ -25,6 +23,7 @@ async def bhranking(cmd, message, args):
     page = requests.get(lb_url).text
     root = l.fromstring(page)
     table = root.cssselect('#content')[0][0][0]
+    rankings = []
     for row in table:
         if len(row) == 8:
             if row[1].text == 'Rank':
@@ -44,7 +43,7 @@ async def bhranking(cmd, message, args):
     for x in range(0, 10):
         data = rankings[x]
         out = '{:s}: {:s} | Season: {:s} | Peak: {:s}'.format(data['Region'], data['Name'],
-                                                                      data['Season'], data['Peak'])
+                                                              data['Season'], data['Peak'])
         player_list += '\n' + out
     embed.add_field(name='Region', value='```\n' + region.upper() + '\n```', inline=False)
     embed.add_field(name='Brawhalla 1v1 Top 10 Ranked Players', value='```\n' + player_list + '\n```', inline=False)
