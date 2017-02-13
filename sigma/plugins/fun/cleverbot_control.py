@@ -1,20 +1,11 @@
-import chatterbot
+import cleverbot
 import yaml
 
 with open('VERSION') as version_file:
     data = yaml.load(version_file)
     codename = data['codename']
 
-sigma = chatterbot.ChatBot(
-    codename,
-    logic_adapters=[
-        {
-            "import_path": "chatterbot.logic.BestMatch"
-        }
-    ],
-    database='./chatterbot.db'
-)
-sigma.initialize()
+sigma = cleverbot.Cleverbot()
 
 async def cleverbot_control(ev, message, args):
     active = ev.db.get_settings(message.server.id, 'CleverBot')
@@ -23,5 +14,5 @@ async def cleverbot_control(ev, message, args):
         mention = '<@' + ev.bot.user.id + '>'
         mention_alt = '<@!' + ev.bot.user.id + '>'
         if message.content.startswith(mention) or message.content.startswith(mention_alt):
-            response = sigma.get_response(' '.join(args[1:]))
-            await ev.bot.send_message(message.channel, response)
+            response = sigma.ask(' '.join(args[1:]))
+            await ev.bot.send_message(message.channel, message.author.mention + ' ' + response)

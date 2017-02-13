@@ -10,7 +10,7 @@ hurry.filesize
 Shosetsu
 imgurpython
 praw
-chatterbot
+git+git://github.com/mrgigabyte/cleverbot.py.git
 tornado
 pyyaml
 discord.py[voice]
