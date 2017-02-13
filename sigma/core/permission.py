@@ -148,7 +148,9 @@ def check_permitted(self, user, channel, server):
 
     if not self.perm['pmable'] and not server and not is_self(user, self.bot.user):
         title = ':no_entry: This Function Is Not Usable in Direct Messages.'
-        explanation = 'Most commands are server bound or have no sense in being used in private messages'
+        explanation = 'Most commands are server bound or have no sense in being used in private messages.'
+        explanation += '\nLike those related to music, points, etc.'
+        explanation += '\nIf you get this message, use the command on a server and not in a direct message.'
         embed_content = discord.Embed(color=0xDB0000)
         embed_content.add_field(name=title, value=explanation)
         self.log.info('Access Denied To A DM Incompatible Command.')
