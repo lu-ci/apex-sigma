@@ -35,7 +35,7 @@ async def queue(cmd, message, args):
                 title=':warning: You can\'t queue lists.', color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
-        if qry.startswith('https://yout') or ('https://www.yout'):
+        if qry.startswith('https://yout') or qry.startswith('https://www.yout'):
             try:
                 await cmd.bot.delete_message(message)
             except:
