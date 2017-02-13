@@ -14,19 +14,19 @@ class NotEnabledError(RuntimeError):
 class Callable(object):
     def __init__(self, plugin, info):
         self.enabled = False
-        self.usage   = 'No usage info available.'
-        self.desc    = 'No description available.'
-        self.perm    = {
+        self.usage = 'No usage info available.'
+        self.desc = 'No description available.'
+        self.perm = {
             'global': False,
-            'sfw':    True,
-            'admin':  False,
-            'donor':  False,
+            'sfw': True,
+            'admin': False,
+            'donor': False,
             'pmable': False
         }
 
-        self.db     = plugin.db
-        self.log    = plugin.log
-        self.bot    = plugin.bot
+        self.db = plugin.db
+        self.log = plugin.log
+        self.bot = plugin.bot
         self.plugin = plugin
 
         try:
@@ -53,9 +53,9 @@ class Callable(object):
             if key in info:
                 self.perm[key] = info[key]
 
-        module_path  = os.path.join(self.path, self.name)
+        module_path = os.path.join(self.path, self.name)
         self.modpath = module_path.replace('/', '.').replace('\\', '.')
-        self.module  = import_module(self.modpath)
+        self.module = import_module(self.modpath)
 
     def resource(self, what):
         res = os.path.join(self.path, 'res', what)
@@ -68,12 +68,11 @@ class Callable(object):
     def help(self):
         return ''
 
-
     async def call(self, message, *args):
-        server  = message.server
+        server = message.server
         channel = message.channel
-        author  = message.author
-        msg     = None
+        author = message.author
+        msg = None
 
         if author.bot:
             return
@@ -89,13 +88,13 @@ class Callable(object):
         except Exception as e:
             try:
                 title = ':exclamation: An Error Occurred!'
-                msg   = 'For more information you can go to the AP Discord server and ask us, '
-                msg  += 'the link is in the help.'
+                errmsg = 'For more information you can go to the AP Discord server and ask us, '
+                errmsg += 'the link is in the help.'
                 self.log.error(str(e))
                 error_embed = discord.Embed(color=0xDB0000)
-                error_embed.add_field(name=title, value=codeblock(e))
-                error_embed.set_footer(text=msg)
-                await self.bot.send_message(channel, embed=error_embed)
+                error_embed.add_field(name=title, value=codeblock(str(e)))
+                error_embed.set_footer(text=errmsg)
+                await self.bot.send_message(channel, None, embed=error_embed)
             except:
                 pass
 

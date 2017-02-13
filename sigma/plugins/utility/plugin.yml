@@ -273,3 +273,28 @@ commands:
     description:
       Generates a color from the given HEX code or provided RGB numbers.
 
+  - name: hextodecimal
+    alts:
+      - "h2d"
+      - "hex2dec"
+      - "htod"
+      - "hextodec"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} BEEEEF"
+    description:
+      Converts hex into a decimal number.
+
+  - name: decimaltohex
+    alts:
+      - "d2h"
+      - "dec2hex"
+      - "dtoh"
+      - "dectohex"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} BEEEEF"
+    description:
+      Converts a decimal number to hex.
