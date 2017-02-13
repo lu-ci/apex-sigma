@@ -22,7 +22,7 @@ def check_channel_nsfw(db, channel_id):
         return active
 
 
-def is_self(self, author, bot_user):
+def is_self(author, bot_user):
     if author.id == bot_user.id:
         return True
     else:
@@ -44,14 +44,13 @@ def check_server_donor(db, server_id):
         is_donor = False
     else:
         expiration_ts = item['Expiration']
-        current_ts    = int(time())
-        is_donor      = expiration_ts > current_ts
+        current_ts = int(time())
+        is_donor = expiration_ts > current_ts
 
     return is_donor
 
 
 def set_channel_nsfw(db, channel_id):
-    success = False
     n = 0
     item = None
     coll = 'NSFW'
@@ -115,20 +114,25 @@ def check_man_chan(user, channel):
 def check_permitted(self, user, channel, server):
     if not self.perm['sfw'] and not check_channel_nsfw(self.db, channel.id):
         title = ':eggplant: Channel does not have NSFW permissions set, sorry.'
-        embed_content = discord.Embed(title=title, color=0x9933FF)
+        explanation = 'To toggle NSFW permissions in a channel use the {:s} command.'
+        explanation += '\nThis command is only usable by server administrators.'
+        explanation += '\nIf you are the admin on your server, just type the command in the channel of your choice.'
+        explanation += '\nOtherwise, ask your server\'s admin to permit a channel.'
+        embed_content = discord.Embed(color=0x9933FF)
+        embed_content.add_field(name=title, value=explanation)
         self.log.info('Access Denied Due To Channel Not Having NSFW Permissions.')
-        return (False, embed_content)
+        return False, embed_content
 
     if self.perm['admin'] and not check_bot_owner(user):
         title = ':no_entry: Unpermitted'
         msg = 'Bot Owne r commands are usable only by the owners of the bot as the name implies.'
         msg += '\nThe bot owner is the person hosting the bot on their machine.'
-        msg += '\nThis is **not the discord server owner**, and it is **not the person who invited the bot** to the server.'
+        msg += '\nThis is **not the discord server owner** and **not the person who invited the bot** to the server.'
         msg += '\nThere is no way for you to become a bot owner.'
         embed_content = discord.Embed(title=title, color=0xDB0000)
         embed_content.add_field(name='Bot Owner Only', value=msg)
         self.log.info('Access Denied To A Bot Owner Only Command.')
-        return (False, embed_content)
+        return False, embed_content
 
     if self.perm['donor'] and not check_server_donor(self.db, server.id):
         title = ':warning: Unpermitted'
@@ -140,12 +144,14 @@ def check_permitted(self, user, channel, server):
         embed_content = discord.Embed(title=title, color=0xFF9900)
         embed_content.add_field(name='Donor Only', value=msg)
         self.log.info('Access Denied To A Donor Only Command.')
-        return (False, embed_content)
+        return False, embed_content
 
-    if not self.perm['pmable'] and not server and not is_self(self, user, self.bot.user):
+    if not self.perm['pmable'] and not server and not is_self(user, self.bot.user):
         title = ':no_entry: This Function Is Not Usable in Direct Messages.'
-        embed_content = discord.Embed(title=title, color=0xDB0000)
+        explanation = 'Most commands are server bound or have no sense in being used in private messages'
+        embed_content = discord.Embed(color=0xDB0000)
+        embed_content.add_field(name=title, value=explanation)
         self.log.info('Access Denied To A DM Incompatible Command.')
-        return (False, embed_content)
+        return False, embed_content
 
-    return (True, None)
+    return True, None
