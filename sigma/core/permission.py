@@ -1,7 +1,7 @@
 import discord
 from time import time
 
-from config import permitted_id
+from config import permitted_id, Prefix
 
 
 def check_channel_nsfw(db, channel_id):
@@ -114,7 +114,7 @@ def check_man_chan(user, channel):
 def check_permitted(self, user, channel, server):
     if not self.perm['sfw'] and not check_channel_nsfw(self.db, channel.id):
         title = ':eggplant: Channel does not have NSFW permissions set, sorry.'
-        explanation = 'To toggle NSFW permissions in a channel use the {:s} command.'
+        explanation = 'To toggle NSFW permissions in a channel use the {:s} command.'.format(Prefix + 'nsfwpermit')
         explanation += '\nThis command is only usable by server administrators.'
         explanation += '\nIf you are the admin on your server, just type the command in the channel of your choice.'
         explanation += '\nOtherwise, ask your server\'s admin to permit a channel.'
