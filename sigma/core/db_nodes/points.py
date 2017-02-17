@@ -19,7 +19,10 @@ def add_points_node(db, server, user, points):
     if n == 0:
         db[collection].insert_one(insertdata)
     else:
-        curr_pts = target['Points']
+        if 'Points' in target:
+            curr_pts = target['Points']
+        else:
+            curr_pts = 0
         add_pts = abs(points)
         new_pts = curr_pts + add_pts
         updatetarget = {"UserID": user.id, "ServerID": server.id}
@@ -49,7 +52,10 @@ def take_points_node(db, server, user, points):
     if n == 0:
         db[collection].insert_one(insertdata)
     else:
-        curr_pts = target['Points']
+        if 'Points' in target:
+            curr_pts = target['Points']
+        else:
+            curr_pts = 0
         rem_pts = abs(points)
         new_pts = curr_pts - rem_pts
         updatetarget = {"UserID": user.id, "ServerID": server.id}
@@ -74,8 +80,11 @@ def get_points_node(db, server, user):
     if n == 0:
         return 0
     else:
-        points = target['XP']
-        return points
+        if 'Points' in target:
+            curr_pts = target['Points']
+        else:
+            curr_pts = 0
+        return curr_pts
 
 
 # Activity Points Nodes
@@ -101,7 +110,10 @@ def add_act_points_node(db, server, user, points):
     if n == 0:
         db[collection].insert_one(insertdata)
     else:
-        curr_pts = target['XP']
+        if 'XP' in target:
+            curr_pts = target['XP']
+        else:
+            curr_pts = 0
         add_pts = abs(points)
         new_pts = curr_pts + add_pts
         level = int(new_pts / 1690)
@@ -134,7 +146,10 @@ def take_act_points_node(db, server, user, points):
     if n == 0:
         db[collection].insert_one(insertdata)
     else:
-        curr_pts = target['XP']
+        if 'XP' in target:
+            curr_pts = target['XP']
+        else:
+            curr_pts = 0
         rem_pts = abs(points)
         new_pts = curr_pts - rem_pts
         level = int(new_pts / 1690)
@@ -161,5 +176,8 @@ def get_act_points_node(db, server, user):
     if n == 0:
         return 0
     else:
-        points = target['XP']
-        return points
+        if 'XP' in target:
+            curr_pts = target['XP']
+        else:
+            curr_pts = 0
+        return curr_pts
