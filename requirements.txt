@@ -8,6 +8,7 @@ nhentai.py
 pytz
 hurry.filesize
 Shosetsu
+git+https://github.com/mrgigabyte/cleverbot.py.git
 imgurpython
 praw
 cleverbot
