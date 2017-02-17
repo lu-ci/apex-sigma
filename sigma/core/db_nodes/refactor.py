@@ -2,7 +2,7 @@ def refactor_users_node(db, usrgen):
     db['UserList'].drop()
     for user in usrgen:
         if user.avatar_url != '':
-            user_ava = '.'.join(user.avatar_url.split('.')[:-1]) + '.png'
+            user_ava = '.'.join(user.avatar_url.split('.')[:-1])
         else:
             user_ava = user.default_avatar_url
         data = {
