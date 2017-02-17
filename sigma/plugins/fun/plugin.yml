@@ -178,7 +178,7 @@ events:
   - name:    cleverbot_control
     type:    mention
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     pmable:  false
     usage:   "@bot message"
