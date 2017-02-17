@@ -18,7 +18,7 @@ def update_server_details_node(db, server):
 def update_user_details_node(db, user):
     exists = db['UserList'].find_one({'UserID': user.id})
     if user.avatar_url != '':
-        user_ava = '.'.join(user.avatar_url.split('.')[:-1]) + '.png'
+        user_ava = '.'.join(user.avatar_url.split('.')[:-1])
     else:
         user_ava = user.default_avatar_url
     data = {
