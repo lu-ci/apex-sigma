@@ -101,7 +101,7 @@ def add_act_points_node(db, server, user, points):
     if n == 0:
         db[collection].insert_one(insertdata)
     else:
-        curr_pts = target['Points']
+        curr_pts = target['XP']
         add_pts = abs(points)
         new_pts = curr_pts + add_pts
         level = int(new_pts / 1690)
@@ -134,7 +134,7 @@ def take_act_points_node(db, server, user, points):
     if n == 0:
         db[collection].insert_one(insertdata)
     else:
-        curr_pts = target['Points']
+        curr_pts = target['XP']
         rem_pts = abs(points)
         new_pts = curr_pts - rem_pts
         level = int(new_pts / 1690)
@@ -161,5 +161,5 @@ def get_act_points_node(db, server, user):
     if n == 0:
         return 0
     else:
-        points = target['Points']
+        points = target['XP']
         return points
