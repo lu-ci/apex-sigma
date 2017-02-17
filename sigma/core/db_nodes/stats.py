@@ -12,7 +12,10 @@ def add_stats_node(db, statname):
         'Role': 'Stats'
     }
     find_res = db[collection].find_one(find_data)
-    count = find_res[statname] or 0
+    if statname in find_res:
+        count = find_res[statname]
+    else:
+        count = 0
     new_count = count + 1
     updatetarget = {"Role": 'Stats'}
     updatedata = {"$set": {statname: new_count}}
