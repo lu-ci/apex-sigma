@@ -23,3 +23,12 @@ events:
     sfw:     true
     description:
       Assigns the given role (if available) to the user that wrote it in the Final Order Roles channel.
+
+  - name:    missing_settings_check
+    type:    ready
+    global:  true
+    enabled: true
+    pmable:  true
+    sfw:     true
+    description:
+      Checks the database for missing settings.
