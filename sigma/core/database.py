@@ -8,7 +8,7 @@ from .db_nodes.points import add_act_points_node, get_act_points_node, take_act_
 from .db_nodes.refactor import refactor_servers_node, refactor_users_node
 from .db_nodes.details import update_server_details_node, update_user_details_node
 from .db_nodes.settings import set_settings_node, add_new_server_settings_node
-from .db_nodes.settings import get_settings_node, init_server_settings_node
+from .db_nodes.settings import get_settings_node, init_server_settings_node, check_for_missing_settings_node
 
 
 class DatabaseError(Exception):
@@ -115,3 +115,7 @@ class Database(object):
 
     def set_settings(self, server_id, setting, setting_variable):
         set_settings_node(self.db, server_id, setting, setting_variable)
+
+    def check_for_missing_settings(self, server):
+        check_for_missing_settings_node(self.db, server)
+
