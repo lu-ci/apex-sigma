@@ -16,7 +16,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 1500 @person"
     description:
       Awards the inputted amount of points to the mentioned person.
-      Server Administrator Only.
+      Bot Owner Only.
 
   - name: takepts
     alts:
@@ -28,7 +28,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 1500 @person"
     description:
       Takes away the inputted amount of points from the mentioned person.
-      Server Administrator Only.
+      Bot Owner Only.
 
   - name: announce
     alts:
@@ -39,8 +39,20 @@ commands:
     admin:   true
     usage:   "{pfx:s}{cmd:s} Hello World!"
     description:
-      It will post your inputed message to the default text channel of every server the bot is connected to.
+      It will post your inputed message to the set text channel of every server the bot is connected to where announcements are turned on.
       Bot Owner Only.
+
+  - name: announcementchannel
+    alts:
+      - "annch"
+    global:  true
+    enabled: true
+    sfw:     true
+    admin:   true
+    usage:   "{pfx:s}{cmd:s} #channel_name"
+    description:
+      Changes the channel that the bot will post announcements to. If no channel is entered announcements will be turned off.
+      Server Administrator Only.
 
   - name: leave
     global:  true
