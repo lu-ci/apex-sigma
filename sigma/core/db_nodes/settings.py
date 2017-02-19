@@ -25,7 +25,9 @@ def generate_defaults(server):
         'SelfRoles': [],
         'LoggingEnabled': False,
         'WarnedUsers': {},
-        'WarnLimit': 2
+        'WarnLimit': 2,
+        'Announcement': False,
+        'AnnouncementChannel': server.default_channel.id
     }
     return default_settings
 
