@@ -12,7 +12,10 @@ async def mtg(cmd, message, args):
     if len(cards['cards']) > 1:
         for entry in cards['cards']:
             n += 1
-            list_text += '\n#' + str(n) + ' ' + entry['name']
+            if 'imageUrl' in entry:
+                list_text += '\n#' + str(n) + ' ' + entry['name']
+            else:
+                pass
         try:
             selector = await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
                                 len(cards)) + ')`')
