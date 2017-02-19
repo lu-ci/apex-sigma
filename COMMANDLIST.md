@@ -24,7 +24,8 @@ Command |  Description |  Usage
 `>>bnsatt`  |  Provides highly detailed Attack Statistics for the inputed Blade and Soul Character.  |  `>>bnsatt EU Lucia Konohana`
 `>>bnsdef`  |  Provides highly detailed Defense Statistics for the inputed Blade and Soul Character.  |  `>>bnsdef EU Lucia Konohana`
 `>>bnsstats`  |  The Blade and Soul module provides in-depth character information for the inputed Character.  |  `>>bnsstats EU Lucia Konohana`
-`>>csgo`  |  Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!)  |  `>>csgo thealeksaradovic`
+`>>bhranking`  |  Grabs the current top players on the Brawlhalla leaderboards. You can append a region to the command to get the leaderboard for that region. If no region is specified, it will use the global ranking page.  |  `>>bhranking EU`
+`>>csgo`  |  Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!) The steam profile you are trying to pull stats for must not be private!  |  `>>csgo thealeksaradovic`
 `>>hearthstone`  |  Hearthstone card lookup. Input the card name after the command then type the number appropriate to the card you were looking for.  |  `>>hearthstone Murloc Raider`
 `>>paladins`  |  Shows statistics about the inputted Paladins username.  |  `>>paladins AXAz0r`
 `>>smite`  |  Shows statistics about the inputted Smite username.  |  `>>smite AXAz0r`

@@ -1,5 +1,8 @@
 import discord
 from config import Prefix, MainServerURL
+from sigma.core.command_alts import load_alternate_command_names
+
+alts = load_alternate_command_names()
 
 
 async def help(cmd, message, args):
@@ -22,10 +25,13 @@ async def help(cmd, message, args):
         help_out.set_image(url='http://i.imgur.com/TRSdGni.png')
         await cmd.bot.send_message(message.channel, None, embed=help_out)
     else:
+        qry = args[0].lower()
+        if qry in alts:
+            qry = alts[qry]
         try:
-            help_out = discord.Embed(type='rich', title=':book: ' + args[0].upper() + ' Help', color=0x1B6F5F)
+            help_out = discord.Embed(type='rich', title=':book: ' + qry.upper() + ' Help', color=0x1B6F5F)
             help_out.add_field(name='Command Usage Example and Information',
-                               value=cmd.bot.plugin_manager.commands[args[0].lower()].help())
+                               value=cmd.bot.plugin_manager.commands[qry.lower()].help())
             await cmd.bot.send_message(message.channel, None, embed=help_out)
         except:
             out_content = discord.Embed(type='rich', color=0x696969,

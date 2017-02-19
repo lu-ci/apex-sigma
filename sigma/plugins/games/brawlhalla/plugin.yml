@@ -1,0 +1,21 @@
+name: Brawlhalla
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    bhranking
+    alts:
+      - "bhlb"
+      - "brawlhallaleaderboad"
+      - "brawlhallaranking"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} EU"
+    description:
+      Grabs the current top players on the Brawlhalla leaderboards.
+      You can append a region to the command to get the leaderboard for that region.
+      If no region is specified, it will use the global ranking page.
