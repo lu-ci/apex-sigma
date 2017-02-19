@@ -5,8 +5,6 @@ from config import Prefix
 import discord
 
 async def announcementchannel(cmd, message, args):
-	#TODO: channels.permissions_for() <- check if channel can be written to
-	embed=discord.Embed(title='nix is passiert :no_mouth:', color=0xDB0000)
 	if not check_admin(message.author, message.channel):
 		#user is no server admin
 		embed = discord.Embed(title=':no_entry: Unpermitted. Server Admin Only.', color=0xDB0000)
