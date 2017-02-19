@@ -26,8 +26,8 @@ def generate_defaults(server):
         'LoggingEnabled': False,
         'WarnedUsers': {},
         'WarnLimit': 2,
-		'Announcement': False,
-		'AnnouncementChannel': server.default_channel.id
+        'Announcement': False,
+        'AnnouncementChannel': server.default_channel.id
     }
     return default_settings
 
