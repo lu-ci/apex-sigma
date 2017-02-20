@@ -10,7 +10,7 @@ commands:
     alts:
       - "ow"
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     usage:   "{pfx:s}{cmd:s} EU Aurora#22978"
     description:
