@@ -5,13 +5,7 @@ from .music_controller import get_player, get_queue, del_from_queue, make_yt_pla
 from config import Prefix
 
 
-initializing = []
-
-
 async def play(cmd, message, args):
-    if message.server.id in initializing:
-        cmd.log.warning('Denied Play Command Due To Initialization')
-        return
     if args:
         embed = discord.Embed(color=0xDB0000, title=':exclamation: Use ' + Prefix + 'queue to add stuff.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
@@ -33,7 +27,6 @@ async def play(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     player = get_player(message.server)
-    initializing.append(message.server.id)
     if player:
         if player.is_playing():
             embed = discord.Embed(
@@ -55,7 +48,6 @@ async def play(cmd, message, args):
         if def_vol:
             player.volume = def_vol
         player.start()
-        initializing.remove(message.server.id)
         cmd.db.add_stats('MusicCount')
         embed = discord.Embed(title='ℹ Now Playing From ' + item_type, color=0x0099FF)
         embed.add_field(name='Title', value=player.title)
@@ -65,9 +57,7 @@ async def play(cmd, message, args):
         while not player.is_done():
             await asyncio.sleep(2)
         player.stop()
-        initializing.append(message.server.id)
         del_player(message.server)
         del_from_queue(message.server, 0)
-    initializing.remove(message.server.id)
     purge_queue(message.server)
     await voice_instance.disconnect()
