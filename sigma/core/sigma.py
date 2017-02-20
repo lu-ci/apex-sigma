@@ -95,8 +95,9 @@ class Sigma(discord.Client):
         return self.plugin_manager.plugins
 
     async def on_ready(self):
-        self.log.info('Checking API Keys...')
+        self.log.info('Connecting To Database')
         self.db.init_stats_table()
+        self.log.info('Making Cache')
         self.create_cache()
         self.log.info('-----------------------------------')
         stats(self, self.log)
@@ -122,7 +123,7 @@ class Sigma(discord.Client):
         global bot_ready
         bot_ready = True
         if os.getenv('DEV_BUILD_ENV'):
-            self.log.info('Testing Build Environment Detected')
+            self.log.info('Testing Build Environment Detected\nExiting...')
             exit()
 
     async def on_message(self, message):
@@ -145,42 +146,37 @@ class Sigma(discord.Client):
                     cmd = self.alts[cmd]
                 try:
                     if check_black(self.db, message):
-                        self.log.info('Access Denied Due To User or Channel Being Found In A Blacklist.')
+                        self.log.warning('BLACK: Access Denied.')
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
-                    entitiy = 'User'
-                    if message.author.bot:
-                        entitiy = 'Bot'
                     if message.server:
                         if args:
-                            msg = 'CMD: ' + entitiy + ' %s [%s] on server %s [%s], used the {:s} command on #%s [%s] with [%s] arguments'
-                            self.log.info(msg.format(cmd), message.author, message.author.id, message.server.name,
-                                          message.server.id, message.channel, message.channel.id,
-                                          ' '.join(args))
+                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
+                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
+                                                     message.author.id, message.server.name, message.server.id,
+                                                     '#' + message.channel.name, message.channel.id, ' '.join(args)))
                         else:
-                            msg = 'CMD: ' + entitiy + ' %s [%s] on server %s [%s], used the {:s} command on #%s [%s]'
-                            self.log.info(msg.format(cmd), message.author, message.author.id, message.server.name,
-                                          message.server.id, message.channel, message.channel.id)
+                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}]'
+                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
+                                                     message.author.id, message.server.name, message.server.id,
+                                                     '#' + message.channel.name, message.channel.id))
                     else:
                         if args:
-                            msg = 'CMD: ' + entitiy + ' %s [%s], used the {:s} command in a private message channel with [%s] arguments'
-                            self.log.info(msg.format(cmd), message.author, message.author.id, ' '.join(args))
+                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | PRIVATE MESSAGE | ARGS: {:s}'
+                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
+                                                     message.author.id, ' '.join(args)))
                         else:
-                            msg = 'CMD: ' + entitiy + ' %s [%s], used the {:s} command in a private message channel'
-                            self.log.info(msg.format(cmd), message.author, message.author.id)
+                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | PRIVATE MESSAGE'
+                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
+                                                     message.author.id))
                 except KeyError:
                     # no such command
                     pass
 
     async def on_member_join(self, member):
         if bot_ready:
-            entitiy = 'User'
-            if member.bot:
-                entitiy = 'Bot'
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'JOIN: ' + entitiy + ' %s#%s [%s] has joined %s [%s]'
-            self.log.info(msg, member.name, member.discriminator, member.id, member.server.name, member.server.id)
             for ev_name, event in self.plugin_manager.events['member_join'].items():
                 try:
                     await event.call_sp(member)
@@ -188,18 +184,12 @@ class Sigma(discord.Client):
                     self.log.error(e)
 
     async def on_member_remove(self, member):
-        if bot_ready:
-            entitiy = 'User'
-            if member.bot:
-                entitiy = 'Bot'
-            self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'LEAVE: ' + entitiy + ' %s#%s [%s] has left %s [%s]'
-            self.log.info(msg, member.name, member.discriminator, member.id, member.server.name, member.server.id)
-            for ev_name, event in self.plugin_manager.events['member_leave'].items():
-                try:
-                    await event.call_sp(member)
-                except Exception as e:
-                    self.log.error(e)
+        self.db.update_population_stats(self.servers, self.get_all_members())
+        for ev_name, event in self.plugin_manager.events['member_leave'].items():
+            try:
+                await event.call_sp(member)
+            except Exception as e:
+                self.log.error(e)
 
     async def on_server_join(self, server):
         if bot_ready:
@@ -207,16 +197,16 @@ class Sigma(discord.Client):
             self.db.add_new_server_settings(server)
             self.db.update_server_details(server)
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'INVITE: Invited To %s [%s]'
-            self.log.info(msg, server.name, server.id)
+            msg = 'INV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
+            self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
             self.db.init_server_settings(self.servers)
 
     async def on_server_remove(self, server):
         if bot_ready:
             await self.update_discordlist()
             self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'REMOVE: Removed From %s [%s]'
-            self.log.info(msg, server.name, server.id)
+            msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
+            self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
 
     async def on_member_update(self, before, after):
         if bot_ready:
