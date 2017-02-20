@@ -6,6 +6,7 @@ Pillow
 lxml
 nhentai.py
 pytz
+colorlog
 hurry.filesize
 Shosetsu
 imgurpython
