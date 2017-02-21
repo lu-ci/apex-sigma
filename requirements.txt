@@ -19,7 +19,6 @@ wikipedia
 humanfriendly
 blinker
 nose
-psutil
 cssselect
 python-twitch
 wolframalpha
