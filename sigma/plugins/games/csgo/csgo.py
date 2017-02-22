@@ -18,63 +18,44 @@ async def csgo(cmd, message, args):
         avatar_url = str(summary['avatarfull'])
         v = 'value'
         n = 'name'
-        total_kills = 0
-        total_deaths = 0
-        total_time_played = 0
-        total_kills_knife = 0
-        total_kills_headshot = 0
-        total_shots_fired = 0
-        total_shots_hit = 0
-        total_rounds_played = 0
-        total_mvps = 0
-        total_matches_won = 0
-        total_matches_played = 0
+        stat_bases = {
+            "total_kills": 0,
+            "total_deaths": 0,
+            "total_time_played": 0,
+            "total_kills_knife": 0,
+            "total_kills_headshot": 0,
+            "total_shots_fired": 0,
+            "total_shots_hit": 0,
+            "total_rounds_played": 0,
+            "total_mvps": 0,
+            "total_matches_won": 0,
+            "total_matches_played": 0}
 
         for stat in stats:
             nam = stat[n]
             val = stat[v]
-            if nam == 'total_kills':
-                total_kills = val
-            elif nam == 'total_deaths':
-                total_deaths = val
-            elif nam == 'total_time_played':
-                total_time_played = val
-            elif nam == 'total_kills_knife':
-                total_kills_knife = val
-            elif nam == 'total_kills_headshot':
-                total_kills_headshot = val
-            elif nam == 'total_shots_fired':
-                total_shots_fired = val
-            elif nam == 'total_shots_hit':
-                total_shots_hit = val
-            elif nam == 'total_rounds_played':
-                total_rounds_played = val
-            elif nam == 'total_mvps':
-                total_mvps = val
-            elif nam == 'total_matches_won':
-                total_matches_won = val
-            elif nam == 'total_matches_played':
-                total_matches_played = val
+            if nam in stat_bases:
+                stat_bases[nam] = val
 
-        kdr = total_kills / total_deaths
-        accuracy = total_shots_hit / total_shots_fired
-        total_matches_lost = total_matches_played - total_matches_won
-        win_percent = total_matches_won / total_matches_played
+        kdr = stat_bases['total_kills'] / stat_bases['total_deaths']
+        accuracy = stat_bases['total_shots_hit'] / stat_bases['total_shots_fired']
+        total_matches_lost = stat_bases['total_matches_played'] - stat_bases['total_matches_won']
+        win_percent = stat_bases['total_matches_won'] / stat_bases['total_matches_played']
 
         data = {
-            'Playtime': str(total_time_played // 3600) + ' Hours',
-            'Kills': str(total_kills),
-            'Deaths': str(total_deaths),
+            'Playtime': str(stat_bases['total_time_played'] // 3600) + ' Hours',
+            'Kills': str(stat_bases['total_kills']),
+            'Deaths': str(stat_bases['total_deaths']),
             'Kill/Death Ratio': "{0:.2f}".format(kdr),
-            'Shots Fired': str(total_shots_fired),
-            'Shots Hit': str(total_shots_hit),
+            'Shots Fired': str(stat_bases['total_shots_fired']),
+            'Shots Hit': str(stat_bases['total_shots_hit']),
             'Accuracy': "{0:.2f}".format(accuracy * 100) + '%',
-            'Headshots': str(total_kills_headshot),
-            'Knife Kills': str(total_kills_knife),
-            'Rounds Played': str(total_rounds_played),
-            'Total MVPs': str(total_mvps),
-            'Matches Played': str(total_matches_played),
-            'Matches Won': str(total_matches_won),
+            'Headshots': str(stat_bases['total_kills_headshot']),
+            'Knife Kills': str(stat_bases['total_kills_knife']),
+            'Rounds Played': str(stat_bases['total_rounds_played']),
+            'Total MVPs': str(stat_bases['total_mvps']),
+            'Matches Played': str(stat_bases['total_matches_played']),
+            'Matches Won': str(stat_bases['total_matches_won']),
             'Matches Lost': str(total_matches_lost),
             'Win Percentage': "{0:.2f}".format(win_percent * 100) + '%'
         }
