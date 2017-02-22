@@ -5,7 +5,7 @@ def update_details(db, server=None, user=None):
     if server:
         location = 'ServerList'
         exists = db[location].find_one({'ServerID': server.id})
-        updatetarget = {'ServerID': user.id}
+        updatetarget = {'ServerID': server.id}
         data = {
             'ServerID': server.id,
             'Icon': server.icon_url,
