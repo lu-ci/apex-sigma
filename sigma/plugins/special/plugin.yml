@@ -15,15 +15,6 @@ events:
     description:
       Accepts the terms and conditions of the WaniKani Community Discord Server.
 
-  - name:    selfrole
-    type:    message
-    global:  true
-    enabled: true
-    pmable:  true
-    sfw:     true
-    description:
-      Assigns the given role (if available) to the user that wrote it in the Final Order Roles channel.
-
   - name:    missing_settings_check
     type:    ready
     global:  true
