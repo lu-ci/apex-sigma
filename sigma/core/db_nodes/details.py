@@ -1,3 +1,6 @@
+from sigma.core.utils import user_avatar
+
+
 def update_details(db, server=None, user=None):
     if server:
         location = 'ServerList'
@@ -14,10 +17,7 @@ def update_details(db, server=None, user=None):
         location = 'UserList'
         exists = db[location].find_one({'UserID': user.id})
         updatetarget = {'UserID': user.id}
-        if user.avatar_url != '':
-            user_ava = '.'.join(user.avatar_url.split('.')[:-1])
-        else:
-            user_ava = user.default_avatar_url
+        user_ava = user_avatar(user)
         data = {
             'UserID': user.id,
             'UserName': user.name,
