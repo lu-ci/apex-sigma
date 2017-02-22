@@ -10,7 +10,7 @@ commands:
     alts:
       - "rocketleague"
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Steam IconicUltimatum"
     description:
