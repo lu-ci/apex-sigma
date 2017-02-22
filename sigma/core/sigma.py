@@ -5,8 +5,7 @@ import discord
 import yaml
 import aiohttp
 
-from config import Prefix as pfx, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode, \
-    permitted_id
+from config import Prefix as pfx, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
 
 from .plugman import PluginManager
 from .database import Database
