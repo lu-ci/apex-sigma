@@ -199,6 +199,7 @@ Command |  Description |  Usage
 `>>serverinfo`  |  Shows information about the server the command was used on.  |  `>>serverinfo`
 `>>sid`  |  Shows Server ID of the server the command was used on.  |  `>>sid`
 `>>stats`  |  Shows the statistics of Sigma.  |  `>>stats`
+`>>translate`  |  Translates the given sentence from and to the inputted languages.  |  `>>translate EN>JA Give me the freaking cake!`
 `>>uid`  |  Shows the User ID of the mentioned user. If no user is mentioned, it will show your ID instead.  |  `>>uid @person`
 `>>userinfo`  |  Shows information about the mentioned user. If no user is mentioned, it will show information about you, instead.  |  `>>userinfo @person`
 `>>wa`  |  Makes a request to Wolfram Alpha and exports the result.  |  `>>wa 69+42`
