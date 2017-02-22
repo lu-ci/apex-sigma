@@ -1,10 +1,10 @@
+from sigma.core.utils import user_avatar
+
+
 def refactor_users_node(db, usrgen):
     db['UserList'].drop()
     for user in usrgen:
-        if user.avatar_url != '':
-            user_ava = '.'.join(user.avatar_url.split('.')[:-1])
-        else:
-            user_ava = user.default_avatar_url
+        user_ava = user_avatar(user)
         data = {
             'UserID': user.id,
             'UserName': user.name,

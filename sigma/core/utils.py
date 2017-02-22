@@ -33,3 +33,11 @@ def split_list(alist, wanted_parts=1):
 
     return [alist[i * length // wanted_parts: (i + 1) * length // wanted_parts]
             for i in range(wanted_parts)]
+
+
+def user_avatar(user):
+    if user.avatar_url != '':
+        user_ava = '.'.join(user.avatar_url.split('.')[:-1])
+    else:
+        user_ava = user.default_avatar_url
+    return user_ava
