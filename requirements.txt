@@ -4,6 +4,7 @@ wget
 requests
 Pillow
 lxml
+translate
 nhentai.py
 pytz
 colorlog

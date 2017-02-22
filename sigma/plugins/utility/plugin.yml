@@ -206,6 +206,17 @@ commands:
     description:
       Makes a request to Wolfram Alpha and exports the result.
 
+  - name: translate
+    alts:
+      - "trans"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} EN>JA Give me the freaking cake!"
+    description:
+      Translates the given sentence from and to the inputted languages.
+      If you do not know your language code, search Google for ISO 639.1 Laguage Codes.
+
   - name: whoplays
     global:  true
     enabled: true
