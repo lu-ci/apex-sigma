@@ -5,7 +5,7 @@ from .db_nodes.cooldown import get_cooldown_node, on_cooldown_node, set_cooldown
 from .db_nodes.stats import add_stats_node, update_population_stats_node, init_stats_table_node
 from .db_nodes.points import point_manipulation, point_grabber
 from .db_nodes.refactor import refactor_servers_node, refactor_users_node
-from .db_nodes.details import update_server_details_node, update_user_details_node
+from .db_nodes.details import update_details
 from .db_nodes.settings import set_settings_node, add_new_server_settings_node
 from .db_nodes.settings import get_settings_node, init_server_settings_node, check_for_missing_settings_node
 
@@ -98,10 +98,10 @@ class Database(object):
         refactor_servers_node(self.db, servers)
 
     def update_server_details(self, server):
-        update_server_details_node(self.db, server)
+        update_details(self.db, server=server)
 
     def update_user_details(self, user):
-        update_user_details_node(self.db, user)
+        update_details(self.db, user=user)
 
     def add_new_server_settings(self, server):
         add_new_server_settings_node(self.db, server)
