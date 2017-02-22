@@ -3,8 +3,7 @@ import pymongo
 from .logger import create_logger
 from .db_nodes.cooldown import get_cooldown_node, on_cooldown_node, set_cooldown_node
 from .db_nodes.stats import add_stats_node, update_population_stats_node, init_stats_table_node
-from .db_nodes.points import add_points_node, get_points_node, take_points_node
-from .db_nodes.points import add_act_points_node, get_act_points_node, take_act_points_node
+from .db_nodes.points import point_manipulation, point_grabber
 from .db_nodes.refactor import refactor_servers_node, refactor_users_node
 from .db_nodes.details import update_server_details_node, update_user_details_node
 from .db_nodes.settings import set_settings_node, add_new_server_settings_node
@@ -75,22 +74,22 @@ class Database(object):
         return get_cooldown_node(self.db, sid, uid, command, cooldown)
 
     def add_points(self, server, user, points):
-        add_points_node(self.db, server, user, points)
+        point_manipulation(self.db, server, user, points, 'Points', True)
 
     def take_points(self, server, user, points):
-        take_points_node(self.db, server, user, points)
+        point_manipulation(self.db, server, user, points, 'Points', False)
 
     def get_points(self, server, user):
-        return get_points_node(self.db, server, user)
+        return point_grabber(self.db, server, user, 'Points')
 
     def add_act_points(self, server, user, points):
-        add_act_points_node(self.db, server, user, points)
+        point_manipulation(self.db, server, user, points, 'XP', True)
 
     def take_act_points(self, server, user, points):
-        take_act_points_node(self.db, server, user, points)
+        point_manipulation(self.db, server, user, points, 'XP', False)
 
     def get_act_points(self, server, user):
-        return get_act_points_node(self.db, server, user)
+        return point_grabber(self.db, server, user, 'XP')
 
     def refactor_users(self, usrgen):
         refactor_users_node(self.db, usrgen)
