@@ -27,8 +27,8 @@ def stats(bot, log=None):
     version_text += v_full + ' Codename ' + codename
     tmp.append(multi('Logged In As: \"' + bot.user.name + '\"', log))
     tmp.append(multi('Bot User ID: ' + bot.user.id, log))
-    tmp.append(multi('Running Python version: ' + sys.version.split(' ')[0], log))
-    tmp.append(multi('Running discord.py version: ' + discord.__version__, log))
+    tmp.append(multi('Python version: ' + sys.version.split(' ')[0], log))
+    tmp.append(multi('discord.py version: ' + discord.__version__, log))
     tmp.append(multi('Authors: {:s}'.format(authors), log))
     tmp.append(multi('Contributors: {:s}'.format(contributors), log))
     tmp.append(multi('Donors: ' + str(donor_count), log))
@@ -37,7 +37,6 @@ def stats(bot, log=None):
     tmp.append(multi('Connected to [ {:d} ] servers'.format(len(bot.servers)), log))
     tmp.append(multi('Serving [ {:d} ] users'.format(len(list(bot.get_all_members()))), log))
     tmp.append(multi('Permitted IDs: {:s}'.format(permed_ids), log))
-
     return tmp
 
 
