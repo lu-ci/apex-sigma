@@ -15,7 +15,6 @@ Command |  Description |  Usage
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
-`>>sbo`  |  For playing soundboard items. No list for possible choices exists yet, but soon. Take a look at our github to find all the soundfiles.  |  `>>sbo ow/dva/nerf this`
 `>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 ###GAMES
