@@ -138,7 +138,6 @@ Command |  Description |  Usage
 ###SEARCHES
 Command |  Description |  Usage
 --------|--------------|-------
-`>>deezer`  |  List the songs currently in the user's Flow queue. The profile ID can be found by opening your profile page on Deezer.  |  `>>deezer 938108141`
 `>>music`  |  Searches for music tracks by the given name.  |  `>>music Lose Yourself`
 `>>recipe`  |  Searches the internet for a recipe you desire. We'll try to provide as much info as possible. Just don't burn your food and stuff.  |  `>>recipe Chicken in Curry`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
@@ -147,8 +146,6 @@ Command |  Description |  Usage
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`
 `>>imdb`  |  Searches the Internet Movie Database for a Title of your choice.  |  `>>imdb A Clockwork Orange`
 `>>imgur`  |  Searches through Imgur posts for the given title. Do remember that it is not Image-Only  |  `>>imgur Game Grumps`
-`>>itad`  |  Lists the latest deals from IsThereAnyDeal.  |  `>>itad`
-`>>lastfm`  |  List the users top tracks from LastFM.  |  `>>lastfm axaz0r`
 `>>anime`  |  Searches MyAnimeList for anime by given name. Generates a really cool image with the details!  |  `>>anime Terror in Resonance`
 `>>manga`  |  Searches MyAnimeList for manga by given name. Generates a really cool image with the details!  |  `>>manga Silent Voice`
 `>>reddit`  |  Get a random post from the inputed subreddit.  |  `>>reddit minecraft`
