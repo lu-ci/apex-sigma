@@ -108,7 +108,6 @@ Command |  Description |  Usage
 `>>danbooru`  |  Searches DanBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>danbooru red_head`
 `>>e621`  |  Searches e621 for the given tags. If not tag is given, it will display a random image.  |  `>>e621 knot_safe`
 `>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
-`>>hentai`  |  Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified, it gives three random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
 `>>keyvis`  |  Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.  |  `>>keyvis rewrite harvest festa`
 `>>konachan`  |  Searches Konachan for the given tags. If not tag is given, it will display a random image.  |  `>>konachan kawaii`
 `>>nhentai`  |  Searches nHentai for doujinshi for the inputed name. Displays the results, cover and tags.  |  `>>nhentai Oreimo`
