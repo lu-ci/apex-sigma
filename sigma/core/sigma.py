@@ -5,7 +5,7 @@ import discord
 import yaml
 import aiohttp
 
-from config import Prefix as pfx, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
+from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
 
 from .plugman import PluginManager
 from .database import Database
@@ -38,7 +38,7 @@ bot_ready = False
 class Sigma(discord.Client):
     def __init__(self):
         super().__init__()
-        self.prefix = pfx
+        self.prefix = Prefix
         self.alts = load_alternate_command_names()
         self.init_logger()
         self.init_databases()
@@ -139,8 +139,8 @@ class Sigma(discord.Client):
             for ev_name, event in self.plugin_manager.events['message'].items():
                 await event.call(message, args)
 
-            if message.content.startswith(pfx):
-                cmd = args.pop(0).lstrip(pfx).lower()
+            if message.content.startswith(Prefix):
+                cmd = args.pop(0).lstrip(Prefix).lower()
                 if cmd in self.alts:
                     cmd = self.alts[cmd]
                 try:
