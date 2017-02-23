@@ -12,7 +12,7 @@ def stats(bot, log=None):
     contributors = userlist(bot.contributors)
     donor_count = len(bot.donors)
     with open('VERSION') as version_file:
-        content = yaml.load(version_file)
+        content = yaml.safe_load(version_file)
         version = content['version']
         build_date = datetime.datetime.fromtimestamp(content['build_date']).strftime('%B %d, %Y')
         v_major = version['major']

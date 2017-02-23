@@ -83,7 +83,8 @@ class Sigma(discord.Client):
     def init_plugins(self):
         self.plugin_manager = PluginManager(self)
 
-    def create_cache(self):
+    @classmethod
+    def create_cache(cls):
         if not os.path.exists('cache/'):
             os.makedirs('cache/')
 

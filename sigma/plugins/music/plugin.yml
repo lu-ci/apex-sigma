@@ -128,9 +128,9 @@ commands:
     description:
       Sets the volume of the current music player.
 
-  - name:    next
+  - name:    skip
     alts:
-      - "skip"
+      - "next"
     global:  true
     enabled: true
     sfw:     true

@@ -65,7 +65,8 @@ class Callable(object):
 
         return global_resource(what)
 
-    def help(self):
+    @classmethod
+    def help(cls):
         return ''
 
     async def call(self, message, *args):

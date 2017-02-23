@@ -1,7 +1,7 @@
 import discord
 from .music_controller import get_player, get_queue, del_from_queue
 
-async def next(cmd, message, args):
+async def skip(cmd, message, args):
     if not message.author.voice_channel:
         embed = discord.Embed(
             title=':warning: I don\'t see you in a voice channel', color=0xFF9900)

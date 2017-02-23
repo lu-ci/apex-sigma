@@ -40,7 +40,9 @@ commands:
     description:
       Shows the statistics of Sigma.
 
-  - name:    hash
+  - name:    hashing
+    alts:
+      - 'hash'
     global:  true
     enabled: true
     pmable:  true

@@ -42,7 +42,6 @@ async def overwatch(cmd, message, args):
                 rankimg_res = rankimg.resize((64, 64), Image.ANTIALIAS)
             except:
                 rankimg_res = None
-                pass
             base.paste(background_res, (28, 28))
             base.paste(overlay, (0, 0), overlay)
             base.paste(foreground_res, (0, 0), foreground_res)
@@ -103,9 +102,10 @@ async def overwatch(cmd, message, args):
                 await cmd.bot.send_message(message.channel, profile_json['error'])
             except:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
-                await cmd.bot.send_message(message.channel, 
-                                               'Something went wrong.\nThe servers are most likely overloaded, please try again.')
+                await cmd.bot.send_message(message.channel,
+                                           'Something went wrong.\nThe servers are most likely overloaded, please try again.')
                 # else:
                 # print('CMD [' + cmd_name + '] > ' + initiator_data)
     else:
-        await cmd.bot.send_message(message.channel, 'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')
+        await cmd.bot.send_message(message.channel,
+                                   'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')

@@ -32,3 +32,4 @@ youtube_dl
 PyMarkovChain
 codeclimate-test-reporter
 coverage
+defusedxml
