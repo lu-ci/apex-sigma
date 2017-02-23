@@ -15,7 +15,6 @@ Command |  Description |  Usage
 `>>quote`  |  Gives a random quote.  |  `>>quote`
 `>>rip`  |  Generates a tombstone with the mentioned users avatar.  |  `>>rip @person`
 `>>ronswanson`  |  Outputs a random Ron Swanson quote.  |  `>>ronswanson`
-`>>sbo`  |  For playing soundboard items. No list for possible choices exists yet, but soon. Take a look at our github to find all the soundfiles.  |  `>>sbo ow/dva/nerf this`
 `>>xkcd`  |  Outputs a random xkcd comic.  |  `>>xkcd`
 `>>yomomma`  |  Provides a random Yo Momma insult.  |  `>>yomomma`
 ###GAMES
@@ -98,7 +97,6 @@ Command |  Description |  Usage
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
-`>>express`  |  It's for those times you want to express a feeling in Japanese and don't know how to you go [0-100] with the scale of your feelings and it gives you the perfect word for the situation.  |  `>>express 51`
 `>>jisho`  |  Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.  |  `>>jisho kawaii`
 `>>wanikani`  |  Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the wksave command. Use help on it to get more info.  |  `>>wanikani breadstickninja`
 `>>wksave`  |  Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!  |  `>>wksave key 12345678901234567890123456789012`
@@ -110,7 +108,6 @@ Command |  Description |  Usage
 `>>danbooru`  |  Searches DanBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>danbooru red_head`
 `>>e621`  |  Searches e621 for the given tags. If not tag is given, it will display a random image.  |  `>>e621 knot_safe`
 `>>gelbooru`  |  Searches GelBooru for selected tags, if no tags are specified, it gives a random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>gelbooru vella mabinogi_heroes`
-`>>hentai`  |  Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified, it gives three random image. If the wanted tag contains spaces type it with an underscore instead as spaces are used to separate multiple tags.  |  `>>hentai deez_nuts`
 `>>keyvis`  |  Provides a random CG from the wanted Key Visual Arts Visual Novel, if no VN is inputed, it will select a random one.  |  `>>keyvis rewrite harvest festa`
 `>>konachan`  |  Searches Konachan for the given tags. If not tag is given, it will display a random image.  |  `>>konachan kawaii`
 `>>nhentai`  |  Searches nHentai for doujinshi for the inputed name. Displays the results, cover and tags.  |  `>>nhentai Oreimo`
@@ -141,7 +138,6 @@ Command |  Description |  Usage
 ###SEARCHES
 Command |  Description |  Usage
 --------|--------------|-------
-`>>deezer`  |  List the songs currently in the user's Flow queue. The profile ID can be found by opening your profile page on Deezer.  |  `>>deezer 938108141`
 `>>music`  |  Searches for music tracks by the given name.  |  `>>music Lose Yourself`
 `>>recipe`  |  Searches the internet for a recipe you desire. We'll try to provide as much info as possible. Just don't burn your food and stuff.  |  `>>recipe Chicken in Curry`
 `>>google`  |  Searches Google for your input. Displays the first result.  |  `>>google Aurora Project`
@@ -150,8 +146,6 @@ Command |  Description |  Usage
 `>>gravatar`  |  Shows the Gravatar avatar associated with the inpute email. If the email is not found in the Gravatar database, it will return the default avatar.  |  `>>gravatar admin@auroraproject.xyz`
 `>>imdb`  |  Searches the Internet Movie Database for a Title of your choice.  |  `>>imdb A Clockwork Orange`
 `>>imgur`  |  Searches through Imgur posts for the given title. Do remember that it is not Image-Only  |  `>>imgur Game Grumps`
-`>>itad`  |  Lists the latest deals from IsThereAnyDeal.  |  `>>itad`
-`>>lastfm`  |  List the users top tracks from LastFM.  |  `>>lastfm axaz0r`
 `>>anime`  |  Searches MyAnimeList for anime by given name. Generates a really cool image with the details!  |  `>>anime Terror in Resonance`
 `>>manga`  |  Searches MyAnimeList for manga by given name. Generates a really cool image with the details!  |  `>>manga Silent Voice`
 `>>reddit`  |  Get a random post from the inputed subreddit.  |  `>>reddit minecraft`

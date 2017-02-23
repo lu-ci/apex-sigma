@@ -61,16 +61,6 @@ commands:
       it gives a random image. If the wanted tag contains spaces type it
       with an underscore instead as spaces are used to separate multiple tags.
 
-  - name:    hentai
-    global:  true
-    enabled: false
-    sfw:     false
-    usage:   "{pfx:s}{cmd:s} deez_nuts"
-    description:
-      Searches Gelbooru and Danbooru and Rule34 for selected tags, if no tags are specified,
-      it gives three random image. If the wanted tag contains spaces type it
-      with an underscore instead as spaces are used to separate multiple tags.
-
   - name:    e621
     global:  true
     enabled: true

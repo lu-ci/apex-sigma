@@ -14,19 +14,6 @@ commands:
     description:
       Cringe!
 
-  - name:    sbo
-    alts:
-      - "sound"
-      - "soundboard"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} ow/dva/nerf this"
-    description:
-      For playing soundboard items.
-      No list for possible choices exists yet, but soon.
-      Take a look at our github to find all the soundfiles.
-
   - name:    joke
     global:  true
     enabled: true
