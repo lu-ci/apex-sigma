@@ -2,7 +2,7 @@ import hashlib
 import discord
 
 
-async def hash(cmd, message, args):
+async def hashing(cmd, message, args):
     if not args:
         embed = discord.Embed(color=0xDB0000, title=':exclamation: No hash inputted and nothing to hash.')
         await cmd.bot.send_message(message.channel, None, embed=embed)

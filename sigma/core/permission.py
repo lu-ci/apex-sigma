@@ -23,10 +23,7 @@ def check_channel_nsfw(db, channel_id):
 
 
 def is_self(author, bot_user):
-    if author.id == bot_user.id:
-        return True
-    else:
-        return False
+    return bool(author.id == bot_user.id)
 
 
 def check_server_donor(db, server_id):

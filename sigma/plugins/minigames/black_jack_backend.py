@@ -4,7 +4,6 @@ suits = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'Ki
 
 
 def get_bj(inid):
-    global blackjack_instances
     if inid in blackjack_instances:
         return blackjack_instances[inid]
     else:

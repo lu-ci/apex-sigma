@@ -34,6 +34,7 @@ Command |  Description |  Usage
 `>>rl`  |  Rocket league information for the inputed user on the inputed platform, which can be Steam, XBOX or PSN.  |  `>>rl Steam IconicUltimatum`
 `>>steam`  |  Generates a a Steam Signature for the inputed Steam Community ID, the profile must not be private!  |  `>>steam thealeksaradovic`
 `>>es`  |  Vindictus Enchant Scroll Search.  |  `>>es Righteous`
+`>>wows`  |  Shows World of Warships statistics and information for the given username.  |  `>>wows eu metallicadutch`
 ###MINIGAMES
 Command |  Description |  Usage
 --------|--------------|-------
@@ -84,13 +85,13 @@ Command |  Description |  Usage
 `>>autoplaylist`  |  Adds the entire autoplaylist to the music queue. For those who want to listen to nice music but are too lazy to add some.  |  `>>autoplaylist`
 `>>disconnect`  |  Disconnects the bot from a voice channel.  |  `>>disconnect`
 `>>move`  |  Moves the bot to your voice channel if she is in another one.  |  `>>move`
-`>>next`  |  Skips the currently playing song.  |  `>>next`
 `>>pause`  |  Pauses the currently playing song.  |  `>>pause`
 `>>play`  |  Tells the bot to start playing the songs in the queue.  |  `>>play`
 `>>playing`  |  Shows the currently playing song in the music player.  |  `>>playing`
 `>>queue`  |  Adds a song to the playing queue either by URL or Name.  |  `>>queue Ryder or Riot`
 `>>resume`  |  Resumes a paused song.  |  `>>resume`
 `>>shuffle`  |  Shuffles the song queue.  |  `>>shuffle`
+`>>skip`  |  Skips the currently playing song.  |  `>>skip`
 `>>stop`  |  Stops the music and disconnects the bot from the voice channel.  |  `>>stop`
 `>>summon`  |  Summons the bot into your voice channel.  |  `>>summon`
 `>>vol`  |  Sets the volume of the current music player.  |  `>>vol 69`
@@ -177,7 +178,7 @@ Command |  Description |  Usage
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`
-`>>hash`  |  Hashes whatever you input with the selected hashing algorithm.  |  `>>hash md5 I like cheese and spaghetti code!`
+`>>hashing`  |  Hashes whatever you input with the selected hashing algorithm.  |  `>>hashing md5 I like cheese and spaghetti code!`
 `>>help`  |  Returns the list of command modules or gives you the description and usage for a selected command.  |  `>>help [command]`
 `>>hextodecimal`  |  Converts hex into a decimal number.  |  `>>hextodecimal BEEEEF`
 `>>ingame`  |  Shows the top played games on the server.  |  `>>ingame`

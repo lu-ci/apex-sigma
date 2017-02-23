@@ -13,8 +13,3 @@ commands:
     usage:   "{pfx:s}{cmd:s} eu metallicadutch"
     description:
       Shows World of Warships statistics and information for the given username.
-
-  - name:    wot
-    global:  true
-    enabled: false
-    sfw:     true

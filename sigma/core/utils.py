@@ -1,17 +1,13 @@
 from config import permitted_id
 
 
-def checkPermissions(user):
+def check_owner(user):
     # Checking a list of permitted users
     # if user.id in permitted_id: return True
-    for id in permitted_id:
-        if id == user.id:
-            return True
-
-    return False
+    return bool(user.id in permitted_id)
 
 
-def getArguments(raw, separator):
+def get_arguments(raw, separator):
     raw = raw.strip()
     args = raw.count(' ') + 1
     out = []

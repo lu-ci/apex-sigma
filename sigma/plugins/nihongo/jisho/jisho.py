@@ -44,7 +44,6 @@ async def jisho(cmd, message, *args):
     if wk_lvls:
         output += ' | Wanikani level {}'.format(', '.join(wk_lvls))
 
-    definitons_len = 1
     if len(request['senses']) > 5:
         definitons_len = 5
     else:
