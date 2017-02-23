@@ -48,11 +48,11 @@ class Sigma(discord.Client):
         self.member_count = 0
 
         with open('AUTHORS') as authors_file:
-            content = yaml.load(authors_file)
+            content = yaml.safe_load(authors_file)
             self.authors = content['authors']
             self.contributors = content['contributors']
         with open('DONORS') as donors_file:
-            content = yaml.load(donors_file)
+            content = yaml.safe_load(donors_file)
             self.donors = content['donors']
 
     def run(self, token):

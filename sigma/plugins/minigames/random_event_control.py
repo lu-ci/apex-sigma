@@ -17,7 +17,7 @@ async def random_event_control(ev, message, args):
             rolled_number = random.randint(1, 100)
             if rolled_number <= chance:
                 with open(ev.resource('events.yml')) as events_file:
-                    event_data = yaml.load(events_file)
+                    event_data = yaml.safe_load(events_file)
                 event = random.choice(event_data['events'])
                 event_embed = discord.Embed(color=0x1abc9c, title='💠 An event!')
                 choice_text_out = ''

@@ -1,11 +1,7 @@
 import cleverbot
-import yaml
-
-with open('VERSION') as version_file:
-    data = yaml.load(version_file)
-    codename = data['codename']
 
 sigma = cleverbot.Cleverbot()
+
 
 async def cleverbot_control(ev, message, args):
     active = ev.db.get_settings(message.server.id, 'CleverBot')

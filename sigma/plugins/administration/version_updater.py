@@ -6,7 +6,7 @@ from config import DevMode
 async def version_updater(ev):
     if DevMode:
         with open('VERSION', 'r') as version_file:
-            current_version_data = yaml.load(version_file)
+            current_version_data = yaml.safe_load(version_file)
         beta = current_version_data['beta']
         build_date = arrow.utcnow().timestamp
         major = current_version_data['version']['major']

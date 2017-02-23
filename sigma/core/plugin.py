@@ -44,7 +44,7 @@ class Plugin(object):
 
     def load_info(self, bot):
         with open(os.path.join(self.path, 'plugin.yml')) as yml_file:
-            yml = yaml.load(yml_file)
+            yml = yaml.safe_load(yml_file)
 
             if 'enabled' not in yml or not yml['enabled']:
                 raise PluginNotEnabled

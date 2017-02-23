@@ -16,7 +16,7 @@ async def gencmd(ev):
                 if file == 'plugin.yml':
                     file_path = (os.path.join(root, file))
                     with open(file_path) as plugin_file:
-                        plugin_data = yaml.load(plugin_file)
+                        plugin_data = yaml.safe_load(plugin_file)
                         try:
                             category = plugin_data['categories'][0]
                         except:
