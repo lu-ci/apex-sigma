@@ -188,16 +188,6 @@ commands:
       Blacklists a connected server disallowing it to use any and all commands.
       Bot Owner Only.
 
-  - name:    donorize
-    global:  true
-    enabled: true
-    admin:   true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 123456789 150"
-    description:
-      Adds X hours of donor support time to the server with the inputted ID.
-      Bot Owner Only.
-
   - name:    qme
     global:  true
     enabled: true
