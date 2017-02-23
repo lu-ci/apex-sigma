@@ -97,7 +97,6 @@ Command |  Description |  Usage
 ###NIHONGO
 Command |  Description |  Usage
 --------|--------------|-------
-`>>express`  |  It's for those times you want to express a feeling in Japanese and don't know how to you go [0-100] with the scale of your feelings and it gives you the perfect word for the situation.  |  `>>express 51`
 `>>jisho`  |  Searches the Japanese word dictionary (Jisho) for the given word and gives information for it.  |  `>>jisho kawaii`
 `>>wanikani`  |  Shows the WaniKani statistics of the person who used the command or a mentioned person. Also searches WaniKani for a given username. For advanced stats, a user must save his WaniKani API Key with the wksave command. Use help on it to get more info.  |  `>>wanikani breadstickninja`
 `>>wksave`  |  Stores a given API Key or Username for you. If you want detailed stats when calling the %pfx%wanikani command you need to save your WK API Key like in the example bellow!  |  `>>wksave key 12345678901234567890123456789012`
