@@ -10,7 +10,7 @@ def load_alternate_command_names():
             if file == 'plugin.yml':
                 file_path = (os.path.join(root, file))
                 with open(file_path) as plugin_file:
-                    plugin_data = yaml.load(plugin_file)
+                    plugin_data = yaml.safe_load(plugin_file)
                     if plugin_data['enabled']:
                         if 'commands' in plugin_data:
                             for command in plugin_data['commands']:

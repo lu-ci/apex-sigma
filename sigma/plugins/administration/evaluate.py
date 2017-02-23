@@ -1,11 +1,5 @@
 from config import permitted_id
 import discord
-import random
-import os
-import lxml
-import asyncio
-import codecs
-import string
 
 
 async def evaluate(cmd, message, args):
