@@ -8,9 +8,8 @@ from PIL import ImageDraw
 
 # Overwatch API
 async def overwatch(cmd, message, args):
-    ow_input = (str(message.content[len('overwatch') + 1 + len(cmd.prefix):])).replace('#', '-')
-
-    ow_region_x, ignore, ow_name = ow_input.partition(' ')
+    ow_region_x = args[0]
+    ow_name = ' '.join(args[1:])
     ow_region = ow_region_x.lower().replace('na', 'us')
 
     if ow_region.upper() == 'NA' or 'US' or 'EU':

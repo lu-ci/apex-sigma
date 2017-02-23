@@ -1,5 +1,5 @@
 import discord
-from .music_controller import get_player, get_queue, del_from_queue
+from .music_controller import get_player, get_queue
 
 async def skip(cmd, message, args):
     if not message.author.voice_channel:

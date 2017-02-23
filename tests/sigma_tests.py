@@ -1,7 +1,3 @@
-from nose.tools import *
-import sigma
-
-
 def setup():
     print("setup")
 

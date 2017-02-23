@@ -1,6 +1,6 @@
 import random
 import discord
-from .black_jack_backend import get_bj, upd_bj, del_bj, symbols
+from .black_jack_backend import get_bj, upd_bj, del_bj
 
 
 async def bjfold(cmd, message, args):
@@ -28,7 +28,7 @@ async def bjfold(cmd, message, args):
     deck.remove(house_drawn)
 
     em_p_nam = 'You Drew ' + p_suit + p_sym
-    new_p_score = p_pts
+    new_p_score = p_pts + p_val
     em_p_val = '```yaml\nYour Score: \n  - ' + str(new_p_score) + '\n```'
 
     em_h_nam = 'Dealer Drew ' + h_suit + h_sym
