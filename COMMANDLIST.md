@@ -171,6 +171,7 @@ Command |  Description |  Usage
 `>>channelinfo`  |  Shows information about the channel the command was used in.  |  `>>channelinfo`
 `>>choose`  |  The bot will select a thing from the inputed list. Separate list items with a space.  |  `>>choose Pizza Burgers Both`
 `>>cid`  |  Shows Channel ID of the channel the command was used in.  |  `>>cid`
+`>>cloudbleed`  |  Checks if a website was affected by the CloudBleed.  |  `>>cloudbleed auroraproject.xyz`
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
 `>>commands`  |  Shows the commands in a specific module group.  |  `>>commands Games`
 `>>decimaltohex`  |  Converts a decimal number to hex.  |  `>>decimaltohex BEEEEF`

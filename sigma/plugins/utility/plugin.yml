@@ -51,6 +51,17 @@ commands:
     description:
       Hashes whatever you input with the selected hashing algorithm.
 
+  - name:    cloudbleed
+    alts:
+      - 'cldbld'
+    global:  true
+    enabled: true
+    pmable:  true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} auroraproject.xyz"
+    description:
+      Checks if a website was affected by the CloudBleed.
+
   - name:    ingame
     alts:
       - "ign"
