@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 
 from config import MashapeKey
@@ -9,7 +9,9 @@ async def hearthstone(cmd, message, args):
 
     url = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/' + hs_input + '?locale=enUS'
     headers = {'X-Mashape-Key': MashapeKey, 'Accept': 'text/plain'}
-    response = requests.get(url, headers=headers).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, headers=headers) as data:
+            response = await data.json()
     card_list = '```'
 
     try:
@@ -19,8 +21,9 @@ async def hearthstone(cmd, message, args):
                 n += 1
                 card_list += ('\n#' + str(n) + ': ' + card['name'])
             try:
-                selector = await cmd.bot.send_message(message.channel, card_list + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
-                                                   len(response)) + ')`')
+                selector = await cmd.bot.send_message(message.channel,
+                                                      card_list + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
+                                                          len(response)) + ')`')
                 choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
                 await cmd.bot.delete_message(selector)
                 try:
@@ -50,7 +53,7 @@ async def hearthstone(cmd, message, args):
     try:
         card_name = response[card_no]['name']
         card_img_url = response[card_no]['img']
-        embed = discord.Embed(title=card_name,color=0x1ABC9C)
+        embed = discord.Embed(title=card_name, color=0x1ABC9C)
         embed.set_image(url=card_img_url)
 
         try:
