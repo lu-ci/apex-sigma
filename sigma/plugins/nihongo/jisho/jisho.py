@@ -1,19 +1,22 @@
-import requests
+import aiohttp
 import discord
 
 
 async def jisho(cmd, message, *args):
     jisho_q = ' '.join(*args)
 
-    request = requests.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q)
+    async with aiohttp.ClientSession() as session:
+        async with session.get('http://jisho.org/api/v1/search/words?keyword=' + jisho_q) as data:
+            rq_text = await data.text()
+            rq_json = await data.json()
 
-    if request.text.find('503 Service Unavailable') != -1:
+    if rq_text.find('503 Service Unavailable') != -1:
         embed_content = discord.Embed(title=':exclamation: Jisho responded with 503 Service Unavailable.',
                                       color=0xDB0000)
         await cmd.bot.send_message(message.channel, None, embed=embed_content)
         return
 
-    request = request.json()
+    request = rq_json
 
     # check if response contains data or nothing was found
     if request['data']:

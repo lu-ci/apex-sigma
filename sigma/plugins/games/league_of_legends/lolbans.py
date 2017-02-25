@@ -1,13 +1,15 @@
 import lxml.html as l
-import requests
+import aiohttp
 from humanfriendly.tables import format_pretty_table as boop
 
 
 async def lolbans(cmd, message, args):
     try:
         url = 'http://www.bestbans.com/'
-        page = requests.get(url)
-        root = l.fromstring(page.content)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as data:
+                page = await data.text()
+        root = l.fromstring(page)
         tiers = root.cssselect('.tier-row')[:-1]
         tier_list = []
         out_list = []

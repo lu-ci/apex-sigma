@@ -1,5 +1,5 @@
 import os
-import requests
+import aiohttp
 from requests.auth import HTTPBasicAuth
 from lxml import html
 from io import BytesIO
@@ -19,8 +19,10 @@ async def manga(cmd, message, args):
         await cmd.bot.send_message(message.channel, cmd.help())
         return
     mal_url = 'https://myanimelist.net/api/manga/search.xml?q=' + mal_input
-    mal = requests.get(mal_url, auth=HTTPBasicAuth(mal_un, mal_pw))
-    entries = html.fromstring(mal.content)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(mal_url, auth=aiohttp.BasicAuth(mal_un, mal_pw)) as data:
+            mal = await data.read()
+    entries = html.fromstring(mal)
     n = 0
     list_text = 'List of mangas found for `' + mal_input + '`:\n```'
 
@@ -29,8 +31,9 @@ async def manga(cmd, message, args):
             n += 1
             list_text += '\n#' + str(n) + ' ' + entry[1].text
         try:
-            list_message = await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the manga of your choice `(1 - ' + str(
-                                len(entries)) + ')`')
+            list_message = await cmd.bot.send_message(message.channel,
+                                                      list_text + '\n```\nPlease type the number corresponding to the manga of your choice `(1 - ' + str(
+                                                          len(entries)) + ')`')
         except:
             await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
             return
@@ -68,7 +71,7 @@ async def manga(cmd, message, args):
         air = air_start.replace('-', '.') + ' to ' + air_end.replace('-', '.')
         try:
             synopsis = entries[ani_no][11].text.replace('[i]', '').replace('[/i]', '').replace('<br>',
-                                                                                                 '').replace(
+                                                                                               '').replace(
                 '</br>', '').replace('<br />', '').replace('&#039;', '\'').replace('&quot;', '"').replace('&mdash;',
                                                                                                           '-')
         except:
@@ -80,7 +83,9 @@ async def manga(cmd, message, args):
             suffix = '...'
         else:
             suffix = ''
-        ani_img_raw = requests.get(img).content
+        async with aiohttp.ClientSession() as session:
+            async with session.get(img) as data:
+                ani_img_raw = await data.read()
         ani_img = Image.open(BytesIO(ani_img_raw))
         base = Image.open(cmd.resource('img/base.png'))
         overlay = Image.open(cmd.resource('img/overlay_manga.png'))
@@ -97,7 +102,8 @@ async def manga(cmd, message, args):
         imgdraw.text((227, 222), air, (255, 255, 255), font=font)
         base.save('cache/manga_' + message.author.id + '.png')
         await cmd.bot.send_file(message.channel, 'cache/manga_' + message.author.id + '.png')
-        await cmd.bot.send_message(message.channel, '```\n' + synopsis[:256] + '...\n```\nMore at: <https://myanimelist.net/manga/' + ani_id + '/>\n')
+        await cmd.bot.send_message(message.channel, '```\n' + synopsis[
+                                                              :256] + '...\n```\nMore at: <https://myanimelist.net/manga/' + ani_id + '/>\n')
         os.remove('cache/manga_' + message.author.id + '.png')
     except IndexError:
         await cmd.bot.send_message(message.channel, 'Number out of range, please start over...')

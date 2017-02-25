@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 
 
@@ -7,7 +7,9 @@ async def pokemon(cmd, message, args):
 
     pokemon_url = ('http://pokeapi.co/api/v2/pokemon/' + poke_input.lower())
     try:
-        poke = requests.get(pokemon_url).json()
+        async with aiohttp.ClientSession() as session:
+            async with session.get(pokemon_url) as data:
+                poke = await data.json()
     except Exception as e:
         cmd.log.error(e)
         await cmd.bot.send_message(message.channel, 'We had trouble communicating with the API.')
@@ -42,7 +44,9 @@ async def pokemon(cmd, message, args):
         good_relations = ['no_damage_from', 'half_damage_from', 'double_damage_to']
         bad_relations = ['no_damage_to', 'half_damage_to', 'double_damage_from']
         for type_url in type_urls:
-            type_data = requests.get(type_url).json()
+            async with aiohttp.ClientSession() as session:
+                async with session.get(type_url) as data:
+                    type_data = await data.json()
             dr = type_data['damage_relations']
             for relation in good_relations:
                 for ptype in dr[relation]:
