@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 
 
@@ -8,7 +8,9 @@ async def quote(cmd, message, args):
     tries = 0
     while not data and tries < 5:
         try:
-            data = requests.get(resource).json()
+            async with aiohttp.ClientSession() as session:
+                async with session.get(resource) as data:
+                    data = await data.json()
         except:
             tries += 1
     if data:

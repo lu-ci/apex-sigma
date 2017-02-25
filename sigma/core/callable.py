@@ -11,6 +11,7 @@ if DevMode:
 else:
     exception = Exception
 
+
 class NotEnabledError(RuntimeError):
     pass
 
