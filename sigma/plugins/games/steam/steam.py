@@ -5,7 +5,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 import time
-import requests
+import aiohttp
 import os
 import datetime
 
@@ -41,7 +41,9 @@ async def steam(cmd, message, args):
         gamecount = gamecount_call['response']['game_count']
         gamecountnonfree = gamecount - gamecountnonfree_call['response']['game_count']
         # Data Collection End, Pillow Start
-        avatar_raw = requests.get(avatar_url).content
+        async with aiohttp.ClientSession() as session:
+            async with session.get(avatar_url) as data:
+                avatar_raw = await data.read()
 
         with Image.open(BytesIO(avatar_raw)) as avatar:
             base = Image.open(cmd.resource('img/base.png'))
