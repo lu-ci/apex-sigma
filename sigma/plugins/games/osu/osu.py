@@ -1,5 +1,5 @@
 import discord
-import requests
+import aiohttp
 import lxml.html as l
 
 
@@ -10,8 +10,10 @@ async def osu(cmd, message, args):
     osu_input = ' '.join(args)
     try:
         profile_url = 'https://osu.ppy.sh/u/' + osu_input
-        page = requests.get(profile_url)
-        root = l.fromstring(page.text)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(profile_url) as data:
+                page = await data.text()
+        root = l.fromstring(page)
         username = root.cssselect('.profile-username')[0].text[:-1]
     except:
         embed = discord.Embed(color=0xDB0000, title=':exclamation: Unable to retrieve profile.')
