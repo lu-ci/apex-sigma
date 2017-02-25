@@ -1,11 +1,15 @@
 import discord
 import os
 from importlib import import_module
-
+from config import DevMode
 from .formatting import codeblock
 from .resource import global_resource
 from .permission import check_permitted
 
+if DevMode:
+    exception = SyntaxError
+else:
+    exception = Exception
 
 class NotEnabledError(RuntimeError):
     pass
@@ -86,7 +90,7 @@ class Callable(object):
 
         try:
             msg = await getattr(self.module, self.name)(self, message, *args)
-        except Exception as e:
+        except exception as e:
             try:
                 title = ':exclamation: An Error Occurred!'
                 errmsg = 'For more information you can go to the AP Discord server and ask us, '
