@@ -1,5 +1,5 @@
 import discord
-import requests
+import aiohttp
 import lxml.html as l
 
 
@@ -20,7 +20,9 @@ async def bhranking(cmd, message, args):
         lb_url = url_base
     else:
         lb_url = url_base + region + '/'
-    page = requests.get(lb_url).text
+    async with aiohttp.ClientSession() as session:
+        async with session.get(lb_url) as data:
+            page = await data.text()
     root = l.fromstring(page)
     table = root.cssselect('#content')[0][0][0]
     rankings = []
