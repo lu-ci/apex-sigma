@@ -1,5 +1,5 @@
 import discord
-import requests
+import aiohttp
 from humanfriendly.tables import format_pretty_table as boop
 from .hirez_api import get_session, make_signature, smite_base_url, make_timestamp
 from config import HiRezDevID
@@ -13,7 +13,9 @@ async def smite(cmd, message, args):
     hr_ts = make_timestamp()
     signature = make_signature('getplayer')
     data_url = smite_base_url + 'getplayerJson/' + HiRezDevID + '/' + signature + '/' + session_id + '/' + hr_ts + '/' + username
-    data = requests.get(data_url).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(data_url) as data:
+            data = await data.json()
     if len(data) == 0:
         embed = discord.Embed(color=0xDB0000, title=':exclamation: Player ' + username + ' was not found.')
         await cmd.bot.send_message(message.channel, None, embed=embed)

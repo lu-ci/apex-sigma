@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 
 
@@ -6,7 +6,9 @@ async def chucknorris(cmd, message, args):
     embed = discord.Embed(color=0x1abc9c)
     cmd.db.add_stats('CancerCount')
     joke_url = 'https://api.chucknorris.io/jokes/random'
-    joke_json = requests.get(joke_url).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(joke_url) as data:
+            joke_json = await data.json()
     joke = joke_json['value']
     out = '```\n'
     out += joke
