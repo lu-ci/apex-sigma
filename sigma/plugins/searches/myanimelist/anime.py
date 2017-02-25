@@ -1,6 +1,5 @@
 import os
-import requests
-from requests.auth import HTTPBasicAuth
+import aiohttp
 from lxml import html
 from io import BytesIO
 from PIL import Image
@@ -19,8 +18,10 @@ async def anime(cmd, message, args):
         await cmd.bot.send_message(message.channel, cmd.help())
         return
     mal_url = 'https://myanimelist.net/api/anime/search.xml?q=' + mal_input
-    mal = requests.get(mal_url, auth=HTTPBasicAuth(mal_un, mal_pw))
-    entries = html.fromstring(mal.content)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(mal_url, auth=aiohttp.BasicAuth(mal_un, mal_pw)) as data:
+            mal = await data.read()
+    entries = html.fromstring(mal)
     n = 0
     list_text = 'List of anime found for `' + mal_input + '`:\n```'
 
@@ -85,7 +86,9 @@ async def anime(cmd, message, args):
         else:
             suffix = ''
 
-        ani_img_raw = requests.get(img).content
+        async with aiohttp.ClientSession() as session:
+            async with session.get(img) as data:
+                ani_img_raw = await data.read()
         ani_img = Image.open(BytesIO(ani_img_raw))
         base = Image.open(cmd.resource('img/base.png'))
         overlay = Image.open(cmd.resource('img/overlay_anime.png'))
