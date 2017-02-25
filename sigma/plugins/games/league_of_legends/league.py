@@ -1,5 +1,5 @@
 import os
-import requests
+import aiohttp
 from io import BytesIO
 from PIL import Image
 from PIL import ImageFont
@@ -20,29 +20,39 @@ async def league(cmd, message, args):
         return
 
     smnr_name_table = smnr_name.replace(' ', '')
-    smrn_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + RiotAPIKey
+    smnr_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + RiotAPIKey
     version_url = 'https://global.api.pvp.net/api/lol/static-data/' + region + '/v1.2/versions?api_key=' + RiotAPIKey
-    version_json = requests.get(version_url).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(version_url) as data:
+            version_json = await data.json()
     version = str(version_json[0])
 
     try:
-        smnr_by_name = requests.get(smrn_by_name_url).json()
+        async with aiohttp.ClientSession() as session:
+            async with session.get(smnr_by_name_url) as data:
+                smnr_by_name = await data.json()
         smnr_id = str(smnr_by_name[smnr_name_table]['id'])
         smnr_icon = str(smnr_by_name[smnr_name_table]['profileIconId'])
         icon_url = 'http://ddragon.leagueoflegends.com/cdn/' + version + '/img/profileicon/' + smnr_icon + '.png'
         smnr_lvl = str(smnr_by_name[smnr_name_table]['summonerLevel'])
         summary_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + smnr_id + '/summary?season=SEASON2016&api_key=' + RiotAPIKey
-        summary = requests.get(summary_url).json()
+        async with aiohttp.ClientSession() as session:
+            async with session.get(summary_url) as data:
+                summary = await data.json()
         league_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v2.5/league/by-summoner/' + smnr_id + '?api_key=' + RiotAPIKey
         try:
-            league = requests.get(league_url).json()
-            league_name = league[smnr_id][0]['name']
-            league_tier = league[smnr_id][0]['tier']
+            async with aiohttp.ClientSession() as session:
+                async with session.get(league_url) as data:
+                    league_data = await data.json()
+            league_name = league_data[smnr_id][0]['name']
+            league_tier = league_data[smnr_id][0]['tier']
         except:
             league_name = 'No League'
             league_tier = 'No Rank'
         # Image Start
-        avatar = requests.get(icon_url).content
+        async with aiohttp.ClientSession() as session:
+            async with session.get(icon_url) as data:
+                avatar = await data.read()
         base = Image.open(cmd.resource('img/base.png'))
         overlay = Image.open(cmd.resource('img/overlay_lol.png'))
         background = Image.open(BytesIO(avatar))
@@ -112,7 +122,8 @@ async def league(cmd, message, args):
         else:
             await cmd.bot.send_file(message.channel, 'cache/lol_profile_' + message.author.id + '.png')
             os.remove('cache/lol_profile_' + message.author.id + '.png')
-            await cmd.bot.send_message(message.channel, 'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
+            await cmd.bot.send_message(message.channel,
+                                       'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')
     # except Exception as e:
     except SyntaxError:
         # `cmd.log.error(e)
