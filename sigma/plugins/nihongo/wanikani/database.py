@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 import json
 from lxml import html
@@ -38,11 +38,17 @@ async def get_user_data(cmd, message, key=None, username=None):
         url = wk_base_url + key
 
         try:
-            srs_dist = requests.get(url + '/srs-distribution').json()
-            lvl_prog = requests.get(
-                url + '/level-progression').json()['requested_information']
-            queue = requests.get(
-                url + '/study-queue').json()['requested_information']
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url + '/srs-distribution') as data:
+                    srs_dist = await data.json()
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url + '/level-progression') as data:
+                    lvl_prog = await data.json()
+                    lvl_prog = lvl_prog['requested_information']
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url + '/study-queue') as data:
+                    queue = await data.json()
+                    queue = queue['requested_information']
         except ConnectionError as e:
             cmd.bot.send_message(message.channel, 'Failed to get user data.')
             cmd.log.error('{:s}'.format(e))
@@ -64,15 +70,17 @@ async def get_user_data(cmd, message, key=None, username=None):
 
     # otherwise if we have a username, pull data from profile page
     elif username:
-        page = requests.get(
-            'https://www.wanikani.com/community/people/' + username)
-        tree = html.fromstring(page.content)
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://www.wanikani.com/community/people/' + username) as data:
+                page = await data.text()
+        tree = html.fromstring(page)
 
         script = tree.xpath('//div[@class="footer-adjustment"]/script')
         if script != []:
             script = script[0].text.strip()
         else:
-            embed = discord.Embed(color=0xDB0000, title=':exclamation: Error while parsing the page, profile not found or doesn\'t exist')
+            embed = discord.Embed(color=0xDB0000,
+                                  title=':exclamation: Error while parsing the page, profile not found or doesn\'t exist')
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return None
 
@@ -101,7 +109,9 @@ async def get_user_data(cmd, message, key=None, username=None):
     user['srs']['burned'] = srs_dist['burned']['total']
 
     try:
-        user['avatar'][1] = requests.get(user['avatar'][0]).content
+        async with aiohttp.ClientSession() as session:
+            async with session.get(user['avatar'][0]) as data:
+                user['avatar'][1] = await data.read()
     except ConnectionError as e:
         cmd.bot.send_message(message.channel, 'Failed to get user avatar.')
         cmd.log.error('{:s}'.format(e))
