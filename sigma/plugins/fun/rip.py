@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import os
 from PIL import Image
 from io import BytesIO
@@ -17,8 +17,9 @@ async def rip(cmd, message, args):
         mentioned_avatar = user.avatar_url
         if mentioned_avatar == '':
             mentioned_avatar = user.default_avatar_url
-
-    user_avatar = requests.get(mentioned_avatar).content
+    async with aiohttp.ClientSession() as session:
+        async with session.get(mentioned_avatar) as data:
+            user_avatar = await data.read()
     base = Image.open(cmd.resource('img/base.png'))
     tomb = Image.open(cmd.resource('img/tombstone.png'))
     avatar_img = Image.open(BytesIO(user_avatar))
