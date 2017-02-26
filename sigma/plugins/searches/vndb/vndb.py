@@ -1,5 +1,5 @@
 import os
-import requests
+import aiohttp
 import Shosetsu
 from PIL import Image
 from io import BytesIO
@@ -64,8 +64,9 @@ async def vndb(cmd, message, args):
         suffix = '...'
     else:
         suffix = ''
-
-    vn_cover_raw = requests.get(vn_img).content
+    async with aiohttp.ClientSession() as session:
+        async with session.get(vn_img) as data:
+            vn_cover_raw = await data.read()
     vn_cover_res = Image.open(BytesIO(vn_cover_raw))
     vn_cover = vn_cover_res.resize((231, 321), Image.ANTIALIAS)
     base = Image.open(cmd.resource('img/base_vn.png'))
