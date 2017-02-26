@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import random
 import discord
 from config import GoogleAPIKey
@@ -11,8 +11,10 @@ async def img(cmd, message, args):
         return
     else:
         search = ' '.join(args)
-        results = requests.get(
-            'https://www.googleapis.com/customsearch/v1?q=' + search + '&cx=' + GoogleCSECX + '&searchType=image&safe=high' + '&key=' + GoogleAPIKey).json()
+        url = 'https://www.googleapis.com/customsearch/v1?q=' + search + '&cx=' + GoogleCSECX + '&searchType=image&safe=high' + '&key=' + GoogleAPIKey
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as data:
+                results = await data.json()
         try:
             result_items = results['items']
             choice = random.choice(result_items)

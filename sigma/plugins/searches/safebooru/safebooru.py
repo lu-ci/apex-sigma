@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import random
 import discord
 from lxml import html
@@ -11,8 +11,10 @@ async def safebooru(cmd, message, args):
         tag = ' '.join(args)
         tag = tag.replace(' ', '+')
     resource = 'http://safebooru.org/index.php?page=dapi&s=post&q=index&tags=' + tag
-    data = requests.get(resource)
-    posts = html.fromstring(data.content)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(resource) as data:
+            data = await data.text()
+    posts = html.fromstring(data)
     choice = random.choice(posts)
     image_url = choice.attrib['file_url']
     if image_url.startswith('//'):

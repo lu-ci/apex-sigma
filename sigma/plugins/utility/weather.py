@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 from geopy.geocoders import Nominatim
 from config import DarkSkySecretKey
 from humanfriendly.tables import format_pretty_table as boop
@@ -23,7 +23,9 @@ async def weather(cmd, message, args):
         # Data Collection
         dark_sky_url = 'https://api.darksky.net/forecast/' + DarkSkySecretKey + '/' + str(latitude) + ',' + str(
             longitude)
-        data = requests.get(dark_sky_url).json()
+        async with aiohttp.ClientSession() as session:
+            async with session.get(dark_sky_url) as data:
+                data = await data.json()
         try:
             today_forecast = data['hourly']['summary']
             week_forecast = data['daily']['summary']

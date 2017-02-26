@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 import random
 
@@ -10,7 +10,9 @@ async def yandere(cmd, message, args):
     else:
         tags = '+'.join(args)
     url = url_base + tags
-    data = requests.get(url).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as data:
+            data = await data.json()
     if len(data) == 0:
         embed = discord.Embed(color=0x696969, title=':mag: No results.')
     else:

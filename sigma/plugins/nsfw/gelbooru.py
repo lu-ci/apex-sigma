@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 import random
 from lxml import html
@@ -12,7 +12,9 @@ async def gelbooru(cmd, message, args):
             tags = 'nude'
 
         gelbooru_url = 'http://gelbooru.com/index.php?page=dapi&s=post&q=index&tags=' + tags
-        data = requests.get(gelbooru_url)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(gelbooru_url) as data:
+                data = await data.text()
         posts = html.fromstring(data.content)
         choice = random.choice(posts)
         url = choice.attrib['file_url']

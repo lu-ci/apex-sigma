@@ -89,14 +89,6 @@ commands:
     description:
       Various github commands. (WIP)
 
-  - name:    dfm
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} Coffee House Jazz"
-    description:
-      Shows the details about the song currently playing on the selected music category of Discord.FM.
-
   - name:    bots
     global:  true
     enabled: true

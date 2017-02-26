@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 import random
 from lxml import html
@@ -12,8 +12,10 @@ async def rule34(cmd, message, args):
             tags = 'nude'
 
         r34_url = 'http://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=' + tags
-        data = requests.get(r34_url)
-        posts = html.fromstring(data.content)
+        async with aiohttp.ClientSession() as session:
+            async with session.get(r34_url) as data:
+                data = await data.text()
+        posts = html.fromstring(data)
         choice = random.choice(posts)
         url = str(choice.attrib['file_url']).replace('//', 'http://')
         embed = discord.Embed(color=0x9933FF)
