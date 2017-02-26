@@ -1,6 +1,6 @@
 import os
 import datetime
-import time
+import arrow
 import discord
 import yaml
 import aiohttp
@@ -54,11 +54,19 @@ class Sigma(discord.Client):
         with open('DONORS') as donors_file:
             content = yaml.safe_load(donors_file)
             self.donors = content['donors']
+        with open('VERSION') as version_file:
+            content = yaml.safe_load(version_file)
+            version = content['version']
+            self.build_date = datetime.datetime.fromtimestamp(content['build_date']).strftime('%B %d, %Y')
+            self.v_major = version['major']
+            self.v_minor = version['minor']
+            self.v_patch = version['patch']
+            self.codename = content['codename']
+            self.beta_state = content['beta']
 
     def run(self, token):
         self.log.info('Starting up...')
-        self.start_time = time.time()
-        self.time = time.time()
+        self.start_time = arrow.utcnow().timestamp
         current_time = datetime.datetime.now().time()
         current_time.isoformat()
 
@@ -102,10 +110,9 @@ class Sigma(discord.Client):
         self.log.info('-----------------------------------')
         stats(self, self.log)
         self.db.init_server_settings(self.servers)
-        user_generator = self.get_all_members()
         self.log.info('-----------------------------------')
         self.log.info('Updating User Database...')
-        self.db.refactor_users(user_generator)
+        self.db.refactor_users(self.get_all_members())
         self.log.info('Updating Server Database...')
         self.db.refactor_servers(self.servers)
         self.log.info('Updating Bot Population Stats...')

@@ -175,7 +175,6 @@ Command |  Description |  Usage
 `>>color`  |  Generates a color from the given HEX code or provided RGB numbers.  |  `>>color 1ABC9C`
 `>>commands`  |  Shows the commands in a specific module group.  |  `>>commands Games`
 `>>decimaltohex`  |  Converts a decimal number to hex.  |  `>>decimaltohex BEEEEF`
-`>>dfm`  |  Shows the details about the song currently playing on the selected music category of Discord.FM.  |  `>>dfm Coffee House Jazz`
 `>>donors`  |  Shows the list of the lovely people who donated to the Aurora Project.  |  `>>donors`
 `>>draw`  |  Draws an inputted number of cards, the maximum is 10. If no number is provided, the bot will draw 2.  |  `>>draw 5`
 `>>github`  |  Various github commands. (WIP)  |  `>>github search <query>`

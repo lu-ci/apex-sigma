@@ -37,6 +37,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    pmable:  true
     description:
       Shows the statistics of Sigma.
 
