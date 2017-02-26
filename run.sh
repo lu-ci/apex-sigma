@@ -2,12 +2,10 @@
 
 # Don't let CDPATH interfere with the cd command
 unset CDPATH
+cd "$(dirname "$0")"
 
-# The bot directory, overwrite with SIGMA_HOME
-sigma_dir="${SIGMA_HOME:-$HOME/apex-sigma}"
-
-# Make sure we are in the correct working directory
-cd "$sigma_dir"
+# activate the python virtualenv
+source ".venv/bin/activate"
 
 # Execute the bot
-exec python3.6 run.py
+exec python3.6 ./run.py
