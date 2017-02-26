@@ -12,7 +12,7 @@ async def e621(cmd, message, args):
         url = url_base + '?tags=nude'
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as data:
-            data = await data.text()
+            data = await data.read()
     posts = html.fromstring(data)
     post = random.choice(posts)
     image_url = post.find('file_url').text

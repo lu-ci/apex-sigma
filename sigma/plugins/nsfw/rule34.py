@@ -14,7 +14,7 @@ async def rule34(cmd, message, args):
         r34_url = 'http://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=' + tags
         async with aiohttp.ClientSession() as session:
             async with session.get(r34_url) as data:
-                data = await data.text()
+                data = await data.read()
         posts = html.fromstring(data)
         choice = random.choice(posts)
         url = str(choice.attrib['file_url']).replace('//', 'http://')
