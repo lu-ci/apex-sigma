@@ -74,8 +74,8 @@ class Sigma(discord.Client):
                 "servers": len(self.servers)
             }
             url = "https://bots.discordlist.net/api.php"
-            resp = await aiohttp.ClientSession().post(url, data=payload)
-            resp.close()
+            async with aiohttp.ClientSession() as session:
+                await session.post(url, data=payload)
 
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
