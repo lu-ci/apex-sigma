@@ -37,4 +37,4 @@
 * **Utility** - Modules to get quick info on a user or server, show a color hex, someone's avatar, and the such.
 
 # License
-Released under the [GNU General Public License version 3](LICENSE.md).
+Released under the [GNU General Public License Version 3](LICENSE.md).
