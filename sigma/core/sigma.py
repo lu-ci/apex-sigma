@@ -74,7 +74,7 @@ class Sigma(discord.Client):
                 "servers": len(self.servers)
             }
             url = "https://bots.discordlist.net/api.php"
-            resp = await aiohttp.post(url, data=payload)
+            resp = await aiohttp.ClientSession().post(url, data=payload)
             resp.close()
 
     def init_databases(self):
