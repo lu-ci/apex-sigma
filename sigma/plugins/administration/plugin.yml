@@ -235,7 +235,7 @@ events:
     description:
       Generates the command list MD file.
 
-  - name:    playing_status
+  - name:    status_rotation
     type:    ready
     global:  true
     enabled: true

@@ -1,7 +1,7 @@
 beta: false
-build_date: 1488119435
-codename: Mishio
+build_date: 1488137296
+codename: Kyou
 version:
   major: 2
-  minor: 9
-  patch: 5367
+  minor: 12
+  patch: 5389
