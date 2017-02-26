@@ -1,13 +1,16 @@
 import random
 import discord
-import requests
+import aiohttp
 
 
 async def butts(cmd, message, args):
     api_base = 'http://api.obutts.ru/butts/'
     number = random.randint(1, 4296)
     url_api = api_base + str(number)
-    data = requests.get(url_api).json()[0]
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url_api) as data:
+            data = await data.json()
+            data = data[0]
     image_url = 'http://media.obutts.ru/' + data['preview']
     embed = discord.Embed(color=0x9933FF)
     embed.set_image(url=image_url)
