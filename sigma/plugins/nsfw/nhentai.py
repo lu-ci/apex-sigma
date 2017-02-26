@@ -1,5 +1,5 @@
 import os
-import requests
+import aiohttp
 import nhentai as nh
 from PIL import Image
 from io import BytesIO
@@ -38,7 +38,9 @@ async def nhentai(cmd, message, args):
             hen_url = ('https://nhentai.net/g/' + str(hen_id) + '/')
             hen_img = ('https://i.nhentai.net/galleries/' + str(hen_media_id) + '/1.jpg')
             nhen_text = ''
-            nh_cover_raw = requests.get(hen_img).content
+            async with aiohttp.ClientSession() as session:
+                async with session.get(hen_img) as data:
+                    nh_cover_raw = await data.read()
             nh_cover_res = Image.open(BytesIO(nh_cover_raw))
             nh_cover = nh_cover_res.resize((251, 321), Image.ANTIALIAS)
 
