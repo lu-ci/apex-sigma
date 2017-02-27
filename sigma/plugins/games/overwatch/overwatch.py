@@ -1,6 +1,6 @@
 import os
 from io import BytesIO
-import requests
+import aiohttp
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -9,25 +9,27 @@ from PIL import ImageDraw
 # Overwatch API
 async def overwatch(cmd, message, args):
     ow_region_x = args[0]
-    ow_name = ' '.join(args[1:])
+    ow_name = ' '.join(args[1:]).replace('#', '-')
     ow_region = ow_region_x.lower().replace('na', 'us')
 
-    if ow_region.upper() == 'NA' or 'US' or 'EU':
+    if ow_region == 'us' or 'eu':
         try:
-            profile = (
-                'http://api.lootbox.eu/pc/' + ow_region.lower() + '/' + ow_name + '/profile').replace(' ', '')
-            profile_json = requests.get(profile).json()
-            champ_get_url = (
-                'http://api.lootbox.eu/pc/' + ow_region.lower() + '/' + ow_name + '/quickplay/heroes').replace(' ', '')
-            champ_get = requests.get(champ_get_url).json()
-            avatar_link = profile_json['data']['avatar']
-            border_link = profile_json['data']['levelFrame']
-            if str(champ_get[0]['name']) == 'L&#xFA;cio':
-                top_champ = 'Lucio'
-            else:
-                top_champ = str(champ_get[0]['name'])
-            avatar = requests.get(avatar_link).content
-            border = requests.get(border_link).content
+            profile = f'https://api.auroraproject.xyz/api/v1/overwatch?region={ow_region}&platform=pc&tag={ow_name}'
+            async with aiohttp.ClientSession() as session:
+                async with session.get(profile) as data:
+                    profile_json = await data.json()
+            avatar_link = profile_json['data']['player']['avatar']
+            border_link = profile_json['data']['player']['border']
+            try:
+                tier_link = profile_json['data']['player']['tier']
+            except:
+                tier_link = None
+            async with aiohttp.ClientSession() as session:
+                async with session.get(avatar_link) as data:
+                    avatar = await data.read()
+            async with aiohttp.ClientSession() as session:
+                async with session.get(border_link) as data:
+                    border = await data.read()
             base = Image.open(cmd.resource('img/base.png'))
             overlay = Image.open(cmd.resource('img/overlay.png'))
             foreground = Image.open(BytesIO(border))
@@ -35,8 +37,10 @@ async def overwatch(cmd, message, args):
             background = Image.open(BytesIO(avatar))
             background_res = background.resize((72, 72), Image.ANTIALIAS)
             try:
-                rank_link = profile_json['data']['competitive']['rank_img']
-                rank = requests.get(rank_link).content
+                rank_link = profile_json['data']['player']['rank']
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(rank_link) as data:
+                        rank = await data.read()
                 rankimg = Image.open(BytesIO(rank))
                 rankimg_res = rankimg.resize((64, 64), Image.ANTIALIAS)
             except:
@@ -48,34 +52,41 @@ async def overwatch(cmd, message, args):
                 base.paste(rankimg_res, (310, 32), rankimg_res)
             except:
                 pass
-            font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 32)
-            font2 = ImageFont.truetype("big_noodle_titling_oblique.ttf", 16)
+            if tier_link:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(tier_link) as data:
+                        tier_img = await data.read()
+                        tier_img = Image.open(BytesIO(tier_img))
+                        tier_img = tier_img.resize((128, 64), Image.ANTIALIAS)
+                base.paste(tier_img, (0, 64), tier_img)
+            font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 48)
             imgdraw = ImageDraw.Draw(base)
-            imgdraw.text((130, 38), profile_json['data']['username'], (255, 255, 255), font=font)
-            imgdraw.text((130, 70), 'Most Played: ' + top_champ, (255, 255, 255), font=font2)
+            name = profile_json['data']['player']['name']
+            imgdraw.text((130, 38), name, (255, 255, 255), font=font)
             base.save('cache/ow_profile_' + message.author.id + '.png')
-            name = profile_json['data']['username']
-            level = str(profile_json['data']['level'])
-            qg_won = str(profile_json['data']['games']['quick']['wins'])
-            qg_playtime = str(profile_json['data']['playtime']['quick'])
+            level = str(profile_json['data']['player']['level'])
+            quick = profile_json['data']['career_stats']['quick_play']
+            comp = profile_json['data']['career_stats']['competitive']
+            qg_won = str(quick['game']['games_won'])
+            qg_playtime = str(quick['game']['time_played'])
             try:
-                cg_played = str(profile_json['data']['games']['competitive']['played'])
+                cg_played = str(comp['game']['games_played'])
             except:
                 cg_played = 'None'
             try:
-                cg_won = str(profile_json['data']['games']['competitive']['wins'])
+                cg_won = str(comp['game']['games_played'])
             except:
                 cg_won = 'None'
             try:
-                cg_lost = str(profile_json['data']['games']['competitive']['lost'])
+                cg_lost = str(comp['miscellaneous']['games_lost'])
             except:
                 cg_lost = 'None'
             try:
-                rank = str(profile_json['data']['competitive']['rank'])
+                rank = str(profile_json['data']['player']['rank_pts'])
             except:
                 rank = 'None'
             try:
-                cg_playtime = str(profile_json['data']['playtime']['competitive'])
+                cg_playtime = str(comp['game']['time_played'])
             except:
                 cg_playtime = 'None'
             overwatch_profile = ('```Name: ' + name +
@@ -88,23 +99,14 @@ async def overwatch(cmd, message, args):
                                  '\n    - Lost: ' + cg_lost +
                                  '\n    - Rank: ' + rank +
                                  '\nPlaytime:' +
-                                 '\n    - Quick: ' + qg_playtime +
-                                 '\n    - Competitive: ' + cg_playtime + '```')
-            # print('CMD [' + cmd_name + '] > ' + initiator_data)
+                                 '\n    - Quick: ' + qg_playtime + ' Hours' +
+                                 '\n    - Competitive: ' + cg_playtime + ' Hours' + '```')
             await cmd.bot.send_file(message.channel, 'cache/ow_profile_' + message.author.id + '.png')
             os.remove('cache/ow_profile_' + message.author.id + '.png')
             await cmd.bot.send_message(message.channel, overwatch_profile)
         except KeyError:
-            try:
-                # print('CMD [' + cmd_name + '] > ' + initiator_data)
-                print(profile_json['error'])
-                await cmd.bot.send_message(message.channel, profile_json['error'])
-            except:
-                # print('CMD [' + cmd_name + '] > ' + initiator_data)
-                await cmd.bot.send_message(message.channel,
-                                           'Something went wrong.\nThe servers are most likely overloaded, please try again.')
-                # else:
-                # print('CMD [' + cmd_name + '] > ' + initiator_data)
+            await cmd.bot.send_message(message.channel,
+                                       'Something went wrong.\nThe servers are most likely overloaded, please try again.')
     else:
         await cmd.bot.send_message(message.channel,
-                                   'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA`, `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')
+                                   'Invalid region: `' + ow_region.upper() + '`\nAccepted regions are `NA` or `US` and `EU`\nUsage: `' + cmd.prefix + 'overwatch' + 'region battletag#ID')
