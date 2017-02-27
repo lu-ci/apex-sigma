@@ -20,6 +20,10 @@ async def overwatch(cmd, message, args):
                     profile_json = await data.json()
             avatar_link = profile_json['data']['player']['avatar']
             border_link = profile_json['data']['player']['border']
+            try:
+                tier_link = profile_json['data']['player']['tier']
+            except:
+                tier_link = None
             async with aiohttp.ClientSession() as session:
                 async with session.get(avatar_link) as data:
                     avatar = await data.read()
@@ -48,6 +52,13 @@ async def overwatch(cmd, message, args):
                 base.paste(rankimg_res, (310, 32), rankimg_res)
             except:
                 pass
+            if tier_link:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(tier_link) as data:
+                        tier_img = await data.read()
+                        tier_img = Image.open(BytesIO(tier_img))
+                        tier_img = tier_img.resize((128, 64), Image.ANTIALIAS)
+                base.paste(tier_img, (0, 64), tier_img)
             font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 48)
             imgdraw = ImageDraw.Draw(base)
             name = profile_json['data']['player']['name']
