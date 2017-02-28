@@ -23,7 +23,7 @@ async def rotator(ev):
             f'{Prefix}help',
             f'with {len(list(ev.bot.get_all_members()))} users',
             f'with {len(ev.bot.servers)} servers',
-            f'with {random.choice(ev.bot.donors)}',
+            f'with {random.choice(ev.bot.donors)["name"]}',
             f'with {random.choice(funny)}',
             f'with {random.choice(ev.bot.authors)}'
         ]
