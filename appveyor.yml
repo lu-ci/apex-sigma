@@ -19,5 +19,4 @@ install:
 
 test_script:
   - "copy config_example.py config.py"
-  - "coverage run run.py"
-  - "codeclimate-test-reporter"
+  - "%PYTHON%\\python.exe run.py"
