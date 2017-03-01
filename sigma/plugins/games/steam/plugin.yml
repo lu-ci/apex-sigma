@@ -12,4 +12,4 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} thealeksaradovic"
     description:
-      Generates a a Steam Signature for the inputed Steam Community ID, the profile must not be private!
+      Generates a a Steam Signature for the inputed Steam Community ID. (The profile must not be private!)

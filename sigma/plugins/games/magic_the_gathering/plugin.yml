@@ -13,3 +13,5 @@ commands:
     usage:   "{pfx:s}{cmd:s} Archangel Avacyn"
     description:
       Searches the Magic The Gathering Database for the inputed card.
+      A list will pop up letting you choose the card.
+      Just input the number next to the card that you want.

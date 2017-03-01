@@ -12,5 +12,5 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} thealeksaradovic"
     description:
-      Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username!)
+      Get Counter Strike Global Offensive statistics for the inputed Steam Community ID. (Not Login Username)
       The steam profile you are trying to pull stats for must not be private!
