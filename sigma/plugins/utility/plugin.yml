@@ -81,15 +81,6 @@ commands:
       Shows weather data for the selected location.
       Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.
 
-  # disabled: unfinished
-  - name:    github
-    global:  true
-    enabled: false
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} search <query>"
-    description:
-      Various github commands. (WIP)
-
   - name:    bots
     global:  true
     enabled: true
@@ -227,7 +218,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} League of Salt"
+    usage:   "{pfx:s}{cmd:s} League of Legends"
     description:
       Generates a list of users playing the inputted game.
 
@@ -250,15 +241,6 @@ commands:
     description:
       Picks a random user from the current Online users as a winner for the raffle.
       The user can be Online, Away or DND, but can not be invisible to be eligable.
-
-  - name: draw
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 5"
-    description:
-      Draws an inputted number of cards, the maximum is 10.
-      If no number is provided, the bot will draw 2.
 
   - name: modules
     global:  true
