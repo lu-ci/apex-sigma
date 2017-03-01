@@ -8,7 +8,6 @@ win_notify_channel = '278380137681256448'
 
 
 async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, spin_cycle_timeout=1):
-    global slot_back_data
     # Cooldown Check
     not_on_cd = True
     current_time = arrow.utcnow().timestamp

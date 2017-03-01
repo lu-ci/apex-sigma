@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 import random
 from config import GoogleAPIKey
@@ -11,8 +11,10 @@ async def google(cmd, message, args):
         return
     else:
         search = ' '.join(args)
-        results = requests.get(
-            'https://www.googleapis.com/customsearch/v1?q=' + search + '&cx=' + GoogleCSECX + '&key=' + GoogleAPIKey).json()
+        url = 'https://www.googleapis.com/customsearch/v1?q=' + search + '&cx=' + GoogleCSECX + '&key=' + GoogleAPIKey
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as data:
+                results = await data.json()
         google_colors = [0x4285f4, 0x34a853, 0xfbbc05, 0xea4335, 0x00a1f1, 0x7cbb00, 0xffbb00, 0xf65314]
         embed_color = random.choice(google_colors)
         try:

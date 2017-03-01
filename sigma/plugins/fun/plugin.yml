@@ -12,20 +12,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Cringe!
-
-  - name:    sbo
-    alts:
-      - "sound"
-      - "soundboard"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} ow/dva/nerf this"
-    description:
-      For playing soundboard items.
-      No list for possible choices exists yet, but soon.
-      Take a look at our github to find all the soundfiles.
+      Writes a random cringy dad joke. Honestly I have no idea why I made some commands.
 
   - name:    joke
     global:  true
@@ -33,7 +20,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Outputs a random joke, do not expect them to be good even slightly.
+      Outputs a random joke, do not expect them to be even slightly good.
 
   - name:    ronswanson
     alts:
@@ -84,7 +71,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Gives you some random pun, beware.
+      Gives you some random pun, beware. It's really, really horrible.
 
   - name:    rip
     global:  true
@@ -100,7 +87,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Gives a random quote.
+      Gives a random quote from very smart people.
 
   - name:    bash
     global:  true
@@ -108,7 +95,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Displays a random bash quote.
+      Displays a random bash.org quote.
 
   - name:    catfact
     global:  true
@@ -147,6 +134,7 @@ commands:
     description:
       Wuff, wuff, bork.
       Cutest little puppers, loyalty and awesomeness.
+      Outputs a random dog image.
 
   - name: numberfact
     alts:

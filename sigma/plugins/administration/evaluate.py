@@ -1,11 +1,6 @@
 from config import permitted_id
 import discord
-import random
-import os
-import lxml
-import asyncio
-import codecs
-import string
+import inspect
 
 
 async def evaluate(cmd, message, args):
@@ -16,6 +11,8 @@ async def evaluate(cmd, message, args):
             try:
                 execution = " ".join(args)
                 output = eval(execution)
+                if inspect.isawaitable(output):
+                    output = await output
                 status = discord.Embed(title=':white_check_mark: Executed', color=0x66CC66)
                 if output:
                     try:

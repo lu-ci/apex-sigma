@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -14,7 +14,9 @@ async def music(cmd, message, args):
     else:
         search = ' '.join(args)
     qry_url = 'http://api.deezer.com/search/track?q=' + search
-    data = requests.get(qry_url).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(qry_url) as data:
+            data = await data.json()
     data = data['data']
     if len(data) == 0:
         await cmd.bot.send_message(message.channel, 'Nothing found.')
@@ -38,9 +40,13 @@ async def music(cmd, message, args):
         album = album[:19] + '...'
     cover = album_data['cover_medium']
     cover = cover.replace('250x250', '128x128')
-    artist_photo_raw = requests.get(photo).content
+    async with aiohttp.ClientSession() as session:
+        async with session.get(photo) as data:
+            artist_photo_raw = await data.read()
     artist_photo = Image.open(BytesIO(artist_photo_raw))
-    cover_art_raw = requests.get(cover).content
+    async with aiohttp.ClientSession() as session:
+        async with session.get(cover) as data:
+            cover_art_raw = await data.read()
     cover_art = Image.open(BytesIO(cover_art_raw))
     base = Image.open(cmd.resource('img/base.png'))
     overlay = Image.open(cmd.resource('img/overlay.png'))

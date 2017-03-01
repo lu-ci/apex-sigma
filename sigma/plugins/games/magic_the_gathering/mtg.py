@@ -1,10 +1,13 @@
-import requests
+import aiohttp
 import discord
+
 
 async def mtg(cmd, message, args):
     q = ' '.join(args)
 
-    cards = requests.get('https://api.magicthegathering.io/v1/cards?name=' + q).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get('https://api.magicthegathering.io/v1/cards?name=' + q) as data:
+            cards = await data.json()
 
     n = 0
     list_text = 'List of cards found for `' + str(q) + '`:\n```'
@@ -17,8 +20,9 @@ async def mtg(cmd, message, args):
             else:
                 pass
         try:
-            selector = await cmd.bot.send_message(message.channel, list_text + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
-                                len(cards)) + ')`')
+            selector = await cmd.bot.send_message(message.channel,
+                                                  list_text + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
+                                                      len(cards)) + ')`')
         except:
             await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
             return

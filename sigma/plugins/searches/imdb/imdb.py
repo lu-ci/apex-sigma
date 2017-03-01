@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import discord
 
 
@@ -7,7 +7,10 @@ async def imdb(cmd, message, args):
         return
 
     imdb_imput = ' '.join(args)
-    request = requests.get('http://www.omdbapi.com/?t=' + imdb_imput + '&y=&plot=short&r=json').json()
+    url = 'http://www.omdbapi.com/?t=' + imdb_imput + '&y=&plot=short&r=json'
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as data:
+            request = await data.json()
     title = request['Title']
     rated = request['Rated']
     released = request['Released']

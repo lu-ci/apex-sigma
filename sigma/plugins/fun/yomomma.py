@@ -1,10 +1,12 @@
-import requests
+import aiohttp
 import discord
 
 
 async def yomomma(cmd, message, args):
     resource = 'http://api.yomomma.info/'
-    data = requests.get(resource).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(resource) as data:
+            data = await data.json()
     joke = data['joke']
     if not joke.endswith('.'):
         joke += '.'

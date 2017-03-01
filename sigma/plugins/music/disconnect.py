@@ -1,5 +1,5 @@
 import discord
-from .music_controller import del_player, get_player, purge_queue
+from .music_controller import purge_queue
 
 
 async def disconnect(cmd, message, args):

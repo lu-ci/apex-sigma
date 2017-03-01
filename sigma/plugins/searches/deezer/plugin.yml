@@ -6,15 +6,6 @@ categories:
 enabled: true
 
 commands:
-  - name:    deezer
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 938108141"
-    description:
-      List the songs currently in the user's Flow queue.
-      The profile ID can be found by opening your profile page on Deezer.
-
   - name:    music
     global:  true
     enabled: true

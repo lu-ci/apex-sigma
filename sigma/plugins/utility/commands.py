@@ -18,7 +18,7 @@ async def commands(cmd, message, args):
             if file == 'plugin.yml':
                 file_path = (os.path.join(root, file))
                 with open(file_path) as plugin_file:
-                    plugin_data = yaml.load(plugin_file)
+                    plugin_data = yaml.safe_load(plugin_file)
                     category = plugin_data['categories'][0]
                     if category == module_group.lower():
                         if plugin_data['enabled']:

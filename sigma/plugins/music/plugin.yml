@@ -20,13 +20,14 @@ commands:
   - name:    disconnect
     alts:
       - "dc"
+      - "stop"
     global:  true
     enabled: true
     sfw:     true
     donor:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Disconnects the bot from a voice channel.
+      Disconnects the bot from a voice channel. And wipes the queue.
 
   - name:    move
     alts:
@@ -84,15 +85,6 @@ commands:
     description:
       Resumes a paused song.
 
-  - name:    stop
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Stops the music and disconnects the bot from the voice channel.
-
   - name:    queue
     alts:
       - "add"
@@ -128,9 +120,9 @@ commands:
     description:
       Sets the volume of the current music player.
 
-  - name:    next
+  - name:    skip
     alts:
-      - "skip"
+      - "next"
     global:  true
     enabled: true
     sfw:     true

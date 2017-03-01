@@ -14,5 +14,6 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} EU Aurora#22978"
     description:
-      Shows the Overwatch statistics of inputed Battle.Net ID.
-      (Warning! Case Sensitive!)
+      Shows the Overwatch statistics of inputed Battle.Net ID on the inputted region.
+      EU for Europe and US or NA for Americas.
+      (Warning! BattleTags Are Case Sensitive!)

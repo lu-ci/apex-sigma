@@ -1,11 +1,10 @@
 language: python
 python:
   - "3.6"
+  - "3.6-dev"
+  - "nightly"
 
 install: pip install -r requirements.txt
 script: .ci/run_tests.sh
-addons:
-  code_climate:
-    repo_token: dff9b8abcb61bfe5d5f2fe7855804301d776810022ea16101bb21ccc43064405
 services:
   - mongodb

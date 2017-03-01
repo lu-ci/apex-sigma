@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import random
 import discord
 
@@ -11,7 +11,9 @@ async def danbooru(cmd, message, args):
         tag = tag.replace(' ', '+')
     resource = 'https://danbooru.donmai.us/post/index.json?&tags=' + tag
     file_url_base = 'https://danbooru.donmai.us'
-    data = requests.get(resource).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(resource) as data:
+            data = await data.json()
     links = []
     for post in data:
         try:

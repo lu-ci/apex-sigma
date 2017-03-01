@@ -1,5 +1,5 @@
 import datetime
-from requests import get as rg
+import aiohttp
 import discord
 from config import WarGamingAppID
 
@@ -11,7 +11,9 @@ async def wows(cmd, message, args):
         game_region = 'com'
     try:
         url_base = 'https://api.worldofwarships.' + game_region + '/wows/account/list/?application_id=' + WarGamingAppID + '&search=' + game_username
-        initial_data = rg(url_base).json()
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url_base) as data:
+                initial_data = await data.json()
     except:
         await cmd.bot.send_message(message.channel, '`' + game_region + '` is not a valid region.')
         return
@@ -31,7 +33,9 @@ async def wows(cmd, message, args):
     account_id = initial_data['data'][0]['account_id']
     url_second = 'https://api.worldofwarships.' + game_region + '/wows/account/info/?application_id=' + WarGamingAppID + '&account_id=' + str(
         account_id)
-    main_data = rg(url_second).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url_second) as data:
+            main_data = await data.json()
     try:
         if main_data['status'].lower() == 'ok':
             pass
@@ -64,7 +68,9 @@ async def wows(cmd, message, args):
 
     max_frags_ship_url = 'https://api.worldofwarships.' + game_region + '/wows/encyclopedia/ships/?application_id=' + WarGamingAppID + '&ship_id=' + str(
         max_frags_ship_id)
-    max_frags_ship_data = rg(max_frags_ship_url).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(max_frags_ship_url) as data:
+            max_frags_ship_data = await data.json()
 
     if max_frags_ship_id is not None:
         max_frags_ship_name = max_frags_ship_data['data'][str(max_frags_ship_id)]['name']

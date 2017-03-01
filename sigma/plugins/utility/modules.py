@@ -11,7 +11,7 @@ async def modules(cmd, message, args):
             if file == 'plugin.yml':
                 file_path = (os.path.join(root, file))
                 with open(file_path) as plugin_file:
-                    plugin_data = yaml.load(plugin_file)
+                    plugin_data = yaml.safe_load(plugin_file)
                     try:
                         category = plugin_data['categories'][0]
                         if category.title() not in module_list and category not in ['administration', 'special']:

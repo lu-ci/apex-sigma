@@ -23,10 +23,7 @@ def check_channel_nsfw(db, channel_id):
 
 
 def is_self(author, bot_user):
-    if author.id == bot_user.id:
-        return True
-    else:
-        return False
+    return bool(author.id == bot_user.id)
 
 
 def check_server_donor(db, server_id):
@@ -120,7 +117,7 @@ def check_permitted(self, user, channel, server):
         explanation += '\nOtherwise, ask your server\'s admin to permit a channel.'
         embed_content = discord.Embed(color=0x9933FF)
         embed_content.add_field(name=title, value=explanation)
-        self.log.info('Access Denied Due To Channel Not Having NSFW Permissions.')
+        self.log.warning('NSFW: Access Denied.')
         return False, embed_content
 
     if self.perm['admin'] and not check_bot_owner(user):
@@ -131,7 +128,7 @@ def check_permitted(self, user, channel, server):
         msg += '\nThere is no way for you to become a bot owner.'
         embed_content = discord.Embed(title=title, color=0xDB0000)
         embed_content.add_field(name='Bot Owner Only', value=msg)
-        self.log.info('Access Denied To A Bot Owner Only Command.')
+        self.log.warning('OWNER: Access Denied.')
         return False, embed_content
 
     if self.perm['donor'] and not check_server_donor(self.db, server.id):
@@ -143,7 +140,7 @@ def check_permitted(self, user, channel, server):
         msg += '\nIn a nutshell, donating 7.2Eur would give you a month of donor functions.'
         embed_content = discord.Embed(title=title, color=0xFF9900)
         embed_content.add_field(name='Donor Only', value=msg)
-        self.log.info('Access Denied To A Donor Only Command.')
+        self.log.warning('DONOR: Access Denied.')
         return False, embed_content
 
     if not self.perm['pmable'] and not server and not is_self(user, self.bot.user):
@@ -153,7 +150,7 @@ def check_permitted(self, user, channel, server):
         explanation += '\nIf you get this message, use the command on a server and not in a direct message.'
         embed_content = discord.Embed(color=0xDB0000)
         embed_content.add_field(name=title, value=explanation)
-        self.log.info('Access Denied To A DM Incompatible Command.')
+        self.log.warning('DM: Access Denied.')
         return False, embed_content
 
     return True, None

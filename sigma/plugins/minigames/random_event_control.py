@@ -17,7 +17,7 @@ async def random_event_control(ev, message, args):
             rolled_number = random.randint(1, 100)
             if rolled_number <= chance:
                 with open(ev.resource('events.yml')) as events_file:
-                    event_data = yaml.load(events_file)
+                    event_data = yaml.safe_load(events_file)
                 event = random.choice(event_data['events'])
                 event_embed = discord.Embed(color=0x1abc9c, title='💠 An event!')
                 choice_text_out = ''
@@ -30,7 +30,7 @@ async def random_event_control(ev, message, args):
                 event_start = await ev.bot.send_message(message.channel, 'Hey ' + message.author.mention + '! An event has appeared!',
                                           embed=event_embed)
                 events_active.append(event_id)
-                reply = await ev.bot.wait_for_message(timeout=20, author=message.author)
+                reply = await ev.bot.wait_for_message(timeout=60, author=message.author)
                 if not reply:
                     out = discord.Embed(title=':clock10: Sorry, you timed out...', color=0x777777)
                     await ev.bot.send_message(message.channel, None, embed=out)

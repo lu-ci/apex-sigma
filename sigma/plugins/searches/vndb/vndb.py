@@ -1,5 +1,5 @@
 import os
-import requests
+import aiohttp
 import Shosetsu
 from PIL import Image
 from io import BytesIO
@@ -22,14 +22,14 @@ async def vndb(cmd, message, args):
         if len(sdata) > 1:
             await cmd.bot.send_message(message.channel, list_text + '\n```')
             choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel,
-                                                        timeout=20)
+                                                    timeout=20)
             await cmd.bot.send_typing(message.channel)
 
             try:
                 nh_no = int(choice.content) - 1
             except:
-                await cmd.bot.send_message(message.channel, 
-                                               'Not a number or timed out... Please start over')
+                await cmd.bot.send_message(message.channel,
+                                           'Not a number or timed out... Please start over')
         else:
             nh_no = 0
         kill = 0
@@ -51,7 +51,7 @@ async def vndb(cmd, message, args):
 
     data = await setsu.get_novel(choice_id)
     vn_title = data['titles']['english']
-    vn_img = data['img']
+    vn_img = data['img'].replace('https:https://', 'https://')
     vn_devs = ''
 
     for dev in data['developers']:
@@ -64,19 +64,21 @@ async def vndb(cmd, message, args):
         suffix = '...'
     else:
         suffix = ''
-
-    vn_cover_raw = requests.get(vn_img).content
+    async with aiohttp.ClientSession() as session:
+        async with session.get(vn_img) as data:
+            vn_cover_raw = await data.read()
     vn_cover_res = Image.open(BytesIO(vn_cover_raw))
     vn_cover = vn_cover_res.resize((231, 321), Image.ANTIALIAS)
     base = Image.open(cmd.resource('img/base_vn.png'))
     overlay = Image.open(cmd.resource('img/overlay_vn.png'))
     base.paste(vn_cover, (110, 0))
     base.paste(overlay, (0, 0), overlay)
-    base.save('cache/vn_' + message.author.id + '.png')
+    base.save('cache/vn_' + message.id + '.png')
 
     try:
-        await cmd.bot.send_file(message.channel, 'cache/vn_' + message.author.id + '.png')
-        await cmd.bot.send_message(message.channel, 'Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[:300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
-        os.remove('cache/vn_' + message.author.id + '.png')
+        await cmd.bot.send_file(message.channel, 'cache/vn_' + message.id + '.png')
+        await cmd.bot.send_message(message.channel, 'Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[
+                                                                                                     :300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
+        os.remove('cache/vn_' + message.id + '.png')
     except:
         await cmd.bot.send_message(message.channel, 'Error: It goofed... =P')

@@ -29,6 +29,18 @@ commands:
       If no arguments are inputed it will show the current greet message.
       (Server Administrator Only)
 
+  - name: announcementchannel
+    alts:
+      - "annch"
+    global:  true
+    enabled: true
+    sfw:     true
+    admin:   true
+    usage:   "{pfx:s}{cmd:s} #channel_name"
+    description:
+      Changes the channel that the bot will post announcements to. If no channel is entered announcements will be turned off.
+      Server Administrator Only.
+
   - name: greetpm
     alts:
      - "gpm"

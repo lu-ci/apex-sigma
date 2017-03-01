@@ -47,3 +47,7 @@ donors:
     tier: 0
     avatar: "https://www.gravatar.com/avatar/a7b3225a0fcbcc0f7a3efb476182fb48.jpg?s=128"
     duid: 188009639198195712
+  - name: "Faillesz"
+    tier: 0
+    avatar: null
+    duid: 107587661044154368

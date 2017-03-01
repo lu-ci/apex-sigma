@@ -14,7 +14,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} EUNE AXAz0r"
     description:
-      Shows the players League of Legends statistics of inputed Summoner Name.
+      Shows the players League of Legends statistics of inputed Summoner Name on the inputted region.
 
   - name:    lolbans
     alts:
