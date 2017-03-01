@@ -15,7 +15,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Heads"
     description:
       Flips a coin. Nothing complex.
-      You can try guessing the results by typing either Heads or Tails after the command.
+      You can try guessing the results by typing either Heads or Tails.
 
   - name: draw
     global:  true
