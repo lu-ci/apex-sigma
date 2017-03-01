@@ -16,6 +16,7 @@ def generate_defaults(server):
         'EventChance': 1,
         'ChatAnalysis': False,
         'MarkovCollect': False,
+        'MusicVolume': 100,
         'BlockInvites': False,
         'AntiSpam': False,
         'IsBlacklisted': False,

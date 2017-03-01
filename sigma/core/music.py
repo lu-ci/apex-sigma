@@ -1,47 +1,43 @@
 import queue as q
 
-ytdl_params = {
-    'format': 'bestaudio/best',
-    'extractaudio': True,
-    'audioformat': 'mp3',
-    'restrictfilenames': True,
-    'noplaylist': True,
-    'nocheckcertificate': True,
-    'ignoreerrors': False,
-    'logtostderr': False,
-    'quiet': True,
-    'no_warnings': True,
-    'default_search': 'auto',
-    'source_address': '0.0.0.0'
-}
 
 class Music(object):
     def __init__(self):
         self.players = {}
         self.queues = {}
         self.volumes = {}
+        self.ytdl_params = {
+            'format': 'bestaudio/best',
+            'extractaudio': True,
+            'audioformat': 'mp3',
+            'restrictfilenames': True,
+            'noplaylist': True,
+            'nocheckcertificate': True,
+            'ignoreerrors': False,
+            'logtostderr': False,
+            'quiet': True,
+            'no_warnings': True,
+        }
 
-    def get_volume(self, sid):
+    def get_volume(self, db, sid):
         if sid in self.volumes:
             return self.volumes['sid']
         else:
-            return 100
+            return db.get_settings(sid, 'MusicVolume')
 
-    def set_volume(self, sid, volume):
+    def set_volume(self, db, sid, volume):
         self.volumes.update({sid: volume})
+        db.set_settings(sid, 'MusicVolume', volume)
 
-    async def get_player(self, cmd, message):
-        if message.server.id in self.players:
-            return self.players['sid']
+    def get_player(self, sid):
+        if sid in self.players:
+            return self.players[sid]
         else:
-            data = self.queues
-            url = data['url']
-            voice = cmd.bot.voice_client_in(message.server)
-            if not voice:
-                voice = await cmd.bot.join_voice_channel(message.author.voice_channel)
-            player = voice.create_ytdl_player(url, ytdl_options=ytdl_params)
-            self.players.update({message.server.id: player})
-            return self.players['sid']
+            return None
+
+    def kill_player(self, sid):
+        if sid in self.players:
+            del self.players[sid]
 
     def add_to_queue(self, sid, data):
         if sid in self.queues:

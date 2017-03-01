@@ -26,3 +26,13 @@ commands:
     description:
       Adds a song to the playing queue either by URL or Name.
 
+  - name:    skip
+    alts:
+      - "next"
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Skips the currently playing song.
