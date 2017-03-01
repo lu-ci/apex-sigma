@@ -6,40 +6,6 @@ categories:
 enabled: true
 
 commands:
-  - name:    summon
-    alts:
-      - "smn"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Summons the bot into your voice channel.
-
-  - name:    disconnect
-    alts:
-      - "dc"
-      - "stop"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Disconnects the bot from a voice channel. And wipes the queue.
-
-  - name:    move
-    alts:
-      - "mv"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Moves the bot to your voice channel if she is in another one.
-
   - name:    play
     global:  true
     enabled: true
@@ -48,42 +14,6 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Tells the bot to start playing the songs in the queue.
-
-  - name:    playing
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows the currently playing song in the music player.
-
-  - name:    shuffle
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shuffles the song queue.
-
-  - name:    pause
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Pauses the currently playing song.
-
-  - name:    resume
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Resumes a paused song.
 
   - name:    queue
     alts:
@@ -96,37 +26,3 @@ commands:
     description:
       Adds a song to the playing queue either by URL or Name.
 
-  - name:    autoplaylist
-    alts:
-      - "autopls"
-      - "apls"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Adds the entire autoplaylist to the music queue.
-      For those who want to listen to nice music but are too lazy to add some.
-
-  - name:    vol
-    alts:
-      - "volume"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s} 69"
-    description:
-      Sets the volume of the current music player.
-
-  - name:    skip
-    alts:
-      - "next"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Skips the currently playing song.
