@@ -59,3 +59,7 @@ class Music(object):
             return self.queues[sid].get()
         else:
             return None
+
+    async def make_player(self, sid, voice, url):
+        player = await voice.create_ytdl_player(url, ytdl_options=self.ytdl_params)
+        self.players.update({sid: player})
