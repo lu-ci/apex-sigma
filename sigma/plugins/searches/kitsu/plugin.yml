@@ -1,0 +1,23 @@
+name: Kitsu
+
+categories:
+  - searches
+
+enabled: true
+
+commands:
+  - name:    kitsu
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Plastic Memories"
+    description:
+      Searches Kitsu for anime by the given name.
+
+  - name:    kitsuuser
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} AXAz0r"
+    description:
+      Shows the Kitsu.io profile for the inputted username.
