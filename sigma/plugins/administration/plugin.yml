@@ -15,8 +15,7 @@ commands:
     admin:   true
     usage:   "{pfx:s}{cmd:s} 1500 @person"
     description:
-      Awards the inputted amount of points to the mentioned person.
-      Bot Owner Only.
+      Awards the inputted amount of minigame points to the mentioned user.
 
   - name: takepts
     alts:
@@ -27,8 +26,7 @@ commands:
     admin:   true
     usage:   "{pfx:s}{cmd:s} 1500 @person"
     description:
-      Takes away the inputted amount of points from the mentioned person.
-      Bot Owner Only.
+      Takes away the inputted amount of minigame points from the mentioned user.
 
   - name: announce
     alts:
@@ -39,20 +37,8 @@ commands:
     admin:   true
     usage:   "{pfx:s}{cmd:s} Hello World!"
     description:
-      It will post your inputed message to the set text channel of every server the bot is connected to where announcements are turned on.
-      Bot Owner Only.
-
-  - name: announcementchannel
-    alts:
-      - "annch"
-    global:  true
-    enabled: true
-    sfw:     true
-    admin:   true
-    usage:   "{pfx:s}{cmd:s} #channel_name"
-    description:
-      Changes the channel that the bot will post announcements to. If no channel is entered announcements will be turned off.
-      Server Administrator Only.
+      Announces a message to every server that Sigma is on.
+      Usually used in extreme cases like breaking bugs.
 
   - name: leave
     global:  true
@@ -61,8 +47,7 @@ commands:
     admin:   true
     usage:   "{pfx:s}{cmd:s} 123456789"
     description:
-      Leaves the server with the inputted id.
-      Bot Owner Only.
+      Force Sigma to leave the server with the inputted ID.
 
   - name: evaluate
     alts:
@@ -77,18 +62,21 @@ commands:
     admin:   true
     usage:   "{pfx:s}{cmd:s} print('hello world')"
     description:
-      Executes a python function. Can be very dangerous.
-      Bot Owner Only.
+      Executes raw python code.
+      This should be used with caution.
 
   - name: send
     global:  true
     enabled: true
     sfw:     true
     admin:   true
-    usage:   "{pfx:s}{cmd:s} 200751504175398912|c:201577895196360714 Hello World!"
+    usage:   "{pfx:s}{cmd:s} u:123456789 Hello World!"
     description:
-      Send a message to either a channel or user (by ID) on the server with the given ID.
-      Bot Owner Only.
+      Sends a message to the chosen destination's ID.
+      The format is destination_type:destination_id.
+      Destination types are U, C and S.
+      User, Channel and Server.
+      If the server type is used, it will send a message to that server's default channel.
 
   - name: inviteowner
     alts:
@@ -100,8 +88,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} 200751504175398912"
     description:
       Creates a one-use invite link to a server the bot is a part of by inputted ID.
-      The purpose of this command is to investigate possibly abusive servers.
-      Bot Owner Only.
+      The purpose of this command is to investigate possibly abusive servers and quickly troubleshoot possible issues.
 
   - name: searchid
     alts:
@@ -112,9 +99,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} 200751504175398912"
     description:
-      Searches for a persons User ID within all servers.
-      The purpose of this command is to investigate possibly abusive servers and users.
-      Bot Owner Only.
+      Searches for a persons User ID and lists all servers that Sigma can see them on.
 
   - name:    echo
     global:  true
@@ -124,7 +109,6 @@ commands:
     usage:   "{pfx:s}{cmd:s} Hello world!"
     description:
       Repeats the given text.
-      Bot Owner Only.
 
   - name:    kill
     global:  true
@@ -133,7 +117,6 @@ commands:
     sfw:     true
     description:
       Forcefully kill the bot.
-      Bot Owner Only.
 
   - name:    setgame
     global:  true
@@ -142,8 +125,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} New Game!"
     description:
-      Sets the bots playing states to whatever you wish.
-      Bot Owner Only.
+      Sets Sigma's playing status.
 
   - name:    setavatar
     alts:
@@ -154,8 +136,7 @@ commands:
     admin:   true
     usage:   "{pfx:s}{cmd:s} url"
     description:
-      Set the avatar picture.
-      Bot Owner Only.
+      Set Sigma's avatar picture.
 
   - name:    apikeys
     global:  true
@@ -166,7 +147,6 @@ commands:
     description:
       Shows which keys are present and which are missing from the config.
       The list is sent as a DM to the user.
-      Bot Owner Only.
 
   - name:    setname
     global:  true
@@ -176,7 +156,8 @@ commands:
     usage:   "{pfx:s}{cmd:s} Charlotte"
     description:
       Sets the username of the bot to the inputted one.
-      Bot Owner Only.
+      Note that this controls the username of the bot and not nickname.
+      Discord allows only 2 username changes per hour.
 
   - name:    blacksrv
     global:  true
@@ -186,17 +167,6 @@ commands:
     usage:   "{pfx:s}{cmd:s} 123456789123456789"
     description:
       Blacklists a connected server disallowing it to use any and all commands.
-      Bot Owner Only.
-
-  - name:    qme
-    global:  true
-    enabled: true
-    admin:   false
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Generates a quote using a markov chain generated from stuff the bot owners said.
-      Bot Owner Only.
 
 events:
   - name:    pmredirect
@@ -225,15 +195,6 @@ events:
     pmable:  true
     description:
       Automatically updates the version file.
-
-  - name:    gencmd
-    type:    ready
-    global:  true
-    enabled: true
-    sfw:     true
-    pmable:  true
-    description:
-      Generates the command list MD file.
 
   - name:    status_rotation
     type:    ready
