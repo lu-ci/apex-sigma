@@ -60,6 +60,6 @@ class Music(object):
         else:
             return None
 
-    async def make_player(self, sid, voice, url):
+    async def make_yt_player(self, sid, voice, url):
         player = await voice.create_ytdl_player(url, ytdl_options=self.ytdl_params)
         self.players.update({sid: player})
