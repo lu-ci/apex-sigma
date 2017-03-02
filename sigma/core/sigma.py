@@ -43,6 +43,7 @@ class Sigma(discord.Client):
         self.alts = load_alternate_command_names()
         self.init_logger()
         self.init_databases()
+        self.init_music()
         self.init_plugins()
 
         self.server_count = 0
@@ -111,8 +112,6 @@ class Sigma(discord.Client):
         self.db.init_stats_table()
         self.log.info('Making Cache')
         self.create_cache()
-        self.log.info('Initializing Music')
-        self.init_music()
         self.log.info('-----------------------------------')
         stats(self, self.log)
         self.db.init_server_settings(self.servers)

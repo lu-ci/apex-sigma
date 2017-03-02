@@ -30,6 +30,7 @@ class Callable(object):
         }
 
         self.db = plugin.db
+        self.music = plugin.music
         self.log = plugin.log
         self.bot = plugin.bot
         self.plugin = plugin
