@@ -1,0 +1,15 @@
+name: Warframe
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    wfwiki
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Nekros Prime"
+    description:
+      Searches for a page on the Warframe wikia, outputing the information from the page.
