@@ -7,6 +7,8 @@ enabled: true
 
 commands:
   - name:    play
+    alts:
+      - "start"
     global:  true
     enabled: true
     sfw:     true
@@ -14,6 +16,8 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Tells the bot to start playing the songs in the queue.
+      You can also type the song name now instead of using the queue command to queue the song.
+      If nothing is playing, it will play that song.
 
   - name:    queue
     alts:
@@ -25,6 +29,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
       Adds a song to the playing queue either by URL or Name.
+      Note that currently only YouTube is supported.
 
   - name:    skip
     alts:
@@ -36,3 +41,39 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Skips the currently playing song.
+
+  - name:    disconnect
+    alts:
+      - "stop"
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Skips the currently playing song.
+
+  - name:    volume
+    alts:
+      - "vol"
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Sets the volume of the player.
+      The set volume will be remembered for the current server.
+
+  - name:    nowplaying
+    alts:
+      - "np"
+      - "playing"
+      - "currentsong"
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Displays information on the currently playing item.

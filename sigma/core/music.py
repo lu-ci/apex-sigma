@@ -7,6 +7,7 @@ class Music(object):
         self.initializing = []
         self.queues = {}
         self.volumes = {}
+        self.currents = {}
         self.ytdl_params = {
             'format': 'bestaudio/best',
             'extractaudio': True,
@@ -22,7 +23,7 @@ class Music(object):
 
     def get_volume(self, db, sid):
         if sid in self.volumes:
-            return self.volumes['sid']
+            return self.volumes[sid]
         else:
             return db.get_settings(sid, 'MusicVolume')
 

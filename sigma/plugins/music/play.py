@@ -11,7 +11,7 @@ async def play(cmd, message, args):
         player = cmd.music.get_player(message.server.id)
         if player:
             if player.is_playing():
-                return 
+                return
     if not message.server.id in cmd.music.initializing:
         cmd.music.add_init(message.server.id)
         cmd.bot.loop.create_task(init_clock(cmd.music, message.server.id))
@@ -43,6 +43,7 @@ async def play(cmd, message, args):
         voice_instance = cmd.bot.voice_client_in(message.server)
         while cmd.music.get_queue(message.server.id) and len(cmd.music.get_queue(message.server.id).queue) != 0:
             item = cmd.music.get_from_queue(message.server.id)
+            cmd.music.currents.update({message.server.id: item})
             video = item['video']
             item_url = item['url']
             await cmd.music.make_yt_player(message.server.id, voice_instance, item_url)
@@ -66,6 +67,7 @@ async def play(cmd, message, args):
             cmd.music.kill_player(message.server.id)
         await voice_instance.disconnect()
         embed = discord.Embed(title=':white_check_mark: Queue Depleted', color=0x66cc66)
+        del cmd.music.currents[message.server.id]
         await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
         cmd.log.warning('Play Command Ignored Due To Server Being In The Music Initialization List')
