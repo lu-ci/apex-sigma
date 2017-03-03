@@ -10,6 +10,7 @@ class PluginManager(object):
         self.client = self.bot
 
         self.db = bot.db
+        self.music = bot.music
         self.log = create_logger('Plugin Manager')
 
         self.plugin_dirs = []

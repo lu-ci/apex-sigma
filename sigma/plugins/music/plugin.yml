@@ -6,41 +6,9 @@ categories:
 enabled: true
 
 commands:
-  - name:    summon
-    alts:
-      - "smn"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Summons the bot into your voice channel.
-
-  - name:    disconnect
-    alts:
-      - "dc"
-      - "stop"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Disconnects the bot from a voice channel. And wipes the queue.
-
-  - name:    move
-    alts:
-      - "mv"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Moves the bot to your voice channel if she is in another one.
-
   - name:    play
+    alts:
+      - "start"
     global:  true
     enabled: true
     sfw:     true
@@ -48,42 +16,9 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Tells the bot to start playing the songs in the queue.
-
-  - name:    playing
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows the currently playing song in the music player.
-
-  - name:    shuffle
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shuffles the song queue.
-
-  - name:    pause
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Pauses the currently playing song.
-
-  - name:    resume
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Resumes a paused song.
+      You can also type the song name now instead of using the queue command to queue the song.
+      As well as adding playlist, however playlists are limited to 500 items.
+      If nothing is playing, it will play that song.
 
   - name:    queue
     alts:
@@ -95,30 +30,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
       Adds a song to the playing queue either by URL or Name.
-
-  - name:    autoplaylist
-    alts:
-      - "autopls"
-      - "apls"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Adds the entire autoplaylist to the music queue.
-      For those who want to listen to nice music but are too lazy to add some.
-
-  - name:    vol
-    alts:
-      - "volume"
-    global:  true
-    enabled: true
-    sfw:     true
-    donor:   false
-    usage:   "{pfx:s}{cmd:s} 69"
-    description:
-      Sets the volume of the current music player.
+      Note that currently only YouTube is supported.
 
   - name:    skip
     alts:
@@ -130,3 +42,48 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Skips the currently playing song.
+
+  - name:    disconnect
+    alts:
+      - "stop"
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Skips the currently playing song.
+
+  - name:    volume
+    alts:
+      - "vol"
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Sets the volume of the player.
+      The set volume will be remembered for the current server.
+
+  - name:    nowplaying
+    alts:
+      - "np"
+      - "playing"
+      - "currentsong"
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Displays information on the currently playing item.
+
+  - name:    shuffle
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shuffles and mixes the current song queue.

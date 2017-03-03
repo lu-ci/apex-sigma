@@ -1,52 +1,67 @@
+import pafy
+import arrow
 import discord
-from .music_controller import get_queue, add_to_queue
+import asyncio
 from sigma.plugins.searches.google.yt_search import search_youtube
+from sigma.core.utils import user_avatar
+from .playlist_adder import playlist_adder
+from config import Prefix
 
 
 async def queue(cmd, message, args):
-    current_queue = get_queue(message.server)
-    queue_amount = len(current_queue)
-    if not message.author.voice_channel:
-        embed = discord.Embed(
-            title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
-        return
-    if not args:
-        if queue_amount == 0:
-            embed = discord.Embed(color=0x0099FF, title=':information_source: The queue is empty.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
-            return
-        queue_text = '```yaml\n'
-        n = 0
-        for item in current_queue:
-            n += 1
-            if n <= 5:
-                queue_text += '\n\'' + item['Title'] + '\'\n  - ' + item['Requester']
-        queue_text += '\n```'
-        embed = discord.Embed(color=0x0099FF)
-        embed.add_field(name=':information_source: Current Queue For ' + message.server.name, value=queue_text,
-                        inline=True)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
-    else:
-        requester = message.author.name + '#' + message.author.discriminator
-        qry = ' '.join(args)
-        if 'list=' in qry:
-            embed = discord.Embed(
-                title=':warning: You can\'t queue lists.', color=0xFF9900)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
-            return
-        if qry.startswith('https://yout') or qry.startswith('https://www.yout'):
-            try:
-                await cmd.bot.delete_message(message)
-            except:
-                pass
-            video_url = qry
-            video_title = 'Requested from Direct Link'
+    if message.author.voice_channel:
+        if args:
+            qry = ' '.join(args)
+            if '?list=' in qry:
+                list_id = qry.split('list=')[1]
+                list_url = 'https://www.youtube.com/playlist?list=' + list_id
+                plist = pafy.get_playlist2(list_url)
+                item_count = len(plist)
+                embed = discord.Embed(color=0x0099FF,
+                                      title=f':information_source: Playlist Detected. Adding {item_count} items...')
+                await cmd.bot.send_message(message.channel, None, embed=embed)
+                playlist_adder(message.server.id, cmd.music, message.author, plist)
+                await asyncio.sleep(2)
+            else:
+                if qry.startswith('https://'):
+                    video_url = qry
+                else:
+                    video_url = search_youtube(qry)
+                video = pafy.new(video_url)
+                data = {
+                    'url': video_url,
+                    'requester': message.author,
+                    'video': video,
+                    'timestamp': arrow.now().timestamp
+                }
+                total = arrow.now().timestamp
+                curr_queue = cmd.music.get_queue(message.server.id)
+                if curr_queue:
+                    for item in list(curr_queue.queue):
+                        h, m, s = item['video'].duration.split(':')
+                        addition = int(s) + (int(m) * 60) + (int(h) * 3600)
+                        total += addition
+                time_data = arrow.utcnow().fromtimestamp(total).naive
+                embed = discord.Embed(color=0x66CC66, timestamp=time_data)
+                cmd.bot.music.add_to_queue(message.server.id, data)
+                embed.add_field(name=':white_check_mark: Added To Queue', value=video.title)
+                embed.set_thumbnail(url=video.thumb)
+                embed.set_author(name=f'{message.author.name}#{message.author.discriminator}',
+                                 icon_url=user_avatar(message.author))
+                embed.set_footer(text=f'Duration: {video.duration}')
+                await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
-            video_url, video_id, video_title = search_youtube(qry)
-        add_to_queue(message.server, requester, 'YouTube', video_url, video_title)
-        embed = discord.Embed(title=':white_check_mark: Added To Queue', color=0x66CC66)
-        embed.add_field(name='Title', value='**' + video_title + '**', inline=False)
-        embed.add_field(name='YT Link', value='[' + video_url + '](' + video_url + ')', inline=False)
-        embed.set_footer(text='Position #' + str(queue_amount + 1) + ' in queue, queued by ' + requester + '.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+            q = cmd.bot.music.get_queue(message.server.id)
+            if q.empty():
+                embed = discord.Embed(color=0x0099FF, title=':information_source: The Queue Is Empty')
+                await cmd.bot.send_message(message.channel, None, embed=embed)
+            else:
+                q_list = list(q.queue)[:5]
+                q_text = ''
+                for item in q_list:
+                    q_text += f'\n{item["video"].title}'
+                embed = discord.Embed(color=0x0099FF)
+                embed.add_field(name=f':information_source: {len(q_list)} Upcoming Songs (Total: {len(list(q.queue))})',
+                                value=f'```\n{q_text}\n```', inline=False)
+                embed.set_footer(text=f'To see the currently playing song type {Prefix}np')
+                await cmd.bot.send_message(message.channel, None, embed=embed)

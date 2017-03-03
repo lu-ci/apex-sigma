@@ -2,8 +2,8 @@
 [![apex](https://i.imgur.com/TRSdGni.png)](https://auroraproject.xyz/)
 
 <p align="center">
-<img src="https://img.shields.io/badge/Sigma-2.13-1abc9c.svg?style=flat-square" />
-<img src="https://img.shields.io/badge/Codename-Kyou-1B6F5F.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Sigma-2.19-1B6F5F.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Codename-Kotomi-1B6F5F.svg?style=flat-square" />
 <img src="https://img.shields.io/badge/License-GPLv3-red.svg?style=flat-square" />
 </p>
 <p align="center">
