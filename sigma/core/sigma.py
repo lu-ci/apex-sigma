@@ -9,6 +9,7 @@ from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoP
 
 from .plugman import PluginManager
 from .database import Database
+from .music import Music
 from .logger import create_logger
 from .stats import stats
 from .command_alts import load_alternate_command_names
@@ -42,6 +43,7 @@ class Sigma(discord.Client):
         self.alts = load_alternate_command_names()
         self.init_logger()
         self.init_databases()
+        self.init_music()
         self.init_plugins()
 
         self.server_count = 0
@@ -90,6 +92,9 @@ class Sigma(discord.Client):
 
     def init_plugins(self):
         self.plugin_manager = PluginManager(self)
+
+    def init_music(self):
+        self.music = Music()
 
     @classmethod
     def create_cache(cls):

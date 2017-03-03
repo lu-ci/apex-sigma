@@ -1,15 +1,13 @@
 import discord
-from .music_controller import purge_queue
 
 
 async def disconnect(cmd, message, args):
-    voice_connected = cmd.bot.is_voice_connected(message.server)
-    if voice_connected:
-        voice_instance = cmd.bot.voice_client_in(message.server)
-        vc_name = voice_instance.channel.name
-        purge_queue(message.server)
-        await voice_instance.disconnect()
-        embed = discord.Embed(title=':white_check_mark: Disconnected from ' + vc_name, color=0x66CC66)
-    else:
-        embed = discord.Embed(title=':warning: I am not in a voice channel currently', color=0xFF9900)
+    if not message.author.voice_channel:
+        embed = discord.Embed(
+            title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
+        await cmd.bot.send_message(message.channel, None, embed=embed)
+        return
+    voice = cmd.bot.voice_client_in(message.server)
+    await voice.disconnect()
+    embed = discord.Embed(color=0x66CC66, title=f':white_check_mark: Disconnected From {voice.channel.name}')
     await cmd.bot.send_message(message.channel, None, embed=embed)

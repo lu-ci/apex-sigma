@@ -30,6 +30,7 @@ class Plugin(object):
         self.path = path
 
         self.db = bot.db
+        self.music = bot.music
         self.bot = bot
 
         try:
