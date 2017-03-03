@@ -77,3 +77,12 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Displays information on the currently playing item.
+
+  - name:    shuffle
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shuffles and mixes the current song queue.
