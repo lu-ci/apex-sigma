@@ -21,6 +21,14 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Valkyr Prime"
+    usage:   "{pfx:s}{cmd:s} Fragor Prime"
+    description:
+      Searches for prime drop locations.
+
+  - name:    wfrelic
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Lith A1"
     description:
       Searches for prime drop locations.
