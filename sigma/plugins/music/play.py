@@ -65,9 +65,10 @@ async def play(cmd, message, args):
             while not player.is_done():
                 await asyncio.sleep(2)
             cmd.music.kill_player(message.server.id)
-        await voice_instance.disconnect()
-        embed = discord.Embed(title=':white_check_mark: Queue Depleted', color=0x66cc66)
+        try:
+            await voice_instance.disconnect()
+        except:
+            pass
         del cmd.music.currents[message.server.id]
-        await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
         cmd.log.warning('Play Command Ignored Due To Server Being In The Music Initialization List')
