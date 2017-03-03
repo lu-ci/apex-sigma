@@ -11,7 +11,12 @@ async def wfwiki(cmd, message, args):
         async with aiohttp.ClientSession() as session:
             async with session.get(wiki_search_url) as data:
                 search_json = await data.json()
-                article_id = search_json['items'][0]['id']
+                try:
+                    article_id = search_json['items'][0]['id']
+                except:
+                    embed = discord.Embed(color=0x696969, title=':mag: Nothing Found')
+                    await cmd.bot.send_message(message.channel, None, embed=embed)
+                    return
                 article_url = search_json['items'][0]['url']
             article_data_url = f'http://warframe.wikia.com/api/v1/Articles/AsSimpleJson?id={article_id}'
             async with session.get(article_data_url) as article_page_data:

@@ -13,3 +13,14 @@ commands:
     usage:   "{pfx:s}{cmd:s} Nekros Prime"
     description:
       Searches for a page on the Warframe wikia, outputing the information from the page.
+
+  - name:    wfloc
+    alts:
+      - "wfdrop"
+      - "wfprime"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Valkyr Prime"
+    description:
+      Searches for prime drop locations.
