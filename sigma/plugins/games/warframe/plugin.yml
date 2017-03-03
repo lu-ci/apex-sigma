@@ -1,0 +1,34 @@
+name: Warframe
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    wfwiki
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Nekros Prime"
+    description:
+      Searches for a page on the Warframe wikia, outputing the information from the page.
+
+  - name:    wfloc
+    alts:
+      - "wfdrop"
+      - "wfprime"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Fragor Prime"
+    description:
+      Searches for prime drop locations.
+
+  - name:    wfrelic
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Lith A1"
+    description:
+      Searches for prime drop locations.
