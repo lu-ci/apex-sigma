@@ -25,8 +25,7 @@ async def queue(cmd, message, args):
                     embed_title = f':information_source: Playlist Detected. Adding {add_count} items...'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
-                await playlist_adder(message.server.id, cmd.music, message.author, plist)
-                await asyncio.sleep(2)
+                cmd.bot.loop.create_task(playlist_adder(message.server.id, cmd.music, message.author, plist))
             else:
                 if qry.startswith('https://'):
                     video_url = qry
