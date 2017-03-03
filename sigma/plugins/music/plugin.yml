@@ -16,7 +16,6 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Tells the bot to start playing the songs in the queue.
-      You can also type the song name now instead of using the queue command to queue the song.
       As well as adding playlist, however playlists are limited to 100 items.
       If nothing is playing, it will play that song.
 
