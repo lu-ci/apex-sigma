@@ -17,8 +17,13 @@ async def queue(cmd, message, args):
                 list_url = 'https://www.youtube.com/playlist?list=' + list_id
                 plist = pafy.get_playlist2(list_url)
                 item_count = len(plist)
-                embed = discord.Embed(color=0x0099FF,
-                                      title=f':information_source: Playlist Detected. Adding {item_count} items...')
+                if item_count > 500:
+                    add_count = 500
+                    embed_title = f':information_source: Playlist With {item_count} Items Detected. Adding {add_count} items...'
+                else:
+                    add_count = item_count
+                    embed_title = f':information_source: Playlist Detected. Adding {add_count} items...'
+                embed = discord.Embed(color=0x0099FF, title=embed_title)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
                 playlist_adder(message.server.id, cmd.music, message.author, plist)
                 await asyncio.sleep(2)
