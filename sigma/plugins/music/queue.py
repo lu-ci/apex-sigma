@@ -1,7 +1,6 @@
 import pafy
 import arrow
 import discord
-import asyncio
 from sigma.plugins.searches.google.yt_search import search_youtube
 from sigma.core.utils import user_avatar
 from .playlist_adder import playlist_adder

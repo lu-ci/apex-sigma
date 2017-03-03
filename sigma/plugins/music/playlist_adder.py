@@ -13,3 +13,5 @@ async def playlist_adder(sid, music, req, playlist_obj):
             }
             music.add_to_queue(sid, data)
             counter += 1
+        else:
+            break
