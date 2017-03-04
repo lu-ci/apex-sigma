@@ -1,6 +1,7 @@
 import pafy
 import arrow
 import discord
+import asyncio
 from sigma.plugins.searches.google.yt_search import search_youtube
 from sigma.core.utils import user_avatar
 from .playlist_adder import playlist_adder
@@ -14,17 +15,13 @@ async def queue(cmd, message, args):
             if '?list=' in qry:
                 list_id = qry.split('list=')[1]
                 list_url = 'https://www.youtube.com/playlist?list=' + list_id
-                plist = pafy.get_playlist2(list_url)
-                item_count = len(plist)
-                if item_count > 100:
-                    add_count = 100
-                    embed_title = f':information_source: Playlist With {item_count} Items Detected. Adding {add_count} items...'
-                else:
-                    add_count = item_count
-                    embed_title = f':information_source: Playlist Detected. Adding {add_count} items...'
+                plist = pafy.get_playlist(list_url)
+                item_count = len(plist['items'])
+                embed_title = f':information_source: Playlist Detected. Adding {item_count} items...'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
-                cmd.bot.loop.create_task(playlist_adder(message.server.id, cmd.music, message.author, plist))
+                await playlist_adder(message.server.id, cmd.music, message.author, plist)
+                await asyncio.sleep(3)
             else:
                 if qry.startswith('https://'):
                     video_url = qry
