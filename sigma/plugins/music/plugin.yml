@@ -16,8 +16,10 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Tells the bot to start playing the songs in the queue.
+      You can also use this command instead of queue to add songs.
       As well as adding playlist, however playlists are limited to 100 items.
       If nothing is playing, it will play that song.
+      Note that currently only YouTube is supported.
 
   - name:    queue
     alts:
@@ -28,7 +30,7 @@ commands:
     donor:   false
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
-      Adds a song to the playing queue either by URL or Name.
+      Adds a song or playlist to the playing queue either by URL or Name.
       Note that currently only YouTube is supported.
 
   - name:    skip

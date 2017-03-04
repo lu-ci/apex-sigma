@@ -54,7 +54,9 @@ class Music(object):
         if sid in self.queues:
             return self.queues[sid]
         else:
-            return None
+            queue = q.Queue()
+            self.queues.update({sid: queue})
+            return queue
 
     def get_from_queue(self, sid):
         if sid in self.queues:
