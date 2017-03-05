@@ -64,6 +64,10 @@ class Music(object):
         else:
             return None
 
+    def purge_queue(self, sid):
+        if sid in self.queues:
+            self.queues[sid] = q.Queue()
+
     async def make_yt_player(self, sid, voice, url):
         player = await voice.create_ytdl_player(url, ytdl_options=self.ytdl_params)
         self.players.update({sid: player})
