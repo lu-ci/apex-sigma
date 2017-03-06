@@ -26,7 +26,6 @@ wolframalpha
 geopy
 pymongo
 google-api-python-client
-google
 protobuf
 pafy
 youtube_dl
