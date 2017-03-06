@@ -8,8 +8,12 @@ async def disconnect(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     voice = cmd.bot.voice_client_in(message.server)
-    cmd.music.purge_queue(message.server.id)
-    await voice.disconnect()
-    embed = discord.Embed(color=0x66CC66, title=f':white_check_mark: Disconnected From {voice.channel.name}')
-    embed.set_footer(text='And purged queue.')
+    if voice:
+        cmd.music.purge_queue(message.server.id)
+        await voice.disconnect()
+        embed = discord.Embed(color=0x66CC66, title=f':white_check_mark: Disconnected From {voice.channel.name}')
+        embed.set_footer(text='And purged queue.')
+    else:
+        embed = discord.Embed(
+            title=':warning: I am not in a voice channel', color=0xFF9900)
     await cmd.bot.send_message(message.channel, None, embed=embed)
