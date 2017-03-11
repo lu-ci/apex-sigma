@@ -122,7 +122,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} X @person"
     description:
-      Deltes X number of messages posted by the mentioned person.
+      Deletes X number of messages posted by the mentioned person.
       If a user is not provided, it will prune the last X messages regardless of poster.
       If a number is not provided it will prune the last 100 messages.
       If neither number nor user is provided, it will prune the bots messages.
