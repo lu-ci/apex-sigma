@@ -6,14 +6,33 @@ class Board(object):
         self.won = False
         self.lost = False
         self.draw = False
+        self.over = False
         self.total_fields = size ** 2
-        self.empty_fields = [Field()] * (size ** 2)
+        self.empty_fields = [Field()] * self.total_fields
         self.taken_fields = []
-        self.number_of_empty_fields = size ** 2
+        self.number_of_empty_fields = self.total_fields
         self.number_of_taken_fields = 0
 
+    def view(self):
+        top = [':arrow_lower_right:',':regional_indicator_a:', ':regional_indicator_b:', ':regional_indicator_c:']
+        left = [':one:', ':two:', ':three:']
+        row_loc = 0
+        out_text = ''.join(top)
+        for row in self.rows:
+            row_text = ''
+            for field in row.fields:
+                piece = field.piece
+                if piece:
+                    row_text += f':regional_indicator_{field.piece.lower()}:'
+                else:
+                    row_text += ':white_large_square:'
+            out_text += f'\n{left[row_loc]}{row_text}'
+            row_loc += 1
+        return out_text
+
     def set_piece(self, coordinates, piece):
-        self.rows[coordinates[0]].fields[coordinates[1]].piece = piece
+        self.rows[coordinates[0]].fields[coordinates[1]].set_piece(piece)
+        self.update_status()
 
     def get_piece(self, coordinates):
         return self.rows[coordinates[0]].fields[coordinates[1]].piece
@@ -30,15 +49,17 @@ class Board(object):
                     self.won = True
                 else:
                     self.lost = True
+                self.over = True
             else:
                 if self.number_of_empty_fields == 0:
                     self.draw = True
+                    self.over = True
 
     def check_matching(self, data_set):
-        for set in data_set:
-            p1 = self.get_piece(set[0])
-            p2 = self.get_piece(set[1])
-            p3 = self.get_piece(set[2])
+        for coordinate in data_set:
+            p1 = self.get_piece(coordinate[0])
+            p2 = self.get_piece(coordinate[1])
+            p3 = self.get_piece(coordinate[2])
             if not p1 or not p2 or not p3:
                 return False
             else:
@@ -57,3 +78,6 @@ class Field(object):
     def __init__(self):
         self.piece = None
         self.empty = bool(self.piece)
+
+    def set_piece(self, piece):
+        self.piece = piece

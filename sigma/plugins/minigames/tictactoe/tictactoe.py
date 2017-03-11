@@ -1,7 +1,4 @@
-import discord
-import random
-from config import Prefix
-
+from .nodes.board import Board
 
 translation = {
     'a1': 0, 'b1': 1, 'c1': 2,
@@ -11,6 +8,6 @@ translation = {
 
 
 async def tictactoe(cmd, message, args):
-    if args:
-        if args[0].lower() == 'start':
-            pass
+    board = Board(3, 'X', 'O')
+    board.set_piece([0, 1], 'X')
+    await cmd.bot.send_message(message.channel, board.view())
