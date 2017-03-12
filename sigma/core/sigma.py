@@ -162,6 +162,7 @@ class Sigma(discord.Client):
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
+                        self.db.add_stats(f'cmd_{cmd}_count')
                     if message.server:
                         if args:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
