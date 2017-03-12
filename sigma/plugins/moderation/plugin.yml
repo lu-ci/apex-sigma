@@ -35,7 +35,6 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    admin:   true
     usage:   "{pfx:s}{cmd:s} #channel_name"
     description:
       Changes the channel that the bot will post announcements to. If no channel is entered announcements will be turned off.
