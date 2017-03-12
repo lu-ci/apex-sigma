@@ -26,7 +26,7 @@ async def rip(cmd, message, args):
     avatar_img = avatar_img.resize((108, 108), Image.ANTIALIAS)
     base.paste(avatar_img, (60, 164))
     base.paste(tomb, (0, 0), tomb)
-    base.save('cache/rip_' + message.author.id + '.png')
+    base.save('cache/rip_' + message.id + '.png')
 
-    await cmd.bot.send_file(message.channel, 'cache/rip_' + message.author.id + '.png')
-    os.remove('cache/rip_' + message.author.id + '.png')
+    await cmd.bot.send_file(message.channel, 'cache/rip_' + message.id + '.png')
+    os.remove('cache/rip_' + message.id + '.png')
