@@ -1,0 +1,19 @@
+name: TicTacToe
+
+categories:
+  - minigames
+
+enabled: true
+
+commands:
+  - name: tictactoe
+    alts:
+     - "ttt"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} A 2"
+    description:
+      Play a game of Tic-Tac-Toe with Sigma.
+      Just type in the coordinates of the field you want to fill.
+      
