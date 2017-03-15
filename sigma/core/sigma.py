@@ -203,6 +203,7 @@ class Sigma(discord.Client):
                     self.log.error(e)
 
     async def on_server_join(self, server):
+        if self.ready:
             await self.update_discordlist()
             self.db.add_new_server_settings(server)
             self.db.update_server_details(server)
@@ -212,13 +213,16 @@ class Sigma(discord.Client):
             self.db.init_server_settings(self.servers)
 
     async def on_server_remove(self, server):
+        if self.ready:
             await self.update_discordlist()
             self.db.update_population_stats(self.servers, self.get_all_members())
             msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
             self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
 
     async def on_member_update(self, before, after):
+        if self.ready:
             self.db.update_user_details(after)
 
     async def on_server_update(self, before, after):
+        if self.ready:
             self.db.update_server_details(after)
