@@ -97,9 +97,10 @@ class Callable(object):
                 title = ':exclamation: An Error Occurred!'
                 errmsg = 'For more information you can go to the AP Discord server and ask us, '
                 errmsg += 'the link is in the help.'
-                self.log.error(f'CMD: {self.name} | ERROR: {str(e)}')
+                self.log.error(f'CMD: {self.name} | ERROR: {e}\n{e.with_traceback}')
                 error_embed = discord.Embed(color=0xDB0000)
-                error_embed.add_field(name=title, value=codeblock(str(e)))
+                error_embed.add_field(name=title,
+                                      value=codeblock(f'Arguments: \"{e}\"\nTraceback: \"{e.with_traceback)}\"'))
                 error_embed.set_footer(text=errmsg)
                 await self.bot.send_message(channel, None, embed=error_embed)
             except:
