@@ -100,7 +100,7 @@ class Callable(object):
                 self.log.error(f'CMD: {self.name} | ERROR: {e}\n{e.with_traceback}')
                 error_embed = discord.Embed(color=0xDB0000)
                 error_embed.add_field(name=title,
-                                      value=codeblock(f'Arguments: \"{e}\"\nTraceback: \"{e.with_traceback)}\"'))
+                                      value=codeblock(f'Arguments: \"{e}\"\nTraceback: \"{e.with_traceback}\"'))
                 error_embed.set_footer(text=errmsg)
                 await self.bot.send_message(channel, None, embed=error_embed)
             except:
