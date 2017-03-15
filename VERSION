@@ -1,7 +1,7 @@
 beta: false
-build_date: 1489339611
-codename: Fuuko
+build_date: 1489611805
+codename: Tomoyo
 version:
   major: 2
-  minor: 24
-  patch: 5740
+  minor: 25
+  patch: 5744
