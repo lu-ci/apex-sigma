@@ -15,8 +15,6 @@ from .stats import stats
 from .command_alts import load_alternate_command_names
 from .blacklist import check_black
 
-bot_ready = False
-
 
 # Apex Sigma: The Database Giant Discord Bot.
 # Copyright (C) 2017  Aurora Project
@@ -45,7 +43,7 @@ class Sigma(discord.Client):
         self.init_databases()
         self.init_music()
         self.init_plugins()
-
+        self.ready = False
         self.server_count = 0
         self.member_count = 0
 
@@ -131,15 +129,14 @@ class Sigma(discord.Client):
             except Exception as e:
                 self.log.error(e)
         self.log.info('-----------------------------------')
+        self.ready = True
         self.log.info('Finished Loading and Successfully Connected to Discord!')
-        global bot_ready
-        bot_ready = True
         if os.getenv('DEV_BUILD_ENV'):
             self.log.info('Testing Build Environment Detected\nExiting...')
             exit()
 
     async def on_message(self, message):
-        if bot_ready:
+        if self.ready:
             self.db.add_stats('MSGCount')
             args = message.content.split(' ')
 
@@ -188,7 +185,7 @@ class Sigma(discord.Client):
                     pass
 
     async def on_member_join(self, member):
-        if bot_ready:
+        if self.ready:
             self.db.update_population_stats(self.servers, self.get_all_members())
             for ev_name, event in self.plugin_manager.events['member_join'].items():
                 try:
@@ -197,15 +194,15 @@ class Sigma(discord.Client):
                     self.log.error(e)
 
     async def on_member_remove(self, member):
-        self.db.update_population_stats(self.servers, self.get_all_members())
-        for ev_name, event in self.plugin_manager.events['member_leave'].items():
-            try:
-                await event.call_sp(member)
-            except Exception as e:
-                self.log.error(e)
+        if self.ready:
+            self.db.update_population_stats(self.servers, self.get_all_members())
+            for ev_name, event in self.plugin_manager.events['member_leave'].items():
+                try:
+                    await event.call_sp(member)
+                except Exception as e:
+                    self.log.error(e)
 
     async def on_server_join(self, server):
-        if bot_ready:
             await self.update_discordlist()
             self.db.add_new_server_settings(server)
             self.db.update_server_details(server)
@@ -215,16 +212,13 @@ class Sigma(discord.Client):
             self.db.init_server_settings(self.servers)
 
     async def on_server_remove(self, server):
-        if bot_ready:
             await self.update_discordlist()
             self.db.update_population_stats(self.servers, self.get_all_members())
             msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
             self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
 
     async def on_member_update(self, before, after):
-        if bot_ready:
             self.db.update_user_details(after)
 
     async def on_server_update(self, before, after):
-        if bot_ready:
             self.db.update_server_details(after)
