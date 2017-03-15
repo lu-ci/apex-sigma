@@ -17,11 +17,18 @@ def refactor_users_node(db, usrgen):
 def refactor_servers_node(db, servers):
     db['ServerList'].drop()
     for server in servers:
+        owner = server.owner
+        if owner:
+            owner_name = owner.name
+            owner_id = owner.id
+        else:
+            owner_name = 'None'
+            owner_id = 'Unknown'
         data = {
             'ServerID': server.id,
             'Icon': server.icon_url,
             'ServerName': server.name,
-            'Owner': server.owner.name,
-            'OwnerID': server.owner.id
+            'Owner': owner_name,
+            'OwnerID': owner_id
         }
         db['ServerList'].insert_one(data)
