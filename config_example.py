@@ -50,4 +50,5 @@ mal_pw = getenv('mal_pw') or ''
 # Bot Control Settings
 MainServerURL = getenv('MainServerURL') or 'http://localhost/'
 Prefix = '>>'
+SlotWinChannelID = '12345679123456789'
 permitted_id = ['123456789123456789']
