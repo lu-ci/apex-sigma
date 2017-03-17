@@ -98,6 +98,8 @@ class Sigma(discord.Client):
     def create_cache(cls):
         if not os.path.exists('cache/'):
             os.makedirs('cache/')
+        if not os.path.exists('chains/'):
+            os.makedirs('chains/')
 
     async def on_voice_state_update(self, before, after):
         pass
