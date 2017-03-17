@@ -28,7 +28,6 @@ class Callable(object):
             'donor': False,
             'pmable': False
         }
-
         self.db = plugin.db
         self.music = plugin.music
         self.log = plugin.log
