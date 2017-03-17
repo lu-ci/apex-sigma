@@ -94,15 +94,6 @@ class Sigma(discord.Client):
     def init_music(self):
         self.music = Music()
 
-    async def missing_settings_check(self):
-        self.log.info('Checking Missing Settings')
-        check_count = 0
-        for server in self.servers:
-            self.db.check_for_missing_settings(server)
-            check_count += 1
-        self.log.info(f'Checked {check_count} Servers')
-        self.log.info('Settings Check Complete')
-
     @classmethod
     def create_cache(cls):
         if not os.path.exists('cache/'):
@@ -110,14 +101,6 @@ class Sigma(discord.Client):
 
     async def on_voice_state_update(self, before, after):
         pass
-
-    async def user_refactor(self):
-        await self.wait_until_login()
-        await self.db.refactor_users(self.get_all_members())
-
-    async def server_refactor(self):
-        await self.wait_until_login()
-        await self.db.refactor_servers(self.servers)
 
     async def get_plugins(self):
         return self.plugin_manager.plugins
@@ -130,13 +113,6 @@ class Sigma(discord.Client):
         self.log.info('-----------------------------------')
         stats(self, self.log)
         self.db.init_server_settings(self.servers)
-        self.log.info('-----------------------------------')
-        self.log.info('Updating User Database...')
-        self.loop.create_task(self.user_refactor())
-        self.log.info('Updating Server Database...')
-        self.loop.create_task(self.server_refactor())
-        self.log.info('Creating Loop To Check Database For Missing Settings')
-        self.loop.create_task(self.missing_settings_check())
         self.log.info('-----------------------------------')
         self.log.info('Updating Bot Population Stats...')
         self.db.update_population_stats(self.servers, self.get_all_members())
