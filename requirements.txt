@@ -6,8 +6,6 @@ Pillow
 lxml
 translate
 nhentai.py
-pytz
-colorlog
 hurry.filesize
 Shosetsu
 imgurpython
@@ -20,7 +18,6 @@ wikipedia
 humanfriendly
 blinker
 nose
-cssselect
 python-twitch
 wolframalpha
 geopy
@@ -30,6 +27,3 @@ protobuf
 pafy
 youtube_dl
 PyMarkovChain
-codeclimate-test-reporter
-coverage
-defusedxml
