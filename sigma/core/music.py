@@ -80,7 +80,7 @@ class Music(object):
         audio = video.getbestaudio()
         file_location = output + video.videoid
         if not os.path.exists(file_location):
-            audio.download(file_location)
+            audio.download(file_location, quiet=True)
         return file_location
 
     async def make_player(self, sid, voice, location):
