@@ -97,7 +97,7 @@ class Callable(object):
                 title = ':exclamation: An Error Occurred!'
                 errmsg = 'For more information you can go to the AP Discord server and ask us, '
                 errmsg += 'the link is in the help.'
-                self.log.error(f'CMD: {self.name} | ERROR: {e}\n{e.with_traceback}')
+                self.log.error(f'CMD: {self.name} | ERROR: {e} | TRACE: {e.with_traceback}')
                 error_embed = discord.Embed(color=0xDB0000)
                 error_embed.add_field(name=title,
                                       value=codeblock(f'Arguments: \"{e}\"\nTraceback: \"{e.with_traceback}\"'))
@@ -116,10 +116,10 @@ class Callable(object):
         try:
             await getattr(self.module, self.name)(self, member)
         except Exception as e:
-            self.log.error(f'EV: {self.name} | ERROR: {e}\n{e.with_traceback}')
+            self.log.error(f'EV: {self.name} | ERROR: {e} | TRACE: {e.with_traceback}')
 
     async def call_ready(self):
         try:
             await getattr(self.module, self.name)(self)
         except Exception as e:
-            self.log.error(f'EV: {self.name} | ERROR: {e}\n{e.with_traceback}')
+            self.log.error(f'EV: {self.name} | ERROR: {e} | TRACE: {e.with_traceback}')
