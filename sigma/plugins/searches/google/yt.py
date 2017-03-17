@@ -9,6 +9,6 @@ async def yt(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     qry = ' '.join(args)
-    v_url = search_youtube(qry)
+    v_url = await search_youtube(qry)
     v_tit = pafy.new(v_url).title
     await cmd.bot.send_message(message.channel, '`' + v_tit + '`\n' + v_url)
