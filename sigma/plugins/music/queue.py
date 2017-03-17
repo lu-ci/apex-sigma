@@ -26,7 +26,7 @@ async def queue(cmd, message, args):
                 if qry.startswith('https://'):
                     video_url = qry
                 else:
-                    video_url = search_youtube(qry)
+                    video_url = await search_youtube(qry)
                 video = pafy.new(video_url)
                 data = {
                     'url': video_url,
