@@ -10,6 +10,7 @@ class Music(object):
         self.queues = {}
         self.volumes = {}
         self.currents = {}
+        self.repeaters = []
         self.ytdl_params = {
             'format': 'bestaudio/best',
             'extractaudio': True,

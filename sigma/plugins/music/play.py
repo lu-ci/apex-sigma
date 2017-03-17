@@ -43,6 +43,8 @@ async def play(cmd, message, args):
         voice_instance = cmd.bot.voice_client_in(message.server)
         while cmd.music.get_queue(message.server.id) and len(cmd.music.get_queue(message.server.id).queue) != 0:
             item = cmd.music.get_from_queue(message.server.id)
+            if message.server.id in cmd.music.repeaters:
+                cmd.music.add_to_queue(message.server.id, item)
             cmd.music.currents.update({message.server.id: item})
             video = item['video']
             item_url = item['url']

@@ -33,6 +33,16 @@ commands:
       Adds a song or playlist to the playing queue either by URL or Name.
       Note that currently only YouTube is supported.
 
+  - name:    repeat
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles if the queue should be repeated.
+      Please use the repeat command before starting a song as it will not count the currently playing one.
+
   - name:    skip
     alts:
       - "next"
