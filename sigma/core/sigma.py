@@ -94,7 +94,7 @@ class Sigma(discord.Client):
     def init_music(self):
         self.music = Music()
 
-    def missing_settings_check(self):
+    async def missing_settings_check(self):
         self.log.info('Checking Missing Settings')
         check_count = 0
         for server in self.servers:
@@ -114,14 +114,6 @@ class Sigma(discord.Client):
     async def get_plugins(self):
         return self.plugin_manager.plugins
 
-    async def startup_status(self):
-        status = 'Sigma Booting Up Please Wait...'
-        game = discord.Game(name=status)
-        try:
-            await self.change_presence(game=game)
-        except Exception as e:
-            self.log.error(f'STARTUP STATUS FAILED: {e}')
-
     async def on_ready(self):
         self.log.info('Connecting To Database')
         self.db.init_stats_table()
@@ -129,16 +121,14 @@ class Sigma(discord.Client):
         self.create_cache()
         self.log.info('-----------------------------------')
         stats(self, self.log)
-        await self.startup_status()
         self.db.init_server_settings(self.servers)
         self.log.info('-----------------------------------')
         self.log.info('Updating User Database...')
         self.db.refactor_users(self.get_all_members())
         self.log.info('Updating Server Database...')
         self.db.refactor_servers(self.servers)
-        self.log.info('Checking Database For Missing Settings')
-        self.log.info('-----------------------------------')
-        self.missing_settings_check()
+        self.log.info('Creating Loop To Check Database For Missing Settings')
+        self.loop.create_task(self.missing_settings_check())
         self.log.info('-----------------------------------')
         self.log.info('Updating Bot Population Stats...')
         self.db.update_population_stats(self.servers, self.get_all_members())
