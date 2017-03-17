@@ -114,6 +114,14 @@ class Sigma(discord.Client):
     async def get_plugins(self):
         return self.plugin_manager.plugins
 
+    async def startup_status(self):
+        status = 'Sigma Booting Up Please Wait...'
+        game = discord.Game(name=status)
+        try:
+            await self.change_presence(game=game)
+        except Exception as e:
+            self.log.error(f'STARTUP STATUS FAILED: {e}')
+
     async def on_ready(self):
         self.log.info('Connecting To Database')
         self.db.init_stats_table()
@@ -121,6 +129,7 @@ class Sigma(discord.Client):
         self.create_cache()
         self.log.info('-----------------------------------')
         stats(self, self.log)
+        await self.startup_status()
         self.db.init_server_settings(self.servers)
         self.log.info('-----------------------------------')
         self.log.info('Updating User Database...')
