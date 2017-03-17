@@ -1,3 +1,5 @@
+import pafy
+import os
 import queue as q
 
 
@@ -12,6 +14,7 @@ class Music(object):
             'format': 'bestaudio/best',
             'extractaudio': True,
             'audioformat': 'mp3',
+            'outtmpl': '%(id)s',
             'restrictfilenames': True,
             'noplaylist': True,
             'nocheckcertificate': True,
@@ -19,6 +22,8 @@ class Music(object):
             'logtostderr': False,
             'quiet': True,
             'no_warnings': True,
+            'default_search': 'auto',
+            'source_address': '0.0.0.0'
         }
 
     def get_volume(self, db, sid):
@@ -68,8 +73,22 @@ class Music(object):
         if sid in self.queues:
             self.queues[sid] = q.Queue()
 
-    async def make_yt_player(self, sid, voice, url):
-        player = await voice.create_ytdl_player(url, ytdl_options=self.ytdl_params)
+    @staticmethod
+    def download_data(url):
+        output = 'cache/'
+        video = pafy.new(url)
+        audio = video.getbestaudio()
+        file_location = output + video.videoid
+        if not os.path.exists(file_location):
+            audio.download(file_location)
+        return file_location
+
+    async def make_player(self, sid, voice, location):
+        if ('youtu' and 'https') in location:
+            file_location = self.download_data(location)
+        else:
+            file_location = location
+        player = voice.create_ffmpeg_player(file_location)
         self.players.update({sid: player})
 
     def add_init(self, sid):

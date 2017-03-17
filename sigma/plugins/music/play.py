@@ -46,7 +46,7 @@ async def play(cmd, message, args):
             cmd.music.currents.update({message.server.id: item})
             video = item['video']
             item_url = item['url']
-            await cmd.music.make_yt_player(message.server.id, voice_instance, item_url)
+            await cmd.music.make_player(message.server.id, voice_instance, item_url)
             player = cmd.music.get_player(message.server.id)
             if not player:
                 print('No player.')

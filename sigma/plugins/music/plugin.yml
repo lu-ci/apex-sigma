@@ -17,7 +17,7 @@ commands:
     description:
       Tells the bot to start playing the songs in the queue.
       You can also use this command instead of queue to add songs.
-      As well as adding playlist, however playlists are limited to 100 items.
+      As well as adding playlist, however playlists are limited to 200 items.
       If nothing is playing, it will play that song.
       Note that currently only YouTube is supported.
 
