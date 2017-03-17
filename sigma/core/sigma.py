@@ -94,6 +94,15 @@ class Sigma(discord.Client):
     def init_music(self):
         self.music = Music()
 
+    def missing_settings_check(self):
+        self.log.info('Checking Missing Settings')
+        check_count = 0
+        for server in self.servers:
+            self.db.check_for_missing_settings(server)
+            check_count += 1
+        self.log.info(f'Checked {check_count} Servers')
+        self.log.info('Settings Check Complete')
+
     @classmethod
     def create_cache(cls):
         if not os.path.exists('cache/'):
@@ -118,6 +127,10 @@ class Sigma(discord.Client):
         self.db.refactor_users(self.get_all_members())
         self.log.info('Updating Server Database...')
         self.db.refactor_servers(self.servers)
+        self.log.info('Checking Database For Missing Settings')
+        self.log.info('-----------------------------------')
+        self.missing_settings_check()
+        self.log.info('-----------------------------------')
         self.log.info('Updating Bot Population Stats...')
         self.db.update_population_stats(self.servers, self.get_all_members())
         self.log.info('Updating Bot Listing APIs...')
@@ -125,8 +138,7 @@ class Sigma(discord.Client):
         self.log.info('Launching On-Ready Plugins...')
         for ev_name, event in self.plugin_manager.events['ready'].items():
             try:
-                task = event.call_ready()
-                self.loop.create_task(task)
+                await event.call_ready()
             except Exception as e:
                 self.log.error(e)
         self.log.info('-----------------------------------')
