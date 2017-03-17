@@ -21,6 +21,25 @@ commands:
       If nothing is playing, it will play that song.
       Note that currently only YouTube is supported.
 
+  - name:    pause
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Pauses a player instance.
+
+
+  - name:    resume
+    global:  true
+    enabled: true
+    sfw:     true
+    donor:   false
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Resumes a paused player instance.
+
   - name:    queue
     alts:
       - "add"

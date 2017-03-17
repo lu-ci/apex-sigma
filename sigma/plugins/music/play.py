@@ -17,26 +17,26 @@ async def play(cmd, message, args):
         cmd.bot.loop.create_task(init_clock(cmd.music, message.server.id))
         if not message.author.voice_channel:
             embed = discord.Embed(
-                title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
+                title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         srv_queue = cmd.music.get_queue(message.server.id)
         voice_connected = cmd.bot.is_voice_connected(message.server)
         if not voice_connected:
             await cmd.bot.join_voice_channel(message.author.voice_channel)
-            embed = discord.Embed(title=':white_check_mark: Joined ' + message.author.voice_channel.name,
+            embed = discord.Embed(title='✅ Joined ' + message.author.voice_channel.name,
                                   color=0x66cc66)
             await cmd.bot.send_message(message.channel, None, embed=embed)
         if len(srv_queue.queue) == 0:
             embed = discord.Embed(
-                title=':warning: The queue is empty', color=0xFF9900)
+                title='⚠ The queue is empty', color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         player = cmd.music.get_player(message.server.id)
         if player:
             if player.is_playing():
                 embed = discord.Embed(
-                    title=':warning: Already playing in ' + cmd.bot.voice_client_in(message.server).channel.name,
+                    title='⚠ Already playing in ' + cmd.bot.voice_client_in(message.server).channel.name,
                     color=0xFF9900)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
                 return
@@ -51,7 +51,6 @@ async def play(cmd, message, args):
             await cmd.music.make_player(message.server.id, voice_instance, item_url)
             player = cmd.music.get_player(message.server.id)
             if not player:
-                print('No player.')
                 return
             def_vol = cmd.music.get_volume(cmd.db, message.server.id)
             player.volume = def_vol / 100
