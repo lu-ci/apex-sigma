@@ -155,11 +155,12 @@ class Sigma(discord.Client):
             # handle mention events
             if self.user.mentioned_in(message):
                 for ev_name, event in self.plugin_manager.events['mention'].items():
-                    await event.call(message, args)
-
+                    task = event.call(message, args)
+                    self.loop.create_task(task)
             # handle raw message events
             for ev_name, event in self.plugin_manager.events['message'].items():
-                await event.call(message, args)
+                task = event.call(message, args)
+                self.loop.create_task(task)
 
             if message.content.startswith(Prefix):
                 cmd = args.pop(0).lstrip(Prefix).lower()
@@ -200,36 +201,30 @@ class Sigma(discord.Client):
         if self.ready:
             self.db.update_population_stats(self.servers, self.get_all_members())
             for ev_name, event in self.plugin_manager.events['member_join'].items():
-                try:
-                    await event.call_sp(member)
-                except Exception as e:
-                    self.log.error(e)
+                task = event.call_sp(member)
+                self.loop.create_task(task)
 
     async def on_member_remove(self, member):
         if self.ready:
             self.db.update_population_stats(self.servers, self.get_all_members())
             for ev_name, event in self.plugin_manager.events['member_leave'].items():
-                try:
-                    await event.call_sp(member)
-                except Exception as e:
-                    self.log.error(e)
+                task = event.call_sp(member)
+                self.loop.create_task(task)
 
     async def on_server_join(self, server):
-        if self.ready:
-            await self.update_discordlist()
-            self.db.add_new_server_settings(server)
-            self.db.update_server_details(server)
-            self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'INV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
-            self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
-            self.db.init_server_settings(self.servers)
+        await self.update_discordlist()
+        self.db.add_new_server_settings(server)
+        self.db.update_server_details(server)
+        self.db.update_population_stats(self.servers, self.get_all_members())
+        msg = 'INV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
+        self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
+        self.db.init_server_settings(self.servers)
 
     async def on_server_remove(self, server):
-        if self.ready:
-            await self.update_discordlist()
-            self.db.update_population_stats(self.servers, self.get_all_members())
-            msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
-            self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
+        await self.update_discordlist()
+        self.db.update_population_stats(self.servers, self.get_all_members())
+        msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
+        self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
 
     async def on_member_update(self, before, after):
         if self.ready:

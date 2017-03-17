@@ -113,7 +113,13 @@ class Callable(object):
             await self.bot.send_message(channel, msg)
 
     async def call_sp(self, member):
-        await getattr(self.module, self.name)(self, member)
+        try:
+            await getattr(self.module, self.name)(self, member)
+        except Exception as e:
+            self.log.error(f'EV: {self.name} | ERROR: {e}\n{e.with_traceback}')
 
     async def call_ready(self):
-        await getattr(self.module, self.name)(self)
+        try:
+            await getattr(self.module, self.name)(self)
+        except Exception as e:
+            self.log.error(f'EV: {self.name} | ERROR: {e}\n{e.with_traceback}')
