@@ -219,6 +219,18 @@ commands:
       Toggles automatic unfliping of tables
       Requires the user to be a server Administrator.
 
+  - name: markovtoggle
+    alts:
+      - "mktgl"
+      - "chaintoggle"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles markov chain collection of the messages on your server.
+      Requires the user to be a server Administrator.
+
   - name: ignoreuser
     alts:
       - "ignoreusr"
