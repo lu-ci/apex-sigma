@@ -1,7 +1,7 @@
 beta: false
-build_date: 1489733142
+build_date: 1489735321
 codename: Tomoyo
 version:
   major: 2
-  minor: 26
-  patch: 5767
+  minor: 31
+  patch: 5775
