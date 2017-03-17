@@ -73,7 +73,8 @@ class Music(object):
         if sid in self.queues:
             self.queues[sid] = q.Queue()
 
-    def download_data(self, url):
+    @staticmethod
+    def download_data(url):
         output = 'cache/'
         video = pafy.new(url)
         audio = video.getbestaudio()
@@ -83,7 +84,10 @@ class Music(object):
         return file_location
 
     async def make_player(self, sid, voice, location):
-        file_location = self.download_data(location)
+        if ('youtu' and 'https') in location:
+            file_location = self.download_data(location)
+        else:
+            file_location = location
         player = voice.create_ffmpeg_player(file_location)
         self.players.update({sid: player})
 
