@@ -91,11 +91,11 @@ class Database(object):
     def get_act_points(self, server, user):
         return point_grabber(self.db, server, user, 'XP')
 
-    async def refactor_users(self, usrgen):
-        await refactor_users_node(self.db, usrgen)
+    def refactor_users(self, usrgen):
+        refactor_users_node(self.db, usrgen)
 
-    async def refactor_servers(self, servers):
-        await refactor_servers_node(self.db, servers)
+    def refactor_servers(self, servers):
+        refactor_servers_node(self.db, servers)
 
     def update_server_details(self, server):
         update_details(self.db, server=server)
