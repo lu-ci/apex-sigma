@@ -1,7 +1,7 @@
 from sigma.core.utils import user_avatar
 
 
-def refactor_users_node(db, usrgen):
+async def refactor_users_node(db, usrgen):
     db['UserList'].drop()
     for user in usrgen:
         user_ava = user_avatar(user)
@@ -14,7 +14,7 @@ def refactor_users_node(db, usrgen):
         db['UserList'].insert_one(data)
 
 
-def refactor_servers_node(db, servers):
+async def refactor_servers_node(db, servers):
     db['ServerList'].drop()
     for server in servers:
         owner = server.owner
