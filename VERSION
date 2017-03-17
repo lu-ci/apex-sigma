@@ -1,7 +1,7 @@
 beta: false
-build_date: 1489735680
-codename: Tomoyo
+build_date: 1489740314
+codename: Yukine
 version:
   major: 2
-  minor: 31
-  patch: 5777
+  minor: 32
+  patch: 5788
