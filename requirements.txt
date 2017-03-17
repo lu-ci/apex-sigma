@@ -27,3 +27,4 @@ protobuf
 pafy
 youtube_dl
 PyMarkovChain
+cssselect
