@@ -14,12 +14,3 @@ events:
     sfw:     true
     description:
       Accepts the terms and conditions of the WaniKani Community Discord Server.
-
-  - name:    missing_settings_check
-    type:    ready
-    global:  true
-    enabled: true
-    pmable:  true
-    sfw:     true
-    description:
-      Checks the database for missing settings.
