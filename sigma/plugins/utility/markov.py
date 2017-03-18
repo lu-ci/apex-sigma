@@ -1,8 +1,9 @@
 import os
-import yaml
+
 import discord
 import pymarkovchain
-from sigma.core.utils import replace_mentions
+import yaml
+
 
 async def markov(cmd, message, args):
     collect = cmd.db.get_settings(message.server.id, 'MarkovCollect')
@@ -17,7 +18,10 @@ async def markov(cmd, message, args):
                 mc = pymarkovchain.MarkovChain()
                 mc.generateDatabase(entire_data)
                 output = f'{mc.generateString()}'
-                output = replace_mentions(output, list(cmd.bot.get_all_members()))
+                for member in cmd.bot.get_all_members():
+                    output = output.replace(f'<@!{member.id}', member.name)
+                    output = output.replace(f'<@{member.id}', member.name)
+                    output = output.replace(member.id, member.name)
                 response = discord.Embed(color=0x1ABC9C)
                 response.add_field(name=f':link: {message.server.name} Markov Chain Response',
                                    value=f'```\n{output}\n```')

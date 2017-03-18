@@ -38,13 +38,3 @@ def user_avatar(user):
         user_ava = user.default_avatar_url
     return user_ava
 
-
-def replace_mentions(text, members):
-    for member in members:
-        if f'<@{member.id}' in text:
-            text.replace(f'<@{member.id}', member.name)
-        elif f'<@!{member.id}' in text:
-            text.replace(f'<@!{member.id}', member.name)
-        elif member.id in text:
-            text.replace(member.id, member.name)
-    return text
