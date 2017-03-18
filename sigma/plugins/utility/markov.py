@@ -15,7 +15,7 @@ async def markov(cmd, message, args):
                 chain_data = yaml.safe_load(chain_file)
                 entire_data = ' '.join(chain_data)
                 chain = markovify.Text(entire_data)
-                output = f'{chain.make_short_sentence(140)}'
+                output = f'{chain.make_short_sentence(140, tries=100)}'
                 for member in cmd.bot.get_all_members():
                     output = output.replace(f'<@!{member.id}', member.name)
                     output = output.replace(f'<@{member.id}', member.name)
