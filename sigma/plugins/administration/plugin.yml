@@ -208,7 +208,7 @@ events:
   - name:    markov_collector
     type:    message
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     pmable:  true
     description:
