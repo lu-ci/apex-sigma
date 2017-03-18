@@ -40,11 +40,9 @@ def user_avatar(user):
 
 
 def replace_mentions(text, members):
+    processed = text
     for member in members:
-        if f'<@{member.id}' in text:
-            text.replace(f'<@{member.id}', member.name)
-        elif f'<@!{member.id}' in text:
-            text.replace(f'<@!{member.id}', member.name)
-        elif member.id in text:
-            text.replace(member.id, member.name)
-    return text
+        processed.replace(f'<@!{member.id}', member.name)
+        processed.replace(f'<@{member.id}', member.name)
+        processed.replace(member.id, member.name)
+    return processed

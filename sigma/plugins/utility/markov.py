@@ -17,7 +17,7 @@ async def markov(cmd, message, args):
                 mc = pymarkovchain.MarkovChain()
                 mc.generateDatabase(entire_data)
                 output = f'{mc.generateString()}'
-                output = replace_mentions(output, list(cmd.bot.get_all_members()))
+                output = replace_mentions(output, cmd.bot.get_all_members())
                 response = discord.Embed(color=0x1ABC9C)
                 response.add_field(name=f':link: {message.server.name} Markov Chain Response',
                                    value=f'```\n{output}\n```')
