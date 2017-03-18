@@ -9,7 +9,7 @@ async def markov_collector(ev, message, args):
             if message.content != '' and not message.content.startswith(Prefix):
                 if collect:
                     directory = 'chains/'
-                    filename = f'chain_{message.server.id}_{message.author.id}.yml'
+                    filename = f'chain_{message.server.id}.yml'
                     chain_location = f'{directory}{filename}'
                     if os.path.exists(chain_location):
                         with open(chain_location) as chain_file:
