@@ -1,7 +1,6 @@
 import os
-
 import discord
-import pymarkovchain
+import markovify
 import yaml
 
 
@@ -15,9 +14,8 @@ async def markov(cmd, message, args):
             with open(chain_location) as chain_file:
                 chain_data = yaml.safe_load(chain_file)
                 entire_data = ' '.join(chain_data)
-                mc = pymarkovchain.MarkovChain()
-                mc.generateDatabase(entire_data)
-                output = f'{mc.generateString()}'
+                chain = markovify.Text(entire_data)
+                output = f'{chain.make_short_sentence(140, tries=100)}'
                 for member in cmd.bot.get_all_members():
                     output = output.replace(f'<@!{member.id}', member.name)
                     output = output.replace(f'<@{member.id}', member.name)

@@ -26,5 +26,5 @@ google-api-python-client
 protobuf
 pafy
 youtube_dl
-pymarkovchain
+markovify
 cssselect
