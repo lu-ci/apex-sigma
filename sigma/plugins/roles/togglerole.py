@@ -26,11 +26,11 @@ async def togglerole(cmd, message, args):
             else:
                 target_role = user_role_match
                 await cmd.bot.remove_roles(message.author, target_role)
-                embed = discord.Embed(title=':warning: ' + role_name + ' has been removed from you.',
+                embed = discord.Embed(title='⚠ ' + role_name + ' has been removed from you.',
                                       color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
-            out_content = discord.Embed(type='rich', color=0xFF9900, title=':warning: Error')
+            out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
             out_content.add_field(name='Role Not Found',
                                   value='I was unable to find that role in the list of self assignable roles for this server.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

@@ -1,11 +1,11 @@
-import discord
+﻿import discord
 
 
 async def volume(cmd, message, args):
     if args:
         if not message.author.voice_channel:
             embed = discord.Embed(
-                title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
+                title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         try:
@@ -16,7 +16,7 @@ async def volume(cmd, message, args):
             new_vol = 0
         if bad_data or 1 > new_vol > 200:
             embed = discord.Embed(
-                title=':warning: Please use a number between 1 and 200.', color=0xFF9900)
+                title='⚠ Please use a number between 1 and 200.', color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         else:

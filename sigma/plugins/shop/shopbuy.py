@@ -25,11 +25,11 @@ async def shopbuy(cmd, message, args):
                                            title='✅ You bought ' + role.name + ' .')
                 else:
                     status = discord.Embed(type='rich', color=0xFF9900,
-                                           title=':warning: You can\'t afford it.')
+                                           title='⚠ You can\'t afford it.')
                 await cmd.bot.send_message(message.channel, None, embed=status)
             else:
                 status = discord.Embed(type='rich', color=0xFF9900,
-                                       title=':warning: You already have this role.')
+                                       title='⚠ You already have this role.')
                 await cmd.bot.send_message(message.channel, None, embed=status)
             break
     if not found:

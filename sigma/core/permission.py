@@ -132,7 +132,7 @@ def check_permitted(self, user, channel, server):
         return False, embed_content
 
     if self.perm['donor'] and not check_server_donor(self.db, server.id):
-        title = ':warning: Unpermitted'
+        title = '⚠ Unpermitted'
         msg = 'Some commands are limited to only be usable by donors.'
         msg += '\nYou can become a donor by donating via our [`Paypal.Me`](https://www.paypal.me/AleksaRadovic) page.'
         msg += '\nDonating allows use of donor functions for a limited time.'

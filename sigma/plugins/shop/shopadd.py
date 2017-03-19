@@ -42,7 +42,7 @@ async def shopadd(cmd, message, args):
         if item['RoleID'] == rtrl.id:
             found = True
             status = discord.Embed(type='rich', color=0xFF9900,
-                                   title=':warning: The Role ' + rtrl.name + ' is already in the shop.')
+                                   title='⚠ The Role ' + rtrl.name + ' is already in the shop.')
             await cmd.bot.send_message(message.channel, None, embed=status)
             break
     if found == 0:

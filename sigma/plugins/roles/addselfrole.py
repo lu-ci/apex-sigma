@@ -33,7 +33,7 @@ async def addselfrole(cmd, message, args):
                                         title='✅ Role **' + target_role.name + '** added to the self assignable roles list.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
-            out_content = discord.Embed(type='rich', color=0xFF9900, title=':warning: Error')
+            out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
             out_content.add_field(name='Role In List',
                                   value='The role **' + role_qry + '** is already in the list of self assignable roles.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

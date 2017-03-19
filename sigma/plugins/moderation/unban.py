@@ -21,7 +21,7 @@ async def unban(cmd, message, args):
                     await cmd.bot.send_message(message.channel, None, embed=out_content)
                 else:
                     out_content = discord.Embed(type='rich', color=0xFF9900,
-                                                title=':warning: User Not Found In Ban List.')
+                                                title='⚠ User Not Found In Ban List.')
                     await cmd.bot.send_message(message.channel, None, embed=out_content)
             else:
                 out_content = discord.Embed(type='rich', color=0xDB0000,

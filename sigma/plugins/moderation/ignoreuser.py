@@ -22,11 +22,11 @@ async def ignoreuser(cmd, message, args):
             embed = discord.Embed(color=0x696969, title=':notebook: No channel like that was found on this server.')
         else:
             if target == message.author:
-                embed = discord.Embed(title=':warning: You Can\'t Blacklist Yourself', color=0xFF9900)
+                embed = discord.Embed(title='⚠ You Can\'t Blacklist Yourself', color=0xFF9900)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
                 return
             if target == cmd.bot.user:
-                embed = discord.Embed(title=':warning: You Can\'t Blacklist Me', color=0xFF9900)
+                embed = discord.Embed(title='⚠ You Can\'t Blacklist Me', color=0xFF9900)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
                 return
             black = cmd.db.get_settings(message.server.id, 'BlacklistedUsers')

@@ -33,7 +33,7 @@ async def delselfrole(cmd, message, args):
                                         title='✅ Role **' + target_role.name + '** removed from the self assignable roles list.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
-            out_content = discord.Embed(type='rich', color=0xFF9900, title=':warning: Error')
+            out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
             out_content.add_field(name='Role Not Self Assignable',
                                   value='I was unable to find **' + role_qry + '** in the list of self assignable roles.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

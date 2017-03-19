@@ -4,7 +4,7 @@
 async def disconnect(cmd, message, args):
     if not message.author.voice_channel:
         embed = discord.Embed(
-            title=':warning: I don\'t see you in a voice channel', color=0xFF9900)
+            title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     voice = cmd.bot.voice_client_in(message.server)
@@ -15,5 +15,5 @@ async def disconnect(cmd, message, args):
         embed.set_footer(text='And purged queue.')
     else:
         embed = discord.Embed(
-            title=':warning: I am not in a voice channel', color=0xFF9900)
+            title='⚠ I am not in a voice channel', color=0xFF9900)
     await cmd.bot.send_message(message.channel, None, embed=embed)

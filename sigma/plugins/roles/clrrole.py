@@ -27,7 +27,7 @@ async def clrrole(cmd, message, args):
     role = matching_role(message.server, qry)
     if not role:
         out_content = discord.Embed(type='rich', color=0xFF9900,
-                                    title=':warning: ' + qry + ' was not found.')
+                                    title='⚠ ' + qry + ' was not found.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     await cmd.bot.edit_role(message.server, role, color=clr_obj)

@@ -35,7 +35,7 @@ async def autorole(cmd, message, args):
         return
     target_role = matching_role(message.server, role_qry)
     if current_role and current_role.lower() == role_qry_low:
-        out_content = discord.Embed(type='rich', color=0xFF9900, title=':warning: Error')
+        out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
         out_content.add_field(name='Present Role', value='This Role is already the Auto Role for this server.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
