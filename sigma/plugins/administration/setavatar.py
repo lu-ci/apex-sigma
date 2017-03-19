@@ -42,7 +42,7 @@ async def setavatar(cmd, message, args):
                 pass
             except Exception as e:
                 embed = discord.Embed(color=0xDB0000)
-                embed.add_field(name=':exclamation: Error', value=str(e))
+                embed.add_field(name='❗ Error', value=str(e))
                 await cmd.bot.send_message(message.channel, None, embed=embed)
 
     else:

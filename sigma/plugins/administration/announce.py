@@ -5,7 +5,7 @@ import discord
 async def announce(cmd, message, args):
     if not args:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':exclamation: Empty Message.')
+                                    title='❗ Empty Message.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     else:

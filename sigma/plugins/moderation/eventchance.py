@@ -23,7 +23,7 @@ async def eventchance(cmd, message, args):
             new_chance = int(new_chance)
         except:
             out_content = discord.Embed(type='rich', color=0xDB0000,
-                                        title=':exclamation: Invalid Number Input.')
+                                        title='❗ Invalid Number Input.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)
             return
         if new_chance > 100:

@@ -8,13 +8,13 @@ async def awardpts(cmd, message, args):
         if message.mentions:
             target = message.mentions[0]
             if target.bot:
-                out = discord.Embed(title=':exclamation: Can\'t award bots.', color=0xDB0000)
+                out = discord.Embed(title='❗ Can\'t award bots.', color=0xDB0000)
                 await cmd.bot.send_message(message.channel, None, embed=out)
                 return
             try:
                 amount = abs(int(args[0]))
             except:
-                out = discord.Embed(title=':exclamation: Invalid Input.', color=0xDB0000)
+                out = discord.Embed(title='❗ Invalid Input.', color=0xDB0000)
                 await cmd.bot.send_message(message.channel, None, embed=out)
                 return
             cmd.db.add_points(message.server, target, amount)

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import aiohttp
 import lxml.html as l
 
@@ -16,7 +16,7 @@ async def osu(cmd, message, args):
         root = l.fromstring(page)
         username = root.cssselect('.profile-username')[0].text[:-1]
     except:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: Unable to retrieve profile.')
+        embed = discord.Embed(color=0xDB0000, title='❗ Unable to retrieve profile.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     user_color = str(message.author.color)[1:]

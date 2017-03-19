@@ -1,4 +1,4 @@
-import time
+﻿import time
 import datetime
 import asyncio
 import discord
@@ -11,7 +11,7 @@ async def remind(cmd, message, args):
         try:
             time_q = int(args[0])
         except:
-            embed = discord.Embed(title=':exclamation: Not A Number', color=0xDB0000)
+            embed = discord.Embed(title='❗ Not A Number', color=0xDB0000)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
         if len(args) > 1:

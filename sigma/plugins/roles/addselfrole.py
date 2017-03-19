@@ -10,14 +10,14 @@ async def addselfrole(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     if not args:
-        out_content = discord.Embed(type='rich', color=0xDB0000, title=':exclamation: Error')
+        out_content = discord.Embed(type='rich', color=0xDB0000, title='❗ Error')
         out_content.add_field(name='Not Enough Arguments', value=cmd.help())
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     role_qry = ' '.join(args)
     target_role = matching_role(message.server, role_qry)
     if not target_role:
-        out_content = discord.Embed(type='rich', color=0xFF9900, title=':exclamation: Error')
+        out_content = discord.Embed(type='rich', color=0xFF9900, title='❗ Error')
         out_content.add_field(name='Role Not Found', value='I was unable to find **' + role_qry + '** on this server.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
     else:

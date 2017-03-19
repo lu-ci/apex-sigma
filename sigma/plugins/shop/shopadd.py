@@ -11,12 +11,12 @@ async def shopadd(cmd, message, args):
         return
     if not args:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: Insufficient Arguments.')
+                               title='❗ Insufficient Arguments.')
         await cmd.bot.send_message(message.channel, None, embed=status)
         return
     if len(args) < 2:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: Insufficient Arguments.')
+                               title='❗ Insufficient Arguments.')
         await cmd.bot.send_message(message.channel, None, embed=status)
         return
     price = args[0]
@@ -24,7 +24,7 @@ async def shopadd(cmd, message, args):
     rtrl = matching_role(message.server, role_name)
     if not rtrl:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: The Role ' + role_name + ' was not found on the server.')
+                               title='❗ The Role ' + role_name + ' was not found on the server.')
         await cmd.bot.send_message(message.channel, None, embed=status)
         return
     role_data = {

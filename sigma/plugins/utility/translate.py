@@ -1,14 +1,14 @@
-import discord
+﻿import discord
 import translate as trans
 
 
 async def translate(cmd, message, args):
     if not args:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: No Arguments Given')
+        embed = discord.Embed(color=0xDB0000, title='❗ No Arguments Given')
     else:
         trans_qry = args[0]
         if '>' not in trans_qry:
-            embed = discord.Embed(color=0xDB0000, title=':exclamation: Invalid Translation Query')
+            embed = discord.Embed(color=0xDB0000, title='❗ Invalid Translation Query')
         else:
             to_trans = ' '.join(args[1:])
             from_lang, to_lang = trans_qry.split('>')

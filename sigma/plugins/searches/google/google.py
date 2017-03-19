@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 import random
 from config import GoogleAPIKey
@@ -27,6 +27,6 @@ async def google(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=embed)
         except Exception as e:
             cmd.log.error(e)
-            embed = discord.Embed(color=0xDB0000, title=':exclamation: Daily Limit Reached.')
+            embed = discord.Embed(color=0xDB0000, title='❗ Daily Limit Reached.')
             embed.set_footer(text='Google limits this API feature, and we hit that limit.')
             await cmd.bot.send_message(message.channel, None, embed=embed)

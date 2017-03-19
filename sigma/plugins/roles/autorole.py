@@ -45,6 +45,6 @@ async def autorole(cmd, message, args):
         out_content.add_field(name='✅ Success',
                               value='The role **' + role_qry + '** has been set as the Auto Role.')
     else:
-        out_content = discord.Embed(type='rich', color=0xDB0000, title=':exclamation: Error')
+        out_content = discord.Embed(type='rich', color=0xDB0000, title='❗ Error')
         out_content.add_field(name='Role Not Found', value='I have not found **' + role_qry + '** on this server.')
     await cmd.bot.send_message(message.channel, None, embed=out_content)

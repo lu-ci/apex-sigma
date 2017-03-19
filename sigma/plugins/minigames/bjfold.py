@@ -1,4 +1,4 @@
-import random
+﻿import random
 import discord
 from .black_jack_backend import get_bj, upd_bj, del_bj
 
@@ -7,7 +7,7 @@ async def bjfold(cmd, message, args):
     instance_id = message.server.id + message.author.id
     instance = get_bj(instance_id)
     if not instance:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: No active blackjack games found for you.')
+        embed = discord.Embed(color=0xDB0000, title='❗ No active blackjack games found for you.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     deck = instance['Deck']
@@ -15,7 +15,7 @@ async def bjfold(cmd, message, args):
     h_pts = instance['HouseScore']
 
     if h_pts > p_pts:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: You folded while the dealer was ahead!')
+        embed = discord.Embed(color=0xDB0000, title='❗ You folded while the dealer was ahead!')
         del_bj(instance['InstanceID'])
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
@@ -61,7 +61,7 @@ async def bjfold(cmd, message, args):
         del_bj(instance['InstanceID'])
         await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: The dealer overtook you!')
+        embed = discord.Embed(color=0xDB0000, title='❗ The dealer overtook you!')
         embed.add_field(name=em_p_nam, value=em_p_val)
         embed.add_field(name=em_h_nam, value=em_h_val)
         del_bj(instance['InstanceID'])

@@ -11,7 +11,7 @@ async def clrrole(cmd, message, args):
         return
     if not args:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':exclamation: Missing Arguments.')
+                                    title='❗ Missing Arguments.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     qry = ' '.join(args[1:])
@@ -21,7 +21,7 @@ async def clrrole(cmd, message, args):
         clr_obj = discord.Colour(clr_int)
     except:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':exclamation: Invalid Color. Please use HEX.')
+                                    title='❗ Invalid Color. Please use HEX.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     role = matching_role(message.server, qry)

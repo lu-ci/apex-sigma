@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from .black_jack_backend import get_bj, del_bj
 
 
@@ -11,5 +11,5 @@ async def bjquit(cmd, message, args):
         embed = discord.Embed(color=0xFF9900,
                               title=':fire: Too bad... Your ' + str(instance['Bet'] // 2) + ' have been refunded.')
     else:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: No active blackjack games found for you.')
+        embed = discord.Embed(color=0xDB0000, title='❗ No active blackjack games found for you.')
     await cmd.bot.send_message(message.channel, None, embed=embed)

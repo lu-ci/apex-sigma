@@ -5,7 +5,7 @@ from sigma.core.rolecheck import matching_role, user_matching_role
 async def shopbuy(cmd, message, args):
     if not args:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: Insufficient Arguments.')
+                               title='❗ Insufficient Arguments.')
         await cmd.bot.send_message(message.channel, None, embed=status)
         return
     role_name = ' '.join(args)
@@ -34,5 +34,5 @@ async def shopbuy(cmd, message, args):
             break
     if not found:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: Couldn\'t find  this in the shop.')
+                               title='❗ Couldn\'t find  this in the shop.')
         await cmd.bot.send_message(message.channel, None, embed=status)

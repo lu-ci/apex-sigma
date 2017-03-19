@@ -23,7 +23,7 @@ async def blacksrv(cmd, message, args):
                 embed = discord.Embed(title=':lock: Server ' + target.name + ' has been blacklisted.', color=0xFF9900)
         else:
             embed = discord.Embed(type='rich', color=0xDB0000,
-                                  title=':exclamation: No server by that ID was found.')
+                                  title='❗ No server by that ID was found.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
         out_content = discord.Embed(type='rich', color=0xDB0000,

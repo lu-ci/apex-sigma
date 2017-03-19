@@ -11,7 +11,7 @@ async def shopremove(cmd, message, args):
         return
     if not args:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: Insufficient Arguments.')
+                               title='❗ Insufficient Arguments.')
         await cmd.bot.send_message(message.channel, None, embed=status)
         return
     role_name = ' '.join(args)
@@ -19,7 +19,7 @@ async def shopremove(cmd, message, args):
     shop_list = cmd.db.get_settings(message.server.id, 'ShopItems')
     if not rtrl:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: The Role ' + role_name + ' was not found on the server.')
+                               title='❗ The Role ' + role_name + ' was not found on the server.')
         for item in shop_list:
             if item['RoleName'].lower() == role_name.lower():
                 shop_list.remove(item)
