@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_man_roles
 from sigma.core.rolecheck import matching_role
 
@@ -22,6 +22,6 @@ async def createrole(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=out_content)
     else:
         out_content = discord.Embed(type='rich', color=0x33CC33,
-                                    title=':white_check_mark: Role ' + role_qry + ' created.')
+                                    title='✅ Role ' + role_qry + ' created.')
         await cmd.bot.create_role(message.server, name=role_qry)
         await cmd.bot.send_message(message.channel, None, embed=out_content)

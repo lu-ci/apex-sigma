@@ -1,4 +1,4 @@
-from sigma.core.permission import check_man_roles
+﻿from sigma.core.permission import check_man_roles
 from sigma.core.rolecheck import matching_role
 import discord
 
@@ -32,5 +32,5 @@ async def clrrole(cmd, message, args):
         return
     await cmd.bot.edit_role(message.server, role, color=clr_obj)
     edit_success = discord.Embed(type='rich', color=0x66cc66,
-                                 title=':white_check_mark: Color Changed.')
+                                 title='✅ Color Changed.')
     await cmd.bot.send_message(message.channel, None, embed=edit_success)

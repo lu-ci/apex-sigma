@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 
 
@@ -12,12 +12,12 @@ async def greetpm(cmd, message, args):
         if active:
             cmd.db.set_settings(message.server.id, 'GreetPM', False)
             out_content = discord.Embed(color=0x33CC33)
-            out_content.add_field(name=':white_check_mark: Success',
+            out_content.add_field(name='✅ Success',
                                   value='Greeting via private message has been disabled.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
             cmd.db.set_settings(message.server.id, 'GreetPM', True)
             out_content = discord.Embed(color=0x33CC33)
-            out_content.add_field(name=':white_check_mark: Success',
+            out_content.add_field(name='✅ Success',
                                   value='Greeting via private message has been enabled.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 from sigma.core.rolecheck import matching_role
 
@@ -49,5 +49,5 @@ async def shopadd(cmd, message, args):
         shop_list.append(role_data)
         cmd.db.set_settings(message.server.id, 'ShopItems', shop_list)
         status = discord.Embed(type='rich', color=0x66CC66,
-                               title=':white_check_mark: ' + rtrl.name + ' has been added to the shop.')
+                               title='✅ ' + rtrl.name + ' has been added to the shop.')
         await cmd.bot.send_message(message.channel, None, embed=status)

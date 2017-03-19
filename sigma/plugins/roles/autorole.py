@@ -1,4 +1,4 @@
-from sigma.core.permission import check_admin
+﻿from sigma.core.permission import check_admin
 from sigma.core.rolecheck import matching_role
 import discord
 
@@ -30,7 +30,7 @@ async def autorole(cmd, message, args):
     if role_qry_low == 'disable':
         cmd.db.set_settings(message.server.id, 'AutoRole', None)
         out_content = discord.Embed(type='rich', color=0x66CC66,
-                                    title=':white_check_mark: Auto Role Disabled and Cleaned.')
+                                    title='✅ Auto Role Disabled and Cleaned.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     target_role = matching_role(message.server, role_qry)
@@ -42,7 +42,7 @@ async def autorole(cmd, message, args):
     if target_role:
         cmd.db.set_settings(message.server.id, 'AutoRole', role_qry)
         out_content = discord.Embed(type='rich', color=0x33CC33)
-        out_content.add_field(name=':white_check_mark: Success',
+        out_content.add_field(name='✅ Success',
                               value='The role **' + role_qry + '** has been set as the Auto Role.')
     else:
         out_content = discord.Embed(type='rich', color=0xDB0000, title=':exclamation: Error')

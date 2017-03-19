@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.rolecheck import matching_role, user_matching_role
 
 
@@ -22,7 +22,7 @@ async def shopbuy(cmd, message, args):
                     await cmd.bot.add_roles(message.author, role)
                     cmd.db.take_points(message.server, message.author, price)
                     status = discord.Embed(type='rich', color=0x66cc66,
-                                           title=':white_check_mark: You bought ' + role.name + ' .')
+                                           title='✅ You bought ' + role.name + ' .')
                 else:
                     status = discord.Embed(type='rich', color=0xFF9900,
                                            title=':warning: You can\'t afford it.')

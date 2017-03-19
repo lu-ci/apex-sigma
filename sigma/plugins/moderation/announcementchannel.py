@@ -1,4 +1,4 @@
-from sigma.core.permission import check_admin
+﻿from sigma.core.permission import check_admin
 from sigma.core.permission import check_write
 from config import Prefix
 import discord
@@ -17,14 +17,14 @@ async def announcementchannel(cmd, message, args):
                 cmd.db.set_settings(message.server.id, 'Announcement', True)
                 cmd.db.set_settings(message.server.id, 'AnnouncementChannel', newchannel.id)
                 embed = discord.Embed(
-                    title=':white_check_mark: Announcements will be posted to #' + newchannel.name, color=0x66CC66)
+                    title='✅ Announcements will be posted to #' + newchannel.name, color=0x66CC66)
             else:
                 embed = discord.Embed(title=':no_entry: Missing write permissions for this channel', color=0xDB0000)
         else:
             if len(args) == 0:
                 # no argument given, announcements will be turned off
                 cmd.db.set_settings(message.server.id, 'Announcement', False)
-                embed = discord.Embed(title=':white_check_mark: Announcements turned OFF for this server',
+                embed = discord.Embed(title='✅ Announcements turned OFF for this server',
                                       color=0x66CC66)
                 embed.add_field(name='Note:',
                                 value='Use "' + Prefix + 'announcementchannel #channel_name" to turn them back on.')

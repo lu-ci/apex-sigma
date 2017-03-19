@@ -1,4 +1,4 @@
-from sigma.core.permission import check_man_roles
+﻿from sigma.core.permission import check_man_roles
 from sigma.core.rolecheck import matching_role, user_matching_role
 import discord
 
@@ -31,7 +31,7 @@ async def takerole(cmd, message, args):
         if user_contained_role:
             await cmd.bot.remove_roles(target_user, target_role)
             out_content = discord.Embed(type='rich', color=0x66cc66,
-                                        title=':white_check_mark: Role ' + role_qry + ' removed from **' + target_user.name + '**.')
+                                        title='✅ Role ' + role_qry + ' removed from **' + target_user.name + '**.')
             await cmd.bot.create_role(message.server, name=role_qry)
             await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:

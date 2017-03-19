@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.rolecheck import matching_role, user_matching_role
 
 
@@ -21,7 +21,7 @@ async def togglerole(cmd, message, args):
             if not user_role_match:
                 target_role = matching_role(message.server, role_name)
                 await cmd.bot.add_roles(message.author, target_role)
-                embed = discord.Embed(title=':white_check_mark: ' + role_name + ' has been added to you.',
+                embed = discord.Embed(title='✅ ' + role_name + ' has been added to you.',
                                       color=0x66cc66)
             else:
                 target_role = user_role_match

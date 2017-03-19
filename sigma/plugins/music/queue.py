@@ -1,4 +1,4 @@
-import pafy
+﻿import pafy
 import arrow
 import discord
 import asyncio
@@ -44,7 +44,7 @@ async def queue(cmd, message, args):
                 time_data = arrow.utcnow().fromtimestamp(total).naive
                 embed = discord.Embed(color=0x66CC66, timestamp=time_data)
                 cmd.bot.music.add_to_queue(message.server.id, data)
-                embed.add_field(name=':white_check_mark: Added To Queue', value=video.title)
+                embed.add_field(name='✅ Added To Queue', value=video.title)
                 embed.set_thumbnail(url=video.thumb)
                 embed.set_author(name=f'{message.author.name}#{message.author.discriminator}',
                                  icon_url=user_avatar(message.author))

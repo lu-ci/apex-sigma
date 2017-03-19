@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def send(cmd, message, args):
@@ -22,5 +22,5 @@ async def send(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     await cmd.bot.send_message(target, text)
-    embed = discord.Embed(color=0x66CC66, title=':white_check_mark: Message Sent.')
+    embed = discord.Embed(color=0x66CC66, title='✅ Message Sent.')
     await cmd.bot.send_message(message.channel, None, embed=embed)

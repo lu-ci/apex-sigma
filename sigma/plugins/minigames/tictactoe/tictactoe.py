@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import random
 from .nodes.board import Board
 
@@ -38,7 +38,7 @@ async def tictactoe(cmd, message, args):
         elif args[0].lower() == 'quit':
             if player.id in games:
                 del games[player.id]
-                response = discord.Embed(color=0x66CC66, title=':white_check_mark: Game purged.')
+                response = discord.Embed(color=0x66CC66, title='✅ Game purged.')
             else:
                 response = discord.Embed(color=0xFF9900, title=':warning: You were not found in a game.')
             await cmd.bot.send_message(message.channel, None, embed=response)

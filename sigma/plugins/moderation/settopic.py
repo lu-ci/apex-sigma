@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_man_chan
 
 
@@ -11,7 +11,7 @@ async def settopic(cmd, message, args):
             topic = ' '.join(args)
             await cmd.bot.edit_channel(message.channel, topic=topic)
             embed = discord.Embed(color=0x66CC66)
-            embed.add_field(name=':white_check_mark: #' + message.channel.name + ' topic changed to:',
+            embed.add_field(name='✅ #' + message.channel.name + ' topic changed to:',
                             value='```\n' + topic + '\n```')
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:

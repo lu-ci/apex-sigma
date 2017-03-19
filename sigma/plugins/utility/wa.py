@@ -1,4 +1,4 @@
-import wolframalpha
+﻿import wolframalpha
 import discord
 from config import WolframAlphaAppID
 
@@ -12,7 +12,7 @@ async def wa(cmd, message, args):
         wac = wolframalpha.Client(WolframAlphaAppID)
         results = wac.query(wa_q)
         try:
-            out_content = discord.Embed(type='rich', color=0x66cc66, title=':white_check_mark: Processing Done')
+            out_content = discord.Embed(type='rich', color=0x66cc66, title='✅ Processing Done')
             for res in results.results:
                 if int(res['@numsubpods']) == 1:
                     out_content.add_field(name=res['@title'],

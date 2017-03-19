@@ -1,4 +1,4 @@
-from sigma.core.permission import check_ban
+﻿from sigma.core.permission import check_ban
 import discord
 
 
@@ -17,7 +17,7 @@ async def unban(cmd, message, args):
                 if target_user:
                     await cmd.bot.unban(message.server, target_user)
                     out_content = discord.Embed(type='rich', color=0x66CC66,
-                                                title=':white_check_mark: ' + target_user.name + 'Unbanned.')
+                                                title='✅ ' + target_user.name + 'Unbanned.')
                     await cmd.bot.send_message(message.channel, None, embed=out_content)
                 else:
                     out_content = discord.Embed(type='rich', color=0xFF9900,

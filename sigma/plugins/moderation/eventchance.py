@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 from config import Prefix
 
@@ -31,5 +31,5 @@ async def eventchance(cmd, message, args):
         if new_chance < 1:
             new_chance = 1
         cmd.db.set_settings(message.server.id, 'EventChance', new_chance)
-        out = discord.Embed(title=':white_check_mark: Event Chance Set to ' + str(new_chance) + '%', color=0x66CC66)
+        out = discord.Embed(title='✅ Event Chance Set to ' + str(new_chance) + '%', color=0x66CC66)
         await cmd.bot.send_message(message.channel, None, embed=out)

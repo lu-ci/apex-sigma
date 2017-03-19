@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import aiohttp
 
 
@@ -9,7 +9,7 @@ async def cloudbleed(cmd, message, args):
             async with session.get(url) as data:
                 data = await data.json()
         if len(data['urls']) == 0:
-            embed = discord.Embed(color=0x66CC66, title=':white_check_mark: Not Found')
+            embed = discord.Embed(color=0x66CC66, title='✅ Not Found')
             embed.set_footer(text='This is a good thing.')
         else:
             result_text = ', '.join(data['urls'][:20])

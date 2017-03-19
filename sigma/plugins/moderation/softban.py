@@ -1,4 +1,4 @@
-from sigma.core.permission import check_ban
+﻿from sigma.core.permission import check_ban
 import discord
 
 
@@ -12,7 +12,7 @@ async def softban(cmd, message, args):
                     await cmd.bot.ban(user_q)
                     await cmd.bot.unban(message.server, user_q)
                     embed = discord.Embed(color=0x66CC66,
-                                          title=':white_check_mark: ' + user_q.name + ' has been soft-banned.')
+                                          title='✅ ' + user_q.name + ' has been soft-banned.')
                     await cmd.bot.send_message(message.channel, None, embed=embed)
                 except Exception as e:
                     cmd.log.error(e)

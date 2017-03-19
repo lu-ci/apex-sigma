@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 
 
@@ -13,5 +13,5 @@ async def byemsg(cmd, message, args):
         else:
             new_message = ' '.join(args)
             cmd.db.set_settings(message.server.id, 'ByeMessage', new_message)
-            embed = discord.Embed(title=':white_check_mark: New Bye Message Set', color=0x66CC66)
+            embed = discord.Embed(title='✅ New Bye Message Set', color=0x66CC66)
     await cmd.bot.send_message(message.channel, None, embed=embed)

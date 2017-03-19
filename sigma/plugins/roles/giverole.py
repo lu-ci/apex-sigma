@@ -1,4 +1,4 @@
-from sigma.core.permission import check_man_roles
+﻿from sigma.core.permission import check_man_roles
 from sigma.core.rolecheck import matching_role, user_matching_role
 import discord
 
@@ -31,7 +31,7 @@ async def giverole(cmd, message, args):
         if not user_contained_role:
             await cmd.bot.add_roles(target_user, target_role)
             out_content = discord.Embed(type='rich', color=0x66cc66,
-                                        title=':white_check_mark: Role ' + role_qry + ' given to **' + target_user.name + '**.')
+                                        title='✅ Role ' + role_qry + ' given to **' + target_user.name + '**.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
             out_content = discord.Embed(type='rich', color=0xFF9900, title=':exclamation: Error')

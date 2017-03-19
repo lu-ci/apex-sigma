@@ -1,4 +1,4 @@
-from config import permitted_id
+﻿from config import permitted_id
 import discord
 import inspect
 
@@ -13,7 +13,7 @@ async def evaluate(cmd, message, args):
                 output = eval(execution)
                 if inspect.isawaitable(output):
                     output = await output
-                status = discord.Embed(title=':white_check_mark: Executed', color=0x66CC66)
+                status = discord.Embed(title='✅ Executed', color=0x66CC66)
                 if output:
                     try:
                         status.add_field(name='Results', value='\n```\n' + str(output) + '\n```')

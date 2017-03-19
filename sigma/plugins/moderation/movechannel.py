@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_man_chan
 
 
@@ -12,7 +12,7 @@ async def movechannel(cmd, message, args):
             pos_pre = message.channel.position
             await cmd.bot.move_channel(message.channel, position)
             embed = discord.Embed(color=0x66CC66,
-                                  title=':white_check_mark: ' + message.channel.name + ' moved from ' + str(
+                                  title='✅ ' + message.channel.name + ' moved from ' + str(
                                       pos_pre) + ' to ' + str(position))
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:

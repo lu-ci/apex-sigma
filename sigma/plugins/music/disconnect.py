@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def disconnect(cmd, message, args):
@@ -11,7 +11,7 @@ async def disconnect(cmd, message, args):
     if voice:
         cmd.music.purge_queue(message.server.id)
         await voice.disconnect()
-        embed = discord.Embed(color=0x66CC66, title=f':white_check_mark: Disconnected From {voice.channel.name}')
+        embed = discord.Embed(color=0x66CC66, title=f'✅ Disconnected From {voice.channel.name}')
         embed.set_footer(text='And purged queue.')
     else:
         embed = discord.Embed(

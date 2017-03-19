@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def give(cmd, message, args):
@@ -27,5 +27,5 @@ async def give(cmd, message, args):
         cmd.db.take_points(message.server, message.author, amount)
         cmd.db.add_points(message.server, target_user, amount)
         out_content = discord.Embed(type='rich', color=0x66CC66,
-                                    title=':white_check_mark: Points Transferred.')
+                                    title='✅ Points Transferred.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)

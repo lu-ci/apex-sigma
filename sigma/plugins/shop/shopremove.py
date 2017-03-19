@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 from sigma.core.rolecheck import matching_role
 
@@ -36,7 +36,7 @@ async def shopremove(cmd, message, args):
                 shop_list.remove(item)
                 cmd.db.set_settings(message.server.id, 'ShopItems', shop_list)
                 status = discord.Embed(type='rich', color=0x66CC66,
-                                       title=':white_check_mark: ' + rtrl.name + ' has been removed from the shop.')
+                                       title='✅ ' + rtrl.name + ' has been removed from the shop.')
                 await cmd.bot.send_message(message.channel, None, embed=status)
                 break
         if not found:

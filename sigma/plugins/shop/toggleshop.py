@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 
 
@@ -11,9 +11,9 @@ async def toggleshop(cmd, message, args):
         if shop_enabled:
             cmd.db.set_settings(message.server.id, 'ShopEnabled', False)
             status = discord.Embed(type='rich', color=0x66CC66,
-                                   title=':white_check_mark: The shop has been Disabled.')
+                                   title='✅ The shop has been Disabled.')
         else:
             cmd.db.set_settings(message.server.id, 'ShopEnabled', True)
             status = discord.Embed(type='rich', color=0x66CC66,
-                                   title=':white_check_mark: The shop has been Enabled.')
+                                   title='✅ The shop has been Enabled.')
     await cmd.bot.send_message(message.channel, None, embed=status)
