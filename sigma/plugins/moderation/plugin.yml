@@ -29,6 +29,18 @@ commands:
       If no arguments are inputed it will show the current greet message.
       (Server Administrator Only)
 
+  - name: greetch
+    alts:
+     - "greetchannel"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} #hello"
+    description:
+      Sets the channel which greeting messages are written to.
+      If no channel is specified as an argument, it take the channel the command is written in as the target.
+      (Server Administrator Only)
+
   - name: announcementchannel
     alts:
       - "annch"
@@ -72,6 +84,18 @@ commands:
       Sets the bye message text.
       Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server.
       If no arguments are inputed it will show the current bye message.
+      (Server Administrator Only)
+
+  - name: byech
+    alts:
+     - "byechannel"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} #byebye"
+    description:
+      Sets the channel which goodbye messages are written to.
+      If no channel is specified as an argument, it take the channel the command is written in as the target.
       (Server Administrator Only)
 
   - name: ban
