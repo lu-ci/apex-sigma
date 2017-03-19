@@ -23,10 +23,7 @@ async def pmredirect(ev, message, args):
             if message.attachments:
                 attachment_links = ''
                 for attachment in message.attachments:
-                    if attachment['url'].split('.')[-1] in ['png', 'jpg', 'jpeg', 'gif']:
-                        embed.set_image(url=attachment['url'])
-                    else:
-                        attachment_links += '\n' + attachment['url']
+                    attachment_links += '\n' + attachment['url']
                 embed.add_field(name='Attachments', value=attachment_links, inline=False)
             owner = discord.utils.find(lambda usr: usr.id == permitted_id[0], ev.bot.get_all_members())
             await ev.bot.send_message(owner, None, embed=embed)
