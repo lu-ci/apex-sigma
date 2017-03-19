@@ -15,7 +15,7 @@ async def pmredirect(ev, message, args):
                 await ev.bot.send_message(message.channel, None, embed=pm_response)
             ev.log.info(f'User {author.name} [{author.id}] sent a private message.')
             embed = discord.Embed(color=0x0099FF)
-            if args and not ''.join(args) == '':
+            if message.content and message.content != '':
                 embed.add_field(name='Message',
                                 value='```\n' + ' '.join(args) + '\n```', inline=False)
             embed.set_footer(text=f'UserID: {author.id}')
