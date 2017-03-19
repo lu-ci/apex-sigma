@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import random
 from config import Prefix
 from .black_jack_backend import get_bj, add_bj, symbols, suits
@@ -13,14 +13,14 @@ async def blackjack(cmd, message, args):
         buyin = 20
     curr_points = cmd.db.get_points(message.server, message.author)
     if curr_points < buyin:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: You don\'t have that many points!')
+        embed = discord.Embed(color=0xDB0000, title='❗ You don\'t have that many points!')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     cmd.db.take_points(message.server, message.author, buyin)
     instance_id = message.server.id + message.author.id
     bj_instance = get_bj(instance_id)
     if bj_instance:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: A Blackjack Instance For You Already Exists!')
+        embed = discord.Embed(color=0xDB0000, title='❗ A Blackjack Instance For You Already Exists!')
         embed.set_footer(
             text='Use %pfxbjnext to draw the next card, %pfxbjfold to fold the current hand or %pfxbjquit to quit the game.'.replace(
                 '%pfx', Prefix))

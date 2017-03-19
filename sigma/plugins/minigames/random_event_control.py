@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import yaml
 import random
 
@@ -37,7 +37,7 @@ async def random_event_control(ev, message, args):
                     await ev.bot.delete_message(event_start)
                     return
                 if not reply.content:
-                    out = discord.Embed(title=':exclamation: Sorry, I couldn\'t read that...', color=0xDB0000)
+                    out = discord.Embed(title='❗ Sorry, I couldn\'t read that...', color=0xDB0000)
                     await ev.bot.send_message(message.channel, None, embed=out)
                     await ev.bot.delete_message(event_start)
                     return
@@ -49,7 +49,7 @@ async def random_event_control(ev, message, args):
                     if answer_number > n:
                         answer_number = n
                 except:
-                    out = discord.Embed(title=':exclamation: Invalid number input', color=0xDB0000)
+                    out = discord.Embed(title='❗ Invalid number input', color=0xDB0000)
                     await ev.bot.send_message(message.channel, None, embed=out)
                     events_active.remove(event_id)
                     await ev.bot.delete_message(event_start)

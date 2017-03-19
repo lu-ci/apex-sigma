@@ -1,11 +1,11 @@
-import discord
+﻿import discord
 import pafy
 from .yt_search import search_youtube
 
 
 async def yt(cmd, message, args):
     if not args:
-        embed = discord.Embed(color=0xDB0000, title=':exclamation: Nothing to search for.')
+        embed = discord.Embed(color=0xDB0000, title='❗ Nothing to search for.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     qry = ' '.join(args)

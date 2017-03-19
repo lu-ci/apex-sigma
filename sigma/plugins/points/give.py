@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def give(cmd, message, args):
@@ -20,12 +20,12 @@ async def give(cmd, message, args):
     curr_points = cmd.db.get_points(message.server, message.author)
     if amount > curr_points:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':no_entry: You Do Not Have Enough Points.')
+                                    title='⛔ You Do Not Have Enough Points.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     else:
         cmd.db.take_points(message.server, message.author, amount)
         cmd.db.add_points(message.server, target_user, amount)
         out_content = discord.Embed(type='rich', color=0x66CC66,
-                                    title=':white_check_mark: Points Transferred.')
+                                    title='✅ Points Transferred.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)

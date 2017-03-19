@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import arrow
 from sigma.core.permission import check_kick
 
@@ -6,7 +6,7 @@ from sigma.core.permission import check_kick
 async def warn(cmd, message, args):
     if not check_kick(message.author, message.channel):
         out_content = discord.Embed(color=0xDB0000,
-                                    title=':no_entry: Users With Kick Permissions Only.')
+                                    title='⛔ Users With Kick Permissions Only.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     if not args or not message.mentions:
@@ -54,10 +54,10 @@ async def warn(cmd, message, args):
     else:
         warned_users.update({target.id: warn_data})
         out_content_to_user = discord.Embed(color=0xFF9900)
-        out_content_to_user.add_field(name=':warning: Warning ' + str(warned_users[target.id]['Warns']) + '/' + str(
+        out_content_to_user.add_field(name='⚠ Warning ' + str(warned_users[target.id]['Warns']) + '/' + str(
             warn_limit) + ' on ' + message.server.name, value='Reason:\n```\n' + warning_text + '\n```')
         await cmd.bot.send_message(target, None, embed=out_content_to_user)
-        out_content_local = discord.Embed(color=0xFF9900, title=':warning: Warning ' + str(
+        out_content_local = discord.Embed(color=0xFF9900, title='⚠ Warning ' + str(
             warned_users[target.id]['Warns']) + '/' + str(
             warn_limit) + ' for ' + target.name)
         await cmd.bot.send_message(message.channel, None, embed=out_content_local)

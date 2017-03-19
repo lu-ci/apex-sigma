@@ -1,4 +1,4 @@
-import random
+﻿import random
 import discord
 
 
@@ -24,7 +24,7 @@ async def rps(cmd, message, args):
         if my_choice == their_choice:
             embed = discord.Embed(color=0xFF9900, title=':fire: It\'s a draw!')
         elif my_choice == counter:
-            embed = discord.Embed(color=0xDB0000, title=':exclamation: You lose!')
+            embed = discord.Embed(color=0xDB0000, title='❗ You lose!')
         else:
             embed = discord.Embed(color=0x0099FF, title=':gem: You win!')
         embed.add_field(name='User\'s Choice', value='**' + their_choice.title() + '**')

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def bots(cmd, message, args):
@@ -16,7 +16,7 @@ async def bots(cmd, message, args):
                 online_bots.append(name)
 
     if total_bots == 0:
-        embed = discord.Embed(title=':exclamation: No bots were found on this server.', color=0xDB0000)
+        embed = discord.Embed(title='❗ No bots were found on this server.', color=0xDB0000)
         await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
         embed = discord.Embed(title='Bot Status on ' + message.server.name, color=0x1ABC9C)

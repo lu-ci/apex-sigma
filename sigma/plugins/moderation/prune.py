@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import asyncio
 from sigma.core.permission import check_man_msg
 
@@ -32,9 +32,9 @@ async def prune(cmd, message, args):
             deleted = await cmd.bot.purge_from(message.channel, limit=limit, check=author_check)
         else:
             deleted = await cmd.bot.purge_from(message.channel, limit=limit)
-        embed = discord.Embed(color=0x66CC66, title=f':white_check_mark: Deleted {len(deleted)} Messages')
+        embed = discord.Embed(color=0x66CC66, title=f'✅ Deleted {len(deleted)} Messages')
     else:
-        embed = discord.Embed(title=':warning: Unpermitted. Only Those With The Manage Message Permission Allowed.',
+        embed = discord.Embed(title='⚠ Unpermitted. Only Those With The Manage Message Permission Allowed.',
                               color=0xDB0000)
     notify_msg = await cmd.bot.send_message(message.channel, None, embed=embed)
     await asyncio.sleep(5)

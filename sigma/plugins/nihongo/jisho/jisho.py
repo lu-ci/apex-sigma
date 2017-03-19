@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -11,7 +11,7 @@ async def jisho(cmd, message, *args):
             rq_json = await data.json()
 
     if rq_text.find('503 Service Unavailable') != -1:
-        embed_content = discord.Embed(title=':exclamation: Jisho responded with 503 Service Unavailable.',
+        embed_content = discord.Embed(title='❗ Jisho responded with 503 Service Unavailable.',
                                       color=0xDB0000)
         await cmd.bot.send_message(message.channel, None, embed=embed_content)
         return

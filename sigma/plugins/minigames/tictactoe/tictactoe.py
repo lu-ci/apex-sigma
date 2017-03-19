@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import random
 from .nodes.board import Board
 
@@ -10,7 +10,7 @@ async def tictactoe(cmd, message, args):
         player = message.author
         if args[0].lower() == 'start':
             if player.id in games:
-                response = discord.Embed(color=0xFF9900, title=':warning: You are already in a game.')
+                response = discord.Embed(color=0xFF9900, title='⚠ You are already in a game.')
                 await cmd.bot.send_message(message.channel, None, embed=response)
             else:
                 coinflip = random.randint(0, 1)
@@ -38,9 +38,9 @@ async def tictactoe(cmd, message, args):
         elif args[0].lower() == 'quit':
             if player.id in games:
                 del games[player.id]
-                response = discord.Embed(color=0x66CC66, title=':white_check_mark: Game purged.')
+                response = discord.Embed(color=0x66CC66, title='✅ Game purged.')
             else:
-                response = discord.Embed(color=0xFF9900, title=':warning: You were not found in a game.')
+                response = discord.Embed(color=0xFF9900, title='⚠ You were not found in a game.')
             await cmd.bot.send_message(message.channel, None, embed=response)
         else:
             translation = {
@@ -78,9 +78,9 @@ async def tictactoe(cmd, message, args):
                         response = discord.Embed(color=embed_color)
                         response.add_field(name=embed_title, value=board.view())
                     else:
-                        response = discord.Embed(color=0xFF9900, title=':warning: Invalid coordinates.')
+                        response = discord.Embed(color=0xFF9900, title='⚠ Invalid coordinates.')
                 else:
-                    response = discord.Embed(color=0xFF9900, title=':warning: Invalid coordinates.')
+                    response = discord.Embed(color=0xFF9900, title='⚠ Invalid coordinates.')
             else:
-                response = discord.Embed(color=0xFF9900, title=':warning: You were not found in a game.')
+                response = discord.Embed(color=0xFF9900, title='⚠ You were not found in a game.')
             await cmd.bot.send_message(message.channel, None, embed=response)

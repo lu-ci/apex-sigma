@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 import random
 
@@ -14,7 +14,7 @@ async def yandere(cmd, message, args):
         async with session.get(url) as data:
             data = await data.json()
     if len(data) == 0:
-        embed = discord.Embed(color=0x696969, title=':mag: No results.')
+        embed = discord.Embed(color=0x696969, title='🔍 No results.')
     else:
         post = random.choice(data)
         image_url = post['file_url']

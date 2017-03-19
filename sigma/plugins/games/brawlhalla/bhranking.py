@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import aiohttp
 import lxml.html as l
 
@@ -12,7 +12,7 @@ async def bhranking(cmd, message, args):
         region = args[0].lower()
         if region not in regions:
             embed = discord.Embed(color=0xDB0000)
-            embed.add_field(name=':exclamation: Invalid Region',
+            embed.add_field(name='❗ Invalid Region',
                             value='```\nRegions: ' + ', '.join(regions).upper() + '\n```')
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return

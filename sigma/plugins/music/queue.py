@@ -1,4 +1,4 @@
-import pafy
+﻿import pafy
 import arrow
 import discord
 import asyncio
@@ -17,7 +17,7 @@ async def queue(cmd, message, args):
                 list_url = 'https://www.youtube.com/playlist?list=' + list_id
                 plist = pafy.get_playlist(list_url)
                 item_count = len(plist['items'])
-                embed_title = f':information_source: Playlist Detected. Adding {item_count} items...'
+                embed_title = f'ℹ Playlist Detected. Adding {item_count} items...'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
                 await playlist_adder(message.server.id, cmd.music, message.author, plist)
@@ -44,7 +44,7 @@ async def queue(cmd, message, args):
                 time_data = arrow.utcnow().fromtimestamp(total).naive
                 embed = discord.Embed(color=0x66CC66, timestamp=time_data)
                 cmd.bot.music.add_to_queue(message.server.id, data)
-                embed.add_field(name=':white_check_mark: Added To Queue', value=video.title)
+                embed.add_field(name='✅ Added To Queue', value=video.title)
                 embed.set_thumbnail(url=video.thumb)
                 embed.set_author(name=f'{message.author.name}#{message.author.discriminator}',
                                  icon_url=user_avatar(message.author))
@@ -53,7 +53,7 @@ async def queue(cmd, message, args):
         else:
             q = cmd.bot.music.get_queue(message.server.id)
             if q.empty():
-                embed = discord.Embed(color=0x0099FF, title=':information_source: The Queue Is Empty')
+                embed = discord.Embed(color=0x0099FF, title='ℹ The Queue Is Empty')
                 await cmd.bot.send_message(message.channel, None, embed=embed)
             else:
                 q_list = list(q.queue)[:5]
@@ -61,7 +61,7 @@ async def queue(cmd, message, args):
                 for item in q_list:
                     q_text += f'\n{item["video"].title}'
                 embed = discord.Embed(color=0x0099FF)
-                embed.add_field(name=f':information_source: {len(q_list)} Upcoming Songs (Total: {len(list(q.queue))})',
+                embed.add_field(name=f'ℹ {len(q_list)} Upcoming Songs (Total: {len(list(q.queue))})',
                                 value=f'```\n{q_text}\n```', inline=False)
                 embed.set_footer(text=f'To see the currently playing song type {Prefix}np')
                 await cmd.bot.send_message(message.channel, None, embed=embed)

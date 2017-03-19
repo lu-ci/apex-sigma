@@ -1,4 +1,4 @@
-from sigma.core.permission import check_man_msg
+﻿from sigma.core.permission import check_man_msg
 from sigma.core.permission import check_man_roles
 from sigma.core.permission import check_write
 import discord
@@ -19,9 +19,9 @@ async def mute(cmd, message, args):
                 if str(chan.type).lower() == 'text':
                     if check_write(user_q, chan):
                         await cmd.bot.edit_channel_permissions(chan, user_q, overwrite)
-            embed = discord.Embed(color=0x66CC66, title=':white_check_mark: ' + user_q.name + ' muted.')
+            embed = discord.Embed(color=0x66CC66, title='✅ ' + user_q.name + ' muted.')
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
             out_content = discord.Embed(type='rich', color=0xDB0000,
-                                        title=':no_entry: Insufficient Permissions. Requires Manage Messages and Manage Roles Permissions.')
+                                        title='⛔ Insufficient Permissions. Requires Manage Messages and Manage Roles Permissions.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

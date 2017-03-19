@@ -1,11 +1,11 @@
-import discord
+﻿import discord
 from sigma.core.rolecheck import matching_role, user_matching_role
 
 
 async def shopbuy(cmd, message, args):
     if not args:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: Insufficient Arguments.')
+                               title='❗ Insufficient Arguments.')
         await cmd.bot.send_message(message.channel, None, embed=status)
         return
     role_name = ' '.join(args)
@@ -22,17 +22,17 @@ async def shopbuy(cmd, message, args):
                     await cmd.bot.add_roles(message.author, role)
                     cmd.db.take_points(message.server, message.author, price)
                     status = discord.Embed(type='rich', color=0x66cc66,
-                                           title=':white_check_mark: You bought ' + role.name + ' .')
+                                           title='✅ You bought ' + role.name + ' .')
                 else:
                     status = discord.Embed(type='rich', color=0xFF9900,
-                                           title=':warning: You can\'t afford it.')
+                                           title='⚠ You can\'t afford it.')
                 await cmd.bot.send_message(message.channel, None, embed=status)
             else:
                 status = discord.Embed(type='rich', color=0xFF9900,
-                                       title=':warning: You already have this role.')
+                                       title='⚠ You already have this role.')
                 await cmd.bot.send_message(message.channel, None, embed=status)
             break
     if not found:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':exclamation: Couldn\'t find  this in the shop.')
+                               title='❗ Couldn\'t find  this in the shop.')
         await cmd.bot.send_message(message.channel, None, embed=status)

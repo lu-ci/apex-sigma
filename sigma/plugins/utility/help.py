@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from config import Prefix, MainServerURL
 from sigma.core.command_alts import load_alternate_command_names
 
@@ -8,7 +8,7 @@ alts = load_alternate_command_names()
 async def help(cmd, message, args):
     cmd.db.add_stats('HelpCount')
     if not args:
-        help_out = discord.Embed(type='rich', title=':grey_question: Help', color=0x1B6F5F)
+        help_out = discord.Embed(type='rich', title='❔ Help', color=0x1B6F5F)
         help_out.set_author(name='Apex Sigma', url=MainServerURL,
                             icon_url='https://i.imgur.com/s0aVvn7.png')
         help_out.add_field(name='Website', value='[**LINK**](' + MainServerURL + ')')
@@ -35,5 +35,5 @@ async def help(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=help_out)
         except:
             out_content = discord.Embed(type='rich', color=0x696969,
-                                        title=':mag: No such command was found...')
+                                        title='🔍 No such command was found...')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

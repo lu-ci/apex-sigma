@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import os
 from importlib import import_module
 from config import DevMode
@@ -93,7 +93,7 @@ class Callable(object):
             msg = await getattr(self.module, self.name)(self, message, *args)
         except exception as e:
             try:
-                title = ':exclamation: An Error Occurred!'
+                title = '❗ An Error Occurred!'
                 errmsg = 'For more information you can go to the AP Discord server and ask us, '
                 errmsg += 'the link is in the help.'
                 self.log.error(f'CMD: {self.name} | ERROR: {e} | TRACE: {e.with_traceback}')

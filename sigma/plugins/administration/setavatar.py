@@ -1,4 +1,4 @@
-import asyncio
+﻿import asyncio
 import aiohttp
 import discord
 
@@ -21,7 +21,7 @@ async def setavatar(cmd, message, args):
                 with aiohttp.Timeout(10):
                     async with aiosession.get(thing) as res:
                         await cmd.bot.edit_profile(avatar=await res.read())
-                        embed = discord.Embed(title=':white_check_mark: New Avatar Set', color=0x66CC66)
+                        embed = discord.Embed(title='✅ New Avatar Set', color=0x66CC66)
                         await cmd.bot.send_message(message.channel, None, embed=embed)
             except Exception as e:
                 cmd.log.error(e)
@@ -34,7 +34,7 @@ async def setavatar(cmd, message, args):
                     with aiohttp.Timeout(10):
                         async with aiosession.get(thing) as res:
                             await cmd.bot.edit_profile(avatar=await res.read())
-                            embed = discord.Embed(title=':white_check_mark: New Avatar Set', color=0x66CC66)
+                            embed = discord.Embed(title='✅ New Avatar Set', color=0x66CC66)
                             await cmd.bot.send_message(message.channel, None, embed=embed)
                 except:
                     return
@@ -42,10 +42,10 @@ async def setavatar(cmd, message, args):
                 pass
             except Exception as e:
                 embed = discord.Embed(color=0xDB0000)
-                embed.add_field(name=':exclamation: Error', value=str(e))
+                embed.add_field(name='❗ Error', value=str(e))
                 await cmd.bot.send_message(message.channel, None, embed=embed)
 
     else:
         out = discord.Embed(type='rich', color=0xDB0000,
-                            title=':no_entry: Insufficient Permissions. Bot Owner Only.')
+                            title='⛔ Insufficient Permissions. Bot Owner Only.')
         await cmd.bot.send_message(message.channel, None, embed=out)

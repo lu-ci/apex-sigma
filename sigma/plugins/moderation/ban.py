@@ -1,4 +1,4 @@
-from sigma.core.permission import check_ban
+﻿from sigma.core.permission import check_ban
 import discord
 
 
@@ -14,7 +14,7 @@ async def ban(cmd, message, args):
                 await cmd.bot.send_message(message.channel, None, embed=out_content)
             else:
                 out_content = discord.Embed(color=0xDB0000,
-                                            title=':no_entry: Insufficient Permissions. Users with Ban permissions only.')
+                                            title='⛔ Insufficient Permissions. Users with Ban permissions only.')
                 await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
             await cmd.bot.send_message(message.channel, cmd.help())

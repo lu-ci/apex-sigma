@@ -67,7 +67,7 @@ commands:
     alts:
       - 'mkv'
     global:  true
-    enabled: true
+    enabled: false
     pmable:  true
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"

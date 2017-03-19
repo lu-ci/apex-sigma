@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 import random
 from lxml import html
@@ -23,7 +23,7 @@ async def rule34(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=embed)
     except Exception as e:
         cmd.log.info(e)
-        embed = discord.Embed(color=0x696969, title=':mag: Search for ' + tags + ' yielded no results.')
+        embed = discord.Embed(color=0x696969, title='🔍 Search for ' + tags + ' yielded no results.')
         embed.set_footer(
             text='Remember to replace spaces in tags with an underscore, as a space separates multiple tags')
         await cmd.bot.send_message(message.channel, None, embed=embed)

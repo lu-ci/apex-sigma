@@ -1,4 +1,4 @@
-import os
+﻿import os
 import discord
 import markovify
 import yaml
@@ -15,7 +15,7 @@ async def markov(cmd, message, args):
                 chain_data = yaml.safe_load(chain_file)
                 entire_data = ' '.join(chain_data)
                 chain = markovify.Text(entire_data)
-                output = f'{chain.make_short_sentence(140, tries=100)}'
+                output = f'{chain.make_short_sentence(140)}'
                 for member in cmd.bot.get_all_members():
                     output = output.replace(f'<@!{member.id}', member.name)
                     output = output.replace(f'<@{member.id}', member.name)
@@ -24,8 +24,8 @@ async def markov(cmd, message, args):
                 response.add_field(name=f':link: {message.server.name} Markov Chain Response',
                                    value=f'```\n{output}\n```')
         else:
-            response = discord.Embed(color=0xDB0000, title=':no_entry: No Chain File Was Found')
+            response = discord.Embed(color=0xDB0000, title='⛔ No Chain File Was Found')
     else:
         response = discord.Embed(color=0xDB0000,
-                                 title=f':no_entry: Markov Collection Is Disabled on {message.server.name}')
+                                 title=f'⛔ Markov Collection Is Disabled on {message.server.name}')
     await cmd.bot.send_message(message.channel, None, embed=response)

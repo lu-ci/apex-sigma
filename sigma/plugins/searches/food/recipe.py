@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 from config import Food2ForkAPIKey
 
@@ -14,7 +14,7 @@ async def recipe(cmd, message, args):
             search_data = await data.json()
     count = search_data['count']
     if count == 0:
-        embed = discord.Embed(color=0x696969, title=':mag: No results were found for that, sorry.')
+        embed = discord.Embed(color=0x696969, title='🔍 No results were found for that, sorry.')
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return
     else:

@@ -1,4 +1,4 @@
-from sigma.core.permission import check_man_msg
+﻿from sigma.core.permission import check_man_msg
 from sigma.core.permission import check_man_roles
 from sigma.core.permission import check_write
 import discord
@@ -20,9 +20,9 @@ async def blind(cmd, message, args):
                     if str(chan.type).lower() == 'text':
                         if check_write(user_q, chan):
                             await cmd.bot.edit_channel_permissions(chan, user_q, overwrite)
-            embed = discord.Embed(color=0x66CC66, title=':white_check_mark: ' + user_q.name + ' Was Blinded!')
+            embed = discord.Embed(color=0x66CC66, title='✅ ' + user_q.name + ' Was Blinded!')
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
             out_content = discord.Embed(color=0xDB0000,
-                                        title=':no_entry: Insufficient Permissions. Users with Ban permissions only.')
+                                        title='⛔ Insufficient Permissions. Users with Ban permissions only.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

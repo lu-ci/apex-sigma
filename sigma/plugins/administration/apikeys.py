@@ -1,4 +1,4 @@
-import config
+﻿import config
 import discord
 from config import permitted_id
 from humanfriendly.tables import format_pretty_table as boop
@@ -20,12 +20,12 @@ async def apikeys(cmd, message, args):
             await cmd.bot.start_private_message(message.author)
             await cmd.bot.send_message(message.author, out_text)
             status = discord.Embed(type='rich', color=0x66cc66,
-                                   title=':white_check_mark: The API Key List has been sent to your DM.')
+                                   title='✅ The API Key List has been sent to your DM.')
         except Exception as e:
             cmd.log.error(e)
             await cmd.bot.send_message(message.channel, str(e))
             return
     else:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':no_entry: Insufficient Permissions. Bot Owner Only.')
+                               title='⛔ Insufficient Permissions. Bot Owner Only.')
     await cmd.bot.send_message(message.channel, None, embed=status)

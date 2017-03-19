@@ -1,11 +1,11 @@
-import asyncio
+﻿import asyncio
 import discord
 
 
 async def announce(cmd, message, args):
     if not args:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':exclamation: Empty Message.')
+                                    title='❗ Empty Message.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     else:
@@ -32,7 +32,7 @@ async def announce(cmd, message, args):
             else:
                 cmd.log.info('Disabled on ' + server.name)
                 failed += 1
-        out_content = discord.Embed(type='rich', color=0x66cc66, title=':white_check_mark: Announcement Done')
+        out_content = discord.Embed(type='rich', color=0x66cc66, title='✅ Announcement Done')
         out_content.add_field(name='Success', value=str(success))
         out_content.add_field(name='Failed', value=str(failed))
         await cmd.bot.send_message(message.channel, None, embed=out_content)
