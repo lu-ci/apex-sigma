@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def listselfroles(cmd, message, args):
@@ -8,7 +8,7 @@ async def listselfroles(cmd, message, args):
         role_list += '\n - ' + role
     if role_list == '':
         embed = discord.Embed(type='rich', color=0x0099FF,
-                              title=':information_source: No Self Assignable Roles Set')
+                              title='ℹ No Self Assignable Roles Set')
     else:
         embed = discord.Embed(color=0x1ABC9C)
         embed.add_field(name='Self Assignable Roles On ' + message.server.name, value='```\n' + role_list + '\n```')

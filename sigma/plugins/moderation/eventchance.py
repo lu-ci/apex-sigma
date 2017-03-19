@@ -13,7 +13,7 @@ async def eventchance(cmd, message, args):
     event_chance = cmd.db.get_settings(message.server.id, 'EventChance')
     if not args:
         out_content = discord.Embed(color=0x0099FF,
-                                    title=':information_source: Random Event Chance Is ' + str(event_chance) + '%')
+                                    title='ℹ Random Event Chance Is ' + str(event_chance) + '%')
         if not events_enabled:
             out_content.set_footer(text='Warning: Random Events Are Disabled, use ' + Prefix + 'events to toggle it.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)

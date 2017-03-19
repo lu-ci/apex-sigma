@@ -17,12 +17,12 @@ async def autorole(cmd, message, args):
     if not args:
         if current_role:
             out_content = discord.Embed(type='rich', color=0x0099FF,
-                                        title=':information_source: Current Auto Role: ' + current_role)
+                                        title='ℹ Current Auto Role: ' + current_role)
             await cmd.bot.send_message(message.channel, None, embed=out_content)
             return
         else:
             out_content = discord.Embed(type='rich', color=0x0099FF,
-                                        title=':information_source: No Auto Role Set')
+                                        title='ℹ No Auto Role Set')
             await cmd.bot.send_message(message.channel, None, embed=out_content)
             return
     role_qry = ' '.join(args)

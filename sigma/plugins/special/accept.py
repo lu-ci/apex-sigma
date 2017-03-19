@@ -1,4 +1,4 @@
-import asyncio
+﻿import asyncio
 import discord
 from config import permitted_id
 
@@ -21,7 +21,7 @@ async def accept(ev, message, args):
             for member in message.server.members:
                 if member.id == permitted_id[0]:
                     embed = discord.Embed(
-                        title=':information_source: ' + message.author.name + ' has accepted the terms on WKCD.',
+                        title='ℹ ' + message.author.name + ' has accepted the terms on WKCD.',
                         color=0x0099FF)
                     await ev.bot.send_message(member, None, embed=embed)
             for channel in message.server.channels:

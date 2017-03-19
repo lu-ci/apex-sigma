@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def inrole(cmd, message, args):
@@ -20,6 +20,6 @@ async def inrole(cmd, message, args):
                 for role in member.roles:
                     if role == role_choice:
                         user_list += '\n - ' + member.name
-            embed.add_field(name=':information_source: The Following Users Are In ' + role_choice.name,
+            embed.add_field(name='ℹ The Following Users Are In ' + role_choice.name,
                             value='```haskell\n' + user_list + '\n```')
         await cmd.bot.send_message(message.channel, None, embed=embed)
