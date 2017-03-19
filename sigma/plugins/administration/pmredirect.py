@@ -17,7 +17,7 @@ async def pmredirect(ev, message, args):
             embed = discord.Embed(color=0x0099FF)
             if message.content and message.content != '':
                 embed.add_field(name='Message',
-                                value='```\n' + ' '.join(args) + '\n```', inline=False)
+                                value='```\n' + message.content + '\n```', inline=False)
             embed.set_footer(text=f'UserID: {author.id}')
             embed.set_author(name=f'{author.name}#{author.discriminator}', icon_url=user_avatar(author))
             if message.attachments:
