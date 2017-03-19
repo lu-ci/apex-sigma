@@ -16,5 +16,5 @@ async def settopic(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
             out_content = discord.Embed(type='rich', color=0xDB0000,
-                                        title=':no_entry: Insufficient Permissions. Manage Channels Permission Required.')
+                                        title='⛔ Insufficient Permissions. Manage Channels Permission Required.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

@@ -1,4 +1,4 @@
-from sigma.core.permission import check_kick
+﻿from sigma.core.permission import check_kick
 import discord
 
 
@@ -14,7 +14,7 @@ async def kick(cmd, message, args):
                 await cmd.bot.send_message(message.channel, None, embed=out_content)
             else:
                 out_content = discord.Embed(color=0xDB0000,
-                                            title=':no_entry: Insufficient Permissions. Users with Kick permissions only.')
+                                            title='⛔ Insufficient Permissions. Users with Kick permissions only.')
                 await cmd.bot.send_message(message.channel, None, embed=out_content)
         else:
             await cmd.bot.send_message(message.channel, cmd.help())

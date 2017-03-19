@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import arrow
 from sigma.core.permission import check_kick
 
@@ -6,7 +6,7 @@ from sigma.core.permission import check_kick
 async def warn(cmd, message, args):
     if not check_kick(message.author, message.channel):
         out_content = discord.Embed(color=0xDB0000,
-                                    title=':no_entry: Users With Kick Permissions Only.')
+                                    title='⛔ Users With Kick Permissions Only.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     if not args or not message.mentions:

@@ -9,7 +9,7 @@ async def greetmsg(cmd, message, args):
         embed.add_field(name=':information_source: Current Greet Message', value='```\n' + greet_message + '\n```')
     else:
         if not check_admin(message.author, message.channel):
-            embed = discord.Embed(title=':no_entry: Unpermitted', color=0xDB0000)
+            embed = discord.Embed(title='⛔ Unpermitted', color=0xDB0000)
         else:
             new_message = ' '.join(args)
             cmd.db.set_settings(message.server.id, 'GreetMessage', new_message)

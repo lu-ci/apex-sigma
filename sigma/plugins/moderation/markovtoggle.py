@@ -14,5 +14,5 @@ async def markovtoggle(cmd, message, args):
                                         title='✅ Markov Collection Enabled')
     else:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':no_entry: Insufficient Permissions. Server Admin Only.')
+                                    title='⛔ Insufficient Permissions. Server Admin Only.')
     await cmd.bot.send_message(message.channel, None, embed=out_content)

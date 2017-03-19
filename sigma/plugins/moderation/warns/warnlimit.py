@@ -1,11 +1,11 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_kick
 
 
 async def warnlimit(cmd, message, args):
     if not check_kick(message.author, message.channel):
         out_content = discord.Embed(color=0xDB0000,
-                                    title=':no_entry: Server Admin Only.')
+                                    title='⛔ Server Admin Only.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     if not args:

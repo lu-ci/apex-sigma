@@ -23,5 +23,5 @@ async def mute(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
             out_content = discord.Embed(type='rich', color=0xDB0000,
-                                        title=':no_entry: Insufficient Permissions. Requires Manage Messages and Manage Roles Permissions.')
+                                        title='⛔ Insufficient Permissions. Requires Manage Messages and Manage Roles Permissions.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

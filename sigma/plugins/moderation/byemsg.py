@@ -9,7 +9,7 @@ async def byemsg(cmd, message, args):
         embed.add_field(name=':information_source: Current Bye Message', value='```\n' + bye_message + '\n```')
     else:
         if not check_admin(message.author, message.channel):
-            embed = discord.Embed(title=':no_entry: Unpermitted', color=0xDB0000)
+            embed = discord.Embed(title='⛔ Unpermitted', color=0xDB0000)
         else:
             new_message = ' '.join(args)
             cmd.db.set_settings(message.server.id, 'ByeMessage', new_message)

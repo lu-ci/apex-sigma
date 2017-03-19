@@ -1,4 +1,4 @@
-from config import permitted_id
+﻿from config import permitted_id
 import discord
 
 
@@ -21,5 +21,5 @@ async def searchid(cmd, message, args):
         await cmd.bot.send_message(message.channel, None, embed=embed)
     else:
         out = discord.Embed(type='rich', color=0xDB0000,
-                            title=':no_entry: Insufficient Permissions. Bot Owner Only.')
+                            title='⛔ Insufficient Permissions. Bot Owner Only.')
         await cmd.bot.send_message(message.channel, None, embed=out)

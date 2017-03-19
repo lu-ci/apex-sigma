@@ -20,7 +20,7 @@ async def give(cmd, message, args):
     curr_points = cmd.db.get_points(message.server, message.author)
     if amount > curr_points:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':no_entry: You Do Not Have Enough Points.')
+                                    title='⛔ You Do Not Have Enough Points.')
         await cmd.bot.send_message(message.channel, None, embed=out_content)
         return
     else:

@@ -21,5 +21,5 @@ async def unblind(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=embed)
         else:
             out_content = discord.Embed(type='rich', color=0xDB0000,
-                                        title=':no_entry: Insufficient Permissions. Manage Messages and Manage Roles Permissions Required.')
+                                        title='⛔ Insufficient Permissions. Manage Messages and Manage Roles Permissions Required.')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

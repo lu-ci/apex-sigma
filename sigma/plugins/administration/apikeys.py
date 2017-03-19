@@ -27,5 +27,5 @@ async def apikeys(cmd, message, args):
             return
     else:
         status = discord.Embed(type='rich', color=0xDB0000,
-                               title=':no_entry: Insufficient Permissions. Bot Owner Only.')
+                               title='⛔ Insufficient Permissions. Bot Owner Only.')
     await cmd.bot.send_message(message.channel, None, embed=status)

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 
 
@@ -36,5 +36,5 @@ async def ignorechannel(cmd, message, args):
             cmd.db.set_settings(message.server.id, 'BlacklistedChannels', black)
     else:
         embed = discord.Embed(type='rich', color=0xDB0000,
-                              title=':no_entry: Insufficient Permissions. Server Admin Only.')
+                              title='⛔ Insufficient Permissions. Server Admin Only.')
     await cmd.bot.send_message(message.channel, None, embed=embed)

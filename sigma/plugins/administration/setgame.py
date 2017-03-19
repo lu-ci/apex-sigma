@@ -17,7 +17,7 @@ async def setgame(cmd, message, args):
         await cmd.bot.delete_message(response)
     else:
         out = discord.Embed(type='rich', color=0xDB0000,
-                            title=':no_entry: Insufficient Permissions. Bot Owner Only.')
+                            title='⛔ Insufficient Permissions. Bot Owner Only.')
         response = await cmd.bot.send_message(message.channel, None, embed=out)
         await asyncio.sleep(5)
         await cmd.bot.delete_message(response)

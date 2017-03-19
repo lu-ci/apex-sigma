@@ -7,7 +7,7 @@ import discord
 async def announcementchannel(cmd, message, args):
     if not check_admin(message.author, message.channel):
         # user is no server admin
-        embed = discord.Embed(title=':no_entry: Unpermitted. Server Admin Only.', color=0xDB0000)
+        embed = discord.Embed(title='⛔ Unpermitted. Server Admin Only.', color=0xDB0000)
     else:
         if message.channel_mentions:
             # argument exists and is a channel
@@ -19,7 +19,7 @@ async def announcementchannel(cmd, message, args):
                 embed = discord.Embed(
                     title='✅ Announcements will be posted to #' + newchannel.name, color=0x66CC66)
             else:
-                embed = discord.Embed(title=':no_entry: Missing write permissions for this channel', color=0xDB0000)
+                embed = discord.Embed(title='⛔ Missing write permissions for this channel', color=0xDB0000)
         else:
             if len(args) == 0:
                 # no argument given, announcements will be turned off

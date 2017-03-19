@@ -14,5 +14,5 @@ async def unflip(cmd, message, args):
                                         title='✅ Automatic Table Un-Flipping Enabled')
     else:
         out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title=':no_entry: Insufficient Permissions. Server Admin Only.')
+                                    title='⛔ Insufficient Permissions. Server Admin Only.')
     await cmd.bot.send_message(message.channel, None, embed=out_content)

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from time import time
 
 from config import permitted_id, Prefix
@@ -121,7 +121,7 @@ def check_permitted(self, user, channel, server):
         return False, embed_content
 
     if self.perm['admin'] and not check_bot_owner(user):
-        title = ':no_entry: Unpermitted'
+        title = '⛔ Unpermitted'
         msg = 'Bot Owne r commands are usable only by the owners of the bot as the name implies.'
         msg += '\nThe bot owner is the person hosting the bot on their machine.'
         msg += '\nThis is **not the discord server owner** and **not the person who invited the bot** to the server.'
@@ -144,7 +144,7 @@ def check_permitted(self, user, channel, server):
         return False, embed_content
 
     if not self.perm['pmable'] and not server and not is_self(user, self.bot.user):
-        title = ':no_entry: This Function Is Not Usable in Direct Messages.'
+        title = '⛔ This Function Is Not Usable in Direct Messages.'
         explanation = 'If you get this message, use the command on a server and not in a direct message.'
         embed_content = discord.Embed(color=0xDB0000)
         embed_content.add_field(name=title, value=explanation)
