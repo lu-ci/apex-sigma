@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from .nodes.read_frame_data import read_frame_data, read_item_data
 
 
@@ -20,5 +20,5 @@ async def wfloc(cmd, message, args):
                 embed.set_author(name='Warframe Wikia', icon_url=icon_url, url=wiki_url)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
             except:
-                embed = discord.Embed(color=0x696969, title=':mag: Nothing Found')
+                embed = discord.Embed(color=0x696969, title='🔍 Nothing Found')
                 await cmd.bot.send_message(message.channel, None, embed=embed)

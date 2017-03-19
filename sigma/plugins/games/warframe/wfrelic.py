@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import aiohttp
 import lxml.html as l
 
@@ -37,5 +37,5 @@ async def wfrelic(cmd, message, args):
                 embed.set_thumbnail(url=relic_images[relic_tier.lower()])
                 embed.add_field(name=f'{relic_tier.title()} {relic_type}', value=f'```\n{parts_list}\n```', inline=False)
             else:
-                embed = discord.Embed(color=0x696969, title=':mag: Nothing Found')
+                embed = discord.Embed(color=0x696969, title='🔍 Nothing Found')
             await cmd.bot.send_message(message.channel, None, embed=embed)

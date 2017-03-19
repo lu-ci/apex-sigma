@@ -1,4 +1,4 @@
-import random
+﻿import random
 import discord
 from .visual_novels import key_vn_list
 
@@ -11,7 +11,7 @@ async def keyvis(cmd, message, args):
     try:
         item = key_vn_list[choice]
     except KeyError:
-        embed = discord.Embed(color=0x696969, title=':mag: Nothing found for {:s}...'.format(
+        embed = discord.Embed(color=0x696969, title='🔍 Nothing found for {:s}...'.format(
             ' '.join(['`{:s}`'.format(x) for x in args])))
         await cmd.bot.send_message(message.channel, None, embed=embed)
         return

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from config import Prefix, MainServerURL
 from sigma.core.command_alts import load_alternate_command_names
 
@@ -35,5 +35,5 @@ async def help(cmd, message, args):
             await cmd.bot.send_message(message.channel, None, embed=help_out)
         except:
             out_content = discord.Embed(type='rich', color=0x696969,
-                                        title=':mag: No such command was found...')
+                                        title='🔍 No such command was found...')
             await cmd.bot.send_message(message.channel, None, embed=out_content)

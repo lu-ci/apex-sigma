@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -14,7 +14,7 @@ async def wfwiki(cmd, message, args):
                 try:
                     article_id = search_json['items'][0]['id']
                 except:
-                    embed = discord.Embed(color=0x696969, title=':mag: Nothing Found')
+                    embed = discord.Embed(color=0x696969, title='🔍 Nothing Found')
                     await cmd.bot.send_message(message.channel, None, embed=embed)
                     return
                 article_url = search_json['items'][0]['url']
