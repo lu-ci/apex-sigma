@@ -15,18 +15,15 @@ async def pmredirect(ev, message, args):
                 await ev.bot.send_message(message.channel, None, embed=pm_response)
             ev.log.info(f'User {author.name} [{author.id}] sent a private message.')
             embed = discord.Embed(color=0x0099FF)
-            if args and not ''.join(args) == '':
+            if message.content and message.content != '':
                 embed.add_field(name='Message',
-                                value='```\n' + ' '.join(args) + '\n```', inline=False)
+                                value='```\n' + message.content + '\n```', inline=False)
             embed.set_footer(text=f'UserID: {author.id}')
             embed.set_author(name=f'{author.name}#{author.discriminator}', icon_url=user_avatar(author))
             if message.attachments:
                 attachment_links = ''
                 for attachment in message.attachments:
-                    if attachment['url'].split('.')[-1] in ['png', 'jpg', 'jpeg', 'gif']:
-                        embed.set_image(url=attachment['url'])
-                    else:
-                        attachment_links += '\n' + attachment['url']
+                    attachment_links += '\n' + attachment['url']
                 embed.add_field(name='Attachments', value=attachment_links, inline=False)
             owner = discord.utils.find(lambda usr: usr.id == permitted_id[0], ev.bot.get_all_members())
             await ev.bot.send_message(owner, None, embed=embed)
