@@ -8,7 +8,7 @@ alts = load_alternate_command_names()
 async def help(cmd, message, args):
     cmd.db.add_stats('HelpCount')
     if not args:
-        help_out = discord.Embed(type='rich', title=':grey_question: Help', color=0x1B6F5F)
+        help_out = discord.Embed(type='rich', title='❔ Help', color=0x1B6F5F)
         help_out.set_author(name='Apex Sigma', url=MainServerURL,
                             icon_url='https://i.imgur.com/s0aVvn7.png')
         help_out.add_field(name='Website', value='[**LINK**](' + MainServerURL + ')')
