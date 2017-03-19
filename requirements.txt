@@ -10,7 +10,7 @@ hurry.filesize
 Shosetsu
 imgurpython
 praw
-cleverbot
+cleverwrap
 tornado
 pyyaml
 discord.py[voice]

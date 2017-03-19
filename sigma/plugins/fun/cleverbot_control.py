@@ -1,6 +1,7 @@
-import cleverbot
+import cleverwrap
+from config import CleverBotAPIKey
 
-sigma = cleverbot.Cleverbot()
+sigma = cleverwrap.CleverWrap(CleverBotAPIKey)
 
 
 async def cleverbot_control(ev, message, args):
@@ -10,5 +11,7 @@ async def cleverbot_control(ev, message, args):
         mention = '<@' + ev.bot.user.id + '>'
         mention_alt = '<@!' + ev.bot.user.id + '>'
         if message.content.startswith(mention) or message.content.startswith(mention_alt):
-            response = sigma.ask(' '.join(args[1:]))
+            interaction = ' '.join(args[1:])
+            response = sigma.say(interaction)
+            print(response)
             await ev.bot.send_message(message.channel, message.author.mention + ' ' + response)
