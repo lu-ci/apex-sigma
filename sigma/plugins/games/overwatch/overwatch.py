@@ -74,7 +74,7 @@ async def overwatch(cmd, message, args):
             except:
                 cg_played = 'None'
             try:
-                cg_won = str(comp['game']['games_played'])
+                cg_won = str(comp['game']['games_won'])
             except:
                 cg_won = 'None'
             try:
