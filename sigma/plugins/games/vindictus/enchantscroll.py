@@ -4,7 +4,7 @@ from .nodes.read_scroll_data import search_for_scroll
 
 async def enchantscroll(cmd, message, args):
     if args:
-        scroll_name = args[0]
+        scroll_name = '_'.join(args).title()
         try:
             scroll = await search_for_scroll(scroll_name)
             response = discord.Embed(color=0xB38000)
