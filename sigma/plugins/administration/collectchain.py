@@ -12,7 +12,7 @@ async def collectchain(cmd, message, args):
             collection = []
             response = discord.Embed(color=0x66CC66, title='📖 Collecting...')
             response_msg = await cmd.bot.send_message(message.channel, None, embed=response)
-            async for log in cmd.bot.logs_from(def_chn, limit=1000000):
+            async for log in cmd.bot.logs_from(def_chn, limit=50000):
                 if log.author.id == target.id:
                     if log.content:
                         if log.content != '':
@@ -34,7 +34,7 @@ async def collectchain(cmd, message, args):
                                                 content += '.'
                                         collection.append(content)
                                         collected += 1
-                                        if collected >= 5000:
+                                        if collected >= 3000:
                                             break
             with open(f'chains/chain_{target.id}.yml', 'w', encoding='utf-8') as chain_file:
                 yaml.dump(collection, chain_file, default_flow_style=False)
