@@ -168,6 +168,15 @@ commands:
     description:
       Blacklists a connected server disallowing it to use any and all commands.
 
+  - name:    collectchain
+    global:  true
+    enabled: true
+    admin:   true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Collects messages sent by the mentioned user and saves it as a chain.
+
 events:
   - name:    pmredirect
     type:    message
