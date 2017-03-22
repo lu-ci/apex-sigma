@@ -12,5 +12,9 @@ async def cleverbot_control(ev, message, args):
         mention_alt = '<@!' + ev.bot.user.id + '>'
         if message.content.startswith(mention) or message.content.startswith(mention_alt):
             interaction = ' '.join(args[1:])
-            response = sigma.say(interaction)
+            try:
+                response = sigma.say(interaction)
+            except:
+                sigma.reset()
+                response = sigma.say(interaction)
             await ev.bot.send_message(message.channel, message.author.mention + ' ' + response)
