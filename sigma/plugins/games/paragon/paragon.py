@@ -6,8 +6,8 @@ from config import ParagonAPIKey
 
 async def paragon(cmd, message, args):
     if args:
-        username = '%20'.join(args)
-        search_url = f'https://developer-paragon.epicgames.com/v1/accounts/find/{username}'
+        username = ' '.join(args)
+        search_url = f'https://developer-paragon.epicgames.com/v1/accounts/find/{username.replace(" ", "%20")}'
         headers = {'X-Epic-ApiKey': ParagonAPIKey, 'Accept': 'application/json; charset=utf-8'}
         pgn_icon = 'https://cdn1.unrealengine.com/2957004/favicons/favicon-32x32-121c1fa91b8c69fc4b41a084af1f1e26.png'
         async with aiohttp.ClientSession() as session:
