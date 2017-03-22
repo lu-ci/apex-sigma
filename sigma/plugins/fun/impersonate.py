@@ -12,7 +12,6 @@ async def impersonate(cmd, message, args):
         else:
             target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.server.members)
         if target:
-            target = message.mentions[0]
             destination = f'chains/chain_{target.id}.yml'
             if os.path.exists(destination):
                 with open(destination) as chain_file:
