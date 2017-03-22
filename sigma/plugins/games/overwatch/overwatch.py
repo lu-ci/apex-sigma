@@ -53,12 +53,15 @@ async def overwatch(cmd, message, args):
             except:
                 pass
             if tier_link:
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(tier_link) as data:
-                        tier_img = await data.read()
-                        tier_img = Image.open(BytesIO(tier_img))
-                        tier_img = tier_img.resize((128, 64), Image.ANTIALIAS)
-                base.paste(tier_img, (0, 64), tier_img)
+                try:
+                    async with aiohttp.ClientSession() as session:
+                        async with session.get(tier_link) as data:
+                            tier_img = await data.read()
+                            tier_img = Image.open(BytesIO(tier_img))
+                            tier_img = tier_img.resize((128, 64), Image.ANTIALIAS)
+                    base.paste(tier_img, (0, 64), tier_img)
+                except:
+                    pass
             font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 48)
             imgdraw = ImageDraw.Draw(base)
             name = profile_json['data']['player']['name']
