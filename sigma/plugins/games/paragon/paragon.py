@@ -6,8 +6,8 @@ from config import ParagonAPIKey
 
 async def paragon(cmd, message, args):
     if args:
-        username = '%20'.join(args)
-        search_url = f'https://developer-paragon.epicgames.com/v1/accounts/find/{username}'
+        username = ' '.join(args)
+        search_url = f'https://developer-paragon.epicgames.com/v1/accounts/find/{username.replace(" ", "%20")}'
         headers = {'X-Epic-ApiKey': ParagonAPIKey, 'Accept': 'application/json; charset=utf-8'}
         pgn_icon = 'https://cdn1.unrealengine.com/2957004/favicons/favicon-32x32-121c1fa91b8c69fc4b41a084af1f1e26.png'
         async with aiohttp.ClientSession() as session:
@@ -32,9 +32,9 @@ async def paragon(cmd, message, args):
             response.add_field(name='Games Won', value=stats['games_won'])
             response.add_field(name='Games Left', value=stats['games_left'])
             response.add_field(name='Hero Kills', value=stats['kills_hero'])
-            response.add_field(name='Rig Kills', value=stats['kills_rigs'])
+            response.add_field(name='Core Kills', value=stats['kills_core'])
             response.add_field(name='Minion Kills', value=stats['kills_minions'])
 
-        except KeyError:
+        except SyntaxError:
             response = discord.Embed(color=0xDB0000, title=f'❗ User {username} Not Found')
         await cmd.bot.send_message(message.channel, None, embed=response)
