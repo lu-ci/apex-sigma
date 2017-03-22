@@ -182,6 +182,16 @@ commands:
       Provides a random Nekomimi image.
       They might be borderline NSFW, a warning just in case.
 
+  - name:     impersonate
+    global:   true
+    enabled:  true
+    sfw:      true
+    usage:    "{pfx:s}{cmd:s} @person"
+    description:
+      Tries to impersonate the mentioned user if a chain file for them exists.
+      Most people will not have a chain file.
+      The makers select those.
+
 events:
   - name:    cleverbot_control
     type:    mention
