@@ -279,6 +279,16 @@ commands:
       The channel can be blacklisted by either mention or ID.
       Requires the user to be a server Administrator.
 
+  - name: blacklist
+    alts:
+      - "black"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Lists all channels and users that are blacklisted on the current server.
+
   - name: cleverbot
     alts:
       - "cb"

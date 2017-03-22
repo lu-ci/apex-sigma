@@ -1,4 +1,5 @@
 from config import permitted_id
+from sigma.core.permission import check_admin
 
 
 def check_black(db, message):
@@ -7,6 +8,8 @@ def check_black(db, message):
     server_is_black = False
     black = False
     if message.server:
+        if check_admin(message.author, message.channel):
+            black = False
         channel_blacklist = db.get_settings(message.server.id, 'BlacklistedChannels')
         if not channel_blacklist:
             channel_blacklist = []

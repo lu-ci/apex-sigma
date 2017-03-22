@@ -57,11 +57,10 @@ async def queue(cmd, message, args):
                 await cmd.bot.send_message(message.channel, None, embed=embed)
             else:
                 q_list = list(q.queue)[:5]
-                q_text = ''
+                embed = discord.Embed(color=0x0099FF,
+                                      title=f'ℹ The {len(q_list)} Upcoming Songs (Total: {len(list(q.queue))})')
                 for item in q_list:
-                    q_text += f'\n{item["video"].title}'
-                embed = discord.Embed(color=0x0099FF)
-                embed.add_field(name=f'ℹ {len(q_list)} Upcoming Songs (Total: {len(list(q.queue))})',
-                                value=f'```\n{q_text}\n```', inline=False)
+                    information = f'Requested By: {item["requester"].name}\nDuration: {item["video"].duration}'
+                    embed.add_field(name=item['video'].title, value=f'```\n{information}\n```', inline=False)
                 embed.set_footer(text=f'To see the currently playing song type {Prefix}np')
                 await cmd.bot.send_message(message.channel, None, embed=embed)

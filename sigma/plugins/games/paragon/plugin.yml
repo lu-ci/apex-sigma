@@ -1,0 +1,17 @@
+name: Paragon
+
+categories:
+  - games
+
+enabled: true
+
+commands:
+  - name:    paragon
+    alts:
+      - "pgn"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} AXAz0r"
+    description:
+      Shows the profile statistics for the inputted player username.

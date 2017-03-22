@@ -1,7 +1,7 @@
 beta: false
-build_date: 1490115901
-codename: Yukine
+build_date: 1490187419
+codename: Ryou
 version:
   major: 2
-  minor: 33
-  patch: 5871
+  minor: 35
+  patch: 5879

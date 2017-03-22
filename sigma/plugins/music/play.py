@@ -60,7 +60,7 @@ async def play(cmd, message, args):
             embed.add_field(name='🎵 Now Playing', value=video.title)
             embed.set_thumbnail(url=video.thumb)
             embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
-                             icon_url=user_avatar(item['requester']))
+                             icon_url=user_avatar(item['requester']), url=item['url'])
             embed.set_footer(text=f'Duration: {video.duration}')
             await cmd.bot.send_message(message.channel, None, embed=embed)
             while not player.is_done():
