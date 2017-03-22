@@ -6,8 +6,8 @@ from .init_clock import init_clock
 
 async def play(cmd, message, args):
     if args:
-        from sigma.plugins.music.queue import queue
-        await queue(cmd, message, args)
+        task = cmd.bot.plugin_manager.commands['queue'].call(message, args)
+        cmd.bot.loop.create_task(task)
         player = cmd.music.get_player(message.server.id)
         if player:
             if player.is_playing():
