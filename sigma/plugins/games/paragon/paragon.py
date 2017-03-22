@@ -32,9 +32,9 @@ async def paragon(cmd, message, args):
             response.add_field(name='Games Won', value=stats['games_won'])
             response.add_field(name='Games Left', value=stats['games_left'])
             response.add_field(name='Hero Kills', value=stats['kills_hero'])
-            response.add_field(name='Rig Kills', value=stats['kills_rigs'])
+            response.add_field(name='Core Kills', value=stats['kills_core'])
             response.add_field(name='Minion Kills', value=stats['kills_minions'])
 
-        except KeyError:
+        except SyntaxError:
             response = discord.Embed(color=0xDB0000, title=f'❗ User {username} Not Found')
         await cmd.bot.send_message(message.channel, None, embed=response)
