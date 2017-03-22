@@ -13,9 +13,8 @@ async def queue(cmd, message, args):
         if args:
             qry = ' '.join(args)
             if '?list=' in qry:
-                list_id = qry.split('list=')[1]
-                list_url = 'https://www.youtube.com/playlist?list=' + list_id
-                plist = pafy.get_playlist(list_url)
+                list_id = qry.split('list=')[1].split('&')[0]
+                plist = pafy.get_playlist(list_id)
                 item_count = len(plist['items'])
                 embed_title = f'ℹ Playlist Detected. Adding {item_count} items...'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
