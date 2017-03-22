@@ -76,7 +76,7 @@
 6. The page's *App Bot User* section now got expanded.
 7. Keep this page open for now.
 
-#### Editing The config.py
+### Editing The config.py
 *Initially the config.py file won't exist, make it by simply copying or renaming config_example.py*
 1. Open `config.py` with a UTF-8 compatible editor of your choosing. This should **NEVER** be edited with the regular Notepad or Wordpad.
 2. In `config.py` all variables look like `Something = getenv('Something') or ''`
