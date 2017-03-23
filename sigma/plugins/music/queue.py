@@ -3,6 +3,7 @@ import arrow
 import discord
 import asyncio
 import soundcloud
+import time
 from sigma.plugins.searches.google.yt_search import search_youtube
 from sigma.core.utils import user_avatar
 from .playlist_adder import yt_playlist_adder
@@ -47,15 +48,7 @@ async def queue(cmd, message, args):
                     'sound': sound,
                     'timestamp': arrow.now().timestamp
                 }
-                total = arrow.now().timestamp
-                curr_queue = cmd.music.get_queue(message.server.id)
-                if curr_queue:
-                    for item in list(curr_queue.queue):
-                        h, m, s = item['video'].duration.split(':')
-                        addition = int(s) + (int(m) * 60) + (int(h) * 3600)
-                        total += addition
-                time_data = arrow.utcnow().fromtimestamp(total).naive
-                embed = discord.Embed(color=0x66CC66, timestamp=time_data)
+                embed = discord.Embed(color=0x66CC66)
                 cmd.bot.music.add_to_queue(message.server.id, data)
                 if sound_type == 0:
                     embed.add_field(name='✅ Added To Queue', value=sound.title)
@@ -81,7 +74,11 @@ async def queue(cmd, message, args):
                 embed = discord.Embed(color=0x0099FF,
                                       title=f'ℹ The {len(q_list)} Upcoming Songs (Total: {len(list(q.queue))})')
                 for item in q_list:
-                    information = f'Requested By: {item["requester"].name}\nDuration: {item["video"].duration}'
-                    embed.add_field(name=item['video'].title, value=f'```\n{information}\n```', inline=False)
+                    if item['type'] == 0:
+                        information = f'Requested By: {item["requester"].name}\nDuration: {item["sound"].duration}'
+                        embed.add_field(name=item['sound'].title, value=f'```\n{information}\n```', inline=False)
+                    elif item['type'] == 1:
+                        information = f'Requested By: {item["requester"].name}\nDuration: {time.strftime("%H:%M:%S", time.gmtime(item["sound"]["duration"]//1000))}'
+                        embed.add_field(name=item['sound']['title'], value=f'```\n{information}\n```', inline=False)
                 embed.set_footer(text=f'To see the currently playing song type {Prefix}np')
                 await cmd.bot.send_message(message.channel, None, embed=embed)

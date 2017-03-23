@@ -12,6 +12,7 @@ async def play(cmd, message, args):
         if player:
             if player.is_playing():
                 return
+        await asyncio.sleep(3)
     if not message.server.id in cmd.music.initializing:
         cmd.music.add_init(message.server.id)
         cmd.bot.loop.create_task(init_clock(cmd.music, message.server.id))
