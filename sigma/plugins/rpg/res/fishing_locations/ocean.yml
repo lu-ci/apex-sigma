@@ -1,0 +1,15 @@
+common:
+  - "herring"
+  - "sardine"
+  - "red_snapper"
+  - "red_mullet"
+  - "tilapia"
+  - "anchovy"
+  - "albacore"
+uncommon:
+  - "squid"
+  - "tuna"
+  - "eel"
+rare:
+  - "octopus"
+  - "pufferfish"

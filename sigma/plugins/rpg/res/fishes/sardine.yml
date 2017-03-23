@@ -1,0 +1,6 @@
+name: "Sardine"
+description: "A very common ocean fish."
+base_value: 40
+eadible: True
+poisonous: False
+base_health: 5

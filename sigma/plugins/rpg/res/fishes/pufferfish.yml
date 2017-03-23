@@ -1,0 +1,6 @@
+name: "Pufferfish"
+description: "Fills itself with water to grow in size, aiming to scare off predators. Very poisonous."
+base_value: 200
+eadible: True
+poisonous: True
+base_health: 10

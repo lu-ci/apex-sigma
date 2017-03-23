@@ -1,0 +1,11 @@
+name: "Angry Crab"
+health: 10
+xperience: 5
+gold: 2
+drops:
+  common:
+    - "crab_meat"
+  uncommon:
+    - "crab_shell"
+  rare:
+    - "crab_eye"

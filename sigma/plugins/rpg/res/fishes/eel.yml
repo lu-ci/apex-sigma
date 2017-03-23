@@ -1,0 +1,6 @@
+name: "Eel"
+description: "Not the electric kind, still very gross and slippery."
+base_value: 85
+eadible: True
+poisonous: False
+base_health: 13

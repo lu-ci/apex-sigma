@@ -1,0 +1,6 @@
+name: "Red Snapper"
+description: "A popular cousing of the mighty Salmon. Great with white wine."
+base_value: 50
+eadible: True
+poisonous: False
+base_health: 11

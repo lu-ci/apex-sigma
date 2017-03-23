@@ -1,0 +1,6 @@
+name: "Squid"
+description: "A deep sea creature that can grow to ludicrous sizes."
+base_value: 80
+eadible: True
+poisonous: False
+base_health: 11

@@ -46,9 +46,8 @@ async def play(cmd, message, args):
             if message.server.id in cmd.music.repeaters:
                 cmd.music.add_to_queue(message.server.id, item)
             cmd.music.currents.update({message.server.id: item})
-            video = item['video']
-            item_url = item['url']
-            await cmd.music.make_player(message.server.id, voice_instance, item_url)
+            sound = item['sound']
+            await cmd.music.make_player(message.server.id, voice_instance, item)
             player = cmd.music.get_player(message.server.id)
             if not player:
                 return
@@ -57,11 +56,19 @@ async def play(cmd, message, args):
             player.start()
             cmd.db.add_stats('MusicCount')
             embed = discord.Embed(color=0x0099FF)
-            embed.add_field(name='🎵 Now Playing', value=video.title)
-            embed.set_thumbnail(url=video.thumb)
-            embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
-                             icon_url=user_avatar(item['requester']), url=item['url'])
-            embed.set_footer(text=f'Duration: {video.duration}')
+            if item['type'] == 0:
+                embed.add_field(name='🎵 Now Playing', value=sound.title)
+                embed.set_thumbnail(url=sound.thumb)
+                embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
+                                 icon_url=user_avatar(item['requester']), url=item['url'])
+                embed.set_footer(text=f'Duration: {sound.duration}')
+            elif item['type'] == 1:
+                embed.add_field(name='🎵 Now Playing', value=sound['title'])
+                embed.set_thumbnail(url=sound['artwork_url'])
+                embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
+                                 icon_url=user_avatar(item['requester']), url=item['url'])
+            else:
+                return
             await cmd.bot.send_message(message.channel, None, embed=embed)
             while not player.is_done():
                 await asyncio.sleep(2)
