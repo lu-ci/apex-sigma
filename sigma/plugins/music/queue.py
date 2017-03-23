@@ -14,12 +14,11 @@ async def queue(cmd, message, args):
             qry = ' '.join(args)
             if '?list=' in qry:
                 list_id = qry.split('list=')[1].split('&')[0]
-                plist = pafy.get_playlist(list_id)
-                item_count = len(plist['items'])
-                embed_title = f'ℹ Playlist Detected. Adding {item_count} items...'
+                plist = pafy.get_playlist2(list_id)
+                item_count = playlist_adder(message.server.id, cmd, message.author, plist)
+                embed_title = f'ℹ Added {item_count} items from {plist.title}.'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
                 await cmd.bot.send_message(message.channel, None, embed=embed)
-                await playlist_adder(message.server.id, cmd.music, message.author, plist)
                 await asyncio.sleep(3)
             else:
                 if qry.startswith('https://'):
