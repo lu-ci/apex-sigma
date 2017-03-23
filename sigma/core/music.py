@@ -1,7 +1,10 @@
 import pafy
 import os
+import hashlib
 import queue as q
-
+import soundcloud
+import aiohttp
+from config import SoundCloudClientID
 
 class Music(object):
     def __init__(self):
@@ -75,7 +78,7 @@ class Music(object):
             self.queues[sid] = q.Queue()
 
     @staticmethod
-    def download_data(url):
+    def download_yt_data(url):
         output = 'cache/'
         video = pafy.new(url)
         audio = video.getbestaudio()
@@ -84,9 +87,30 @@ class Music(object):
             audio.download(file_location, quiet=True)
         return file_location
 
-    async def make_player(self, sid, voice, location):
-        if ('youtu' and 'https') in location:
-            file_location = self.download_data(location)
+    @staticmethod
+    async def download_sc_data(url):
+        output = 'cache/'
+        sc_cli = soundcloud.Client(client_id=SoundCloudClientID)
+        data = sc_cli.get('/resolve', url=url)
+        stream_url = sc_cli.get(data.stream_url, allow_redirects=False)
+        crypt = hashlib.new('md5')
+        crypt.update(str(data.fields()['id']).encode('utf-8'))
+        filename = crypt.hexdigest()
+        file_location = output + filename
+        if not os.path.exists(file_location):
+            with open(file_location, 'wb') as data_file:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(stream_url.location) as dl_data:
+                        total_data = await dl_data.read()
+                        data_file.write(total_data)
+        return file_location
+
+    async def make_player(self, sid, voice, item):
+        location = item['url']
+        if item['type'] == 0:
+            file_location = self.download_yt_data(location)
+        elif item['type'] == 1:
+            file_location = await self.download_sc_data(location)
         else:
             file_location = location
         player = voice.create_ffmpeg_player(file_location)
