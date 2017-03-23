@@ -7,3 +7,5 @@ description:
 danger: 0
 fishing: true
 fishing_location: "ocean"
+neighbors:
+  - "duskrock_village"
