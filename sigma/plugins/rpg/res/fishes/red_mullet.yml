@@ -1,0 +1,6 @@
+name: "Red Mullet"
+description: "Lovely for keeping as pets. Unless of course, you're hungry."
+base_value: 75
+eadible: True
+poisonous: False
+base_health: 11

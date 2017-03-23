@@ -1,0 +1,6 @@
+name: "Albacore"
+description: "Likes temperate waters. Has a pretty bland taste, but rich in nutrients."
+base_value: 75
+eadible: True
+poisonous: False
+base_health: 11
