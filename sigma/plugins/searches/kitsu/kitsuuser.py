@@ -1,5 +1,6 @@
 import aiohttp
 import discord
+import json
 
 
 async def kitsuuser(cmd, message, args):
@@ -8,11 +9,13 @@ async def kitsuuser(cmd, message, args):
         url = 'https://kitsu.io/api/edge/users?filter[name]=' + qry
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as data:
-                data = await data.json()
+                data = await data.read()
+                data = json.loads(data)
         profile_url = data['data'][0]['links']['self']
         async with aiohttp.ClientSession() as session:
             async with session.get(profile_url) as data:
-                data = await data.json()
+                data = await data.read()
+                data = json.loads(data)
                 data = data['data']
         attr = data['attributes']
         name = attr['name']

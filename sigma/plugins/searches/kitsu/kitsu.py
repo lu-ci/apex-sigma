@@ -1,5 +1,6 @@
 import aiohttp
 import discord
+import json
 
 
 async def kitsu(cmd, message, args):
@@ -8,18 +9,23 @@ async def kitsu(cmd, message, args):
         url = 'https://kitsu.io/api/edge/anime?filter[text]=' + qry
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as data:
-                data = await data.json()
+                data = await data.read()
+                data = json.loads(data)
         ani_url = data['data'][0]['links']['self']
         async with aiohttp.ClientSession() as session:
             async with session.get(ani_url) as data:
-                data = await data.json()
+                data = await data.read()
+                data = json.loads(data)
                 data = data['data']
         attr = data['attributes']
         slug = attr['slug']
         synopsis = attr['synopsis']
         en_title = attr['titles']['en_jp']
         jp_title = attr['titles']['ja_jp']
-        rating = '{0:.2f}'.format(attr['averageRating'])
+        try:
+            rating = '{0:.2f}'.format(attr['averageRating'])
+        except:
+            rating = 'None'
         episode_count = attr['episodeCount']
         episode_length = attr['episodeLength']
         start_date = attr['startDate']
