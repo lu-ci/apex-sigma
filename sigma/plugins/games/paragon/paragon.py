@@ -22,6 +22,10 @@ async def paragon(cmd, message, args):
                 async with session.get(f'{stats_url}', headers=headers) as data:
                     profile_data = await data.json()
             stats = stats_data['total']
+            try:
+                core_kills = stats['kills_core']
+            except:
+                core_kills = None
             response = discord.Embed(color=0xEEEEEE)
             response.set_author(name=f'{profile_data["displayName"]} | Level {stats["account_level_up"]}',
                                 icon_url=pgn_icon)
@@ -32,7 +36,7 @@ async def paragon(cmd, message, args):
             response.add_field(name='Games Won', value=stats['games_won'])
             response.add_field(name='Games Left', value=stats['games_left'])
             response.add_field(name='Hero Kills', value=stats['kills_hero'])
-            response.add_field(name='Core Kills', value=stats['kills_core'])
+            response.add_field(name='Core Kills', value=core_kills)
             response.add_field(name='Minion Kills', value=stats['kills_minions'])
 
         except SyntaxError:
