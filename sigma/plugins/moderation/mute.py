@@ -2,6 +2,7 @@
 from sigma.core.permission import check_man_roles
 from sigma.core.permission import check_write
 import discord
+import asyncio
 
 
 async def mute(cmd, message, args):
@@ -21,6 +22,18 @@ async def mute(cmd, message, args):
                         await cmd.bot.edit_channel_permissions(chan, user_q, overwrite)
             embed = discord.Embed(color=0x66CC66, title='✅ ' + user_q.name + ' muted.')
             await cmd.bot.send_message(message.channel, None, embed=embed)
+            if args:
+                try:
+                    timeout_period = int(args[0])
+                    await asyncio.sleep(timeout_period)
+                    for chan in server.channels:
+                        if str(chan.type).lower() == 'text':
+                            if not check_write(user_q, chan):
+                                await cmd.bot.delete_channel_permissions(chan, user_q)
+                    embed = discord.Embed(color=0x66CC66, title='✅ ' + user_q.name + ' can write again.')
+                    await cmd.bot.send_message(message.channel, None, embed=embed)
+                except:
+                    pass
         else:
             out_content = discord.Embed(type='rich', color=0xDB0000,
                                         title='⛔ Insufficient Permissions. Requires Manage Messages and Manage Roles Permissions.')
