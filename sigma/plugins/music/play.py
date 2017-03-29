@@ -13,26 +13,33 @@ async def play(cmd, message, args):
             if player.is_playing():
                 return
         await asyncio.sleep(3)
-    if not message.server.id in cmd.music.initializing:
-        cmd.music.add_init(message.server.id)
-        cmd.bot.loop.create_task(init_clock(cmd.music, message.server.id))
+    if message.server.id not in cmd.music.initializing:
         if not message.author.voice_channel:
             embed = discord.Embed(
                 title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
+
         srv_queue = cmd.music.get_queue(message.server.id)
-        voice_connected = cmd.bot.is_voice_connected(message.server)
-        if not voice_connected:
-            await cmd.bot.join_voice_channel(message.author.voice_channel)
-            embed = discord.Embed(title='✅ Joined ' + message.author.voice_channel.name,
-                                  color=0x66cc66)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
         if len(srv_queue.queue) == 0:
             embed = discord.Embed(
                 title='⚠ The queue is empty', color=0xFF9900)
             await cmd.bot.send_message(message.channel, None, embed=embed)
             return
+        cmd.music.add_init(message.server.id)
+        cmd.bot.loop.create_task(init_clock(cmd.music, message.server.id))
+        voice_connected = cmd.bot.is_voice_connected(message.server)
+        if not voice_connected:
+            try:
+                await cmd.bot.join_voice_channel(message.author.voice_channel)
+                embed = discord.Embed(title='✅ Joined ' + message.author.voice_channel.name,
+                                      color=0x66cc66)
+            except Exception as e:
+                cmd.log.error(f'ERROR: {e} | TRACE: {e.with_traceback}')
+                embed = discord.Embed(color=0xDB0000)
+                embed.add_field(name='❗ I was unable to connect.',
+                                value='The most common cause is your server being too far or a poor connection.')
+            await cmd.bot.send_message(message.channel, None, embed=embed)
         player = cmd.music.get_player(message.server.id)
         if player:
             if player.is_playing():
