@@ -84,6 +84,15 @@ commands:
     description:
       Shows the top played games on the server.
 
+  - name:    emojis
+    alts:
+      - "emoji"
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Lists all the emoji on the current server.
+
   - name:    weather
     global:  true
     enabled: true
