@@ -17,7 +17,7 @@ async def userinfo(cmd, message, args):
         out_list.append(['Playing', str(user_q.game).title()])
     if user_q.roles is not None:
         out_list.append(['Top Role', str(user_q.top_role)])
-    out_list.append(['Color', str(user_q.color)])
+    out_list.append(['Color', str(user_q.color).upper()])
     out_list.append(['Is Bot', user_q.bot])
 
     embed = discord.Embed(title=user_q.name + ' Information', color=user_q.color)
