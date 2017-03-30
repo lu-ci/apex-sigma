@@ -1,10 +1,19 @@
 import asyncio
-
+import yaml
+import os
+import arrow
 
 async def game_stats_collector(ev):
     while True:
-        if not ev.db.on_cooldown('Sigma', 'Sigma', 'GameStatsCollector', 3600):
-            ev.db.set_cooldown('Sigma', 'Sigma', 'GameStatsCollector')
+        if os.path.exists('cache/game_stats_clock.yml'):
+            with open('cache/game_stats_clock.yml', 'r') as clock_file:
+                clock_data = yaml.safe_load(clock_file)
+        else:
+            clock_data = {'stamp': 0}
+        last_stamp = clock_data['stamp']
+        if last_stamp + 3600 < arrow.utcnow().timestamp:
+            with open('cache/game_stats_clock.yml', 'w') as clock_file:
+                yaml.safe_dump({'stamp': arrow.utcnow().timestamp}, clock_file)
             games = {}
             online_count = 0
             playing_count = 0
@@ -20,7 +29,7 @@ async def game_stats_collector(ev):
                             game_name = str(member.game)
                             repl_name = game_name.replace(' ', '')
                             if repl_name != '':
-                                game_name = game_name.replace('.', '').replace(',', '').replace(' ', '_').lower()
+                                game_name = ''.join(e for e in game_name if e.isalnum()).replace(' ', '_').lower()
                                 playing_count += 1
                                 if game_name not in games:
                                     games.update({game_name: 1})
@@ -34,7 +43,8 @@ async def game_stats_collector(ev):
                 'games': games,
                 'online': online_count,
                 'playing': playing_count,
-                'total': total_count
+                'total': total_count,
+                'timestamp': arrow.utcnow().timestamp
             }
             ev.db.insert_one('GameStatistics', payload)
-        await asyncio.sleep(300)
+            await asyncio.sleep(3600)
