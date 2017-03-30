@@ -1,9 +1,16 @@
+import asyncio
+import arrow
 from sigma.core.utils import user_avatar
+from sigma.core.logger import create_logger
 
-
-def refactor_users_node(db, usrgen):
+async def refactor_users_node(db, usrgen):
+    #log = create_logger('UserRefactorNode')
     db['UserList'].drop()
+    db.log.info('UserList Dropped And Starting Refactoring Process...')
+    start_time = arrow.utcnow().timestamp
+    usercount = 0
     for user in usrgen:
+        usercount += 1
         user_ava = user_avatar(user)
         data = {
             'UserID': user.id,
@@ -12,10 +19,16 @@ def refactor_users_node(db, usrgen):
             'Discriminator': user.discriminator
         }
         db['UserList'].insert_one(data)
+        await asyncio.sleep(0.001)
+    elapsed_time = arrow.utcnow().timestamp - start_time
+    db.log.info(f'{usercount} Users Updated in {elapsed_time} seconds.')
 
 
-def refactor_servers_node(db, servers):
+async def refactor_servers_node(db, servers):
+    #log = create_logger('UserRefactorNode')
     db['ServerList'].drop()
+    db.log.info('ServerList Dropped And Starting Refactoring Process...')
+    start_time = arrow.utcnow().timestamp
     for server in servers:
         owner = server.owner
         if owner:
@@ -32,3 +45,6 @@ def refactor_servers_node(db, servers):
             'OwnerID': owner_id
         }
         db['ServerList'].insert_one(data)
+        await asyncio.sleep(0.001)
+    elapsed_time = arrow.utcnow().timestamp - start_time
+    db.log.info(f'{len(servers)} Servers Updated in {elapsed_time} seconds.')

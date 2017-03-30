@@ -21,7 +21,7 @@ class IntegrityError(DatabaseError):
 class Database(object):
     def __init__(self, db_addr, port, auth, unam, pwd):
         self.db = None
-        self.log = create_logger('database')
+        self.log = create_logger('Database')
 
         if db_addr:
             self.connect(db_addr, port, auth, unam, pwd)
@@ -35,6 +35,7 @@ class Database(object):
             mongo_address = 'mongodb://{:s}:{:s}@{:s}:{:s}/'.format(unam, pwd, db_addr, str(port))
             self.moncli = pymongo.MongoClient(mongo_address)
         self.db = self.moncli.aurora
+        self.db.log = self.log
 
     # Core Control Nodes
     def insert_one(self, collection, data):
@@ -91,11 +92,11 @@ class Database(object):
     def get_act_points(self, server, user):
         return point_grabber(self.db, server, user, 'XP')
 
-    def refactor_users(self, usrgen):
-        refactor_users_node(self.db, usrgen)
+    async def refactor_users(self, usrgen):
+        await refactor_users_node(self.db, usrgen)
 
-    def refactor_servers(self, servers):
-        refactor_servers_node(self.db, servers)
+    async def refactor_servers(self, servers):
+        await refactor_servers_node(self.db, servers)
 
     def update_server_details(self, server):
         update_details(self.db, server=server)
