@@ -222,3 +222,12 @@ events:
     pmable:  true
     description:
       Collects markov chains for enabled servers.
+
+  - name:    game_stats_collector
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Periodicly collects stats on what games the users play.
