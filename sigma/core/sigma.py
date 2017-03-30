@@ -162,7 +162,7 @@ class Sigma(discord.Client):
                         self.db.add_stats(f'cmd_{cmd}_count')
                         if args:
                             for arg in args:
-                                self.db.add_stats(f'cmd_{cmd}_arg{arg.lower()}_count')
+                                self.db.add_stats(f'cmd_{cmd}_arg_{arg.lower().replace(".", "")}_count')
                     if message.server:
                         if args:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
