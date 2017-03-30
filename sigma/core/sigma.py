@@ -118,10 +118,10 @@ class Sigma(discord.Client):
         self.log.info('-----------------------------------')
         self.log.info('Updating Bot Population Stats...')
         self.db.update_population_stats(self.servers, self.get_all_members())
-        # self.log.info('Starting UserList Refactor Node')
-        # self.loop.create_task(self.db.refactor_users(self.get_all_members()))
-        # self.log.info('Starting ServerList Refactor Node')
-        # self.loop.create_task(self.db.refactor_servers(self.servers))
+        self.log.info('Starting UserList Refactor Node')
+        self.loop.create_task(self.db.refactor_users(self.get_all_members()))
+        self.log.info('Starting ServerList Refactor Node')
+        self.loop.create_task(self.db.refactor_servers(self.servers))
         self.log.info('Updating Bot Listing APIs...')
         self.loop.create_task(self.update_discordlist())
         self.log.info('Launching On-Ready Plugins...')
@@ -164,9 +164,6 @@ class Sigma(discord.Client):
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
-                        if args:
-                            for arg in args:
-                                self.db.add_stats(f'cmd_{cmd}_arg_{arg.lower().replace(".", "")}_count')
                     if message.server:
                         if args:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
