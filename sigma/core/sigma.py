@@ -123,7 +123,8 @@ class Sigma(discord.Client):
         self.log.info('Launching On-Ready Plugins...')
         for ev_name, event in self.plugin_manager.events['ready'].items():
             try:
-                await event.call_ready()
+                task = event.call_ready()
+                self.loop.create_task(task)
             except Exception as e:
                 self.log.error(e)
         self.log.info('-----------------------------------')
