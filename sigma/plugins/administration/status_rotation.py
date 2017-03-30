@@ -10,8 +10,8 @@ async def status_rotation(ev):
 
 async def rotator(ev):
     while True:
-        if not ev.db.on_cooldown(0, 0, 'StatusRotation', 60):
-            ev.db.set_cooldown(0, 0, 'StatusRotation')
+        if not ev.db.on_cooldown('Sigma', 'Sigma', 'StatusRotation', 60):
+            ev.db.set_cooldown('Sigma', 'Sigma', 'StatusRotation')
             funny = [
                 'your mind',
                 'fire',

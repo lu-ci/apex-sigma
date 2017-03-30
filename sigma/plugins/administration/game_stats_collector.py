@@ -3,8 +3,8 @@ import asyncio
 
 async def game_stats_collector(ev):
     while True:
-        if not ev.db.on_cooldown(0, 0, 'GameStatsCollector', 3600):
-            ev.db.set_cooldown(0, 0, 'GameStatsCollector')
+        if not ev.db.on_cooldown('Sigma', 'Sigma', 'GameStatsCollector', 3600):
+            ev.db.set_cooldown('Sigma', 'Sigma', 'GameStatsCollector')
             games = {}
             online_count = 0
             playing_count = 0
@@ -16,17 +16,20 @@ async def game_stats_collector(ev):
                     online_count += 1
                 if not member.bot:
                     if member.game:
-                        game_name = str(member.game)
-                        repl_name = game_name.replace(' ', '')
-                        if repl_name != '':
-                            game_name = game_name.replace('.', '').replace(',', '').replace(' ', '_').lower()
-                            playing_count += 1
-                            if game_name not in games:
-                                games.update({game_name: 1})
-                            else:
-                                curr_count = games[game_name]
-                                new_count = curr_count + 1
-                                games.update({game_name: new_count})
+                        try:
+                            game_name = str(member.game)
+                            repl_name = game_name.replace(' ', '')
+                            if repl_name != '':
+                                game_name = game_name.replace('.', '').replace(',', '').replace(' ', '_').lower()
+                                playing_count += 1
+                                if game_name not in games:
+                                    games.update({game_name: 1})
+                                else:
+                                    curr_count = games[game_name]
+                                    new_count = curr_count + 1
+                                    games.update({game_name: new_count})
+                        except:
+                            pass
             payload = {
                 'games': games,
                 'online': online_count,
