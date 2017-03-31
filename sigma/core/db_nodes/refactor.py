@@ -4,12 +4,12 @@ from sigma.core.utils import user_avatar
 from sigma.core.logger import create_logger
 
 async def refactor_users_node(db, usrgen):
-    #log = create_logger('UserRefactorNode')
+    usrs = list(usrgen)
     db['UserList'].drop()
     db.log.info('UserList Dropped And Starting Refactoring Process...')
     start_time = arrow.utcnow().timestamp
     usercount = 0
-    for user in usrgen:
+    for user in usrs:
         usercount += 1
         user_ava = user_avatar(user)
         data = {
@@ -25,11 +25,11 @@ async def refactor_users_node(db, usrgen):
 
 
 async def refactor_servers_node(db, servers):
-    #log = create_logger('UserRefactorNode')
+    srvs = servers
     db['ServerList'].drop()
     db.log.info('ServerList Dropped And Starting Refactoring Process...')
     start_time = arrow.utcnow().timestamp
-    for server in servers:
+    for server in srvs:
         owner = server.owner
         if owner:
             owner_name = owner.name
