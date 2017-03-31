@@ -23,21 +23,30 @@ async def rotator(ev):
             with open('cache/status_rotation_clock.yml', 'w') as clock_file:
                 yaml.safe_dump({'stamp': arrow.utcnow().timestamp}, clock_file)
             funny = [
-                'your mind',
-                'fire',
-                'knives',
-                'nuclear launch codes',
-                'antimatter',
-                'chinchillas',
-                'catgirls'
+                'your mind', 'fire', 'knives',
+                'nuclear launch codes', 'antimatter',
+                'chinchillas', 'catgirls', 'foxes',
+                'fluffy tails', 'dragon maids', 'traps', 'lovely cakes',
+                'tentacle summoing spells', 'genetic engineering',
+                'air conditioning', 'anthrax', 'space ninjas',
+                'a spicy parfait', 'very nasty things', 'numbers',
+                'terminator blueprints', 'love', 'your heart', 'tomatoes',
+                'bank accounts', 'your data', 'your girlfriend', 'your boyfriend',
+                'Scarlet Johanson', 'a new body', 'user\'s cameras'
             ]
+            games = [
+                'Kanon', 'Air', 'Clannad', 'Planetarian',
+                'Tomoyo After', 'Little Busters!', 'Kud Wafter', 'Rewrite',
+                'Angel Beats!', 'Harmonia', 'Summer Pockets', 'An Eroge', 'Nekopara',
+                'Koiken Otome', 'Kono Oozora Ni Tsubasa o Hirogete', 'Grisaia no Kajitsu',
+                'Fairies Story 3'
+                     ]
             statuses = [
                 f'{Prefix}help',
-                f'with {len(list(ev.bot.get_all_members()))} users',
-                f'with {len(ev.bot.servers)} servers',
                 f'with {random.choice(ev.bot.donors)["name"]}',
                 f'with {random.choice(funny)}',
-                f'with {random.choice(ev.bot.authors)}'
+                f'with {random.choice(ev.bot.authors)}',
+                f'{random.choice(games)}'
             ]
             status = random.choice(statuses)
             game = discord.Game(name=status)
