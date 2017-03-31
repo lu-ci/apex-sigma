@@ -26,25 +26,13 @@ def is_self(author, bot_user):
     return bool(author.id == bot_user.id)
 
 
-def check_server_donor(db, server_id):
-    n = 0
-    item = None
-    finddata = {
-        'ServerID': server_id
-    }
-    finddata_res = db.find('DonorTracker', finddata)
-
-    for item in finddata_res:
-        n += 1
-
-    if n == 0:
-        is_donor = False
-    else:
-        expiration_ts = item['Expiration']
-        current_ts = int(time())
-        is_donor = expiration_ts > current_ts
-
-    return is_donor
+def check_server_partner(db, server_id):
+    try:
+        partner = db.get_settings(server_id, 'IsPartner')
+    except:
+        db.set_settings(server_id, 'IsPartner', False)
+        partner = False
+    return partner
 
 
 def set_channel_nsfw(db, channel_id):
@@ -122,7 +110,7 @@ def check_permitted(self, user, channel, server):
 
     if self.perm['admin'] and not check_bot_owner(user):
         title = '⛔ Unpermitted'
-        msg = 'Bot Owne r commands are usable only by the owners of the bot as the name implies.'
+        msg = 'Bot Owner commands are usable only by the owners of the bot as the name implies.'
         msg += '\nThe bot owner is the person hosting the bot on their machine.'
         msg += '\nThis is **not the discord server owner** and **not the person who invited the bot** to the server.'
         msg += '\nThere is no way for you to become a bot owner.'
@@ -131,15 +119,14 @@ def check_permitted(self, user, channel, server):
         self.log.warning('OWNER: Access Denied.')
         return False, embed_content
 
-    if self.perm['donor'] and not check_server_donor(self.db, server.id):
+    if self.perm['partner'] and not check_server_partner(self.db, server.id):
         title = '⚠ Unpermitted'
-        msg = 'Some commands are limited to only be usable by donors.'
-        msg += '\nYou can become a donor by donating via our [`Paypal.Me`](https://www.paypal.me/AleksaRadovic) page.'
-        msg += '\nDonating allows use of donor functions for a limited time.'
-        msg += '\n1 Cent = One Hour (Currency of Calculation is Euro)'
-        msg += '\nIn a nutshell, donating 7.2Eur would give you a month of donor functions.'
+        msg = 'Some commands are limited to only be usable by partners.'
+        msg += '\nYou can request to be a partner by visiting our server and telling us why you should be one. '
+        msg += 'You can also become a partner by supporting us via '
+        msg += '[`Patreon`](https://www.patreon.com/ApexSigma) page.'
         embed_content = discord.Embed(title=title, color=0xFF9900)
-        embed_content.add_field(name='Donor Only', value=msg)
+        embed_content.add_field(name='Partner Access Only', value=msg)
         self.log.warning('DONOR: Access Denied.')
         return False, embed_content
 

@@ -168,6 +168,15 @@ commands:
     description:
       Blacklists a connected server disallowing it to use any and all commands.
 
+  - name:    togglepartner
+    global:  true
+    enabled: true
+    admin:   true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 123456789123456789"
+    description:
+      Toggles if a server by the given ID is or is not an Aurora Project partner.
+
   - name:    collectchain
     global:  true
     enabled: true
