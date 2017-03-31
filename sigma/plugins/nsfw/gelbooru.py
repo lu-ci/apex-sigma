@@ -16,9 +16,12 @@ async def gelbooru(cmd, message, args):
                 data = await data.read()
         posts = html.fromstring(data)
         choice = random.choice(posts)
-        url = f"https://{choice.attrib['file_url']}"
+        img_url = choice.attrib['file_url']
+        if not img_url.startswith('http'):
+            img_url = f"https:{choice.attrib['file_url']}"
+        print()
         embed = discord.Embed(color=0x9933FF)
-        embed.set_image(url=url)
+        embed.set_image(url=img_url)
         await cmd.bot.send_message(message.channel, None, embed=embed)
     except Exception as e:
         cmd.log.error(e)
