@@ -25,7 +25,7 @@ class Callable(object):
             'global': False,
             'sfw': True,
             'admin': False,
-            'donor': False,
+            'partner': False,
             'pmable': False
         }
         self.db = plugin.db
@@ -54,7 +54,7 @@ class Callable(object):
         if 'description' in info:
             self.desc = info['description']
 
-        for key in ['global', 'sfw', 'admin', 'donor', 'pmable']:
+        for key in ['global', 'sfw', 'admin', 'partner', 'pmable']:
             if key in info:
                 self.perm[key] = info[key]
 
