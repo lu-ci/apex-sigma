@@ -84,12 +84,14 @@ class Sigma(discord.Client):
             url = "https://bots.discordlist.net/api.php"
             async with aiohttp.ClientSession() as session:
                 await session.post(url, data=payload)
+                session.close()
 
     async def cachet_stat_up(self, metric_id):
         headers = {'X-Cachet-Token': CachetToken}
         url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points?value=1"
         async with aiohttp.ClientSession() as session:
             await session.post(url, headers=headers)
+            session.close()
 
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
