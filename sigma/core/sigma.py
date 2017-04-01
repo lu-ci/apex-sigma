@@ -148,7 +148,7 @@ class Sigma(discord.Client):
         if self.ready:
             self.db.add_stats('MSGCount')
             if UseCachet:
-                await self.cachet_stat_up(2)
+                self.loop.create_task(self.cachet_stat_up(2))
             args = message.content.split(' ')
             # handle mention events
             if self.user.mentioned_in(message):
@@ -172,7 +172,7 @@ class Sigma(discord.Client):
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
                         if UseCachet:
-                            await self.cachet_stat_up(1)
+                            self.loop.create_task(self.cachet_stat_up(1))
                     if message.server:
                         if args:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
@@ -219,12 +219,14 @@ class Sigma(discord.Client):
         msg = 'INV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
         self.db.init_server_settings(self.servers)
+        self.loop.create_task(self.cachet_stat_up(3))
 
     async def on_server_remove(self, server):
         await self.update_discordlist()
         self.db.update_population_stats(self.servers, self.get_all_members())
         msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
+        self.loop.create_task(self.cachet_stat_up(4))
 
     async def on_member_update(self, before, after):
         if self.ready:
