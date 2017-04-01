@@ -6,7 +6,7 @@ import yaml
 import aiohttp
 
 from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
-
+from config import UseCachet, CachetMetricID, CachetToken
 from .plugman import PluginManager
 from .database import Database
 from .music import Music
@@ -83,7 +83,13 @@ class Sigma(discord.Client):
             }
             url = "https://bots.discordlist.net/api.php"
             async with aiohttp.ClientSession() as session:
-                session.post(url, data=payload)
+                await session.post(url, data=payload)
+
+    async def cachet_cmd_use(self):
+        headers = {'X-Cachet-Token': CachetToken}
+        url = f"https://status.auroraproject.xyz/api/v1/metrics/{CachetMetricID}/points?value=1"
+        async with aiohttp.ClientSession() as session:
+            await session.post(url, headers=headers)
 
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
@@ -142,7 +148,6 @@ class Sigma(discord.Client):
         if self.ready:
             self.db.add_stats('MSGCount')
             args = message.content.split(' ')
-
             # handle mention events
             if self.user.mentioned_in(message):
                 for ev_name, event in self.plugin_manager.events['mention'].items():
@@ -164,6 +169,8 @@ class Sigma(discord.Client):
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
+                        if UseCachet:
+                            await self.cachet_cmd_use()
                     if message.server:
                         if args:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
