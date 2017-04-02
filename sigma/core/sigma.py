@@ -149,8 +149,6 @@ class Sigma(discord.Client):
     async def on_message(self, message):
         if self.ready:
             self.db.add_stats('MSGCount')
-            if UseCachet:
-                self.loop.create_task(self.cachet_stat_up(2))
             args = message.content.split(' ')
             # handle mention events
             if self.user.mentioned_in(message):
