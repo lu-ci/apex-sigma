@@ -21,7 +21,7 @@ async def setavatar(cmd, message, args):
                         await cmd.bot.edit_profile(avatar=await res.read())
                         embed = discord.Embed(title='✅ New Avatar Set', color=0x66CC66)
                         await cmd.bot.send_message(message.channel, None, embed=embed)
-                        aiosession.close()
+                        await aiosession.close()
             except Exception as e:
                 cmd.log.error(e)
                 return
