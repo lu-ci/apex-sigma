@@ -219,14 +219,16 @@ class Sigma(discord.Client):
         msg = 'INV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
         self.db.init_server_settings(self.servers)
-        self.loop.create_task(self.cachet_stat_up(3))
+        if UseCachet:
+            self.loop.create_task(self.cachet_stat_up(3))
 
     async def on_server_remove(self, server):
         await self.update_discordlist()
         self.db.update_population_stats(self.servers, self.get_all_members())
         msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
-        self.loop.create_task(self.cachet_stat_up(4))
+        if UseCachet:
+            self.loop.create_task(self.cachet_stat_up(4))
 
     async def on_member_update(self, before, after):
         if self.ready:
