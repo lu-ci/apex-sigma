@@ -9,9 +9,7 @@ async def setavatar(cmd, message, args):
     if message.author.id in permitted_id:
         loop = asyncio.get_event_loop()
         aiosession = aiohttp.ClientSession(loop=loop)
-
         url = ''.join(args)
-
         try:
             if message.attachments:
                 thing = message.attachments[0]['url']
@@ -23,6 +21,7 @@ async def setavatar(cmd, message, args):
                         await cmd.bot.edit_profile(avatar=await res.read())
                         embed = discord.Embed(title='✅ New Avatar Set', color=0x66CC66)
                         await cmd.bot.send_message(message.channel, None, embed=embed)
+                        await aiosession.close()
             except Exception as e:
                 cmd.log.error(e)
                 return
