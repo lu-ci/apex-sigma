@@ -86,11 +86,13 @@ class Sigma(discord.Client):
                 await session.post(url, data=payload)
                 await session.close()
 
-    async def cachet_stat_up(self, metric_id):
+    @staticmethod
+    async def cachet_stat_up(metric_id):
         headers = {'X-Cachet-Token': CachetToken}
-        url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points?value=1"
+        payload = {'value': 1}
+        url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points"
         async with aiohttp.ClientSession() as session:
-            conn = await session.post(url, headers=headers)
+            conn = await session.post(url, data=payload, headers=headers)
             await conn.release()
 
     def init_databases(self):
@@ -171,6 +173,7 @@ class Sigma(discord.Client):
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
+                        self.db.add_stats('CMDCount')
                         if UseCachet:
                             self.loop.create_task(self.cachet_stat_up(1))
                     if message.server:

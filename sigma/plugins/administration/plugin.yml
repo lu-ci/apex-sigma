@@ -196,15 +196,6 @@ events:
     description:
       Redirects PM info to the bot owner.
 
-  - name:    cmd_count_filler
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    pmable:  true
-    description:
-      Fills the command counter statistics.
-
   - name:    version_updater
     type:    ready
     global:  true
@@ -222,12 +213,3 @@ events:
     pmable:  true
     description:
       Sets the now playing status on launch.
-
-  - name:    markov_collector
-    type:    message
-    global:  true
-    enabled: false
-    sfw:     true
-    pmable:  true
-    description:
-      Collects markov chains for enabled servers.
