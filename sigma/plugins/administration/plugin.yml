@@ -196,15 +196,6 @@ events:
     description:
       Redirects PM info to the bot owner.
 
-  - name:    cmd_count_filler
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    pmable:  true
-    description:
-      Fills the command counter statistics.
-
   - name:    version_updater
     type:    ready
     global:  true

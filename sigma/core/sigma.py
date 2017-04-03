@@ -171,6 +171,7 @@ class Sigma(discord.Client):
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
+                        self.db.add_stats('CMDCount')
                         if UseCachet:
                             self.loop.create_task(self.cachet_stat_up(1))
                     if message.server:
