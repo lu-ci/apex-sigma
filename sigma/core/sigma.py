@@ -83,8 +83,8 @@ class Sigma(discord.Client):
             }
             url = "https://bots.discordlist.net/api.php"
             async with aiohttp.ClientSession() as session:
-                await session.post(url, data=payload)
-                await session.close()
+                conn = await session.post(url, data=payload)
+                await conn.release()
 
     @staticmethod
     async def cachet_stat_up(metric_id):
