@@ -213,12 +213,3 @@ events:
     pmable:  true
     description:
       Sets the now playing status on launch.
-
-  - name:    markov_collector
-    type:    message
-    global:  true
-    enabled: false
-    sfw:     true
-    pmable:  true
-    description:
-      Collects markov chains for enabled servers.
