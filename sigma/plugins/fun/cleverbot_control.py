@@ -15,6 +15,9 @@ async def cleverbot_control(ev, message, args):
             try:
                 response = sigma.say(interaction)
             except:
-                sigma.reset()
-                response = sigma.say(interaction)
+                try:
+                    sigma.reset()
+                    response = sigma.say(interaction)
+                except:
+                    response = ' I\'m sorry I seem to be unable to think straight at the moment...'
             await ev.bot.send_message(message.channel, message.author.mention + ' ' + response)
