@@ -98,7 +98,7 @@ def check_man_chan(user, channel):
 
 def check_permitted(self, user, channel, server):
     if not self.perm['sfw'] and not check_channel_nsfw(self.db, channel.id):
-        title = ':eggplant: Channel does not have NSFW permissions set, sorry.'
+        title = '🍆 Channel does not have NSFW permissions set, sorry.'
         explanation = 'To toggle NSFW permissions in a channel use the {:s} command.'.format(Prefix + 'nsfwpermit')
         explanation += '\nThis command is only usable by server administrators.'
         explanation += '\nIf you are the admin on your server, just type the command in the channel of your choice.'
@@ -109,25 +109,25 @@ def check_permitted(self, user, channel, server):
         return False, embed_content
 
     if self.perm['admin'] and not check_bot_owner(user):
-        title = '⛔ Unpermitted'
+        title = '⛔ Bot Owner Only'
         msg = 'Bot Owner commands are usable only by the owners of the bot as the name implies.'
         msg += '\nThe bot owner is the person hosting the bot on their machine.'
-        msg += '\nThis is **not the discord server owner** and **not the person who invited the bot** to the server.'
+        msg += '\nThis is not the discord server owner and not the person who invited the bot to the server.'
         msg += '\nThere is no way for you to become a bot owner.'
-        embed_content = discord.Embed(title=title, color=0xDB0000)
-        embed_content.add_field(name='Bot Owner Only', value=msg)
+        embed_content = discord.Embed(color=0xDB0000)
+        embed_content.add_field(name=title, value=msg)
         self.log.warning('OWNER: Access Denied.')
         return False, embed_content
 
     if self.perm['partner'] and not check_server_partner(self.db, server.id):
-        title = '⚠ Unpermitted'
+        title = '💎 Partner Servers Only'
         msg = 'Some commands are limited to only be usable by partners.'
-        msg += '\nYou can request to be a partner by visiting our server and telling us why you should be one. '
-        msg += 'You can also become a partner by supporting us via '
+        msg += '\nYou can request to be a partner server by visiting our server and telling us why you should be one.'
+        msg += '\nYou can also become a partner by supporting us via our '
         msg += '[`Patreon`](https://www.patreon.com/ApexSigma) page.'
-        embed_content = discord.Embed(title=title, color=0xFF9900)
-        embed_content.add_field(name='Partner Access Only', value=msg)
-        self.log.warning('DONOR: Access Denied.')
+        embed_content = discord.Embed(color=0x0099FF)
+        embed_content.add_field(name=title, value=msg)
+        self.log.warning('PARTNER: Access Denied.')
         return False, embed_content
 
     if not self.perm['pmable'] and not server and not is_self(user, self.bot.user):
