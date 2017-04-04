@@ -91,10 +91,9 @@ class Sigma(discord.Client):
             headers = {'X-Cachet-Token': CachetToken}
             payload = {'value': 1}
             url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points"
-            connector = aiohttp.TCPConnector(verify_ssl=False)
-            conn = await aiohttp.request('post', url, data=payload, headers=headers, connector=connector)
-            await conn.release()
-            connector.close()
+            async with aiohttp.ClientSession() as session:
+                conn = await session.post(url, data=payload, headers=headers)
+                await conn.release()
         except Exception as e:
             self.log.error(f'STAT UPDATE FAIL: {e}')
 
