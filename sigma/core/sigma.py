@@ -91,9 +91,10 @@ class Sigma(discord.Client):
         headers = {'X-Cachet-Token': CachetToken}
         payload = {'value': 1}
         url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points"
-        async with aiohttp.ClientSession() as session:
-            conn = await session.post(url, data=payload, headers=headers)
-            await conn.release()
+        connector = aiohttp.TCPConnector(verify_ssl=False)
+        conn = await aiohttp.request('post', url, data=payload, headers=headers, connector=connector)
+        await conn.release()
+        connector.close()
 
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)

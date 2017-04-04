@@ -6,7 +6,7 @@ async def emojis(cmd, message, args):
         emoji_list = []
         for emoji in message.server.emojis:
             emoji_list.append(f'{emoji}')
-        emoji_list = ' '.join(emoji_list)
+        emoji_list = ' '.join(emoji_list)[:1950]
         response = discord.Embed(color=0x1ABC9C)
         response.add_field(name=f'😃 Custom Emojis On {message.server.name}', value=emoji_list)
     else:
