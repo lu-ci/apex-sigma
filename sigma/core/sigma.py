@@ -86,15 +86,17 @@ class Sigma(discord.Client):
                 conn = await session.post(url, data=payload)
                 await conn.release()
 
-    @staticmethod
-    async def cachet_stat_up(metric_id):
-        headers = {'X-Cachet-Token': CachetToken}
-        payload = {'value': 1}
-        url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points"
-        connector = aiohttp.TCPConnector(verify_ssl=False)
-        conn = await aiohttp.request('post', url, data=payload, headers=headers, connector=connector)
-        await conn.release()
-        connector.close()
+    async def cachet_stat_up(self, metric_id):
+        try:
+            headers = {'X-Cachet-Token': CachetToken}
+            payload = {'value': 1}
+            url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points"
+            connector = aiohttp.TCPConnector(verify_ssl=False)
+            conn = await aiohttp.request('post', url, data=payload, headers=headers, connector=connector)
+            await conn.release()
+            connector.close()
+        except Exception as e:
+            self.log.error(f'STAT UPDATE FAIL: {e}')
 
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
