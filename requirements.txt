@@ -29,3 +29,4 @@ youtube_dl
 markovify
 cssselect
 soundcloud
+sparkpost
