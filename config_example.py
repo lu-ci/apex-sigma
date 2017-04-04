@@ -13,6 +13,7 @@ MongoAuth = getenv('MongoAuth') or False
 MongoUser = getenv('MongoUser') or ''
 MongoPass = getenv('MongoPass') or ''
 DevMode = getenv('DevMode') or True
+PlayingStatusRotation = getenv('PlayingStatusRotation') or False
 DiscordListToken = getenv('DiscordListToken') or ''
 DarkSkySecretKey = getenv('DarkSkySecretKey') or ''
 MashapeKey = getenv('MashapeKey') or ''

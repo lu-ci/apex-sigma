@@ -1,4 +1,4 @@
-from config import Prefix
+from config import Prefix, PlayingStatusRotation
 import asyncio
 import discord
 import random
@@ -8,7 +8,8 @@ import os
 
 
 async def status_rotation(ev):
-    ev.bot.loop.create_task(rotator(ev))
+    if PlayingStatusRotation:
+        ev.bot.loop.create_task(rotator(ev))
 
 
 async def rotator(ev):
@@ -34,19 +35,12 @@ async def rotator(ev):
                 'bank accounts', 'your data', 'your girlfriend', 'your boyfriend',
                 'Scarlet Johanson', 'a new body', 'user\'s cameras'
             ]
-            games = [
-                'Kanon', 'Air', 'Clannad', 'Planetarian',
-                'Tomoyo After', 'Little Busters!', 'Kud Wafter', 'Rewrite',
-                'Angel Beats!', 'Harmonia', 'Summer Pockets', 'An Eroge', 'Nekopara',
-                'Koiken Otome', 'Kono Oozora Ni Tsubasa o Hirogete', 'Grisaia no Kajitsu',
-                'Fairies Story 3'
-                     ]
+
             statuses = [
                 f'{Prefix}help',
                 f'with {random.choice(ev.bot.donors)["name"]}',
                 f'with {random.choice(funny)}',
-                f'with {random.choice(ev.bot.authors)}',
-                f'{random.choice(games)}'
+                f'with {random.choice(ev.bot.authors)}'
             ]
             status = random.choice(statuses)
             game = discord.Game(name=status)
