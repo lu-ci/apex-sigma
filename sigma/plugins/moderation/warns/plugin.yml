@@ -15,6 +15,14 @@ commands:
       Warns a user for the inputted reason.
       Warning stack, and upon exceeding the set limit, the user is kicked.
 
+  - name: unwarn
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Removes all of the warnings from a user.
+
   - name: warns
     global:  true
     enabled: true
