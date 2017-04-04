@@ -2,9 +2,9 @@
 import asyncio
 import arrow
 import discord
+from config import SlotWinChannelID
 
 slot_back_data = {}
-win_notify_channel = '278380137681256448'
 
 
 async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, spin_cycle_timeout=1):
@@ -72,10 +72,10 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             win_notify_channel_object = None
             for server in cmd.bot.servers:
                 for channel in server.channels:
-                    if channel.id == win_notify_channel:
+                    if channel.id == SlotWinChannelID:
                         win_notify_channel_object = channel
                         break
-            if win_notify_channel:
+            if SlotWinChannelID:
                 win_notify_embed = discord.Embed(color=0x0099FF, title=':gem: We have a winner!')
                 win_notify_embed.add_field(name='User', value=message.author.name)
                 win_notify_embed.add_field(name='Server', value=message.server.name)
