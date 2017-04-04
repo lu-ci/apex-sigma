@@ -115,8 +115,10 @@ class Callable(object):
         try:
             await getattr(self.module, self.name)(self, member)
         except Exception as e:
-            ev_log_msg = f'SP_EV: {member.server.name} [{member.server.id}] | {self.name} | ERROR: {e} | TRACE: {e.with_traceback}'
-            self.log.error(ev_log_msg)
+            # ev_log_msg = f'SP_EV: {member.server.name} [{member.server.id}] | {self.name} |'
+            # ev_log_msg += f'ERROR: {e} | TRACE: {e.with_traceback}'
+            # self.log.error(ev_log_msg)
+            pass
 
     async def call_ready(self):
         try:
