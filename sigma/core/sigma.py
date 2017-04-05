@@ -86,10 +86,10 @@ class Sigma(discord.Client):
                 conn = await session.post(url, data=payload)
                 await conn.release()
 
-    async def cachet_stat_up(self, metric_id):
+    async def cachet_stat_up(self, metric_id, value):
         try:
             headers = {'X-Cachet-Token': CachetToken}
-            payload = {'value': 1}
+            payload = {'value': value}
             url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points"
             async with aiohttp.ClientSession() as session:
                 conn = await session.post(url, data=payload, headers=headers)
@@ -177,7 +177,7 @@ class Sigma(discord.Client):
                         self.db.add_stats(f'cmd_{cmd}_count')
                         self.db.add_stats('CMDCount')
                         if UseCachet:
-                            self.loop.create_task(self.cachet_stat_up(1))
+                            self.loop.create_task(self.cachet_stat_up(1, 1))
                     if message.server:
                         if args:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
@@ -225,7 +225,7 @@ class Sigma(discord.Client):
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
         self.db.init_server_settings(self.servers)
         if UseCachet:
-            self.loop.create_task(self.cachet_stat_up(3))
+            self.loop.create_task(self.cachet_stat_up(3, 1))
 
     async def on_server_remove(self, server):
         await self.update_discordlist()
@@ -233,7 +233,7 @@ class Sigma(discord.Client):
         msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
         if UseCachet:
-            self.loop.create_task(self.cachet_stat_up(4))
+            self.loop.create_task(self.cachet_stat_up(3, -1))
 
     async def on_member_update(self, before, after):
         if self.ready:
