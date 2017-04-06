@@ -3,6 +3,7 @@ from config import Prefix
 import markovify
 import discord
 import yaml
+import ftfy
 import os
 
 
@@ -23,6 +24,8 @@ async def impersonate(cmd, message, args):
                 if not sentence:
                     response = discord.Embed(color=0xDB0000, title='😖 I Couldn\'t think of anything...')
                 else:
+                    print(sentence)
+                    sentence = ftfy.fix_text(sentence)
                     response = discord.Embed(color=0x1ABC9C)
                     response.set_author(name=target.name, icon_url=user_avatar(target))
                     response.add_field(name='🤔 Something like...', value=f'```\n{sentence}\n```')
