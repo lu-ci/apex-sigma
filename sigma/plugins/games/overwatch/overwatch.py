@@ -62,7 +62,7 @@ async def overwatch(cmd, message, args):
                     base.paste(tier_img, (0, 64), tier_img)
                 except:
                     pass
-            font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 48)
+            font = ImageFont.truetype(cmd.resource("fonts/big_noodle_titling_oblique.ttf"), 48)
             imgdraw = ImageDraw.Draw(base)
             name = profile_json['data']['player']['name']
             imgdraw.text((130, 38), name, (255, 255, 255), font=font)
