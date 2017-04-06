@@ -5,6 +5,7 @@ from config import Prefix
 in_use = False
 
 async def collectchain(cmd, message, args):
+    global in_use
     if in_use:
         response = discord.Embed(color=0x696969, title='🛠 Currently in use. Try Again Later.')
         await cmd.bot.send_message(message.channel, None, embed=response)
@@ -18,7 +19,6 @@ async def collectchain(cmd, message, args):
                 def_chn = message.server.default_channel
                 collected = 0
                 collection = []
-                global in_use
                 in_use = True
                 response = discord.Embed(color=0x66CC66, title='📖 Collecting...')
                 response_msg = await cmd.bot.send_message(message.channel, None, embed=response)
