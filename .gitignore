@@ -23,9 +23,6 @@ log.txt
 *.xml
 cache/*
 chains/*
-*.ttf
-*.ttc
-*.otf
 
 # still required?
 avatar.png
