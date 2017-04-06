@@ -50,7 +50,7 @@ async def steam(cmd, message, args):
             overlay = Image.open(cmd.resource('img/overlay.png'))
             base.paste(avatar, (0, 0))
             base.paste(overlay, (0, 0), overlay)
-            main_font = 'NotoSansCJKjp-Medium.otf'
+            main_font = cmd.resource('fonts/NotoSansCJKjp-Medium.otf')
             font = ImageFont.truetype(main_font, 32)
             font2 = ImageFont.truetype(main_font, 23)
             imgdraw = ImageDraw.Draw(base)

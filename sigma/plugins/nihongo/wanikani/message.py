@@ -120,8 +120,8 @@ async def draw_image(cmd, message, user, clr):
         raise e
 
     try:
-        main_font = 'NotoSansCJKjp-Medium.otf'
-        japanese_font = 'NotoSansCJKjp-Medium.otf'
+        main_font = cmd.resource('fonts/NotoSansCJKjp-Medium.otf')
+        japanese_font = cmd.resource('fonts/NotoSansCJKjp-Medium.otf')
         font1 = ImageFont.truetype(main_font, 15)
         font2 = ImageFont.truetype(main_font, 13)
         font3 = ImageFont.truetype(japanese_font, 21)
