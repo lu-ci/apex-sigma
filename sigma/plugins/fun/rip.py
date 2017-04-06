@@ -21,7 +21,6 @@ async def rip(cmd, message, args):
         async with session.get(mentioned_avatar) as data:
             user_avatar = await data.read()
             user_avatar = BytesIO(user_avatar)
-            user_avatar.seek(0)
     base = Image.open(cmd.resource('img/base.png'))
     tomb = Image.open(cmd.resource('img/tombstone.png'))
     avatar_img = Image.open(user_avatar)
