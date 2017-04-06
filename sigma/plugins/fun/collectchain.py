@@ -53,7 +53,7 @@ async def collectchain(cmd, message, args):
                 with open(f'chains/chain_{target.id}.yml', 'w', encoding='utf-8') as chain_file:
                     yaml.dump(collection, chain_file, default_flow_style=False)
                 in_use = False
-                dm_response = discord.Embed(color=0x66CC66, title=f'📖 {target.name}\'s Chain is done!')
+                dm_response = discord.Embed(color=0x66CC66, title=f'📖 {target.name}\'s chain is done!')
                 dm_response.add_field(name='Amount Collected', value=f'```\n{collected}\n```')
                 dm_response.add_field(name='Time Elapsed', value=f'```\n{arrow.utcnow().timestamp - start_time}\n```')
                 await cmd.bot.send_message(message.author, None, embed=dm_response)
