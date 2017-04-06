@@ -30,3 +30,4 @@ markovify
 cssselect
 soundcloud
 sparkpost
+ftfy
