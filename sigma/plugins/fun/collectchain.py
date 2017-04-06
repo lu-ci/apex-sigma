@@ -1,8 +1,10 @@
 import yaml
+import arrow
 import discord
 from config import Prefix
 
 in_use = False
+
 
 async def collectchain(cmd, message, args):
     global in_use
@@ -16,12 +18,14 @@ async def collectchain(cmd, message, args):
             else:
                 target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.server.members)
             if target:
+                start_time = arrow.utcnow().timestamp
                 def_chn = message.server.default_channel
                 collected = 0
                 collection = []
                 in_use = True
-                response = discord.Embed(color=0x66CC66, title='📖 Collecting...')
-                response_msg = await cmd.bot.send_message(message.channel, None, embed=response)
+                ch_response = discord.Embed(color=0x66CC66,
+                                            title='📖 Collecting... You will be sent a DM when I\'m done.')
+                ch_res_msg = await cmd.bot.send_message(message.channel, None, embed=ch_response)
                 async for log in cmd.bot.logs_from(def_chn, limit=50000):
                     if log.author.id == target.id:
                         if log.content:
@@ -49,5 +53,8 @@ async def collectchain(cmd, message, args):
                 with open(f'chains/chain_{target.id}.yml', 'w', encoding='utf-8') as chain_file:
                     yaml.dump(collection, chain_file, default_flow_style=False)
                 in_use = False
-                response = discord.Embed(color=0x66CC66, title='📖 Done!')
-                await cmd.bot.edit_message(response_msg, None, embed=response)
+                dm_response = discord.Embed(color=0x66CC66, title=f'📖 {target.name}\'s chain is done!')
+                dm_response.add_field(name='Amount Collected', value=f'```\n{collected}\n```')
+                dm_response.add_field(name='Time Elapsed', value=f'```\n{arrow.utcnow().timestamp - start_time}\n```')
+                await cmd.bot.send_message(message.author, None, embed=dm_response)
+                await cmd.bot.edit_message(ch_res_msg, ch_response.set_footer(text='All Done!'))
