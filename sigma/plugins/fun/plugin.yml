@@ -192,6 +192,15 @@ commands:
       Most people will not have a chain file.
       The makers select those.
 
+  - name:    collectchain
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Collects messages sent by the mentioned user and saves it as a chain.
+      Only one person can use the command at the time due to the processing load it takes.
+
 events:
   - name:    cleverbot_control
     type:    mention
