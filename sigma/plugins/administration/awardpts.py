@@ -18,13 +18,13 @@ async def awardpts(cmd, message, args):
         cmd.db.add_points(message.server, target, amount)
         out = discord.Embed(title='✅ Done', color=0x66CC66)
         out.add_field(name='Sent To', value=target.name + '#' + target.discriminator)
-        out.add_field(name='Amount', value=f'{amount} {Currency}')
+        out.add_field(name='Amount', value=f'```py\n{amount} {Currency}\n```')
         await cmd.bot.send_message(message.channel, None, embed=out)
         try:
             out = discord.Embed(title=f'💎 You Were Given {Currency}', color=0x0099FF)
             out.add_field(name='Server', value=message.server.name)
             out.add_field(name='From', value=message.author.name + '#' + message.author.discriminator)
-            out.add_field(name='Amount', value=f'{amount} {Currency}')
+            out.add_field(name='Amount', value=f'```py\n{amount} {Currency}\n```')
             await cmd.bot.send_message(target, None, embed=out)
         except:
             pass
