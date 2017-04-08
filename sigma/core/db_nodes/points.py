@@ -24,12 +24,14 @@ def point_manipulation(db, server, user, points, add):
             if add:
                 srv_pts = servers[server.id] + points
                 total_pts += points
-                cur_pts += points
             else:
                 srv_pts = servers[server.id] - points
-                cur_pts -= points
         else:
             srv_pts = points
+        if add:
+            cur_pts += points
+        else:
+            cur_pts -= points
         servers.update({server.id: srv_pts})
         db[collection].update_one({'UserID': user.id},
                                   {'$set': {'Servers': servers, 'Total': total_pts, 'Current': cur_pts}})
