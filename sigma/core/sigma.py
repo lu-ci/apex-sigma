@@ -14,7 +14,7 @@ from .logger import create_logger
 from .stats import stats
 from .command_alts import load_alternate_command_names
 from .blacklist import check_black
-
+from .cooldowns import Cooldown
 
 # Apex Sigma: The Database Giant Discord Bot.
 # Copyright (C) 2017  Aurora Project
@@ -46,6 +46,7 @@ class Sigma(discord.Client):
         self.ready = False
         self.server_count = 0
         self.member_count = 0
+        self.cooldown = Cooldown()
 
         with open('AUTHORS') as authors_file:
             content = yaml.safe_load(authors_file)

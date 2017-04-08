@@ -31,6 +31,7 @@ class Plugin(object):
 
         self.db = bot.db
         self.music = bot.music
+        self.cooldown = bot.cooldown
         self.bot = bot
 
         try:

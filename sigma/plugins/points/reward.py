@@ -4,6 +4,6 @@ import random
 async def reward(ev, message, args):
     if not message.author.bot:
         if message.server:
-            if not cd_state:
-                points = random.randint(4, 12)
+            if not ev.cooldown.on_cooldown(ev, message):
+                points = random.randint(3, 15)
                 ev.db.add_points(message.server, message.author, points)
