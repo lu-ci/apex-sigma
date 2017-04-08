@@ -19,16 +19,20 @@ def point_manipulation(db, server, user, points, add):
     if data:
         total_pts = data['Total']
         servers = data['Servers']
+        cur_pts = data['Current']
         if server.id in servers:
             if add:
-                new_pts = servers[server.id] + points
+                srv_pts = servers[server.id] + points
                 total_pts += points
+                cur_pts += points
             else:
-                new_pts = servers[server.id] - points
+                srv_pts = servers[server.id] - points
+                cur_pts -= points
         else:
-            new_pts = points
-        servers.update({server.id: new_pts})
-        db[collection].update_one({'UserID': user.id}, {'$set': {'Servers': servers, 'Total': total_pts}})
+            srv_pts = points
+        servers.update({server.id: srv_pts})
+        db[collection].update_one({'UserID': user.id},
+                                  {'$set': {'Servers': servers, 'Total': total_pts, 'Current': cur_pts}})
     else:
         data = default_data(server, user, points, add)
         db[collection].insert_one(data)
