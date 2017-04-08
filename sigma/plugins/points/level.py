@@ -17,9 +17,9 @@ async def level(cmd, message, args):
             curr_srv = servers[message.server.id]
         response = discord.Embed(color=0x1ABC9C)
         response.set_author(name=f'{target.name}\'s Currency Data', icon_url=user_avatar(target))
-        response.add_field(name='Currently', value=f'```\n{current_pts}\n```')
-        response.add_field(name='Total', value=f'```\n{total_pts}\n```')
-        response.add_field(name='This Server', value=f'```\n{curr_srv}\n```')
+        response.add_field(name='Currently', value=f'```\n{current_pts} Kud\n```')
+        response.add_field(name='Total', value=f'```\n{total_pts} Kud\n```')
+        response.add_field(name='This Server', value=f'```\n{curr_srv} Kud\n```')
     else:
         response = discord.Embed(color=0x696969, title=f'🔍 I couldn\'t find {target.name} in my point database.')
     await cmd.bot.send_message(message.channel, None, embed=response)
