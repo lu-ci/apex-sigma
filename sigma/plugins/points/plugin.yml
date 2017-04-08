@@ -9,12 +9,16 @@ commands:
   - name:    level
     alts:
       - "lvl"
+      - "money"
+      - "currency"
+      - "kud"
+      - "kuds"
     global:  true
     enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s} @person"
     description:
-      Shows yours or a mentioned persons Sigma level.
+      Shows yours or a mentioned persons amount of Sigma currency.
 
   - name:    ranking
     global:  true

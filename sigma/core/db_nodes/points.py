@@ -1,14 +1,13 @@
-import arrow
-
-
 def default_data(server, user, points, add):
+    total_pts = 0
+    current_pts = 0
     if add:
         total_pts = points
-    else:
-        total_pts = 0
+        current_pts = points
     data = {
         'UserID': user.id,
         'Total': total_pts,
+        'Current': current_pts,
         'Servers': {server.id: total_pts}
     }
     return data

@@ -70,8 +70,8 @@ class Database(object):
     def take_points(self, server, user, points):
         point_manipulation(self.db, server, user, points, False)
 
-    def get_points(self, server, user):
-        return point_grabber(self.db, server, user)
+    def get_points(self, user):
+        return point_grabber(self.db, user)
 
     async def refactor_users(self, usrgen):
         await refactor_users_node(self.db, usrgen)
