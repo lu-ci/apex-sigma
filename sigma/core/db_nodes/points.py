@@ -43,4 +43,13 @@ def point_manipulation(db, server, user, points, add):
 def point_grabber(db, user):
     collection = 'PointSystem'
     data = db[collection].find_one({'UserID': user.id})
-    return data
+    if data:
+        return data
+    else:
+        def_data = {
+            'UserID': user.id,
+            'Total': 0,
+            'Current': 0,
+            'Servers': {}
+        }
+        return def_data
