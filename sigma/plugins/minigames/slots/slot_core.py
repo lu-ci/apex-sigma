@@ -39,9 +39,9 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         res_8 = random.choice(symbols)
         res_9 = random.choice(symbols)
 
-        slot_view = ':pause_button: ' + res_4 + ' ' + res_5 + ' ' + res_6 + ' :pause_button:'
-        slot_view += '\n:arrow_forward: ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' :arrow_backward:'
-        slot_view += '\n:pause_button: ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' :pause_button:'
+        slot_view = '⏸ ' + res_4 + ' ' + res_5 + ' ' + res_6 + ' ⏸'
+        slot_view += '\n▶ ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' ◀'
+        slot_view += '\n⏸ ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' ⏸'
         slot_embed.add_field(name='🎰 Slots are spinning...', value=slot_view)
         slot_spinner = await cmd.bot.send_message(message.channel, None, embed=slot_embed)
         spin_amt = random.randint(min_spins, max_spins)
@@ -57,9 +57,9 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             res_4 = random.choice(symbols)
             res_5 = random.choice(symbols)
             res_6 = random.choice(symbols)
-            slot_view = ':pause_button: ' + res_4 + ' ' + res_5 + ' ' + res_6 + ' :pause_button:'
-            slot_view += '\n:arrow_forward: ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' :arrow_backward:'
-            slot_view += '\n:pause_button: ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' :pause_button:'
+            slot_view = '⏸ ' + res_4 + ' ' + res_5 + ' ' + res_6 + ' ⏸'
+            slot_view += '\n▶ ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' ◀'
+            slot_view += '\n⏸ ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' ⏸'
             slot_embed.set_field_at(0, name='🎰 Slots are spinning...', value=slot_view)
             await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
 
@@ -76,7 +76,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
                         win_notify_channel_object = channel
                         break
             if SlotWinChannelID:
-                win_notify_embed = discord.Embed(color=0x0099FF, title=':gem: We have a winner!')
+                win_notify_embed = discord.Embed(color=0x0099FF, title='💎 We have a winner!')
                 win_notify_embed.add_field(name='User', value=message.author.name)
                 win_notify_embed.add_field(name='Server', value=message.server.name)
                 embed_icon = message.author.default_avatar_url
@@ -92,12 +92,12 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             pts = 0
         if win:
             cmd.db.add_points(message.server, message.author, pts)
-            slot_embed.set_field_at(0, name=':gem: You Won!', value=slot_view)
+            slot_embed.set_field_at(0, name='💎 You Won!', value=slot_view)
             slot_embed.set_footer(text='You won ' + str(pts) + ' points.')
             await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
         else:
             cmd.db.take_points(message.server, message.author, bet_amt)
-            slot_embed.set_field_at(0, name=':bomb: You Lost...', value=slot_view)
+            slot_embed.set_field_at(0, name='💣 You Lost...', value=slot_view)
             slot_embed.set_footer(text='You lost the ' + str(bet_amt) + ' points that you bet.')
             await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
     else:
