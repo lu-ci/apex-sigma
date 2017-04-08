@@ -1,7 +1,7 @@
 beta: false
-build_date: 1491450488
-codename: Ushio
+build_date: 1491625522
+codename: Misae
 version:
   major: 2
-  minor: 42
-  patch: 6051
+  minor: 45
+  patch: 6062

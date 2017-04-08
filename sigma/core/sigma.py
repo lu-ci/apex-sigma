@@ -14,6 +14,7 @@ from .logger import create_logger
 from .stats import stats
 from .command_alts import load_alternate_command_names
 from .blacklist import check_black
+from .cooldowns import Cooldown
 
 
 # Apex Sigma: The Database Giant Discord Bot.
@@ -42,6 +43,7 @@ class Sigma(discord.Client):
         self.init_logger()
         self.init_databases()
         self.init_music()
+        self.init_cooldown()
         self.init_plugins()
         self.ready = False
         self.server_count = 0
@@ -105,6 +107,9 @@ class Sigma(discord.Client):
 
     def init_music(self):
         self.music = Music()
+
+    def init_cooldown(self):
+        self.cooldown = Cooldown()
 
     @classmethod
     def create_cache(cls):

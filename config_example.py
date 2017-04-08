@@ -54,6 +54,7 @@ MainServerURL = getenv('MainServerURL') or 'http://localhost/'
 UseCachet = False
 CachetToken = getenv('CachetToken') or ''
 Prefix = '>>'
+Currency = 'Kud ⚜'
 SlotWinChannelID = '12345679123456789'
 permitted_id = ['123456789123456789']
 DefaultVolume = 100

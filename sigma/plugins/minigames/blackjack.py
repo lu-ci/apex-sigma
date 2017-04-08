@@ -11,7 +11,7 @@ async def blackjack(cmd, message, args):
             buyin = 5
     except:
         buyin = 20
-    curr_points = cmd.db.get_points(message.server, message.author)
+    curr_points = cmd.db.get_points(message.author)['Current']
     if curr_points < buyin:
         embed = discord.Embed(color=0xDB0000, title='❗ You don\'t have that many points!')
         await cmd.bot.send_message(message.channel, None, embed=embed)
@@ -22,8 +22,7 @@ async def blackjack(cmd, message, args):
     if bj_instance:
         embed = discord.Embed(color=0xDB0000, title='❗ A Blackjack Instance For You Already Exists!')
         embed.set_footer(
-            text='Use %pfxbjnext to draw the next card, %pfxbjfold to fold the current hand or %pfxbjquit to quit the game.'.replace(
-                '%pfx', Prefix))
+            text=f'Use {Prefix}bjnext to draw the next card, {Prefix}bjfold to fold the current hand or {Prefix}bjquit to quit the game.')
     else:
         deck = []
         for symbol in symbols:
@@ -49,4 +48,3 @@ async def blackjack(cmd, message, args):
                               title=random.choice(symbols) + ' A BlackJack Instance Has Been Created For You.')
         embed.set_footer(text='The set buyin amount is ' + str(buyin))
     await cmd.bot.send_message(message.channel, None, embed=embed)
-

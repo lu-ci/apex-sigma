@@ -11,6 +11,7 @@ class PluginManager(object):
 
         self.db = bot.db
         self.music = bot.music
+        self.cooldown = bot.cooldown
         self.log = create_logger('Plugin Manager')
 
         self.plugin_dirs = []
