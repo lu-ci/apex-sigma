@@ -29,16 +29,12 @@ donors:
     duid: 133088040259158016
   - name: "Drewbie"
     tier: 0
-    avatar: null
+    avatar: "https://i.imgur.com/t4ALprE.jpg"
     duid: 201556233004646410
   - name: "Valeth"
     tier: 0
     avatar: "https://www.gravatar.com/avatar/17d3a152085c9a4d08254acc7ee5d06e.jpg?s=128"
     duid: 217078934976724992
-  - name: "TriAce"
-    tier: 0
-    avatar: null
-    duid: 92747043885314048
   - name: "LoliHolic"
     tier: 0
     avatar: "https://www.gravatar.com/avatar/b114a7a0f2d56f41da6ecb1be1d381b0.jpg?s=128"
@@ -49,5 +45,5 @@ donors:
     duid: 188009639198195712
   - name: "Faillesz"
     tier: 0
-    avatar: null
+    avatar: "https://i.imgur.com/b6NKowU.png"
     duid: 107587661044154368
