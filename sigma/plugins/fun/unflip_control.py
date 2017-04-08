@@ -3,7 +3,11 @@ import random
 
 async def unflip_control(ev, message, args):
     if '(╯°□°）╯︵ ┻━┻' in message.content:
-        if ev.db.get_settings(message.server.id, 'Unflip'):
+        unflip = True
+        if message.server:
+            if ev.db.get_settings(message.server.id, 'Unflip'):
+                unflip = True
+        if unflip:
             table = ['┬─┬ ノ( ^_^ノ)',
                      '┬─┬ ﾉ(° -°ﾉ)',
                      '┬─┬ ノ(゜-゜ノ)',
