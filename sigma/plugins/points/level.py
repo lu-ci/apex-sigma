@@ -21,5 +21,5 @@ async def level(cmd, message, args):
         response.add_field(name='Total', value=f'```\n{total_pts}\n```')
         response.add_field(name='This Server', value=f'```\n{curr_srv}\n```')
     else:
-        response = discord.Embed(color=0xFF9900, title=f'🔍 I couldn\'t find {target.name} in my point database.')
+        response = discord.Embed(color=0x696969, title=f'🔍 I couldn\'t find {target.name} in my point database.')
     await cmd.bot.send_message(message.channel, None, embed=response)
