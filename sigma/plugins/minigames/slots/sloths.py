@@ -8,8 +8,6 @@ async def sloths(cmd, message, args):
             cost = abs(int(args[0]))
         except:
             pass
-    symbols = [':sunny:', ':crescent_moon:', ':eggplant:', ':gun:', ':diamond_shape_with_a_dot_inside:', ':bell:',
-               ':maple_leaf:', ':musical_note:', ':gem:', ':fleur_de_lis:', ':trident:', ':knife:', ':fire:',
-               ':clown:', ':radioactive:', ':green_heart:', ':telephone:', ':hamburger:', ':banana:',
-               ':tumbler_glass:']
+    symbols = ['☀', '🍆', '💠', '🍁', '💎', '🔱', '🔥', '☢', '☎', '🍌',
+               '🌙', '🔫', '🔔', '🎵', '⚜', '🔪', '🤡', '💚', '🍔', '🥃']
     await spin_slots(cmd, message, cost, symbols, 10, 20, 5)
