@@ -139,6 +139,23 @@ commands:
       Outputs a random cat image.
       You know you want to use this command at least 300 times/day.
 
+  - name: catlen
+    alts:
+      - "meowlen"
+      - "kittylen"
+      - "catlength"
+      - "kittylength"
+      - "longcat"
+      - "longkitty"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Makes a personal long cat.
+      The cat length is unique to the person who uses the command.
+      You can mention a user as well to see their long cat.
+
   - name: dog
     alts:
       - "woof"
