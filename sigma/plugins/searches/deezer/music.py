@@ -53,9 +53,9 @@ async def music(cmd, message, args):
     base.paste(artist_photo, (0, 0))
     base.paste(cover_art, (512, 0))
     base.paste(overlay, (0, 0), overlay)
-    font = ImageFont.truetype("NotoSansCJKjp-Medium.otf", 24)
-    font2 = ImageFont.truetype("NotoSansCJKjp-Medium.otf", 20)
-
+    font_file = cmd.resource("fonts/NotoSansCJKjp-Medium.otf")
+    font = ImageFont.truetype(font_file, 24)
+    font2 = ImageFont.truetype(font_file, 20)
     imgdraw = ImageDraw.Draw(base)
     imgdraw.text((132, -5), artist, (255, 255, 255), font=font)
     imgdraw.text((165, 44), title, (255, 255, 255), font=font)
