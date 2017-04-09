@@ -35,7 +35,8 @@ async def kitsuuser(cmd, message, args):
         so_url = data['relationships'][significant_other.lower()]['links']['related']
         async with aiohttp.ClientSession() as session:
             async with session.get(so_url) as data:
-                    wf_data = await data.json()
+                    wf_data = await data.read()
+                    wf_data = json.loads(wf_data)
         if wf_data['data']:
             wf_attr = wf_data['data']['attributes']
             wf_name = wf_attr['name']
@@ -44,7 +45,8 @@ async def kitsuuser(cmd, message, args):
             wf_name = 'Forever Alone'
         async with aiohttp.ClientSession() as session:
             async with session.get(library_url) as data:
-                    lib_data = await data.json()
+                    lib_data = await data.read()
+                    lib_data = json.loads(lib_data)
                     lib_data = lib_data['data']
         library = len(lib_data)
         embed = discord.Embed(color=0xff3300)
