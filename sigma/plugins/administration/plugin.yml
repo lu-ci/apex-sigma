@@ -204,3 +204,12 @@ events:
     pmable:  true
     description:
       Sets the now playing status on launch.
+
+  - name:    server_number_reporter
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Sets the now playing status on launch.
