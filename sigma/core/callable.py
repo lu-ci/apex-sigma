@@ -87,7 +87,10 @@ class Callable(object):
         perm = check_permitted(self, author, channel, server)
 
         if not perm[0]:
-            await self.bot.send_message(channel, embed=perm[1])
+            try:
+                await self.bot.send_message(channel, embed=perm[1])
+            except:
+                pass
             return
 
         try:
