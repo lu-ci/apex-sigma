@@ -4,6 +4,7 @@
 async def send(cmd, message, args):
     if args:
         mode, identifier = args[0].split(':')
+        identifier = int(identifier)
         mode = mode.lower()
         text = ' '.join(args[1:])
     else:

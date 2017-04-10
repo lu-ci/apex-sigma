@@ -6,7 +6,7 @@ async def inviteowner(cmd, message, args):
         if args:
             server_id_lookup = args[0]
             for server in cmd.bot.guilds:
-                if server.id == server_id_lookup:
+                if server.id == int(server_id_lookup):
                     try:
                         invite = await cmd.bot.create_invite(server, max_uses=1)
                         await cmd.bot.send_message(message.channel,

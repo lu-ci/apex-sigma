@@ -8,7 +8,7 @@ async def searchid(cmd, message, args):
             cmd.bot.send_message(message.channel, cmd.help())
             return
         else:
-            search_id = args[0]
+            search_id = int(args[0])
         count = 0
         embed = discord.Embed(title='ℹ User Found On The Following Servers', color=0x0099FF)
         for server in cmd.bot.guilds:
