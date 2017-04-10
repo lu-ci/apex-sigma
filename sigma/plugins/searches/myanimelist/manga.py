@@ -1,6 +1,5 @@
 import os
 import aiohttp
-from requests.auth import HTTPBasicAuth
 from lxml import html
 from io import BytesIO
 from PIL import Image
@@ -91,7 +90,7 @@ async def manga(cmd, message, args):
         overlay = Image.open(cmd.resource('img/overlay_manga.png'))
         base.paste(ani_img, (0, 0))
         base.paste(overlay, (0, 0), overlay)
-        font = ImageFont.truetype("big_noodle_titling_oblique.ttf", 28)
+        font = ImageFont.truetype(cmd.resource("font/big_noodle_titling_oblique.ttf", 28))
         imgdraw = ImageDraw.Draw(base)
         imgdraw.text((4, 4), '#' + ani_id, (255, 255, 255), font=font)
         imgdraw.text((227, 16), name[:21] + suffix, (255, 255, 255), font=font)
