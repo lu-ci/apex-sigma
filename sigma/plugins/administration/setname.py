@@ -2,10 +2,7 @@
 
 
 async def setname(cmd, message, args):
-    if not args:
-        await message.channel.send(cmd.help())
-        return
-    else:
+    if args:
         username = ' '.join(args)
         await cmd.bot.user.edit(name=username)
         embed = discord.Embed(title='✅ Changed Username', color=0x66CC66)
