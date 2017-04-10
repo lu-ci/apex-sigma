@@ -20,4 +20,4 @@ async def unflip_control(ev, message, args):
                      'ヘ(´° □°)ヘ┳━┳',
                      '┣ﾍ(≧∇≦ﾍ)… (≧∇≦)/┳━┳']
             ev.db.add_stats('TableCount')
-            await ev.channel.send(random.choice(table))
+            await message.channel.send(random.choice(table))

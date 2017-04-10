@@ -27,18 +27,18 @@ async def random_event_control(ev, message, args):
                     choice_text_out += '\n' + str(n) + ': ' + choice['choice_text']
                 event_embed.add_field(name=event['event_text'], value=choice_text_out)
                 event_embed.set_footer(text='Answer by inputting the number corresponding to your choice.')
-                event_start = await ev.channel.send('Hey ' + message.author.mention + '! An event has appeared!',
+                event_start = await message.channel.send('Hey ' + message.author.mention + '! An event has appeared!',
                                           embed=event_embed)
                 events_active.append(event_id)
                 reply = await ev.bot.wait_for_message(timeout=60, author=message.author)
                 if not reply:
                     out = discord.Embed(title=':clock10: Sorry, you timed out...', color=0x777777)
-                    await ev.channel.send(None, embed=out)
+                    await message.channel.send(None, embed=out)
                     await ev.bot.delete_message(event_start)
                     return
                 if not reply.content:
                     out = discord.Embed(title='❗ Sorry, I couldn\'t read that...', color=0xDB0000)
-                    await ev.channel.send(None, embed=out)
+                    await message.channel.send(None, embed=out)
                     await ev.bot.delete_message(event_start)
                     return
                 answer = reply.content
@@ -50,7 +50,7 @@ async def random_event_control(ev, message, args):
                         answer_number = n
                 except:
                     out = discord.Embed(title='❗ Invalid number input', color=0xDB0000)
-                    await ev.channel.send(None, embed=out)
+                    await message.channel.send(None, embed=out)
                     events_active.remove(event_id)
                     await ev.bot.delete_message(event_start)
                     return
@@ -70,4 +70,4 @@ async def random_event_control(ev, message, args):
                     result_embed.set_footer(text='You lost ' + str(point_amount) + ' points.')
                 events_active.remove(event_id)
                 result_embed.add_field(name='The following happened', value=result_text)
-                await ev.channel.send(None, embed=result_embed)
+                await message.channel.send(None, embed=result_embed)
