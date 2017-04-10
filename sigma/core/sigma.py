@@ -117,9 +117,6 @@ class Sigma(discord.AutoShardedClient):
         if not os.path.exists('chains/'):
             os.makedirs('chains/')
 
-    async def on_voice_state_update(self, before, after):
-        pass
-
     async def get_plugins(self):
         return self.plugin_manager.plugins
 
