@@ -16,15 +16,9 @@ async def apikeys(cmd, message, args):
                     option_state = '✔'
                 out_list.append([option.upper(), option_state])
         out_text = '```haskell\n' + boop(out_list) + '\n```'
-        try:
-            await cmd.bot.start_private_message(message.author)
-            await cmd.bot.send_message(message.author, out_text)
-            status = discord.Embed(type='rich', color=0x66cc66,
+        await message.author.send(out_text)
+        status = discord.Embed(type='rich', color=0x66cc66,
                                    title='✅ The API Key List has been sent to your DM.')
-        except Exception as e:
-            cmd.log.error(e)
-            await message.channel.send(str(e))
-            return
     else:
         status = discord.Embed(type='rich', color=0xDB0000,
                                title='⛔ Insufficient Permissions. Bot Owner Only.')
