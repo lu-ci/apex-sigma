@@ -3,7 +3,7 @@
 
 async def volume(cmd, message, args):
     if args:
-        if not message.author.voice_channel:
+        if not message.author.voice:
             embed = discord.Embed(
                 title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
             await message.channel.send(None, embed=embed)

@@ -76,7 +76,7 @@ async def vndb(cmd, message, args):
     base.save('cache/vn_' + message.id + '.png')
 
     try:
-        await message.channel.send_file('cache/vn_' + message.id + '.png')
+        await message.channel.send(file='cache/vn_' + message.id + '.png')
         await message.channel.send('Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[
                                                                                                      :300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
         os.remove('cache/vn_' + message.id + '.png')

@@ -11,5 +11,5 @@ async def dog(cmd, message, args):
             doggie_image = await data.read()
     with Image.open(BytesIO(doggie_image)) as img:
         img.save(f'cache/pupper_{message.id}.png')
-    await message.channel.send_file(f'cache/pupper_{message.id}.png')
+    await message.channel.send(file=f'cache/pupper_{message.id}.png')
     os.remove(f'cache/pupper_{message.id}.png')

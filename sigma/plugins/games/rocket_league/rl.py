@@ -105,6 +105,6 @@ async def rl(cmd, message, args):
     imgdraw.text((394, 146), str(str_rn_rank), (255, 255, 255), font=font3)
 
     base.save('cache/rl_' + message.author.id + '.png')
-    await message.channel.send_file('cache/rl_' + message.author.id + '.png')
+    await message.channel.send(file='cache/rl_' + message.author.id + '.png')
     await message.channel.send('You can find more at:\n<' + profile_url + '>')
     os.remove('cache/rl_' + message.author.id + '.png')

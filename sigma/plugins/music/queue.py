@@ -11,7 +11,7 @@ from config import Prefix, SoundCloudClientID
 
 
 async def queue(cmd, message, args):
-    if message.author.voice_channel:
+    if message.author.voice:
         if args:
             qry = ' '.join(args)
             if '?list=' in qry:

@@ -14,7 +14,7 @@ async def play(cmd, message, args):
                 return
         await asyncio.sleep(3)
     if message.guild.id not in cmd.music.initializing:
-        if not message.author.voice_channel:
+        if not message.author.voice:
             embed = discord.Embed(
                 title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
             await message.channel.send(None, embed=embed)
@@ -28,10 +28,12 @@ async def play(cmd, message, args):
             return
         cmd.music.add_init(message.guild.id)
         cmd.bot.loop.create_task(init_clock(cmd.music, message.guild.id))
-        voice_connected = cmd.bot.is_voice_connected(message.guild)
-        if not voice_connected:
+        bot_member = message.guild.get_member(cmd.bot.user.id)
+        bot_member.move_to(message.author.voice.channel)
+        bot_voice = bot_member.voice
+        if not bot_voice:
             try:
-                await cmd.bot.join_voice_channel(message.author.voice_channel)
+                await cmd.bot.user.edit(voice_channel=message.author.voice.channel)
                 embed = discord.Embed(title='✅ Joined ' + message.author.voice_channel.name,
                                       color=0x66cc66)
             except Exception as e:
@@ -48,14 +50,15 @@ async def play(cmd, message, args):
                     color=0xFF9900)
                 await message.channel.send(None, embed=embed)
                 return
-        voice_instance = cmd.bot.voice_client_in(message.guild)
+        bot_member = message.guild.get_member(cmd.bot.user.id)
+        bot_voice = bot_member.voice
         while cmd.music.get_queue(message.guild.id) and len(cmd.music.get_queue(message.guild.id).queue) != 0:
             item = cmd.music.get_from_queue(message.guild.id)
             if message.guild.id in cmd.music.repeaters:
                 cmd.music.add_to_queue(message.guild.id, item)
             cmd.music.currents.update({message.guild.id: item})
             sound = item['sound']
-            await cmd.music.make_player(message.guild.id, voice_instance, item)
+            await cmd.music.make_player(message.guild.id, bot_voice, item)
             player = cmd.music.get_player(message.guild.id)
             if not player:
                 return
@@ -82,7 +85,7 @@ async def play(cmd, message, args):
                 await asyncio.sleep(2)
             cmd.music.kill_player(message.guild.id)
         try:
-            await voice_instance.disconnect()
+            await bot_voice.disconnect()
         except:
             pass
         del cmd.music.currents[message.guild.id]

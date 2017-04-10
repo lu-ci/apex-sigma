@@ -106,7 +106,7 @@ async def anime(cmd, message, args):
         imgdraw.text((227, 222), air, (255, 255, 255), font=font)
         base.save('cache/anime_' + message.author.id + '.png')
 
-        await message.channel.send_file('cache/anime_' + message.author.id + '.png')
+        await message.channel.send(file='cache/anime_' + message.author.id + '.png')
         await message.channel.send('```\n' + synopsis[
                                                               :256] + '...\n```\nMore at: <https://myanimelist.net/anime/' + ani_id + '/>\n')
         os.remove('cache/anime_' + message.author.id + '.png')

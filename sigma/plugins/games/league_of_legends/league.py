@@ -121,7 +121,7 @@ async def league(cmd, message, args):
         if ranked_text == 'None' and normal_text == 'None':
             await message.channel.send('No stats found.')
         else:
-            await message.channel.send_file('cache/lol_profile_' + message.author.id + '.png')
+            await message.channel.send(file='cache/lol_profile_' + message.author.id + '.png')
             os.remove('cache/lol_profile_' + message.author.id + '.png')
             await cmd.bot.send_message(message.channel,
                                        'Normal Stats:\n```' + normal_text + '\n```\nRanked Stats:\n```' + ranked_text + '\n```')

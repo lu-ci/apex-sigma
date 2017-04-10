@@ -72,7 +72,7 @@ async def steam(cmd, message, args):
             else:
                 imgdraw.text((2, 165), '*', (102, 102, 153), font=font)
             base.save('cache/steam_' + message.author.id + '.png')
-        await message.channel.send_file('cache/steam_' + message.author.id + '.png')
+        await message.channel.send(file='cache/steam_' + message.author.id + '.png')
         os.remove('cache/steam_' + message.author.id + '.png')
     except Exception as e:
         cmd.log.error(e)
