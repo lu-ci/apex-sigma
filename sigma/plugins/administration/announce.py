@@ -11,6 +11,7 @@ async def announce(cmd, message, args):
     else:
         success = 0
         failed = 0
+        disabled = 0
         announcement = ' '.join(args)
         for server in cmd.bot.guilds:
             ann = cmd.db.get_settings(server.id, 'Announcement')
@@ -21,7 +22,7 @@ async def announce(cmd, message, args):
                     announce_content = discord.Embed(type='rich', color=0x0099FF)
                     announce_content.add_field(name=':mega: Announcement', value=announcement)
                     announce_content.set_author(name=message.author.name, icon_url=message.author.avatar_url)
-                    await cmd.bot.send_message(target_ch, None, embed=announce_content)
+                    await target_ch.send(None, embed=announce_content)
                     success += 1
                     cmd.log.info('Success on ' + server.name)
                 except Exception as e:
@@ -31,8 +32,9 @@ async def announce(cmd, message, args):
                 await asyncio.sleep(0.05)
             else:
                 cmd.log.info('Disabled on ' + server.name)
-                failed += 1
+                disabled += 1
         out_content = discord.Embed(type='rich', color=0x66cc66, title='✅ Announcement Done')
         out_content.add_field(name='Success', value=str(success))
+        out_content.add_field(name='Disabled', value=str(disabled))
         out_content.add_field(name='Failed', value=str(failed))
         await message.channel.send(None, embed=out_content)

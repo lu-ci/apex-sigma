@@ -12,7 +12,10 @@ async def announcementchannel(cmd, message, args):
         if message.channel_mentions:
             # argument exists and is a channel
             newchannel = message.channel_mentions[0]
-            if check_write(message.guild.get_member(cmd.bot.user.id), newchannel):
+            print(newchannel.id)
+            writable = check_write(message.guild.get_member(cmd.bot.user.id), newchannel)
+            print(writable)
+            if writable:
                 # channel can be written to -> turn on announcements and set channelid
                 cmd.db.set_settings(message.guild.id, 'Announcement', True)
                 cmd.db.set_settings(message.guild.id, 'AnnouncementChannel', newchannel.id)
