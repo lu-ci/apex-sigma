@@ -1,7 +1,7 @@
 from os import getenv, path
 
 # This always points to the directory of the application
-# where the config.py file is located
+# Where the config.py file is located, don't touch it unless you know what you're doing
 AppRoot = path.abspath(path.dirname(__file__))
 
 # Bot Token
