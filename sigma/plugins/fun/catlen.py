@@ -1,4 +1,4 @@
-import os
+﻿import os
 from PIL import Image
 
 
@@ -21,5 +21,5 @@ async def catlen(cmd, message, args):
     with Image.open(cmd.resource(f'{image_location}/top.png')) as top_cat_img:
         base.paste(top_cat_img, (62 + ((length_number - 1) * 15), 0), top_cat_img)
     base.save(out_location)
-    await cmd.bot.send_file(message.channel, out_location)
+    await message.channel.send_file(out_location)
     os.remove(out_location)

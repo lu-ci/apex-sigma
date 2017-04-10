@@ -104,7 +104,7 @@ async def overwatch(cmd, message, args):
                                  '\nPlaytime:' +
                                  '\n    - Quick: ' + qg_playtime + ' Hours' +
                                  '\n    - Competitive: ' + cg_playtime + ' Hours' + '```')
-            await cmd.bot.send_file(message.channel, 'cache/ow_profile_' + message.author.id + '.png')
+            await message.channel.send_file('cache/ow_profile_' + message.author.id + '.png')
             os.remove('cache/ow_profile_' + message.author.id + '.png')
             await message.channel.send(overwatch_profile)
         except KeyError:

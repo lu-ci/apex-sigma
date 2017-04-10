@@ -199,5 +199,5 @@ async def draw_image(cmd, message, user, clr):
 
     tmp_file = 'cache/wk_{:s}.png'.format(message.author.id)
     base.save(tmp_file)
-    await cmd.bot.send_file(message.channel, tmp_file)
+    await message.channel.send_file(tmp_file)
     os.remove(tmp_file)

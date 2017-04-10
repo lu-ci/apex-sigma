@@ -100,7 +100,7 @@ async def manga(cmd, message, args):
         imgdraw.text((227, 194), 'Score: ' + score, (255, 255, 255), font=font)
         imgdraw.text((227, 222), air, (255, 255, 255), font=font)
         base.save('cache/manga_' + message.author.id + '.png')
-        await cmd.bot.send_file(message.channel, 'cache/manga_' + message.author.id + '.png')
+        await message.channel.send_file('cache/manga_' + message.author.id + '.png')
         await message.channel.send('```\n' + synopsis[
                                                               :256] + '...\n```\nMore at: <https://myanimelist.net/manga/' + ani_id + '/>\n')
         os.remove('cache/manga_' + message.author.id + '.png')
