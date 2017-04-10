@@ -1,5 +1,5 @@
-async def member_leave_control(ev, member):
-    server = member.server
+﻿async def member_leave_control(ev, member):
+    server = member.guild
     bye = ev.db.get_settings(server.id, 'Bye')
     if bye:
         ev.db.add_stats('ByeCount')

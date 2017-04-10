@@ -8,7 +8,7 @@ async def ingame(cmd, message, args):
     online_count = 0
     playing_count = 0
     total_count = 0
-    for member in message.server.members:
+    for member in message.guild.members:
         total_count += 1
         status = str(member.status)
         if status != 'offline':
@@ -40,7 +40,7 @@ async def ingame(cmd, message, args):
     out = boop(out_table_list)
     general_stats_list = [['Online', online_count], ['In-Game', playing_count], ['Unique Games', game_count]]
     general_stats_out = boop(general_stats_list)
-    embed.add_field(name='👾 Current Gaming Statistics on ' + message.server.name,
+    embed.add_field(name='👾 Current Gaming Statistics on ' + message.guild.name,
                     value='```haskell\n' + general_stats_out + '\n```',
                     inline=False)
     embed.add_field(name='🎮 By Game...', value='```haskell\n' + out + '\n```',

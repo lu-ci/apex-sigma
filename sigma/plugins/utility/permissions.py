@@ -9,7 +9,7 @@ async def permissions(cmd, message, args):
     else:
         user_q = message.author
     embed = discord.Embed(title='ℹ ' + user_q.name + '\'s Permissions', color=0x0099FF)
-    for permission in user_q.server_permissions:
+    for permission in user_q.guild_permissions:
         if permission[1]:
             allowed_list.append(permission[0].replace('_', ' ').title())
         else:

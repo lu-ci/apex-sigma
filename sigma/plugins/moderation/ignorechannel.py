@@ -13,7 +13,7 @@ async def ignorechannel(cmd, message, args):
             search_id = qry.replace('<#', '').replace('>', '')
         else:
             search_id = args[0]
-        for chan in message.server.channels:
+        for chan in message.guild.channels:
             if chan.id == search_id:
                 target = chan
                 break
@@ -24,7 +24,7 @@ async def ignorechannel(cmd, message, args):
                 embed = discord.Embed(title='⚠ You Can\'t Blacklist Yourself', color=0xFF9900)
                 await message.channel.send(None, embed=embed)
                 return
-            black = cmd.db.get_settings(message.server.id, 'BlacklistedChannels')
+            black = cmd.db.get_settings(message.guild.id, 'BlacklistedChannels')
             if not black:
                 black = []
             if target.id in black:
@@ -33,7 +33,7 @@ async def ignorechannel(cmd, message, args):
             else:
                 black.append(target.id)
                 embed = discord.Embed(title=':lock: ' + target.name + ' has been blacklisted.', color=0xFF9900)
-            cmd.db.set_settings(message.server.id, 'BlacklistedChannels', black)
+            cmd.db.set_settings(message.guild.id, 'BlacklistedChannels', black)
     else:
         embed = discord.Embed(type='rich', color=0xDB0000,
                               title='⛔ Insufficient Permissions. Server Admin Only.')

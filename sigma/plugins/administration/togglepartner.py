@@ -4,7 +4,7 @@
 async def togglepartner(cmd, message, args):
     if args:
         target_sid = args[0]
-        target_server = discord.utils.find(lambda x: x.id == target_sid, cmd.bot.servers)
+        target_server = discord.utils.find(lambda x: x.id == target_sid, cmd.bot.guilds)
         if target_server:
             try:
                 partner = cmd.db.get_settings(target_sid, 'IsPartner')

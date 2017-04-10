@@ -2,8 +2,8 @@
 from sigma.core.utils import user_avatar
 
 async def nowplaying(cmd, message, args):
-    if message.server.id in cmd.music.currents:
-        item = cmd.music.currents[message.server.id]
+    if message.guild.id in cmd.music.currents:
+        item = cmd.music.currents[message.guild.id]
         req = item['requester']
         video = item['video']
         url = item['url']

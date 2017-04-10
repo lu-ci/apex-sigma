@@ -13,7 +13,7 @@ async def send(cmd, message, args):
     if mode == 'u':
         target = discord.utils.find(lambda x: x.id == identifier, cmd.bot.get_all_members())
     elif mode == 's':
-        target = discord.utils.find(lambda x: x.id == identifier, cmd.bot.servers)
+        target = discord.utils.find(lambda x: x.id == identifier, cmd.bot.guilds)
         target = target.default_channel
     elif mode == 'c':
         target = discord.utils.find(lambda x: x.id == identifier, cmd.bot.get_all_channels())

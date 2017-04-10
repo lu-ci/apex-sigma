@@ -10,7 +10,7 @@ async def whoplays(cmd, message, args):
         gamer_list = ''
         x = 0
         y = 0
-        for member in message.server.members:
+        for member in message.guild.members:
             if member.game:
                 x += 1
                 if str(member.game).lower() == game_title.lower():

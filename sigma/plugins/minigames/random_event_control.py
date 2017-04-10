@@ -6,14 +6,14 @@ events_active = []
 
 
 async def random_event_control(ev, message, args):
-    if message.server:
-        events_enabled = ev.db.get_settings(message.server.id, 'RandomEvents')
+    if message.guild:
+        events_enabled = ev.db.get_settings(message.guild.id, 'RandomEvents')
         if events_enabled:
-            event_id = message.server.id + message.author.id
+            event_id = message.guild.id + message.author.id
             global events_active
             if event_id in events_active:
                 return
-            chance = ev.db.get_settings(message.server.id, 'EventChance')
+            chance = ev.db.get_settings(message.guild.id, 'EventChance')
             rolled_number = random.randint(1, 100)
             if rolled_number <= chance:
                 with open(ev.resource('events.yml')) as events_file:
@@ -63,10 +63,10 @@ async def random_event_control(ev, message, args):
                 result_embed = discord.Embed(color=0x1abc9c, title='You chose to ' + choice_text.lower())
                 await ev.bot.delete_message(event_start)
                 if positive:
-                    ev.db.add_points(message.server, message.author, point_amount)
+                    ev.db.add_points(message.guild, message.author, point_amount)
                     result_embed.set_footer(text='You have been awarded ' + str(point_amount) + ' points.')
                 else:
-                    ev.db.take_points(message.server, message.author, point_amount)
+                    ev.db.take_points(message.guild, message.author, point_amount)
                     result_embed.set_footer(text='You lost ' + str(point_amount) + ' points.')
                 events_active.remove(event_id)
                 result_embed.add_field(name='The following happened', value=result_text)

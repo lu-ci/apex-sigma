@@ -15,7 +15,7 @@ async def createrole(cmd, message, args):
         await message.channel.send(None, embed=out_content)
         return
     role_qry = ' '.join(args)
-    exists = matching_role(message.server, role_qry)
+    exists = matching_role(message.guild, role_qry)
     if exists:
         out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
         out_content.add_field(name='Role Exists', value='A role with the name **' + role_qry + '** already exists.')
@@ -23,5 +23,5 @@ async def createrole(cmd, message, args):
     else:
         out_content = discord.Embed(type='rich', color=0x33CC33,
                                     title='✅ Role ' + role_qry + ' created.')
-        await cmd.bot.create_role(message.server, name=role_qry)
+        await cmd.bot.create_role(message.guild, name=role_qry)
         await message.channel.send(None, embed=out_content)

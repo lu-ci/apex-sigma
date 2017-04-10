@@ -10,8 +10,8 @@ async def stats(cmd, message, args):
     upseconds = current_time - cmd.bot.start_time
     uptime = str(datetime.timedelta(seconds=upseconds))
     owners = ', '.join(permitted_id)
-    if message.server:
-        for m in message.server.members:
+    if message.guild:
+        for m in message.guild.members:
             if m.id in permitted_id:
                 if m.nick:
                     owners = owners.replace(m.id, m.nick)
@@ -28,7 +28,7 @@ async def stats(cmd, message, args):
     embed.add_field(name='Bot Version', value=f'```py\n{full_version}\n```')
     embed.add_field(name='Bot Codename', value=f'```py\n"{cmd.bot.codename}"\n```')
     embed.add_field(name='Build Date', value=f'```py\n{cmd.bot.build_date.format("DD-MM-YYYY")}\n```')
-    embed.add_field(name='Servers', value=f'```py\n{len(cmd.bot.servers)}\n```')
+    embed.add_field(name='Servers', value=f'```py\n{len(cmd.bot.guilds)}\n```')
     embed.add_field(name='Channels', value=f'```py\n{len(list(cmd.bot.get_all_channels()))}\n```')
     embed.add_field(name='Users', value=f'```py\n{len(list(cmd.bot.get_all_members()))}\n```')
     embed.add_field(name='Bot Owners', value=f'```\n{owners}\n```', inline=False)

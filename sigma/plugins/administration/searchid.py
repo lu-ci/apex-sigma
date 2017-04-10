@@ -11,7 +11,7 @@ async def searchid(cmd, message, args):
             search_id = args[0]
         count = 0
         embed = discord.Embed(title='ℹ User Found On The Following Servers', color=0x0099FF)
-        for server in cmd.bot.servers:
+        for server in cmd.bot.guilds:
             for user in server.members:
                 if user.id == search_id:
                     count += 1

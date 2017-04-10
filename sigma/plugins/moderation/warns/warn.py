@@ -16,14 +16,14 @@ async def warn(cmd, message, args):
     if not warning_text or warning_text == '':
         warning_text = 'No Reason Given'
     try:
-        warn_limit = cmd.db.get_settings(message.server.id, 'WarnLimit')
+        warn_limit = cmd.db.get_settings(message.guild.id, 'WarnLimit')
     except KeyError:
-        cmd.db.set_settings(message.server.id, 'WarnLimit', 2)
+        cmd.db.set_settings(message.guild.id, 'WarnLimit', 2)
         warn_limit = 2
     try:
-        warned_users = cmd.db.get_settings(message.server.id, 'WarnedUsers')
+        warned_users = cmd.db.get_settings(message.guild.id, 'WarnedUsers')
     except KeyError:
-        cmd.db.set_settings(message.server.id, 'WarnedUsers', {})
+        cmd.db.set_settings(message.guild.id, 'WarnedUsers', {})
         warned_users = {}
     if target.id in warned_users:
         warn_data = {
@@ -55,10 +55,10 @@ async def warn(cmd, message, args):
         warned_users.update({target.id: warn_data})
         out_content_to_user = discord.Embed(color=0xFF9900)
         out_content_to_user.add_field(name='⚠ Warning ' + str(warned_users[target.id]['Warns']) + '/' + str(
-            warn_limit) + ' on ' + message.server.name, value='Reason:\n```\n' + warning_text + '\n```')
+            warn_limit) + ' on ' + message.guild.name, value='Reason:\n```\n' + warning_text + '\n```')
         await cmd.bot.send_message(target, None, embed=out_content_to_user)
         out_content_local = discord.Embed(color=0xFF9900, title='⚠ Warning ' + str(
             warned_users[target.id]['Warns']) + '/' + str(
             warn_limit) + ' for ' + target.name)
         await message.channel.send(None, embed=out_content_local)
-    cmd.db.set_settings(message.server.id, 'WarnedUsers', warned_users)
+    cmd.db.set_settings(message.guild.id, 'WarnedUsers', warned_users)

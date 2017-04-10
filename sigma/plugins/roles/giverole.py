@@ -20,7 +20,7 @@ async def giverole(cmd, message, args):
         await message.channel.send(None, embed=out_content)
         return
     role_qry = ' '.join(args[1:])
-    target_role = matching_role(message.server, role_qry)
+    target_role = matching_role(message.guild, role_qry)
     target_user = message.mentions[0]
     user_contained_role = user_matching_role(target_user, role_qry)
     if not target_role:

@@ -7,7 +7,7 @@ import asyncio
 
 async def mute(cmd, message, args):
     channel = message.channel
-    server = message.server
+    server = message.guild
     if not message.mentions:
         await message.channel.send(cmd.help())
         return

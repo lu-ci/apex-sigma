@@ -9,8 +9,8 @@ async def eventchance(cmd, message, args):
                                     title='⛔ Insufficient Permissions. Server Admin Only.')
         await message.channel.send(None, embed=out_content)
         return
-    events_enabled = cmd.db.get_settings(message.server.id, 'RandomEvents')
-    event_chance = cmd.db.get_settings(message.server.id, 'EventChance')
+    events_enabled = cmd.db.get_settings(message.guild.id, 'RandomEvents')
+    event_chance = cmd.db.get_settings(message.guild.id, 'EventChance')
     if not args:
         out_content = discord.Embed(color=0x0099FF,
                                     title='ℹ Random Event Chance Is ' + str(event_chance) + '%')
@@ -30,6 +30,6 @@ async def eventchance(cmd, message, args):
             new_chance = 100
         if new_chance < 1:
             new_chance = 1
-        cmd.db.set_settings(message.server.id, 'EventChance', new_chance)
+        cmd.db.set_settings(message.guild.id, 'EventChance', new_chance)
         out = discord.Embed(title='✅ Event Chance Set to ' + str(new_chance) + '%', color=0x66CC66)
         await message.channel.send(None, embed=out)

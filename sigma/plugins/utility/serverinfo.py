@@ -3,10 +3,10 @@
 
 async def serverinfo(cmd, message, args):
     out_list = []
-    if message.server:
+    if message.guild:
         bot_count = 0
         user_count = 0
-        serv = message.server
+        serv = message.guild
         for user in serv.members:
             if user.bot:
                 bot_count += 1

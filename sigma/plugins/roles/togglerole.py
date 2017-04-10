@@ -10,7 +10,7 @@ async def togglerole(cmd, message, args):
         return
     else:
         role_qry = ' '.join(args)
-        self_roles = cmd.db.get_settings(message.server.id, 'SelfRoles')
+        self_roles = cmd.db.get_settings(message.guild.id, 'SelfRoles')
         role_name = None
         for role in self_roles:
             if role.lower() == role_qry.lower():
@@ -19,7 +19,7 @@ async def togglerole(cmd, message, args):
         if role_name:
             user_role_match = user_matching_role(message.author, role_name)
             if not user_role_match:
-                target_role = matching_role(message.server, role_name)
+                target_role = matching_role(message.guild, role_name)
                 await cmd.bot.add_roles(message.author, target_role)
                 embed = discord.Embed(title='✅ ' + role_name + ' has been added to you.',
                                       color=0x66cc66)

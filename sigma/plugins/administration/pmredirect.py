@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from config import permitted_id, Prefix
 from sigma.core.utils import user_avatar
 
@@ -6,7 +6,7 @@ from sigma.core.utils import user_avatar
 async def pmredirect(ev, message, args):
     cid = ev.bot.user.id
     author = message.author
-    if not message.server:
+    if not message.guild:
         if author.id == cid or author.id in permitted_id:
             return
         else:

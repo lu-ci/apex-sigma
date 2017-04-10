@@ -16,10 +16,10 @@ async def collectchain(cmd, message, args):
             if message.mentions:
                 target = message.mentions[0]
             else:
-                target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.server.members)
+                target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.guild.members)
             if target:
                 start_time = arrow.utcnow().timestamp
-                def_chn = message.server.default_channel
+                def_chn = message.guild.default_channel
                 collected = 0
                 collection = []
                 in_use = True

@@ -76,7 +76,7 @@ class Callable(object):
         return ''
 
     async def call(self, message, *args):
-        server = message.server
+        server = message.guild
         channel = message.channel
         author = message.author
         msg = None
@@ -119,7 +119,7 @@ class Callable(object):
         try:
             await getattr(self.module, self.name)(self, member)
         except Exception as e:
-            # ev_log_msg = f'SP_EV: {member.server.name} [{member.server.id}] | {self.name} |'
+            # ev_log_msg = f'SP_EV: {member.guild.name} [{member.guild.id}] | {self.name} |'
             # ev_log_msg += f'ERROR: {e} | TRACE: {e.with_traceback}'
             # self.log.error(ev_log_msg)
             pass

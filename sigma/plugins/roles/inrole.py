@@ -9,14 +9,14 @@ async def inrole(cmd, message, args):
         role_input = ' '.join(args)
         role_choice = None
         user_list = ''
-        for role in message.server.roles:
+        for role in message.guild.roles:
             if role.name.lower() == role_input.lower():
                 role_choice = role
         if not role_choice:
             embed = discord.Embed(color=0x696969, title=':notebook: No channel like that was found on this server.')
         else:
             embed = discord.Embed(color=0x0099FF)
-            for member in message.server.members:
+            for member in message.guild.members:
                 for role in member.roles:
                     if role == role_choice:
                         user_list += '\n - ' + member.name

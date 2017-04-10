@@ -2,7 +2,7 @@
 
 
 async def pause(cmd, message, args):
-    player = cmd.music.get_player(message.server.id)
+    player = cmd.music.get_player(message.guild.id)
     if player:
         if not player.is_playing():
             response = discord.Embed(color=0xFF9900, title='⚠ Already Paused.')

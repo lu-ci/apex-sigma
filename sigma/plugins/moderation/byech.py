@@ -10,6 +10,6 @@ async def byech(cmd, message, args):
             target_channel = message.channel_mentions[0]
         else:
             target_channel = message.channel
-        cmd.db.set_settings(message.server.id, 'ByeChannel', target_channel.id)
+        cmd.db.set_settings(message.guild.id, 'ByeChannel', target_channel.id)
         embed = discord.Embed(color=0x66CC66, title=f'✅ Goodbye Channel Changed To {target_channel.name}')
     await message.channel.send(None, embed=embed)

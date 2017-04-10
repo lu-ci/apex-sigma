@@ -12,7 +12,7 @@ async def impersonate(cmd, message, args):
         if message.mentions:
             target = message.mentions[0]
         else:
-            target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.server.members)
+            target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.guild.members)
         if target:
             destination = f'chains/chain_{target.id}.yml'
             if os.path.exists(destination):

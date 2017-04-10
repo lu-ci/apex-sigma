@@ -12,7 +12,7 @@ async def announce(cmd, message, args):
         success = 0
         failed = 0
         announcement = ' '.join(args)
-        for server in cmd.bot.servers:
+        for server in cmd.bot.guilds:
             ann = cmd.db.get_settings(server.id, 'Announcement')
             annch = cmd.db.get_settings(server.id, 'AnnouncementChannel')
             target_ch = discord.utils.find(lambda c: c.id == annch, server.channels)

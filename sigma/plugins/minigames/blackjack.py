@@ -16,8 +16,8 @@ async def blackjack(cmd, message, args):
         embed = discord.Embed(color=0xDB0000, title='❗ You don\'t have that many points!')
         await message.channel.send(None, embed=embed)
         return
-    cmd.db.take_points(message.server, message.author, buyin)
-    instance_id = message.server.id + message.author.id
+    cmd.db.take_points(message.guild, message.author, buyin)
+    instance_id = message.guild.id + message.author.id
     bj_instance = get_bj(instance_id)
     if bj_instance:
         embed = discord.Embed(color=0xDB0000, title='❗ A Blackjack Instance For You Already Exists!')
@@ -35,7 +35,7 @@ async def blackjack(cmd, message, args):
         bj_data = {
             'InstanceID': instance_id,
             'UserID': message.author.id,
-            'ServerID': message.server.id,
+            'ServerID': message.guild.id,
             'Deck': deck,
             'PlayerScore': 0,
             'HouseScore': 0,

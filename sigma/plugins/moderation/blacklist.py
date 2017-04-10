@@ -2,8 +2,8 @@
 
 
 async def blacklist(cmd, message, args):
-    black_users = cmd.db.get_settings(message.server.id, 'BlacklistedUsers')
-    black_chnls = cmd.db.get_settings(message.server.id, 'BlacklistedChannels')
+    black_users = cmd.db.get_settings(message.guild.id, 'BlacklistedUsers')
+    black_chnls = cmd.db.get_settings(message.guild.id, 'BlacklistedChannels')
     if not black_chnls and not black_users:
         response = discord.Embed(color=0x0099FF, title='ℹ Nothing Is Blacklisted Here')
     else:

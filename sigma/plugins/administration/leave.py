@@ -9,7 +9,7 @@ async def leave(cmd, message, args):
         else:
             search_id = args[0]
             try:
-                for server in cmd.bot.servers:
+                for server in cmd.bot.guilds:
                     if server.id == search_id:
                         s_name = server.name
                         await cmd.bot.leave_server(server)

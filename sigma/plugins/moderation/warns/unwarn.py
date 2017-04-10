@@ -12,13 +12,13 @@ async def unwarn(cmd, message, args):
         return
     target = message.mentions[0]
     try:
-        warned_users = cmd.db.get_settings(message.server.id, 'WarnedUsers')
+        warned_users = cmd.db.get_settings(message.guild.id, 'WarnedUsers')
     except KeyError:
-        cmd.db.set_settings(message.server.id, 'WarnedUsers', {})
+        cmd.db.set_settings(message.guild.id, 'WarnedUsers', {})
         warned_users = {}
     if target.id in warned_users:
         del warned_users[target.id]
-        cmd.db.set_settings(message.server.id, 'WarnedUsers', warned_users)
+        cmd.db.set_settings(message.guild.id, 'WarnedUsers', warned_users)
         response = discord.Embed(color=0x66CC66, title=f'✅ {target.name} has been removed from the warning list.')
     else:
         response = discord.Embed(color=0x0099FF, title=f'ℹ {target.name} is not in the list of warned users.')

@@ -15,14 +15,14 @@ async def destroyrole(cmd, message, args):
         await message.channel.send(None, embed=out_content)
         return
     role_qry = ' '.join(args)
-    target_role = matching_role(message.server, role_qry)
+    target_role = matching_role(message.guild, role_qry)
     if not target_role:
         out_content = discord.Embed(type='rich', color=0xFF9900, title='❗ Error')
         out_content.add_field(name='Role Not Found', value='I was unable to find **' + role_qry + '** on this server.')
         await message.channel.send(None, embed=out_content)
     else:
-        await cmd.bot.delete_role(message.server, target_role)
+        await cmd.bot.delete_role(message.guild, target_role)
         out_content = discord.Embed(type='rich', color=0x66cc66,
                                     title='✅ Role ' + role_qry + ' destroyed.')
-        await cmd.bot.create_role(message.server, name=role_qry)
+        await cmd.bot.create_role(message.guild, name=role_qry)
         await message.channel.send(None, embed=out_content)

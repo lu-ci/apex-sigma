@@ -8,7 +8,7 @@ async def cid(cmd, message, args):
         arguments = ' '.join(args)
         if arguments.startswith('<#'):
             chn_id = arguments[2:-1]
-    for channel in message.server.channels:
+    for channel in message.guild.channels:
         if channel.id == chn_id:
             name = channel.name
     embed = discord.Embed(color=0x0099FF)

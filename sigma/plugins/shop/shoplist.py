@@ -2,14 +2,14 @@
 
 
 async def shoplist(cmd, message, args):
-    shop_list = cmd.db.get_settings(message.server.id, 'ShopItems')
+    shop_list = cmd.db.get_settings(message.guild.id, 'ShopItems')
     if not shop_list:
-        cmd.db.set_settings(message.server.id, 'ShopItems', [])
+        cmd.db.set_settings(message.guild.id, 'ShopItems', [])
         shop_list = []
     if len(shop_list) == 0:
         embed = discord.Embed(color=0xFF9900, title='⚠ The Shop Is Empty.')
     else:
-        embed = discord.Embed(color=0x1abc9c, title= ':gem: ' + message.server.name + '\'s Role Shop')
+        embed = discord.Embed(color=0x1abc9c, title= ':gem: ' + message.guild.name + '\'s Role Shop')
         role_out = ''
         def pricecheck(item):
             return int(item['Price'])

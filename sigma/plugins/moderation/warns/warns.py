@@ -4,9 +4,9 @@ from sigma.core.permission import check_kick
 
 async def warns(cmd, message, args):
     try:
-        warned_users = cmd.db.get_settings(message.server.id, 'WarnedUsers')
+        warned_users = cmd.db.get_settings(message.guild.id, 'WarnedUsers')
     except KeyError:
-        cmd.db.set_settings(message.server.id, 'WarnedUsers', {})
+        cmd.db.set_settings(message.guild.id, 'WarnedUsers', {})
         warned_users = {}
     if not check_kick(message.author, message.channel):
         target = message.author
@@ -24,7 +24,7 @@ async def warns(cmd, message, args):
         else:
             warn_user_list = []
             for key in warned_users:
-                for member in message.server.members:
+                for member in message.guild.members:
                     if member.id == warned_users[key]['UserID']:
                         warn_user_list.append(member.name)
             embed = discord.Embed(color=0x0099FF)

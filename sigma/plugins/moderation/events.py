@@ -8,14 +8,14 @@ async def events(cmd, message, args):
                                     title='⛔ Insufficient Permissions. Server Admin Only.')
         await message.channel.send(None, embed=out_content)
         return
-    events_enabled = cmd.db.get_settings(message.server.id, 'RandomEvents')
+    events_enabled = cmd.db.get_settings(message.guild.id, 'RandomEvents')
     if events_enabled:
-        cmd.db.set_settings(message.server.id, 'RandomEvents', False)
+        cmd.db.set_settings(message.guild.id, 'RandomEvents', False)
         out_content = discord.Embed(type='rich', color=0x66cc66,
                                     title='✅ Random Events have been Disabled.')
         await message.channel.send(None, embed=out_content)
     else:
-        cmd.db.set_settings(message.server.id, 'RandomEvents', True)
+        cmd.db.set_settings(message.guild.id, 'RandomEvents', True)
         out_content = discord.Embed(type='rich', color=0x66cc66,
                                     title='✅ Random Events have been Enabled.')
         await message.channel.send(None, embed=out_content)

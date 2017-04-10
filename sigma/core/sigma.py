@@ -1,4 +1,4 @@
-import os
+﻿import os
 import datetime
 import arrow
 import discord
@@ -46,7 +46,7 @@ class Sigma(discord.AutoShardedClient):
         self.init_cooldown()
         self.init_plugins()
         self.ready = False
-        self.server_count = 0
+        self.guild_count = 0
         self.member_count = 0
 
         with open('AUTHORS') as authors_file:
@@ -81,7 +81,7 @@ class Sigma(discord.AutoShardedClient):
         if not DevMode:
             payload = {
                 "token": DiscordListToken,
-                "servers": len(self.servers)
+                "servers": len(self.guilds)
             }
             url = "https://bots.discordlist.net/api.php"
             async with aiohttp.ClientSession() as session:
@@ -131,14 +131,14 @@ class Sigma(discord.AutoShardedClient):
         self.create_cache()
         self.log.info('-----------------------------------')
         stats(self, self.log)
-        self.db.init_server_settings(self.servers)
+        self.db.init_server_settings(self.guilds)
         self.log.info('-----------------------------------')
         self.log.info('Updating Bot Population Stats...')
-        self.db.update_population_stats(self.servers, self.get_all_members())
+        self.db.update_population_stats(self.guilds, self.get_all_members())
         self.log.info('Starting UserList Refactor Node')
         self.loop.create_task(self.db.refactor_users(self.get_all_members()))
         self.log.info('Starting ServerList Refactor Node')
-        self.loop.create_task(self.db.refactor_servers(self.servers))
+        self.loop.create_task(self.db.refactor_servers(self.guilds))
         self.log.info('Updating Bot Listing APIs...')
         self.loop.create_task(self.update_discordlist())
         self.log.info('Launching On-Ready Plugins...')
@@ -183,16 +183,16 @@ class Sigma(discord.AutoShardedClient):
                         self.db.add_stats('CMDCount')
                         if UseCachet:
                             self.loop.create_task(self.cachet_stat_up(1, 1))
-                    if message.server:
+                    if message.guild:
                         if args:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
                             self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
-                                                     message.author.id, message.server.name, message.server.id,
+                                                     message.author.id, message.guild.name, message.guild.id,
                                                      '#' + message.channel.name, message.channel.id, ' '.join(args)))
                         else:
                             msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}]'
                             self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
-                                                     message.author.id, message.server.name, message.server.id,
+                                                     message.author.id, message.guild.name, message.guild.id,
                                                      '#' + message.channel.name, message.channel.id))
                     else:
                         if args:
@@ -209,14 +209,14 @@ class Sigma(discord.AutoShardedClient):
 
     async def on_member_join(self, member):
         if self.ready:
-            self.db.update_population_stats(self.servers, self.get_all_members())
+            self.db.update_population_stats(self.guilds, self.get_all_members())
             for ev_name, event in self.plugin_manager.events['member_join'].items():
                 task = event.call_sp(member)
                 self.loop.create_task(task)
 
     async def on_member_remove(self, member):
         if self.ready:
-            self.db.update_population_stats(self.servers, self.get_all_members())
+            self.db.update_population_stats(self.guilds, self.get_all_members())
             for ev_name, event in self.plugin_manager.events['member_leave'].items():
                 task = event.call_sp(member)
                 self.loop.create_task(task)
@@ -225,16 +225,16 @@ class Sigma(discord.AutoShardedClient):
         await self.update_discordlist()
         self.db.add_new_server_settings(server)
         self.db.update_server_details(server)
-        self.db.update_population_stats(self.servers, self.get_all_members())
+        self.db.update_population_stats(self.guilds, self.get_all_members())
         msg = 'INV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
-        self.db.init_server_settings(self.servers)
+        self.db.init_server_settings(self.guilds)
         if UseCachet:
             self.loop.create_task(self.cachet_stat_up(3, 1))
 
     async def on_server_remove(self, server):
         await self.update_discordlist()
-        self.db.update_population_stats(self.servers, self.get_all_members())
+        self.db.update_population_stats(self.guilds, self.get_all_members())
         msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
         self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
         if UseCachet:

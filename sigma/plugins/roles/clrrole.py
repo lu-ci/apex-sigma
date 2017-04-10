@@ -24,13 +24,13 @@ async def clrrole(cmd, message, args):
                                     title='❗ Invalid Color. Please use HEX.')
         await message.channel.send(None, embed=out_content)
         return
-    role = matching_role(message.server, qry)
+    role = matching_role(message.guild, qry)
     if not role:
         out_content = discord.Embed(type='rich', color=0xFF9900,
                                     title='⚠ ' + qry + ' was not found.')
         await message.channel.send(None, embed=out_content)
         return
-    await cmd.bot.edit_role(message.server, role, color=clr_obj)
+    await cmd.bot.edit_role(message.guild, role, color=clr_obj)
     edit_success = discord.Embed(type='rich', color=0x66cc66,
                                  title='✅ Color Changed.')
     await message.channel.send(None, embed=edit_success)

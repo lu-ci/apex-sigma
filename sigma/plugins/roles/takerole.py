@@ -20,7 +20,7 @@ async def takerole(cmd, message, args):
         await message.channel.send(None, embed=out_content)
         return
     role_qry = ' '.join(args[1:])
-    target_role = matching_role(message.server, role_qry)
+    target_role = matching_role(message.guild, role_qry)
     target_user = message.mentions[0]
     user_contained_role = user_matching_role(target_user, role_qry)
     if not target_role:
@@ -32,7 +32,7 @@ async def takerole(cmd, message, args):
             await cmd.bot.remove_roles(target_user, target_role)
             out_content = discord.Embed(type='rich', color=0x66cc66,
                                         title='✅ Role ' + role_qry + ' removed from **' + target_user.name + '**.')
-            await cmd.bot.create_role(message.server, name=role_qry)
+            await cmd.bot.create_role(message.guild, name=role_qry)
             await message.channel.send(None, embed=out_content)
         else:
             out_content = discord.Embed(type='rich', color=0xFF9900, title='❗ Error')

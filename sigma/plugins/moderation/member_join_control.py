@@ -1,5 +1,5 @@
-async def member_join_control(ev, member):
-    server = member.server
+﻿async def member_join_control(ev, member):
+    server = member.guild
     greet = ev.db.get_settings(server.id, 'Greet')
     greet_pm = ev.db.get_settings(server.id, 'GreetPM')
     try:
@@ -28,13 +28,13 @@ async def member_join_control(ev, member):
             await ev.bot.send_message(member, greet_message)
     if autorole:
         target = None
-        for role in member.server.roles:
+        for role in member.guild.roles:
             if role.name.lower() == autorole.lower():
                 target = role
                 break
         if target:
             await ev.bot.add_roles(member, target)
         else:
-            await ev.bot.send_message(member.server.default_channel,
+            await ev.bot.send_message(member.guild.default_channel,
                                       'I tried to assign the autorole to the user, but the AutoRole specified was not found so I reset the settings.')
             ev.db.set_settings(server.id, 'AutoRole', None)

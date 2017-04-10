@@ -23,7 +23,7 @@ async def give(cmd, message, args):
         await message.channel.send(None, embed=out_content)
         return
     else:
-        cmd.db.take_points(message.server, message.author, amount)
-        cmd.db.add_points(message.server, target_user, amount)
+        cmd.db.take_points(message.guild, message.author, amount)
+        cmd.db.add_points(message.guild, target_user, amount)
         out_content = discord.Embed(color=0x66CC66, title=f'✅ {Currency} Transferred.')
         await message.channel.send(None, embed=out_content)

@@ -10,9 +10,9 @@ async def warnlimit(cmd, message, args):
         return
     if not args:
         try:
-            warn_limit = cmd.db.get_settings(message.server.id, 'WarnLimit')
+            warn_limit = cmd.db.get_settings(message.guild.id, 'WarnLimit')
         except KeyError:
-            cmd.db.set_settings(message.server.id, 'WarnLimit', 2)
+            cmd.db.set_settings(message.guild.id, 'WarnLimit', 2)
             warn_limit = 2
         out_content = discord.Embed(color=0x0099FF, title='ℹ Current Warning Limit Is ' + str(warn_limit))
         await message.channel.send(None, embed=out_content)
@@ -23,6 +23,6 @@ async def warnlimit(cmd, message, args):
             out_content = discord.Embed(color=0xDB0000, title='❗ Invalid Number')
             await message.channel.send(None, embed=out_content)
             return
-        cmd.db.set_settings(message.server.id, 'WarnLimit', new_limit)
+        cmd.db.set_settings(message.guild.id, 'WarnLimit', new_limit)
         out_content = discord.Embed(color=0x0099FF, title='ℹ New Limit Set To ' + str(new_limit))
         await message.channel.send(None, embed=out_content)

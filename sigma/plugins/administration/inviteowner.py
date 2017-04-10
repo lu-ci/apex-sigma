@@ -5,7 +5,7 @@ async def inviteowner(cmd, message, args):
     if message.author.id in permitted_id:
         if args:
             server_id_lookup = args[0]
-            for server in cmd.bot.servers:
+            for server in cmd.bot.guilds:
                 if server.id == server_id_lookup:
                     try:
                         invite = await cmd.bot.create_invite(server, max_uses=1)

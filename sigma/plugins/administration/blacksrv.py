@@ -8,7 +8,7 @@ async def blacksrv(cmd, message, args):
             await message.channel.send(cmd.help())
             return
         target = None
-        for server in cmd.bot.servers:
+        for server in cmd.bot.guilds:
             if server.id == args[0]:
                 target = server
                 break

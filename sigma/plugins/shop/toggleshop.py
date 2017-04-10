@@ -7,13 +7,13 @@ async def toggleshop(cmd, message, args):
         status = discord.Embed(type='rich', color=0xDB0000,
                                title='⛔ Insufficient Permissions. Server Admin Only.')
     else:
-        shop_enabled = cmd.db.get_settings(message.server.id, 'ShopEnabled')
+        shop_enabled = cmd.db.get_settings(message.guild.id, 'ShopEnabled')
         if shop_enabled:
-            cmd.db.set_settings(message.server.id, 'ShopEnabled', False)
+            cmd.db.set_settings(message.guild.id, 'ShopEnabled', False)
             status = discord.Embed(type='rich', color=0x66CC66,
                                    title='✅ The shop has been Disabled.')
         else:
-            cmd.db.set_settings(message.server.id, 'ShopEnabled', True)
+            cmd.db.set_settings(message.guild.id, 'ShopEnabled', True)
             status = discord.Embed(type='rich', color=0x66CC66,
                                    title='✅ The shop has been Enabled.')
     await message.channel.send(None, embed=status)

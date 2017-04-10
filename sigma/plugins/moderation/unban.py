@@ -8,14 +8,14 @@ async def unban(cmd, message, args):
         user_q = args[0]
         if message.author is not user_q:
             if check_ban(message.author, channel):
-                ban_list = await cmd.bot.get_bans(message.server)
+                ban_list = await cmd.bot.get_bans(message.guild)
                 target_user = None
                 for user in ban_list:
                     if user.name.lower() == user_q.lower():
                         target_user = user
                         break
                 if target_user:
-                    await cmd.bot.unban(message.server, target_user)
+                    await cmd.bot.unban(message.guild, target_user)
                     out_content = discord.Embed(type='rich', color=0x66CC66,
                                                 title='✅ ' + target_user.name + 'Unbanned.')
                     await message.channel.send(None, embed=out_content)

@@ -20,16 +20,16 @@ async def volume(cmd, message, args):
             await message.channel.send(None, embed=embed)
             return
         else:
-            curr_vol = cmd.music.get_volume(cmd.db, message.server.id)
-            player = cmd.music.get_player(message.server.id)
+            curr_vol = cmd.music.get_volume(cmd.db, message.guild.id)
+            player = cmd.music.get_player(message.guild.id)
             player.volume = new_vol / 100
-            cmd.music.set_volume(cmd.db, message.server.id, new_vol)
+            cmd.music.set_volume(cmd.db, message.guild.id, new_vol)
             embed = discord.Embed(color=0x696969, title=':loud_sound: Volume Changed')
             embed.add_field(name='New', value=f'```py\n{new_vol}\n```', inline=True)
             embed.add_field(name='Old', value=f'```\n{curr_vol}\n```', inline=True)
             await message.channel.send(None, embed=embed)
     else:
-        curr_vol = cmd.music.get_volume(cmd.db, message.server.id)
+        curr_vol = cmd.music.get_volume(cmd.db, message.guild.id)
         embed = discord.Embed(color=0x696969)
         embed.add_field(name=':loud_sound: Current Volume', value=f'```\n{curr_vol}\n```')
         await message.channel.send(None, embed=embed)

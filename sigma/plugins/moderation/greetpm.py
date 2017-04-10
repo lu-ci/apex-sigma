@@ -8,15 +8,15 @@ async def greetpm(cmd, message, args):
                                     title='⛔ Insufficient Permissions. Server Admin Only.')
         await message.channel.send(None, embed=out_content)
     else:
-        active = cmd.db.get_settings(message.server.id, 'GreetPM')
+        active = cmd.db.get_settings(message.guild.id, 'GreetPM')
         if active:
-            cmd.db.set_settings(message.server.id, 'GreetPM', False)
+            cmd.db.set_settings(message.guild.id, 'GreetPM', False)
             out_content = discord.Embed(color=0x33CC33)
             out_content.add_field(name='✅ Success',
                                   value='Greeting via private message has been disabled.')
             await message.channel.send(None, embed=out_content)
         else:
-            cmd.db.set_settings(message.server.id, 'GreetPM', True)
+            cmd.db.set_settings(message.guild.id, 'GreetPM', True)
             out_content = discord.Embed(color=0x33CC33)
             out_content.add_field(name='✅ Success',
                                   value='Greeting via private message has been enabled.')

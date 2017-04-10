@@ -17,7 +17,7 @@ async def queue(cmd, message, args):
             if '?list=' in qry:
                 list_id = qry.split('list=')[1].split('&')[0]
                 plist = pafy.get_playlist2(list_id)
-                item_count = yt_playlist_adder(message.server.id, cmd, message.author, plist)
+                item_count = yt_playlist_adder(message.guild.id, cmd, message.author, plist)
                 embed_title = f'ℹ Added {item_count} items from {plist.title}.'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
                 await message.channel.send(None, embed=embed)
@@ -49,7 +49,7 @@ async def queue(cmd, message, args):
                     'timestamp': arrow.now().timestamp
                 }
                 embed = discord.Embed(color=0x66CC66)
-                cmd.bot.music.add_to_queue(message.server.id, data)
+                cmd.bot.music.add_to_queue(message.guild.id, data)
                 if sound_type == 0:
                     embed.add_field(name='✅ Added To Queue', value=sound.title)
                     embed.set_thumbnail(url=sound.thumb)
@@ -65,7 +65,7 @@ async def queue(cmd, message, args):
                     return
                 await message.channel.send(None, embed=embed)
         else:
-            q = cmd.bot.music.get_queue(message.server.id)
+            q = cmd.bot.music.get_queue(message.guild.id)
             if q.empty():
                 embed = discord.Embed(color=0x0099FF, title='ℹ The Queue Is Empty')
                 await message.channel.send(None, embed=embed)
