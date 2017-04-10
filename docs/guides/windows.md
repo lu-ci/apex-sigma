@@ -52,13 +52,16 @@
 ## Setting Up MongoDB
 ### Note
 *This is actually just a courtesy, if you screw up, use Google, we won't really help you set up MongoDB...*
+
 ### Installation
 1. Really nothing special, just run of the mill casual *Hit next until it's done* installation, unless you want to set some things manually.
+
 ### Before Running
 1. Go to `C:\`
 2. Make a folder named `data`
 3. Open `data`
 4. Make a folder named `db`
+
 ### Starting MongoDB
 1. Go to where MongoDB was installed. Most likely `C:\Program Files\MongoDB`
 2. Go to `Server\3.X\bin`
@@ -77,7 +80,11 @@
 7. Keep this page open for now.
 
 ### Editing The config.py
-*Initially the config.py file won't exist, make it by simply copying or renaming config_example.py*
+#### Note
+*Initially the `config.py` file won't exist, make it by simply making a copy of `config_example.py` and renaming it to `config.py`*
+*Be careful! Be mindful of your systems settings. If you have file extentions hidden, name it just `config`.*
+
+#### Editing
 1. Open `config.py` with a UTF-8 compatible editor of your choosing. This should **NEVER** be edited with the regular Notepad or Wordpad.
 2. In `config.py` all variables look like `Something = getenv('Something') or ''`
 3. What you want to do is edit the empty space in the quotation marks after the `or`
@@ -93,4 +100,5 @@ Token = getenv('DiscordBotToken') or 'CCB9oKas8asa4BRZlohs2as1nwMmWpw2c8bIsm'`
 ```
 8. Save those changes if you didn't already.
 9. You can now run the bot, just launch `run.py`.
+
 *(Or open the command prompt and navigate to the project directory and type `python run.py`)*

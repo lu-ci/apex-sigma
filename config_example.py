@@ -1,7 +1,7 @@
 from os import getenv, path
 
 # This always points to the directory of the application
-# where the config.py file is located
+# Where the config.py file is located, don't touch it unless you know what you're doing
 AppRoot = path.abspath(path.dirname(__file__))
 
 # Bot Token
@@ -53,6 +53,7 @@ mal_pw = getenv('mal_pw') or ''
 MainServerURL = getenv('MainServerURL') or 'http://localhost/'
 UseCachet = False
 CachetToken = getenv('CachetToken') or ''
+CachetURL = getenv('CachetURL') or ''
 Prefix = '>>'
 Currency = 'Kud ⚜'
 SlotWinChannelID = '12345679123456789'
