@@ -94,7 +94,7 @@ async def anime(cmd, message, args):
         overlay = Image.open(cmd.resource('img/overlay_anime.png'))
         base.paste(ani_img, (0, 0))
         base.paste(overlay, (0, 0), overlay)
-        font = ImageFont.truetype(cmd.resource("font/big_noodle_titling_oblique.ttf"), 28)
+        font = ImageFont.truetype(cmd.resource("fonts/big_noodle_titling_oblique.ttf"), 28)
 
         imgdraw = ImageDraw.Draw(base)
         imgdraw.text((4, 4), '#' + ani_id, (255, 255, 255), font=font)
