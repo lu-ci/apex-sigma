@@ -183,26 +183,19 @@ class Sigma(discord.AutoShardedClient):
                         self.db.add_stats('CMDCount')
                         if UseCachet:
                             self.loop.create_task(self.cachet_stat_up(1, 1))
+                    athr = message.author
+                    msg = f'CMD: {cmd} | USR: {athr.name}#{athr.discriminator} [{athr.id}]'
                     if message.guild:
+                        msg += f' | SRV: {message.guild.name} [{message.guild.id}]'
+                        msg += f' | CHN: #{message.channel.name} [{message.channel.id}]'
                         if args:
-                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}] | ARGS: {:s}'
-                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
-                                                     message.author.id, message.guild.name, message.guild.id,
-                                                     '#' + message.channel.name, message.channel.id, ' '.join(args)))
-                        else:
-                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | SRV: {:s} [{:s}] | CHN: {:s} [{:s}]'
-                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
-                                                     message.author.id, message.guild.name, message.guild.id,
-                                                     '#' + message.channel.name, message.channel.id))
+                            msg = f'{msg} | ARGS: {" ".join(args)}'
+
                     else:
+                        msg += f' | PRIVATE MESSAGE'
                         if args:
-                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | PRIVATE MESSAGE | ARGS: {:s}'
-                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
-                                                     message.author.id, ' '.join(args)))
-                        else:
-                            msg = 'CMD: {:s} | USR: {:s} [{:s}] | PRIVATE MESSAGE'
-                            self.log.info(msg.format(cmd, message.author.name + '#' + message.author.discriminator,
-                                                     message.author.id))
+                            msg += f' | ARGS: {" ".join(args)}'
+                    self.log.info(msg)
                 except KeyError:
                     # no such command
                     pass
@@ -226,8 +219,8 @@ class Sigma(discord.AutoShardedClient):
         self.db.add_new_server_settings(server)
         self.db.update_server_details(server)
         self.db.update_population_stats(self.guilds, self.get_all_members())
-        msg = 'INV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
-        self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
+        msg = f'INV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
+        self.log.info(msg)
         self.db.init_server_settings(self.guilds)
         if UseCachet:
             self.loop.create_task(self.cachet_stat_up(3, 1))
@@ -235,8 +228,8 @@ class Sigma(discord.AutoShardedClient):
     async def on_server_remove(self, server):
         await self.update_discordlist()
         self.db.update_population_stats(self.guilds, self.get_all_members())
-        msg = 'RMV | SRV: {:s} [{:s}] | OWN: {:s} [{:s}]'
-        self.log.info(msg.format(server.name, server.id, server.owner.name, server.owner.id))
+        msg = f'RMV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
+        self.log.info(msg)
         if UseCachet:
             self.loop.create_task(self.cachet_stat_up(3, -1))
 

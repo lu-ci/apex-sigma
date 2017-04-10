@@ -16,10 +16,10 @@ async def help(cmd, message, args):
         help_out.add_field(name='GitHub', value='[**LINK**](https://github.com/aurora-pro/apex-sigma)')
         help_out.add_field(name='Official Server', value='[**LINK**](https://discordapp.com/invite/Ze9EfTd)')
         help_out.add_field(name='Add Me',
-                           value='[**LINK**](https://discordapp.com/oauth2/authorize?client_id=' + cmd.bot.user.id + '&scope=bot&permissions=8)')
+                           value=f'[**LINK**](https://discordapp.com/oauth2/authorize?client_id={cmd.bot.user.id}&scope=bot&permissions=8)')
         if message.guild:
             help_out.add_field(name='Ranking',
-                               value='[**LINK**](' + MainServerURL + 'ranking?sid=' + message.guild.id + ')')
+                               value=f'[**LINK**]({MainServerURL}ranking?sid={message.guild.id})')
         help_out.set_footer(
             text='For additional info and help on how to use a command use [' + Prefix + 'help COMMAND_NAME] (Example: ' + Prefix + 'help slots).')
         help_out.set_image(url='http://i.imgur.com/TRSdGni.png')

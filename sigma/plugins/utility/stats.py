@@ -8,15 +8,18 @@ async def stats(cmd, message, args):
     sigma_avatar = 'https://i.imgur.com/mGyqMe1.png'
     current_time = arrow.utcnow().timestamp
     upseconds = current_time - cmd.bot.start_time
+    permed_ids = []
+    for ownr in permitted_id:
+        permed_ids.append(str(ownr))
     uptime = str(datetime.timedelta(seconds=upseconds))
-    owners = ', '.join(permitted_id)
+    owners = ', '.join(permed_ids)
     if message.guild:
         for m in message.guild.members:
             if m.id in permitted_id:
                 if m.nick:
-                    owners = owners.replace(m.id, m.nick)
+                    owners = owners.replace(str(m.id), m.nick)
                 else:
-                    owners = owners.replace(m.id, m.name)
+                    owners = owners.replace(str(m.id), m.name)
     full_version = f'{cmd.bot.v_major}.{cmd.bot.v_minor}.{cmd.bot.v_patch}'
     embed = discord.Embed(color=0x1abc9c)
     embed.set_author(name='Apex Sigma', url='https://auroraproject.xyz/', icon_url=sigma_avatar)
