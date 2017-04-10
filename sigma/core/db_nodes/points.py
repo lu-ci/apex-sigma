@@ -1,4 +1,5 @@
 def default_data(server, user, points, add):
+    sid = str(server.id)
     total_pts = 0
     current_pts = 0
     if add:
@@ -8,31 +9,32 @@ def default_data(server, user, points, add):
         'UserID': user.id,
         'Total': total_pts,
         'Current': current_pts,
-        'Servers': {server.id: total_pts}
+        'Servers': {sid: total_pts}
     }
     return data
 
 
 def point_manipulation(db, server, user, points, add):
     collection = 'PointSystem'
+    sid = str(server.id)
     data = db[collection].find_one({'UserID': user.id})
     if data:
         total_pts = data['Total']
         servers = data['Servers']
         cur_pts = data['Current']
-        if server.id in servers:
+        if sid in servers:
             if add:
-                srv_pts = servers[server.id] + points
+                srv_pts = servers[sid] + points
                 total_pts += points
             else:
-                srv_pts = servers[server.id] - points
+                srv_pts = servers[sid] - points
         else:
             srv_pts = points
         if add:
             cur_pts += points
         else:
             cur_pts -= points
-        servers.update({server.id: srv_pts})
+        servers.update({sid: srv_pts})
         db[collection].update_one({'UserID': user.id},
                                   {'$set': {'Servers': servers, 'Total': total_pts, 'Current': cur_pts}})
     else:
