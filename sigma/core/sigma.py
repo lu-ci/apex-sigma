@@ -6,7 +6,7 @@ import yaml
 import aiohttp
 
 from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
-from config import UseCachet, CachetToken
+from config import UseCachet, CachetToken, CachetURL
 from .plugman import PluginManager
 from .database import Database
 from .music import Music
@@ -92,7 +92,7 @@ class Sigma(discord.Client):
         try:
             headers = {'X-Cachet-Token': CachetToken}
             payload = {'value': value}
-            url = f"https://status.auroraproject.xyz/api/v1/metrics/{metric_id}/points"
+            url = f"{CachetURL}api/v1/metrics/{metric_id}/points"
             async with aiohttp.ClientSession() as session:
                 conn = await session.post(url, data=payload, headers=headers)
                 await conn.release()

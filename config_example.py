@@ -53,6 +53,7 @@ mal_pw = getenv('mal_pw') or ''
 MainServerURL = getenv('MainServerURL') or 'http://localhost/'
 UseCachet = False
 CachetToken = getenv('CachetToken') or ''
+CachetURL = getenv('CachetURL') or ''
 Prefix = '>>'
 Currency = 'Kud ⚜'
 SlotWinChannelID = '12345679123456789'
