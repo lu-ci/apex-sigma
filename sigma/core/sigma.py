@@ -72,7 +72,6 @@ class Sigma(discord.AutoShardedClient):
         current_time.isoformat()
         self.log.info('Sending Client Startup Signal...')
         super().run(token)
-        self.log.info('Discord Client Startup Signal Sent')
 
     def init_logger(self):
         self.log = create_logger('Sigma')
