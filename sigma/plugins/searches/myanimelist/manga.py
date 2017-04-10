@@ -49,10 +49,10 @@ async def manga(cmd, message, args):
         ani_no = 0
     try:
         if list_message:
-            await cmd.bot.delete_message(list_message)
+            await list_message.delete()
         if choice:
             try:
-                await cmd.bot.delete_message(choice)
+                await choice.delete()
             except:
                 pass
         await cmd.bot.send_typing(message.channel)

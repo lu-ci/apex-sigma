@@ -4,7 +4,7 @@
 async def wksave(cmd, message, args):
     coll = 'WaniKani'
     try:
-        await cmd.bot.delete_message(message)
+        await message.delete()
     except Exception as e:
         cmd.log.error(e)
         cmd.log.info('Message in private channel, unable to delete...')

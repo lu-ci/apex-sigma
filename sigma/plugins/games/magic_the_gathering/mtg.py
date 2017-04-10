@@ -28,7 +28,7 @@ async def mtg(cmd, message, args):
             return
 
         choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
-        await cmd.bot.delete_message(selector)
+        await selector.delete()
         await cmd.bot.send_typing(message.channel)
 
         try:

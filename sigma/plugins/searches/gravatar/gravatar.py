@@ -4,7 +4,7 @@ import discord
 
 async def gravatar(cmd, message, args):
     try:
-        await cmd.bot.delete_message(message)
+        await message.delete()
     except:
         cmd.log.error('Couldn\'t delete the gravatar image calling message.')
         pass

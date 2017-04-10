@@ -25,7 +25,7 @@ async def hearthstone(cmd, message, args):
                                                       card_list + '\n```\nPlease type the number corresponding to the card of your choice `(1 - ' + str(
                                                           len(response)) + ')`')
                 choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
-                await cmd.bot.delete_message(selector)
+                await selector.delete()
                 try:
                     card_no = int(choice.content) - 1
                 except:
