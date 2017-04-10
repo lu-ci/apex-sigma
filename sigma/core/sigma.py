@@ -67,12 +67,12 @@ class Sigma(discord.Client):
             self.beta_state = content['beta']
 
     def run(self, token):
-        self.log.info('Starting up...')
         self.start_time = arrow.utcnow().timestamp
         current_time = datetime.datetime.now().time()
         current_time.isoformat()
-
+        self.log.info('Sending Client Startup Signal...')
         super().run(token)
+        self.log.info('Discord Client Startup Signal Sent')
 
     def init_logger(self):
         self.log = create_logger('Sigma')
