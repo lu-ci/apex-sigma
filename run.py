@@ -12,10 +12,8 @@ if __name__ == '__main__':
         exit(404)
     else:
         print('config.py present, continuing...')
-
-    client = Sigma()
-
     if not Token or Token == '':
         print('Token not provided, please open config.py and place your token.')
         exit(410)
+    client = Sigma()
     client.run(Token)

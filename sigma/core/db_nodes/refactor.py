@@ -1,7 +1,6 @@
 import asyncio
 import arrow
 from sigma.core.utils import user_avatar
-from sigma.core.logger import create_logger
 
 async def refactor_users_node(db, usrgen):
     usrs = list(usrgen)
