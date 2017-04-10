@@ -16,7 +16,7 @@ async def takepts(cmd, message, args):
                 out = discord.Embed(title='❗ Invalid Input.', color=0xDB0000)
                 await message.channel.send(None, embed=out)
                 return
-            current_points = cmd.db.get_points(message.guild, target)['Current']
+            current_points = cmd.db.get_points(target)['Current']
             if current_points < amount:
                 out = discord.Embed(title=f'❗ They don\'t have that many {Currency}.', color=0xDB0000)
                 await message.channel.send(None, embed=out)
