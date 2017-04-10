@@ -89,4 +89,41 @@ This controls the `Now Playing GAME_NAME` status in Discord.
 If this is active the `>>setgame` command will be automatically overwritten every 60 seconds.
 Which is the rotation time of the status clockwork.
 
-##
+## Prefix
+**Type**: `String`
+
+Sets the prefix of the bot's commands.
+By default it's `>>`, making commands be `>>help` and `>>stats`.
+If you set it to `69`, the commands will be `69help` and `69stats`.
+
+## Currency
+**Type**: `String`
+
+Here you can set what you want the currency of the bot to be.
+By default it's `Kud ⚜` but you can change it to whatever you want.
+If you do replace the icon on the right side, replace it with a UTF-8 character.
+
+## SlotWinChannelID
+**Type**: `String`
+
+The ID of the channel you want to bot to report to when somebody wins in a slot machine minigame.
+A channel's ID can be obtained with the `>>cid` command.
+If you want to disable this, set it to `None`, like this:
+```python
+SlotWinChannelID = None
+```
+
+## DefaultVolume
+**Type**: `Integer`
+
+Sets the default volume of the music player.
+If it's the first time a server plays music or have never used the `>>volume` command the bot will use this value instead.
+This can be from `0` to `200`.
+You can set it to something else. But that's still the maximum regardless.
+
+## permitted_id
+**Type**: `List Of Strings`
+
+A list of User IDs that can access Bot Owner commands.
+You can have as many as you like, just be sure to follow proper list formatting.
+And make sure they're all strings.
