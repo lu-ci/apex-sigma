@@ -12,7 +12,7 @@ async def pmredirect(ev, message, args):
         else:
             if not message.content.startswith(Prefix) and author.id not in permitted_id:
                 pm_response = discord.Embed(color=0x0099FF, title=f'ℹ Type `{Prefix}help` for info on how to use me!')
-                await ev.bot.send_message(message.channel, None, embed=pm_response)
+                await ev.channel.send(None, embed=pm_response)
             ev.log.info(f'User {author.name} [{author.id}] sent a private message.')
             embed = discord.Embed(color=0x0099FF)
             if message.content and message.content != '':
