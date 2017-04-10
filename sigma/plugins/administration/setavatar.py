@@ -15,7 +15,7 @@ async def setavatar(cmd, message, args):
         try:
             with aiohttp.Timeout(10):
                 async with aiosession.get(thing) as res:
-                    await cmd.bot.edit_profile(avatar=await res.read())
+                    await cmd.bot.user.edit(avatar=await res.read())
                     embed = discord.Embed(title='✅ New Avatar Set', color=0x66CC66)
                     await message.channel.send(None, embed=embed)
                     await aiosession.close()
@@ -29,7 +29,7 @@ async def setavatar(cmd, message, args):
             try:
                 with aiohttp.Timeout(10):
                     async with aiosession.get(thing) as res:
-                        await cmd.bot.edit_profile(avatar=await res.read())
+                        await cmd.bot.user.edit(avatar=await res.read())
                         embed = discord.Embed(title='✅ New Avatar Set', color=0x66CC66)
                         await message.channel.send(None, embed=embed)
             except:
