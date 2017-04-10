@@ -1,4 +1,4 @@
-import random
+﻿import random
 import discord
 import aiohttp
 
@@ -14,4 +14,4 @@ async def boobs(cmd, message, args):
     image_url = 'http://media.oboobs.ru/' + data['preview']
     embed = discord.Embed(color=0x9933FF)
     embed.set_image(url=image_url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

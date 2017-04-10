@@ -1,4 +1,4 @@
-from discord import Embed
+﻿from discord import Embed
 import lxml.html as l
 import aiohttp
 
@@ -27,4 +27,4 @@ async def bash(cmd, message, args):
     embed = Embed(type='rich', color=0XC08000, title=':scroll: A Bash Quote', description=f'```xml\n{text}\n```')
     embed.set_footer(text='ID: {} | Score: {}'.format(quote['id'], quote['score']))
 
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

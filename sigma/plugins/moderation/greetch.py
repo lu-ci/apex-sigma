@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 
 
@@ -12,4 +12,4 @@ async def greetch(cmd, message, args):
             target_channel = message.channel
         cmd.db.set_settings(message.server.id, 'GreetChannel', target_channel.id)
         embed = discord.Embed(color=0x66CC66, title=f'✅ Greeting Channel Changed To {target_channel.name}')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

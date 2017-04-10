@@ -1,4 +1,4 @@
-import os
+﻿import os
 import aiohttp
 from lxml import html
 from io import BytesIO
@@ -15,7 +15,7 @@ async def manga(cmd, message, args):
     choice = None
     mal_input = ' '.join(args)
     if mal_input == '':
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     mal_url = 'https://myanimelist.net/api/manga/search.xml?q=' + mal_input
     async with aiohttp.ClientSession() as session:
@@ -34,14 +34,14 @@ async def manga(cmd, message, args):
                                                       list_text + '\n```\nPlease type the number corresponding to the manga of your choice `(1 - ' + str(
                                                           len(entries)) + ')`')
         except:
-            await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
+            await message.channel.send('The list is way too big, please be more specific...')
             return
 
         choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
         try:
             ani_no = int(choice.content) - 1
         except:
-            await cmd.bot.send_message(message.channel, 'Not a number or timed out... Please start over')
+            await message.channel.send('Not a number or timed out... Please start over')
             return
         if choice is None:
             return
@@ -101,13 +101,13 @@ async def manga(cmd, message, args):
         imgdraw.text((227, 222), air, (255, 255, 255), font=font)
         base.save('cache/manga_' + message.author.id + '.png')
         await cmd.bot.send_file(message.channel, 'cache/manga_' + message.author.id + '.png')
-        await cmd.bot.send_message(message.channel, '```\n' + synopsis[
+        await message.channel.send('```\n' + synopsis[
                                                               :256] + '...\n```\nMore at: <https://myanimelist.net/manga/' + ani_id + '/>\n')
         os.remove('cache/manga_' + message.author.id + '.png')
     except IndexError:
-        await cmd.bot.send_message(message.channel, 'Number out of range, please start over...')
+        await message.channel.send('Number out of range, please start over...')
     except UnboundLocalError:
         pass
     except Exception as e:
         cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, 'Not found or API dun goofed...')
+        await message.channel.send('Not found or API dun goofed...')

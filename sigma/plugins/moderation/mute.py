@@ -9,7 +9,7 @@ async def mute(cmd, message, args):
     channel = message.channel
     server = message.server
     if not message.mentions:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     user_q = message.mentions[0]
     overwrite = discord.PermissionOverwrite()
@@ -21,7 +21,7 @@ async def mute(cmd, message, args):
                     timeout_period = int(args[0])
                 except:
                     embed = discord.Embed(color=0xDB0000, title='❗ Invalid number of seconds for the timeout.')
-                    await cmd.bot.send_message(message.channel, None, embed=embed)
+                    await message.channel.send(None, embed=embed)
                     return
             else:
                 timeout_period = None
@@ -30,7 +30,7 @@ async def mute(cmd, message, args):
                     if check_write(user_q, chan):
                         await cmd.bot.edit_channel_permissions(chan, user_q, overwrite)
             embed = discord.Embed(color=0x66CC66, title='✅ ' + user_q.name + ' muted.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             if timeout_period:
                 await asyncio.sleep(timeout_period)
                 for chan in server.channels:
@@ -38,8 +38,8 @@ async def mute(cmd, message, args):
                         if not check_write(user_q, chan):
                             await cmd.bot.delete_channel_permissions(chan, user_q)
                 embed = discord.Embed(color=0x66CC66, title='✅ ' + user_q.name + ' can write again.')
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)
         else:
             out_content = discord.Embed(type='rich', color=0xDB0000,
                                         title='⛔ Insufficient Permissions. Requires Manage Messages and Manage Roles Permissions.')
-            await cmd.bot.send_message(message.channel, None, embed=out_content)
+            await message.channel.send(None, embed=out_content)

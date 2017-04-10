@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_admin
 
 
@@ -18,4 +18,4 @@ async def bye(cmd, message, args):
             cmd.db.set_settings(message.server.id, 'Bye', False)
             embed = discord.Embed(color=0x66CC66,
                                   title='✅ Goodbye Messages Disabled')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

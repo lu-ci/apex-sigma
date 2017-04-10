@@ -15,7 +15,7 @@ async def wfwiki(cmd, message, args):
                     article_id = search_json['items'][0]['id']
                 except:
                     embed = discord.Embed(color=0x696969, title='🔍 Nothing Found')
-                    await cmd.bot.send_message(message.channel, None, embed=embed)
+                    await message.channel.send(None, embed=embed)
                     return
                 article_url = search_json['items'][0]['url']
             article_data_url = f'http://warframe.wikia.com/api/v1/Articles/AsSimpleJson?id={article_id}'
@@ -32,4 +32,4 @@ async def wfwiki(cmd, message, args):
         embed.add_field(name=art_title, value=f'```\n{art_summ}\n```')
         icon_url = 'http://fc08.deviantart.net/fs70/f/2013/362/8/b/warframe_icon__alternative__by_bokuwatensai-d6zs6fz.png'
         embed.set_author(name='Warframe Wikia', icon_url=icon_url, url=article_url)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

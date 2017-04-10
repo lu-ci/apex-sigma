@@ -5,7 +5,7 @@ async def disconnect(cmd, message, args):
     if not message.author.voice_channel:
         embed = discord.Embed(
             title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     voice = cmd.bot.voice_client_in(message.server)
     if voice:
@@ -16,4 +16,4 @@ async def disconnect(cmd, message, args):
     else:
         embed = discord.Embed(
             title='⚠ I am not in a voice channel', color=0xFF9900)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

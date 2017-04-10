@@ -8,7 +8,7 @@ async def bjdraw(cmd, message, args):
     instance = get_bj(instance_id)
     if not instance:
         embed = discord.Embed(color=0xDB0000, title='❗ No active blackjack games found for you.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     deck = instance['Deck']
     p_pts = instance['PlayerScore']
@@ -41,7 +41,7 @@ async def bjdraw(cmd, message, args):
         embed.add_field(name=em_p_nam, value=em_p_val)
         embed.add_field(name=em_h_nam, value=em_h_val)
         del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
 
     if new_p_score == 21 or new_h_score > 21:
@@ -52,9 +52,9 @@ async def bjdraw(cmd, message, args):
         embed.add_field(name=em_h_nam, value=em_h_val)
         embed.set_footer(text='You have been awarded ' + str(prize) + ' points.')
         del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)
     bj_data = {
         'InstanceID': instance['InstanceID'],
         'UserID': instance['UserID'],

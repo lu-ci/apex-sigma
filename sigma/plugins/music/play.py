@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import asyncio
 from sigma.core.utils import user_avatar
 from .init_clock import init_clock
@@ -17,14 +17,14 @@ async def play(cmd, message, args):
         if not message.author.voice_channel:
             embed = discord.Embed(
                 title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return
 
         srv_queue = cmd.music.get_queue(message.server.id)
         if len(srv_queue.queue) == 0:
             embed = discord.Embed(
                 title='⚠ The queue is empty', color=0xFF9900)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return
         cmd.music.add_init(message.server.id)
         cmd.bot.loop.create_task(init_clock(cmd.music, message.server.id))
@@ -39,14 +39,14 @@ async def play(cmd, message, args):
                 embed = discord.Embed(color=0xDB0000)
                 embed.add_field(name='❗ I was unable to connect.',
                                 value='The most common cause is your server being too far or a poor connection.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
         player = cmd.music.get_player(message.server.id)
         if player:
             if player.is_playing():
                 embed = discord.Embed(
                     title='⚠ Already playing in ' + cmd.bot.voice_client_in(message.server).channel.name,
                     color=0xFF9900)
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)
                 return
         voice_instance = cmd.bot.voice_client_in(message.server)
         while cmd.music.get_queue(message.server.id) and len(cmd.music.get_queue(message.server.id).queue) != 0:
@@ -77,7 +77,7 @@ async def play(cmd, message, args):
                                  icon_url=user_avatar(item['requester']), url=item['url'])
             else:
                 return
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             while not player.is_done():
                 await asyncio.sleep(2)
             cmd.music.kill_player(message.server.id)

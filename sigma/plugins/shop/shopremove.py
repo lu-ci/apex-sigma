@@ -7,12 +7,12 @@ async def shopremove(cmd, message, args):
     if not check_admin(message.author, message.channel):
         status = discord.Embed(type='rich', color=0xDB0000,
                                title='⛔ Insufficient Permissions. Server Admin Only.')
-        await cmd.bot.send_message(message.channel, None, embed=status)
+        await message.channel.send(None, embed=status)
         return
     if not args:
         status = discord.Embed(type='rich', color=0xDB0000,
                                title='❗ Insufficient Arguments.')
-        await cmd.bot.send_message(message.channel, None, embed=status)
+        await message.channel.send(None, embed=status)
         return
     role_name = ' '.join(args)
     rtrl = matching_role(message.server, role_name)
@@ -26,7 +26,7 @@ async def shopremove(cmd, message, args):
                 status.set_footer(text='It was found in the shop however, and removed.')
                 cmd.db.set_settings(message.server.id, 'ShopItems', shop_list)
                 break
-        await cmd.bot.send_message(message.channel, None, embed=status)
+        await message.channel.send(None, embed=status)
         return
     else:
         found = False
@@ -37,9 +37,9 @@ async def shopremove(cmd, message, args):
                 cmd.db.set_settings(message.server.id, 'ShopItems', shop_list)
                 status = discord.Embed(type='rich', color=0x66CC66,
                                        title='✅ ' + rtrl.name + ' has been removed from the shop.')
-                await cmd.bot.send_message(message.channel, None, embed=status)
+                await message.channel.send(None, embed=status)
                 break
         if not found:
             status = discord.Embed(type='rich', color=0xFF9900,
                                    title='⚠ The Role ' + rtrl.name + ' is not in the shop.')
-            await cmd.bot.send_message(message.channel, None, embed=status)
+            await message.channel.send(None, embed=status)

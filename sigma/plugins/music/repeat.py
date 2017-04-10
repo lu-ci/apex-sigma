@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def repeat(cmd, message, args):
@@ -8,4 +8,4 @@ async def repeat(cmd, message, args):
     else:
         cmd.music.repeaters.append(message.server.id)
         response = discord.Embed(color=0x0099FF, title='🔁 Queue Repeat Enabled')
-    await cmd.bot.send_message(message.channel, None, embed=response)
+    await message.channel.send(None, embed=response)

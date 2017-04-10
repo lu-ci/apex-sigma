@@ -8,7 +8,7 @@ async def send(cmd, message, args):
         text = ' '.join(args[1:])
     else:
         embed = discord.Embed(color=0xDB0000, title='❗ No Arguments Given.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     if mode == 'u':
         target = discord.utils.find(lambda x: x.id == identifier, cmd.bot.get_all_members())
@@ -19,8 +19,8 @@ async def send(cmd, message, args):
         target = discord.utils.find(lambda x: x.id == identifier, cmd.bot.get_all_channels())
     else:
         embed = discord.Embed(color=0xDB0000, title='❗ Invalid Arguments Given.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     await cmd.bot.send_message(target, text)
     embed = discord.Embed(color=0x66CC66, title='✅ Message Sent.')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

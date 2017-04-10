@@ -1,4 +1,4 @@
-import os
+﻿import os
 import aiohttp
 import Shosetsu
 from PIL import Image
@@ -20,7 +20,7 @@ async def vndb(cmd, message, args):
             list_text += '\n#' + str(n) + ' ' + entry['name']
 
         if len(sdata) > 1:
-            await cmd.bot.send_message(message.channel, list_text + '\n```')
+            await message.channel.send(list_text + '\n```')
             choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel,
                                                     timeout=20)
             await cmd.bot.send_typing(message.channel)
@@ -38,10 +38,10 @@ async def vndb(cmd, message, args):
             '.', '')
         kill = 1
     except Shosetsu.VNDBNoResults as err:
-        await cmd.bot.send_message(message.channel, str(err))
+        await message.channel.send(str(err))
         kill = 0
     except Exception as e:
-        await cmd.bot.send_message(message.channel, 'Error: ' + str(e))
+        await message.channel.send('Error: ' + str(e))
         kill = 0
 
     if kill == 1:
@@ -77,8 +77,8 @@ async def vndb(cmd, message, args):
 
     try:
         await cmd.bot.send_file(message.channel, 'cache/vn_' + message.id + '.png')
-        await cmd.bot.send_message(message.channel, 'Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[
+        await message.channel.send('Title: `' + vn_title + '`\nDescription:```\n' + vn_desc[
                                                                                                      :300] + suffix + '\n```\nMore at: <https://vndb.org/' + vn_id + '>')
         os.remove('cache/vn_' + message.id + '.png')
     except:
-        await cmd.bot.send_message(message.channel, 'Error: It goofed... =P')
+        await message.channel.send('Error: It goofed... =P')

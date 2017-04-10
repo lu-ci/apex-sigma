@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -9,7 +9,7 @@ import os
 
 async def music(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     else:
         search = ' '.join(args)
@@ -19,7 +19,7 @@ async def music(cmd, message, args):
             data = await data.json()
     data = data['data']
     if len(data) == 0:
-        await cmd.bot.send_message(message.channel, 'Nothing found.')
+        await message.channel.send('Nothing found.')
         return
     song = data[0]
     preview = song['preview']
@@ -65,6 +65,6 @@ async def music(cmd, message, args):
     base.save('cache/track_' + message.author.id + '.png')
 
     await cmd.bot.send_file(message.channel, 'cache/track_' + message.author.id + '.png')
-    await cmd.bot.send_message(message.channel, 'Track Preview: <' + preview + '>')
+    await message.channel.send('Track Preview: <' + preview + '>')
 
     os.remove('cache/track_' + message.author.id + '.png')

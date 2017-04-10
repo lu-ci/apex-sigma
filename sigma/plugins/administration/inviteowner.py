@@ -1,4 +1,4 @@
-from config import permitted_id
+﻿from config import permitted_id
 
 
 async def inviteowner(cmd, message, args):
@@ -19,4 +19,4 @@ async def inviteowner(cmd, message, args):
                         if inv_out == '':
                             return
                         else:
-                            await cmd.bot.send_message(message.channel, inv_out)
+                            await message.channel.send(inv_out)

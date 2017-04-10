@@ -4,7 +4,7 @@ from sigma.core.permission import check_man_chan
 
 async def movechannel(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     else:
         if check_man_chan(message.author, message.channel):
@@ -14,8 +14,8 @@ async def movechannel(cmd, message, args):
             embed = discord.Embed(color=0x66CC66,
                                   title='✅ ' + message.channel.name + ' moved from ' + str(
                                       pos_pre) + ' to ' + str(position))
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
         else:
             embed = discord.Embed(type='rich', color=0xDB0000,
                                   title='⛔ Insufficient Permissions. Requires Manage Channels Permission Only.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)

@@ -13,7 +13,7 @@ async def jisho(cmd, message, *args):
     if rq_text.find('503 Service Unavailable') != -1:
         embed_content = discord.Embed(title='❗ Jisho responded with 503 Service Unavailable.',
                                       color=0xDB0000)
-        await cmd.bot.send_message(message.channel, None, embed=embed_content)
+        await message.channel.send(None, embed=embed_content)
         return
 
     request = rq_json
@@ -24,7 +24,7 @@ async def jisho(cmd, message, *args):
     else:
         embed_content = discord.Embed(title="Sorry, couldn't find anything matching `{}`".format(jisho_q),
                                       color=0xDB0000)
-        await cmd.bot.send_message(message.channel, None, embed=embed_content)
+        await message.channel.send(None, embed=embed_content)
         return
 
     output = '```'
@@ -100,4 +100,4 @@ async def jisho(cmd, message, *args):
         output += '```'
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name=':books: Search for ' + jisho_q, value=output)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

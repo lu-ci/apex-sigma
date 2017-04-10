@@ -12,4 +12,4 @@ async def bjquit(cmd, message, args):
                               title=':fire: Too bad... Your ' + str(instance['Bet'] // 2) + ' have been refunded.')
     else:
         embed = discord.Embed(color=0xDB0000, title='❗ No active blackjack games found for you.')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

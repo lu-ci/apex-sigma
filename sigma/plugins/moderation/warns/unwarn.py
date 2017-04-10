@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_kick
 
 
@@ -6,7 +6,7 @@ async def unwarn(cmd, message, args):
     if not check_kick(message.author, message.channel):
         out_content = discord.Embed(color=0xDB0000,
                                     title='⛔ Users With Kick Permissions Only.')
-        await cmd.bot.send_message(message.channel, None, embed=out_content)
+        await message.channel.send(None, embed=out_content)
         return
     if not args or not message.mentions:
         return
@@ -22,4 +22,4 @@ async def unwarn(cmd, message, args):
         response = discord.Embed(color=0x66CC66, title=f'✅ {target.name} has been removed from the warning list.')
     else:
         response = discord.Embed(color=0x0099FF, title=f'ℹ {target.name} is not in the list of warned users.')
-    await cmd.bot.send_message(message.channel, None, embed=response)
+    await message.channel.send(None, embed=response)

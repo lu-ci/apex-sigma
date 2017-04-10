@@ -1,11 +1,11 @@
-import aiohttp
+﻿import aiohttp
 import discord
 from config import MashapeKey
 
 
 async def tagdef(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     hashtag = (' '.join(args)).replace('#', '')
     url = "https://tagdef.p.mashape.com/one." + hashtag + '.json'
@@ -16,4 +16,4 @@ async def tagdef(cmd, message, args):
     result = response['defs']['def']['text']
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='#⃣ Definition of `#' + hashtag + '`', value='```\n' + result + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

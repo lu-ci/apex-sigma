@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import yaml
 import os
 
@@ -23,4 +23,4 @@ async def modules(cmd, message, args):
     await cmd.bot.send_message(message.author, None, embed=embed_to_user)
     if message.server:
         embed_local = discord.Embed(color=0x66CC66, title='✅ List Sent To Your DM')
-        await cmd.bot.send_message(message.channel, None, embed=embed_local)
+        await message.channel.send(None, embed=embed_local)

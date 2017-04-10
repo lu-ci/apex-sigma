@@ -1,4 +1,4 @@
-import os
+﻿import os
 from io import BytesIO
 import aiohttp
 from PIL import Image
@@ -106,7 +106,7 @@ async def overwatch(cmd, message, args):
                                  '\n    - Competitive: ' + cg_playtime + ' Hours' + '```')
             await cmd.bot.send_file(message.channel, 'cache/ow_profile_' + message.author.id + '.png')
             os.remove('cache/ow_profile_' + message.author.id + '.png')
-            await cmd.bot.send_message(message.channel, overwatch_profile)
+            await message.channel.send(overwatch_profile)
         except KeyError:
             await cmd.bot.send_message(message.channel,
                                        'Something went wrong.\nThe servers are most likely overloaded, please try again.')

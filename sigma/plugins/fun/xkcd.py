@@ -1,4 +1,4 @@
-import random
+﻿import random
 import aiohttp
 import discord
 
@@ -12,4 +12,4 @@ async def xkcd(cmd, message, args):
     image_url = joke_json['img']
     embed = discord.Embed(color=0x1abc9c, title='🚽 An XKCD Comic')
     embed.set_image(url=image_url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

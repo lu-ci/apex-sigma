@@ -22,7 +22,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         player_points = cmd.db.get_points(message.author)
         if player_points['Current'] < bet_amt:
             embed = discord.Embed(color=0xDB0000, title='❗ Not Enough Points')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return
         cmd.db.add_stats('SlotsCount')
         embed_colors = [0x990000, 0x0066FF, 0x009900, 0xff9900, 0xCC33FF, 0x990033]
@@ -43,7 +43,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         slot_view += '\n▶ ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' ◀'
         slot_view += '\n⏸ ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' ⏸'
         slot_embed.add_field(name='🎰 Slots are spinning...', value=slot_view)
-        slot_spinner = await cmd.bot.send_message(message.channel, None, embed=slot_embed)
+        slot_spinner = await message.channel.send(None, embed=slot_embed)
         spin_amt = random.randint(min_spins, max_spins)
         while rand_done < spin_amt:
             await asyncio.sleep(spin_cycle_timeout)
@@ -106,5 +106,5 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         timeout_amt = cd_timestamp + 20 - current_time
         embed = discord.Embed(color=0xDB0000,
                               title='❗ You can\'t spin for another ' + str(timeout_amt) + ' seconds!')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return

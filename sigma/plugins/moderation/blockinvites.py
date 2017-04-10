@@ -13,6 +13,6 @@ async def blockinvites(cmd, message, args):
         else:
             cmd.db.set_settings(message.server.id, 'BlockInvites', True)
             embed = discord.Embed(color=0x66CC66, title='✅ Invite Blocking Has Been Enabled')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)
 
 

@@ -6,7 +6,7 @@ async def ignorechannel(cmd, message, args):
     if check_admin(message.author, message.channel):
         target = None
         if not args:
-            await cmd.bot.send_message(message.channel, cmd.help())
+            await message.channel.send(cmd.help())
             return
         qry = ' '.join(args)
         if qry.startswith('<#'):
@@ -22,7 +22,7 @@ async def ignorechannel(cmd, message, args):
         else:
             if target == message.author:
                 embed = discord.Embed(title='⚠ You Can\'t Blacklist Yourself', color=0xFF9900)
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)
                 return
             black = cmd.db.get_settings(message.server.id, 'BlacklistedChannels')
             if not black:
@@ -37,4 +37,4 @@ async def ignorechannel(cmd, message, args):
     else:
         embed = discord.Embed(type='rich', color=0xDB0000,
                               title='⛔ Insufficient Permissions. Server Admin Only.')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

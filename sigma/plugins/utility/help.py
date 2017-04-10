@@ -23,7 +23,7 @@ async def help(cmd, message, args):
         help_out.set_footer(
             text='For additional info and help on how to use a command use [' + Prefix + 'help COMMAND_NAME] (Example: ' + Prefix + 'help slots).')
         help_out.set_image(url='http://i.imgur.com/TRSdGni.png')
-        await cmd.bot.send_message(message.channel, None, embed=help_out)
+        await message.channel.send(None, embed=help_out)
     else:
         qry = args[0].lower()
         if qry in alts:
@@ -32,8 +32,8 @@ async def help(cmd, message, args):
             help_out = discord.Embed(type='rich', title=':book: ' + qry.upper() + ' Help', color=0x1B6F5F)
             help_out.add_field(name='Command Usage Example and Information',
                                value=cmd.bot.plugin_manager.commands[qry.lower()].help())
-            await cmd.bot.send_message(message.channel, None, embed=help_out)
+            await message.channel.send(None, embed=help_out)
         except:
             out_content = discord.Embed(type='rich', color=0x696969,
                                         title='🔍 No such command was found...')
-            await cmd.bot.send_message(message.channel, None, embed=out_content)
+            await message.channel.send(None, embed=out_content)

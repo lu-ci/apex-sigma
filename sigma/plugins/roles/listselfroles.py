@@ -12,4 +12,4 @@ async def listselfroles(cmd, message, args):
     else:
         embed = discord.Embed(color=0x1ABC9C)
         embed.add_field(name='Self Assignable Roles On ' + message.server.name, value='```\n' + role_list + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

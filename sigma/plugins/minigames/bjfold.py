@@ -8,7 +8,7 @@ async def bjfold(cmd, message, args):
     instance = get_bj(instance_id)
     if not instance:
         embed = discord.Embed(color=0xDB0000, title='❗ No active blackjack games found for you.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     deck = instance['Deck']
     p_pts = instance['PlayerScore']
@@ -17,7 +17,7 @@ async def bjfold(cmd, message, args):
     if h_pts > p_pts:
         embed = discord.Embed(color=0xDB0000, title='❗ You folded while the dealer was ahead!')
         del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     player_drawn = random.choice(deck)
     p_sym, p_suit, p_val = player_drawn
@@ -59,10 +59,10 @@ async def bjfold(cmd, message, args):
         embed.add_field(name=em_h_nam, value=em_h_val)
         embed.set_footer(text='You have been awarded ' + str(prize) + ' points.')
         del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
     else:
         embed = discord.Embed(color=0xDB0000, title='❗ The dealer overtook you!')
         embed.add_field(name=em_p_nam, value=em_p_val)
         embed.add_field(name=em_h_nam, value=em_h_val)
         del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

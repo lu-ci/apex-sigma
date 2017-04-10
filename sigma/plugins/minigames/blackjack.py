@@ -14,7 +14,7 @@ async def blackjack(cmd, message, args):
     curr_points = cmd.db.get_points(message.author)['Current']
     if curr_points < buyin:
         embed = discord.Embed(color=0xDB0000, title='❗ You don\'t have that many points!')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     cmd.db.take_points(message.server, message.author, buyin)
     instance_id = message.server.id + message.author.id
@@ -47,4 +47,4 @@ async def blackjack(cmd, message, args):
         embed = discord.Embed(color=0x1abc9c,
                               title=random.choice(symbols) + ' A BlackJack Instance Has Been Created For You.')
         embed.set_footer(text='The set buyin amount is ' + str(buyin))
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

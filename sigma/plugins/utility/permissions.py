@@ -20,4 +20,4 @@ async def permissions(cmd, message, args):
         disallowed_list = ['None']
     embed.add_field(name='Allowed', value='```\n - ' + '\n - '.join(sorted(allowed_list)) + '\n```')
     embed.add_field(name='Disallowed', value='```\n - ' + '\n - '.join(sorted(disallowed_list)) + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

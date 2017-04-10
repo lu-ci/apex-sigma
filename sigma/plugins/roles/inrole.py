@@ -3,7 +3,7 @@
 
 async def inrole(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     else:
         role_input = ' '.join(args)
@@ -22,4 +22,4 @@ async def inrole(cmd, message, args):
                         user_list += '\n - ' + member.name
             embed.add_field(name='ℹ The Following Users Are In ' + role_choice.name,
                             value='```haskell\n' + user_list + '\n```')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

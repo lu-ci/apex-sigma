@@ -1,4 +1,4 @@
-import yaml
+﻿import yaml
 import arrow
 import discord
 from config import Prefix
@@ -10,7 +10,7 @@ async def collectchain(cmd, message, args):
     global in_use
     if in_use:
         response = discord.Embed(color=0x696969, title='🛠 Currently in use. Try Again Later.')
-        await cmd.bot.send_message(message.channel, None, embed=response)
+        await message.channel.send(None, embed=response)
     else:
         if args:
             if message.mentions:
@@ -25,7 +25,7 @@ async def collectchain(cmd, message, args):
                 in_use = True
                 ch_response = discord.Embed(color=0x66CC66,
                                             title='📖 Collecting... You will be sent a DM when I\'m done.')
-                await cmd.bot.send_message(message.channel, None, embed=ch_response)
+                await message.channel.send(None, embed=ch_response)
                 async for log in cmd.bot.logs_from(def_chn, limit=50000):
                     if log.author.id == target.id:
                         if log.content:
@@ -57,7 +57,7 @@ async def collectchain(cmd, message, args):
                 dm_response.add_field(name='Amount Collected', value=f'```\n{collected}\n```')
                 dm_response.add_field(name='Time Elapsed', value=f'```\n{arrow.utcnow().timestamp - start_time}\n```')
                 await cmd.bot.send_message(message.author, None, embed=dm_response)
-                await cmd.bot.send_message(message.channel, None, embed=dm_response)
+                await message.channel.send(None, embed=dm_response)
                 if message.author.id != target.id:
                     tgt_msg = discord.Embed(color=0x66CC66,
                                             title=f'📖 {message.author.name} has made a markov chain for you.')

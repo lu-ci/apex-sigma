@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import os
 from PIL import Image
 from io import BytesIO
@@ -9,7 +9,7 @@ async def rip(cmd, message, args):
     mentioned_avatar = ''
 
     if not message.mentions:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
 
     for user in message.mentions:

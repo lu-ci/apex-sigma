@@ -15,4 +15,4 @@ async def cloudbleed(cmd, message, args):
             result_text = ', '.join(data['urls'][:20])
             embed = discord.Embed(color=0xf48220)
             embed.add_field(name=':syringe: Websites found matching that search.', value=f'```\n{result_text}\n```')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

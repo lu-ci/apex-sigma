@@ -1,4 +1,4 @@
-import os
+﻿import os
 import requests
 from io import BytesIO
 from PIL import Image, ImageFont, ImageDraw
@@ -13,7 +13,7 @@ async def rl(cmd, message, args):
         platform = args[0]
         user = ' '.join(args[1:])
     except:
-        await cmd.bot.send_message(message.channel, 'Wrong input format!')
+        await message.channel.send('Wrong input format!')
         return
 
     if platform.lower() == 'steam':
@@ -23,7 +23,7 @@ async def rl(cmd, message, args):
     elif platform.lower() == 'xbox':
         platform = '3'
     else:
-        await cmd.bot.send_message(message.channel, 'Platform unrecognized.')
+        await message.channel.send('Platform unrecognized.')
         return
 
     url_base = 'http://rltracker.pro/api/profile/get?api_key=' + RLAPIKey + '&platform=' + platform + '&id=' + user
@@ -106,5 +106,5 @@ async def rl(cmd, message, args):
 
     base.save('cache/rl_' + message.author.id + '.png')
     await cmd.bot.send_file(message.channel, 'cache/rl_' + message.author.id + '.png')
-    await cmd.bot.send_message(message.channel, 'You can find more at:\n<' + profile_url + '>')
+    await message.channel.send('You can find more at:\n<' + profile_url + '>')
     os.remove('cache/rl_' + message.author.id + '.png')

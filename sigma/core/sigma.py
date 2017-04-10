@@ -35,7 +35,7 @@ from .cooldowns import Cooldown
 
 # I love spaghetti!
 # Valebu pls, no take my spaghetti... :'(
-class Sigma(discord.Client):
+class Sigma(discord.AutoShardedClient):
     def __init__(self):
         super().__init__()
         self.prefix = Prefix

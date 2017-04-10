@@ -18,8 +18,8 @@ async def searchid(cmd, message, args):
                     embed.add_field(name=server.name, value=server.id)
         if count == 0:
             embed = discord.Embed(title='ℹ User Not Found', color=0x0099FF)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
     else:
         out = discord.Embed(type='rich', color=0xDB0000,
                             title='⛔ Insufficient Permissions. Bot Owner Only.')
-        await cmd.bot.send_message(message.channel, None, embed=out)
+        await message.channel.send(None, embed=out)

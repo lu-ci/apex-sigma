@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def blacklist(cmd, message, args):
@@ -20,4 +20,4 @@ async def blacklist(cmd, message, args):
                 chnl_name = discord.utils.find(lambda x: x.id == usr, cmd.bot.get_all_members()).name
                 black_users_list.append(f'#{chnl_name}')
             response.add_field(name='Blacklisted Users', value=f'```\n{", ".join(black_users_list)}\n```')
-    await cmd.bot.send_message(message.channel, None, embed=response)
+    await message.channel.send(None, embed=response)

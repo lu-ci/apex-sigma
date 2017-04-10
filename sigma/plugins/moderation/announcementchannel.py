@@ -33,4 +33,4 @@ async def announcementchannel(cmd, message, args):
                 embed = discord.Embed(title=':x: "' + args[0] + '" is not a channel', color=0xDB0000)
                 embed.add_field(name='Note:',
                                 value='Enter a channel in this format: "#channel_name" or leave blank to turn announcements off.')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

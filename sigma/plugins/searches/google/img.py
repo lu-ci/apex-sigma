@@ -7,7 +7,7 @@ from config import GoogleCSECX
 
 async def img(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     else:
         search = ' '.join(args)
@@ -24,9 +24,9 @@ async def img(cmd, message, args):
             url = choice['link']
             embed = discord.Embed(color=0x1abc9c, title=title)
             embed.set_image(url=url)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
         except Exception as e:
             cmd.log.error(e)
             embed = discord.Embed(color=0xDB0000, title='❗ Daily Limit Reached.')
             embed.set_footer(text='Google limits this API feature, and we hit that limit.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)

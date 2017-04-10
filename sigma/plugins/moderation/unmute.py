@@ -8,7 +8,7 @@ async def unmute(cmd, message, args):
     channel = message.channel
     server = message.server
     if not message.mentions:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     user_q = message.mentions[0]
     if message.author is not user_q:
@@ -18,8 +18,8 @@ async def unmute(cmd, message, args):
                     if not check_write(user_q, chan):
                         await cmd.bot.delete_channel_permissions(chan, user_q)
             embed = discord.Embed(color=0x66CC66, title='✅ ' + user_q.name + ' can write again.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
         else:
             out_content = discord.Embed(type='rich', color=0xDB0000,
                                         title='⛔ Insufficient Permissions. Manage Messages and Manage Roles Permissions Required.')
-            await cmd.bot.send_message(message.channel, None, embed=out_content)
+            await message.channel.send(None, embed=out_content)

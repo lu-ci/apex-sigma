@@ -23,9 +23,9 @@ async def apikeys(cmd, message, args):
                                    title='✅ The API Key List has been sent to your DM.')
         except Exception as e:
             cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, str(e))
+            await message.channel.send(str(e))
             return
     else:
         status = discord.Embed(type='rich', color=0xDB0000,
                                title='⛔ Insufficient Permissions. Bot Owner Only.')
-    await cmd.bot.send_message(message.channel, None, embed=status)
+    await message.channel.send(None, embed=status)

@@ -28,4 +28,4 @@ async def markov(cmd, message, args):
     else:
         response = discord.Embed(color=0xDB0000,
                                  title=f'⛔ Markov Collection Is Disabled on {message.server.name}')
-    await cmd.bot.send_message(message.channel, None, embed=response)
+    await message.channel.send(None, embed=response)

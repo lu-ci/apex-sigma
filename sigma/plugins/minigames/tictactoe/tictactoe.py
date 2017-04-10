@@ -11,7 +11,7 @@ async def tictactoe(cmd, message, args):
         if args[0].lower() == 'start':
             if player.id in games:
                 response = discord.Embed(color=0xFF9900, title='⚠ You are already in a game.')
-                await cmd.bot.send_message(message.channel, None, embed=response)
+                await message.channel.send(None, embed=response)
             else:
                 coinflip = random.randint(0, 1)
                 if coinflip == 0:
@@ -34,14 +34,14 @@ async def tictactoe(cmd, message, args):
                     board.cpu_move(coords)
                     response = discord.Embed(color=0x1ABC9C)
                     response.add_field(name='🎲 Sigma goes first.', value=board.view())
-                await cmd.bot.send_message(message.channel, None, embed=response)
+                await message.channel.send(None, embed=response)
         elif args[0].lower() == 'quit':
             if player.id in games:
                 del games[player.id]
                 response = discord.Embed(color=0x66CC66, title='✅ Game purged.')
             else:
                 response = discord.Embed(color=0xFF9900, title='⚠ You were not found in a game.')
-            await cmd.bot.send_message(message.channel, None, embed=response)
+            await message.channel.send(None, embed=response)
         else:
             translation = {
                 'a1': [0, 0], 'b1': [0, 1], 'c1': [0, 2],
@@ -83,4 +83,4 @@ async def tictactoe(cmd, message, args):
                     response = discord.Embed(color=0xFF9900, title='⚠ Invalid coordinates.')
             else:
                 response = discord.Embed(color=0xFF9900, title='⚠ You were not found in a game.')
-            await cmd.bot.send_message(message.channel, None, embed=response)
+            await message.channel.send(None, embed=response)

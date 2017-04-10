@@ -5,7 +5,7 @@ from config import Food2ForkAPIKey
 
 async def recipe(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     search = ' '.join(args)
     url = 'http://food2fork.com/api/search?key=' + Food2ForkAPIKey + '&q=' + search
@@ -15,7 +15,7 @@ async def recipe(cmd, message, args):
     count = search_data['count']
     if count == 0:
         embed = discord.Embed(color=0x696969, title='🔍 No results were found for that, sorry.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     else:
         info = search_data['recipes'][0]
@@ -29,4 +29,4 @@ async def recipe(cmd, message, args):
                          icon_url='https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Food-Dome-512.png')
         embed.add_field(name=title, value='[**Recipe Here**](' + source_url + ')')
         embed.set_image(url=image_url)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

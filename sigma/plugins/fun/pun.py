@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -13,4 +13,4 @@ async def pun(cmd, message, args):
         '&rsquo;', '\'')
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='😒 Have A Pun', value='```\n' + pun_text + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

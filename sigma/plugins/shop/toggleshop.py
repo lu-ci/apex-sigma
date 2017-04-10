@@ -16,4 +16,4 @@ async def toggleshop(cmd, message, args):
             cmd.db.set_settings(message.server.id, 'ShopEnabled', True)
             status = discord.Embed(type='rich', color=0x66CC66,
                                    title='✅ The shop has been Enabled.')
-    await cmd.bot.send_message(message.channel, None, embed=status)
+    await message.channel.send(None, embed=status)

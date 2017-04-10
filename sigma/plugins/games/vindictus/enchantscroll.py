@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from .nodes.read_scroll_data import search_for_scroll
 
 
@@ -30,4 +30,4 @@ async def enchantscroll(cmd, message, args):
                 response.add_field(name='🗺 Drop Locations', value=f'```\n{drop_locations}\n```', inline=False)
         except:
             response = discord.Embed(color=0x696969, title='🔍 Nothing Found')
-        await cmd.bot.send_message(message.channel, None, embed=response)
+        await message.channel.send(None, embed=response)

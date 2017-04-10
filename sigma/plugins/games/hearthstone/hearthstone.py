@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 from config import MashapeKey
@@ -29,13 +29,13 @@ async def hearthstone(cmd, message, args):
                 try:
                     card_no = int(choice.content) - 1
                 except:
-                    await cmd.bot.send_message(message.channel, 'Not a number or timed out... Please start over')
+                    await message.channel.send('Not a number or timed out... Please start over')
                     return
 
                 if choice is None:
                     return
             except:
-                await cmd.bot.send_message(message.channel, 'The list is way too big, please be more specific...')
+                await message.channel.send('The list is way too big, please be more specific...')
                 return
         else:
             card_no = 0
@@ -43,11 +43,11 @@ async def hearthstone(cmd, message, args):
         try:
             error = str(response['error'])
             err_message = str(response['message'])
-            await cmd.bot.send_message(message.channel, 'Error: ' + error + '.\n' + err_message)
+            await message.channel.send('Error: ' + error + '.\n' + err_message)
             return
         except Exception as e:
             cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, 'Something went wrong...')
+            await message.channel.send('Something went wrong...')
             return
 
     try:
@@ -63,12 +63,12 @@ async def hearthstone(cmd, message, args):
         if flavor_text:
             flavor_out = '```\n' + flavor_text + '\n```'
             embed.add_field(name='Info', value=flavor_out)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
     except:
         try:
             error = str(response['error'])
             err_message = str(response['message'])
-            await cmd.bot.send_message(message.channel, 'Error: ' + error + '.\n' + err_message)
+            await message.channel.send('Error: ' + error + '.\n' + err_message)
         except Exception as e:
             cmd.log.error(e)
-            await cmd.bot.send_message(message.channel, 'Something went wrong...')
+            await message.channel.send('Something went wrong...')

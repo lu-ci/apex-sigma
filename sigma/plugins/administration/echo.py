@@ -3,8 +3,8 @@ import discord
 
 async def echo(cmd, message, args):
     if message.author.id in permitted_id:
-        await cmd.bot.send_message(message.channel, ' '.join(args))
+        await message.channel.send(' '.join(args))
     else:
         status = discord.Embed(type='rich', color=0xDB0000,
                                title='⛔ Insufficient Permissions. Bot Owner Only.')
-        await cmd.bot.send_message(message.channel, None, embed=status)
+        await message.channel.send(None, embed=status)

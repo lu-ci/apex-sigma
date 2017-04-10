@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 import lxml.html as l
 
@@ -19,4 +19,4 @@ async def nyaa(cmd, message, args):
     image = elements[0].attrib['src']
     embed = discord.Embed(color=0xff6699)
     embed.set_image(url=image)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

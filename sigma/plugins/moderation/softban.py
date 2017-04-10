@@ -13,11 +13,11 @@ async def softban(cmd, message, args):
                     await cmd.bot.unban(message.server, user_q)
                     embed = discord.Embed(color=0x66CC66,
                                           title='✅ ' + user_q.name + ' has been soft-banned.')
-                    await cmd.bot.send_message(message.channel, None, embed=embed)
+                    await message.channel.send(None, embed=embed)
                 except Exception as e:
                     cmd.log.error(e)
-                    await cmd.bot.send_message(message.channel, str(e))
+                    await message.channel.send(str(e))
             else:
                 out_content = discord.Embed(type='rich', color=0xDB0000,
                                             title='⛔ Insufficient Permissions. Ban Permission Required.')
-                await cmd.bot.send_message(message.channel, None, embed=out_content)
+                await message.channel.send(None, embed=out_content)

@@ -1,4 +1,4 @@
-from sigma.core.utils import user_avatar
+﻿from sigma.core.utils import user_avatar
 from config import Prefix
 import markovify
 import discord
@@ -33,4 +33,4 @@ async def impersonate(cmd, message, args):
                 response = discord.Embed(color=0x696969)
                 response.add_field(name=f'🔍 Chain File Not Found For {target.name}',
                                    value=f'You can make one with `{Prefix}collectchain`!')
-            await cmd.bot.send_message(message.channel, None, embed=response)
+            await message.channel.send(None, embed=response)

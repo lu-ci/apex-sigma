@@ -36,7 +36,7 @@ async def prune(cmd, message, args):
     else:
         embed = discord.Embed(title='⚠ Unpermitted. Only Those With The Manage Message Permission Allowed.',
                               color=0xDB0000)
-    notify_msg = await cmd.bot.send_message(message.channel, None, embed=embed)
+    notify_msg = await message.channel.send(None, embed=embed)
     await asyncio.sleep(5)
     try:
         await cmd.bot.delete_message(notify_msg)

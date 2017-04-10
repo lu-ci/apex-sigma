@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import operator
 from humanfriendly.tables import format_pretty_table as boop
 
@@ -45,4 +45,4 @@ async def ingame(cmd, message, args):
                     inline=False)
     embed.add_field(name='🎮 By Game...', value='```haskell\n' + out + '\n```',
                     inline=False)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

@@ -1,10 +1,10 @@
-from PIL import Image
+﻿from PIL import Image
 import os
 
 
 async def color(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
     else:
         if len(args) == 3:
             for arg in args:
@@ -15,7 +15,7 @@ async def color(cmd, message, args):
             try:
                 clr = (int(args[0]), int(args[1]), int(args[2]))
             except:
-                await cmd.bot.send_message(message.channel, 'Error processing inputted variables.')
+                await message.channel.send('Error processing inputted variables.')
                 return
         else:
             try:
@@ -28,7 +28,7 @@ async def color(cmd, message, args):
                 part3 = int(part3, 16)
                 clr = (part1, part2, part3)
             except:
-                await cmd.bot.send_message(message.channel, 'Error processing inputted variables.')
+                await message.channel.send('Error processing inputted variables.')
                 return
         img = Image.new('RGB', (50, 50), clr)
         img.save('cache/' + message.author.id + '.png')

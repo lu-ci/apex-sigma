@@ -5,7 +5,7 @@ import discord
 async def blacksrv(cmd, message, args):
     if message.author.id in permitted_id:
         if not args:
-            await cmd.bot.send_message(message.channel, cmd.help())
+            await message.channel.send(cmd.help())
             return
         target = None
         for server in cmd.bot.servers:
@@ -24,8 +24,8 @@ async def blacksrv(cmd, message, args):
         else:
             embed = discord.Embed(type='rich', color=0xDB0000,
                                   title='❗ No server by that ID was found.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
     else:
         out_content = discord.Embed(type='rich', color=0xDB0000,
                                     title='⛔ Insufficient Permissions. Bot Owner Only.')
-        await cmd.bot.send_message(message.channel, None, embed=out_content)
+        await message.channel.send(None, embed=out_content)

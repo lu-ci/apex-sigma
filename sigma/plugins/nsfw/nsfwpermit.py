@@ -14,4 +14,4 @@ async def nsfwpermit(cmd, message, args):
     else:
         embed = discord.Embed(type='rich', color=0xDB0000,
                                title='⛔ Insufficient Permissions. Server Admin Only.')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

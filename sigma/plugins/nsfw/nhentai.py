@@ -1,4 +1,4 @@
-import os
+﻿import os
 import aiohttp
 import nhentai as nh
 from PIL import Image
@@ -17,20 +17,20 @@ async def nhentai(cmd, message, args):
             list_text += '\n#' + str(n) + ' ' + entry['title']['pretty']
 
         if len(nh.search(search)['result']) > 1:
-            await cmd.bot.send_message(message.channel, list_text + '\n```')
+            await message.channel.send(list_text + '\n```')
             choice = await cmd.bot.wait_for_message(author=message.author, channel=message.channel, timeout=20)
             await cmd.bot.send_typing(message.channel)
 
             try:
                 nh_no = int(choice.content) - 1
             except:
-                await cmd.bot.send_message(message.channel, 'Not a number or timed out... Please start over')
+                await message.channel.send('Not a number or timed out... Please start over')
                 return
         else:
             nh_no = 0
 
         if nh_no > len(nh.search(search)['result']):
-            await cmd.bot.send_message(message.channel, 'Number out of range...')
+            await message.channel.send('Number out of range...')
         else:
             hen_name = nh.search(search)['result'][nh_no]['title']['pretty']
             hen_id = nh.search(search)['result'][nh_no]['id']
@@ -54,8 +54,8 @@ async def nhentai(cmd, message, args):
             for tags in nh.search(search)['result'][nh_no]['tags']:
                 nhen_text += '[' + str(tags['name']).title() + '] '
             await cmd.bot.send_file(message.channel, 'cache/nh_' + message.author.id + '.png')
-            await cmd.bot.send_message(message.channel, 'Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
+            await message.channel.send('Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
             os.remove('cache/nh_' + message.author.id + '.png')
 
     except nh.nhentai.nHentaiException as e:
-        await cmd.bot.send_message(message.channel, e)
+        await message.channel.send(e)

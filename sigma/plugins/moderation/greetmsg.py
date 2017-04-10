@@ -14,4 +14,4 @@ async def greetmsg(cmd, message, args):
             new_message = ' '.join(args)
             cmd.db.set_settings(message.server.id, 'GreetMessage', new_message)
             embed = discord.Embed(title='✅ New Greet Message Set', color=0x66CC66)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

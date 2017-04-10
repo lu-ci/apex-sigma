@@ -38,4 +38,4 @@ async def wfrelic(cmd, message, args):
                 embed.add_field(name=f'{relic_tier.title()} {relic_type}', value=f'```\n{parts_list}\n```', inline=False)
             else:
                 embed = discord.Embed(color=0x696969, title='🔍 Nothing Found')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)

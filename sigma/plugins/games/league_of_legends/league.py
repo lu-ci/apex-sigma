@@ -1,4 +1,4 @@
-import os
+﻿import os
 import aiohttp
 from io import BytesIO
 from PIL import Image
@@ -16,7 +16,7 @@ async def league(cmd, message, args):
         region, smnr_name = lol_input.lower().split(maxsplit=1)
     except Exception as e:
         cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, str(e))
+        await message.channel.send(str(e))
         return
 
     smnr_name_table = smnr_name.replace(' ', '')
@@ -119,7 +119,7 @@ async def league(cmd, message, args):
         except SyntaxError:
             normal_text = 'None'
         if ranked_text == 'None' and normal_text == 'None':
-            await cmd.bot.send_message(message.channel, 'No stats found.')
+            await message.channel.send('No stats found.')
         else:
             await cmd.bot.send_file(message.channel, 'cache/lol_profile_' + message.author.id + '.png')
             os.remove('cache/lol_profile_' + message.author.id + '.png')
@@ -128,4 +128,4 @@ async def league(cmd, message, args):
     # except Exception as e:
     except SyntaxError:
         # `cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, 'Something went wrong, PANIC!')
+        await message.channel.send('Something went wrong, PANIC!')

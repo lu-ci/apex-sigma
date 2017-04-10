@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def pause(cmd, message, args):
@@ -11,4 +11,4 @@ async def pause(cmd, message, args):
             response = discord.Embed(color=0x0099FF, title='⏸ Player Paused')
     else:
         response = discord.Embed(color=0xFF9900, title='⚠ No Player Exists.')
-    await cmd.bot.send_message(message.channel, None, embed=response)
+    await message.channel.send(None, embed=response)

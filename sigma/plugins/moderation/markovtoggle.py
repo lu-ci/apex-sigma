@@ -15,4 +15,4 @@ async def markovtoggle(cmd, message, args):
     else:
         out_content = discord.Embed(type='rich', color=0xDB0000,
                                     title='⛔ Insufficient Permissions. Server Admin Only.')
-    await cmd.bot.send_message(message.channel, None, embed=out_content)
+    await message.channel.send(None, embed=out_content)

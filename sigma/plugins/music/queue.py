@@ -20,7 +20,7 @@ async def queue(cmd, message, args):
                 item_count = yt_playlist_adder(message.server.id, cmd, message.author, plist)
                 embed_title = f'ℹ Added {item_count} items from {plist.title}.'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)
                 await asyncio.sleep(3)
             else:
                 if qry.startswith('https://'):
@@ -63,12 +63,12 @@ async def queue(cmd, message, args):
                                      icon_url=user_avatar(message.author))
                 else:
                     return
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)
         else:
             q = cmd.bot.music.get_queue(message.server.id)
             if q.empty():
                 embed = discord.Embed(color=0x0099FF, title='ℹ The Queue Is Empty')
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)
             else:
                 q_list = list(q.queue)[:5]
                 embed = discord.Embed(color=0x0099FF,
@@ -81,4 +81,4 @@ async def queue(cmd, message, args):
                         information = f'Requested By: {item["requester"].name}\nDuration: {time.strftime("%H:%M:%S", time.gmtime(item["sound"]["duration"]//1000))}'
                         embed.add_field(name=item['sound']['title'], value=f'```\n{information}\n```', inline=False)
                 embed.set_footer(text=f'To see the currently playing song type {Prefix}np')
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)

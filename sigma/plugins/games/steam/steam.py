@@ -1,4 +1,4 @@
-from steam import WebAPI as steamwebapi
+﻿from steam import WebAPI as steamwebapi
 from config import SteamAPI
 from io import BytesIO
 from PIL import Image
@@ -21,7 +21,7 @@ async def steam(cmd, message, args):
             response = response_call['response']
             userid = response['steamid']
         except Exception as e:
-            await cmd.bot.send_message(message.channel, 'User Not Found Or Profile Private...')
+            await message.channel.send('User Not Found Or Profile Private...')
             return
         gamecount_call = steamapi.call('IPlayerService.GetOwnedGames', steamid=userid, include_appinfo=False,
                                        include_played_free_games=True, appids_filter=-1)
@@ -76,4 +76,4 @@ async def steam(cmd, message, args):
         os.remove('cache/steam_' + message.author.id + '.png')
     except Exception as e:
         cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, 'An unknown error occurred.\nError: ' + str(e))
+        await message.channel.send('An unknown error occurred.\nError: ' + str(e))

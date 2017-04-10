@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import arrow
 import discord
 import datetime
@@ -32,4 +32,4 @@ async def stats(cmd, message, args):
     embed.add_field(name='Channels', value=f'```py\n{len(list(cmd.bot.get_all_channels()))}\n```')
     embed.add_field(name='Users', value=f'```py\n{len(list(cmd.bot.get_all_members()))}\n```')
     embed.add_field(name='Bot Owners', value=f'```\n{owners}\n```', inline=False)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

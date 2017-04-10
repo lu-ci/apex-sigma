@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def avatar(cmd, message, args):
@@ -9,4 +9,4 @@ async def avatar(cmd, message, args):
     ava_url = target.avatar_url
     embed = discord.Embed(color=target.color)
     embed.set_image(url=ava_url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

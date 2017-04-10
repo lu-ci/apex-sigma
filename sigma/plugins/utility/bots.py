@@ -17,9 +17,9 @@ async def bots(cmd, message, args):
 
     if total_bots == 0:
         embed = discord.Embed(title='❗ No bots were found on this server.', color=0xDB0000)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
     else:
         embed = discord.Embed(title='Bot Status on ' + message.server.name, color=0x1ABC9C)
         embed.add_field(name='Online', value='```\n - ' + '\n - '.join(sorted(online_bots)) + '\n```')
         embed.add_field(name='Offline', value='```\n' + ' - ' + '\n - '.join(sorted(offline_bots)) + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

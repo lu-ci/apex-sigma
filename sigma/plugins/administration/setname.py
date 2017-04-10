@@ -5,14 +5,14 @@ from config import permitted_id
 async def setname(cmd, message, args):
     if message.author.id in permitted_id:
         if not args:
-            await cmd.bot.send_message(message.channel, cmd.help())
+            await message.channel.send(cmd.help())
             return
         else:
             username = ' '.join(args)
             await cmd.bot.edit_profile(username=username)
             embed = discord.Embed(title='✅ Changed Username', color=0x66CC66)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
     else:
         out = discord.Embed(type='rich', color=0xDB0000,
                             title='⛔ Insufficient Permissions. Bot Owner Only.')
-        await cmd.bot.send_message(message.channel, None, embed=out)
+        await message.channel.send(None, embed=out)

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def togglepartner(cmd, message, args):
@@ -19,4 +19,4 @@ async def togglepartner(cmd, message, args):
                 response = discord.Embed(color=0x0099FF, title=f'💎 {target_server.name} has been made a partner.')
         else:
             response = discord.Embed(color=0x696969, title='🔍 Not Server With That ID Was Found')
-        await cmd.bot.send_message(message.channel, None, embed=response)
+        await message.channel.send(None, embed=response)

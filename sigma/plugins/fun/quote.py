@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -26,4 +26,4 @@ async def quote(cmd, message, args):
         quote_text = '```yaml\n\"' + text + '\"\n    - by ' + author + '\n```'
         embed = discord.Embed(color=0x1abc9c)
         embed.add_field(name='📑 Wise words...', value=quote_text)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

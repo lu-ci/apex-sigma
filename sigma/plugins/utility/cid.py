@@ -13,4 +13,4 @@ async def cid(cmd, message, args):
             name = channel.name
     embed = discord.Embed(color=0x0099FF)
     embed.add_field(name='ℹ #' + name, value='`' + chn_id + '`')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

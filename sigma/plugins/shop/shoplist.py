@@ -17,4 +17,4 @@ async def shoplist(cmd, message, args):
         for item in shop_list:
             role_out += '\n```yml\n\'' + item['RoleName'] + '\'\n - ' + item['Price'] + '\n```'
         embed.add_field(name='Items and Prices', value=role_out)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

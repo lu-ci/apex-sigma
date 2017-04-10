@@ -6,7 +6,7 @@ async def togglerole(cmd, message, args):
     if not args:
         out_content = discord.Embed(type='rich', color=0xDB0000, title='❗ Error')
         out_content.add_field(name='Not Enough Arguments', value=cmd.help())
-        await cmd.bot.send_message(message.channel, None, embed=out_content)
+        await message.channel.send(None, embed=out_content)
         return
     else:
         role_qry = ' '.join(args)
@@ -28,9 +28,9 @@ async def togglerole(cmd, message, args):
                 await cmd.bot.remove_roles(message.author, target_role)
                 embed = discord.Embed(title='⚠ ' + role_name + ' has been removed from you.',
                                       color=0xFF9900)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
         else:
             out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
             out_content.add_field(name='Role Not Found',
                                   value='I was unable to find that role in the list of self assignable roles for this server.')
-            await cmd.bot.send_message(message.channel, None, embed=out_content)
+            await message.channel.send(None, embed=out_content)

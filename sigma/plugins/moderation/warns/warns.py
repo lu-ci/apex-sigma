@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.permission import check_kick
 
 
@@ -16,7 +16,7 @@ async def warns(cmd, message, args):
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ You Were Warned For...',
                             value='```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     if not message.mentions:
         if len(warned_users) == 0:
@@ -37,4 +37,4 @@ async def warns(cmd, message, args):
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ ' + target.name + ' Was Warned For...',
                             value='```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

@@ -7,7 +7,7 @@ async def warn(cmd, message, args):
     if not check_kick(message.author, message.channel):
         out_content = discord.Embed(color=0xDB0000,
                                     title='⛔ Users With Kick Permissions Only.')
-        await cmd.bot.send_message(message.channel, None, embed=out_content)
+        await message.channel.send(None, embed=out_content)
         return
     if not args or not message.mentions:
         return
@@ -45,7 +45,7 @@ async def warn(cmd, message, args):
         out_content_local = discord.Embed(color=0x993300)
         out_content_local.add_field(name=':boot: User **' + target.name + '** has been kicked!',
                               value='Reasons:\n```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
-        await cmd.bot.send_message(message.channel, None, embed=out_content_local)
+        await message.channel.send(None, embed=out_content_local)
         out_content_to_user = discord.Embed(color=0x993300)
         out_content_to_user.add_field(name=':boot: You have been kicked!',
                               value='Reasons:\n```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
@@ -60,5 +60,5 @@ async def warn(cmd, message, args):
         out_content_local = discord.Embed(color=0xFF9900, title='⚠ Warning ' + str(
             warned_users[target.id]['Warns']) + '/' + str(
             warn_limit) + ' for ' + target.name)
-        await cmd.bot.send_message(message.channel, None, embed=out_content_local)
+        await message.channel.send(None, embed=out_content_local)
     cmd.db.set_settings(message.server.id, 'WarnedUsers', warned_users)
