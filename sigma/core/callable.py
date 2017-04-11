@@ -88,7 +88,7 @@ class Callable(object):
 
         if not perm[0]:
             try:
-                await self.bot.send_message(channel, embed=perm[1])
+                await channel.send(embed=perm[1])
             except:
                 pass
             return
@@ -105,7 +105,7 @@ class Callable(object):
                 error_embed.add_field(name=title,
                                       value=codeblock(f'Arguments: \"{e}\"\nTraceback: \"{e.with_traceback}\"'))
                 error_embed.set_footer(text=errmsg)
-                await self.bot.send_message(channel, None, embed=error_embed)
+                await channel.send(None, embed=error_embed)
             except:
                 pass
 
@@ -113,7 +113,7 @@ class Callable(object):
             self.db.add_stats('NSFWCount')
 
         if msg:
-            await self.bot.send_message(channel, msg)
+            await channel.send(msg)
 
     async def call_sp(self, member):
         try:
