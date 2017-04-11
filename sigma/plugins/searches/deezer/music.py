@@ -64,7 +64,7 @@ async def music(cmd, message, args):
 
     base.save('cache/track_' + message.author.id + '.png')
 
-    await message.channel.send(file='cache/track_' + message.author.id + '.png')
+    await message.channel.send(file=discord.File(cache/track_' + message.author.id + '.png')
     await message.channel.send('Track Preview: <' + preview + '>')
 
     os.remove('cache/track_' + message.author.id + '.png')

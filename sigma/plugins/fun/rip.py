@@ -1,4 +1,5 @@
-﻿import aiohttp
+﻿import discord
+import aiohttp
 import os
 from PIL import Image
 from io import BytesIO
@@ -27,6 +28,6 @@ async def rip(cmd, message, args):
     avatar_img = avatar_img.resize((108, 108), Image.ANTIALIAS)
     base.paste(avatar_img, (60, 164))
     base.paste(tomb, (0, 0), tomb)
-    base.save('cache/rip_' + message.id + '.png')
-    await message.channel.send(file='cache/rip_' + message.id + '.png')
-    os.remove('cache/rip_' + message.id + '.png')
+    base.save(f'cache/rip_{message.id}.png')
+    await message.channel.send(file=discord.File(f'cache/rip_{message.id}.png'))
+    os.remove(f'cache/rip_{message.id}.png')

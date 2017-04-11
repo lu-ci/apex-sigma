@@ -32,5 +32,5 @@ async def color(cmd, message, args):
                 return
         img = Image.new('RGB', (50, 50), clr)
         img.save('cache/' + message.author.id + '.png')
-        await message.channel.send(file='cache/' + message.author.id + '.png')
+        await message.channel.send(file=discord.File(cache/' + message.author.id + '.png')
         os.remove('cache/' + message.author.id + '.png')

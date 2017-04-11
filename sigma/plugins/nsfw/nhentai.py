@@ -53,7 +53,7 @@ async def nhentai(cmd, message, args):
 
             for tags in nh.search(search)['result'][nh_no]['tags']:
                 nhen_text += '[' + str(tags['name']).title() + '] '
-            await message.channel.send(file='cache/nh_' + message.author.id + '.png')
+            await message.channel.send(file=discord.File(cache/nh_' + message.author.id + '.png')
             await message.channel.send('Name:\n```\n' + hen_name + '\n```\nTags:\n```\n' + nhen_text + '\n```\nBook URL: <' + hen_url + '>')
             os.remove('cache/nh_' + message.author.id + '.png')
 
