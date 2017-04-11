@@ -61,7 +61,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             slot_view += '\n▶ ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' ◀'
             slot_view += '\n⏸ ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' ⏸'
             slot_embed.set_field_at(0, name='🎰 Slots are spinning...', value=slot_view)
-            await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
+            await slot_spinner.edit(embed=slot_embed)
 
         # Result Response
         subtext = ''
@@ -94,17 +94,17 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             cmd.db.add_points(message.guild, message.author, pts)
             slot_embed.set_field_at(0, name='💎 You Won!', value=slot_view)
             slot_embed.set_footer(text='You won ' + str(pts) + ' points.')
-            await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
+            await slot_spinner.edit(None, embed=slot_embed)
         else:
             cmd.db.take_points(message.guild, message.author, bet_amt)
             slot_embed.set_field_at(0, name='💣 You Lost...', value=slot_view)
             slot_embed.set_footer(text='You lost the ' + str(bet_amt) + ' points that you bet.')
-            await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
+            await slot_spinner.edit(embed=slot_embed)
     else:
         cd_timestamp = slot_back_data[message.author.id]
         current_time = arrow.utcnow().timestamp
         timeout_amt = cd_timestamp + 20 - current_time
         embed = discord.Embed(color=0xDB0000,
                               title='❗ You can\'t spin for another ' + str(timeout_amt) + ' seconds!')
-        await message.channel.send(None, embed=embed)
+        await message.channel.send(embed=embed)
         return
