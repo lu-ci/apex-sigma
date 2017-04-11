@@ -1,5 +1,6 @@
 ﻿from PIL import Image
 import os
+import discord
 
 
 async def color(cmd, message, args):
@@ -31,6 +32,6 @@ async def color(cmd, message, args):
                 await message.channel.send('Error processing inputted variables.')
                 return
         img = Image.new('RGB', (50, 50), clr)
-        img.save('cache/' + message.author.id + '.png')
-        await message.channel.send(file=discord.File(cache/' + message.author.id + '.png')
-        os.remove('cache/' + message.author.id + '.png')
+        img.save(f'cache/{message.author.id}.png')
+        await message.channel.send(file=discord.File(f'cache/{message.author.id}.png'))
+        os.remove(f'cache/{message.author.id}.png')

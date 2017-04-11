@@ -1,4 +1,5 @@
 ﻿import aiohttp
+import discord
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -61,10 +62,7 @@ async def music(cmd, message, args):
     imgdraw.text((165, 44), title, (255, 255, 255), font=font)
     imgdraw.text((262, 92), album, (255, 255, 255), font=font)
     imgdraw.text((424, 46), duration, (255, 255, 255), font=font2)
-
-    base.save('cache/track_' + message.author.id + '.png')
-
-    await message.channel.send(file=discord.File(cache/track_' + message.author.id + '.png')
+    base.save(f'cache/track_{message.author.id}.png')
+    await message.channel.send(file=discord.File(f'cache/track_{message.author.id}.png'))
     await message.channel.send('Track Preview: <' + preview + '>')
-
-    os.remove('cache/track_' + message.author.id + '.png')
+    os.remove(f'cache/track_{message.author.id}.png')
