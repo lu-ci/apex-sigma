@@ -47,8 +47,8 @@ TwitterToken = getenv('TwitterToken') or ''
 TwitterTokenSecret = getenv('TwitterTokenSecret') or ''
 ParagonAPIKey = getenv('ParagonAPIKey') or ''
 SoundCloudClientID = getenv('SoundCloudClientID') or ''
-mal_un = getenv('mal_un') or ''
-mal_pw = getenv('mal_pw') or ''
+MALUserName = getenv('MALUserName') or ''
+MALPassword = getenv('MALPassword') or ''
 # Bot Control Settings
 MainServerURL = getenv('MainServerURL') or 'http://localhost/'
 UseCachet = False
