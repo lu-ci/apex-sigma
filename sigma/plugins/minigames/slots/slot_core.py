@@ -103,7 +103,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
     else:
         cd_timestamp = slot_back_data[message.author.id]
         current_time = arrow.utcnow().timestamp
-        timeout_amt = cd_timestamp + 20 - current_time
+        timeout_amt = cd_timestamp + 60 - current_time
         embed = discord.Embed(color=0xDB0000,
                               title='❗ You can\'t spin for another ' + str(timeout_amt) + ' seconds!')
         await message.channel.send(embed=embed)
