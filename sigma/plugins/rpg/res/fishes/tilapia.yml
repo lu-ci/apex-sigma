@@ -1,6 +1,0 @@
-name: "Tilapia"
-description: "This fish likes munching on kelp and seaweed, likes warm waters."
-base_value: 75
-eadible: True
-poisonous: False
-base_health: 11

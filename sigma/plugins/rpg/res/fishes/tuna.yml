@@ -1,6 +1,0 @@
-name: "Tuna"
-description: "Ohhh, so delicious. Everyone loves tuna! Very rich in protein."
-base_value: 100
-eadible: True
-poisonous: False
-base_health: 17
