@@ -17,10 +17,8 @@ async def channelinfo(cmd, message, args):
         out_list.append(['Name', chan.name])
         out_list.append(['Channel ID', chan.id])
         out_list.append(['Created', chan.created_at])
-        out_list.append(['Is Default', chan.is_default])
-        out_list.append(['Is Private', chan.is_private])
+        out_list.append(['Is Default', chan.is_default()])
         out_list.append(['Position', chan.position])
-        out_list.append(['Type', chan.type])
         if chan.topic:
             topic = chan.topic
         else:

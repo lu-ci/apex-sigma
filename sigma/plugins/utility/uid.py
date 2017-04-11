@@ -7,5 +7,5 @@ async def uid(cmd, message, args):
     else:
         user_q = message.author
     embed = discord.Embed(color=0x0099FF)
-    embed.add_field(name='ℹ ' + user_q.name, value='`' + user_q.id + '`')
+    embed.add_field(name='ℹ ' + user_q.name, value=f'`{user_q.id}`')
     await message.channel.send(None, embed=embed)

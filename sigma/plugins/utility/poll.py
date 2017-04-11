@@ -39,5 +39,5 @@ async def poll(cmd, message, args):
     ic_num = 0
     for option in poll_choices:
         emoji = icon_list_base[ic_num]
-        await cmd.bot.add_reaction(poll_message, emoji=emoji)
+        await poll_message.add_reaction(emoji=emoji)
         ic_num += 1

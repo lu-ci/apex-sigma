@@ -14,7 +14,7 @@ async def raffle(cmd, message, args):
                     user_list.append(member.id)
         winner = random.choice(user_list)
         embed = discord.Embed(title=':tada: Congrats! You won the raffle!', color=0x1ABC9C)
-        await message.channel.send('Hey <@' + winner + '>!', embed=embed)
+        await message.channel.send(f'Hey <@{winner}>!', embed=embed)
     else:
         out_content = discord.Embed(type='rich', color=0xDB0000,
                                     title='⛔ Insufficient Permissions. Server Admin Only.')

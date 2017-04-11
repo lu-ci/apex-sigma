@@ -12,5 +12,5 @@ async def cid(cmd, message, args):
         if channel.id == chn_id:
             name = channel.name
     embed = discord.Embed(color=0x0099FF)
-    embed.add_field(name='ℹ #' + name, value='`' + chn_id + '`')
+    embed.add_field(name='ℹ #' + name, value=f'`{chn_id}`')
     await message.channel.send(None, embed=embed)
