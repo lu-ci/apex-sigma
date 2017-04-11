@@ -94,7 +94,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             cmd.db.add_points(message.guild, message.author, pts)
             slot_embed.set_field_at(0, name='💎 You Won!', value=slot_view)
             slot_embed.set_footer(text='You won ' + str(pts) + ' points.')
-            await slot_spinner.edit(None, embed=slot_embed)
+            await slot_spinner.edit(embed=slot_embed)
         else:
             cmd.db.take_points(message.guild, message.author, bet_amt)
             slot_embed.set_field_at(0, name='💣 You Lost...', value=slot_view)
