@@ -1,4 +1,5 @@
 ﻿import os
+import discord
 import datetime
 from PIL import Image
 from PIL import ImageFont
@@ -197,7 +198,7 @@ async def draw_image(cmd, message, user, clr):
         imgdraw.text(review_pos, str(user['reviews'][
                                          'now']), review_color, font=review_font)
 
-    tmp_file = 'cache/wk_{:s}.png'.format(message.author.id)
+    tmp_file = f'cache/wk_{message.author.id}.png'
     base.save(tmp_file)
-    await message.channel.send(file=tmp_file)
+    await message.channel.send(file=discord.File(tmp_file))
     os.remove(tmp_file)

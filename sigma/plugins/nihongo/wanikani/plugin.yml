@@ -30,5 +30,5 @@ commands:
     usage:   "{pfx:s}{cmd:s} key 12345678901234567890123456789012"
     description:
       Stores a given API Key or Username for you.
-      If you want detailed stats when calling the %pfx%wanikani command
+      If you want detailed stats when calling the wanikani command
       you need to save your WK API Key like in the example bellow!
