@@ -26,12 +26,12 @@ async def prune(cmd, message, args):
             pass
 
         def author_check(msg):
-            return msg.author == target
+            return msg.author.id == target.id
 
         if target:
-            deleted = await cmd.bot.purge(message.channel, limit=limit, check=author_check)
+            deleted = await message.channel.purge(limit=limit, check=author_check)
         else:
-            deleted = await cmd.bot.purge(message.channel, limit=limit)
+            deleted = await message.channel.purge(limit=limit)
         embed = discord.Embed(color=0x66CC66, title=f'✅ Deleted {len(deleted)} Messages')
     else:
         embed = discord.Embed(title='⚠ Unpermitted. Only Those With The Manage Message Permission Allowed.',

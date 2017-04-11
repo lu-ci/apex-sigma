@@ -8,7 +8,7 @@ async def unban(cmd, message, args):
         user_q = args[0]
         if message.author is not user_q:
             if check_ban(message.author, channel):
-                ban_list = await cmd.bot.get_bans(message.guild)
+                ban_list = await message.guild.bans()
                 target_user = None
                 for user in ban_list:
                     if user.name.lower() == user_q.lower():

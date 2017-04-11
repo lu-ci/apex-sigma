@@ -10,7 +10,7 @@ async def setchannelname(cmd, message, args):
         if check_man_chan(message.author, message.channel):
             name_input = (' '.join(args)).replace(' ', '_').lower()
             name_pre = message.channel.name
-            await cmd.bot.edit_channel(message.channel, name=name_input)
+            await message.channel.edit(name=name_input)
             embed = discord.Embed(color=0x66CC66, title='#' + name_pre + ' renamed to #' + name_input)
             await message.channel.send(None, embed=embed)
         else:

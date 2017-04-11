@@ -22,9 +22,9 @@
                 if channel.id == greet_channel:
                     target_channel = channel
                     break
-            await ev.bot.send_message(target_channel, greet_message)
+            await target_channel.send(greet_message)
         else:
-            await ev.bot.send_message(member, greet_message)
+            await member.send(greet_message)
     if autorole:
         target = None
         for role in member.guild.roles:

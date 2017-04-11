@@ -13,4 +13,4 @@
             if channel.id == bye_channel:
                 target_channel = channel
                 break
-        await ev.bot.send_message(target_channel, bye_message)
+        await target_channel.send(bye_message)

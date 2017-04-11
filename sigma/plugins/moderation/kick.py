@@ -8,7 +8,7 @@ async def kick(cmd, message, args):
         user_q = message.mentions[0]
         if message.author is not user_q:
             if check_kick(message.author, channel):
-                await cmd.bot.kick(user_q)
+                await message.guild.kick(user_q)
                 out_content = discord.Embed(color=0x993300,
                                             title=':boot: User **' + user_q.name + '** has been kicked!')
                 await message.channel.send(None, embed=out_content)

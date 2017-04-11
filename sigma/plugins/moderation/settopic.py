@@ -9,7 +9,7 @@ async def settopic(cmd, message, args):
     else:
         if check_man_chan(message.author, message.channel):
             topic = ' '.join(args)
-            await cmd.bot.edit_channel(message.channel, topic=topic)
+            await message.channel.edit(topic=topic)
             embed = discord.Embed(color=0x66CC66)
             embed.add_field(name='✅ #' + message.channel.name + ' topic changed to:',
                             value='```\n' + topic + '\n```')

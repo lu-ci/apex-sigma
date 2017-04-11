@@ -10,7 +10,7 @@ async def sfiexec(ev, message, args):
                 active = ev.db.get_settings(message.guild.id, 'BlockInvites')
                 if active:
                     try:
-                        await ev.bot.delete_message(message)
+                        await message.delete()
                     except Exception as e:
                         ev.log.error(e)
                 else:
