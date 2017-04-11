@@ -26,7 +26,7 @@ async def collectchain(cmd, message, args):
                 ch_response = discord.Embed(color=0x66CC66,
                                             title='📖 Collecting... You will be sent a DM when I\'m done.')
                 await message.channel.send(None, embed=ch_response)
-                async for log in cmd.bot.logs_from(def_chn, limit=50000):
+                async for log in def_chn.history(limit=50000):
                     if log.author.id == target.id:
                         if log.content:
                             if log.content != '':
@@ -56,9 +56,9 @@ async def collectchain(cmd, message, args):
                 dm_response = discord.Embed(color=0x66CC66, title=f'📖 {target.name}\'s chain is done!')
                 dm_response.add_field(name='Amount Collected', value=f'```\n{collected}\n```')
                 dm_response.add_field(name='Time Elapsed', value=f'```\n{arrow.utcnow().timestamp - start_time}\n```')
-                await cmd.bot.send_message(message.author, None, embed=dm_response)
+                await message.author.send(None, embed=dm_response)
                 await message.channel.send(None, embed=dm_response)
                 if message.author.id != target.id:
                     tgt_msg = discord.Embed(color=0x66CC66,
                                             title=f'📖 {message.author.name} has made a markov chain for you.')
-                    await cmd.bot.send_message(target, None, embed=tgt_msg)
+                    await target.send(None, embed=tgt_msg)
