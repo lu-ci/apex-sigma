@@ -1,4 +1,4 @@
-import yaml
+﻿import yaml
 from config import permitted_id
 import discord
 import datetime
@@ -7,7 +7,9 @@ import sys
 
 def stats(bot, log=None):
     tmp = []
-    permed_ids = userlist(permitted_id)
+    permed_ids = []
+    for ownr in permitted_id:
+        permed_ids.append(str(ownr))
     authors = userlist(bot.authors)
     contributors = userlist(bot.contributors)
     donor_count = len(bot.donors)
@@ -26,7 +28,7 @@ def stats(bot, log=None):
         version_text += 'Beta '
     version_text += v_full + ' Codename ' + codename
     tmp.append(multi('Logged In As: \"' + bot.user.name + '\"', log))
-    tmp.append(multi('Bot User ID: ' + bot.user.id, log))
+    tmp.append(multi(f'Bot User ID: {bot.user.id}', log))
     tmp.append(multi('Python version: ' + sys.version.split(' ')[0], log))
     tmp.append(multi('discord.py version: ' + discord.__version__, log))
     tmp.append(multi('Authors: {:s}'.format(authors), log))
@@ -34,9 +36,9 @@ def stats(bot, log=None):
     tmp.append(multi('Donors: ' + str(donor_count), log))
     tmp.append(multi('Bot Version: ' + version_text, log))
     tmp.append(multi('Build Date: ' + build_date, log))
-    tmp.append(multi('Connected to [ {:d} ] servers'.format(len(bot.servers)), log))
+    tmp.append(multi('Connected to [ {:d} ] servers'.format(len(bot.guilds)), log))
     tmp.append(multi('Serving [ {:d} ] users'.format(len(list(bot.get_all_members()))), log))
-    tmp.append(multi('Permitted IDs: {:s}'.format(permed_ids), log))
+    tmp.append(multi(f'Permitted IDs: {", ".join(permed_ids)}', log))
     return tmp
 
 

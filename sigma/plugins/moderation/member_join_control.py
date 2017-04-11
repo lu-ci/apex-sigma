@@ -1,5 +1,5 @@
-async def member_join_control(ev, member):
-    server = member.server
+﻿async def member_join_control(ev, member):
+    server = member.guild
     greet = ev.db.get_settings(server.id, 'Greet')
     greet_pm = ev.db.get_settings(server.id, 'GreetPM')
     try:
@@ -12,8 +12,7 @@ async def member_join_control(ev, member):
         greet_message = ev.db.get_settings(server.id, 'GreetMessage')
         greet_message = greet_message.replace('%user_mention%', member.mention).replace('%server_name%',
                                                                                         server.name).replace(
-            '%USER_MENTION%', member.mention).replace('%SERVER_NAME%',
-                                                      server.name.upper())
+            '%USER_MENTION%', member.mention).replace('%SERVER_NAME%', server.name.upper())
         if not greet_pm:
             greet_channel = ev.db.get_settings(server.id, 'GreetChannel')
             if not greet_channel:
@@ -23,18 +22,18 @@ async def member_join_control(ev, member):
                 if channel.id == greet_channel:
                     target_channel = channel
                     break
-            await ev.bot.send_message(target_channel, greet_message)
+            await target_channel.send(greet_message)
         else:
-            await ev.bot.send_message(member, greet_message)
+            await member.send(greet_message)
     if autorole:
         target = None
-        for role in member.server.roles:
-            if role.name.lower() == autorole.lower():
+        for role in member.guild.roles:
+            if role.id == autorole:
                 target = role
                 break
         if target:
             await ev.bot.add_roles(member, target)
         else:
-            await ev.bot.send_message(member.server.default_channel,
-                                      'I tried to assign the autorole to the user, but the AutoRole specified was not found so I reset the settings.')
+            await member.guild.default_channel.send(
+                'I tried to assign the autorole to the user, but the AutoRole specified was not found so I reset the settings.')
             ev.db.set_settings(server.id, 'AutoRole', None)

@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -13,4 +13,4 @@ async def ronswanson(cmd, message, args):
     out += joke
     out += '\"\n```'
     embed.add_field(name='😠 Have a Ron Swanson Quote', value=out)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

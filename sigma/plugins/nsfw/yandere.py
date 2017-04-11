@@ -20,4 +20,4 @@ async def yandere(cmd, message, args):
         image_url = post['file_url']
         embed = discord.Embed(color=0x9933FF)
         embed.set_image(url=image_url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

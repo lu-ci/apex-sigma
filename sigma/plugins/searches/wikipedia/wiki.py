@@ -1,4 +1,4 @@
-import wikipedia
+﻿import wikipedia
 import discord
 
 
@@ -9,4 +9,4 @@ async def wiki(cmd, message, args):
         result = result[:650] + '...'
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='Wikipedia Search For `' + q + '`', value='```\n' + result + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

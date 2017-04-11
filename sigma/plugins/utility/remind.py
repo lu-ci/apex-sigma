@@ -12,7 +12,7 @@ async def remind(cmd, message, args):
             time_q = int(args[0])
         except:
             embed = discord.Embed(title='❗ Not A Number', color=0xDB0000)
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return
         if len(args) > 1:
             remind_text = ' '.join(args[1:])
@@ -23,11 +23,11 @@ async def remind(cmd, message, args):
         embed.add_field(name='Reminder Message', value='```\n' + remind_text + '\n```')
         embed.add_field(name='Time Until Reminder',
                         value='```\n' + time.strftime('%H:%M:%S', time.gmtime(time_q)) + '\n```')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         await asyncio.sleep(time_q)
         embed = discord.Embed(color=0x1abc9c)
         embed.add_field(name=':clock: Time\'s Up!', value=remind_text)
-        await cmd.bot.send_message(message.channel, 'Hey <@' + message.author.id + '>!', embed=embed)
+        await message.channel.send('Hey <@' + message.author.id + '>!', embed=embed)
     else:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return

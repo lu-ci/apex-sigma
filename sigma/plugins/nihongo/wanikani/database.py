@@ -81,7 +81,7 @@ async def get_user_data(cmd, message, key=None, username=None):
         else:
             embed = discord.Embed(color=0xDB0000,
                                   title='❗ Error while parsing the page, profile not found or doesn\'t exist')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return None
 
         script = script[script.find('var srsCounts'): script.find(
@@ -134,13 +134,13 @@ async def get_key(cmd, message, args):
         except Exception as e:
             cmd.log.error(e)
             embed = discord.Embed(color=0xDB0000, title='❗ Error while parsing the input message.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return
 
     if 'username' not in locals():
         if 'user_id' not in locals():
             embed = discord.Embed(color=0xDB0000, title='❗ No arguments passed.')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return
         # a username was passed
         else:
@@ -155,7 +155,7 @@ async def get_key(cmd, message, args):
             except:
                 embed = discord.Embed(color=0xDB0000, title='❗ No Assigned Key or Username Found')
                 embed.add_field(name='To Add A Key', value='Use `' + cmd.prefix + 'wksave key YOUR_API_KEY_HERE`')
-                await cmd.bot.send_message(message.channel, None, embed=embed)
+                await message.channel.send(None, embed=embed)
 
                 return (None, None)
 

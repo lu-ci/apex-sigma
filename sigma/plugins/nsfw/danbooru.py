@@ -24,10 +24,10 @@ async def danbooru(cmd, message, args):
         embed = discord.Embed(color=0x696969, title='🔍 Search for ' + tag + ' yielded no results.')
         embed.set_footer(
             text='Remember to replace spaces in tags with an underscore, as a space separates multiple tags')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     chosen_post = random.choice(links)
     url = file_url_base + chosen_post
     embed = discord.Embed(color=0x9933FF)
     embed.set_image(url=url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

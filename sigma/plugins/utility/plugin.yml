@@ -63,18 +63,6 @@ commands:
     description:
       Checks if a website was affected by the CloudBleed.
 
-  - name:    markov
-    alts:
-      - 'mkv'
-    global:  true
-    enabled: false
-    pmable:  true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Generates a markov chain output for the server.
-      This is only usable if the markov collection is enabled on the server.
-
   - name:    ingame
     alts:
       - "ign"

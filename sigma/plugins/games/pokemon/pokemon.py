@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -12,7 +12,7 @@ async def pokemon(cmd, message, args):
                 poke = await data.json()
     except Exception as e:
         cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, 'We had trouble communicating with the API.')
+        await message.channel.send('We had trouble communicating with the API.')
         return
 
     try:
@@ -61,6 +61,6 @@ async def pokemon(cmd, message, args):
         embed.add_field(name='Strong Against', value='```\n' + '\n'.join(strong_against) + '\n```')
         embed.add_field(name='Weak Against', value='```\n' + '\n'.join(weak_against) + '\n```')
 
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
     except Exception as e:
-        await cmd.bot.send_message(message.channel, 'An error has occurred.')
+        await message.channel.send('An error has occurred.')

@@ -1,4 +1,4 @@
-import praw
+﻿import praw
 import random
 import discord
 from config import RedditClientID, RedditClientSecret
@@ -14,11 +14,11 @@ async def reddit(cmd, message, args):
         if not nsfw_allowed:
             embed_content = discord.Embed(title=':eggplant: Channel does not have NSFW permissions set, sorry.',
                                           color=0x9933FF)
-            await cmd.bot.send_message(message.channel, None, embed=embed_content)
+            await message.channel.send(None, embed=embed_content)
             return
     posts = sub.hot(limit=100)
     url_list = []
     for post in posts:
         url_list.append(post.url)
     out_tex = random.choice(url_list)
-    await cmd.bot.send_message(message.channel, out_tex)
+    await message.channel.send(out_tex)

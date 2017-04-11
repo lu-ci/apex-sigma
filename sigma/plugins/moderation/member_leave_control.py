@@ -1,5 +1,5 @@
-async def member_leave_control(ev, member):
-    server = member.server
+﻿async def member_leave_control(ev, member):
+    server = member.guild
     bye = ev.db.get_settings(server.id, 'Bye')
     if bye:
         ev.db.add_stats('ByeCount')
@@ -13,4 +13,4 @@ async def member_leave_control(ev, member):
             if channel.id == bye_channel:
                 target_channel = channel
                 break
-        await ev.bot.send_message(target_channel, bye_message)
+        await target_channel.send(bye_message)

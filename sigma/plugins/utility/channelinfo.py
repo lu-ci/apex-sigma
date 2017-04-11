@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def channelinfo(cmd, message, args):
@@ -17,10 +17,8 @@ async def channelinfo(cmd, message, args):
         out_list.append(['Name', chan.name])
         out_list.append(['Channel ID', chan.id])
         out_list.append(['Created', chan.created_at])
-        out_list.append(['Is Default', chan.is_default])
-        out_list.append(['Is Private', chan.is_private])
+        out_list.append(['Is Default', chan.is_default()])
         out_list.append(['Position', chan.position])
-        out_list.append(['Type', chan.type])
         if chan.topic:
             topic = chan.topic
         else:
@@ -31,4 +29,4 @@ async def channelinfo(cmd, message, args):
         for item in out_list:
             embed.add_field(name=str(item[0]), value='```python\n' + str(item[1]) + '\n```')
 
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

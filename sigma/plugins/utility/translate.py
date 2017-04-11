@@ -17,4 +17,4 @@ async def translate(cmd, message, args):
             embed = discord.Embed(color=0x1abc9c, title='📚 Translated')
             embed.add_field(name=f'From {from_lang.upper()}', value=f'```\n{to_trans}\n```', inline=False)
             embed.add_field(name=f'To {to_lang.upper()}', value=f'```\n{transed}\n```', inline=False)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

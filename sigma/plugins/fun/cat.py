@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 from config import CatAPIKey
 from lxml import html
 import random
@@ -14,4 +14,4 @@ async def cat(cmd, message, args):
     image_url = str(choice[0].text)
     embed = discord.Embed(color=0x1abc9c)
     embed.set_image(url=image_url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

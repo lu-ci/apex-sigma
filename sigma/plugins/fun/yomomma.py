@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 import json
 
@@ -13,4 +13,4 @@ async def yomomma(cmd, message, args):
         joke += '.'
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='😂 A Yo Momma Joke', value='```\n' + joke + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

@@ -22,10 +22,10 @@ async def gelbooru(cmd, message, args):
         print()
         embed = discord.Embed(color=0x9933FF)
         embed.set_image(url=img_url)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
     except Exception as e:
         cmd.log.error(e)
         embed = discord.Embed(color=0x696969, title='🔍 Search for ' + tags + ' yielded no results.')
         embed.set_footer(
             text='Remember to replace spaces in tags with an underscore, as a space separates multiple tags')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

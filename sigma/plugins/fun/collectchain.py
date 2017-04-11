@@ -1,4 +1,4 @@
-import yaml
+﻿import yaml
 import arrow
 import discord
 from config import Prefix
@@ -10,23 +10,23 @@ async def collectchain(cmd, message, args):
     global in_use
     if in_use:
         response = discord.Embed(color=0x696969, title='🛠 Currently in use. Try Again Later.')
-        await cmd.bot.send_message(message.channel, None, embed=response)
+        await message.channel.send(None, embed=response)
     else:
         if args:
             if message.mentions:
                 target = message.mentions[0]
             else:
-                target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.server.members)
+                target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.guild.members)
             if target:
                 start_time = arrow.utcnow().timestamp
-                def_chn = message.server.default_channel
+                def_chn = message.guild.default_channel
                 collected = 0
                 collection = []
                 in_use = True
                 ch_response = discord.Embed(color=0x66CC66,
                                             title='📖 Collecting... You will be sent a DM when I\'m done.')
-                await cmd.bot.send_message(message.channel, None, embed=ch_response)
-                async for log in cmd.bot.logs_from(def_chn, limit=50000):
+                await message.channel.send(None, embed=ch_response)
+                async for log in def_chn.history(limit=50000):
                     if log.author.id == target.id:
                         if log.content:
                             if log.content != '':
@@ -56,9 +56,9 @@ async def collectchain(cmd, message, args):
                 dm_response = discord.Embed(color=0x66CC66, title=f'📖 {target.name}\'s chain is done!')
                 dm_response.add_field(name='Amount Collected', value=f'```\n{collected}\n```')
                 dm_response.add_field(name='Time Elapsed', value=f'```\n{arrow.utcnow().timestamp - start_time}\n```')
-                await cmd.bot.send_message(message.author, None, embed=dm_response)
-                await cmd.bot.send_message(message.channel, None, embed=dm_response)
+                await message.author.send(None, embed=dm_response)
+                await message.channel.send(None, embed=dm_response)
                 if message.author.id != target.id:
                     tgt_msg = discord.Embed(color=0x66CC66,
                                             title=f'📖 {message.author.name} has made a markov chain for you.')
-                    await cmd.bot.send_message(target, None, embed=tgt_msg)
+                    await target.send(None, embed=tgt_msg)

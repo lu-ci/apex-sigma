@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 async def userinfo(cmd, message, args):
     out_list = []
@@ -24,4 +24,4 @@ async def userinfo(cmd, message, args):
     for item in out_list:
         embed.add_field(name=str(item[0]), value='```python\n' + str(item[1]) + '\n```')
 
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

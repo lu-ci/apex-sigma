@@ -5,11 +5,11 @@ import discord
 async def hashing(cmd, message, args):
     if not args:
         embed = discord.Embed(color=0xDB0000, title='❗ No hash inputted and nothing to hash.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     if len(args) < 2:
         embed = discord.Embed(color=0xDB0000, title='❗ Nothing to hash.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     hash_name = args[0]
     hashes = hashlib.algorithms_available
@@ -17,7 +17,7 @@ async def hashing(cmd, message, args):
         embed = discord.Embed(color=0xDB0000)
         embed.add_field(name='❗ Unknown Hashing Method',
                         value='Available:\n```\n' + ', '.join(hashes) + '\n```')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     qry = ' '.join(args[1:])
     crypt = hashlib.new(hash_name)
@@ -26,4 +26,4 @@ async def hashing(cmd, message, args):
     embed = discord.Embed(color=0x66cc66)
     embed.add_field(name='✅ Hashing With ' + hash_name.upper() + ' Done',
                     value='```\n' + final + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

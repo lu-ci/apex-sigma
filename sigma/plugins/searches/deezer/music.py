@@ -1,4 +1,5 @@
-import aiohttp
+﻿import aiohttp
+import discord
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -9,7 +10,7 @@ import os
 
 async def music(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     else:
         search = ' '.join(args)
@@ -19,7 +20,7 @@ async def music(cmd, message, args):
             data = await data.json()
     data = data['data']
     if len(data) == 0:
-        await cmd.bot.send_message(message.channel, 'Nothing found.')
+        await message.channel.send('Nothing found.')
         return
     song = data[0]
     preview = song['preview']
@@ -61,10 +62,7 @@ async def music(cmd, message, args):
     imgdraw.text((165, 44), title, (255, 255, 255), font=font)
     imgdraw.text((262, 92), album, (255, 255, 255), font=font)
     imgdraw.text((424, 46), duration, (255, 255, 255), font=font2)
-
-    base.save('cache/track_' + message.author.id + '.png')
-
-    await cmd.bot.send_file(message.channel, 'cache/track_' + message.author.id + '.png')
-    await cmd.bot.send_message(message.channel, 'Track Preview: <' + preview + '>')
-
-    os.remove('cache/track_' + message.author.id + '.png')
+    base.save(f'cache/track_{message.author.id}.png')
+    await message.channel.send(file=discord.File(f'cache/track_{message.author.id}.png'))
+    await message.channel.send('Track Preview: <' + preview + '>')
+    os.remove(f'cache/track_{message.author.id}.png')

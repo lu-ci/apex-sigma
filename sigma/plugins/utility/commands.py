@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import yaml
 import os
 from config import Prefix
@@ -8,7 +8,7 @@ async def commands(cmd, message, args):
     if not args:
         embed = discord.Embed(color=0x696969, title='🔍 Please Enter a Module Group Name')
         embed.set_footer(text='Module groups can be seen with the ' + Prefix + 'modules command.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     module_group = ' '.join(args)
     directory = 'sigma/plugins'
@@ -30,12 +30,12 @@ async def commands(cmd, message, args):
                                 pass
     if len(command_list) == 0:
         embed = discord.Embed(color=0x696969, title='🔍 Module Group Not Found')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     embed_to_user = discord.Embed(color=0x1abc9c)
     embed_to_user.add_field(name='Sigma\'s Commands In ' + module_group.title(),
                             value='```yaml\n' + ', '.join(command_list) + '\n```')
-    await cmd.bot.send_message(message.author, None, embed=embed_to_user)
-    if message.server:
+    await message.author.send(None, embed=embed_to_user)
+    if message.guild:
         embed_local = discord.Embed(color=0x66CC66, title='✅ List Sent To Your DM')
-        await cmd.bot.send_message(message.channel, None, embed=embed_local)
+        await message.channel.send(None, embed=embed_local)

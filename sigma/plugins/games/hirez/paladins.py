@@ -17,7 +17,7 @@ async def paladins(cmd, message, args):
             data = await data.json()
     if len(data) == 0:
         embed = discord.Embed(color=0xDB0000, title='❗ Player ' + username + ' was not found.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     data = data[0]
     avatar = message.author.default_avatar_url
@@ -49,4 +49,4 @@ async def paladins(cmd, message, args):
     embed = discord.Embed(color=0x335183)
     embed.set_author(name=player_name, icon_url=avatar, url=avatar)
     embed.add_field(name='General Statistics', value=pals_general_stats, inline=False)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

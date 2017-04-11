@@ -1,4 +1,4 @@
-import json
+﻿import json
 import random
 import discord
 
@@ -15,4 +15,4 @@ async def dadjoke(cmd, message, args):
         cmd.db.add_stats('CancerCount')
         embed = discord.Embed(color=0x1abc9c)
         embed.add_field(name='😖 Have An Awful Dad Joke', value='```yaml\n\"' + end_joke + '\"\n\n - \"' + punchline + '\"\n```')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

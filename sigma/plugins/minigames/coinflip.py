@@ -1,4 +1,4 @@
-import random
+﻿import random
 import discord
 
 async def coinflip(cmd, message, args):
@@ -28,4 +28,4 @@ async def coinflip(cmd, message, args):
         else:
             embed.set_footer(text='If you\'re going to guess, guess with Heads or Tails.')
     embed.set_image(url=urls[result])
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

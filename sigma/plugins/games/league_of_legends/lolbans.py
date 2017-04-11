@@ -1,4 +1,4 @@
-import lxml.html as l
+﻿import lxml.html as l
 import aiohttp
 from humanfriendly.tables import format_pretty_table as boop
 
@@ -24,9 +24,9 @@ async def lolbans(cmd, message, args):
                 row.append('\"' + champion + '\"')
             out_list.append(row)
         out = boop(out_list)
-        await cmd.bot.send_message(message.channel, '```haskell\n' + out + '\n```')
+        await message.channel.send('```haskell\n' + out + '\n```')
     except Exception as e:
         cmd.log.error(e)
-        await cmd.bot.send_message(message.channel, 'There was an error parsing the page.\n' + str(e))
+        await message.channel.send('There was an error parsing the page.\n' + str(e))
 
 

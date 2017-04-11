@@ -5,7 +5,7 @@ from config import WolframAlphaAppID
 
 async def wa(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     else:
         wa_q = ' '.join(args)
@@ -24,6 +24,6 @@ async def wa(cmd, message, args):
             cmd.log.error(e)
             out_content = discord.Embed(type='rich', color=0xDB0000,
                                         title=':bug: We ran into an error, we were unable to process that.')
-            await cmd.bot.send_message(message.channel, None, embed=out_content)
+            await message.channel.send(None, embed=out_content)
             return
-        await cmd.bot.send_message(message.channel, None, embed=out_content)
+        await message.channel.send(None, embed=out_content)
