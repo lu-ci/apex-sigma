@@ -14,8 +14,8 @@ async def level(cmd, message, args):
         current_pts = point_data['Current']
         servers = point_data['Servers']
         curr_srv = 0
-        if message.guild.id in servers:
-            curr_srv = servers[message.guild.id]
+        if str(message.guild.id) in servers:
+            curr_srv = servers[str(message.guild.id)]
         response = discord.Embed(color=0x1ABC9C)
         response.set_author(name=f'{target.name}\'s Currency Data', icon_url=user_avatar(target))
         response.add_field(name='Currently', value=f'```py\n{current_pts} {Currency}\n```')
