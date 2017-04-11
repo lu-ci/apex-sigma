@@ -39,6 +39,6 @@ async def paragon(cmd, message, args):
             response.add_field(name='Core Kills', value=core_kills)
             response.add_field(name='Minion Kills', value=stats['kills_minions'])
 
-        except SyntaxError:
+        except Exception:
             response = discord.Embed(color=0xDB0000, title=f'❗ User {username} Not Found')
         await message.channel.send(None, embed=response)
