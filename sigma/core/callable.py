@@ -76,7 +76,7 @@ class Callable(object):
         return ''
 
     async def call(self, message, *args):
-        server = message.server
+        server = message.guild
         channel = message.channel
         author = message.author
         msg = None
@@ -88,7 +88,7 @@ class Callable(object):
 
         if not perm[0]:
             try:
-                await self.bot.send_message(channel, embed=perm[1])
+                await channel.send(embed=perm[1])
             except:
                 pass
             return
@@ -105,7 +105,7 @@ class Callable(object):
                 error_embed.add_field(name=title,
                                       value=codeblock(f'Arguments: \"{e}\"\nTraceback: \"{e.with_traceback}\"'))
                 error_embed.set_footer(text=errmsg)
-                await self.bot.send_message(channel, None, embed=error_embed)
+                await channel.send(None, embed=error_embed)
             except:
                 pass
 
@@ -113,13 +113,13 @@ class Callable(object):
             self.db.add_stats('NSFWCount')
 
         if msg:
-            await self.bot.send_message(channel, msg)
+            await channel.send(msg)
 
     async def call_sp(self, member):
         try:
             await getattr(self.module, self.name)(self, member)
         except Exception as e:
-            # ev_log_msg = f'SP_EV: {member.server.name} [{member.server.id}] | {self.name} |'
+            # ev_log_msg = f'SP_EV: {member.guild.name} [{member.guild.id}] | {self.name} |'
             # ev_log_msg += f'ERROR: {e} | TRACE: {e.with_traceback}'
             # self.log.error(ev_log_msg)
             pass

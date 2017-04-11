@@ -1,4 +1,4 @@
-import random
+﻿import random
 import discord
 
 
@@ -33,4 +33,4 @@ async def draw(cmd, message, args):
         card_sign = random.choice(sign_list)
         combination = '**' + card_number + '** - ' + card_sign
         embed.add_field(name= 'Card #' + str(n), value=combination)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -8,9 +8,8 @@ async def pun(cmd, message, args):
     async with aiohttp.ClientSession() as session:
         async with session.get(pun_url) as data:
             pun_req = await data.text()
-    pun_text = (str(pun_req)[len('b\'document.write(\\\'&quot;'):-len(
-        '&quot;<br />\\\')\ndocument.write(\\\'<i>&copy; 1996-2016 <a href="http://www.punoftheday.com">Pun of the Day.com</a></i><br />\\\')\\n\'') - 1]).replace(
-        '&rsquo;', '\'')
+    print(pun_req)
+    pun_text = pun_req.split('&quot;')[1]
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='😒 Have A Pun', value='```\n' + pun_text + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

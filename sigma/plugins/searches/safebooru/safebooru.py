@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import random
 import discord
 from lxml import html
@@ -21,4 +21,4 @@ async def safebooru(cmd, message, args):
         image_url = 'http:' + image_url
     embed = discord.Embed(color=0xff6699)
     embed.set_image(url=image_url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

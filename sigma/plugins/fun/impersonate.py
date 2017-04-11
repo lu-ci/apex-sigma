@@ -1,4 +1,4 @@
-from sigma.core.utils import user_avatar
+﻿from sigma.core.utils import user_avatar
 from config import Prefix
 import markovify
 import discord
@@ -12,7 +12,7 @@ async def impersonate(cmd, message, args):
         if message.mentions:
             target = message.mentions[0]
         else:
-            target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.server.members)
+            target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.guild.members)
         if target:
             destination = f'chains/chain_{target.id}.yml'
             if os.path.exists(destination):
@@ -24,7 +24,6 @@ async def impersonate(cmd, message, args):
                 if not sentence:
                     response = discord.Embed(color=0xDB0000, title='😖 I Couldn\'t think of anything...')
                 else:
-                    print(sentence)
                     sentence = ftfy.fix_text(sentence)
                     response = discord.Embed(color=0x1ABC9C)
                     response.set_author(name=target.name, icon_url=user_avatar(target))
@@ -33,4 +32,4 @@ async def impersonate(cmd, message, args):
                 response = discord.Embed(color=0x696969)
                 response.add_field(name=f'🔍 Chain File Not Found For {target.name}',
                                    value=f'You can make one with `{Prefix}collectchain`!')
-            await cmd.bot.send_message(message.channel, None, embed=response)
+            await message.channel.send(None, embed=response)

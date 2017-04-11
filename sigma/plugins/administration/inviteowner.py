@@ -1,12 +1,12 @@
-from config import permitted_id
+﻿from config import permitted_id
 
 
 async def inviteowner(cmd, message, args):
     if message.author.id in permitted_id:
         if args:
             server_id_lookup = args[0]
-            for server in cmd.bot.servers:
-                if server.id == server_id_lookup:
+            for server in cmd.bot.guilds:
+                if server.id == int(server_id_lookup):
                     try:
                         invite = await cmd.bot.create_invite(server, max_uses=1)
                         await cmd.bot.send_message(message.channel,
@@ -19,4 +19,4 @@ async def inviteowner(cmd, message, args):
                         if inv_out == '':
                             return
                         else:
-                            await cmd.bot.send_message(message.channel, inv_out)
+                            await message.channel.send(inv_out)

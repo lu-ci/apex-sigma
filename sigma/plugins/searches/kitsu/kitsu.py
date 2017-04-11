@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 import json
 
@@ -54,4 +54,4 @@ async def kitsu(cmd, message, args):
             poster_image = attr['posterImage']['original'].split('?')[0]
             embed.set_thumbnail(url=poster_image)
         embed.set_footer(text='Click the Kitsu.io at the top to see the page of the anime.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

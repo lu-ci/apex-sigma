@@ -1,4 +1,5 @@
-import os
+﻿import os
+import discord
 from PIL import Image
 
 
@@ -7,7 +8,7 @@ async def catlen(cmd, message, args):
         target = message.mentions[0]
     else:
         target = message.author
-    length_number = int(target.id[6]) + int(target.id[9])
+    length_number = int(str(target.id)[6]) + int(str(target.id)[9])
     img_height = 54
     img_width = 62 + (length_number * 15) + 50
     base = Image.new('RGBA', (img_width, img_height), (255, 255, 255, 0))
@@ -21,5 +22,5 @@ async def catlen(cmd, message, args):
     with Image.open(cmd.resource(f'{image_location}/top.png')) as top_cat_img:
         base.paste(top_cat_img, (62 + ((length_number - 1) * 15), 0), top_cat_img)
     base.save(out_location)
-    await cmd.bot.send_file(message.channel, out_location)
+    await message.channel.send(file=discord.File(out_location))
     os.remove(out_location)

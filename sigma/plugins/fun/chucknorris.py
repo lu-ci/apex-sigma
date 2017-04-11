@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -14,4 +14,4 @@ async def chucknorris(cmd, message, args):
     out += joke
     out += '\n```'
     embed.add_field(name='💪 A Chuck Norris Joke', value=out)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

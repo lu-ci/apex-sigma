@@ -18,7 +18,7 @@ async def smite(cmd, message, args):
             data = await data.json()
     if len(data) == 0:
         embed = discord.Embed(color=0xDB0000, title='❗ Player ' + username + ' was not found.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     data = data[0]
     avatar = message.author.default_avatar_url
@@ -71,4 +71,4 @@ async def smite(cmd, message, args):
     embed.set_author(name=player_name, icon_url=avatar, url=avatar)
     embed.add_field(name='General Statistics', value=smite_general_stats, inline=False)
     embed.add_field(name='Ranked Statistics', value=smite_ranked_stats, inline=False)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

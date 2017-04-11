@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 from sigma.core.utils import user_avatar
 from config import Currency
 
@@ -14,8 +14,8 @@ async def level(cmd, message, args):
         current_pts = point_data['Current']
         servers = point_data['Servers']
         curr_srv = 0
-        if message.server.id in servers:
-            curr_srv = servers[message.server.id]
+        if message.guild.id in servers:
+            curr_srv = servers[message.guild.id]
         response = discord.Embed(color=0x1ABC9C)
         response.set_author(name=f'{target.name}\'s Currency Data', icon_url=user_avatar(target))
         response.add_field(name='Currently', value=f'```py\n{current_pts} {Currency}\n```')
@@ -24,4 +24,4 @@ async def level(cmd, message, args):
     else:
         response = discord.Embed(color=0x696969, title=f'🔍 I couldn\'t find {target.name} in my point database.')
     response.set_footer(text=f'{Currency} can be earned by being an active member of the server.')
-    await cmd.bot.send_message(message.channel, None, embed=response)
+    await message.channel.send(None, embed=response)

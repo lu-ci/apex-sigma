@@ -115,14 +115,3 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       LOOK AT ALL THE FINE ASS. Mmmm... Aaaaasssss~
-
-  - name:     nhentai
-    alts:
-      - "nh"
-    global:   true
-    enabled:  true
-    sfw:      false
-    usage:    "{pfx:s}{cmd:s} Oreimo"
-    description:
-      Searches nHentai for doujinshi for the inputed name.
-      Displays the results, cover and tags.

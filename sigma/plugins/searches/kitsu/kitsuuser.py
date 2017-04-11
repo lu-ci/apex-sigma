@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 import json
 
@@ -59,4 +59,4 @@ async def kitsuuser(cmd, message, args):
         if cover:
             embed.set_image(url=cover)
         embed.set_footer(text='Click the Kitsu.io at the top to see the profile of the user.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

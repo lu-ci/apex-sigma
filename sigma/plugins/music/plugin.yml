@@ -3,7 +3,7 @@ name: Music
 categories:
   - music
 
-enabled: true
+enabled: false
 
 commands:
   - name:    play

@@ -1,6 +1,0 @@
-name: "Herring"
-description: "A very common ocean fish."
-base_value: 30
-eadible: True
-poisonous: False
-base_health: 5

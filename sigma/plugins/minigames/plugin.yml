@@ -95,14 +95,3 @@ commands:
     description:
       Quits your current blackjack game.
       Refunds half of your bet value.
-
-events:
-  - name:    random_event_control
-    type:    message
-    global:  true
-    enabled: false
-    sfw:     true
-    pmable:  true
-    usage:   "Activates based on set server event chance"
-    description:
-      Controls the servers random events.

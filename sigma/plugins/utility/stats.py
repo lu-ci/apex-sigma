@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import arrow
 import discord
 import datetime
@@ -8,15 +8,18 @@ async def stats(cmd, message, args):
     sigma_avatar = 'https://i.imgur.com/mGyqMe1.png'
     current_time = arrow.utcnow().timestamp
     upseconds = current_time - cmd.bot.start_time
+    permed_ids = []
+    for ownr in permitted_id:
+        permed_ids.append(str(ownr))
     uptime = str(datetime.timedelta(seconds=upseconds))
-    owners = ', '.join(permitted_id)
-    if message.server:
-        for m in message.server.members:
+    owners = ', '.join(permed_ids)
+    if message.guild:
+        for m in message.guild.members:
             if m.id in permitted_id:
                 if m.nick:
-                    owners = owners.replace(m.id, m.nick)
+                    owners = owners.replace(str(m.id), m.nick)
                 else:
-                    owners = owners.replace(m.id, m.name)
+                    owners = owners.replace(str(m.id), m.name)
     full_version = f'{cmd.bot.v_major}.{cmd.bot.v_minor}.{cmd.bot.v_patch}'
     embed = discord.Embed(color=0x1abc9c)
     embed.set_author(name='Apex Sigma', url='https://auroraproject.xyz/', icon_url=sigma_avatar)
@@ -28,8 +31,8 @@ async def stats(cmd, message, args):
     embed.add_field(name='Bot Version', value=f'```py\n{full_version}\n```')
     embed.add_field(name='Bot Codename', value=f'```py\n"{cmd.bot.codename}"\n```')
     embed.add_field(name='Build Date', value=f'```py\n{cmd.bot.build_date.format("DD-MM-YYYY")}\n```')
-    embed.add_field(name='Servers', value=f'```py\n{len(cmd.bot.servers)}\n```')
+    embed.add_field(name='Servers', value=f'```py\n{len(cmd.bot.guilds)}\n```')
     embed.add_field(name='Channels', value=f'```py\n{len(list(cmd.bot.get_all_channels()))}\n```')
     embed.add_field(name='Users', value=f'```py\n{len(list(cmd.bot.get_all_members()))}\n```')
     embed.add_field(name='Bot Owners', value=f'```\n{owners}\n```', inline=False)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

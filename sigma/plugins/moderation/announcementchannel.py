@@ -12,10 +12,13 @@ async def announcementchannel(cmd, message, args):
         if message.channel_mentions:
             # argument exists and is a channel
             newchannel = message.channel_mentions[0]
-            if check_write(message.server.get_member(cmd.bot.user.id), newchannel):
+            print(newchannel.id)
+            writable = check_write(message.guild.get_member(cmd.bot.user.id), newchannel)
+            print(writable)
+            if writable:
                 # channel can be written to -> turn on announcements and set channelid
-                cmd.db.set_settings(message.server.id, 'Announcement', True)
-                cmd.db.set_settings(message.server.id, 'AnnouncementChannel', newchannel.id)
+                cmd.db.set_settings(message.guild.id, 'Announcement', True)
+                cmd.db.set_settings(message.guild.id, 'AnnouncementChannel', newchannel.id)
                 embed = discord.Embed(
                     title='✅ Announcements will be posted to #' + newchannel.name, color=0x66CC66)
             else:
@@ -23,7 +26,7 @@ async def announcementchannel(cmd, message, args):
         else:
             if len(args) == 0:
                 # no argument given, announcements will be turned off
-                cmd.db.set_settings(message.server.id, 'Announcement', False)
+                cmd.db.set_settings(message.guild.id, 'Announcement', False)
                 embed = discord.Embed(title='✅ Announcements turned OFF for this server',
                                       color=0x66CC66)
                 embed.add_field(name='Note:',
@@ -33,4 +36,4 @@ async def announcementchannel(cmd, message, args):
                 embed = discord.Embed(title=':x: "' + args[0] + '" is not a channel', color=0xDB0000)
                 embed.add_field(name='Note:',
                                 value='Enter a channel in this format: "#channel_name" or leave blank to turn announcements off.')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

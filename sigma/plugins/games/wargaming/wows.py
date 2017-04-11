@@ -1,4 +1,4 @@
-import datetime
+﻿import datetime
 import aiohttp
 import discord
 from config import WarGamingAppID
@@ -15,7 +15,7 @@ async def wows(cmd, message, args):
             async with session.get(url_base) as data:
                 initial_data = await data.json()
     except:
-        await cmd.bot.send_message(message.channel, '`' + game_region + '` is not a valid region.')
+        await message.channel.send('`' + game_region + '` is not a valid region.')
         return
     try:
         if initial_data['status'].lower() == 'ok':
@@ -28,7 +28,7 @@ async def wows(cmd, message, args):
     try:
         game_nickname = initial_data['data'][0]['nickname']
     except:
-        await cmd.bot.send_message(message.channel, 'User `' + game_username + '` not found.')
+        await message.channel.send('User `' + game_username + '` not found.')
         return
     account_id = initial_data['data'][0]['account_id']
     url_second = 'https://api.worldofwarships.' + game_region + '/wows/account/info/?application_id=' + WarGamingAppID + '&account_id=' + str(
@@ -99,4 +99,4 @@ async def wows(cmd, message, args):
 
     # Divider for clarity
 
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 import random
 import aiohttp
 from lxml import html as l
@@ -17,4 +17,4 @@ async def cyanideandhappiness(cmd, message, args):
         comic_img_url = 'https:' + comic_img_url
     embed = discord.Embed(color=0x1ABC9C)
     embed.set_image(url=comic_img_url)
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

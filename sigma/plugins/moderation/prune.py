@@ -21,24 +21,24 @@ async def prune(cmd, message, args):
             target = None
             limit = abs(int(args[0]))
         try:
-            await cmd.bot.delete_message(message)
+            await message.delete()
         except:
             pass
 
         def author_check(msg):
-            return msg.author == target
+            return msg.author.id == target.id
 
         if target:
-            deleted = await cmd.bot.purge_from(message.channel, limit=limit, check=author_check)
+            deleted = await message.channel.purge(limit=limit, check=author_check)
         else:
-            deleted = await cmd.bot.purge_from(message.channel, limit=limit)
+            deleted = await message.channel.purge(limit=limit)
         embed = discord.Embed(color=0x66CC66, title=f'✅ Deleted {len(deleted)} Messages')
     else:
         embed = discord.Embed(title='⚠ Unpermitted. Only Those With The Manage Message Permission Allowed.',
                               color=0xDB0000)
-    notify_msg = await cmd.bot.send_message(message.channel, None, embed=embed)
+    notify_msg = await message.channel.send(None, embed=embed)
     await asyncio.sleep(5)
     try:
-        await cmd.bot.delete_message(notify_msg)
+        await notify_msg.delete()
     except:
         pass

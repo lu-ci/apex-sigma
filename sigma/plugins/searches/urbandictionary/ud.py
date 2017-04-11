@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 from config import MashapeKey
 
@@ -19,4 +19,4 @@ async def ud(cmd, message, args):
         embed = discord.Embed(color=0x1abc9c, title='🥃 Urban Dictionary Definition For `' + ud_input + '`')
         embed.add_field(name='Definition', value='```\n' + definition + '\n```')
         embed.add_field(name='Usage Example', value='```\n' + example + '\n```')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

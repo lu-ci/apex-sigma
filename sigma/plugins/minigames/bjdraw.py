@@ -4,11 +4,11 @@ from .black_jack_backend import get_bj, upd_bj, del_bj, symbols
 
 
 async def bjdraw(cmd, message, args):
-    instance_id = message.server.id + message.author.id
+    instance_id = message.guild.id + message.author.id
     instance = get_bj(instance_id)
     if not instance:
         embed = discord.Embed(color=0xDB0000, title='❗ No active blackjack games found for you.')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
     deck = instance['Deck']
     p_pts = instance['PlayerScore']
@@ -41,20 +41,20 @@ async def bjdraw(cmd, message, args):
         embed.add_field(name=em_p_nam, value=em_p_val)
         embed.add_field(name=em_h_nam, value=em_h_val)
         del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
 
     if new_p_score == 21 or new_h_score > 21:
         prize = (instance['Bet'] // 5) + instance['Bet']
-        cmd.db.add_points(message.server, message.author, prize)
+        cmd.db.add_points(message.guild, message.author, prize)
         embed = discord.Embed(color=0x0099FF, title=':gem: You won!')
         embed.add_field(name=em_p_nam, value=em_p_val)
         embed.add_field(name=em_h_nam, value=em_h_val)
         embed.set_footer(text='You have been awarded ' + str(prize) + ' points.')
         del_bj(instance['InstanceID'])
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)
         return
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)
     bj_data = {
         'InstanceID': instance['InstanceID'],
         'UserID': instance['UserID'],

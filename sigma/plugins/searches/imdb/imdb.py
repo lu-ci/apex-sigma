@@ -1,4 +1,4 @@
-import aiohttp
+﻿import aiohttp
 import discord
 
 
@@ -41,4 +41,4 @@ async def imdb(cmd, message, args):
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name='🎥 Movie Details', value=movie_text)
     embed.add_field(name='📑 Plot', value='```\n' + plot + '\n```')
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

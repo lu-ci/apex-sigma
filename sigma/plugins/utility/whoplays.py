@@ -1,16 +1,16 @@
-import discord
+﻿import discord
 
 
 async def whoplays(cmd, message, args):
     if not args:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
     else:
         game_title = ' '.join(args)
         gamer_list = ''
         x = 0
         y = 0
-        for member in message.server.members:
+        for member in message.guild.members:
             if member.game:
                 x += 1
                 if str(member.game).lower() == game_title.lower():
@@ -27,4 +27,4 @@ async def whoplays(cmd, message, args):
         gamers = '```\n' + gamer_list + '\n```'
         embed = discord.Embed(color=0x1ABC9C)
         embed.add_field(name=title, value=gamers)
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

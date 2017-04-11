@@ -1,12 +1,12 @@
-import discord
+﻿import discord
 
 
 async def serverinfo(cmd, message, args):
     out_list = []
-    if message.server:
+    if message.guild:
         bot_count = 0
         user_count = 0
-        serv = message.server
+        serv = message.guild
         for user in serv.members:
             if user.bot:
                 bot_count += 1
@@ -29,4 +29,4 @@ async def serverinfo(cmd, message, args):
         for item in out_list:
             embed.add_field(name=str(item[0]), value='```python\n' + str(item[1]) + '\n```')
 
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(None, embed=embed)

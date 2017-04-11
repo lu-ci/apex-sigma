@@ -1,3 +1,4 @@
+﻿import discord
 import aiohttp
 import os
 from PIL import Image
@@ -9,7 +10,7 @@ async def rip(cmd, message, args):
     mentioned_avatar = ''
 
     if not message.mentions:
-        await cmd.bot.send_message(message.channel, cmd.help())
+        await message.channel.send(cmd.help())
         return
 
     for user in message.mentions:
@@ -27,6 +28,6 @@ async def rip(cmd, message, args):
     avatar_img = avatar_img.resize((108, 108), Image.ANTIALIAS)
     base.paste(avatar_img, (60, 164))
     base.paste(tomb, (0, 0), tomb)
-    base.save('cache/rip_' + message.id + '.png')
-    await cmd.bot.send_file(message.channel, 'cache/rip_' + message.id + '.png')
-    os.remove('cache/rip_' + message.id + '.png')
+    base.save(f'cache/rip_{message.id}.png')
+    await message.channel.send(file=discord.File(f'cache/rip_{message.id}.png'))
+    os.remove(f'cache/rip_{message.id}.png')

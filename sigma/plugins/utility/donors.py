@@ -1,4 +1,4 @@
-import discord
+﻿import discord
 
 
 async def donors(cmd, message, args):
@@ -8,4 +8,4 @@ async def donors(cmd, message, args):
     embed.add_field(name=':gem: The lovely people that support us', value=don_text)
     embed.set_footer(text='Thank you! 🎀')
 
-    await cmd.bot.send_message(message.channel, None, embed=embed)
+    await message.channel.send(None, embed=embed)

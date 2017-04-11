@@ -22,7 +22,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         player_points = cmd.db.get_points(message.author)
         if player_points['Current'] < bet_amt:
             embed = discord.Embed(color=0xDB0000, title='❗ Not Enough Points')
-            await cmd.bot.send_message(message.channel, None, embed=embed)
+            await message.channel.send(None, embed=embed)
             return
         cmd.db.add_stats('SlotsCount')
         embed_colors = [0x990000, 0x0066FF, 0x009900, 0xff9900, 0xCC33FF, 0x990033]
@@ -43,7 +43,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
         slot_view += '\n▶ ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' ◀'
         slot_view += '\n⏸ ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' ⏸'
         slot_embed.add_field(name='🎰 Slots are spinning...', value=slot_view)
-        slot_spinner = await cmd.bot.send_message(message.channel, None, embed=slot_embed)
+        slot_spinner = await message.channel.send(None, embed=slot_embed)
         spin_amt = random.randint(min_spins, max_spins)
         while rand_done < spin_amt:
             await asyncio.sleep(spin_cycle_timeout)
@@ -61,7 +61,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             slot_view += '\n▶ ' + res_1 + ' ' + res_2 + ' ' + res_3 + ' ◀'
             slot_view += '\n⏸ ' + res_7 + ' ' + res_8 + ' ' + res_9 + ' ⏸'
             slot_embed.set_field_at(0, name='🎰 Slots are spinning...', value=slot_view)
-            await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
+            await slot_spinner.edit(embed=slot_embed)
 
         # Result Response
         subtext = ''
@@ -70,7 +70,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             pts = bet_amt * 210
             subtext += 'Your major victory has been recorded on the `#slot-wins` channel of Sigma\'s official server.'
             win_notify_channel_object = None
-            for server in cmd.bot.servers:
+            for server in cmd.bot.guilds:
                 for channel in server.channels:
                     if channel.id == SlotWinChannelID:
                         win_notify_channel_object = channel
@@ -78,7 +78,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             if SlotWinChannelID:
                 win_notify_embed = discord.Embed(color=0x0099FF, title='💎 We have a winner!')
                 win_notify_embed.add_field(name='User', value=message.author.name)
-                win_notify_embed.add_field(name='Server', value=message.server.name)
+                win_notify_embed.add_field(name='Server', value=message.guild.name)
                 embed_icon = message.author.default_avatar_url
                 if message.author.avatar_url != '':
                     embed_icon = message.author.avatar_url
@@ -91,20 +91,20 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             win = False
             pts = 0
         if win:
-            cmd.db.add_points(message.server, message.author, pts)
+            cmd.db.add_points(message.guild, message.author, pts)
             slot_embed.set_field_at(0, name='💎 You Won!', value=slot_view)
             slot_embed.set_footer(text='You won ' + str(pts) + ' points.')
-            await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
+            await slot_spinner.edit(None, embed=slot_embed)
         else:
-            cmd.db.take_points(message.server, message.author, bet_amt)
+            cmd.db.take_points(message.guild, message.author, bet_amt)
             slot_embed.set_field_at(0, name='💣 You Lost...', value=slot_view)
             slot_embed.set_footer(text='You lost the ' + str(bet_amt) + ' points that you bet.')
-            await cmd.bot.edit_message(slot_spinner, None, embed=slot_embed)
+            await slot_spinner.edit(embed=slot_embed)
     else:
         cd_timestamp = slot_back_data[message.author.id]
         current_time = arrow.utcnow().timestamp
         timeout_amt = cd_timestamp + 20 - current_time
         embed = discord.Embed(color=0xDB0000,
                               title='❗ You can\'t spin for another ' + str(timeout_amt) + ' seconds!')
-        await cmd.bot.send_message(message.channel, None, embed=embed)
+        await message.channel.send(embed=embed)
         return
