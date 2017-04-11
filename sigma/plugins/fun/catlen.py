@@ -22,6 +22,5 @@ async def catlen(cmd, message, args):
     with Image.open(cmd.resource(f'{image_location}/top.png')) as top_cat_img:
         base.paste(top_cat_img, (62 + ((length_number - 1) * 15), 0), top_cat_img)
     base.save(out_location)
-    with open(out_location, 'rb') as out_img:
-        await message.channel.send(file=discord.File(out_img))
+    await message.channel.send(file=discord.File(out_location))
     os.remove(out_location)
