@@ -22,6 +22,6 @@ async def send(cmd, message, args):
         embed = discord.Embed(color=0xDB0000, title='❗ Invalid Arguments Given.')
         await message.channel.send(None, embed=embed)
         return
-    await cmd.bot.send_message(target, text)
-    embed = discord.Embed(color=0x66CC66, title='✅ Message Sent.')
+    await target.send(text)
+    embed = discord.Embed(color=0x66CC66, title=f'✅ Message sent to {target.name}.')
     await message.channel.send(None, embed=embed)

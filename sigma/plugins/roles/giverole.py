@@ -29,7 +29,7 @@ async def giverole(cmd, message, args):
         await message.channel.send(None, embed=out_content)
     else:
         if not user_contained_role:
-            await cmd.bot.add_roles(target_user, target_role)
+            await target_user.add_roles(target_role)
             out_content = discord.Embed(type='rich', color=0x66cc66,
                                         title='✅ Role ' + role_qry + ' given to **' + target_user.name + '**.')
             await message.channel.send(None, embed=out_content)

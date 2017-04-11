@@ -16,6 +16,7 @@ async def autorole(cmd, message, args):
         current_role = None
     if not args:
         if current_role:
+            cr_rl = discord.utils.find()
             out_content = discord.Embed(type='rich', color=0x0099FF,
                                         title='ℹ Current Auto Role: ' + current_role)
             await message.channel.send(None, embed=out_content)
@@ -34,13 +35,13 @@ async def autorole(cmd, message, args):
         await message.channel.send(None, embed=out_content)
         return
     target_role = matching_role(message.guild, role_qry)
-    if current_role and current_role.lower() == role_qry_low:
-        out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
-        out_content.add_field(name='Present Role', value='This Role is already the Auto Role for this server.')
-        await message.channel.send(None, embed=out_content)
-        return
     if target_role:
-        cmd.db.set_settings(message.guild.id, 'AutoRole', role_qry)
+        if current_role == target_role.id:
+            out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
+            out_content.add_field(name='Present Role', value='This Role is already the Auto Role for this server.')
+            await message.channel.send(None, embed=out_content)
+            return
+        cmd.db.set_settings(message.guild.id, 'AutoRole', target_role.id)
         out_content = discord.Embed(type='rich', color=0x33CC33)
         out_content.add_field(name='✅ Success',
                               value='The role **' + role_qry + '** has been set as the Auto Role.')

@@ -21,7 +21,7 @@ async def createrole(cmd, message, args):
         out_content.add_field(name='Role Exists', value='A role with the name **' + role_qry + '** already exists.')
         await message.channel.send(None, embed=out_content)
     else:
+        await message.guild.create_role(name=role_qry)
         out_content = discord.Embed(type='rich', color=0x33CC33,
                                     title='✅ Role ' + role_qry + ' created.')
-        await cmd.bot.create_role(message.guild, name=role_qry)
         await message.channel.send(None, embed=out_content)

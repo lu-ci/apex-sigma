@@ -26,8 +26,8 @@ async def delselfrole(cmd, message, args):
         except:
             cmd.db.set_settings(message.guild.id, 'SelfRoles', [])
             self_roles = []
-        if target_role.name in self_roles:
-            self_roles.remove(target_role.name)
+        if target_role.id in self_roles:
+            self_roles.remove(target_role.id)
             cmd.db.set_settings(message.guild.id, 'SelfRoles', self_roles)
             out_content = discord.Embed(type='rich', color=0x66cc66,
                                         title='✅ Role **' + target_role.name + '** removed from the self assignable roles list.')

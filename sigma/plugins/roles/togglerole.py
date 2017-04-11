@@ -11,26 +11,35 @@ async def togglerole(cmd, message, args):
     else:
         role_qry = ' '.join(args)
         self_roles = cmd.db.get_settings(message.guild.id, 'SelfRoles')
-        role_name = None
-        for role in self_roles:
-            if role.lower() == role_qry.lower():
-                role_name = role
+        self_role_id = None
+        target_role = None
+        for role in message.guild.roles:
+            if role.name.lower() == role_qry.lower():
+                target_role = role
                 break
-        if role_name:
-            user_role_match = user_matching_role(message.author, role_name)
-            if not user_role_match:
-                target_role = matching_role(message.guild, role_name)
-                await cmd.bot.add_roles(message.author, target_role)
-                embed = discord.Embed(title='✅ ' + role_name + ' has been added to you.',
-                                      color=0x66cc66)
+        for self_role in self_roles:
+            if self_role == target_role.id:
+                self_role_id = target_role.id
+                break
+        if target_role:
+            if self_role_id:
+                user_role_match = user_matching_role(message.author, target_role.name)
+                if not user_role_match:
+                    await message.author.add_roles(target_role)
+                    embed = discord.Embed(title='✅ ' + target_role.name + ' has been added to you.',
+                                          color=0x66cc66)
+                else:
+                    await message.author.remove_roles(target_role)
+                    embed = discord.Embed(title='⚠ ' + target_role.name + ' has been removed from you.',
+                                          color=0xFF9900)
+                await message.channel.send(None, embed=embed)
             else:
-                target_role = user_role_match
-                await cmd.bot.remove_roles(message.author, target_role)
-                embed = discord.Embed(title='⚠ ' + role_name + ' has been removed from you.',
-                                      color=0xFF9900)
-            await message.channel.send(None, embed=embed)
+                out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
+                out_content.add_field(name='Role Not Found',
+                                      value='I was unable to find that role in the list of self assignable roles for this server.')
+                await message.channel.send(None, embed=out_content)
         else:
             out_content = discord.Embed(type='rich', color=0xFF9900, title='⚠ Error')
             out_content.add_field(name='Role Not Found',
-                                  value='I was unable to find that role in the list of self assignable roles for this server.')
+                                  value='I was unable to find that role on this server.')
             await message.channel.send(None, embed=out_content)

@@ -4,8 +4,10 @@
 async def listselfroles(cmd, message, args):
     self_roles = cmd.db.get_settings(message.guild.id, 'SelfRoles')
     role_list = ''
-    for role in self_roles:
-        role_list += '\n - ' + role
+    for srv_role in message.guild.roles:
+        for role in self_roles:
+            if role == srv_role.id:
+                role_list += '\n - ' + srv_role.name
     if role_list == '':
         embed = discord.Embed(type='rich', color=0x0099FF,
                               title='ℹ No Self Assignable Roles Set')
