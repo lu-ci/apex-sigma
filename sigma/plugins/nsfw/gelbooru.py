@@ -19,7 +19,6 @@ async def gelbooru(cmd, message, args):
         img_url = choice.attrib['file_url']
         if not img_url.startswith('http'):
             img_url = f"https:{choice.attrib['file_url']}"
-        print()
         embed = discord.Embed(color=0x9933FF)
         embed.set_image(url=img_url)
         await message.channel.send(None, embed=embed)

@@ -15,7 +15,6 @@ def add_bj(inid, instance_data):
     if inid not in blackjack_instances:
         blackjack_instances.update(instance_data)
     else:
-        print('Instance Exists')
         raise KeyError
 
 
@@ -24,7 +23,6 @@ def del_bj(inid):
     if inid in blackjack_instances:
         del blackjack_instances[inid]
     else:
-        print('Instance Non Existent')
         raise KeyError
 
 
@@ -33,5 +31,4 @@ def upd_bj(inid, new_data):
     if inid in blackjack_instances:
         blackjack_instances.update(new_data)
     else:
-        print('Instance Non Existent')
         raise KeyError
