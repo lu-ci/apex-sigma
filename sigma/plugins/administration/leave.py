@@ -7,12 +7,12 @@ async def leave(cmd, message, args):
         if not args:
             await message.channel.send(cmd.help())
         else:
-            search_id = args[0]
+            search_id = int(args[0])
             try:
                 for server in cmd.bot.guilds:
                     if server.id == int(search_id):
                         s_name = server.name
-                        await cmd.bot.leave_server(server)
+                        await server.leave()
                         out = discord.Embed(title=':outbox_tray: I have left ' + s_name, color=0x66CC66)
                         await message.channel.send(None, embed=out)
                         return
