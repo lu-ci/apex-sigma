@@ -11,9 +11,8 @@ from config import RiotAPIKey
 
 # League of Legends API
 async def league(cmd, message, args):
-    lol_input = ' '.join(args)
-
-    region, smnr_name = lol_input.lower().split(' ')
+    region = args[0].lower()
+    smnr_name = ' '.join(args[1:]).lower()
     smnr_name_table = smnr_name.replace(' ', '')
     smnr_by_name_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + smnr_name + '?api_key=' + RiotAPIKey
     version_url = 'https://global.api.pvp.net/api/lol/static-data/' + region + '/v1.2/versions?api_key=' + RiotAPIKey
