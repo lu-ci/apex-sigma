@@ -17,7 +17,7 @@ async def accept(ev, message, args):
             if role.name == 'Crabigator\'s Pet':
                 return
         if message.content == '>>accept':
-            await ev.bot.add_roles(message.author, give_role)
+            await message.author.add_roles(give_role)
             for member in message.guild.members:
                 if member.id == permitted_id[0]:
                     embed = discord.Embed(
@@ -32,7 +32,7 @@ async def accept(ev, message, args):
             response = await message.channel.send(
                 'We are sorry to hear that.\nYou will be removed from the server shortly.\nBon voyage~')
             await asyncio.sleep(5)
-            await ev.bot.kick(message.author)
-            await ev.bot.delete_message(response)
+            await message.author.kick()
+            await response.delete()
         asyncio.sleep(10)
-        await ev.bot.delete_message(message)
+        await message.delete()
