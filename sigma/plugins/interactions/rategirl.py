@@ -45,7 +45,7 @@ async def rategirl(cmd, message, args):
         with Image.open(cmd.resource('rate/user_indicator.png')) as indicator:
             chart.paste(indicator, (ind_x, ind_y), indicator)
         if resize:
-            chart = chart.resize((size_x // 4, size_y // 4), Image.ANTIALIAS)
+            chart = chart.resize((size_x // 2, size_y // 2), Image.ANTIALIAS)
         chart.save(output_location)
     with open(output_location, 'rb') as resp_img:
         resp = discord.File(resp_img)
