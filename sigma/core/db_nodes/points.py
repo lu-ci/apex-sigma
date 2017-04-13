@@ -27,7 +27,7 @@ def point_manipulation(db, server, user, points, add):
                 srv_pts = servers[sid] + points
                 total_pts += points
             else:
-                srv_pts = servers[sid] - points
+                srv_pts = servers[sid]
         else:
             srv_pts = points
         if add:
