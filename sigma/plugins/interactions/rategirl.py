@@ -28,7 +28,7 @@ async def rategirl(cmd, message, args):
         perc_x = str(target.id)[6] + str(target.id)[9]
         perc_y = str(target.id)[12] + str(target.id)[3]
         loc_x = int(spc_x * (float(f'0.{perc_x}')))
-        loc_y = int(spc_y * (1 -(float(f'0.{perc_y}'))))
+        loc_y = int(spc_y * (1 - (float(f'0.{perc_y}'))))
         ava_x = loc_x + 250
         ava_y = loc_y + 108
         ind_x = loc_x + 175
@@ -51,5 +51,3 @@ async def rategirl(cmd, message, args):
         resp = discord.File(resp_img)
         await message.channel.send(file=resp)
     os.remove(output_location)
-
-
