@@ -33,3 +33,11 @@ commands:
     description:
       Shows a where a user is on the hot crazy chart.
       This is unique for each user, do not hope that it will change.
+
+  - name: addreact
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} kiss https://my.fancy.link/image.gif"
+    description:
+      Adds a reaction response to the list of reaction responses.
