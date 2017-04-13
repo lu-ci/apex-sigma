@@ -30,7 +30,7 @@ async def rategirl(cmd, message, args):
     with Image.open(cmd.resource('rate/crazy_hot_chart.png')) as chart:
         if target.id in pleblist:
             perc_x = 95
-            perc_y = 96
+            perc_y = 4
         else:
             perc_x = str(target.id)[6] + str(target.id)[9]
             perc_y = str(target.id)[12] + str(target.id)[3]
