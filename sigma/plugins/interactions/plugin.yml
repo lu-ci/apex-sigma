@@ -1,0 +1,35 @@
+name: Interactions
+
+categories:
+  - interactions
+
+enabled: true
+
+commands:
+  - name: catlen
+    alts:
+      - "meowlen"
+      - "kittylen"
+      - "catlength"
+      - "kittylength"
+      - "longcat"
+      - "longkitty"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Makes a personal long cat.
+      The cat length is unique to the person who uses the command.
+      You can mention a user as well to see their long cat.
+
+  - name: rategirl
+    alts:
+      - "hotcrazy"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Shows a where a user is on the hot crazy chart.
+      This is unique for each user, do not hope that it will change.
