@@ -14,9 +14,12 @@ async def addreact(cmd, message, args):
                 resp_list = data[react_name]
             else:
                 resp_list = []
-            resp_list.append(react_url)
-            data.update({react_name: resp_list})
-            with open(cmd.resource('responses.yml'), 'w') as response_file:
-                yaml.safe_dump(data, response_file, default_flow_style=False)
-            title = f'✅ {react_name.title()} response added.'
+            if react_url not in resp_list:
+                resp_list.append(react_url)
+                data.update({react_name: resp_list})
+                with open(cmd.resource('responses.yml'), 'w') as response_file:
+                    yaml.safe_dump(data, response_file, default_flow_style=False)
+                title = f'✅ {react_name.title()} response added.'
+            else:
+                title = f'❗ Already in the list.'
             await message.channel.send(embed=discord.Embed(color=0x1ABC9C, title=title))
