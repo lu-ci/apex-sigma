@@ -19,14 +19,17 @@ async def collectchain(cmd, message, args):
                 target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.guild.members)
             if target:
                 start_time = arrow.utcnow().timestamp
-                def_chn = message.guild.default_channel
+                if message.channel_mentions:
+                    target_chn = message.channel_mentions[0]
+                else:
+                    target_chn = message.guild.default_channel
                 collected = 0
                 collection = []
                 in_use = True
                 ch_response = discord.Embed(color=0x66CC66,
                                             title='📖 Collecting... You will be sent a DM when I\'m done.')
                 await message.channel.send(None, embed=ch_response)
-                async for log in def_chn.history(limit=50000):
+                async for log in target_chn.history(limit=50000):
                     if log.author.id == target.id:
                         if log.content:
                             if log.content != '':
