@@ -18,9 +18,9 @@ async def level(cmd, message, args):
             curr_srv = servers[str(message.guild.id)]
         response = discord.Embed(color=0x1ABC9C)
         response.set_author(name=f'{target.name}\'s Currency Data', icon_url=user_avatar(target))
-        response.add_field(name='Currently', value=f'```py\n{current_pts} {Currency}\n```')
-        response.add_field(name='Total', value=f'```py\n{total_pts} {Currency}\n```')
+        response.add_field(name='Current Wallet', value=f'```py\n{current_pts} {Currency}\n```')
         response.add_field(name='This Server', value=f'```py\n{curr_srv} {Currency}\n```')
+        response.add_field(name='Total Gained', value=f'```py\n{total_pts} {Currency}\n```')
     else:
         response = discord.Embed(color=0x696969, title=f'🔍 I couldn\'t find {target.name} in my point database.')
     response.set_footer(text=f'{Currency} can be earned by being an active member of the server.')
