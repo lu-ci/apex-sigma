@@ -6,9 +6,6 @@ import discord
 import os
 
 
-pleblist = [163328309940322304, 198779042462171136]
-
-
 async def rategirl(cmd, message, args):
     if message.mentions:
         target = message.mentions[0]
@@ -28,12 +25,8 @@ async def rategirl(cmd, message, args):
     spc_y = min_y - max_y
     output_location = f'cache/hcz_{message.id}.png'
     with Image.open(cmd.resource('rate/crazy_hot_chart.png')) as chart:
-        if target.id in pleblist:
-            perc_x = 95
-            perc_y = 4
-        else:
-            perc_x = str(target.id)[6] + str(target.id)[9]
-            perc_y = str(target.id)[12] + str(target.id)[3]
+        perc_x = str(target.id)[6] + str(target.id)[9]
+        perc_y = str(target.id)[12] + str(target.id)[3]
         loc_x = int(spc_x * (float(f'0.{perc_x}')))
         loc_y = int(spc_y * (1 -(float(f'0.{perc_y}'))))
         ava_x = loc_x + 250
