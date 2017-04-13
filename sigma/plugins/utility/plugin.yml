@@ -24,6 +24,14 @@ commands:
     description:
       Sets a timer in seconds and displays the message inputted after it's done.
 
+  - name:    analyze
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} hello there"
+    description:
+      Sentimental analysis of the given text.
+
   - name:    donors
     alts:
       - "dons"
