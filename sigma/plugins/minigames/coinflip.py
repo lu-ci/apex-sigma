@@ -3,14 +3,10 @@ import discord
 
 async def coinflip(cmd, message, args):
     cmd.db.add_stats('CoinFlipCount')
-    number = random.randint(0, 1)
-    if number == 1:
-        result = 'heads'
-    else:
-        result = 'tails'
+    result = random.choice(['heads', 'tails'])
     urls = {
-        'heads': 'https://i.imgur.com/qLPkn7k.png',
-        'tails': 'http://i.imgur.com/Xx5dY4M.png'
+        'heads': 'https://i.imgur.com/6e6sDEm.png',
+        'tails': 'https://i.imgur.com/Q4ZL3XI.png'
     }
     embed = discord.Embed(color=0x1abc9c)
     if args:
