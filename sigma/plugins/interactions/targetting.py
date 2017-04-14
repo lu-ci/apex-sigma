@@ -9,7 +9,11 @@ def get_target(message, args):
             lookup = ' '.join(args)
             target = discord.utils.find(lambda x: x.name.lower() == lookup.lower(), message.guild.members)
             if not target:
-                target = discord.utils.find(lambda x: x.nickname.lower() == lookup.lower(), message.guild.members)
+                for mem in message.guild.members:
+                    if mem.nick:
+                        if mem.nick.lower() == lookup.lower():
+                            target = mem
+                            break
         else:
             target = None
     return target
