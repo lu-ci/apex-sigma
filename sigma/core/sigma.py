@@ -210,7 +210,7 @@ class Sigma(discord.AutoShardedClient):
                 task = event.call_sp(member)
                 self.loop.create_task(task)
 
-    async def on_server_join(self, server):
+    async def on_guild_join(self, server):
         await self.update_discordlist()
         self.db.add_new_server_settings(server)
         self.db.update_server_details(server)
@@ -221,7 +221,7 @@ class Sigma(discord.AutoShardedClient):
         if UseCachet:
             self.loop.create_task(self.cachet_stat_up(3, 1))
 
-    async def on_server_remove(self, server):
+    async def on_guild_remove(self, server):
         await self.update_discordlist()
         self.db.update_population_stats(self.guilds, self.get_all_members())
         msg = f'RMV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
@@ -233,6 +233,6 @@ class Sigma(discord.AutoShardedClient):
         if self.ready:
             self.db.update_user_details(after)
 
-    async def on_server_update(self, before, after):
+    async def on_guild_update(self, before, after):
         if self.ready:
             self.db.update_server_details(after)
