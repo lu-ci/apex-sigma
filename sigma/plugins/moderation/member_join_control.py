@@ -32,7 +32,7 @@ async def member_join_control(ev, member):
                 target = role
                 break
         if target:
-            await ev.bot.add_roles(member, target)
+            await member.add_roles(target)
         else:
             await member.guild.default_channel.send(
                 'I tried to assign the autorole to the user, but the AutoRole specified was not found so I reset the settings.')
