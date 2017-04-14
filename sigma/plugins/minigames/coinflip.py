@@ -5,8 +5,8 @@ async def coinflip(cmd, message, args):
     cmd.db.add_stats('CoinFlipCount')
     result = random.choice(['heads', 'tails'])
     urls = {
-        'heads': 'https://i.imgur.com/6e6sDEm.png',
-        'tails': 'https://i.imgur.com/Q4ZL3XI.png'
+        'heads': 'https://i.imgur.com/UbsozEv.png',
+        'tails': 'https://i.imgur.com/TUraKTb.png'
     }
     embed = discord.Embed(color=0x1abc9c)
     if args:
