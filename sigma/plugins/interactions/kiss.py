@@ -9,7 +9,7 @@ async def kiss(cmd, message, args):
     if not target or target.id == message.author.id:
         response = discord.Embed(color=0x1ABC9C, title=f'{message.author.name} tries to kiss themself.')
     else:
-        response = discord.Embed(color=0x1ABC9C, title=f'{message.author.name} kisses {target.name}')
+        response = discord.Embed(color=0x1ABC9C, title=f'{message.author.name} kisses {target.name}.')
     response.set_image(url=resp['url'])
-    response.set_footer(text=f'Submited by {resp["auth"]} from {resp["srv"]}')
+    response.set_footer(text=f'Submited by {resp["auth"]} from {resp["srv"]}.')
     await message.channel.send(embed=response)
