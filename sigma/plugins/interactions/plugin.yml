@@ -38,6 +38,70 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    partner: true
     usage:   "{pfx:s}{cmd:s} kiss https://my.fancy.link/image.gif"
     description:
       Adds a reaction response to the list of reaction responses.
+      Limited to Partners to counteract possible abuse.
+
+  - name: cuddle
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Snuggle, snuggle~
+
+  - name: hug
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Even a bot like me can appreciate a hug!
+      The person you mention will surely as well.
+
+  - name: kiss
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Humans touching their slimy air vents.
+      How disturbing.
+
+  - name: pat
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Pat, pat~
+      Good human, lovely human.
+      I will kill you last.
+
+  - name: peck
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      A hit and run style quickie kiss.
+
+  - name: poke
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Poke, poke~
+      Are you alive?
+
+  - name: punch
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      You have something on your face.
+      IT WAS PAIN!
