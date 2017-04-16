@@ -1,0 +1,20 @@
+trash:
+  - name: "Boot"
+    value: 0
+    item_id: "fish_t_boot"
+common:
+  - name: "Carp"
+    value: 12
+    item_id: "fish_c_carp"
+uncommon:
+  - name: "Underfish"
+    value: 120
+    item_id: "fish_u_underfish"
+rare:
+  - name: "Golden Gloop"
+    value: 1200
+    item_id: "fish_r_gloop"
+legendary:
+  - name: "Fiamondish"
+    value: 12000
+    item_id: "fish_l_fiamondish"

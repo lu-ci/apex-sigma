@@ -1,0 +1,46 @@
+name: Blackjack
+
+categories:
+  - minigames
+
+enabled: true
+
+commands:
+  - name: blackjack
+    alts:
+      - "bj"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 5000"
+    description:
+      Starts a game of Blackjack for you on the current server.
+      You can specify the amount you want to bet on the game.
+      Use bjdraw to draw a card.
+      Use bjfold to fold and hope the dealer busts.
+      And you can use bjquit to quit the game, in which case half your buyin will be refunded.
+
+  - name: bjdraw
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Draws the next card for your blackjack game.
+
+  - name: bjfold
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Fold and see the end results of the dealer.
+
+  - name: bjquit
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Quits your current blackjack game.
+      Refunds half of your bet value.
