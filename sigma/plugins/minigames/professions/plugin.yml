@@ -12,7 +12,7 @@ commands:
      - "storage"
      - "backpack"
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
