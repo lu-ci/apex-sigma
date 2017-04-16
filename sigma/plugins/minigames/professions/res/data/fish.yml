@@ -1,0 +1,45 @@
+trash:
+  - name: "Boot"
+    value: 0
+    item_id: "fish_t_boot"
+  - name: "Trash"
+    value: 0
+    item_id: "fish_t_trash"
+  - name: "Driftwood"
+    value: 0
+    item_id: "fish_t_driftwood"
+  - name: "Soggy Magazine"
+    value: 0
+    item_id: "fish_t_magazine"
+  - name: "Broken Phone"
+    value: 0
+    item_id: "fish_t_phone"
+  - name: "Tin Can"
+    value: 0
+    item_id: "fish_t_can"
+common:
+  - name: "Carp"
+    value: 30
+    item_id: "fish_c_carp"
+  - name: "Herring"
+    value: 30
+    item_id: "fish_c_herring"
+  - name: "Anchovy"
+    value: 30
+    item_id: "fish_c_anchovy"
+  - name: "Sunfish"
+    value: 30
+    item_id: "fish_c_sunfish"
+
+uncommon:
+  - name: "Underfish"
+    value: 120
+    item_id: "fish_u_underfish"
+rare:
+  - name: "Golden Gloop"
+    value: 1200
+    item_id: "fish_r_gloop"
+legendary:
+  - name: "Fiamondish"
+    value: 12000
+    item_id: "fish_l_fiamondish"

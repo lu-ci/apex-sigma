@@ -1,0 +1,30 @@
+name: Professions
+
+categories:
+  - minigames
+
+enabled: true
+
+commands:
+  - name: inventory
+    alts:
+     - "bag"
+     - "storage"
+     - "backpack"
+    global:  true
+    enabled: false
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows your current inventory.
+      The inventory has 25 slots and items are not stackable.
+
+  - name: fish
+    global:   true
+    enabled:  true
+    sfw:      true
+    usage:    "{pfx:s}{cmd:s}"
+    description:
+      Cast a lure and try to catch some fish.
+      Each cast costs 10 Kud to cover the cost of your bait and rod usage.
+      You can fish once every 20 seconds, better not scare the fish away.

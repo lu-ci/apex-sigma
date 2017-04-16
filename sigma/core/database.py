@@ -7,6 +7,7 @@ from .db_nodes.refactor import refactor_servers_node, refactor_users_node
 from .db_nodes.details import update_details
 from .db_nodes.settings import set_settings_node, add_new_server_settings_node
 from .db_nodes.settings import get_settings_node, init_server_settings_node, check_for_missing_settings_node
+from .db_nodes.inventory import get_inventory, add_to_inventory, del_from_inventory
 
 
 class DatabaseError(Exception):
@@ -72,6 +73,15 @@ class Database(object):
 
     def get_points(self, user):
         return point_grabber(self.db, user)
+
+    def get_inv(self, user):
+        return get_inventory(self.db, user)
+
+    def inv_add(self, user, item):
+        add_to_inventory(self.db, user, item)
+
+    def inv_del(self, user, item_id):
+        del_from_inventory(self.db, user, item_id)
 
     async def refactor_users(self, usrgen):
         await refactor_users_node(self.db, usrgen)
