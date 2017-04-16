@@ -1,29 +1,27 @@
-import yaml
-import random
 import discord
-from .mechanics import roll_rarity, make_item_id
+from config import Currency
+from .mechanics import roll_rarity
 
-fish_data = None
+values = {
+    'trash': 0,
+    'common': 30,
+    'uncommon': 50,
+    'rare': 100,
+    'legendary': 200
+}
 
 async def fish(cmd, message, args):
-    global fish_data
-    if not fish_data:
-        with open(cmd.resource('data/fish.yml')) as fish_file:
-            fish_data = yaml.safe_load(fish_file)
-    inv = cmd.db.get_inv(message.author)
-    if len(inv) < 25:
+    kud = cmd.db.get_points(message.author)
+    if kud['Current'] >= 20:
         rarity = roll_rarity()
-        fishie = random.choice(fish_data[rarity])
-        fishie.update({'id': make_item_id(message)})
-        cmd.db.inv_add(message.author, fishie)
-        connector = 'a'
-        for letter in ['a', 'e', 'i', 'o', 'u']:
-            if fishie.name.startswith(letter):
-                connector = 'an'
-                break
-        if fishie['name'].startswith()
-        response = discord.Embed(color=0x1ABC9C, title=f'You caught {connector} {fishie["name"]}!')
+        if rarity == 'trash':
+            icon = '👢'
+            text = 'You reeled in some trash.'
+        else:
+            icon = '🐟'
+            text = f'You caught a {rarity} fish!'
+        cmd.db.add_points(message.guild, message.author, values[rarity])
+        response = discord.Embed(color=0x1ABC9C, title=f'{icon} {text} which earned you {values[rarity]} {Currency}!')
     else:
-        response = discord.Embed(color=0xDB0000)
+        response = discord.Embed(color=0xDB0000, title=f'You don\'t have enough {Currency}!')
     await message.channel.send(embed=response)
-
