@@ -44,4 +44,13 @@ events:
     sfw:     true
     pmable:  true
     description:
-      Get levels by chatting in a channel.
+      Get Kud by chatting in a channel.
+
+  - name:    voice_clockwork
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Get Kud by chatting in a voice channel.
