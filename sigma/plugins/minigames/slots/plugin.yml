@@ -48,3 +48,18 @@ commands:
       Rewards Bet Amount x 210 for 3 of the same.
       Can only be spun once every 20 seconds.
       Only the middle row counts, as indicated by the arrows.
+
+  - name: shmucks
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Same as slots, but with icons associated with men...
+      We could not think of anything that is close to the word Slots for this one.
+      Spin the shmucks machine and test your luck!
+      You can specify the amount you want to bet, this default to 10 if nothing specified.
+      Rewards Bet Amount x 12 for 2 of the same.
+      Rewards Bet Amount x 210 for 3 of the same.
+      Can only be spun once every 20 seconds.
+      Only the middle row counts, as indicated by the arrows.
