@@ -241,7 +241,7 @@ commands:
     description:
       Lists all channels and users that are blacklisted on the current server.
 
-  - name: cleverbot
+  - name: chatterbot
     alts:
       - "cb"
     global:  true
@@ -249,7 +249,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Toggles the CleverBot functionality of the bot on the server.
+      Toggles the ChatterBot functionality of the bot on the server.
       This is used by starting a message by mentioning a bot.
       Example being [@Sigma how are you today?]
       Requires the user to be a server Administrator.
