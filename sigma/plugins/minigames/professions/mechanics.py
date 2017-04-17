@@ -14,18 +14,18 @@ def roll_rarity():
     rarities = {
         'trash': {
             'low': 0,
-            'high': 15
+            'high': 40
         },
         'common': {
-            'low': 16,
-            'high': 50
+            'low': 41,
+            'high': 70
         },
         'uncommon': {
-            'low': 51,
-            'high': 80
+            'low': 71,
+            'high': 85
         },
         'rare': {
-            'low': 81,
+            'low': 86,
             'high': 95
         },
         'legendary': {
