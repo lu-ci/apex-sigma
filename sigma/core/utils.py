@@ -36,5 +36,6 @@ def user_avatar(user):
         user_ava = '.'.join(user.avatar_url.split('.')[:-1])
     else:
         user_ava = user.default_avatar_url
+    user_ava += '.png'
     return user_ava
 
