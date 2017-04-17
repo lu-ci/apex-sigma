@@ -3,7 +3,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/badge/Sigma-2.60-1B6F5F.svg?style=flat-square" />
-<img src="https://img.shields.io/badge/Codename-Kouko-1B6F5F.svg?style=flat-square" />
+<img src="https://img.shields.io/badge/Codename-Mei-1B6F5F.svg?style=flat-square" />
 <img src="https://img.shields.io/badge/License-GPLv3-red.svg?style=flat-square" />
 </p>
 <p align="center">
