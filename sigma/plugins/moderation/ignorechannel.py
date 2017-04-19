@@ -8,15 +8,14 @@ async def ignorechannel(cmd, message, args):
         if not args:
             await message.channel.send(cmd.help())
             return
-        qry = ' '.join(args)
-        if qry.startswith('<#'):
-            search_id = qry.replace('<#', '').replace('>', '')
+        if message.channel_mentions:
+            target = message.channel_mentions[0]
         else:
             search_id = args[0]
-        for chan in message.guild.channels:
-            if chan.id == search_id:
-                target = chan
-                break
+            for chan in message.guild.channels:
+                if chan.id == search_id:
+                    target = chan
+                    break
         if not target:
             embed = discord.Embed(color=0x696969, title=':notebook: No channel like that was found on this server.')
         else:
