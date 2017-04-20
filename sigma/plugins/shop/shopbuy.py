@@ -17,9 +17,9 @@ async def shopbuy(cmd, message, args):
             price = int(item['Price'])
             role = matching_role(message.guild, role_name)
             if not user_matching_role(message.author, role_name):
-                user_points = cmd.db.get_points(message.guild, message.author)
-                if user_points >= price:
-                    await cmd.bot.add_roles(message.author, role)
+                user_points = cmd.db.get_points(message.author)
+                if user_points['Current'] >= price:
+                    await message.author.add_roles(role)
                     cmd.db.take_points(message.guild, message.author, price)
                     status = discord.Embed(type='rich', color=0x66cc66,
                                            title='✅ You bought ' + role.name + ' .')
