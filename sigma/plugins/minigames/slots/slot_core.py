@@ -83,7 +83,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
                 if message.author.avatar_url != '':
                     embed_icon = message.author.avatar_url
                 win_notify_embed.set_thumbnail(url=embed_icon)
-                await cmd.bot.send_message(win_notify_channel_object, None, embed=win_notify_embed)
+                await win_notify_channel_object.send(None, embed=win_notify_embed)
         elif res_1 == res_2 or res_1 == res_3 or res_2 == res_3:
             win = True
             pts = bet_amt * 12
