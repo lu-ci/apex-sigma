@@ -8,7 +8,7 @@ async def paladins(cmd, message, args):
     if not args:
         return
     username = ' '.join(args)
-    session_id = get_session()
+    session_id = await get_session()
     hr_ts = make_timestamp()
     signature = make_signature('getplayer')
     data_url = paladins_base_url + 'getplayerJson/' + HiRezDevID + '/' + signature + '/' + session_id + '/' + hr_ts + '/' + username
