@@ -47,7 +47,7 @@ async def new_session():
 async def get_session():
     curr_stamp = arrow.utcnow().timestamp
     if not api_session['SessionID'] or (api_session['GeneratedStamp'] + 980) < curr_stamp:
-        new_session()
+        await new_session()
         session_id = api_session['SessionID']
     else:
         session_id = api_session['SessionID']
