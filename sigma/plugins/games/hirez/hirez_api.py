@@ -1,6 +1,7 @@
 import hashlib
 import arrow
-import requests
+import json
+import aiohttp
 from config import HiRezAuthKey, HiRezDevID
 
 api_session = {
@@ -26,13 +27,15 @@ def make_signature(session_name):
     return final
 
 
-def new_session():
+async def new_session():
     timestamp = make_timestamp()
     genstamp = arrow.utcnow().timestamp
     signature = make_signature('createsession')
     access_url = smite_base_url + 'createsessionJson/' + HiRezDevID + '/' + signature + '/' + timestamp
-    data = requests.get(access_url).json()
-    ret_msg = data['ret_msg']
+    async with aiohttp.ClientSession() as session:
+        async with session.get(access_url) as data:
+            data = await data.read()
+            data = json.loads(data)
     session_id = data['session_id']
     api_session.update({
         'SessionID': session_id,
@@ -41,10 +44,10 @@ def new_session():
     return
 
 
-def get_session():
+async def get_session():
     curr_stamp = arrow.utcnow().timestamp
     if not api_session['SessionID'] or (api_session['GeneratedStamp'] + 980) < curr_stamp:
-        new_session()
+        await new_session()
         session_id = api_session['SessionID']
     else:
         session_id = api_session['SessionID']

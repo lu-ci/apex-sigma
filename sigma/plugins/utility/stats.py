@@ -26,7 +26,7 @@ async def stats(cmd, message, args):
     embed.add_field(name='Logged In As', value=f'```py\n{cmd.bot.user.name} [{cmd.bot.user.id}]\n```', inline=False)
     embed.add_field(name='Authors', value=f'```\n{", ".join(cmd.bot.authors)}\n```', inline=False)
     embed.add_field(name='Environment', value=f'```py\nPython {sys.version.split(" ")[0]}\n```', inline=True)
-    embed.add_field(name='API Wrapper', value=f'```py\ndiscord.py {discord.__version__}\n```', inline=True)
+    embed.add_field(name='API Wrapper', value=f'```py\nd.py {discord.__version__}\n```', inline=True)
     embed.add_field(name='Uptime', value=f'```py\n{uptime}\n```', inline=True)
     embed.add_field(name='Bot Version', value=f'```py\n{full_version}\n```')
     embed.add_field(name='Bot Codename', value=f'```py\n"{cmd.bot.codename}"\n```')
