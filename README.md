@@ -24,6 +24,7 @@
 
 > **Sigma** was initially designed and made to connect to as many API endpoints as we can get access to. It started with a planned 50 APIs, and more kept stacking out of nowhere. Soon, we were adding moderator commands, utilities, mini-games and music. Started work on an interactive web panel and more ideas are pouring in!
 
+
 #### Sigma's current module groups are:
 * **Games** - Game profiles and searches related to popular games.
 * **Joke** - Modules made to make you laugh... That's a lie, you'll mostly cringe.
@@ -35,6 +36,7 @@
 * **NSFW** - I doubt this module needs explanation. In a nutshell, it's explicit content.
 * **Searches** - All sorts of neat search commands to get you stuff you need, from Wikipedia to Recipes.
 * **Utility** - Modules to get quick info on a user or server, show a color hex, someone's avatar, and the such.
-
+### Setting Up Sigma
+1. We cannot stress this any more, we do not support running Sigma on your own machine and will not hold your hand throughout the proccess! Read the guide for Windows: http://apex-sigma.readthedocs.io/en/latest/guides/windows/
 # License
 Released under the [GNU General Public License Version 3](LICENSE.md).
