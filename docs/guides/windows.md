@@ -54,7 +54,7 @@
 *This is actually just a courtesy, if you screw up, use Google, we won't really help you set up MongoDB...*
 
 ### Installation
-1. Really nothing special, just run of the mill casual *Hit next until it's done* installation, unless you want to set some things manually.
+1. Really nothing special, just run of the mill casual *Hit next until it's done* installation, unless you want to set some things manually. Link here: https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.4-signed.msi/download
 
 ### Before Running
 1. Go to `C:\`
@@ -63,7 +63,7 @@
 4. Make a folder named `db`
 
 ### Starting MongoDB
-1. Go to where MongoDB was installed. Most likely `C:\Program Files\MongoDB`
+1. Go to where MongoDB was installed. Most likely `C:\Program Files\MongoDB`. Also can be C:\Program Files (x86)\MongoDB
 2. Go to `Server\3.X\bin`
 3. Launch `mongod.exe`
 *(Yes, it says mongod, short for mongo daemon)*
@@ -102,3 +102,21 @@ Token = getenv('DiscordBotToken') or 'CCB9oKas8asa4BRZlohs2as1nwMmWpw2c8bIsm'`
 9. You can now run the bot, just launch `run.py`.
 
 *(Or open the command prompt and navigate to the project directory and type `python run.py`)*
+
+### Inviting your newly created bot to your server
+1. Go back to the discord developer page.
+2. opy the client id
+3. paste the client id in this link: https://discordapp.com/oauth2/authorize?client_id=&scope=bot&permissions=8
+4. Paste it after the "client_id="
+5. Select a server to add it to, and click Authorize!
+
+### Defining yourself as owner
+1. Open the config.py file.
+2. For this step you need discord developer version on. If you need help message Lumenix#3495
+3. Right click your name in any server and click "Copy Id"
+4. Paste your ID inside the quotes within the brackets and save.
+5. Close the open Sigma window and relaunch it!
+
+That's it you are done!
+Make sure before you open run.py open "mongod.exe" as sigma doesn't work without it!
+	
