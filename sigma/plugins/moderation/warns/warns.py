@@ -10,12 +10,13 @@ async def warns(cmd, message, args):
         warned_users = {}
     if not check_kick(message.author, message.channel):
         target = message.author
-        if target.id not in warned_users:
+        target_id = str(target.id)
+        if target_id not in warned_users:
             embed = discord.Embed(color=0x0099FF, title='ℹ You Were Never Warned')
         else:
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ You Were Warned For...',
-                            value='```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
+                            value='```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
         await message.channel.send(None, embed=embed)
         return
     if not message.mentions:
@@ -31,10 +32,11 @@ async def warns(cmd, message, args):
             embed.add_field(name='ℹ List of Warned Users', value='```\n' + ', '.join(warn_user_list) + '\n```')
     else:
         target = message.mentions[0]
-        if target.id not in warned_users:
+        target_id = str(target.id)
+        if target_id not in warned_users:
             embed = discord.Embed(color=0x0099FF, title='ℹ ' + target.name + ' Was Never Warned')
         else:
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ ' + target.name + ' Was Warned For...',
-                            value='```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
+                            value='```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
     await message.channel.send(None, embed=embed)
