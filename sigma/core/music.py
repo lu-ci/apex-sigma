@@ -109,7 +109,7 @@ class Music(object):
         else:
             file_location = location
         source = discord.FFmpegPCMAudio(file_location, executable='ffmpeg')
-        source = discord.PCMVolumeTransformer(source, 1.0)
+        source = discord.PCMVolumeTransformer(source, volume=1.0)
         self.sources.update({sid: source})
         voice.play(source)
 
