@@ -1,7 +1,7 @@
 beta: false
-build_date: 1493136285
-codename: Mei
+build_date: 1493137785
+codename: Nagisa
 version:
   major: 2
-  minor: 60
-  patch: 8421
+  minor: 65
+  patch: 8434
