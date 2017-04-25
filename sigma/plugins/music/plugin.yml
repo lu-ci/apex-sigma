@@ -85,7 +85,9 @@ commands:
     partner:   true
     usage:   "{pfx:s}{cmd:s}"
     description:
-      Skips the currently playing song.
+      Stops the currently playing song.
+      Disconnects Sigma from the voice channel.
+      And purges the queue.
 
   - name:    volume
     alts:
