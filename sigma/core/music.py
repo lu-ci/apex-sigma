@@ -3,14 +3,16 @@ import os
 import hashlib
 import queue as q
 import soundcloud
+import discord
 import aiohttp
 from config import SoundCloudClientID
 
+
 class Music(object):
     def __init__(self):
-        self.players = {}
         self.initializing = []
         self.queues = {}
+        self.voices = {}
         self.volumes = {}
         self.currents = {}
         self.repeaters = []
@@ -39,16 +41,6 @@ class Music(object):
     def set_volume(self, db, sid, volume):
         self.volumes.update({sid: volume})
         db.set_settings(sid, 'MusicVolume', volume)
-
-    def get_player(self, sid):
-        if sid in self.players:
-            return self.players[sid]
-        else:
-            return None
-
-    def kill_player(self, sid):
-        if sid in self.players:
-            del self.players[sid]
 
     def add_to_queue(self, sid, data):
         if sid in self.queues:
@@ -105,7 +97,7 @@ class Music(object):
                         data_file.write(total_data)
         return file_location
 
-    async def make_player(self, sid, voice, item):
+    async def make_player(self, voice, item):
         location = item['url']
         if item['type'] == 0:
             file_location = self.download_yt_data(location)
@@ -113,8 +105,8 @@ class Music(object):
             file_location = await self.download_sc_data(location)
         else:
             file_location = location
-        player = voice.create_ffmpeg_player(file_location)
-        self.players.update({sid: player})
+        source = discord.FFmpegPCMAudio(file_location, executable='ffmpeg')
+        voice.play(source)
 
     def add_init(self, sid):
         self.initializing.append(sid)

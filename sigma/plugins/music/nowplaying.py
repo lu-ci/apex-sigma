@@ -4,14 +4,19 @@ from sigma.core.utils import user_avatar
 async def nowplaying(cmd, message, args):
     if message.guild.id in cmd.music.currents:
         item = cmd.music.currents[message.guild.id]
-        req = item['requester']
-        video = item['video']
-        url = item['url']
+        sound = item['sound']
         embed = discord.Embed(color=0x0099FF)
-        embed.set_thumbnail(url=video.thumb)
-        embed.set_author(name=f'{req.name}#{req.discriminator}', icon_url=user_avatar(req), url=url)
-        embed.add_field(name='ℹ Currently Playing', value=f'{video.title}')
-        embed.set_footer(text=f'Duration: {video.duration} | Click the author above to go to that video.')
+        if item['type'] == 0:
+            embed.add_field(name='🎵 Now Playing', value=sound.title)
+            embed.set_thumbnail(url=sound.thumb)
+            embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
+                             icon_url=user_avatar(item['requester']), url=item['url'])
+            embed.set_footer(text=f'Duration: {sound.duration}')
+        elif item['type'] == 1:
+            embed.add_field(name='🎵 Now Playing', value=sound['title'])
+            embed.set_thumbnail(url=sound['artwork_url'])
+            embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
+                             icon_url=user_avatar(item['requester']), url=item['url'])
         await message.channel.send(None, embed=embed)
     else:
         embed = discord.Embed(color=0x0099FF, title='ℹ No Currently Playing Item')
