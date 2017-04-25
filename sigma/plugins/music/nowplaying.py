@@ -6,6 +6,7 @@ async def nowplaying(cmd, message, args):
         item = cmd.music.currents[message.guild.id]
         sound = item['sound']
         embed = discord.Embed(color=0x0099FF)
+        embed.set_footer(text='You can click the author to go to the song\'s page.')
         if item['type'] == 0:
             embed.add_field(name='🎵 Now Playing', value=sound.title)
             embed.set_thumbnail(url=sound.thumb)
