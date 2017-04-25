@@ -12,6 +12,7 @@ class Music(object):
     def __init__(self):
         self.initializing = []
         self.queues = {}
+        self.sources = {}
         self.voices = {}
         self.volumes = {}
         self.currents = {}
@@ -97,7 +98,9 @@ class Music(object):
                         data_file.write(total_data)
         return file_location
 
-    async def make_player(self, voice, item):
+    async def make_player(self, sid, voice, item):
+        if sid in self.sources:
+            del self.sources[sid]
         location = item['url']
         if item['type'] == 0:
             file_location = self.download_yt_data(location)
@@ -106,6 +109,8 @@ class Music(object):
         else:
             file_location = location
         source = discord.FFmpegPCMAudio(file_location, executable='ffmpeg')
+        source = discord.PCMVolumeTransformer(source, 1.0)
+        self.sources.update({sid: source})
         voice.play(source)
 
     def add_init(self, sid):
