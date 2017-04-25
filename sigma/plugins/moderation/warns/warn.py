@@ -25,11 +25,12 @@ async def warn(cmd, message, args):
     except KeyError:
         cmd.db.set_settings(message.guild.id, 'WarnedUsers', {})
         warned_users = {}
-    if target.id in warned_users:
+    target_id = str(target.id)
+    if target_id in warned_users:
         warn_data = {
-            'UserID': warned_users[target.id]['UserID'],
-            'Warns': warned_users[target.id]['Warns'] + 1,
-            'Reasons': warned_users[target.id]['Reasons'] + [warning_text],
+            'UserID': warned_users[target_id]['UserID'],
+            'Warns': warned_users[target_id]['Warns'] + 1,
+            'Reasons': warned_users[target_id]['Reasons'] + [warning_text],
             'Timestamp': arrow.utcnow().timestamp
         }
     else:
@@ -39,26 +40,26 @@ async def warn(cmd, message, args):
             'Reasons': [warning_text],
             'Timestamp': arrow.utcnow().timestamp
         }
-    warned_users.update({target.id: warn_data})
-    if warned_users[target.id]['Warns'] > warn_limit:
+    warned_users.update({target_id: warn_data})
+    if warned_users[target_id]['Warns'] > warn_limit:
         await cmd.bot.kick(target)
         out_content_local = discord.Embed(color=0x993300)
         out_content_local.add_field(name=':boot: User **' + target.name + '** has been kicked!',
-                              value='Reasons:\n```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
+                                    value='Reasons:\n```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
         await message.channel.send(None, embed=out_content_local)
         out_content_to_user = discord.Embed(color=0x993300)
         out_content_to_user.add_field(name=':boot: You have been kicked!',
-                              value='Reasons:\n```\n' + '\n'.join(warned_users[target.id]['Reasons']) + '\n```')
+                                      value='Reasons:\n```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
         await target.send(None, embed=out_content_to_user)
-        del warned_users[target.id]
+        del warned_users[target_id]
     else:
-        warned_users.update({target.id: warn_data})
+        warned_users.update({target_id: warn_data})
         out_content_to_user = discord.Embed(color=0xFF9900)
-        out_content_to_user.add_field(name='⚠ Warning ' + str(warned_users[target.id]['Warns']) + '/' + str(
+        out_content_to_user.add_field(name='⚠ Warning ' + str(warned_users[target_id]['Warns']) + '/' + str(
             warn_limit) + ' on ' + message.guild.name, value='Reason:\n```\n' + warning_text + '\n```')
         await target.send(None, embed=out_content_to_user)
         out_content_local = discord.Embed(color=0xFF9900, title='⚠ Warning ' + str(
-            warned_users[target.id]['Warns']) + '/' + str(
+            warned_users[target_id]['Warns']) + '/' + str(
             warn_limit) + ' for ' + target.name)
         await message.channel.send(None, embed=out_content_local)
     cmd.db.set_settings(message.guild.id, 'WarnedUsers', warned_users)
