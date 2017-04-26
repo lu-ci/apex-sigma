@@ -42,7 +42,7 @@ async def warn(cmd, message, args):
         }
     warned_users.update({target_id: warn_data})
     if warned_users[target_id]['Warns'] > warn_limit:
-        await cmd.bot.kick(target)
+        await target.kick()
         out_content_local = discord.Embed(color=0x993300)
         out_content_local.add_field(name=':boot: User **' + target.name + '** has been kicked!',
                                     value='Reasons:\n```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
