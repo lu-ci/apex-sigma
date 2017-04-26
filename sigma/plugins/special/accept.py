@@ -27,7 +27,7 @@ async def accept(ev, message, args):
             for channel in message.guild.channels:
                 if channel.is_default:
                     await channel.send(
-                        'Hello <@' + message.author.id + '>! Welcome to the WaniKani Community Discord Server! If you wanna chat, feel bored, need help with your Nihongo or whatever crosses your mind, you are welcome to chat about it here~ If you encounter any problems be sure to say so to a moderator! The pinned messages in each channel will have some info as well\nようこそ！もし日本語でしゃべりたければ、音声チャネルにご参加ください！')
+                        f'Hello <@{message.author.id}>! Welcome to the WaniKani Community Discord Server! If you wanna chat, feel bored, need help with your Nihongo or whatever crosses your mind, you are welcome to chat about it here~ If you encounter any problems be sure to say so to a moderator! The pinned messages in each channel will have some info as well\nようこそ！もし日本語でしゃべりたければ、音声チャネルにご参加ください！')
         elif message.content == '>>decline':
             response = await message.channel.send(
                 'We are sorry to hear that.\nYou will be removed from the server shortly.\nBon voyage~')
