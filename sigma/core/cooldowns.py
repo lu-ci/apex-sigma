@@ -7,7 +7,7 @@ class Cooldown(object):
 
     # cmd_server_usr:
     def on_cooldown(self, cmd, message):
-        cd_name = f'{cmd}_{message.guild.id}_{message.author.id}'
+        cd_name = f'{cmd}_{message.author.id}'
         if cd_name in self.cooldowns:
             time_now = arrow.utcnow().timestamp
             cd_expires = self.cooldowns[cd_name]
@@ -20,7 +20,7 @@ class Cooldown(object):
         return on_cd
 
     def set_cooldown(self, cmd, message, time):
-        cd_name = f'{cmd}_{message.guild.id}_{message.author.id}'
+        cd_name = f'{cmd}_{message.author.id}'
         time_now = arrow.utcnow().timestamp
         self.cooldowns.update({cd_name: time_now + time})
 
@@ -28,7 +28,7 @@ class Cooldown(object):
         if not self.on_cooldown(cmd, message):
             cooldown = 0
         else:
-            cd_name = f'{cmd}_{message.guild.id}_{message.author.id}'
+            cd_name = f'{cmd}_{message.author.id}'
             time_now = arrow.utcnow().timestamp
             cd_expires = self.cooldowns[cd_name]
             cooldown = cd_expires - time_now
