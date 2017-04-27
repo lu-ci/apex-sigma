@@ -104,7 +104,7 @@ By default it's `Kud ⚜` but you can change it to whatever you want.
 If you do replace the icon on the right side, replace it with a UTF-8 character.
 
 ## SlotWinChannelID
-**Type**: `String`
+**Type**: `Integer`
 
 The ID of the channel you want to bot to report to when somebody wins in a slot machine minigame.
 A channel's ID can be obtained with the `>>cid` command.
@@ -122,8 +122,8 @@ This can be from `0` to `200`.
 You can set it to something else. But that's still the maximum regardless.
 
 ## permitted_id
-**Type**: `List Of Strings`
+**Type**: `List Of Integers`
 
 A list of User IDs that can access Bot Owner commands.
 You can have as many as you like, just be sure to follow proper list formatting.
-And make sure they're all strings.
+And make sure they're all integers.
