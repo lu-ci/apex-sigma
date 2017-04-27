@@ -1,10 +1,10 @@
 ﻿import discord
-from sigma.core.permission import check_admin
+from sigma.core.permission import check_man_msg
 
 
 async def blockinvites(cmd, message, args):
-    if not check_admin(message.author, message.channel):
-        embed = discord.Embed(title='⛔ Unpermitted. Server Admin Only.', color=0xDB0000)
+    if not check_man_msg(message.author, message.channel):
+        embed = discord.Embed(title='⛔ Unpermitted. Requires Manage Messages Permission.', color=0xDB0000)
     else:
         active = cmd.db.get_settings(message.guild.id, 'BlockInvites')
         if active:

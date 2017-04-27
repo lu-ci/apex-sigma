@@ -1,7 +1,7 @@
 ﻿from sigma.core.permission import check_admin
 
 
-async def sfiexec(ev, message, args):
+async def invite_blocker(ev, message, args):
     if message.guild:
         if 'discord.gg' in message.content:
             if check_admin(message.author, message.channel):

@@ -1,0 +1,75 @@
+name: Filters
+
+categories:
+  - moderation
+
+enabled: true
+
+commands:
+  - name: blockinvites
+    alts:
+      - "blockinv"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles auto-deletion of any and all discord invite links on the server.
+      Will not block links posted by administrators.
+      Requires the user to have the Manage Messages permission.
+
+  - name: blockword
+    alts:
+      - "filterword"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} jizz"
+    description:
+      Adds a word to the blocked words list of the server.
+      Any message that contains this word will be deleted.
+      The word needs to be at least 3 letters long.
+      Requires the user to have the Manage Messages permission.
+
+
+  - name: unblockword
+    alts:
+      - "unfilterword"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} cats"
+    description:
+      Removes a word from the blocked words list of the server.
+      Requires the user to have the Manage Messages permission.
+
+  - name: blockedwords
+    alts:
+      - "filteredwords"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows a list of all the blocked words on the server.
+
+events:
+  - name:    invite_blocker
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    usage:   "Activated upon detecting an invite link in a message."
+    description:
+      Removes messages with a discord invite link.
+
+  - name:    word_blocker
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    usage:   "Activated upon detecting a blocked word in a message."
+    description:
+      Removes messages with a blocked word.
