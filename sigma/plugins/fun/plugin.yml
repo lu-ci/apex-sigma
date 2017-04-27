@@ -201,6 +201,28 @@ commands:
       Collects messages sent by the mentioned user and saves it as a chain.
       Only one person can use the command at the time due to the processing load it takes.
 
+  - name: unflip
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles automatic unfliping of tables
+      Requires the user to be a server Administrator.
+
+  - name: chatterbot
+    alts:
+      - "cb"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the ChatterBot functionality of the bot on the server.
+      This is used by starting a message by mentioning a bot.
+      Example being [@Sigma how are you today?]
+      Requires the user to be a server Administrator.
+
 events:
   - name:    chatterbot_control
     type:    mention

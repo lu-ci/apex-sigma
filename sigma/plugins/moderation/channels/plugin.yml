@@ -1,0 +1,95 @@
+name: Moderation
+
+categories:
+  - moderation
+
+enabled: true
+
+commands:
+  - name: ban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Bans the mentioned user.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: unban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Unbans the user with the inputted name.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: softban
+    alts:
+      - "sb"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Bans and instantly unbans the mentioned user.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: kick
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Kicks the mentioned user.
+      Requires the user who calls the command to have kick privileges.
+
+  - name: prune
+    alts:
+      - "clear"
+      - "purge"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} X @person"
+    description:
+      Deletes X number of messages posted by the mentioned person.
+      If a user is not provided, it will prune the last X messages regardless of poster.
+      If a number is not provided it will prune the last 100 messages.
+      If neither number nor user is provided, it will prune the bots messages.
+      Requires the user who calls the command to have the Manage Messages permission.
+
+  - name: settopic
+    alts:
+      - "settop"
+      - "topic"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Food Talk!"
+    description:
+      Sets the topic of the text channel the command is used in.
+      Requires the user who calls the ccommand to have the Manage Channels permission.
+
+  - name: setchannelname
+    alts:
+      - "scn"
+      - "channame"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} pepperoni_pizza"
+    description:
+      Sets the name of the text channel the command is used in.
+      Requires the user who calls the command to have the Manage Channels permission.
+
+  - name: movechannel
+    alts:
+      - "movech"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} 11"
+    description:
+      Moves the channel where the command is executed to the requested positional number.
+      Do keep in mind that the first channel position is 0.

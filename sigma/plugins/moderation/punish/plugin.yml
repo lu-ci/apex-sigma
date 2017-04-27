@@ -1,0 +1,45 @@
+name: Punishments
+
+categories:
+  - moderation
+
+enabled: true
+
+commands:
+  - name: ban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Bans the mentioned user.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: unban
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Unbans the user with the inputted name.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: softban
+    alts:
+      - "sb"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Bans and instantly unbans the mentioned user.
+      Requires the user who calls the command to have ban privileges.
+
+  - name: kick
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Kicks the mentioned user.
+      Requires the user who calls the command to have kick privileges.
