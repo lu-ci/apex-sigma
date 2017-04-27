@@ -25,16 +25,28 @@
 > **Sigma** was initially designed and made to connect to as many API endpoints as we can get access to. It started with a planned 50 APIs, and more kept stacking out of nowhere. Soon, we were adding moderator commands, utilities, mini-games and music. Started work on an interactive web panel and more ideas are pouring in!
 
 #### Sigma's current module groups are:
-* **Games** - Game profiles and searches related to popular games.
-* **Joke** - Modules made to make you laugh... That's a lie, you'll mostly cringe.
-* **Minigames** - The small and fun things like coin flipping, rock-paper-scissors and slots.
-* **Misc** - Stuff we couldn't sort into a category.
-* **Moderation** - Full server control, soft bans, role manipulation, automated functions controls, etc.
-* **Music** - Playing music in a voice channel, naturally.
-* **Nihongo** - Features related to learning Japanese, like Jisho and WaniKani.
-* **NSFW** - I doubt this module needs explanation. In a nutshell, it's explicit content.
-* **Searches** - All sorts of neat search commands to get you stuff you need, from Wikipedia to Recipes.
-* **Utility** - Modules to get quick info on a user or server, show a color hex, someone's avatar, and the such.
+* **Administration** - Commands for managing the bot itself. These are limited only to developers.
+* **Fun** - These aren't too useful but are interesting. Maybe you're in the mood for some comics, cringe jokes or just pictures of cats.
+* **Games** - Various functions to show player profiles and browse game data like information on a certain `>>pokemon` or your `>>osu`! statistics.
+* **Interactions** - What would the community be without these? After you `>>punch` your friend, give them a `>>hug` and a `>>kiss`!
+* **Minigames** - Small and fun things to do when you're bored. Flip a coin, play some rock-paper-scissors or spin some `>>slots`, or just chill out and `>>fish`.
+* **Moderation** - Tools to help you manage and control your guilds. Maybe you want to set a message to `>>greet` joining users or just plain `>>ban` a person for posting too much lasagna pics.
+  * *Channel* - Manage your channel data with these commands. Moving, rename and `>>purge` them as per your needs.
+  * *Filters* - Want to block something being posted or said while you're not looking? You can block invites to discord servers as well as words you choose.
+  * *Movement* - Make the bot `>>greet` a joining member how you see fit, as well as say farewell when the time comes.
+  * *Permissions* - You might not want commands in certain channels or used by some people, we understand that, you can ignore a channel and/or users if you want.
+  * *Punish* - When a member has been naughty, only one thing to do, `>>kick` them, or if you really don't want to see them again, `>>ban` their butts. If you make a mistake, you can always `>>unban` them.
+  * *Warns* - Allows you to `>>warn` a person not to do something again and set the limit how many times one can be warned. If they go over the limit they get the boot!
+* **Music** - Really doubt this needs explanation. `>>play` a song either by name, or by a YouTube or SoundCloud link.
+* **Nihongo** - If you are like me, you are probably a filthy weeb. These commands let you search `>>jisho` for words and their definitions as well as check your `>>wanikani` data.
+* **NSFW** - Not gonna explain anything, I'll just leave this Lenny face here ( ͡° ͜ʖ ͡°)...
+* **Points** - Sigma has her internal currency system. You can check the amound of `>>kud` you have and see your server's `>>ranking`!
+* **Roles** - Make roles, destroy them, give them and take them away. Add some self assignable roles and check how many you have on the server. So many functions.
+* **Searches** - Look for songs, recipes, images, movies, subreddits, urban definitions, wikipedia and other stuff with these commands.
+* **Shop** - Want to reward the people who have been so lovely and active on your server? Add some neat role to the shop list which they can buy with `>>kud` for the price you set.
+* **Utility** - Honestly this has so much stuff in it that the best explanation is simply "Stuff you might need". Get info on a user, server, channel, make a `>>poll` or `>>translate` something.
+
+
 
 # License
 Released under the [GNU General Public License Version 3](LICENSE.md).
