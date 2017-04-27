@@ -21,13 +21,16 @@ commands:
   - name: blockword
     alts:
       - "filterword"
+      - "blockwords"
+      - "filterwords"
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} jizz"
+    usage:   "{pfx:s}{cmd:s} jizz cunnilingus butthair"
     description:
       Adds a word to the blocked words list of the server.
       Any message that contains this word will be deleted.
+      You can add multiple words, they do not need to be separated by anything.
       The word needs to be at least 3 letters long.
       Requires the user to have the Manage Messages permission.
 
@@ -35,6 +38,8 @@ commands:
   - name: unblockword
     alts:
       - "unfilterword"
+      - "unblockwords"
+      - "unfilterwords"
     global:  true
     enabled: true
     sfw:     true

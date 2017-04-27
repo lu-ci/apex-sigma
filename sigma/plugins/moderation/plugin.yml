@@ -186,18 +186,6 @@ commands:
       Moves the channel where the command is executed to the requested positional number.
       Do keep in mind that the first channel position is 0.
 
-  - name: blockinvites
-    alts:
-      - "blockinv"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Toggles auto-deletion of any and all discord invite links on the server.
-      Will not block links posted by administrators.
-      Requires the user to be a server Administrator.
-
   - name: unflip
     global:  true
     enabled: true
@@ -277,16 +265,6 @@ commands:
       Requires the user to be a server Administrator.
 
 events:
-  - name:    sfiexec
-    type:    message
-    global:  true
-    enabled: true
-    sfw:     true
-    pmable:  true
-    usage:   "Activated upon detecting an invite link in a message."
-    description:
-      Removes messages with a discord invite link.
-
   - name:    member_join_control
     type:    member_join
     global:  true
