@@ -1,0 +1,109 @@
+name: Movement
+
+categories:
+  - moderation
+
+enabled: true
+
+commands:
+  - name: greet
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the greet message in the channel it is written in.
+      Whenever a user joins the server the greet messsage will be displayed.
+      (Server Administrator Only)
+
+  - name: greetmsg
+    alts:
+     - "gmsg"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Hello %user_mention% and welcome to %server_name%!"
+    description:
+      Sets the greet message text.
+      Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server.
+      If no arguments are inputed it will show the current greet message.
+      (Server Administrator Only)
+
+  - name: greetch
+    alts:
+     - "greetchannel"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} #hello"
+    description:
+      Sets the channel which greeting messages are written to.
+      If no channel is specified as an argument, it take the channel the command is written in as the target.
+      (Server Administrator Only)
+
+  - name: greetpm
+    alts:
+     - "gpm"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles if the greet message should be sent as a PM to the user instead of writing it in the channel.
+      (Server Administrator Only)
+
+  - name: bye
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles the bye message in the channel it is written in.
+      Whenever a user leaves the server the bye messsage will be displayed.
+      (Server Administrator Only)
+
+  - name: byemsg
+    alts:
+     - "bmsg"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} %user_mention% has left %server_name%"
+    description:
+      Sets the bye message text.
+      Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server.
+      If no arguments are inputed it will show the current bye message.
+      (Server Administrator Only)
+
+  - name: byech
+    alts:
+     - "byechannel"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} #byebye"
+    description:
+      Sets the channel which goodbye messages are written to.
+      If no channel is specified as an argument, it take the channel the command is written in as the target.
+      (Server Administrator Only)
+
+events:
+  - name:    member_join_control
+    type:    member_join
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user joining the server."
+    description:
+      Controls greetings.
+
+  - name:    member_leave_control
+    type:    member_leave
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user leaving the server."
+    description:
+      Controls goodbyes.

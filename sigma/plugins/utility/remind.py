@@ -27,7 +27,7 @@ async def remind(cmd, message, args):
         await asyncio.sleep(time_q)
         embed = discord.Embed(color=0x1abc9c)
         embed.add_field(name=':clock: Time\'s Up!', value=remind_text)
-        await message.channel.send('Hey <@' + message.author.id + '>!', embed=embed)
+        await message.channel.send(f'Hey <@{message.author.id}>!', embed=embed)
     else:
         await message.channel.send(cmd.help())
         return
