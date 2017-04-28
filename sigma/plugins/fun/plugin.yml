@@ -201,6 +201,15 @@ commands:
       Collects messages sent by the mentioned user and saves it as a chain.
       Only one person can use the command at the time due to the processing load it takes.
 
+  - name:    csshumor
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Outputs a random CSS Humor codeblock.
+      Frontend devs love this stuff.
+
   - name: unflip
     global:  true
     enabled: true
