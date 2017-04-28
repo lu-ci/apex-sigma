@@ -1,4 +1,4 @@
-name: Utilities
+name: Other Utils
 
 categories:
   - utility
@@ -71,24 +71,6 @@ commands:
     description:
       Checks if a website was affected by the CloudBleed.
 
-  - name:    ingame
-    alts:
-      - "ign"
-    global:  true
-    enabled: true
-    sfw:     true
-    description:
-      Shows the top played games on the server.
-
-  - name:    emojis
-    alts:
-      - "emoji"
-    global:  true
-    enabled: true
-    sfw:     true
-    description:
-      Lists all the emoji on the current server.
-
   - name:    weather
     global:  true
     enabled: true
@@ -97,87 +79,6 @@ commands:
     description:
       Shows weather data for the selected location.
       Visibility is capped at 10 miles and wind direction is in degrees, where 0 is pure North.
-
-  - name:    bots
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Lists the bots on the server where the command is used and shows their status.
-
-  - name: userinfo
-    alts:
-      - "uinfo"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person"
-    description:
-      Shows information about the mentioned user.
-      If no user is mentioned, it will show information about you, instead.
-
-  - name: uid
-    alts:
-      - "userid"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person"
-    description:
-      Shows the User ID of the mentioned user.
-      If no user is mentioned, it will show your ID instead.
-
-  - name: channelinfo
-    alts:
-      - "cinfo"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows information about the channel the command was used in.
-
-  - name: cid
-    alts:
-      - "channelid"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows Channel ID of the channel the command was used in.
-
-  - name: serverinfo
-    alts:
-      - "sinfo"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows information about the server the command was used on.
-
-  - name: sid
-    alts:
-      - "serverid"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Shows Server ID of the server the command was used on.
-
-  - name: permissions
-    alts:
-      - "perms"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person"
-    description:
-      Shows all server permissions for the mentioned user.
-      If no user is mentioned, it will show information about you, instead.
 
   - name: invite
     alts:
@@ -189,7 +90,6 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Shows the OAuth2 URL for inviting Sigma to a server.
-
 
   - name: choose
     global:  true
@@ -230,34 +130,6 @@ commands:
     description:
       Translates the given sentence from and to the inputted languages.
       If you do not know your language code, search Google for ISO 639.1 Laguage Codes.
-
-  - name: whoplays
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} League of Legends"
-    description:
-      Generates a list of users playing the inputted game.
-
-  - name: avatar
-    alts:
-      - "av"
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} @person"
-    description:
-      Shows the avatar of the user.
-      (in the form of a direct link)
-
-  - name: raffle
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Picks a random user from the current Online users as a winner for the raffle.
-      The user can be Online, Away or DND, but can not be invisible to be eligable.
 
   - name: modules
     global:  true
