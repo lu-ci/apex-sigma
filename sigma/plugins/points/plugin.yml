@@ -28,14 +28,6 @@ commands:
     description:
       Shows the link for the servers point leaderboard.
 
-  - name: give
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 50 @person"
-    description:
-      Transfer a chosen amount of points between you and the mentioned user.
-
 events:
   - name:    reward
     type:    message
