@@ -60,6 +60,17 @@ commands:
     description:
       Hashes whatever you input with the selected hashing algorithm.
 
+  - name:    qrcode
+    alts:
+      - 'qr'
+    global:  true
+    enabled: true
+    pmable:  true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Gimme some fries!"
+    description:
+      Makes a 512x512 QR Code image of the inputed text.
+
   - name:    cloudbleed
     alts:
       - 'cldbld'
