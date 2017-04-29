@@ -13,9 +13,9 @@ async def qrcode(cmd, message, args):
             "Content-Type": "application/x-www-form-urlencoded"
         }
         params = {
-            "bg-color": "#1B6F5F",
+            "bg-color": "#FFFFFF",
             "content": content,
-            "fg-color": "#FFFFFF",
+            "fg-color": "#000000",
             "height": 512,
             "width": 512
         }
