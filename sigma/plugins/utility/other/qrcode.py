@@ -24,3 +24,8 @@ async def qrcode(cmd, message, args):
                 data = await data.read()
         output = discord.File(BytesIO(data), filename=f'qr_{message.id}.png')
         await message.channel.send(file=output)
+        if args[-1].startswith('del'):
+            try:
+                await message.delete()
+            except:
+                pass
