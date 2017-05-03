@@ -33,7 +33,13 @@ async def play(cmd, message, args):
             bot_voice = None
         if not bot_voice:
             try:
-                bot_voice = await message.author.voice.channel.connect()
+                try:
+                    bot_voice = await message.author.voice.channel.connect()
+                except discord.ClientException:
+                    bot_voice = None
+                    for voice_instance in cmd.bot.voice_clients:
+                        if voice_instance.guild.id == message.guild.id:
+                            bot_voice = voice_instance
                 cmd.music.voices.update({message.guild.id: bot_voice})
                 embed = discord.Embed(title='✅ Joined ' + message.author.voice.channel.name,
                                       color=0x66cc66)
@@ -46,7 +52,7 @@ async def play(cmd, message, args):
         if bot_voice:
             if bot_voice.is_playing():
                 embed = discord.Embed(
-                    title='⚠ Already playing in ' + cmd.bot.voice_client_in(message.guild).channel.name,
+                    title=f'⚠ Already playing in {message.guild.get_member(cmd.bot.user.id).voice.channel.name}',
                     color=0xFF9900)
                 await message.channel.send(None, embed=embed)
                 return
