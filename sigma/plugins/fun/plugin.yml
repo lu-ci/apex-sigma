@@ -212,6 +212,9 @@ commands:
       Only one person can use the command at the time due to the processing load it takes.
 
   - name:    csshumor
+    alts:
+      - "csshumour"
+      - "cssjoke"
     global:  true
     enabled: true
     sfw:     true
