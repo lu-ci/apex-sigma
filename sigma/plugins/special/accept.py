@@ -18,16 +18,14 @@ async def accept(ev, message, args):
                 return
         if message.content == '>>accept':
             await message.author.add_roles(give_role)
-            for member in message.guild.members:
-                if member.id == permitted_id[0]:
-                    embed = discord.Embed(
-                        title='ℹ ' + message.author.name + ' has accepted the terms on WKCD.',
-                        color=0x0099FF)
-                    await member.send(None, embed=embed)
-            for channel in message.guild.channels:
-                if channel.is_default:
-                    await channel.send(
-                        f'Hello <@{message.author.id}>! Welcome to the WaniKani Community Discord Server! If you wanna chat, feel bored, need help with your Nihongo or whatever crosses your mind, you are welcome to chat about it here~ If you encounter any problems be sure to say so to a moderator! The pinned messages in each channel will have some info as well\nようこそ！もし日本語でしゃべりたければ、音声チャネルにご参加ください！')
+            embed = discord.Embed(
+                title='ℹ ' + message.author.name + ' has accepted the terms on WKCD.',
+                color=0x0099FF)
+            owner = discord.utils.find(lambda x: x.id == permitted_id[0], ev.bot.get_all_members())
+            await owner.send(None, embed=embed)
+            notify_channel = discord.utils.find(lambda x: x.id == 219894896172072971, ev.bot.get_all_channels())
+            await notify_channel.send(
+                f'Hello <@{message.author.id}>! Welcome to the WaniKani Community Discord Server! If you wanna chat, feel bored, need help with your Nihongo or whatever crosses your mind, you are welcome to chat about it here~ If you encounter any problems be sure to say so to a moderator! The pinned messages in each channel will have some info as well\nようこそ！もし日本語でしゃべりたければ、音声チャネルにご参加ください！')
         elif message.content == '>>decline':
             response = await message.channel.send(
                 'We are sorry to hear that.\nYou will be removed from the server shortly.\nBon voyage~')
