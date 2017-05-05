@@ -180,18 +180,6 @@ commands:
     description:
       Outputs a UNIX fortune string.
 
-  - name:     nyaa
-    alts:
-      - "neko"
-      - "nekomimi"
-    global:   true
-    enabled:  true
-    sfw:      true
-    usage:    "{pfx:s}{cmd:s}"
-    description:
-      Provides a random Nekomimi image.
-      They might be borderline NSFW, a warning just in case.
-
   - name:     impersonate
     global:   true
     enabled:  true

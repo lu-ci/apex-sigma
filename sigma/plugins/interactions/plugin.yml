@@ -34,6 +34,20 @@ commands:
       Shows a where a user is on the hot crazy chart.
       This is unique for each user, do not hope that it will change.
 
+  - name: lovecalculator
+    alts:
+      - "lovecalc"
+      - "lcalc"
+      - "love"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person1 @person2"
+    description:
+      Shows the love between two things.
+      Which can be either two users or a user and a thingamabob.
+      Just make sure if you want to see how much @Calum loves Kud you put the user in the first place.
+
   - name: addreact
     global:  true
     enabled: true
