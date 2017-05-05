@@ -17,6 +17,18 @@ commands:
       Permits the NSFW module in the channel where the command is written to.
       (Server Administrator Only)
 
+  - name:     nyaa
+    alts:
+      - "neko"
+      - "nekomimi"
+    global:   true
+    enabled:  true
+    sfw:      false
+    usage:    "{pfx:s}{cmd:s}"
+    description:
+      Provides a random Nekomimi image.
+      They might be borderline NSFW, a warning just in case.
+
   - name:    rule34
     alts:
       - "r34"
