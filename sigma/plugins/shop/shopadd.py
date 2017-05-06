@@ -19,7 +19,7 @@ async def shopadd(cmd, message, args):
                                title='❗ Insufficient Arguments.')
         await message.channel.send(None, embed=status)
         return
-    price = args[0]
+    price = abs(int(args[0]))
     role_name = ' '.join(args[1:])
     rtrl = matching_role(message.guild, role_name)
     if not rtrl:

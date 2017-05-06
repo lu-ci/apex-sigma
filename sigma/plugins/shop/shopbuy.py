@@ -14,7 +14,7 @@ async def shopbuy(cmd, message, args):
     for item in item_list:
         if item['RoleName'].lower() == role_name.lower():
             found = True
-            price = int(item['Price'])
+            price = abs(int(item['Price']))
             role = matching_role(message.guild, role_name)
             if not user_matching_role(message.author, role_name):
                 user_points = cmd.db.get_points(message.author)
