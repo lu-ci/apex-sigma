@@ -26,9 +26,10 @@ async def voice_clockwork(ev):
                             vc_id = member.voice.channel.id
                             if vc_id == afk_id:
                                 afk = True
-                        if not afk:
-                            if not member.voice.deaf:
-                                if not member.voice.self_deaf:
-                                    points = random.randint(3, 15)
-                                    ev.db.add_points(member.guild, member, points)
+                        if len(member.guild.members) >= 10:
+                            if not afk:
+                                if not member.voice.deaf:
+                                    if not member.voice.self_deaf:
+                                        points = random.randint(3, 15)
+                                        ev.db.add_points(member.guild, member, points)
         await asyncio.sleep(20)
