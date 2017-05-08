@@ -24,6 +24,7 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             embed = discord.Embed(color=0xDB0000, title='❗ Not Enough Points')
             await message.channel.send(None, embed=embed)
             return
+        cmd.db.take_points(message.guild, message.author, bet_amt)
         cmd.db.add_stats('SlotsCount')
         embed_colors = [0x990000, 0x0066FF, 0x009900, 0xff9900, 0xCC33FF, 0x990033]
         slot_embed = discord.Embed(color=random.choice(embed_colors))
@@ -96,7 +97,6 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             slot_embed.set_footer(text='You won ' + str(pts) + ' points.')
             await slot_spinner.edit(embed=slot_embed)
         else:
-            cmd.db.take_points(message.guild, message.author, bet_amt)
             slot_embed.set_field_at(0, name='💣 You Lost...', value=slot_view)
             slot_embed.set_footer(text='You lost the ' + str(bet_amt) + ' points that you bet.')
             await slot_spinner.edit(embed=slot_embed)
