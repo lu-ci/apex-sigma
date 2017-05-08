@@ -42,22 +42,28 @@ async def warn(cmd, message, args):
         }
     warned_users.update({target_id: warn_data})
     if warned_users[target_id]['Warns'] > warn_limit:
+        out_content_to_user = discord.Embed(color=0x993300)
+        out_content_to_user.add_field(name=':boot: You have been kicked!',
+                                      value='Reasons:\n```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
+        try:
+            await target.send(None, embed=out_content_to_user)
+        except:
+            pass
         await target.kick()
         out_content_local = discord.Embed(color=0x993300)
         out_content_local.add_field(name=':boot: User **' + target.name + '** has been kicked!',
                                     value='Reasons:\n```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
         await message.channel.send(None, embed=out_content_local)
-        out_content_to_user = discord.Embed(color=0x993300)
-        out_content_to_user.add_field(name=':boot: You have been kicked!',
-                                      value='Reasons:\n```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
-        await target.send(None, embed=out_content_to_user)
         del warned_users[target_id]
     else:
         warned_users.update({target_id: warn_data})
         out_content_to_user = discord.Embed(color=0xFF9900)
         out_content_to_user.add_field(name='⚠ Warning ' + str(warned_users[target_id]['Warns']) + '/' + str(
             warn_limit) + ' on ' + message.guild.name, value='Reason:\n```\n' + warning_text + '\n```')
-        await target.send(None, embed=out_content_to_user)
+        try:
+            await target.send(None, embed=out_content_to_user)
+        except:
+            pass
         out_content_local = discord.Embed(color=0xFF9900, title='⚠ Warning ' + str(
             warned_users[target_id]['Warns']) + '/' + str(
             warn_limit) + ' for ' + target.name)
