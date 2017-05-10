@@ -36,4 +36,5 @@ def generate_sortie_embed(data):
         mission_desc += f'\nModifier: {modifier}'
         response.add_field(name=f'Mission {mission_num}', value=f'{mission_desc}', inline=False)
     response.set_footer(icon_url='https://i.imgur.com/Okg20Uk.png', text=f'Duration: {duration_tag}')
+    response.set_thumbnail(url='https://i.imgur.com/Okg20Uk.png')
     return response

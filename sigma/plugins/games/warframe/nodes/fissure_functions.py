@@ -44,7 +44,7 @@ def generate_fissure_embed(data):
     relic_tier = tier_names[data['Modifier']]
     relic_icon = relic_images[relic_tier.lower()]
     footer_icon = 'https://i.imgur.com/vANGxqe.png'
-    response = discord.Embed(color=0xffcc66, timestamp=event_datetime)
+    response = discord.Embed(color=0x66ccff, timestamp=event_datetime)
     response.add_field(name=f'Warframe {relic_tier} Void Fissure', value=f'Location: {data["Node"]}')
     response.set_thumbnail(url=relic_icon)
     response.set_footer(icon_url=footer_icon, text=f'Duration: {duration_tag}')
