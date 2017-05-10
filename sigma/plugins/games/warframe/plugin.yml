@@ -25,10 +25,47 @@ commands:
     description:
       Searches for prime drop locations.
 
-  - name:    wfrelic
+  - name:    wfalertchannel
+    alts:
+      - "wfac"
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Lith A1"
+    usage:   "{pfx:s}{cmd:s} #wf_alerts"
     description:
-      Searches for prime drop locations.
+      Designates a channel for Warframe alerts.
+      When a new alert shows up the news will be posted here.
+      To disable this, write disable after the command instead of a channel.
+
+  - name:    wffissurechannel
+    alts:
+      - "wffc"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} #wf_fissures"
+    description:
+      Designates a channel for Warframe void fissures.
+      When a new void fissure shows up the news will be posted here.
+      To disable this, write disable after the command instead of a channel.
+
+  - name:    wfsortiechannel
+    alts:
+      - "wfsc"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} #wf_sorties"
+    description:
+      Designates a channel for Warframe sorties.
+      When a new sortie shows up the news will be posted here.
+      To disable this, write disable after the command instead of a channel.
+events:
+  - name:    wf_clockwork
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Checks for channels that need Warframe news delivered.
