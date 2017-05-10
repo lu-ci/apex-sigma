@@ -64,7 +64,7 @@ async def generate_alert_embed(data):
     response = discord.Embed(color=0xffcc66, timestamp=event_datetime)
     alert_desc = f'Type: {data["faction"]} {data["type"]}'
     alert_desc += f'\nLevels: {data["levels"]["low"]} - {data["levels"]["high"]}'
-    alert_desc += f'\nLocation: {data["node"]}({data["planet"]})'
+    alert_desc += f'\nLocation: {data["node"]} ({data["planet"]})'
     alert_desc += f'\nReward: {data["rewards"]["credits"]}cr'
     if data['rewards']['item']:
         try:
