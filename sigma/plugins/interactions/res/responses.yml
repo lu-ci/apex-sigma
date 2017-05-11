@@ -23,6 +23,10 @@ cuddle:
   sid: 287978175927943188
   srv: Candy Kingdom
   url: http://media.giphy.com/media/eMpDBxxTzKety/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://pa1.narvii.com/5774/3cb894f1d4bcb4a9c58a06ee2a7fcd1a11f9b0eb_hq.gif
 hug:
 - auth: Various
   sid: 287978175927943188
@@ -104,6 +108,46 @@ hug:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: http://31.media.tumblr.com/2cb863b0146eff52253a90e6f7ab7928/tumblr_mq041bYDBu1srxjoto1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://media.giphy.com/media/VGACXbkf0AeGs/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://media.giphy.com/media/ba92ty7qnNcXu/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/IcCydiEyLjO0w/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://shinyanimeprincess.files.wordpress.com/2011/11/sometimes-i-just-need-a-hug.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://38.media.tumblr.com/b004f301143edad269aa1d88d0f1e245/tumblr_mx084htXKO1qbvovho1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://img4.wikia.nocookie.net/__cb20130302231719/adventuretimewithfinnandjake/images/1/15/Tumblr_m066xoISk41r6owqs.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://31.media.tumblr.com/1dbc325fba6b0106b7289474dc396d77/tumblr_mw6bcmuvO21rtx76bo1_r1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/wnsgren9NtITS/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://24.media.tumblr.com/49a21e182fcdfb3e96cc9d9421f8ee3f/tumblr_mr2oxyLdFZ1s7ewj9o1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://media.giphy.com/media/aD1fI3UUWC4/giphy.gif
 kiss:
 - auth: Various
   sid: 287978175927943188
@@ -157,6 +201,18 @@ kiss:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: http://pa1.narvii.com/5743/d4834c7c5eba067c63ee720a793c0a8acf6d7dc8_hq.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://orangejuiceinbishopsgarden.com/blog/wp-content/uploads/2015/02/blowakiss-GIF1.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/bm2O3nXTcKJeU/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://37.media.tumblr.com/53bf74a951fc87a0cc15686f5aadb769/tumblr_n14rfuvCe41sc1kfto1_500.gif
 pat:
 - auth: Various
   sid: 287978175927943188
@@ -246,11 +302,23 @@ pat:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: https://lh3.googleusercontent.com/-Nhv1fkZsmIg/VbFlxiHtIqI/AAAAAAAAAcg/z0Fe_7Wci2U/w480-h270/1372623291856.gif
+- auth: Lumenix
+  sid: 200751504175398912
+  srv: Aurora Project
+  url: https://media.giphy.com/media/QvwMDYpAMUm6Q/giphy.gif
+- auth: Lumenix
+  sid: 200751504175398912
+  srv: Aurora Project
+  url: https://media.giphy.com/media/M3a51DMeWvYUo/giphy.gif
 peck:
 - auth: Various
   sid: 287978175927943188
   srv: Candy Kingdom
   url: http://25.media.tumblr.com/642760eca89625f5dcb7a7b0110310db/tumblr_mqy0f19TPY1rfgw56o1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/lZDb2PNgLXdoA/giphy.gif
 poke:
 - auth: Various
   sid: 287978175927943188
@@ -370,3 +438,24 @@ slap:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: http://img.photobucket.com/albums/v639/aoie_emesai/100handslap.gif
+- auth: Darth
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/3oEdv1Rdmo0Vd0YdW0/giphy.gif
+- auth: Darth
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/ox1s7dt9B1C6c/giphy.gif
+- auth: Darth
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://www.awesomegifs.com/wp-content/uploads/Tyrion_slaps_Joffrey.gif
+- auth: Darth
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/19sftaasri0ww/giphy.gif
+smash:
+- auth: Lumenix
+  sid: 288377343070961665
+  srv: Dank Memes
+  url: https://media2.giphy.com/media/jwG4PAKr56vu0/giphy.gif

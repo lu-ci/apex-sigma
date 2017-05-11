@@ -48,6 +48,8 @@ class Sigma(discord.AutoShardedClient):
         self.ready = False
         self.guild_count = 0
         self.member_count = 0
+        self.command_count = 0
+        self.message_count = 0
 
         with open('AUTHORS') as authors_file:
             content = yaml.safe_load(authors_file)
@@ -154,6 +156,7 @@ class Sigma(discord.AutoShardedClient):
     async def on_message(self, message):
         if self.ready:
             self.db.add_stats('MSGCount')
+            self.message_count += 1
             args = message.content.split(' ')
             # handle mention events
             if self.user.mentioned_in(message):
@@ -177,6 +180,7 @@ class Sigma(discord.AutoShardedClient):
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
                         self.db.add_stats('CMDCount')
+                        self.command_count += 1
                         if UseCachet:
                             self.loop.create_task(self.cachet_stat_up(1, 1))
                     athr = message.author
