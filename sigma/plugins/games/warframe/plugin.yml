@@ -57,6 +57,19 @@ commands:
     description:
       Shows the ongoing Warframe void fissures.
 
+  - name:    wftrials
+    alts:
+      - "wft"
+      - "wftrial"
+      - "wfraids"
+      - "wfr"
+      - "wfraid"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} AXAz0r"
+    description:
+      Shows the raid statistics of the inputted user.
 
   - name:    wfalertchannel
     alts:
