@@ -25,6 +25,39 @@ commands:
     description:
       Searches for prime drop locations.
 
+  - name:    wfalerts
+    alts:
+      - "wfa"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the ongoing Warframe alerts.
+
+  - name:    wfsortie
+    alts:
+      - "wfs"
+      - "wfsorties"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the ongoing Warframe sortie missions.
+
+  - name:    wffissures
+    alts:
+      - "wff"
+      - "wffisure"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the ongoing Warframe void fissures.
+
+
   - name:    wfalertchannel
     alts:
       - "wfac"
