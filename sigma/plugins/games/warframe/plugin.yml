@@ -82,7 +82,7 @@ commands:
       Checks the price for the searched item.
       If you wish to search for a mod you need to tell the bot that it is a mod.
       For example if you wanted to look up Covert Lethality you would need to type
-      Mod Covert Lethality. This is due to the api being very specific.
+      Covert Lethality Mod. This is due to the api being very specific.
       This will only list items by members that are currently online and in the game.
 
   - name:    wfalertchannel
