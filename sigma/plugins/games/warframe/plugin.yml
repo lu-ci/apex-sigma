@@ -25,6 +25,66 @@ commands:
     description:
       Searches for prime drop locations.
 
+  - name:    wfalerts
+    alts:
+      - "wfa"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the ongoing Warframe alerts.
+
+  - name:    wfsortie
+    alts:
+      - "wfs"
+      - "wfsorties"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the ongoing Warframe sortie missions.
+
+  - name:    wffissures
+    alts:
+      - "wff"
+      - "wffisure"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Shows the ongoing Warframe void fissures.
+
+  - name:    wftrials
+    alts:
+      - "wft"
+      - "wftrial"
+      - "wfraids"
+      - "wfr"
+      - "wfraid"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} AXAz0r"
+    description:
+      Shows the raid statistics of the inputted user.
+
+  - name:    wfpricecheck
+    alts:
+      - "wfpc"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Tigris Prime Blueprint"
+    description:
+      Checks the price for the searched item.
+      If you wish to search for a mod you need to tell the bot that it is a mod.
+      For example if you wanted to look up Covert Lethality you would need to type
+      Mod Covert Lethality. This is due to the api being very specific.
+      This will only list items by members that are currently online and in the game.
+
   - name:    wfalertchannel
     alts:
       - "wfac"
