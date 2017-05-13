@@ -2,11 +2,13 @@ import aiohttp
 import lxml.html as l
 
 
-async def grab_image(name):
+async def grab_image(name, cut=False):
     base_url = 'http://warframe.wikia.com/wiki'
     if ' Blueprint' in name:
         name = name.replace(' Blueprint', '')
     name = name.replace(' ', '_')
+    if cut:
+        name = '_'.join(name.split('_')[:-1])
     check_name = name.split('_')
     try:
         int(check_name[0])
@@ -25,15 +27,20 @@ async def grab_image(name):
     return img_url
 
 
-async def alt_grab_image(name):
+async def alt_grab_image(name, cut=False):
     base_url = 'http://warframe.wikia.com/wiki'
     if ' Blueprint' in name:
         name = name.replace(' Blueprint', '')
     name = name.replace(' ', '_')
+    if cut:
+        name = '_'.join(name.split('_')[:-1])
     item_url = f'{base_url}/{name}'
     async with aiohttp.ClientSession() as session:
         async with session.get(item_url) as data:
             page = await data.text()
     root = l.fromstring(page)
-    item_image = root.cssselect('.infobox')[0][1][0][0].attrib['href']
+    try:
+        item_image = root.cssselect('.infobox')[0][1][0][0].attrib['href']
+    except:
+        item_image = root.cssselect('.pi-image-thumbnail')[0].attrib['src']
     return item_image
