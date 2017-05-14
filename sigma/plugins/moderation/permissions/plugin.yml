@@ -127,7 +127,6 @@ commands:
       If it is a command use C and if it is a module use M following the example.
       Command usable only by Server Admins.
 
-
   - name: permitchannel
     alts:
       - "permch"
@@ -150,6 +149,33 @@ commands:
     usage:   "{pfx:s}{cmd:s} m:moderation #channel"
     description:
       Removes permissions from a channel that can use a disabled command or module group to do so.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+
+  - name: permitrole
+    alts:
+      - "permrole"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} c:csshumor Wizards"
+    description:
+      Specifies a role that can use a disabled command or module group.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+  - name: unpermitrole
+    alts:
+      - "unpermrole"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} m:minigames Gamblers"
+    description:
+      Removes permissions from a role that can use a disabled command or module group to do so.
       It needs to be specified if it is a command or module group.
       If it is a command use C and if it is a module use M following the example.
       Command usable only by Server Admins.
