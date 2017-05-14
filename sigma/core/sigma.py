@@ -14,6 +14,7 @@ from .logger import create_logger
 from .stats import stats
 from .command_alts import load_alternate_command_names
 from .blacklist import check_black
+from .blacklist import check_perms
 from .cooldowns import Cooldown
 
 
@@ -175,6 +176,8 @@ class Sigma(discord.AutoShardedClient):
                 try:
                     if check_black(self.db, message):
                         self.log.warning('BLACK: Access Denied.')
+                    elif not check_perms(self.db, message):
+                        self.log.warning('PERMS: Access Denied.')
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
