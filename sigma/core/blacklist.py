@@ -54,27 +54,30 @@ def check_overwrites(perms, author, channel, roles, cmd_name=None, mdl_name=None
 
 def check_perms(db, message, command):
     if message.guild:
-        perms = db.find_one('Permissions', {'ServerID': message.guild.id})
-        if not perms:
-            permitted = True
-        else:
-            cmd = command.name
-            mdl = command.plugin.categories[0]
-            ath = message.author
-            chn = message.channel
-            rls = message.author.roles
-            if mdl in perms['DisabledModules']:
-                if check_overwrites(perms, ath, chn, rls, True):
-                    permitted = True
-                else:
-                    permitted = False
-            elif cmd in perms['DisabledCommands']:
-                if check_overwrites(perms, ath, chn, rls, False):
-                    permitted = True
-                else:
-                    permitted = False
-            else:
+        if not check_admin(message.author, message.channel) or message.author.id not in permitted_id:
+            perms = db.find_one('Permissions', {'ServerID': message.guild.id})
+            if not perms:
                 permitted = True
+            else:
+                cmd = command.name
+                mdl = command.plugin.categories[0]
+                ath = message.author
+                chn = message.channel
+                rls = message.author.roles
+                if mdl in perms['DisabledModules']:
+                    if check_overwrites(perms, ath, chn, rls, True):
+                        permitted = True
+                    else:
+                        permitted = False
+                elif cmd in perms['DisabledCommands']:
+                    if check_overwrites(perms, ath, chn, rls, False):
+                        permitted = True
+                    else:
+                        permitted = False
+                else:
+                    permitted = True
+        else:
+            permitted = True
     else:
         permitted = True
     return permitted

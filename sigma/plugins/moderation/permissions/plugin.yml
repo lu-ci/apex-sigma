@@ -50,3 +50,27 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Lists all channels and users that are blacklisted on the current server.
+
+  - name: disablecommand
+    alts:
+      - "dcmd"
+      - "cmdoff"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} dadjoke"
+    description:
+      Disables a command from being used on the server.
+      Command usable only by Server Admins.
+
+  - name: enablecommand
+    alts:
+      - "ecmd"
+      - "cmdon"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} pun"
+    description:
+      Enables a disabled command on the server.
+      Command usable only by Server Admins.
