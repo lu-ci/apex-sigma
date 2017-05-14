@@ -11,7 +11,6 @@ async def unban(cmd, message, args):
                 ban_list = await message.guild.bans()
                 target_user = None
                 for entry in ban_list:
-                    print(ban_list)
                     if entry.user.name.lower() == user_q.lower():
                         target_user = entry.user
                         break
