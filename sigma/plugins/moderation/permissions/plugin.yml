@@ -74,3 +74,29 @@ commands:
     description:
       Enables a disabled command on the server.
       Command usable only by Server Admins.
+
+  - name: disablemodule
+    alts:
+      - "dmdl"
+      - "mdloff"
+      - "moduleoff"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} fun"
+    description:
+      Disables a module group from being used on the server.
+      Command usable only by Server Admins.
+
+  - name: enablemodule
+    alts:
+      - "emdl"
+      - "mdlon"
+      - "moduleon"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} nsfw"
+    description:
+      Enables a disabled module group on the server.
+      Command usable only by Server Admins.
