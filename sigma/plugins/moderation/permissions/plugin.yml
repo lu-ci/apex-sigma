@@ -50,3 +50,132 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Lists all channels and users that are blacklisted on the current server.
+
+  - name: disablecommand
+    alts:
+      - "dcmd"
+      - "cmdoff"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} dadjoke"
+    description:
+      Disables a command from being used on the server.
+      Command usable only by Server Admins.
+
+  - name: enablecommand
+    alts:
+      - "ecmd"
+      - "cmdon"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} pun"
+    description:
+      Enables a disabled command on the server.
+      Command usable only by Server Admins.
+
+  - name: disablemodule
+    alts:
+      - "dmdl"
+      - "mdloff"
+      - "moduleoff"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} fun"
+    description:
+      Disables a module group from being used on the server.
+      Command usable only by Server Admins.
+
+  - name: enablemodule
+    alts:
+      - "emdl"
+      - "mdlon"
+      - "moduleon"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} nsfw"
+    description:
+      Enables a disabled module group on the server.
+      Command usable only by Server Admins.
+
+  - name: permituser
+    alts:
+      - "permuser"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} c:pun @user"
+    description:
+      Specifies a person that can use a disabled command or module group.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+  - name: unpermituser
+    alts:
+      - "unpermuser"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} m:fun @user"
+    description:
+      Removes permissions from a person that can use a disabled command or module group to do so.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+  - name: permitchannel
+    alts:
+      - "permch"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} c:wfloc #channel"
+    description:
+      Specifies a channel that can use a disabled command or module group.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+  - name: unpermitchannel
+    alts:
+      - "unpermch"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} m:moderation #channel"
+    description:
+      Removes permissions from a channel that can use a disabled command or module group to do so.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+
+  - name: permitrole
+    alts:
+      - "permrole"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} c:csshumor Wizards"
+    description:
+      Specifies a role that can use a disabled command or module group.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+  - name: unpermitrole
+    alts:
+      - "unpermrole"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} m:minigames Gamblers"
+    description:
+      Removes permissions from a role that can use a disabled command or module group to do so.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.

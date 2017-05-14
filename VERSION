@@ -1,7 +1,7 @@
 beta: false
-build_date: 1494636007
-codename: Yumemi
+build_date: 1494778407
+codename: Kano
 version:
   major: 2
-  minor: 78
-  patch: 8548
+  minor: 84
+  patch: 8577

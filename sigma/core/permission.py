@@ -1,5 +1,4 @@
 ﻿import discord
-from time import time
 
 from config import permitted_id, Prefix
 

@@ -25,3 +25,63 @@ def check_black(db, message):
         if black_channel or black_user or server_is_black:
             black = True
     return black
+
+
+def check_overwrites(perms, author, channel, roles, cmd_name, mdl_name):
+    overwritten = False
+    cmd_exc = perms['CommandExceptions']
+    mdl_exc = perms['ModuleExceptions']
+    if cmd_exc:
+        if cmd_name in cmd_exc:
+            exceptions = cmd_exc[cmd_name]
+            if author.id in exceptions['Users']:
+                overwritten = True
+            elif channel.id in exceptions['Channels']:
+                overwritten = True
+            for role in roles:
+                if role.id in exceptions['Roles']:
+                    overwritten = True
+                    break
+    elif mdl_exc:
+        if mdl_name in cmd_exc:
+            exceptions = cmd_exc[mdl_name]
+            if author.id in exceptions['Users']:
+                overwritten = True
+            elif channel.id in exceptions['Channels']:
+                overwritten = True
+            for role in roles:
+                if role.id in exceptions['Roles']:
+                    overwritten = True
+                    break
+    return overwritten
+
+
+def check_perms(db, message, command):
+    if message.guild:
+        if not check_admin(message.author, message.channel) or message.author.id not in permitted_id:
+            perms = db.find_one('Permissions', {'ServerID': message.guild.id})
+            if not perms:
+                permitted = True
+            else:
+                cmd = command.name
+                mdl = command.plugin.categories[0]
+                ath = message.author
+                chn = message.channel
+                rls = message.author.roles
+                if mdl in perms['DisabledModules']:
+                    if check_overwrites(perms, ath, chn, rls, cmd, mdl):
+                        permitted = True
+                    else:
+                        permitted = False
+                elif cmd in perms['DisabledCommands']:
+                    if check_overwrites(perms, ath, chn, rls, cmd, mdl):
+                        permitted = True
+                    else:
+                        permitted = False
+                else:
+                    permitted = True
+        else:
+            permitted = True
+    else:
+        permitted = True
+    return permitted
