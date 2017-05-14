@@ -3,14 +3,14 @@ from sigma.core.permission import check_admin
 from .nodes.permission_data import get_all_perms, generate_cmd_data
 
 
-async def unpermituser(cmd, message, args):
+async def unpermitchannel(cmd, message, args):
     if args:
         if len(args) >= 2:
             if not check_admin(message.author, message.channel):
                 response = discord.Embed(title='⛔ Unpermitted. Server Admin Only.', color=0xDB0000)
             else:
-                if message.mentions:
-                    target = message.mentions[0]
+                if message.channel_mentions:
+                    target = message.channel_mentions[0]
                     error_response = discord.Embed(color=0xDB0000, title='❗ Bad Input')
                     try:
                         perm_mode, cmd_name = args[0].split(':')
@@ -40,20 +40,20 @@ async def unpermituser(cmd, message, args):
                         else:
                             cmd_exc = generate_cmd_data(cmd_name)
                         inner_exc = cmd_exc[cmd_name]
-                        exc_usrs = inner_exc['Users']
+                        exc_usrs = inner_exc['Channels']
                         if target.id in exc_usrs:
                             exc_usrs.remove(target.id)
-                            inner_exc.update({'Users': exc_usrs})
+                            inner_exc.update({'Channels': exc_usrs})
                             cmd_exc.update({cmd_name: inner_exc})
                             perms.update({exception_group: cmd_exc})
                             cmd.db.update_one('Permissions', {'ServerID': message.guild.id}, {'$set': perms})
                             response = discord.Embed(color=0x66CC66,
-                                                     title=f'✅ `{target.name}` can no longer use `{cmd_name}`.')
+                                                     title=f'✅ `#{target.name}` can no longer use `{cmd_name}`.')
                         else:
                             response = discord.Embed(color=0xFF9900,
-                                                     title=f'⚠ {target.name} is not permitted to use `{cmd_name}`')
+                                                     title=f'⚠ #{target.name} is not permitted to use `{cmd_name}`')
                     else:
                         response = discord.Embed(color=0x696969, title='🔍 Command/Module Not Found')
                 else:
-                    response = discord.Embed(color=0x696969, title='🔍 No User Mentioned')
+                    response = discord.Embed(color=0x696969, title='🔍 No Channel Mentioned')
             await message.channel.send(embed=response)

@@ -43,7 +43,7 @@ async def permituser(cmd, message, args):
                         exc_usrs = inner_exc['Users']
                         if target.id in exc_usrs:
                             response = discord.Embed(color=0xFF9900,
-                                                     title=f'⚠ {target.name} Can Already Use `{cmd_name}`')
+                                                     title=f'⚠ {target.name} can already use `{cmd_name}`')
                         else:
                             exc_usrs.append(target.id)
                             inner_exc.update({'Users': exc_usrs})
@@ -51,7 +51,7 @@ async def permituser(cmd, message, args):
                             perms.update({exception_group: cmd_exc})
                             cmd.db.update_one('Permissions', {'ServerID': message.guild.id}, {'$set': perms})
                             response = discord.Embed(color=0x66CC66,
-                                                     title=f'✅ `{target.name}` Can Now Use `{cmd_name}`.')
+                                                     title=f'✅ `{target.name}` can now use `{cmd_name}`.')
                     else:
                         response = discord.Embed(color=0x696969, title='🔍 Command/Module Not Found')
                 else:

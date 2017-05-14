@@ -126,3 +126,30 @@ commands:
       It needs to be specified if it is a command or module group.
       If it is a command use C and if it is a module use M following the example.
       Command usable only by Server Admins.
+
+
+  - name: permitchannel
+    alts:
+      - "permch"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} c:wfloc #channel"
+    description:
+      Specifies a channel that can use a disabled command or module group.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
+
+  - name: unpermitchannel
+    alts:
+      - "unpermch"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} m:moderation #channel"
+    description:
+      Removes permissions from a channel that can use a disabled command or module group to do so.
+      It needs to be specified if it is a command or module group.
+      If it is a command use C and if it is a module use M following the example.
+      Command usable only by Server Admins.
