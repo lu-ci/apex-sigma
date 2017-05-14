@@ -10,9 +10,9 @@ async def softban(cmd, message, args):
             if check_ban(message.author, channel):
                 try:
                     await user_q.ban()
-                    await cmd.bot.unban(message.guild, user_q)
+                    await user_q.unban()
                     embed = discord.Embed(color=0x66CC66,
-                                          title='✅ ' + user_q.name + ' has been soft-banned.')
+                                          title=f'✅ {user_q.name} has been soft-banned.')
                     await message.channel.send(None, embed=embed)
                 except Exception as e:
                     cmd.log.error(e)
