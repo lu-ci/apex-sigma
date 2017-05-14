@@ -7,6 +7,7 @@ import aiohttp
 
 from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
 from config import UseCachet, CachetToken, CachetURL
+from .utils import load_module_list
 from .plugman import PluginManager
 from .database import Database
 from .music import Music
@@ -41,6 +42,7 @@ class Sigma(discord.AutoShardedClient):
         super().__init__()
         self.prefix = Prefix
         self.alts = load_alternate_command_names()
+        self.module_list = load_module_list()
         self.init_logger()
         self.init_databases()
         self.init_music()
@@ -176,7 +178,7 @@ class Sigma(discord.AutoShardedClient):
                 try:
                     if check_black(self.db, message):
                         self.log.warning('BLACK: Access Denied.')
-                    elif not check_perms(self.db, message):
+                    elif not check_perms(self.db, message, self.plugin_manager.commands[cmd]):
                         self.log.warning('PERMS: Access Denied.')
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
