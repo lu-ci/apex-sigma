@@ -27,20 +27,24 @@ def check_black(db, message):
     return black
 
 
-def check_overwrites(perms, author, channel, roles, cmd_name=None, mdl_name=None):
+def check_overwrites(perms, author, channel, roles, cmd_name, mdl_name):
     overwritten = False
-    if cmd_name:
-        broad_exceptions = perms['CommandExceptions']
-        trgt = cmd_name
-    elif mdl_name:
-        broad_exceptions = perms['ModuleExceptions']
-        trgt = mdl_name
-    else:
-        trgt = None
-        broad_exceptions = None
-    if broad_exceptions:
-        if trgt in broad_exceptions:
-            exceptions = broad_exceptions[trgt]
+    cmd_exc = perms['CommandExceptions']
+    mdl_exc = perms['ModuleExceptions']
+    if cmd_exc:
+        if cmd_name in cmd_exc:
+            exceptions = cmd_exc[cmd_name]
+            if author.id in exceptions['Users']:
+                overwritten = True
+            elif channel.id in exceptions['Channels']:
+                overwritten = True
+            for role in roles:
+                if role.id in exceptions['Roles']:
+                    overwritten = True
+                    break
+    elif mdl_exc:
+        if mdl_name in cmd_exc:
+            exceptions = cmd_exc[mdl_name]
             if author.id in exceptions['Users']:
                 overwritten = True
             elif channel.id in exceptions['Channels']:
@@ -65,12 +69,12 @@ def check_perms(db, message, command):
                 chn = message.channel
                 rls = message.author.roles
                 if mdl in perms['DisabledModules']:
-                    if check_overwrites(perms, ath, chn, rls, True):
+                    if check_overwrites(perms, ath, chn, rls, cmd, mdl):
                         permitted = True
                     else:
                         permitted = False
                 elif cmd in perms['DisabledCommands']:
-                    if check_overwrites(perms, ath, chn, rls, False):
+                    if check_overwrites(perms, ath, chn, rls, cmd, mdl):
                         permitted = True
                     else:
                         permitted = False

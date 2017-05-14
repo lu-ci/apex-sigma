@@ -178,7 +178,7 @@ class Sigma(discord.AutoShardedClient):
                 try:
                     if check_black(self.db, message):
                         self.log.warning('BLACK: Access Denied.')
-                    elif not check_perms(self.db, message, self.plugin_manager.commands[cmd]):
+                    elif not check_perms(self.db, message, self.plugin_manager.commands[cmd],):
                         self.log.warning('PERMS: Access Denied.')
                     else:
                         task = self.plugin_manager.commands[cmd].call(message, args)
