@@ -95,6 +95,10 @@ def check_man_chan(user, channel):
     return user.permissions_in(channel).manage_channels
 
 
+def check_man_srv(user, channel):
+    return user.permissions_in(channel).manage_guild
+
+
 def check_permitted(self, user, channel, server):
     if not self.perm['sfw'] and not check_channel_nsfw(self.db, channel.id):
         title = '🍆 Channel does not have NSFW permissions set, sorry.'
