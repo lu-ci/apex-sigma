@@ -1,0 +1,24 @@
+import discord
+from sigma.core.permission import check_man_srv
+
+
+async def removecommand(cmd, message, args):
+    if check_man_srv(message.author, message.channel):
+        if args:
+            trigger = args[0].lower()
+            if trigger not in cmd.bot.plugin_manager.commands and trigger not in cmd.bot.alts:
+                try:
+                    custom_commands = cmd.db.get_settings(message.guild.id, 'CustomCommands')
+                except:
+                    cmd.db.set_settings(message.guild.id, 'CustomCommands', {})
+                    custom_commands = {}
+                del custom_commands[trigger]
+                cmd.db.set_settings(message.guild.id, 'CustomCommands', custom_commands)
+                response = discord.Embed(title=f'✅ {trigger} has been removed')
+            else:
+                response = discord.Embed(title='❗ Can\'t moify an existing core command', color=0xDB0000)
+        else:
+            response = discord.Embed(title='❗ Nothing Was Inputted', color=0xDB0000)
+    else:
+        response = discord.Embed(title='⛔ Unpermitted. Server Admin Only.', color=0xDB0000)
+    await message.channel.send(embed=response)

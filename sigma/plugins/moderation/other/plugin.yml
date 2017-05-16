@@ -1,0 +1,45 @@
+name: Other Moderation
+
+categories:
+  - moderation
+
+enabled: true
+
+commands:
+  - name: addcommand
+    alts:
+      - "addc"
+      - "addcmd"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} hello Hello to you too good sir!"
+    description:
+      Adds a custom command trigger to the server.
+      Whenever this trigger word is used with a command prefix the inputted response will be provided.
+      Command requires the Manage Server permission.
+
+  - name: removecommand
+    alts:
+      - "delc"
+      - "remc"
+      - "delcmd"
+      - "remcmd"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} poop"
+    description:
+      Removes a custom command trigger used for custom commands from the server.
+      Command requires the Manage Server permission.
+
+events:
+  - name:    custom_command_detection
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user using a server specific custom command."
+    description:
+      Controls custom command detection and output.
