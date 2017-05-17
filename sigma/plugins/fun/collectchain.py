@@ -6,6 +6,16 @@ from config import Prefix
 in_use = False
 
 
+def check_for_bot_prefixes(text):
+    common_pfx = [Prefix, '!', '/', '\\', '~', '.', '>', '-', '_']
+    prefixed = False
+    for pfx in common_pfx:
+        if text.startswith(pfx):
+            prefixed = True
+            break
+    return prefixed
+
+
 async def collectchain(cmd, message, args):
     global in_use
     if in_use:
@@ -34,7 +44,7 @@ async def collectchain(cmd, message, args):
                         if log.content:
                             if log.content != '':
                                 if len(log.content) > 3:
-                                    if not log.content.startswith(Prefix):
+                                    if not check_for_bot_prefixes(log.content):
                                         if 'http' not in log.content and '```' not in log.content:
                                             content = log.content
                                             if log.mentions:
