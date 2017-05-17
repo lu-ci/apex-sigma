@@ -39,7 +39,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
-    pmable:  false
+    pmable:  true
     usage:   "Activated upon a user using a server specific custom command."
     description:
       Controls custom command detection and output.
