@@ -58,3 +58,9 @@ def load_module_list():
                     except:
                         pass
     return module_list
+
+
+def convert_hms(hms):
+    hrs, mns, secs = hms.split(':')
+    out_time = (int(hrs) * 3600) + (int(mns) * 60) + int(secs)
+    return out_time
