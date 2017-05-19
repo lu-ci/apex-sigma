@@ -11,5 +11,5 @@ async def cuddle(cmd, message, args):
     else:
         response = discord.Embed(color=0x1ABC9C, title=f'{message.author.name} cuddles with {target.name}.')
     response.set_image(url=resp['url'])
-    response.set_footer(text=f'Submited by {resp["auth"]} from {resp["srv"]}.')
+    response.set_footer(text=f'Submitted by {resp["auth"]} from {resp["srv"]}.')
     await message.channel.send(embed=response)
