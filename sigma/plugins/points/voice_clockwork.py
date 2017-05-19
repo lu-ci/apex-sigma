@@ -5,6 +5,24 @@ import arrow
 import os
 
 
+def count_members(guild):
+    counter = 0
+    for member in guild.members:
+        if not member.bot:
+            counter += 1
+    return counter
+
+
+def count_vc_members(vc):
+    counter = 0
+    for member in vc.members:
+        if not member.bot:
+            if not member.voice.deaf:
+                if not member.voice.self_deaf:
+                    counter += 1
+    return counter
+
+
 async def voice_clockwork(ev):
     while True:
         if os.path.exists('cache/voice_reward_clock.yml'):
@@ -26,10 +44,11 @@ async def voice_clockwork(ev):
                             vc_id = member.voice.channel.id
                             if vc_id == afk_id:
                                 afk = True
-                        if len(member.guild.members) >= 10:
+                        if count_members(member.guild) >= 100:
                             if not afk:
                                 if not member.voice.deaf:
                                     if not member.voice.self_deaf:
-                                        points = random.randint(3, 15)
-                                        ev.db.add_points(member.guild, member, points)
+                                        if count_vc_members(member.voice.channel) > 1:
+                                            points = random.randint(2, 10)
+                                            ev.db.add_points(member.guild, member, points)
         await asyncio.sleep(20)
