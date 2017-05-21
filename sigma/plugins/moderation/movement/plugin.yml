@@ -87,6 +87,30 @@ commands:
       If no channel is specified as an argument, it take the channel the command is written in as the target.
       (Server Administrator Only)
 
+  - name: greetdelete
+    alts:
+     - "greetdel"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles if greeting messages should be automatically deleted.
+      If enabled the messages will be deleted after 10 seconds.
+      (Server Administrator Only)
+
+  - name: byedelete
+    alts:
+     - "byedel"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s}"
+    description:
+      Toggles if goodbye messages should be automatically deleted.
+      If enabled the messages will be deleted after 10 seconds.
+      (Server Administrator Only)
+
 events:
   - name:    member_join_control
     type:    member_join

@@ -122,6 +122,17 @@ commands:
     description:
       Lists all the roles on the server and the total number of roles.
 
+  - name: rolepopulation
+    alts:
+      - "rolepop"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Wizards"
+    description:
+      Shows the population of the inputted role.
+      If no arguments are provided, it will show the top 20 roles by population.
+
   - name: clrrole
     alts:
       - "colorrole"

@@ -1,9 +1,14 @@
-﻿import discord
+﻿import asyncio
+import discord
 
 
 async def member_leave_control(ev, member):
     server = member.guild
     bye = ev.db.get_settings(server.id, 'Bye')
+    try:
+        del_bye = ev.db.get_settings(server.id, 'ByeDelete')
+    except:
+        del_bye = False
     if bye:
         ev.db.add_stats('ByeCount')
         bye_channel = ev.db.get_settings(server.id, 'ByeChannel')
@@ -17,4 +22,7 @@ async def member_leave_control(ev, member):
             if channel.id == bye_channel:
                 target_channel = channel
                 break
-        await target_channel.send(bye_message)
+        bye_message_object = await target_channel.send(bye_message)
+        if del_bye:
+            await asyncio.sleep(10)
+            await bye_message_object.delete()
