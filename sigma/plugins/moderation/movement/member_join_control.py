@@ -1,4 +1,5 @@
-﻿import discord
+﻿import asyncio
+import discord
 
 
 async def member_join_control(ev, member):
@@ -10,6 +11,10 @@ async def member_join_control(ev, member):
     except KeyError:
         ev.db.set_settings(server.id, 'AutoRole', None)
         autorole = None
+    try:
+        del_greet = ev.db.get_settings(server.id, 'GreetDelete')
+    except:
+        del_greet = False
     if greet:
         ev.db.add_stats('GreetCount')
         greet_message = ev.db.get_settings(server.id, 'GreetMessage')
@@ -22,7 +27,10 @@ async def member_join_control(ev, member):
                 target_channel = server.default_channe
             else:
                 target_channel = discord.utils.find(lambda x: x.id == greet_channel, member.guild.channels)
-            await target_channel.send(greet_message)
+            greet_message_object = await target_channel.send(greet_message)
+            if del_greet:
+                await asyncio.sleep(10)
+                await greet_message_object.delete()
         else:
             await member.send(greet_message)
     if autorole:
