@@ -88,5 +88,8 @@ async def queue(cmd, message, args):
                     elif item['type'] == 1:
                         information = f'Requested By: {item["requester"].name}\nDuration: {time.strftime("%H:%M:%S", time.gmtime(item["sound"]["duration"]//1000))}'
                         embed.add_field(name=item['sound']['title'], value=f'```\n{information}\n```', inline=False)
-                embed.set_footer(text=f'To see the currently playing song type {Prefix}np')
+                if message.guild.id in cmd.music.repeaters:
+                    embed.set_footer(text='The current queue is set to repeat.')
+                else:
+                    embed.set_footer(text=f'To see the currently playing song type {Prefix}np')
                 await message.channel.send(None, embed=embed)
