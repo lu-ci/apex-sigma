@@ -16,6 +16,6 @@ async def greetdelete(cmd, message, args):
         else:
             enabled = True
             response_title = 'enabled'
-        cmd.db.insert_settings(message.guild.id, 'GreetDelete', enabled)
+        cmd.db.set_settings(message.guild.id, 'GreetDelete', enabled)
         response = discord.Embed(color=0x66CC66, title=f'Greeting message deletion {response_title}')
     await message.channel.send(embed=response)

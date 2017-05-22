@@ -16,6 +16,6 @@ async def byedelete(cmd, message, args):
         else:
             enabled = True
             response_title = 'enabled'
-        cmd.db.insert_settings(message.guild.id, 'ByeDelete', enabled)
+        cmd.db.set_settings(message.guild.id, 'ByeDelete', enabled)
         response = discord.Embed(color=0x66CC66, title=f'Goodbye message deletion {response_title}')
     await message.channel.send(embed=response)
