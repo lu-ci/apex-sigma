@@ -3,20 +3,16 @@ import discord
 
 
 async def kick(cmd, message, args):
-    channel = message.channel
-    if message.mentions:
-        user_q = message.mentions[0]
-        if message.author is not user_q:
-            if check_kick(message.author, channel):
-                await message.guild.kick(user_q)
-                out_content = discord.Embed(color=0x993300,
-                                            title=':boot: User **' + user_q.name + '** has been kicked!')
-                await message.channel.send(None, embed=out_content)
-            else:
-                out_content = discord.Embed(color=0xDB0000,
-                                            title='⛔ Insufficient Permissions. Users with Kick permissions only.')
-                await message.channel.send(None, embed=out_content)
-        else:
-            await message.channel.send(cmd.help())
+    if not check_kick(message.author, message.channel):
+        response = discord.Embed(title='⛔ Unpermitted. Kick Permissions Needed.', color=0xDB0000)
     else:
-        await message.channel.send(cmd.help())
+        if message.mentions:
+            target = message.mentions[0]
+            if target.id == message.author.id:
+                response = discord.Embed(title='⛔ You can\'t kick yourself.', color=0xDB0000)
+            else:
+                await target.kick(reason=f'Kicked by {message.author.name}#{message.author.discriminator}.')
+                response = discord.Embed(title=f'👢 {target.name} has been kicked.', color=0x993300)
+        else:
+            response = discord.Embed(title='❗ No user targeted.', color=0xDB0000)
+    await message.channel.send(embed=response)

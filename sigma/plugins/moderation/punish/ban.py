@@ -3,20 +3,16 @@ import discord
 
 
 async def ban(cmd, message, args):
-    channel = message.channel
-    if message.mentions:
-        user_q = message.mentions[0]
-        if message.author is not user_q:
-            if check_ban(message.author, channel):
-                await message.guild.ban(user_q)
-                out_content = discord.Embed(color=0xFF9900,
-                                            title=':hammer: User **' + user_q.name + '** has been banned!')
-                await message.channel.send(None, embed=out_content)
-            else:
-                out_content = discord.Embed(color=0xDB0000,
-                                            title='⛔ Insufficient Permissions. Users with Ban permissions only.')
-                await message.channel.send(None, embed=out_content)
-        else:
-            await message.channel.send(cmd.help())
+    if not check_ban(message.author, message.channel):
+        response = discord.Embed(title='⛔ Unpermitted. Ban Permissions Needed.', color=0xDB0000)
     else:
-        await message.channel.send(cmd.help())
+        if message.mentions:
+            target = message.mentions[0]
+            if target.id == message.author.id:
+                response = discord.Embed(title='⛔ You can\'t ban yourself.', color=0xDB0000)
+            else:
+                await target.ban(reason=f'Banned by {message.author.name}#{message.author.discriminator}.')
+                response = discord.Embed(title=f'🔨 {target.name} has been banned.', color=0x993300)
+        else:
+            response = discord.Embed(title='❗ No user targeted.', color=0xDB0000)
+    await message.channel.send(embed=response)

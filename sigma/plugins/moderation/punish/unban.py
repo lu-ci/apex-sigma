@@ -3,29 +3,23 @@ import discord
 
 
 async def unban(cmd, message, args):
-    channel = message.channel
-    if args:
-        user_q = args[0]
-        if message.author is not user_q:
-            if check_ban(message.author, channel):
-                ban_list = await message.guild.bans()
-                target_user = None
-                for entry in ban_list:
-                    if entry.user.name.lower() == user_q.lower():
-                        target_user = entry.user
-                        break
-                if target_user:
-                    await message.guild.unban(target_user)
-                    out_content = discord.Embed(type='rich', color=0x66CC66,
-                                                title='✅ ' + target_user.name + 'Unbanned.')
-                    await message.channel.send(None, embed=out_content)
-                else:
-                    out_content = discord.Embed(type='rich', color=0xFF9900,
-                                                title='⚠ User Not Found In Ban List.')
-                    await message.channel.send(None, embed=out_content)
-            else:
-                out_content = discord.Embed(type='rich', color=0xDB0000,
-                                            title='⛔ Insufficient Permissions. Ban Permission Required.')
-                await message.channel.send(None, embed=out_content)
+    if not check_ban(message.author, message.channel):
+        response = discord.Embed(title='⛔ Unpermitted. Ban Permissions Needed.', color=0xDB0000)
     else:
-        await message.channel.send(cmd.help())
+        if args:
+            user_search = ' '.join(args)
+            target = None
+            banlist = await message.guild.bans()
+            for entry in banlist:
+                if entry.user.name.lower() == user_search.lower():
+                    target = entry.user
+                    break
+            if target:
+                await message.guild.unban(target,
+                                          reason=f'Unbanned by {message.author.name}#{message.author.discriminator}.')
+                response = discord.Embed(title=f'✅ {target.name} has been unbanned.', color=0x66CC66)
+            else:
+                response = discord.Embed(title=f'🔍 {user_search} not found in the ban list.')
+        else:
+            response = discord.Embed(title='❗ No user targeted.', color=0xDB0000)
+    await message.channel.send(embed=response)

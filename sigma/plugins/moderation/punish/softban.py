@@ -3,21 +3,17 @@ import discord
 
 
 async def softban(cmd, message, args):
-    channel = message.channel
-    if args[0]:
-        user_q = message.mentions[0]
-        if message.author is not user_q:
-            if check_ban(message.author, channel):
-                try:
-                    await user_q.ban()
-                    await user_q.unban()
-                    embed = discord.Embed(color=0x66CC66,
-                                          title=f'✅ {user_q.name} has been soft-banned.')
-                    await message.channel.send(None, embed=embed)
-                except Exception as e:
-                    cmd.log.error(e)
-                    await message.channel.send(str(e))
+    if not check_ban(message.author, message.channel):
+        response = discord.Embed(title='⛔ Unpermitted. Ban Permissions Needed.', color=0xDB0000)
+    else:
+        if message.mentions:
+            target = message.mentions[0]
+            if target.id == message.author.id:
+                response = discord.Embed(title='⛔ You can\'t soft-ban yourself.', color=0xDB0000)
             else:
-                out_content = discord.Embed(type='rich', color=0xDB0000,
-                                            title='⛔ Insufficient Permissions. Ban Permission Required.')
-                await message.channel.send(None, embed=out_content)
+                await target.ban(reason=f'Soft-banned by {message.author.name}#{message.author.discriminator}.')
+                await target.unban(reason=f'Soft-banned by {message.author.name}#{message.author.discriminator}.')
+                response = discord.Embed(title=f'🔨 {target.name} has been soft-banned.', color=0x66CC66)
+        else:
+            response = discord.Embed(title='❗ No user targeted.', color=0xDB0000)
+    await message.channel.send(embed=response)
