@@ -9,7 +9,7 @@ async def ban(cmd, message, args):
         if message.mentions:
             target = message.mentions[0]
             if target.id == message.author.id:
-                response = discord.Embed(title='⛔ You can\'t kick yourself.', color=0xDB0000)
+                response = discord.Embed(title='⛔ You can\'t ban yourself.', color=0xDB0000)
             else:
                 await target.ban(reason=f'Banned by {message.author.name}#{message.author.discriminator}.')
                 response = discord.Embed(title=f'🔨 {target.name} has been banned.')
