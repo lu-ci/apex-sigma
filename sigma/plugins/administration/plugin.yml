@@ -104,7 +104,7 @@ commands:
   - name:    echo
     global:  true
     enabled: true
-    admin:   true
+    admin:   false
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Hello world!"
     description:
