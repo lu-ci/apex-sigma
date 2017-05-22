@@ -12,7 +12,7 @@ async def kick(cmd, message, args):
                 response = discord.Embed(title='⛔ You can\'t kick yourself.', color=0xDB0000)
             else:
                 await target.kick(reason=f'Kicked by {message.author.name}#{message.author.discriminator}.')
-                response = discord.Embed(title=f'👢 {target.name} has been kicked.')
+                response = discord.Embed(title=f'👢 {target.name} has been kicked.', color=0x993300)
         else:
-            response = discord.Embed(title='❗ No user targeted.')
+            response = discord.Embed(title='❗ No user targeted.', color=0xDB0000)
     await message.channel.send(embed=response)

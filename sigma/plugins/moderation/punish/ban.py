@@ -12,7 +12,7 @@ async def ban(cmd, message, args):
                 response = discord.Embed(title='⛔ You can\'t ban yourself.', color=0xDB0000)
             else:
                 await target.ban(reason=f'Banned by {message.author.name}#{message.author.discriminator}.')
-                response = discord.Embed(title=f'🔨 {target.name} has been banned.')
+                response = discord.Embed(title=f'🔨 {target.name} has been banned.', color=0x993300)
         else:
-            response = discord.Embed(title='❗ No user targeted.')
+            response = discord.Embed(title='❗ No user targeted.', color=0xDB0000)
     await message.channel.send(embed=response)

@@ -13,7 +13,7 @@ async def softban(cmd, message, args):
             else:
                 await target.ban(reason=f'Soft-banned by {message.author.name}#{message.author.discriminator}.')
                 await target.unban(reason=f'Soft-banned by {message.author.name}#{message.author.discriminator}.')
-                response = discord.Embed(title=f'🔨 {target.name} has been soft-banned.')
+                response = discord.Embed(title=f'🔨 {target.name} has been soft-banned.', color=0x66CC66)
         else:
-            response = discord.Embed(title='❗ No user targeted.')
+            response = discord.Embed(title='❗ No user targeted.', color=0xDB0000)
     await message.channel.send(embed=response)
