@@ -7,7 +7,7 @@ links = []
 
 
 async def fill_links():
-    for x in range(0, 20):
+    for x in range(0, 50):
         resource = f'http://safebooru.org/index.php?page=dapi&s=post&q=index&tags=cat_ears&pid={x}'
         async with aiohttp.ClientSession() as session:
             async with session.get(resource) as data:
@@ -18,7 +18,10 @@ async def fill_links():
                 file_url = post.attrib['file_url']
                 extention = file_url.split('.')[-1]
                 if extention in ['png', 'jpg', 'jpeg', 'gif']:
-                    links.append(file_url)
+                    height = int(post.attrib['height'])
+                    width = int(post.attrib['width'])
+                    if width < 2000 and height < 2000:
+                        links.append(file_url)
 
 
 async def nyaa(cmd, message, args):
