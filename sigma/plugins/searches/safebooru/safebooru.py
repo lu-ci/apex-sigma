@@ -13,7 +13,7 @@ async def safebooru(cmd, message, args):
     resource = 'http://safebooru.org/index.php?page=dapi&s=post&q=index&tags=' + tag
     async with aiohttp.ClientSession() as session:
         async with session.get(resource) as data:
-            data = await data.text()
+            data = await data.read()
     posts = html.fromstring(data)
     choice = random.choice(posts)
     image_url = choice.attrib['file_url']

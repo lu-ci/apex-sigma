@@ -6,7 +6,6 @@ from lxml import html
 
 async def gelbooru(cmd, message, args):
     tags = '+'.join(args)
-
     try:
         if tags == '':
             tags = 'nude'
