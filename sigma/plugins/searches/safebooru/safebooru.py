@@ -15,15 +15,18 @@ async def safebooru(cmd, message, args):
         async with session.get(resource) as data:
             data = await data.read()
     posts = html.fromstring(data)
-    choice = random.choice(posts)
-    image_url = choice.attrib['file_url']
-    icon_url = 'https://i.imgur.com/3Vb6LdJ.png'
-    post_url = f'http://safebooru.org/index.php?page=post&s=view&id={choice.attrib["id"]}'
-    if image_url.startswith('//'):
-        image_url = 'http:' + image_url
-    embed = discord.Embed(color=0x8bb2a7)
-    embed.set_author(name='Safebooru', icon_url=icon_url, url=post_url)
-    embed.set_image(url=image_url)
-    embed.set_footer(
-        text=f'Score: {choice.attrib["score"]} | Size: {choice.attrib["width"]}x{choice.attrib["height"]}')
+    if len(posts) == 0:
+        embed = discord.Embed(color=0x696969, title='🔍 Nothing found.')
+    else:
+        choice = random.choice(posts)
+        image_url = choice.attrib['file_url']
+        icon_url = 'https://i.imgur.com/3Vb6LdJ.png'
+        post_url = f'http://safebooru.org/index.php?page=post&s=view&id={choice.attrib["id"]}'
+        if image_url.startswith('//'):
+            image_url = 'http:' + image_url
+        embed = discord.Embed(color=0x8bb2a7)
+        embed.set_author(name='Safebooru', icon_url=icon_url, url=post_url)
+        embed.set_image(url=image_url)
+        embed.set_footer(
+            text=f'Score: {choice.attrib["score"]} | Size: {choice.attrib["width"]}x{choice.attrib["height"]}')
     await message.channel.send(None, embed=embed)
