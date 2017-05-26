@@ -1,11 +1,11 @@
 ﻿import discord
 import random
-from lxml import html
+import json
 import aiohttp
 
 
 async def e621(cmd, message, args):
-    url_base = 'http://e621.net/post/index.xml'
+    url_base = 'https://e621.net/post/index.json'
     if args:
         url = url_base + '?tags=' + '+'.join(args)
     else:
@@ -13,9 +13,17 @@ async def e621(cmd, message, args):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as data:
             data = await data.read()
-    posts = html.fromstring(data)
-    post = random.choice(posts)
-    image_url = post.find('file_url').text
-    embed = discord.Embed(color=0x9933FF)
-    embed.set_image(url=image_url)
+            data = json.loads(data)
+    if data:
+        post = random.choice(data)
+        image_url = post['file_url']
+        icon_url = 'https://e621.net/favicon.ico'
+        post_url = f'https://e621.net/post/show/{post["id"]}'
+        embed = discord.Embed(color=0x152F56)
+        embed.set_author(name='e621', url=post_url, icon_url=icon_url)
+        embed.set_image(url=image_url)
+        embed.set_footer(
+            text=f'Score: {post["score"]} | Size: {post["width"]}x{post["height"]}')
+    else:
+        embed = discord.Embed(color=0x696969, title='🔍 Nothing found.')
     await message.channel.send(None, embed=embed)
