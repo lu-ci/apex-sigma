@@ -24,13 +24,14 @@ async def grab_post_list(tags):
     return links
 
 
-def generate_embed(post, titles, color=0xff6699):
+def generate_embed(post, titles, color=0xff6699, icon='https://i.imgur.com/WQbzk9y.png'):
     image_url = post.attrib['file_url']
     image_source = f'http://safebooru.org/index.php?page=post&s=view&id={post.attrib["id"]}'
     if image_url.startswith('//'):
         image_url = 'https:' + image_url
     embed = discord.Embed(color=color)
-    icon_url = 'http://3.bp.blogspot.com/_SUox58HNUCI/SxtiKLuB7VI/AAAAAAAAA08/s_st-jZnavI/s400/Azunyan+fish.jpg'
-    embed.set_author(name=random.choice(titles), icon_url=icon_url, url=image_source)
+    embed.set_author(name=random.choice(titles), icon_url=icon, url=image_source)
     embed.set_image(url=image_url)
+    embed.set_footer(
+        text=f'Score: {post.attrib["score"]} | Size: {post.attrib["width"]}x{post.attrib["height"]}')
     return embed

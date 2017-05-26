@@ -23,5 +23,6 @@ async def nyaa(cmd, message, args):
         await fill_notify.edit(embed=filler_done)
     random.shuffle(links)
     post_choice = links.pop()
-    response = generate_embed(post_choice, embed_titles)
+    icon = 'https://3.bp.blogspot.com/_SUox58HNUCI/SxtiKLuB7VI/AAAAAAAAA08/s_st-jZnavI/s400/Azunyan+fish.jpg'
+    response = generate_embed(post_choice, embed_titles, icon=icon)
     await message.channel.send(None, embed=response)
