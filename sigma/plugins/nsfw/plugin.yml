@@ -29,6 +29,18 @@ commands:
       Provides a random Nekomimi image.
       They might be borderline NSFW, a warning just in case.
 
+  - name:     kitsune
+    alts:
+      - "kon"
+      - "fluffytail"
+    global:   true
+    enabled:  true
+    sfw:      false
+    usage:    "{pfx:s}{cmd:s}"
+    description:
+      Provides a random Kitsunemimi image.
+      They might be borderline NSFW, a warning just in case.
+
   - name:    rule34
     alts:
       - "r34"
