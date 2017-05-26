@@ -10,7 +10,7 @@ async def help(cmd, message, args):
     if not args:
         help_out = discord.Embed(type='rich', title='❔ Help', color=0x1B6F5F)
         help_out.set_author(name='Apex Sigma', url=MainServerURL,
-                            icon_url='https://i.imgur.com/s0aVvn7.png')
+                            icon_url='https://i.imgur.com/WQbzk9y.png')
         help_out.add_field(name='Website', value='[**LINK**](' + MainServerURL + ')')
         help_out.add_field(name='Commands', value='[**LINK**](' + MainServerURL + 'commands)')
         help_out.add_field(name='GitHub', value='[**LINK**](https://github.com/aurora-pro/apex-sigma)')
@@ -21,8 +21,8 @@ async def help(cmd, message, args):
             help_out.add_field(name='Ranking',
                                value=f'[**LINK**]({MainServerURL}ranking?sid={message.guild.id})')
         help_out.set_footer(
-            text='For additional info and help on how to use a command use [' + Prefix + 'help COMMAND_NAME] (Example: ' + Prefix + 'help slots).')
-        help_out.set_image(url='http://i.imgur.com/TRSdGni.png')
+            text=f'Example: {Prefix}help ranking.', icon_url='https://i.imgur.com/f4TyYMr.png')
+        help_out.set_image(url='https://i.imgur.com/TRSdGni.png')
         await message.channel.send(None, embed=help_out)
     else:
         qry = args[0].lower()

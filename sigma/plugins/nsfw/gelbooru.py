@@ -18,12 +18,15 @@ async def gelbooru(cmd, message, args):
         img_url = choice.attrib['file_url']
         if not img_url.startswith('http'):
             img_url = f"https:{choice.attrib['file_url']}"
-        embed = discord.Embed(color=0x9933FF)
+        post_url = f'https://gelbooru.com/index.php?page=post&s=view&id={choice.attrib["id"]}'
+        icon_url = 'https://gelbooru.com/favicon.png'
+        embed = discord.Embed(color=0x006ffa)
+        embed.set_author(name='Gelbooru', icon_url=icon_url, url=post_url)
         embed.set_image(url=img_url)
+        embed.set_footer(
+            text=f'Score: {choice.attrib["score"]} | Size: {choice.attrib["width"]}x{choice.attrib["height"]}')
         await message.channel.send(None, embed=embed)
     except Exception as e:
         cmd.log.error(e)
         embed = discord.Embed(color=0x696969, title='🔍 Search for ' + tags + ' yielded no results.')
-        embed.set_footer(
-            text='Remember to replace spaces in tags with an underscore, as a space separates multiple tags')
         await message.channel.send(None, embed=embed)
