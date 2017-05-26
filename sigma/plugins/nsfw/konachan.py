@@ -23,5 +23,6 @@ async def konachan(cmd, message, args):
         embed = discord.Embed(color=0x473a47)
         embed.set_author(name='Konachan', url=post_url, icon_url=icon_url)
         embed.set_image(url=image_url)
-        embed.set_footer(text=f'Score: {post["score"]} | Size: {post["width"]}x{post["height"]} | By: {post["author"]}')
+        embed.set_footer(
+            text=f'Score: {post["score"]} | Size: {post["width"]}x{post["height"]} | Uploaded By: {post["author"]}')
     await message.channel.send(None, embed=embed)
