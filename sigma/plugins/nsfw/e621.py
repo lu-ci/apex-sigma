@@ -22,8 +22,7 @@ async def e621(cmd, message, args):
         embed = discord.Embed(color=0x152F56)
         embed.set_author(name='e621', url=post_url, icon_url=icon_url)
         embed.set_image(url=image_url)
-        embed.set_footer(
-            text=f'Score: {post["score"]} | Size: {post["width"]}x{post["height"]}')
+        embed.set_footer(text=f'Score: {post["score"]} | Size: {post["width"]}x{post["height"]}')
     else:
         embed = discord.Embed(color=0x696969, title='🔍 Nothing found.')
     await message.channel.send(None, embed=embed)
