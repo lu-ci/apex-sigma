@@ -2,7 +2,7 @@ import discord
 
 
 async def themesong(ev, member, before, after):
-    if member.id == 201556233004646410:
+    if member.id == 293163864911249410:
         if member.voice:
             if member.voice.channel.id == 306959773314842624:
                 await member.voice.channel.connect()
