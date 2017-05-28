@@ -22,7 +22,8 @@ class PluginManager(object):
             'message': {},
             'member_join': {},
             'member_leave': {},
-            'ready': {}
+            'ready': {},
+            'voice_update': {}
         }
 
         self.get_plugin_dirs()

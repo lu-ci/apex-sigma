@@ -24,7 +24,8 @@ class Plugin(object):
             'message': {},
             'member_join': {},
             'member_leave': {},
-            'ready': {}
+            'ready': {},
+            'voice_update': {}
         }
         self.modules = []
         self.path = path
