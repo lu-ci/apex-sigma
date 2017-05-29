@@ -22,8 +22,17 @@ async def grab_image(name, cut=False):
         async with session.get(item_url) as data:
             page_data = await data.read()
     root = l.fromstring(page_data)
-    img_object = root.cssselect('.image')[0]
-    img_url = img_object.attrib['href']
+    img_objects = root.cssselect('.image')
+    img_object = None
+    for obj in img_objects:
+        if 'href' in obj.attrib:
+            if obj.attrib['href'].startswith('http'):
+                img_object = obj
+                break
+    if img_object is not None:
+        img_url = img_object.attrib['href']
+    else:
+        img_url = 'https://i.imgur.com/99ennZD.png'
     return img_url
 
 
