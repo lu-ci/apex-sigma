@@ -32,6 +32,7 @@ async def get_fissure_data(db):
         if not db_check:
             db.insert_one('WarframeCache', {'EventID': event_id})
             fissure_out = fissure
+            break
     return fissure_out
 
 
