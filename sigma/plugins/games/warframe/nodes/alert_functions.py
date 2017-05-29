@@ -51,6 +51,7 @@ async def get_alert_data(db):
         if not db_check:
             db.insert_one('WarframeCache', {'EventID': event_id})
             alert_out = alert
+            break
     return alert_out
 
 

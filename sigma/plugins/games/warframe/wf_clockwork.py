@@ -50,4 +50,4 @@ async def wf_clockwork(ev):
                         await alert_target_channel.send(embed=alert_response)
                     except:
                         pass
-        await asyncio.sleep(10)
+        await asyncio.sleep(5)
