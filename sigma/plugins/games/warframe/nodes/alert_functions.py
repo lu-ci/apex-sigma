@@ -38,6 +38,7 @@ def parse_alert_data(alert_data):
         out_list.append(data)
     return out_list
 
+
 async def get_alert_data(db):
     alert_url = 'https://deathsnacks.com/wf/data/alerts_raw.txt'
     async with aiohttp.ClientSession() as session:
