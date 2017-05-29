@@ -25,8 +25,12 @@ async def rategirl(cmd, message, args):
     spc_y = min_y - max_y
     output_location = f'cache/hcz_{message.id}.png'
     with Image.open(cmd.resource('rate/crazy_hot_chart.png')) as chart:
-        perc_x = str(target.id)[-1] + str(target.id)[-3]
-        perc_y = str(target.id)[-4] + str(target.id)[-2]
+        if target.bot:
+            perc_x = '91'
+            perc_y = '05'
+        else:
+            perc_x = str(target.id)[-1] + str(target.id)[-3]
+            perc_y = str(target.id)[-4] + str(target.id)[-2]
         loc_x = int(spc_x * (float(f'0.{perc_x}')))
         loc_y = int(spc_y * (1 - (float(f'0.{perc_y}'))))
         ava_x = loc_x + 250
