@@ -13,7 +13,7 @@ cb = ChatBot(
     database_uri=db_url,
     output_adapter='chatterbot.output.OutputAdapter',
     output_format='text',
-    read_only=True
+    read_only=False
 )
 
 async def chatterbot_control(ev, message, args):
