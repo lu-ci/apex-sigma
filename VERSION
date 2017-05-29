@@ -1,7 +1,7 @@
 beta: false
-build_date: 1496025721
-codename: Michiru
+build_date: 1496027279
+codename: Minagi
 version:
   major: 2
-  minor: 88
-  patch: 8680
+  minor: 90
+  patch: 8683

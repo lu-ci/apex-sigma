@@ -16,7 +16,6 @@ async def autorole(cmd, message, args):
         current_role = None
     if not args:
         if current_role:
-            cr_rl = discord.utils.find()
             out_content = discord.Embed(type='rich', color=0x0099FF,
                                         title='ℹ Current Auto Role: ' + current_role)
             await message.channel.send(None, embed=out_content)
