@@ -162,25 +162,25 @@ class Sigma(discord.AutoShardedClient):
             self.message_count += 1
             args = message.content.split(' ')
             # handle mention events
+            black = check_black(self.db, message)
             if self.user.mentioned_in(message):
-                for ev_name, event in self.plugin_manager.events['mention'].items():
+                if not black:
+                    for ev_name, event in self.plugin_manager.events['mention'].items():
+                        task = event.call(message, args)
+                        self.loop.create_task(task)
+            # handle raw message events
+            if not black:
+                for ev_name, event in self.plugin_manager.events['message'].items():
                     task = event.call(message, args)
                     self.loop.create_task(task)
-            # handle raw message events
-            for ev_name, event in self.plugin_manager.events['message'].items():
-                task = event.call(message, args)
-                self.loop.create_task(task)
 
             if message.content.startswith(Prefix):
                 cmd = args.pop(0).lstrip(Prefix).lower()
                 if cmd in self.alts:
                     cmd = self.alts[cmd]
                 try:
-                    if check_black(self.db, message):
-                        self.log.warning('BLACK: Access Denied.')
-                    elif not check_perms(self.db, message, self.plugin_manager.commands[cmd],):
-                        self.log.warning('PERMS: Access Denied.')
-                    else:
+                    permed = check_perms(self.db, message, self.plugin_manager.commands[cmd])
+                    if not black and permed:
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
