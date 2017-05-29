@@ -22,7 +22,10 @@ async def member_leave_control(ev, member):
             if channel.id == bye_channel:
                 target_channel = channel
                 break
-        bye_message_object = await target_channel.send(bye_message)
-        if del_bye:
-            await asyncio.sleep(10)
-            await bye_message_object.delete()
+        try:
+            bye_message_object = await target_channel.send(bye_message)
+            if del_bye:
+                await asyncio.sleep(10)
+                await bye_message_object.delete()
+        except:
+            pass

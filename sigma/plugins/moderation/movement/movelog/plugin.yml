@@ -1,0 +1,41 @@
+name: Movement Logging
+
+categories:
+  - moderation
+
+enabled: true
+
+commands:
+  - name: loggingchannel
+    alts:
+     - "logchannel"
+     - "logch"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} #secretlogs"
+    description:
+      Sets the channel in which logs of users joining and leaving will be posted.
+      As well as custom logs by server managers and admins.
+      (Server Administrator Only)
+
+events:
+  - name:    move_log_join
+    type:    member_join
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user joining the server."
+    description:
+      Controls entry logging.
+
+  - name:    move_log_leave
+    type:    member_leave
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user leaving the server."
+    description:
+      Controls exit logging.
