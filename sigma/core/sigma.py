@@ -162,7 +162,7 @@ class Sigma(discord.AutoShardedClient):
             self.message_count += 1
             args = message.content.split(' ')
             # handle mention events
-            if message.author.id:
+            if type(message.author) == discord.Member:
                 black = check_black(self.db, message)
             else:
                 black = False
