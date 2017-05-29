@@ -36,18 +36,18 @@ def check_overwrites(perms, author, channel, roles, cmd_name, mdl_name):
             exceptions = cmd_exc[cmd_name]
             if author.id in exceptions['Users']:
                 overwritten = True
-            elif channel.id in exceptions['Channels']:
+            if channel.id in exceptions['Channels']:
                 overwritten = True
             for role in roles:
                 if role.id in exceptions['Roles']:
                     overwritten = True
                     break
-    elif mdl_exc:
-        if mdl_name in cmd_exc:
-            exceptions = cmd_exc[mdl_name]
+    if mdl_exc:
+        if mdl_name in mdl_exc:
+            exceptions = mdl_exc[mdl_name]
             if author.id in exceptions['Users']:
                 overwritten = True
-            elif channel.id in exceptions['Channels']:
+            if channel.id in exceptions['Channels']:
                 overwritten = True
             for role in roles:
                 if role.id in exceptions['Roles']:
@@ -67,13 +67,8 @@ def check_perms(db, message, command):
                 mdl = command.plugin.categories[0]
                 ath = message.author
                 chn = message.channel
-                rls = message.author.roles
-                if mdl in perms['DisabledModules']:
-                    if check_overwrites(perms, ath, chn, rls, cmd, mdl):
-                        permitted = True
-                    else:
-                        permitted = False
-                elif cmd in perms['DisabledCommands']:
+                rls = ath.roles
+                if mdl in perms['DisabledModules'] or cmd in perms['DisabledCommands']:
                     if check_overwrites(perms, ath, chn, rls, cmd, mdl):
                         permitted = True
                     else:
