@@ -12,16 +12,15 @@ async def togglerole(cmd, message, args):
         role_qry = ' '.join(args)
         self_roles = cmd.db.get_settings(message.guild.id, 'SelfRoles')
         self_role_id = None
-        target_role = None
-        for role in message.guild.roles:
-            if role.name.lower() == role_qry.lower():
-                target_role = role
-                break
+        target_role = discord.utils.find(lambda x: x.name.lower() == role_qry.lower(), message.guild.roles)
         if target_role:
             for self_role in self_roles:
                 if self_role == target_role.id:
                     self_role_id = target_role.id
                     break
+        cmd.log.info(target_role.id)
+        cmd.log.info(self_role_id)
+        cmd.log.info(self_roles)
         if target_role:
             if self_role_id:
                 user_role_match = user_matching_role(message.author, target_role.name)
