@@ -197,3 +197,12 @@ commands:
     usage:   "{pfx:s}{cmd:s} BEEEEF"
     description:
       Converts a decimal number to hex.
+events:
+  - name:    reminder_clockwork
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Checks for reminders that need executing.
