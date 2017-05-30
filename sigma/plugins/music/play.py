@@ -62,11 +62,7 @@ async def play(cmd, message, args):
                 cmd.music.add_to_queue(message.guild.id, item)
             cmd.music.currents.update({message.guild.id: item})
             sound = item['sound']
-            cmd.bot.loop.create_task(cmd.music.make_player(message.guild.id, bot_voice, item))
-            await asyncio.sleep(2)
-            def_vol = cmd.music.get_volume(cmd.db, message.guild.id)
-            def_vol = def_vol / 100
-            bot_voice.source.volume = def_vol
+            cmd.bot.loop.create_task(cmd.music.make_player(message.guild.id, bot_voice, item, cmd.db))
             cmd.db.add_stats('MusicCount')
             embed = discord.Embed(color=0x0099FF)
             if item['type'] == 0:
