@@ -5,8 +5,7 @@ import re
 async def search_youtube(query):
     url_base = "https://www.youtube.com/results?"
     params = {
-        "q": query,
-        "sp": 'EgIYAQ%253D%253D'
+        "q": query
     }
     async with aiohttp.ClientSession() as session:
         async with session.get(f'{url_base}', params=params) as data:

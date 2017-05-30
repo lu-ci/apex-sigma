@@ -45,7 +45,7 @@ async def queue(cmd, message, args):
                     sound = pafy.new(song_url)
                     sound_type = 0
                     duration = convert_hms(sound.duration)
-                if duration > 600:
+                if duration > 1200:
                     response = discord.Embed(color=0xDB0000, title='❗ Duration Over 10 Minutes!')
                     await message.channel.send(None, embed=response)
                     return
