@@ -25,7 +25,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} Hello %user_mention% and welcome to %server_name%!"
     description:
       Sets the greet message text.
-      Use %user_mention% to mention the use that joined and %server_name% if you wish to use the name of the server.
+      Use %user_mention% to mention the user that joined and %server_name% if you wish to use the name of the server.
       If no arguments are inputed it will show the current greet message.
       (Server Administrator Only)
 
@@ -71,7 +71,7 @@ commands:
     usage:   "{pfx:s}{cmd:s} %user_mention% has left %server_name%"
     description:
       Sets the bye message text.
-      Use %user_mention% to mention the use that left and %server_name% if you wish to use the name of the server.
+      Use %user_mention% to mention the user that left and %server_name% if you wish to use the name of the server.
       If no arguments are inputed it will show the current bye message.
       (Server Administrator Only)
 
