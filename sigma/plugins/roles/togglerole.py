@@ -18,9 +18,6 @@ async def togglerole(cmd, message, args):
                 if self_role == target_role.id:
                     self_role_id = target_role.id
                     break
-        cmd.log.info(target_role.id)
-        cmd.log.info(self_role_id)
-        cmd.log.info(self_roles)
         if target_role:
             if self_role_id:
                 user_role_match = user_matching_role(message.author, target_role.name)
