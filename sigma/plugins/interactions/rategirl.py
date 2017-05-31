@@ -29,8 +29,8 @@ async def rategirl(cmd, message, args):
             perc_x = '91'
             perc_y = '05'
         else:
-            perc_x = str(target.id)[-1] + str(target.id)[-3]
-            perc_y = str(target.id)[-4] + str(target.id)[-2]
+            perc_x = str(target.id)[6] + str(target.id)[9]
+            perc_y = str(target.id)[12] + str(target.id)[3]
         loc_x = int(spc_x * (float(f'0.{perc_x}')))
         loc_y = int(spc_y * (1 - (float(f'0.{perc_y}'))))
         ava_x = loc_x + 250
