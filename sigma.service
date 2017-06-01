@@ -1,12 +1,15 @@
 [Unit]
-Description=Sigma bot
-After=mongod.service
+Description=Sigma The Database Giant
+After=network.target
+Requires=mongod.service
 
 [Service]
-User=sigma
+User=root
 Environment=LOGTARGET_JOURNAL=1
-ExecStart=/home/sigma/apex-sigma/run.sh
-Restart=on-failure
+Environment=SIGMA_HOME=/srv/apex-sigma
+WorkingDirectory=/srv/apex-sigma
+ExecStart=/srv/apex-sigma/run.sh
+Restart=always
 
 [Install]
-WantedBy=mulit-user.target
+WantedBy=multi-user.target
