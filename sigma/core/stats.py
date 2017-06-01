@@ -11,7 +11,6 @@ def stats(bot, log=None):
     for ownr in permitted_id:
         permed_ids.append(str(ownr))
     authors = userlist(bot.authors)
-    contributors = userlist(bot.contributors)
     donor_count = len(bot.donors)
     with open('VERSION') as version_file:
         content = yaml.safe_load(version_file)
@@ -32,7 +31,6 @@ def stats(bot, log=None):
     tmp.append(multi('Python version: ' + sys.version.split(' ')[0], log))
     tmp.append(multi('discord.py version: ' + discord.__version__, log))
     tmp.append(multi('Authors: {:s}'.format(authors), log))
-    tmp.append(multi('Contributors: {:s}'.format(contributors), log))
     tmp.append(multi('Donors: ' + str(donor_count), log))
     tmp.append(multi('Bot Version: ' + version_text, log))
     tmp.append(multi('Build Date: ' + build_date, log))

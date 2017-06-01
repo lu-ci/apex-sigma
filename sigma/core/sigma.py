@@ -57,7 +57,6 @@ class Sigma(discord.AutoShardedClient):
         with open('AUTHORS') as authors_file:
             content = yaml.safe_load(authors_file)
             self.authors = content['authors']
-            self.contributors = content['contributors']
         with open('DONORS') as donors_file:
             content = yaml.safe_load(donors_file)
             self.donors = content['donors']

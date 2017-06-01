@@ -1,4 +1,5 @@
-﻿import aiohttp
+﻿import json
+import aiohttp
 import discord
 from config import Food2ForkAPIKey
 
@@ -11,7 +12,8 @@ async def recipe(cmd, message, args):
     url = 'http://food2fork.com/api/search?key=' + Food2ForkAPIKey + '&q=' + search
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as data:
-            search_data = await data.json()
+            search_data = await data.read()
+            search_data = json.loads(search_data)
     count = search_data['count']
     if count == 0:
         embed = discord.Embed(color=0x696969, title='🔍 No results were found for that, sorry.')
