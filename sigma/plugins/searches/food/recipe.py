@@ -29,5 +29,5 @@ async def recipe(cmd, message, args):
         embed = discord.Embed(color=0x1abc9c)
         embed.set_author(name=source, url=publisher_url, icon_url='https://i.imgur.com/RH8LNdQ.png')
         embed.add_field(name=title, value='[**Recipe Here**](' + source_url + ')')
-        embed.set_image(url=image_url)
+        embed.set_thumbnail(url=image_url)
         await message.channel.send(None, embed=embed)
