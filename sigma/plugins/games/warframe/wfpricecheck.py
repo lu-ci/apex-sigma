@@ -11,7 +11,7 @@ cuttables = ['blueprint', 'set', 'barrel', 'stock', 'receiver', 'hilt', 'pouch',
 async def wfpricecheck(cmd, message, args):
     if args:
         lookup = '_'.join(args).lower()
-        lookup_pretty = ' '.join(args)
+        lookup_pretty = ' '.join(args).title()
         items = await get_all_items()
         if lookup in items:
             item_type = items[lookup]['item_type']
@@ -42,7 +42,7 @@ async def wfpricecheck(cmd, message, args):
                 response = discord.Embed(color=0xFFCC66)
                 response.add_field(name=f'{lookup_pretty}', value=item_desc)
                 try:
-                    item_img = await alt_grab_image(lookup_pretty.title(), cut)
+                    item_img = await alt_grab_image(lookup_pretty, cut)
                     if item_img.startswith('http'):
                         first_img_fail = False
                     else:
@@ -52,7 +52,7 @@ async def wfpricecheck(cmd, message, args):
                     first_img_fail = True
                 if first_img_fail:
                     try:
-                        item_img = await grab_image(lookup_pretty.title(), cut)
+                        item_img = await grab_image(lookup_pretty, cut)
                         if item_img.startswith('http'):
                             final_img_fail = False
                         else:
