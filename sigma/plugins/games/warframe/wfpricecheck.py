@@ -36,6 +36,10 @@ async def wfpricecheck(cmd, message, args):
                                     lowest = item
                             else:
                                 lowest = item
+                if not lowest:
+                    response = discord.Embed(color=0x696969, title=f'🔍 {lookup_pretty} Found But No Active Sales.')
+                    await message.channel.send(embed=response)
+                    return
                 item_desc = f'Price: {lowest["price"]}p'
                 item_desc += f'\nAmount: {lowest["count"]}'
                 item_desc += f'\nSeller: {lowest["ingame_name"]}'

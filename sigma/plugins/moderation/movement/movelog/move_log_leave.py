@@ -14,7 +14,7 @@ async def move_log_leave(ev, member):
         if log_channel:
             response = discord.Embed(color=0xDB0000, timestamp=arrow.utcnow().datetime)
             response.set_author(name=f'A Member Has Left', icon_url=user_avatar(member))
-            response.add_field(name='📤 Leaving Member', value=f'{member.mention} {member.name}#{member.discriminator}')
+            response.add_field(name='📤 Leaving Member', value=f'{member.mention}\n{member.name}#{member.discriminator}')
             new_acc, diff_msg = get_time_difference(member, leave=True)
             response.add_field(name='🕑 Member Joined', value=f'{diff_msg.title()}', inline=True)
             response.set_footer(text=f'UserID: {member.id}')

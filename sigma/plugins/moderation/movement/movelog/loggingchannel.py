@@ -21,7 +21,7 @@ async def loggingchannel(cmd, message, args):
                 target_chn = None
         if target_chn:
             cmd.db.set_settings(message.guild.id, 'LoggingChannel', target_chn.id)
-            response = discord.Embed(color=0x66CC66, title=f'✅ {target_chn.name} set as the logging channel.')
+            response = discord.Embed(color=0x66CC66, title=f'✅ #{target_chn.name} set as the logging channel.')
         else:
             response = discord.Embed(color=0xDB0000, title='❗ No channel tagged.')
     await message.channel.send(embed=response)

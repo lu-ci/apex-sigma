@@ -43,3 +43,39 @@ commands:
     description:
       Kicks the mentioned user.
       Requires the user who calls the command to have kick privileges.
+
+  - name: textmute
+    alts:
+      - "mutetext"
+      - "tmute"
+      - "mutet"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Disallows the user from seding messages on the server.
+
+  - name: textunmute
+    alts:
+      - "unmutetext"
+      - "tunmute"
+      - "unmutet"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Removes the targeted user from the mute list.
+      Allowing them to write on the server again.
+
+events:
+  - name:    mute_check
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user writing a message."
+    description:
+      Checcks if a user is muted.
