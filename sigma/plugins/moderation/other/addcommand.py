@@ -20,7 +20,7 @@ async def addcommand(cmd, message, args):
                         res_text = 'added'
                     custom_commands.update({trigger: content})
                     cmd.db.set_settings(message.guild.id, 'CustomCommands', custom_commands)
-                    response = discord.Embed(title=f'✅ {trigger} has been {res_text}')
+                    response = discord.Embed(title=f'✅ {trigger} has been {res_text}', color=0x66CC66)
                 else:
                     response = discord.Embed(title='❗ Can\'t replace an existing core command', color=0xDB0000)
             else:

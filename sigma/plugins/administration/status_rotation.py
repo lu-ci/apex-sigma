@@ -1,4 +1,4 @@
-from config import Prefix, PlayingStatusRotation
+from config import PlayingStatusRotation
 import asyncio
 import discord
 import random
@@ -23,26 +23,20 @@ async def rotator(ev):
         if last_stamp + 20 < arrow.utcnow().timestamp:
             with open('cache/status_rotation_clock.yml', 'w') as clock_file:
                 yaml.safe_dump({'stamp': arrow.utcnow().timestamp}, clock_file)
-            funny = [
-                'your mind', 'fire', 'knives',
+            statuses = [
+                'your mind', 'fire', 'knives', 'some plebs',
                 'nuclear launch codes', 'antimatter',
                 'chinchillas', 'catgirls', 'foxes',
                 'fluffy tails', 'dragon maids', 'traps', 'lovely cakes',
-                'tentacle summoing spells', 'genetic engineering',
+                'tentacle summoning spells', 'genetic engineering',
                 'air conditioning', 'anthrax', 'space ninjas',
                 'a spicy parfait', 'very nasty things', 'numbers',
                 'terminator blueprints', 'love', 'your heart', 'tomatoes',
                 'bank accounts', 'your data', 'your girlfriend', 'your boyfriend',
-                'Scarlet Johanson', 'a new body', 'user\'s cameras'
+                'Scarlet Johanson', 'a new body', 'cameras', 'NSA\'s documents',
+                'mobile suits', 'snakes', 'jelly', 'alcohol', 'the blue king'
             ]
-
-            statuses = [
-                f'{Prefix}help',
-                f'with {random.choice(ev.bot.donors)["name"]}',
-                f'with {random.choice(funny)}',
-                f'with {random.choice(ev.bot.authors)}'
-            ]
-            status = random.choice(statuses)
+            status = f'with {random.choice(statuses)}'
             game = discord.Game(name=status)
             try:
                 await ev.bot.change_presence(game=game)
