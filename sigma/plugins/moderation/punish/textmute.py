@@ -39,6 +39,8 @@ async def textmute(cmd, message, args):
                         log_embed.add_field(name='🛡 Responsible',
                                             value=f'{author.mention}\n{author.name}#{author.discriminator}',
                                             inline=True)
+                        if len(args) > 1:
+                            log_embed.add_field(name='📄 Reason', value=f"```\n{' '.join(args[1:])}\n```", inline=False)
                         log_embed.set_footer(text=f'UserID: {target.id}')
                         await log_channel.send(embed=log_embed)
     await message.channel.send(embed=response)
