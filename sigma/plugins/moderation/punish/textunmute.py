@@ -32,13 +32,15 @@ async def textunmute(cmd, message, args):
                     if log_channel:
                         log_embed = discord.Embed(color=0x696969, timestamp=arrow.utcnow().datetime)
                         log_embed.set_author(name='A Member Has Been Unmuted', icon_url=user_avatar(target))
-                        log_embed.add_field(name='🔇 Unmuted User',
+                        log_embed.add_field(name='🔊 Unmuted User',
                                             value=f'{target.mention}\n{target.name}#{target.discriminator}',
                                             inline=True)
                         author = message.author
                         log_embed.add_field(name='🛡 Responsible',
                                             value=f'{author.mention}\n{author.name}#{author.discriminator}',
                                             inline=True)
+                        if len(args) > 1:
+                            log_embed.add_field(name='📄 Reason', value=' '.join(args[1:]), inline=False)
                         log_embed.set_footer(text=f'UserID: {target.id}')
                         await log_channel.send(embed=log_embed)
     await message.channel.send(embed=response)
