@@ -75,7 +75,7 @@ events:
     global:  true
     enabled: true
     sfw:     true
-    pmable:  false
+    pmable:  true
     usage:   "Activated upon a user writing a message."
     description:
       Checcks if a user is muted.
