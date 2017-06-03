@@ -25,8 +25,7 @@ async def img(cmd, message, args):
             embed = discord.Embed(color=0x1abc9c, title=title)
             embed.set_image(url=url)
             await message.channel.send(None, embed=embed)
-        except Exception as e:
-            cmd.log.error(e)
+        except:
             embed = discord.Embed(color=0xDB0000, title='❗ Daily Limit Reached.')
             embed.set_footer(text='Google limits this API feature, and we hit that limit.')
             await message.channel.send(None, embed=embed)
