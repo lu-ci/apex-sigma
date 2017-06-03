@@ -15,8 +15,7 @@ async def play(cmd, message, args):
         await asyncio.sleep(3)
     if message.guild.id not in cmd.music.initializing:
         if not message.author.voice:
-            embed = discord.Embed(
-                title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
+            embed = discord.Embed(title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
             await message.channel.send(None, embed=embed)
             return
         srv_queue = cmd.music.get_queue(message.guild.id)
@@ -34,7 +33,14 @@ async def play(cmd, message, args):
         if not bot_voice:
             try:
                 try:
-                    bot_voice = await message.author.voice.channel.connect()
+                    can_connect = message.guild.me.permissions_in(message.author.voice.channel).connect
+                    can_talk = message.guild.me.permissions_in(message.author.voice.channel).speak
+                    if can_connect and can_talk:
+                        bot_voice = await message.author.voice.channel.connect()
+                    else:
+                        embed = discord.Embed(title='⚠ I am not allowed to connect and speak there.', color=0xFF9900)
+                        await message.channel.send(None, embed=embed)
+                        return
                 except discord.ClientException:
                     bot_voice = None
                     for voice_instance in cmd.bot.voice_clients:
