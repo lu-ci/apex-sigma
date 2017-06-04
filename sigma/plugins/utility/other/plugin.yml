@@ -20,7 +20,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} 15 LEEEEROOOOY JEEEEEENKIIIIINS!"
+    usage:   "{pfx:s}{cmd:s} 1:03:15 LEEEEROOOOY JEEEEEENKIIIIINS!"
     description:
       Sets a timer in seconds and displays the message inputted after it's done.
 

@@ -53,7 +53,11 @@ async def get_alert_data(db):
             db.insert_one('WarframeCache', {'EventID': event_id})
             alert_out = alert
             break
-    return alert_out
+    triggers = []
+    item_reward = alert_out['rewards']['item']
+    if item_reward:
+        triggers = item_reward.lower().split(' ')
+    return alert_out, triggers
 
 
 async def generate_alert_embed(data):
