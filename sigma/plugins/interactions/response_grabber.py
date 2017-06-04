@@ -17,6 +17,9 @@ def grab_response(file, trigger):
     if trigger not in responses:
         resp_data = load_responses(file)
         responses.update({trigger: resp_data[trigger]})
+    if not responses[trigger]:
+        resp_data = load_responses(file)
+        responses.update({trigger: resp_data[trigger]})
     trigger_responses = responses[trigger]
     random.shuffle(trigger_responses)
     resp = trigger_responses.pop()
