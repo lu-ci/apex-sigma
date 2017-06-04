@@ -79,7 +79,6 @@ async def wfpricecheck(cmd, message, args):
                     response.add_field(name=f'{full_item_name}', value=item_desc)
                     if not img_grabbed:
                         item_img = await grab_image(full_item_name, cut)
-                        print(item_img)
                         response.set_thumbnail(url=item_img)
                         img_grabbed = True
         if found == 0:
