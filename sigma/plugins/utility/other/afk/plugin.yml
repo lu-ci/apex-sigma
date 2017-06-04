@@ -1,0 +1,36 @@
+name: Away From Keyboard
+
+categories:
+  - utility
+
+enabled: true
+
+commands:
+  - name:    afk
+    global:  true
+    enabled: true
+    sfw:     true
+    description:
+      Sets you as afk.
+      Whenever someone mentions you they will be notified that you are afk.
+      When you send a message your afk status will be removed.
+      This automatic removal ignores commands.
+
+events:
+  - name:    afk_mention_check
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Checks for member mention to nitify that the member is afk.
+
+  - name:    afk_comeback_check
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Checks for member activity to remove them as afk.
