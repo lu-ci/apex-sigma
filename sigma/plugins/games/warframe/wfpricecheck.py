@@ -5,7 +5,33 @@ from .nodes.image_grabber import alt_grab_image, grab_image
 from .nodes.market import get_all_items
 
 plat_img = 'http://i.imgur.com/wa6J9bz.png'
-cuttables = ['blueprint', 'set', 'barrel', 'stock', 'receiver', 'hilt', 'pouch', 'blade', 'guard']
+cuttables = ['set', 'barrel', 'stock', 'receiver', 'hilt', 'pouch', 'blade', 'guard']
+
+
+async def grab_item_image(lookup, cut):
+    try:
+        item_img = await alt_grab_image(lookup, cut)
+        if item_img.startswith('http'):
+            first_img_fail = False
+        else:
+            first_img_fail = True
+    except:
+        item_img = None
+        first_img_fail = True
+    if first_img_fail:
+        try:
+            item_img = await grab_image(lookup, cut)
+            if item_img.startswith('http'):
+                final_img_fail = False
+            else:
+                final_img_fail = True
+        except:
+            final_img_fail = True
+    else:
+        final_img_fail = False
+    if final_img_fail:
+        item_img = plat_img
+    return item_img
 
 
 async def wfpricecheck(cmd, message, args):
@@ -45,28 +71,7 @@ async def wfpricecheck(cmd, message, args):
                 item_desc += f'\nSeller: {lowest["ingame_name"]}'
                 response = discord.Embed(color=0xFFCC66)
                 response.add_field(name=f'{lookup_pretty}', value=item_desc)
-                try:
-                    item_img = await alt_grab_image(lookup_pretty, cut)
-                    if item_img.startswith('http'):
-                        first_img_fail = False
-                    else:
-                        first_img_fail = True
-                except:
-                    item_img = None
-                    first_img_fail = True
-                if first_img_fail:
-                    try:
-                        item_img = await grab_image(lookup_pretty, cut)
-                        if item_img.startswith('http'):
-                            final_img_fail = False
-                        else:
-                            final_img_fail = True
-                    except:
-                        final_img_fail = True
-                else:
-                    final_img_fail = False
-                if final_img_fail:
-                    item_img = plat_img
+                item_img = await grab_image(lookup_pretty, cut)
                 response.set_thumbnail(url=item_img)
         else:
             response = discord.Embed(color=0x696969, title=f'🔍 {lookup_pretty} Not Found.')
