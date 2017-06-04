@@ -1,6 +1,7 @@
 ﻿import discord
 import arrow
 from sigma.core.permission import check_kick
+from sigma.core.utils import user_avatar
 
 
 async def warn(cmd, message, args):
@@ -69,3 +70,23 @@ async def warn(cmd, message, args):
             warn_limit) + ' for ' + target.name)
         await message.channel.send(None, embed=out_content_local)
     cmd.db.set_settings(message.guild.id, 'WarnedUsers', warned_users)
+    # Logging Part
+    try:
+        log_channel_id = cmd.db.get_settings(message.guild.id, 'LoggingChannel')
+    except:
+        log_channel_id = None
+    if log_channel_id:
+        log_channel = discord.utils.find(lambda x: x.id == log_channel_id, message.guild.channels)
+        if log_channel:
+            response = discord.Embed(color=0xFF9900, timestamp=arrow.utcnow().datetime)
+            response.set_author(name=f'A User Has Been Warned', icon_url=user_avatar(target))
+            response.add_field(name='⚠ Warned User',
+                               value=f'{target.mention}\n{target.name}#{target.discriminator}', inline=True)
+            author = message.author
+            response.add_field(name='🛡 Responsible',
+                               value=f'{author.mention}\n{author.name}#{author.discriminator}',
+                               inline=True)
+            if warning_text:
+                response.add_field(name='📄 Reason', value=f"```\n{warning_text}\n```", inline=False)
+            response.set_footer(text=f'UserID: {target.id}')
+            await log_channel.send(embed=response)
