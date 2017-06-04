@@ -27,8 +27,9 @@ async def grab_image(name, cut=False):
     for obj in img_objects:
         if 'href' in obj.attrib:
             if obj.attrib['href'].startswith('http'):
-                img_object = obj
-                break
+                if 'prime-access' not in obj.attrib['href']:
+                    img_object = obj
+                    break
     if img_object is not None:
         img_url = img_object.attrib['href']
     else:
