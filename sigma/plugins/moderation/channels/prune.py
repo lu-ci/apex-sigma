@@ -49,7 +49,7 @@ async def prune(cmd, message, args):
                 else:
                     target_text = 'No Filter'
                 response.add_field(name='🗑 Prune Details',
-                                   value=f'Amount: {len(deleted)} Messages\nTarget: {target_text}')
+                                   value=f'Amount: {len(deleted)} Messages\nTarget: {target_text}', inline=True)
                 author = message.author
                 response.add_field(name='🛡 Responsible',
                                    value=f'{author.mention}\n{author.name}#{author.discriminator}',
