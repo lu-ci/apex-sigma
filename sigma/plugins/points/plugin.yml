@@ -32,7 +32,7 @@ events:
   - name:    reward
     type:    message
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     pmable:  true
     description:
@@ -40,7 +40,7 @@ events:
 
   - name:    voice_clockwork
     type:    ready
-    global:  true
+    global:  false
     enabled: true
     sfw:     true
     pmable:  true
