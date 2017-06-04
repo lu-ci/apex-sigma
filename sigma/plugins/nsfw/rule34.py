@@ -28,7 +28,6 @@ async def rule34(cmd, message, args):
         embed.set_footer(
             text=f'Score: {choice.attrib["score"]} | Size: {choice.attrib["width"]}x{choice.attrib["height"]}')
         await message.channel.send(None, embed=embed)
-    except Exception as e:
-        cmd.log.info(e)
+    except:
         embed = discord.Embed(color=0x696969, title='🔍 Search for ' + tags + ' yielded no results.')
         await message.channel.send(None, embed=embed)
