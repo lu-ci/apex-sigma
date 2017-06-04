@@ -10,6 +10,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
+    usage:   "{pfx:s}{cmd:s} Sleeping or eating, probably both!"
     description:
       Sets you as afk.
       Whenever someone mentions you they will be notified that you are afk.

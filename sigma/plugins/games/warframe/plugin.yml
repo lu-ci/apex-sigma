@@ -117,6 +117,21 @@ commands:
       Designates a channel for Warframe sorties.
       When a new sortie shows up the news will be posted here.
       To disable this, write disable after the command instead of a channel.
+
+  - name:    wftag
+    alts:
+      - "wfalerttag"
+      - "wfalertnotify"
+      - "wfnotify"
+      - "wfbind"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Alertium"
+    description:
+      Binds a certain keyword from alerts and invasions.
+      When this keyword appears during an event a role will be mentioned.
+
 events:
   - name:    wf_clockwork
     type:    ready
