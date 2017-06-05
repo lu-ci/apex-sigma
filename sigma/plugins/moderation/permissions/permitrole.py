@@ -37,11 +37,11 @@ async def permitrole(cmd, message, args):
                             cmd_name = cmd.bot.alts[cmd_name]
                     if cmd_name in check_group:
                         perms = get_all_perms(cmd.db, message)
+                        cmd_exc = perms[exception_group]
                         if cmd_name in perms[exception_group]:
-                            cmd_exc = perms[exception_group]
+                            inner_exc = cmd_exc[cmd_name]
                         else:
-                            cmd_exc = generate_cmd_data(cmd_name)
-                        inner_exc = cmd_exc[cmd_name]
+                            inner_exc = generate_cmd_data(cmd_name)[cmd_name]
                         exc_usrs = inner_exc['Roles']
                         if target.id in exc_usrs:
                             response = discord.Embed(color=0xFF9900,
@@ -58,4 +58,8 @@ async def permitrole(cmd, message, args):
                         response = discord.Embed(color=0x696969, title='🔍 Command/Module Not Found')
                 else:
                     response = discord.Embed(color=0x696969, title=f'🔍 No {target_name} Role Found')
-            await message.channel.send(embed=response)
+        else:
+            response = discord.Embed(color=0xDB0000, title='❗ Not Enough Arguments')
+    else:
+        response = discord.Embed(color=0xDB0000, title='❗ Not Arguments Given')
+    await message.channel.send(embed=response)
