@@ -51,7 +51,7 @@ async def wfpricecheck(cmd, message, args):
                 full_item_name = items[key]['item_name']
                 api_url = f'https://warframe.market/api/get_orders/{item_type}/{full_item_name}'
                 cut = False
-                for arg in args:
+                for arg in full_item_name.split(' '):
                     if arg.lower() in cuttables:
                         cut = True
                         break
