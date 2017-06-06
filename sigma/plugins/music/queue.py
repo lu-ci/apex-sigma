@@ -46,7 +46,7 @@ async def queue(cmd, message, args):
                     sound_type = 0
                     duration = convert_hms(sound.duration)
                 if duration > 1200:
-                    response = discord.Embed(color=0xDB0000, title='❗ Duration Over 10 Minutes!')
+                    response = discord.Embed(color=0xDB0000, title='❗ Duration Over 20 Minutes!')
                     await message.channel.send(None, embed=response)
                     return
                 data = {
