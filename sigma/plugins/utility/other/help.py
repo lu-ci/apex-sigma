@@ -17,11 +17,8 @@ async def help(cmd, message, args):
         help_out.add_field(name='Official Server', value='[**LINK**](https://discordapp.com/invite/Ze9EfTd)')
         help_out.add_field(name='Add Me',
                            value=f'[**LINK**](https://discordapp.com/oauth2/authorize?client_id={cmd.bot.user.id}&scope=bot&permissions=8)')
-        if message.guild:
-            help_out.add_field(name='Ranking',
-                               value=f'[**LINK**]({MainServerURL}ranking?sid={message.guild.id})')
         help_out.set_footer(
-            text=f'Example: {Prefix}help ranking.', icon_url='https://i.imgur.com/f4TyYMr.png')
+            text=f'Example: {Prefix}help greetmsg', icon_url='https://i.imgur.com/f4TyYMr.png')
         help_out.set_image(url='https://i.imgur.com/TRSdGni.png')
         await message.channel.send(None, embed=help_out)
     else:
