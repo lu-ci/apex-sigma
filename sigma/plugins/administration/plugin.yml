@@ -178,7 +178,7 @@ commands:
       Toggles if a server by the given ID is or is not an Aurora Project partner.
 
 events:
-  - name:    pmredirect
+  - name:    pmdetect
     type:    message
     global:  true
     enabled: true
