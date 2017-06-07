@@ -89,18 +89,6 @@ commands:
       Disconnects Sigma from the voice channel.
       And purges the queue.
 
-  - name:    volume
-    alts:
-      - "vol"
-    global:  true
-    enabled: true
-    sfw:     true
-    partner:   true
-    usage:   "{pfx:s}{cmd:s}"
-    description:
-      Sets the volume of the player.
-      The set volume will be remembered for the current server.
-
   - name:    nowplaying
     alts:
       - "np"
