@@ -157,6 +157,7 @@ class Sigma(discord.AutoShardedClient):
 
     async def on_message(self, message):
         if self.ready:
+            self.log.info(f'Message Call Received: {message.id}')
             self.db.add_stats('MSGCount')
             self.message_count += 1
             args = message.content.split(' ')
@@ -183,6 +184,7 @@ class Sigma(discord.AutoShardedClient):
                 try:
                     permed = check_perms(self.db, message, self.plugin_manager.commands[cmd])
                     if not black and permed:
+                        self.log.info(f'Calling Command Function Of Message {message.id}')
                         task = self.plugin_manager.commands[cmd].call(message, args)
                         self.loop.create_task(task)
                         self.db.add_stats(f'cmd_{cmd}_count')
