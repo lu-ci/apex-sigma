@@ -157,7 +157,6 @@ class Sigma(discord.AutoShardedClient):
 
     async def on_message(self, message):
         if self.ready:
-            self.log.info(f'Message Call Received: {message.id}')
             self.db.add_stats('MSGCount')
             self.message_count += 1
             args = message.content.split(' ')
