@@ -98,7 +98,7 @@ class Music(object):
                         data_file.write(total_data)
         return file_location
 
-    async def make_player(self, sid, voice, item, db):
+    async def make_player(self, sid, voice, item):
         if sid in self.sources:
             del self.sources[sid]
         location = item['url']
@@ -109,7 +109,6 @@ class Music(object):
         else:
             file_location = location
         source = discord.FFmpegPCMAudio(file_location, executable='ffmpeg')
-        source = discord.PCMVolumeTransformer(source, volume=(self.get_volume(db, sid) / 100))
         self.sources.update({sid: source})
         voice.play(source)
 
