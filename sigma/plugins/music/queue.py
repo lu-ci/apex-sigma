@@ -5,7 +5,7 @@ import asyncio
 import soundcloud
 import time
 from sigma.plugins.searches.google.yt_search import search_youtube
-from sigma.core.utils import user_avatar, convert_hms
+from sigma.core.utils import user_avatar
 from .playlist_adder import yt_playlist_adder
 from config import Prefix, SoundCloudClientID
 
@@ -28,13 +28,11 @@ async def queue(cmd, message, args):
                         song_url = qry
                         sound = pafy.new(song_url)
                         sound_type = 0
-                        duration = convert_hms(sound.duration)
                     elif 'soundcloud' in qry:
                         song_url = qry
                         sc_cli = soundcloud.Client(client_id=SoundCloudClientID)
                         sound = sc_cli.get('/resolve', url=qry).fields()
                         sound_type = 1
-                        duration = 0
                     else:
                         response = discord.Embed(color=0xDB0000, title='❗ Unsupported URL Provided')
                         response.set_footer(text='We only support YouTube and SoundCloud for now.')
@@ -44,11 +42,6 @@ async def queue(cmd, message, args):
                     song_url = await search_youtube(qry)
                     sound = pafy.new(song_url)
                     sound_type = 0
-                    duration = convert_hms(sound.duration)
-                if duration > 1200:
-                    response = discord.Embed(color=0xDB0000, title='❗ Duration Over 20 Minutes!')
-                    await message.channel.send(None, embed=response)
-                    return
                 data = {
                     'url': song_url,
                     'type': sound_type,
