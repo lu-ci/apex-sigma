@@ -17,7 +17,7 @@ async def queue(cmd, message, args):
             if '?list=' in qry:
                 list_id = qry.split('list=')[1].split('&')[0]
                 plist = pafy.get_playlist2(list_id)
-                item_count = yt_playlist_adder(message.guild.id, cmd, message.author, plist)
+                item_count = await yt_playlist_adder(message.guild.id, cmd, message.author, plist)
                 embed_title = f'ℹ Added {item_count} items from {plist.title}.'
                 embed = discord.Embed(color=0x0099FF, title=embed_title)
                 await message.channel.send(None, embed=embed)
@@ -50,7 +50,7 @@ async def queue(cmd, message, args):
                     'timestamp': arrow.now().timestamp
                 }
                 embed = discord.Embed(color=0x66CC66)
-                cmd.bot.music.add_to_queue(message.guild.id, data)
+                await cmd.bot.music.add_to_queue(message.guild.id, data)
                 if sound_type == 0:
                     embed.add_field(name='✅ Added To Queue', value=sound.title)
                     embed.set_thumbnail(url=sound.thumb)
@@ -67,14 +67,20 @@ async def queue(cmd, message, args):
                 await message.channel.send(None, embed=embed)
         else:
             q = cmd.bot.music.get_queue(message.guild.id)
+            q_bup = asyncio.Queue()
             if q.empty():
                 embed = discord.Embed(color=0x0099FF, title='ℹ The Queue Is Empty')
                 await message.channel.send(None, embed=embed)
             else:
-                q_list = list(q.queue)[:5]
+                q_list = []
+                while not q.empty():
+                    q_item = await q.get()
+                    q_list.append(q_item)
+                    await q_bup.put(q_item)
+                cmd.music.queues.update({message.guild.id: q_bup})
                 embed = discord.Embed(color=0x0099FF,
-                                      title=f'ℹ The {len(q_list)} Upcoming Songs (Total: {len(list(q.queue))})')
-                for item in q_list:
+                                      title=f'ℹ The {len(q_list)} Upcoming Songs (Total: {len(list(q_list))})')
+                for item in q_list[:5]:
                     if item['type'] == 0:
                         information = f'Requested By: {item["requester"].name}\nDuration: {item["sound"].duration}'
                         embed.add_field(name=item['sound'].title, value=f'```\n{information}\n```', inline=False)

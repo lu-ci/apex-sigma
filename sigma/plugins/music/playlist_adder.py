@@ -1,7 +1,7 @@
 import arrow
 
 
-def yt_playlist_adder(sid, cmd, req, playlist_obj):
+async def yt_playlist_adder(sid, cmd, req, playlist_obj):
     music = cmd.music
     counter = 0
     for item in playlist_obj:
@@ -16,7 +16,7 @@ def yt_playlist_adder(sid, cmd, req, playlist_obj):
                 'sound': item,
                 'timestamp': arrow.now().timestamp
             }
-            music.add_to_queue(sid, data)
+            await music.add_to_queue(sid, data)
         if counter >= 200:
             break
     return counter

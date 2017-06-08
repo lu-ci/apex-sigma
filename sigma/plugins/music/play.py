@@ -19,7 +19,7 @@ async def play(cmd, message, args):
             await message.channel.send(None, embed=embed)
             return
         srv_queue = cmd.music.get_queue(message.guild.id)
-        if len(srv_queue.queue) == 0:
+        if srv_queue.empty():
             embed = discord.Embed(
                 title='⚠ The queue is empty', color=0xFF9900)
             await message.channel.send(None, embed=embed)
@@ -62,10 +62,10 @@ async def play(cmd, message, args):
                     color=0xFF9900)
                 await message.channel.send(None, embed=embed)
                 return
-        while cmd.music.get_queue(message.guild.id) and len(cmd.music.get_queue(message.guild.id).queue) != 0:
-            item = cmd.music.get_from_queue(message.guild.id)
+        while cmd.music.get_queue(message.guild.id) and cmd.music.get_queue(message.guild.id).empty() is not True:
+            item = await cmd.music.get_from_queue(message.guild.id)
             if message.guild.id in cmd.music.repeaters:
-                cmd.music.add_to_queue(message.guild.id, item)
+                await cmd.music.add_to_queue(message.guild.id, item)
             cmd.music.currents.update({message.guild.id: item})
             sound = item['sound']
             cmd.bot.loop.create_task(cmd.music.make_player(message.guild.id, bot_voice, item))
