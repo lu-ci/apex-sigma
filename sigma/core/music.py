@@ -1,10 +1,10 @@
 import pafy
 import os
 import hashlib
-import queue as q
 import soundcloud
 import discord
 import aiohttp
+import asyncio
 from config import SoundCloudClientID
 
 
@@ -12,6 +12,7 @@ class Music(object):
     def __init__(self):
         self.initializing = []
         self.queues = {}
+        self.item_lists = {}
         self.sources = {}
         self.voices = {}
         self.volumes = {}
@@ -43,32 +44,32 @@ class Music(object):
         self.volumes.update({sid: volume})
         db.set_settings(sid, 'MusicVolume', volume)
 
-    def add_to_queue(self, sid, data):
+    async def add_to_queue(self, sid, data):
         if sid in self.queues:
             queue = self.queues[sid]
-            queue.put(data)
+            await queue.put(data)
         else:
-            queue = q.Queue()
-            queue.put(data)
+            queue = asyncio.Queue()
+            await queue.put(data)
             self.queues.update({sid: queue})
 
     def get_queue(self, sid):
         if sid in self.queues:
             return self.queues[sid]
         else:
-            queue = q.Queue()
+            queue = asyncio.Queue()
             self.queues.update({sid: queue})
             return queue
 
-    def get_from_queue(self, sid):
+    async def get_from_queue(self, sid):
         if sid in self.queues:
-            return self.queues[sid].get()
+            return await self.queues[sid].get()
         else:
             return None
 
     def purge_queue(self, sid):
         if sid in self.queues:
-            self.queues[sid] = q.Queue()
+            self.queues[sid] = asyncio.Queue()
 
     @staticmethod
     def download_yt_data(url):

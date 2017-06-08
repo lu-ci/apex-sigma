@@ -8,6 +8,6 @@ async def skip(cmd, message, args):
             embed = discord.Embed(color=0xFF9900, title='⚠ The Queue Is Empty or This Is The Last Song')
             await message.channel.send(None, embed=embed)
         else:
-            if message.guild.id in cmd.music.voices:
-                voice = cmd.music.voices[message.guild.id]
+            if message.guild.voice_client:
+                voice = message.guild.voice_client
                 voice.stop()
