@@ -94,6 +94,16 @@ commands:
       Good human, lovely human.
       I will kill you last.
 
+  - name: pout
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Make a pouty face at someone and make them change their mind.
+      Or just teast them for being a horrible person.
+      Like when they make you to create a pout command for money!
+
   - name: peck
     global:  true
     enabled: true
