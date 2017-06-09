@@ -1,3 +1,8 @@
+burp:
+- auth: Darth
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/xT5LMIOZi9bIeQ8oN2/giphy.gif
 cuddle:
 - auth: Various
   sid: 287978175927943188
@@ -27,6 +32,14 @@ cuddle:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: http://pa1.narvii.com/5774/3cb894f1d4bcb4a9c58a06ee2a7fcd1a11f9b0eb_hq.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/elWf757Qe0xVe/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://s-media-cache-ak0.pinimg.com/originals/80/e4/3f/80e43f08f20f2f97f3bd35a0a0185f52.gif
 hug:
 - auth: Various
   sid: 287978175927943188
@@ -148,6 +161,34 @@ hug:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: http://media.giphy.com/media/aD1fI3UUWC4/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/3oKIP8iVpJBZKXmfw4/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://s-media-cache-ak0.pinimg.com/originals/ca/a6/97/caa697ba2a4737b7be7a3fcc176e35cd.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://s-media-cache-ak0.pinimg.com/originals/c8/4e/a2/c84ea24d1af4a34b0378f1e2526194a9.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://s-media-cache-ak0.pinimg.com/originals/39/76/fa/3976fa0105b756d05d0b4834addf4bd9.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://s-media-cache-ak0.pinimg.com/originals/ab/78/37/ab7837f1496fc2b48080976c6bdd2f8c.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/eWtU27sRzPjWM/giphy.gif
+- auth: "Nighty || Dawn (\u03B7\u03B9gh\u03C4r\u03B5ss\u03B1)"
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://s-media-cache-ak0.pinimg.com/originals/6b/a9/b1/6ba9b145f486af7393764441e4cd171a.gif
 kiss:
 - auth: Various
   sid: 287978175927943188
@@ -213,6 +254,30 @@ kiss:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: http://37.media.tumblr.com/53bf74a951fc87a0cc15686f5aadb769/tumblr_n14rfuvCe41sc1kfto1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/bm2O3nXTcKJeU/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/xiOfpOVHblXOg/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://kek.gg/i/4QGvqG.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://s-media-cache-ak0.pinimg.com/originals/28/6b/02/286b029f0288bc65d732ef183b0c5e09.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://s-media-cache-ak0.pinimg.com/originals/b0/85/98/b08598aa7bf906bbf298dc067820436e.gif
+- auth: "Nighty || Dawn (\u03B7\u03B9gh\u03C4r\u03B5ss\u03B1)"
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/67b5a0f6301289937efe4c9694cf34c3/tumblr_n67cobj9W11trjs0jo1_500.gif
 pat:
 - auth: Various
   sid: 287978175927943188
@@ -319,6 +384,10 @@ peck:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: https://media.giphy.com/media/lZDb2PNgLXdoA/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/pwZ2TLSTouCQw/giphy.gif
 poke:
 - auth: Various
   sid: 287978175927943188
@@ -364,6 +433,71 @@ poke:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: http://25.media.tumblr.com/a5ca5fcd9295bdbef4d78ddd0ecd42a1/tumblr_msk55wmNLi1ssbvp5o1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/U5BCh5lBoKpuE/giphy.gif
+pout:
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://i.imgur.com/fIXjG5a.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://media.giphy.com/media/oFrdV5jVQIcwg/giphy.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://media.giphy.com/media/E3y4Wd7a0hn0I/giphy.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://media.giphy.com/media/HzOpw7czrOhTG/giphy.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/0236d9b5971bf5c0266f61ce735d4a14/tumblr_omdeyzbvRG1ridyfoo1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/b34f76191aca81d172d984b8efd1fb1a/tumblr_o4ug71pfSH1tydz8to1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/ba73334eb74c46cb00a41ab2b4e2189c/tumblr_nhh3udqdtW1u3qei8o1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/b6fe12ccbffce0759895825f2414c5c1/tumblr_om0yvjpkt91v90u75o1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/cc729d8189430d64a1fb0f89dd61604a/tumblr_nzhqg5NN3P1uj9aq5o1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/84d72c998a950f3b2d539999506dcec7/tumblr_nkplw17MLG1u7kgn9o1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/76fde5ab37340ebd838f9b1cb632c8a0/tumblr_oegkawmu8y1tydz8to1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/7dd785d8518634c401951e10e2d5a17d/tumblr_o2jjytAxIl1tydz8to1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/4cefb87397c2ceb9d7a390dde5962a2f/tumblr_o32dnizhks1s21xzoo1_500.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/b59f7dcf88830e00f1cb932fb382de38/tumblr_novs2ww8jW1qd0br1o2_250.gif
+- auth: AXAz0r
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: https://68.media.tumblr.com/47e424b29b3a9ff0e7d9aace60992c4d/tumblr_o6luige0PN1tydz8to1_500.gif
 punch:
 - auth: Various
   sid: 287978175927943188
@@ -433,6 +567,26 @@ punch:
   sid: 287978175927943188
   srv: "Candy Kingdom \U0001F36D"
   url: https://68.media.tumblr.com/16cba1639cf5f1048baca20018aaf3ef/tumblr_nu4ah2AdKw1ufwwv5o1_500.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: http://media.giphy.com/media/AB4Ze1yYFHtV6/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/OYiC4necLp3u8/giphy.gif
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/UFSjvSWe0xZug/giphy.gif
+- auth: AXAz0r
+  sid: 200751504175398912
+  srv: Aurora Project
+  url: https://i.imgur.com/fvsMQyN.gif
+- auth: "Nighty || Dawn (\u03B7\u03B9gh\u03C4r\u03B5ss\u03B1)"
+  sid: 138067606119645184
+  srv: Royal Destiny - Gaming Community
+  url: http://pa1.narvii.com/6223/3ce4df5e75a4290451b2416fcb58e638f62eec28_hq.gif
 slap:
 - auth: moosticalphoenix
   sid: 287978175927943188
@@ -459,3 +613,8 @@ smash:
   sid: 288377343070961665
   srv: Dank Memes
   url: https://media2.giphy.com/media/jwG4PAKr56vu0/giphy.gif
+stare:
+- auth: Red Rose
+  sid: 287978175927943188
+  srv: "Candy Kingdom \U0001F36D"
+  url: https://media.giphy.com/media/C18CsKNITlixO/giphy.gif
