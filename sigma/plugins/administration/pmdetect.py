@@ -4,7 +4,7 @@ from config import Prefix
 
 async def pmdetect(ev, message, args):
     if not message.guild:
-        ev.log.info(f'DM From {message.author.name}#{message.author.discriminator}: {" ".join(args)}')
+        ev.log.info(f'DM From {message.author.name}#{message.author.discriminator}: {message.content}')
         if not message.content.startswith(Prefix):
             pm_response = discord.Embed(color=0x0099FF, title=f'ℹ Type `{Prefix}help` for information!')
             await message.channel.send(None, embed=pm_response)
