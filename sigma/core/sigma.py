@@ -157,6 +157,7 @@ class Sigma(discord.AutoShardedClient):
 
     async def on_message(self, message):
         if self.ready:
+            msg_start_stamp = arrow.utcnow().float_timestamp
             self.db.add_stats('MSGCount')
             self.message_count += 1
             args = message.content.split(' ')
@@ -202,6 +203,9 @@ class Sigma(discord.AutoShardedClient):
                         msg += f' | PRIVATE MESSAGE'
                         if args:
                             msg += f' | ARGS: {" ".join(args)}'
+                    msg_end_stamp = arrow.utcnow().float_timestamp
+                    msg_time_diff = msg_end_stamp - msg_start_stamp
+                    msg += f' | TIME: {str(msg_time_diff)[:8]}s'
                     self.log.info(msg)
                 except KeyError:
                     # no such command
