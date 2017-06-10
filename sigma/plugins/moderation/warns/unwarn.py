@@ -1,13 +1,13 @@
 ﻿import arrow
 import discord
-from sigma.core.permission import check_kick
+from sigma.core.permission import check_man_msg
 from sigma.core.utils import user_avatar
 
 
 async def unwarn(cmd, message, args):
-    if not check_kick(message.author, message.channel):
+    if not check_man_msg(message.author, message.channel):
         out_content = discord.Embed(color=0xDB0000,
-                                    title='⛔ Users With Kick Permissions Only.')
+                                    title='⛔ Users With Manage Messages Permissions Only.')
         await message.channel.send(None, embed=out_content)
         return
     if not args or not message.mentions:

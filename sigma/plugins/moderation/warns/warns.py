@@ -1,5 +1,5 @@
 ﻿import discord
-from sigma.core.permission import check_kick
+from sigma.core.permission import check_man_msg
 
 
 async def warns(cmd, message, args):
@@ -8,7 +8,7 @@ async def warns(cmd, message, args):
     except KeyError:
         cmd.db.set_settings(message.guild.id, 'WarnedUsers', {})
         warned_users = {}
-    if not check_kick(message.author, message.channel):
+    if not check_man_msg(message.author, message.channel):
         target = message.author
         target_id = str(target.id)
         if target_id not in warned_users:
@@ -16,7 +16,7 @@ async def warns(cmd, message, args):
         else:
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ You Were Warned For...',
-                            value='```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
+                            value='```\n- ' + '\n- '.join(warned_users[target_id]['Reasons']) + '\n```')
         await message.channel.send(None, embed=embed)
         return
     if not message.mentions:
@@ -27,7 +27,7 @@ async def warns(cmd, message, args):
             for key in warned_users:
                 for member in message.guild.members:
                     if member.id == warned_users[key]['UserID']:
-                        warn_user_list.append(member.name)
+                        warn_user_list.append(f'{member.name}#{member.discriminator}')
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ List of Warned Users', value='```\n' + ', '.join(warn_user_list) + '\n```')
     else:
@@ -38,5 +38,5 @@ async def warns(cmd, message, args):
         else:
             embed = discord.Embed(color=0x0099FF)
             embed.add_field(name='ℹ ' + target.name + ' Was Warned For...',
-                            value='```\n' + '\n'.join(warned_users[target_id]['Reasons']) + '\n```')
+                            value='```\n- ' + '\n- '.join(warned_users[target_id]['Reasons']) + '\n```')
     await message.channel.send(None, embed=embed)

@@ -31,11 +31,3 @@ commands:
     description:
       Lists warned users.
       If a user is mentioned with the command, it will show warnings for that user.
-
-  - name: warnlimit
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 3"
-    description:
-      Sets the new warning limit.
