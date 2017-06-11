@@ -12,7 +12,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Tells the bot to start playing the songs in the queue.
@@ -26,7 +26,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Pauses a player instance.
@@ -36,7 +36,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Resumes a paused player instance.
@@ -47,7 +47,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s} Ryder or Riot"
     description:
       Adds a song or playlist to the playing queue either by URL or Name.
@@ -59,7 +59,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Toggles if the queue should be repeated.
@@ -71,7 +71,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Skips the currently playing song.
@@ -82,7 +82,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Stops the currently playing song.
@@ -97,7 +97,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Displays information on the currently playing item.
@@ -106,7 +106,7 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    partner:   true
+    partner:   false
     usage:   "{pfx:s}{cmd:s}"
     description:
       Shuffles and mixes the current song queue.
