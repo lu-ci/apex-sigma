@@ -55,6 +55,17 @@ commands:
       And only items under 10 minutes will be added.
       Note that currently only YouTube is supported.
 
+  - name:    queuedeezerplaylist
+    alts:
+      - "qdp"
+    global:  true
+    enabled: true
+    sfw:     true
+    partner:   false
+    usage:   "{pfx:s}{cmd:s} 977228391"
+    description:
+      Queues an entire Deezer playlist.
+
   - name:    repeat
     global:  true
     enabled: true
