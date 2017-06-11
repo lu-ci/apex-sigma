@@ -2,7 +2,7 @@
 
 
 async def resume(cmd, message, args):
-    player = cmd.music.get_player(message.guild.id)
+    player = message.guild.voice_client
     if player:
         if player.is_playing():
             response = discord.Embed(color=0xFF9900, title='⚠ Already Playing.')
