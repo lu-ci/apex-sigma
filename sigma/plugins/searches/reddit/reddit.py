@@ -4,10 +4,9 @@ import discord
 from config import RedditClientID, RedditClientSecret
 from sigma.core.permission import check_channel_nsfw
 
-req = praw.Reddit(user_agent='Apex Sigma', client_id=RedditClientID, client_secret=RedditClientSecret)
-
 
 async def reddit(cmd, message, args):
+    req = praw.Reddit(user_agent='Apex Sigma', client_id=RedditClientID, client_secret=RedditClientSecret)
     q = ' '.join(args)
     sub = req.subreddit(str(q))
     if sub.over18:
