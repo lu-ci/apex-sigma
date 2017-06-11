@@ -161,15 +161,6 @@ commands:
     description:
       Generates a color from the given HEX code or provided RGB numbers.
 
-  - name: busplus
-    global:  true
-    enabled: true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 703 1"
-    description:
-      Outputs a timetable for the inputted bus line number.
-      This is for the public transit system of Belgrade.
-
   - name: hextodecimal
     alts:
       - "h2d"
