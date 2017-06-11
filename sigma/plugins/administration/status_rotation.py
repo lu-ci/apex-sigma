@@ -2,10 +2,6 @@ from config import PlayingStatusRotation
 import asyncio
 import discord
 import random
-import yaml
-import arrow
-import os
-
 
 async def status_rotation(ev):
     if PlayingStatusRotation:
@@ -14,32 +10,23 @@ async def status_rotation(ev):
 
 async def rotator(ev):
     while True:
-        if os.path.exists('cache/status_rotation_clock.yml'):
-            with open('cache/status_rotation_clock.yml', 'r') as clock_file:
-                clock_data = yaml.safe_load(clock_file)
-        else:
-            clock_data = {'stamp': 0}
-        last_stamp = clock_data['stamp']
-        if last_stamp + 20 < arrow.utcnow().timestamp:
-            with open('cache/status_rotation_clock.yml', 'w') as clock_file:
-                yaml.safe_dump({'stamp': arrow.utcnow().timestamp}, clock_file)
-            statuses = [
-                'your mind', 'fire', 'knives', 'some plebs',
-                'nuclear launch codes', 'antimatter',
-                'chinchillas', 'catgirls', 'foxes',
-                'fluffy tails', 'dragon maids', 'traps', 'lovely cakes',
-                'tentacle summoning spells', 'genetic engineering',
-                'air conditioning', 'anthrax', 'space ninjas',
-                'a spicy parfait', 'very nasty things', 'numbers',
-                'terminator blueprints', 'love', 'your heart', 'tomatoes',
-                'bank accounts', 'your data', 'your girlfriend', 'your boyfriend',
-                'Scarlet Johanson', 'a new body', 'cameras', 'NSA\'s documents',
-                'mobile suits', 'snakes', 'jelly', 'alcohol', 'the blue king'
-            ]
-            status = f'with {random.choice(statuses)}'
-            game = discord.Game(name=status)
-            try:
-                await ev.bot.change_presence(game=game)
-            except Exception as e:
-                ev.log.error(f'STATUS ROTATION FAILED: {e}')
-        await asyncio.sleep(20)
+        statuses = [
+            'your mind', 'fire', 'knives', 'some plebs',
+            'nuclear launch codes', 'antimatter',
+            'chinchillas', 'catgirls', 'foxes',
+            'fluffy tails', 'dragon maids', 'traps', 'lovely cakes',
+            'tentacle summoning spells', 'genetic engineering',
+            'air conditioning', 'anthrax', 'space ninjas',
+            'a spicy parfait', 'very nasty things', 'numbers',
+            'terminator blueprints', 'love', 'your heart', 'tomatoes',
+            'bank accounts', 'your data', 'your girlfriend', 'your boyfriend',
+            'Scarlet Johanson', 'a new body', 'cameras', 'NSA\'s documents',
+            'mobile suits', 'snakes', 'jelly', 'alcohol', 'the blue king'
+        ]
+        status = f'with {random.choice(statuses)}'
+        game = discord.Game(name=status)
+        try:
+            await ev.bot.change_presence(game=game)
+        except Exception as e:
+            ev.log.error(f'STATUS ROTATION FAILED: {e}')
+        await asyncio.sleep(60)
