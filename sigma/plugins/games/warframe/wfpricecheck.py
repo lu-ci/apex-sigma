@@ -36,6 +36,8 @@ async def grab_item_image(lookup, cut):
 
 
 async def wfpricecheck(cmd, message, args):
+    initial_response = discord.Embed(color=0xFFCC66, title='🔬 Processing...')
+    init_resp_msg = await message.channel.send(embed=initial_response)
     if args:
         lookup = '_'.join(args).lower()
         lookup_pretty = ' '.join(args).title()
@@ -69,20 +71,22 @@ async def wfpricecheck(cmd, message, args):
                                         lowest = item
                                 else:
                                     lowest = item
-                    if not lowest:
-                        response = discord.Embed(color=0x696969, title=f'🔍 {lookup_pretty} Found But No Active Sales.')
-                        await message.channel.send(embed=response)
-                        return
-                    item_desc = f'Price: {lowest["price"]}p'
-                    item_desc += f'\nAmount: {lowest["count"]}'
-                    item_desc += f'\nSeller: {lowest["ingame_name"]}'
+                    if lowest:
+                        item_desc = f'Price: {lowest["price"]}p'
+                        item_desc += f'\nAmount: {lowest["count"]}'
+                        item_desc += f'\nSeller: {lowest["ingame_name"]}'
+                    else:
+                        item_desc = 'No Data'
                     response.add_field(name=f'{full_item_name}', value=item_desc)
                     if not img_grabbed:
-                        item_img = await grab_image(full_item_name, cut)
-                        response.set_thumbnail(url=item_img)
-                        img_grabbed = True
+                            item_img = await grab_image(full_item_name, cut)
+                            response.set_thumbnail(url=item_img)
+                            img_grabbed = True
         if found == 0:
             response = discord.Embed(color=0x696969, title=f'🔍 {lookup_pretty} Not Found.')
     else:
         response = discord.Embed(color=0x696969, title=f'🔍 Nothing Inputted.')
-    await message.channel.send(embed=response)
+    try:
+        await init_resp_msg.edit(embed=response)
+    except:
+        pass
