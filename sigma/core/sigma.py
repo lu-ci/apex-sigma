@@ -244,10 +244,7 @@ class Sigma(discord.AutoShardedClient):
         if UseCachet:
             self.loop.create_task(self.cachet_stat_up(3, -1))
 
-    # async def on_member_update(self, before, after):
-    #    if self.ready:
-    #        self.db.update_user_details(after)
-
-    # async def on_guild_update(self, before, after):
-    #    if self.ready:
-    #        self.db.update_server_details(after)
+    async def on_message_edit(self, before, after):
+        for ev_name, event in self.plugin_manager.events['message_edit'].items():
+            task = event.call_message_edit(before, after)
+            self.loop.create_task(task)

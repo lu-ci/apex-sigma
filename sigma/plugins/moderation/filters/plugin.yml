@@ -78,3 +78,13 @@ events:
     usage:   "Activated upon detecting a blocked word in a message."
     description:
       Removes messages with a blocked word.
+
+  - name:    word_edit_blocker
+    type:    message_edit
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    usage:   "Activated upon detecting a blocked word in an edited message."
+    description:
+      Removes messages with a blocked word edited in.
