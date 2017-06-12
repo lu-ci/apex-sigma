@@ -20,24 +20,22 @@ class IntegrityError(DatabaseError):
 
 class Database(object):
     def __init__(self, db_addr, port, auth, unam, pwd):
-        self.db = self.connect(db_addr, port, auth, unam, pwd)
+        self.db = None
         self.log = create_logger('Database')
-        self.db.log = self.log
 
         if db_addr:
             self.connect(db_addr, port, auth, unam, pwd)
         else:
             raise DatabaseError('No database address given!')
 
-    @staticmethod
-    def connect(db_addr, port, auth, unam, pwd):
+    def connect(self, db_addr, port, auth, unam, pwd):
         if not auth:
-            moncli = pymongo.MongoClient(db_addr)
+            self.moncli = pymongo.MongoClient(db_addr)
         else:
             mongo_address = 'mongodb://{:s}:{:s}@{:s}:{:s}/'.format(unam, pwd, db_addr, str(port))
-            moncli = pymongo.MongoClient(mongo_address)
-        db = moncli.aurora
-        return db
+            self.moncli = pymongo.MongoClient(mongo_address)
+        self.db = self.moncli.aurora
+        self.db.log = self.log
 
     # Core Control Nodes
     def insert_one(self, collection, data):
@@ -111,3 +109,4 @@ class Database(object):
 
     def check_for_missing_settings(self, server):
         check_for_missing_settings_node(self.db, server)
+
