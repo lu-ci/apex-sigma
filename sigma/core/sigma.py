@@ -183,9 +183,12 @@ class Sigma(discord.AutoShardedClient):
                 try:
                     permed = check_perms(self.db, message, self.plugin_manager.commands[cmd])
                     if not black and permed:
-                        async with message.channel.typing():
-                            task = self.plugin_manager.commands[cmd].call(message, args)
-                            self.loop.create_task(task)
+                        try:
+                            async with message.channel.typing():
+                                task = self.plugin_manager.commands[cmd].call(message, args)
+                                self.loop.create_task(task)
+                        except discord.Forbidden:
+                            pass
                         self.db.add_stats(f'cmd_{cmd}_count')
                         self.db.add_stats('CMDCount')
                         self.command_count += 1
