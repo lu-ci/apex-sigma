@@ -135,10 +135,10 @@ class Sigma(discord.AutoShardedClient):
         self.log.info('-----------------------------------')
         self.log.info('Updating Bot Population Stats...')
         self.db.update_population_stats(self.guilds, self.get_all_members())
-        self.log.info('Starting UserList Refactor Node')
-        self.loop.create_task(self.db.refactor_users(self.get_all_members()))
-        self.log.info('Starting ServerList Refactor Node')
-        self.loop.create_task(self.db.refactor_servers(self.guilds))
+        # self.log.info('Starting UserList Refactor Node')
+        # self.loop.create_task(self.db.refactor_users(self.get_all_members()))
+        # self.log.info('Starting ServerList Refactor Node')
+        # self.loop.create_task(self.db.refactor_servers(self.guilds))
         self.log.info('Updating Bot Listing APIs...')
         self.loop.create_task(self.update_discordlist())
         self.log.info('Launching On-Ready Plugins...')
@@ -223,9 +223,9 @@ class Sigma(discord.AutoShardedClient):
                 self.loop.create_task(task)
 
     async def on_guild_join(self, server):
-        await self.update_discordlist()
+        self.loop.create_task(self.update_discordlist())
         self.db.add_new_server_settings(server)
-        self.db.update_server_details(server)
+        # self.db.update_server_details(server)
         self.db.update_population_stats(self.guilds, self.get_all_members())
         msg = f'INV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
         self.log.info(msg)
@@ -234,17 +234,17 @@ class Sigma(discord.AutoShardedClient):
             self.loop.create_task(self.cachet_stat_up(3, 1))
 
     async def on_guild_remove(self, server):
-        await self.update_discordlist()
+        self.loop.create_task(self.update_discordlist())
         self.db.update_population_stats(self.guilds, self.get_all_members())
         msg = f'RMV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
         self.log.info(msg)
         if UseCachet:
             self.loop.create_task(self.cachet_stat_up(3, -1))
 
-    async def on_member_update(self, before, after):
-        if self.ready:
-            self.db.update_user_details(after)
+    # async def on_member_update(self, before, after):
+    #    if self.ready:
+    #        self.db.update_user_details(after)
 
-    async def on_guild_update(self, before, after):
-        if self.ready:
-            self.db.update_server_details(after)
+    # async def on_guild_update(self, before, after):
+    #    if self.ready:
+    #        self.db.update_server_details(after)
