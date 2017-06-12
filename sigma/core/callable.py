@@ -129,3 +129,9 @@ class Callable(object):
             await getattr(self.module, self.name)(self)
         except exception as e:
             self.log.error(f'RD_EV: {self.name} | ERROR: {e} | TRACE: {e.with_traceback}')
+
+    async def call_message_edit(self, before, after):
+        try:
+            await getattr(self.module, self.name)(self, before, after)
+        except exception as e:
+            self.log.error(f'RD_EV: {self.name} | ERROR: {e} | TRACE: {e.with_traceback}')

@@ -183,9 +183,12 @@ class Sigma(discord.AutoShardedClient):
                 try:
                     permed = check_perms(self.db, message, self.plugin_manager.commands[cmd])
                     if not black and permed:
-                        async with message.channel.typing():
-                            task = self.plugin_manager.commands[cmd].call(message, args)
-                            self.loop.create_task(task)
+                        try:
+                            async with message.channel.typing():
+                                task = self.plugin_manager.commands[cmd].call(message, args)
+                                self.loop.create_task(task)
+                        except discord.Forbidden:
+                            pass
                         self.db.add_stats(f'cmd_{cmd}_count')
                         self.db.add_stats('CMDCount')
                         self.command_count += 1
@@ -241,10 +244,7 @@ class Sigma(discord.AutoShardedClient):
         if UseCachet:
             self.loop.create_task(self.cachet_stat_up(3, -1))
 
-    # async def on_member_update(self, before, after):
-    #    if self.ready:
-    #        self.db.update_user_details(after)
-
-    # async def on_guild_update(self, before, after):
-    #    if self.ready:
-    #        self.db.update_server_details(after)
+    async def on_message_edit(self, before, after):
+        for ev_name, event in self.plugin_manager.events['message_edit'].items():
+            task = event.call_message_edit(before, after)
+            self.loop.create_task(task)
