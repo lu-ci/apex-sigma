@@ -69,6 +69,16 @@ events:
     description:
       Removes messages with a discord invite link.
 
+  - name:    invite_edit_blocker
+    type:    message_edit
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    usage:   "Activated upon detecting an invite link edited into a message."
+    description:
+      Removes edited messages with a discord invite link.
+
   - name:    word_blocker
     type:    message
     global:  true
