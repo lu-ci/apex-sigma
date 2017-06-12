@@ -54,7 +54,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} @person"
     description:
-      Disallows the user from seding messages on the server.
+      Disallows the user from sending messages on the server.
 
   - name: textunmute
     alts:
