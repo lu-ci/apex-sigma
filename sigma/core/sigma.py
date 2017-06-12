@@ -177,7 +177,7 @@ class Sigma(discord.AutoShardedClient):
                     self.loop.create_task(task)
 
             if message.content.startswith(Prefix):
-                cmd = args.pop(0)[len(Prefix):].lower()
+                cmd = args.pop(0).lstrip(Prefix).lower()
                 if cmd in self.alts:
                     cmd = self.alts[cmd]
                 try:
