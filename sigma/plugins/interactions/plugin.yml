@@ -104,6 +104,22 @@ commands:
       Or just teast them for being a horrible person.
       Like when they make you to create a pout command for money!
 
+  - name: slap
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      When a punch is too barbaric a slap should be just elegant enough.
+
+  - name: stab
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person"
+    description:
+      Boy... Somebody really has you pissed off if you are using this one.
+
   - name: peck
     global:  true
     enabled: true
