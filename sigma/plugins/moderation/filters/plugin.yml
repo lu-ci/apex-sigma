@@ -62,7 +62,7 @@ events:
   - name:    invite_blocker
     type:    message
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     pmable:  true
     usage:   "Activated upon detecting an invite link in a message."
@@ -72,7 +72,7 @@ events:
   - name:    invite_edit_blocker
     type:    message_edit
     global:  true
-    enabled: true
+    enabled: false
     sfw:     true
     pmable:  true
     usage:   "Activated upon detecting an invite link edited into a message."
