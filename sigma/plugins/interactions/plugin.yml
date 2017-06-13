@@ -31,7 +31,7 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} @person"
     description:
-      Shows a where a user is on the hot crazy chart.
+      Shows where a user is on the hot crazy chart.
       This is unique for each user, do not hope that it will change.
 
   - name: lovecalculator
@@ -102,7 +102,7 @@ commands:
     description:
       Make a pouty face at someone and make them change their mind.
       Or just teast them for being a horrible person.
-      Like when they make you to create a pout command for money!
+      Like when they make you create a pout command for money!
 
   - name: slap
     global:  true

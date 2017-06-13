@@ -17,5 +17,5 @@ commands:
     usage:   "{pfx:s}{cmd:s} Bloodlust"
     description:
       Searches for a Vindicts enchant scroll.
-      Shows the type, applicable equipment, stats adn drop location.
+      Shows the type, applicable equipment, stats and drop location.
       As well as success and destruction chance.
