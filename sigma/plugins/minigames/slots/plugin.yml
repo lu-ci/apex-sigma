@@ -41,7 +41,7 @@ commands:
     usage:   "{pfx:s}{cmd:s}"
     description:
       Same as slots, but with icons associated with women...
-      Do not ask why this is a thing, it just is, i regret everything.
+      Do not ask why this is a thing, it just is, I regret everything.
       Spin the sluts machine and test your luck!
       You can specify the amount you want to bet, this default to 10 if nothing specified.
       Rewards Bet Amount x 12 for 2 of the same.

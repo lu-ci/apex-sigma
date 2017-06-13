@@ -14,4 +14,4 @@ commands:
     sfw:     true
     usage:   "{pfx:s}{cmd:s} Snorlax"
     description:
-      Shows details for the inputed Pokemon as well as a cute little GIF of them.
+      Shows details for the inputted Pokemon as well as a cute little GIF of them.
