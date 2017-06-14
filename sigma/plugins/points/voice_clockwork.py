@@ -32,7 +32,7 @@ async def voice_clockwork(ev):
                         vc_id = member.voice.channel.id
                         if vc_id == afk_id:
                             afk = True
-                    if count_members(member.guild) >= 100:
+                    if count_members(member.guild) >= 20:
                         if not afk:
                             if not member.voice.deaf:
                                 if not member.voice.self_deaf:
