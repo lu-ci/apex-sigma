@@ -4,6 +4,27 @@ from sigma.core.utils import user_avatar
 from .init_clock import init_clock
 
 
+def get_voice_members_count(voice_channel):
+    member_count = 0
+    for member in voice_channel.members:
+        if not member.bot:
+            if not member.voice.deaf:
+                if not member.voice.self_deaf:
+                    member_count += 1
+    return member_count
+
+
+def music_is_ongoing(cmd, sid, voice_channel):
+    queue_exists = cmd.music.get_queue(sid)
+    gueue_empty = cmd.music.get_queue(sid).empty()
+    voice_member_count = get_voice_members_count(voice_channel)
+    if queue_exists and gueue_empty is not True and voice_member_count != 0:
+        ongoing = True
+    else:
+        ongoing = False
+    return ongoing
+
+
 async def play(cmd, message, args):
     if args:
         task = cmd.bot.plugin_manager.commands['queue'].call(message, args)
@@ -54,7 +75,7 @@ async def play(cmd, message, args):
                     color=0xFF9900)
                 await message.channel.send(None, embed=embed)
                 return
-        while cmd.music.get_queue(message.guild.id) and cmd.music.get_queue(message.guild.id).empty() is not True:
+        while music_is_ongoing(cmd, message.guild.id, message.guild.me.voice.channel):
             item = await cmd.music.get_from_queue(message.guild.id)
             if message.guild.id in cmd.music.repeaters:
                 await cmd.music.add_to_queue(message.guild.id, item)
