@@ -1,4 +1,5 @@
 from PIL import Image
+from sigma.core.utils import user_avatar
 import os
 import imageio
 import discord
@@ -12,9 +13,7 @@ async def triggered(cmd, message, args):
         target = message.mentions[0]
     else:
         target = message.author
-    avatar_url = target.avatar_url
-    if not avatar_url:
-        avatar_url = target.default_avatar_url
+    avatar_url = user_avatar(target) + '?size=512'
     async with aiohttp.ClientSession() as session:
         async with session.get(avatar_url) as data:
             avatar_data = await data.read()
