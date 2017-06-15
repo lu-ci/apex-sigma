@@ -48,6 +48,16 @@ commands:
       Which can be either two users or a user and a thingamabob.
       Just make sure if you want to see how much @Calum loves Kud you put the user in the first place.
 
+  - name: triggered
+    alts:
+      - "trigger"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} @person1"
+    description:
+      Make a triggered gif of yourself of a person you tag.
+
   - name: addreact
     global:  true
     enabled: true
