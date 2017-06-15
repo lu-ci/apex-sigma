@@ -14,15 +14,15 @@ async def triggered(cmd, message, args):
     else:
         target = message.author
     avatar_url = user_avatar(target) + '?size=512'
+    wait_trig_response = discord.Embed(color=0xff6600, title='💥 Triggering...')
+    resp_msg = await message.channel.send(embed=wait_trig_response)
     async with aiohttp.ClientSession() as session:
         async with session.get(avatar_url) as data:
             avatar_data = await data.read()
             avatar = Image.open(BytesIO(avatar_data))
             avatar = avatar.resize((300, 300), Image.ANTIALIAS)
     image_list = []
-    wait_response = discord.Embed(color=0xff6600, title='💣 Triggering...')
-    resp_msg = await message.channel.send(embed=wait_response)
-    for x in range(0, 60):
+    for x in range(0, 30):
         base = Image.new('RGBA', (256, 256), (0, 0, 0, 0))
         with Image.open(cmd.resource('trig_bot.png')) as trig_sign:
             move_max = 22
@@ -35,7 +35,7 @@ async def triggered(cmd, message, args):
             image_list.append(imageio.imread(temp_loc))
             os.remove(temp_loc)
     out_loc = f'cache/triggered_{message.id}.gif'
-    imageio.mimsave(out_loc, image_list, fps=60)
+    imageio.mimsave(out_loc, image_list, fps=30)
     dfile = discord.File(out_loc)
     await message.channel.send(file=dfile)
     try:
