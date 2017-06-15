@@ -3,28 +3,22 @@ import aiohttp
 import os
 from PIL import Image
 from io import BytesIO
+from sigma.core.utils import user_avatar
 
 
 async def rip(cmd, message, args):
-    result = ''
-    mentioned_avatar = ''
-
-    if not message.mentions:
-        await message.channel.send(cmd.help())
-        return
-
-    for user in message.mentions:
-        result = result + 'The Avatar of ' + user.display_name + " is " + user.avatar_url
-        mentioned_avatar = user.avatar_url
-        if mentioned_avatar == '':
-            mentioned_avatar = user.default_avatar_url
+    if message.mentions:
+        target = message.mentions[0]
+    else:
+        target = message.author
+    avatar_url = user_avatar(target) + '?size=128'
     async with aiohttp.ClientSession() as session:
-        async with session.get(mentioned_avatar) as data:
-            user_avatar = await data.read()
-            user_avatar = BytesIO(user_avatar)
+        async with session.get(avatar_url) as data:
+            avatar = await data.read()
+            avatar = BytesIO(avatar)
     base = Image.open(cmd.resource('img/base.png'))
     tomb = Image.open(cmd.resource('img/tombstone.png'))
-    avatar_img = Image.open(user_avatar)
+    avatar_img = Image.open(avatar)
     avatar_img = avatar_img.resize((108, 108), Image.ANTIALIAS)
     base.paste(avatar_img, (60, 164))
     base.paste(tomb, (0, 0), tomb)
