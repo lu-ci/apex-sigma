@@ -21,18 +21,23 @@ async def overridelovecalculator(cmd, message, args):
                         response = discord.Embed(color=0xDB0000, title='❗ No Override Found')
                 else:
                     override_value = int(override_value)
-                    if lookup:
-                        action = 'updated'
-                        cmd.db.delete_one(collection, target_data)
+                    if override_value < 0:
+                        response = discord.Embed(color=0xDB0000, title='❗ Number Too Low')
+                    elif override_value > 200:
+                        response = discord.Embed(color=0xDB0000, title='❗ Number Too High')
                     else:
-                        action = 'created'
-                    insert_data = {
-                        'OverrideValue': override_value,
-                        'Targets': targets
-                    }
-                    cmd.db.insert_one(collection, insert_data)
-                    response = discord.Embed(color=0x66CC66,
-                                             title=f'✅ Override for {target_one.name} and {target_two.name} {action}.')
+                        if lookup:
+                            action = 'updated'
+                            cmd.db.delete_one(collection, target_data)
+                        else:
+                            action = 'created'
+                        insert_data = {
+                            'OverrideValue': override_value,
+                            'Targets': targets
+                        }
+                        cmd.db.insert_one(collection, insert_data)
+                        response = discord.Embed(color=0x66CC66,
+                                                 title=f'✅ {target_one.name} and {target_two.name} override {action}.')
             else:
                 response = discord.Embed(color=0xDB0000, title='❗ Not Enough Mentions')
         else:
