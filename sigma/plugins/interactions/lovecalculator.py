@@ -27,9 +27,15 @@ async def lovecalculator(cmd, message, args):
     else:
         return
     if id_based:
-        mod_1 = int(str(target_1.id)[6] + str(target_1.id)[9])
-        mod_2 = int(str(target_2.id)[6] + str(target_2.id)[9])
-        value = (mod_1 + mod_2) // 2
+        targets = [target_1.id, target_2.id]
+        target_data = {'Targets': targets}
+        lookup = cmd.db.find_one('LoveCalcOverrides', target_data)
+        if lookup:
+            value = lookup['OverrideValue'] // 2
+        else:
+            mod_1 = int(str(target_1.id)[6] + str(target_1.id)[9])
+            mod_2 = int(str(target_2.id)[6] + str(target_2.id)[9])
+            value = (mod_1 + mod_2) // 2
     else:
         targets = [target_1, target_2]
         numbers = []
