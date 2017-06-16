@@ -23,13 +23,13 @@ async def triggered(cmd, message, args):
             avatar = avatar.resize((300, 300), Image.ANTIALIAS)
     image_list = []
     for x in range(0, 30):
-        base = Image.new('RGBA', (256, 256), (0, 0, 0, 0))
+        base = Image.new('RGBA', (256, 320), (0, 0, 0, 0))
         with Image.open(cmd.resource('trig_bot.png')) as trig_sign:
             move_max = 22
             move_x = random.randint(-move_max, move_max)
             move_y = random.randint(-move_max, move_max)
             base.paste(avatar, (-22 + move_x, -22 + move_y))
-            base.paste(trig_sign, (0, 192))
+            base.paste(trig_sign, (0, 256))
             temp_loc = f'temp_gif_cache_{random.randint(99, 999999)}.png'
             base.save(temp_loc)
             image_list.append(imageio.imread(temp_loc))
