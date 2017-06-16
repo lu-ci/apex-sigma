@@ -29,8 +29,24 @@ async def rategirl(cmd, message, args):
             perc_x = '91'
             perc_y = '05'
         else:
-            perc_x = str(target.id)[6] + str(target.id)[9]
-            perc_y = str(target.id)[12] + str(target.id)[3]
+            target_data = {'UserID': target.id}
+            lookup = cmd.db.find_one('HotCrazyOverrides', target_data)
+            if lookup:
+                hot_value = lookup['HotValue']
+                crazy_value = lookup['CrazyValue']
+                if hot_value < 10:
+                    hot_value = f'0{hot_value}'
+                else:
+                    hot_value = str(hot_value)
+                if crazy_value < 10:
+                    crazy_value = f'0{crazy_value}'
+                else:
+                    crazy_value = str(crazy_value)
+                perc_x = hot_value
+                perc_y = crazy_value
+            else:
+                perc_x = str(target.id)[6] + str(target.id)[9]
+                perc_y = str(target.id)[12] + str(target.id)[3]
         loc_x = int(spc_x * (float(f'0.{perc_x}')))
         loc_y = int(spc_y * (1 - (float(f'0.{perc_y}'))))
         ava_x = loc_x + 250

@@ -1,0 +1,40 @@
+name: Cheats
+
+categories:
+  - administration
+
+enabled: true
+
+commands:
+  - name: overridelovecalculator
+    alts:
+      - "overridelovecalc"
+      - "overlc"
+      - "cheatlc"
+    global:  true
+    enabled: true
+    sfw:     true
+    admin:   true
+    usage:   "{pfx:s}{cmd:s} 190 @person @person"
+    description:
+      Sets an override for the Love Calculator command.
+      Input a desired override number for the mentioned couple.
+      When they are a part of the lovecalc command, this value will be used instead of their IDs.
+      The number can be from 0 to 200, final value being half of the inputted.
+
+  - name: overriderategirl
+    alts:
+      - "overridehotcrazy"
+      - "overrg"
+      - "overhc"
+      - "cheatrg"
+      - "cheathc"
+    global:  true
+    enabled: true
+    sfw:     true
+    admin:   true
+    usage:   "{pfx:s}{cmd:s} 99 99 @person"
+    description:
+      Overrides the mentioned Hot Crazy chart rating of the mentioned person.
+      First input the Hot and Crazy numbers ranging from 0 to 99. Yes, 99.
+      There is no such thing as perfection nor absolute insanity.
