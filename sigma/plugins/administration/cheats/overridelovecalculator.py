@@ -12,7 +12,7 @@ async def overridelovecalculator(cmd, message, args):
                 targets = [target_one.id, target_two.id]
                 target_data = {'Targets': targets}
                 lookup = cmd.db.find_one(collection, target_data)
-                if override_value == 'disable':
+                if override_value.lower() == 'disable':
                     if lookup:
                         cmd.db.delete_one(collection, target_data)
                         response = discord.Embed(color=0x66CC66,
