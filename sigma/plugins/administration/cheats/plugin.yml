@@ -22,3 +22,19 @@ commands:
       When they are a part of the lovecalc command, this value will be used instead of their IDs.
       The number can be from 0 to 200, final value being half of the inputted.
 
+  - name: overriderategirl
+    alts:
+      - "overridehotcrazy"
+      - "overrg"
+      - "overhc"
+      - "cheatrg"
+      - "cheathc"
+    global:  true
+    enabled: true
+    sfw:     true
+    admin:   true
+    usage:   "{pfx:s}{cmd:s} 99 99 @person"
+    description:
+      Overrides the mentioned Hot Crazy chart rating of the mentioned person.
+      First input the Hot and Crazy numbers ranging from 0 to 99. Yes, 99.
+      There is no such thing as perfection nor absolute insanity.
