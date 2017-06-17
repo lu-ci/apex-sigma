@@ -6,7 +6,6 @@ async def disconnect(cmd, message, args):
         embed = discord.Embed(
             title='⚠ I don\'t see you in a voice channel', color=0xFF9900)
         await message.channel.send(None, embed=embed)
-        return
     else:
         voice = message.guild.voice_client
         if voice:
