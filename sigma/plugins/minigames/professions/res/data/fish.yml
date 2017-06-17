@@ -1,6 +1,5 @@
 trash:
   - name: "Boot"
-    connector: 'a'
     value: 0
     item_id: "fish_t_boot"
   - name: "Trash"
@@ -12,17 +11,31 @@ trash:
     value: 0
     item_id: "fish_t_driftwood"
   - name: "Soggy Magazine"
-    connector: 'a'
     value: 0
     item_id: "fish_t_magazine"
   - name: "Broken Phone"
-    connector: 'a'
     value: 0
     item_id: "fish_t_phone"
   - name: "Tin Can"
-    connector: 'a'
     value: 0
     item_id: "fish_t_can"
+  - name: "Strange Bone"
+    value: 0
+    item_id: "fish_t_bone"
+  - name: "Blade Artists MMO Disc"
+    value: 0
+    item_id: "fish_t_sao"
+  - name: "Twisted Plastic"
+    connector: 'some'
+    value: 0
+    item_id: "fish_t_plastic"
+  - name: "American Beer"
+    value: 0
+    item_id: "fish_t_pisswasser"
+  - name: "Glass"
+    connector: 'some'
+    value: 0
+    item_id: 'fish_t_glass'
 common:
   - name: "Carp"
     value: 30
@@ -39,6 +52,21 @@ common:
   - name: "Winklefish"
     value: 30
     item_id: "fish_c_winklefish"
+  - name: "Nekrolyz"
+    value: 30
+    item_id: "fish_c_nekrolyz"
+  - name: "Rodenal"
+    value: 30
+    item_id: "fish_c_rodenal"
+  - name: "Copula"
+    value: 30
+    item_id: "fish_c_copula"
+  - name: "Hinayuu"
+    value: 30
+    item_id: "fish_c_hinayuu"
+  - name: "Loafish"
+    value: 30
+    item_id: "fish_c_loafish"
 uncommon:
   - name: "Underfish"
     value: 50
