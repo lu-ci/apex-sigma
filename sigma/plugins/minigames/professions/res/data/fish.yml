@@ -145,6 +145,21 @@ legendary:
   - name: "Candyback"
     value: 100
     item_id: "fish_l_candyback"
+  - name: "Squid"
+    value: 100
+    item_id: "fish_l_squid"
+  - name: "Weebler"
+    value: 100
+    item_id: "fish_l_weebler"
+  - name: "Dawnee"
+    value: 100
+    item_id: "fish_l_dawnee"
+  - name: "Dantressa"
+    value: 100
+    item_id: "fish_l_danressa"
+  - name: "Martian Plupler"
+    value: 100
+    item_id: "fish_l_plupler"
 prime:
   - name: "Eyvalie"
     value: 250
