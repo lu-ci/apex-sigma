@@ -14,10 +14,13 @@ def get_voice_members_count(voice_channel):
     return member_count
 
 
-def music_is_ongoing(cmd, sid, voice_channel):
+def music_is_ongoing(cmd, sid, voice_instance):
     queue_exists = cmd.music.get_queue(sid)
     gueue_empty = cmd.music.get_queue(sid).empty()
-    voice_member_count = get_voice_members_count(voice_channel)
+    if voice_instance:
+        voice_member_count = get_voice_members_count(voice_instance.channel)
+    else:
+        voice_member_count = 0
     if queue_exists and gueue_empty is not True and voice_member_count != 0:
         ongoing = True
     else:
@@ -75,7 +78,7 @@ async def play(cmd, message, args):
                     color=0xFF9900)
                 await message.channel.send(None, embed=embed)
                 return
-        while music_is_ongoing(cmd, message.guild.id, message.guild.me.voice.channel):
+        while music_is_ongoing(cmd, message.guild.id, message.guild.me.voice):
             item = await cmd.music.get_from_queue(message.guild.id)
             if message.guild.id in cmd.music.repeaters:
                 await cmd.music.add_to_queue(message.guild.id, item)
