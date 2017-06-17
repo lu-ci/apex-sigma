@@ -248,3 +248,9 @@ class Sigma(discord.AutoShardedClient):
         for ev_name, event in self.plugin_manager.events['message_edit'].items():
             task = event.call_message_edit(before, after)
             self.loop.create_task(task)
+
+    async def on_voice_state_update(self, member, before, after):
+        if self.ready:
+            for ev_name, event in self.plugin_manager.events['voice_update'].items():
+                task = event.call_voice_update(member, before, after)
+                self.loop.create_task(task)

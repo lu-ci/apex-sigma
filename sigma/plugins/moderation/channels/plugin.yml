@@ -55,3 +55,26 @@ commands:
     description:
       Moves the channel where the command is executed to the requested positional number.
       Do keep in mind that the first channel position is 0.
+
+  - name: makeroom
+    alts:
+      - "makevc"
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Random Music Jamming"
+    description:
+      Creates a new temporary voice channel for whoever calls the command.
+      The one who uses the command needs to be in a voice channel already.
+      When the channel is empty the room will be destroyed.
+
+events:
+  - name:    temp_vc_checker
+    type:    voice_update
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  false
+    usage:   "Activated upon a user moving through channels."
+    description:
+      Controls temp VC destruction.

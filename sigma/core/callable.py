@@ -135,3 +135,10 @@ class Callable(object):
             await getattr(self.module, self.name)(self, before, after)
         except exception as e:
             self.log.error(f'RD_EV: {self.name} | ERROR: {e} | TRACE: {e.with_traceback}')
+
+    async def call_voice_update(self, member, before, after):
+        if not member.bot:
+            try:
+                await getattr(self.module, self.name)(self, member, before, after)
+            except:
+                pass
