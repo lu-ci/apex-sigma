@@ -176,3 +176,18 @@ prime:
   - name: "Essiecks Jumper"
     value: 250
     item_id: "fish_p_essiecks"
+  - name: "Clemlie"
+    value: 250
+    item_id: "fish_p_clemlie"
+  - name: "Bananya"
+    value: 250
+    item_id: "fish_p_bananya"
+  - name: "Floxliese"
+    value: 250
+    item_id: "fish_p_floxliese"
+  - name: "Plasbeef"
+    value: 250
+    item_id: "fish_p_plasbeef"
+  - name: "Plephirie"
+    value: 250
+    item_id: "fish_p_plephirie"
