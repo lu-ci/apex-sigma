@@ -10,14 +10,18 @@ async def inventory(cmd, message, args):
     inv = cmd.db.get_inv(target)
     if inv:
         size = len(inv)
-        to_format = [['Item', 'Value']]
-        for item in inv:
+        bordered_inv = inv[:20]
+        headers = ['Item', 'Value']
+        to_format = []
+        for item in bordered_inv:
             to_format.append([item['name'], f'{item["value"]}'])
-        output = boop(to_format)
+        output = boop(to_format,column_names=headers)
         response = discord.Embed(color=0xc16a4f)
         response.set_author(name=f'{target.name}#{target.discriminator}', icon_url=user_avatar(target))
+        inv_text = f'Showing the first {len(bordered_inv)} items.'
+        inv_text += f'\nYou have a total of {size} items in your inventory.'
         response.add_field(name='📦 Inventory Stats',
-                           value=f'```py\nYou have a total of {size} items in your inventory.\n```')
+                           value=f'```py\n{inv_text}\n```')
         response.add_field(name='📋 Items Currently In It', value=f'```hs\n{output}\n```', inline=False)
     else:
         response = discord.Embed(color=0xc6e4b5, title='💸 Totally empty...')
