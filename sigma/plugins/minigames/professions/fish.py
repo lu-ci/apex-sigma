@@ -3,6 +3,7 @@ import discord
 import yaml
 from config import Currency, Prefix
 from .mechanics import roll_rarity, make_item_id
+from sigma.core.utils import user_avatar
 
 all_fish = None
 
@@ -67,7 +68,7 @@ async def fish(cmd, message, args):
             response = discord.Embed(color=visuals[rarity]['color'])
             response.add_field(name=f'{visuals[rarity]["icon"]} You caught {item_text} of {rarity} quality!',
                                value=notify_text)
-            response.set_footer(text=f'You paid 20 {Currency} for the bait.')
+            response.set_footer(text=f'You paid 20 {Currency} for the bait.', icon_url=user_avatar(message.author))
         else:
             response = discord.Embed(color=0xDB0000, title=f'You don\'t have enough {Currency}!')
     else:

@@ -83,6 +83,21 @@ uncommon:
   - name: "Doughnutonix"
     value: 50
     item_id: "fish_u_doughnutonix"
+  - name: "Typical Pike"
+    value: 50
+    item_id: "fish_u_pike"
+  - name: "Barylina"
+    value: 50
+    item_id: "fish_u_barylina"
+  - name: "Tolleet"
+    value: 50
+    item_id: "fish_u_tolleet"
+  - name: "Howklerish"
+    value: 50
+    item_id: "fish_u_howklerish"
+  - name: "Arbuloste"
+    value: 50
+    item_id: "fish_u_arbuloste"
 rare:
   - name: "Golden Gloop"
     value: 80
