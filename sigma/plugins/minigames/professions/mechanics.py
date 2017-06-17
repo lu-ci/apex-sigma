@@ -13,7 +13,7 @@ def make_item_id(message):
 def roll_rarity():
     rarities = {
         'trash': {
-            'low': 0,
+            'low': 1,
             'high': 40
         },
         'common': {
@@ -30,10 +30,14 @@ def roll_rarity():
         },
         'legendary': {
             'low': 96,
+            'high': 98
+        },
+        'prime': {
+            'low': 99,
             'high': 100
         }
     }
-    roll = random.randint(0, 100)
+    roll = random.randint(1, 100)
     for criteria in rarities:
         if rarities[criteria]['high'] >= roll >= rarities[criteria]['low']:
             return criteria

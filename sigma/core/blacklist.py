@@ -58,7 +58,7 @@ def check_overwrites(perms, author, channel, roles, cmd_name, mdl_name):
 
 def check_perms(db, message, command):
     if message.guild:
-        if not check_admin(message.author, message.channel) or message.author.id not in permitted_id:
+        if not check_admin(message.author, message.channel) and message.author.id not in permitted_id:
             perms = db.find_one('Permissions', {'ServerID': message.guild.id})
             if not perms:
                 permitted = True

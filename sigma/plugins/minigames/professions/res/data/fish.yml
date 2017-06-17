@@ -1,20 +1,26 @@
 trash:
   - name: "Boot"
+    connector: 'a'
     value: 0
     item_id: "fish_t_boot"
   - name: "Trash"
+    connector: 'some'
     value: 0
     item_id: "fish_t_trash"
   - name: "Driftwood"
+    connector: 'some'
     value: 0
     item_id: "fish_t_driftwood"
   - name: "Soggy Magazine"
+    connector: 'a'
     value: 0
     item_id: "fish_t_magazine"
   - name: "Broken Phone"
+    connector: 'a'
     value: 0
     item_id: "fish_t_phone"
   - name: "Tin Can"
+    connector: 'a'
     value: 0
     item_id: "fish_t_can"
 common:
@@ -30,16 +36,70 @@ common:
   - name: "Sunfish"
     value: 30
     item_id: "fish_c_sunfish"
-
+  - name: "Winklefish"
+    value: 30
+    item_id: "fish_c_winklefish"
 uncommon:
   - name: "Underfish"
-    value: 120
+    value: 50
     item_id: "fish_u_underfish"
+  - name: "Tuna"
+    value: 50
+    item_id: "fish_u_tuna"
+  - name: "Nightfish"
+    value: 50
+    item_id: "fish_u_nightfish"
+  - name: "Junisius"
+    value: 50
+    item_id: "fish_u_junisius"
+  - name: "Doughnutonix"
+    value: 50
+    item_id "fish_u_doughnutonix"
 rare:
   - name: "Golden Gloop"
-    value: 1200
+    value: 80
     item_id: "fish_r_gloop"
+  - name: "Orchestral Pink"
+    value: 80
+    item_id: "fish_r_orchestral"
+  - name: "Dilly"
+    value: 80
+    item_id: "fish_r_dilly"
+  - name: "Sweetfinned Aether"
+    value: 80
+    item_id: "fish_r_aether"
+  - name: "Warlard"
+    value: 80
+    item_id: "fish_r_playah"
 legendary:
   - name: "Fiamondish"
-    value: 12000
+    value: 100
     item_id: "fish_l_fiamondish"
+  - name: "Gilly"
+    value: 100
+    item_id: "fish_l_gilly"
+  - name: "Crunderlech"
+    value: 100
+    item_id: "fish_l_crunderlech"
+  - name: "Valebu"
+    value: 100
+    item_id: "fish_l_valebu"
+  - name: "Candyback"
+    value: 100
+    item_id: "fish_l_candyback"
+prime:
+  - name: "Eyvalie"
+    value: 250
+    item_id: "fish_p_eyvalie"
+  - name: "Nabfischz"
+    value: 250
+    item_id: "fish_p_nabfischz"
+  - name: "Marlin"
+    value: 250
+    item_id: "fish_p_marlin"
+  - name: "Crimson Rosemouth"
+    value: 250
+    item_id: "fish_p_rosemouth"
+  - name: "Essiecks Jumper"
+    value: 250
+    item_id: "fish_p_essiecks"

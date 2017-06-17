@@ -16,8 +16,10 @@ async def autorole(cmd, message, args):
         current_role = None
     if not args:
         if current_role:
+            current_role = discord.utils.find(lambda x: x.id == current_role, message.guild.roles)
+        if current_role:
             out_content = discord.Embed(type='rich', color=0x0099FF,
-                                        title='ℹ Current Auto Role: ' + current_role)
+                                        title='ℹ Current Auto Role: ' + current_role.name)
             await message.channel.send(None, embed=out_content)
             return
         else:
