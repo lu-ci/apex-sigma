@@ -41,7 +41,7 @@ async def fish(cmd, message, args):
         with open(cmd.resource('data/fish.yml')) as fish_file:
             all_fish = yaml.safe_load(fish_file)
     if not cmd.cooldown.on_cooldown(cmd, message):
-        cmd.cooldown.set_cooldown(cmd, message, 60)
+        cmd.cooldown.set_cooldown(cmd, message, 20)
         kud = cmd.db.get_points(message.author)
         if kud['Current'] >= 20:
             cmd.db.take_points(message.guild, message.author, 20)
