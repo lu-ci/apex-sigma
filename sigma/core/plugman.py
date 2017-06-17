@@ -23,6 +23,7 @@ class PluginManager(object):
             'member_join': {},
             'member_leave': {},
             'ready': {},
+            'voice_update': {},
             'message_edit': {}
         }
 
