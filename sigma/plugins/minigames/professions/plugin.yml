@@ -12,12 +12,21 @@ commands:
      - "storage"
      - "backpack"
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
       Shows your current inventory.
-      The inventory has 25 slots and items are not stackable.
+      The inventory has unlimited slots.
+
+  - name: sell
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Nabfish"
+    description:
+      Sells an item from your inventory.
+      Input all instead of the item name to sell your entire inventory.
 
   - name: fish
     global:   true

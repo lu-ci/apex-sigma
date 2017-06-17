@@ -29,6 +29,6 @@ def add_to_inventory(db, user, item_data):
 def del_from_inventory(db, user, item_id):
     inv = get_inventory(db, user)
     for item in inv:
-        if item['id'] == item_id:
+        if item['ItemID'] == item_id:
             inv.remove(item)
     update_inv(db, user, inv)
