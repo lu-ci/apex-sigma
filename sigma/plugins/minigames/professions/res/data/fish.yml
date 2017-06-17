@@ -114,6 +114,21 @@ rare:
   - name: "Warlard"
     value: 80
     item_id: "fish_r_playah"
+  - name: "Dranconica"
+    value: 80
+    item_id: "fish_r_dranconica"
+  - name: "Hufflefluff"
+    value: 80
+    item_id: "fish_r_huffle"
+  - name: "Fanged Frowner"
+    value: 80
+    item_id: "fish_r_frowner"
+  - name: "Manbub"
+    value: 80
+    item_id: "fish_r_manbub"
+  - name: "Jitteroon"
+    value: 80
+    item_id: "fish_r_jitteroon"
 legendary:
   - name: "Fiamondish"
     value: 100
