@@ -54,7 +54,7 @@ uncommon:
     item_id: "fish_u_junisius"
   - name: "Doughnutonix"
     value: 50
-    item_id "fish_u_doughnutonix"
+    item_id: "fish_u_doughnutonix"
 rare:
   - name: "Golden Gloop"
     value: 80
