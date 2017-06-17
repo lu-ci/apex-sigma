@@ -1,6 +1,5 @@
 trash:
   - name: "Boot"
-    connector: 'a'
     value: 0
     item_id: "fish_t_boot"
   - name: "Trash"
@@ -12,17 +11,31 @@ trash:
     value: 0
     item_id: "fish_t_driftwood"
   - name: "Soggy Magazine"
-    connector: 'a'
     value: 0
     item_id: "fish_t_magazine"
   - name: "Broken Phone"
-    connector: 'a'
     value: 0
     item_id: "fish_t_phone"
   - name: "Tin Can"
-    connector: 'a'
     value: 0
     item_id: "fish_t_can"
+  - name: "Strange Bone"
+    value: 0
+    item_id: "fish_t_bone"
+  - name: "Blade Artists MMO Disc"
+    value: 0
+    item_id: "fish_t_sao"
+  - name: "Twisted Plastic"
+    connector: 'some'
+    value: 0
+    item_id: "fish_t_plastic"
+  - name: "American Beer"
+    value: 0
+    item_id: "fish_t_pisswasser"
+  - name: "Glass"
+    connector: 'some'
+    value: 0
+    item_id: 'fish_t_glass'
 common:
   - name: "Carp"
     value: 30
@@ -39,6 +52,21 @@ common:
   - name: "Winklefish"
     value: 30
     item_id: "fish_c_winklefish"
+  - name: "Nekrolyz"
+    value: 30
+    item_id: "fish_c_nekrolyz"
+  - name: "Rodenal"
+    value: 30
+    item_id: "fish_c_rodenal"
+  - name: "Copula"
+    value: 30
+    item_id: "fish_c_copula"
+  - name: "Hinayuu"
+    value: 30
+    item_id: "fish_c_hinayuu"
+  - name: "Loafish"
+    value: 30
+    item_id: "fish_c_loafish"
 uncommon:
   - name: "Underfish"
     value: 50
@@ -55,6 +83,21 @@ uncommon:
   - name: "Doughnutonix"
     value: 50
     item_id: "fish_u_doughnutonix"
+  - name: "Typical Pike"
+    value: 50
+    item_id: "fish_u_pike"
+  - name: "Barylina"
+    value: 50
+    item_id: "fish_u_barylina"
+  - name: "Tolleet"
+    value: 50
+    item_id: "fish_u_tolleet"
+  - name: "Howklerish"
+    value: 50
+    item_id: "fish_u_howklerish"
+  - name: "Arbuloste"
+    value: 50
+    item_id: "fish_u_arbuloste"
 rare:
   - name: "Golden Gloop"
     value: 80
@@ -71,6 +114,21 @@ rare:
   - name: "Warlard"
     value: 80
     item_id: "fish_r_playah"
+  - name: "Dranconica"
+    value: 80
+    item_id: "fish_r_dranconica"
+  - name: "Hufflefluff"
+    value: 80
+    item_id: "fish_r_huffle"
+  - name: "Fanged Frowner"
+    value: 80
+    item_id: "fish_r_frowner"
+  - name: "Manbub"
+    value: 80
+    item_id: "fish_r_manbub"
+  - name: "Jitteroon"
+    value: 80
+    item_id: "fish_r_jitteroon"
 legendary:
   - name: "Fiamondish"
     value: 100
@@ -87,6 +145,21 @@ legendary:
   - name: "Candyback"
     value: 100
     item_id: "fish_l_candyback"
+  - name: "Squid"
+    value: 100
+    item_id: "fish_l_squid"
+  - name: "Weebler"
+    value: 100
+    item_id: "fish_l_weebler"
+  - name: "Dawnee"
+    value: 100
+    item_id: "fish_l_dawnee"
+  - name: "Dantressa"
+    value: 100
+    item_id: "fish_l_danressa"
+  - name: "Martian Plupler"
+    value: 100
+    item_id: "fish_l_plupler"
 prime:
   - name: "Eyvalie"
     value: 250
@@ -103,3 +176,18 @@ prime:
   - name: "Essiecks Jumper"
     value: 250
     item_id: "fish_p_essiecks"
+  - name: "Clemlie"
+    value: 250
+    item_id: "fish_p_clemlie"
+  - name: "Bananya"
+    value: 250
+    item_id: "fish_p_bananya"
+  - name: "Floxliese"
+    value: 250
+    item_id: "fish_p_floxliese"
+  - name: "Plasbeef"
+    value: 250
+    item_id: "fish_p_plasbeef"
+  - name: "Plephirie"
+    value: 250
+    item_id: "fish_p_plephirie"

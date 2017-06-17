@@ -1,8 +1,9 @@
 import random
 import discord
 import yaml
-from config import Currency
+from config import Currency, Prefix
 from .mechanics import roll_rarity, make_item_id
+from sigma.core.utils import user_avatar
 
 all_fish = None
 
@@ -56,16 +57,18 @@ async def fish(cmd, message, args):
             item_text = f'{connector} {item["name"]}'
             value = item['value']
             if value == 0:
-                notify_text = 'This item is worthless.\nYou throw it away.'
+                notify_text = 'You threw it away.\nThis item is **worthless**.'
             else:
                 item_id = make_item_id(message)
                 item.update({'ItemID': item_id})
                 cmd.db.inv_add(message.author, item)
-                notify_text = f'The item has been added to your inventory.\nIt is valued at {value} {Currency}.'
+                notify_text = f'This item is valued at **{value} {Currency}**.'
+                notify_text += f'\nIt has been added to your inventory.'
+                notify_text += f'\nYou can sell it by using the {Prefix}sell command.'
             response = discord.Embed(color=visuals[rarity]['color'])
             response.add_field(name=f'{visuals[rarity]["icon"]} You caught {item_text} of {rarity} quality!',
                                value=notify_text)
-            response.set_footer(text=f'You paid 20 {Currency} for the bait.')
+            response.set_footer(text=f'You paid 20 {Currency} for the bait.', icon_url=user_avatar(message.author))
         else:
             response = discord.Embed(color=0xDB0000, title=f'You don\'t have enough {Currency}!')
     else:
