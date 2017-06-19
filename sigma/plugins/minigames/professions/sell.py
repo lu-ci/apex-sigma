@@ -13,7 +13,7 @@ async def sell(cmd, message, args):
                 for invitem in inv:
                     value += invitem['value']
                     count += 1
-                    cmd.db.inv_del(message.author, invitem['ItemID'])
+                    cmd.db.inv_del(message.author, invitem['item_id'])
                 cmd.db.add_points(message.author.guild, message.author, value)
                 response = discord.Embed(color=0xc6e4b5, title=f'💶 You sold {count} items for {value} {Currency}.')
             else:
@@ -25,7 +25,7 @@ async def sell(cmd, message, args):
                 if item:
                     value = item['value']
                     cmd.db.add_points(message.author.guild, message.author, value)
-                    cmd.db.inv_del(message.author, item['ItemID'])
+                    cmd.db.inv_del(message.author, item['item_id'])
                     response = discord.Embed(color=0xc6e4b5,
                                              title=f'💶 You sold the {item["name"]} for {value} {Currency}.')
                 else:
