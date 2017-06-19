@@ -19,6 +19,14 @@ commands:
       Shows your current inventory.
       The inventory has unlimited slots.
 
+  - name: inspect
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} Nabfish"
+    description:
+      Inspects an item that is in your inventory.
+
   - name: sell
     global:  true
     enabled: true

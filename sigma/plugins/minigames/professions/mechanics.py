@@ -114,7 +114,6 @@ def roll_rarity():
         9: 9995
     }
     roll = random.randint(1, 10000)
-    print(roll)
     lowest = 0
     for rarity in rarities:
         if rarities[rarity] <= roll:

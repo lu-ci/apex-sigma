@@ -38,7 +38,10 @@ async def fish(cmd, message, args):
                         'rarity': item.rarity,
                         'rarity_name': item.rarity_name,
                         'item_id': item_id,
-                        'item_file_id': item.item_file_id
+                        'item_file_id': item.item_file_id,
+                        'item_type': item.item_type,
+                        'color': item.color,
+                        'icon': item.icon
                     }
                     cmd.db.inv_add(message.author, data_for_inv)
                 response = discord.Embed(color=item.color, title=response_title)
