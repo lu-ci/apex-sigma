@@ -15,7 +15,7 @@ async def sell(cmd, message, args):
                     count += 1
                     cmd.db.inv_del(message.author, invitem['ItemID'])
                 cmd.db.add_points(message.author.guild, message.author, value)
-                response = discord.Embed(color=0, title=f'💶 You sold {count} items for {value} {Currency}.')
+                response = discord.Embed(color=0xc6e4b5, title=f'💶 You sold {count} items for {value} {Currency}.')
             else:
                 item = None
                 for invitem in inv:
@@ -31,7 +31,7 @@ async def sell(cmd, message, args):
                 else:
                     response = discord.Embed(color=0x696969, title=f'🔍 I didn\'t find any {lookup} in your inventory.')
         else:
-            response = discord.Embed(color=0x1abc9c, title=f'💸 Your inventory is empty, {message.author.name}...')
+            response = discord.Embed(color=0xc6e4b5, title=f'💸 Your inventory is empty, {message.author.name}...')
     else:
         response = discord.Embed(color=0xDB0000, title='❗ You didn\'t input anything.')
     await message.channel.send(embed=response)
