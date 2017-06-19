@@ -55,7 +55,7 @@ async def play(cmd, message, args):
                     if can_connect and can_talk:
                         bot_voice = await message.author.voice.channel.connect()
                     else:
-                        embed = discord.Embed(title='⚠ I am not allowed to connect and speak there.', color=0xFF9900)
+                        embed = discord.Embed(title=f'⚠ I am not allowed to join {message.author.voice.channel.name}.', color=0xFF9900)
                         await message.channel.send(None, embed=embed)
                         return
                 except discord.ClientException:
@@ -73,11 +73,12 @@ async def play(cmd, message, args):
             await message.channel.send(None, embed=embed)
         if bot_voice:
             if bot_voice.is_playing():
-                embed = discord.Embed(
-                    title=f'⚠ Already playing in {message.guild.get_member(cmd.bot.user.id).voice.channel.name}',
-                    color=0xFF9900)
-                await message.channel.send(None, embed=embed)
-                return
+                if not args:
+                    embed = discord.Embed(
+                        title=f'⚠ Already playing in {message.guild.get_member(cmd.bot.user.id).voice.channel.name}',
+                        color=0xFF9900)
+                    await message.channel.send(None, embed=embed)
+                    return
         while music_is_ongoing(cmd, message.guild.id, message.guild.me.voice):
             item = await cmd.music.get_from_queue(message.guild.id)
             if message.guild.id in cmd.music.repeaters:
