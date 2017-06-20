@@ -14,7 +14,7 @@ async def fish(cmd, message, args):
         all_fish = get_all_items('fish', cmd.resource('data'))
     if not cmd.cooldown.on_cooldown(cmd, message):
         inv = cmd.db.get_inv(message.author)
-        if len(inv) < 20:
+        if len(inv) < 24:
             cmd.cooldown.set_cooldown(cmd, message, 20)
             kud = cmd.db.get_points(message.author)
             if kud['Current'] >= 20:
@@ -49,7 +49,7 @@ async def fish(cmd, message, args):
             else:
                 response = discord.Embed(color=0xDB0000, title=f'❗ You don\'t have enough {Currency}!')
         else:
-            response = discord.Embed(color=0xDB0000, title=f'❗ Your inventory is empty.!')
+            response = discord.Embed(color=0xffff99, title=f'💰 Your inventory is **full**!')
     else:
         timeout = cmd.cooldown.get_cooldown(cmd, message)
         response = discord.Embed(color=0x696969, title=f'🕙 Your new bait will be ready in {timeout} seconds.')
