@@ -33,7 +33,7 @@ async def fish(cmd, message, args):
                 response_title = f'{item.icon} You caught {connector} {item.name} and threw it away!'
             else:
                 response_title = f'{item.icon} You caught {connector} {item.rarity_name} {item.name}!'
-                item_id = make_item_id(message)
+                item_id = make_item_id()
                 data_for_inv = {
                     'name': item.name,
                     'value': item.value,
