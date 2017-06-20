@@ -1,7 +1,7 @@
 import os
 import yaml
 import arrow
-import random
+import secrets
 import hashlib
 
 rarity_translation = {
@@ -48,11 +48,9 @@ item_colors = {
 }
 
 
-def make_item_id(message):
-    composition = f'{message.author.id}_{message.id}_{arrow.utcnow().timestamp}'
-    crypt = hashlib.new('md5')
-    crypt.update(composition.encode('utf-8'))
-    return crypt.hexdigest()
+def make_item_id():
+    token = secrets.token_hex(16)
+    return token
 
 
 def get_item_settings(item_type):
@@ -113,7 +111,7 @@ def roll_rarity():
         8: 9985,
         9: 9995
     }
-    roll = random.randint(1, 10000)
+    roll = secrets.randbelow(10000)
     lowest = 0
     for rarity in rarities:
         if rarities[rarity] <= roll:
