@@ -125,45 +125,55 @@ async def wftrials(cmd, message, args):
                 total_failed = lor_failed + lornm_failed + jv_failed
 
                 # Make Descriptions
-                lor_desc = f'Total: {lor_count}'
-                lor_desc += f'\nWin/Lose: {lor_won}/{lor_failed}'
-                lor_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=lor_time_total))}'
-                lor_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(lor_time_total // lor_count)))}'
-                lor_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=lor_time_short))}'
-                lor_desc += f'\nKills: {lor_kills}'
-                lor_desc += f'\nAverage Kills: {lor_kills // lor_count}'
-                lor_desc += f'\nDeaths: {lor_deaths}'
-                lor_desc += f'\nAverage Deaths: {lor_deaths // lor_count}'
-
-                lornm_desc = f'Total: {lornm_count}'
-                lornm_desc += f'\nWin/Lose: {lornm_won}/{lornm_failed}'
-                lornm_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=lornm_time_total))}'
-                lornm_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(lornm_time_total // lornm_count)))}'
-                lornm_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=lornm_time_short))}'
-                lornm_desc += f'\nKills: {lornm_kills}'
-                lornm_desc += f'\nAverage Kills: {lornm_kills // lornm_count}'
-                lornm_desc += f'\nDeaths: {lornm_deaths}'
-                lornm_desc += f'\nAverage Deaths: {lornm_deaths // lornm_count}'
-
-                jv_desc = f'Total: {jv_count}'
-                jv_desc += f'\nWin/Lose: {jv_won}/{jv_failed}'
-                jv_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=jv_time_total))}'
-                jv_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(jv_time_total // jv_count)))}'
-                jv_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=jv_time_short))}'
-                jv_desc += f'\nKills: {jv_kills}'
-                jv_desc += f'\nAverage Kills: {jv_kills // jv_count}'
-                jv_desc += f'\nDeaths: {jv_deaths}'
-                jv_desc += f'\nAverage Deaths: {jv_deaths // jv_count}'
-
-                total_desc = f'Total: {total_count}'
-                total_desc += f'\nWin/Lose: {total_won}/{total_failed}'
-                total_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=total_time_total))}'
-                total_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(total_time_total // total_count)))}'
-                total_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=total_time_short))}'
-                total_desc += f'\nKills: {total_kills}'
-                total_desc += f'\nAverage Kills: {total_kills // total_count}'
-                total_desc += f'\nDeaths: {total_deaths}'
-                total_desc += f'\nAverage Deaths: {total_deaths // total_count}'
+                try:
+                    lor_desc = f'Total: {lor_count}'
+                    lor_desc += f'\nWin/Lose: {lor_won}/{lor_failed}'
+                    lor_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=lor_time_total))}'
+                    lor_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(lor_time_total // lor_count)))}'
+                    lor_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=lor_time_short))}'
+                    lor_desc += f'\nKills: {lor_kills}'
+                    lor_desc += f'\nAverage Kills: {lor_kills // lor_count}'
+                    lor_desc += f'\nDeaths: {lor_deaths}'
+                    lor_desc += f'\nAverage Deaths: {lor_deaths // lor_count}'
+                except ZeroDivisionError:
+                    lor_desc = 'Invalid Data'
+                try:
+                    lornm_desc = f'Total: {lornm_count}'
+                    lornm_desc += f'\nWin/Lose: {lornm_won}/{lornm_failed}'
+                    lornm_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=lornm_time_total))}'
+                    lornm_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(lornm_time_total // lornm_count)))}'
+                    lornm_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=lornm_time_short))}'
+                    lornm_desc += f'\nKills: {lornm_kills}'
+                    lornm_desc += f'\nAverage Kills: {lornm_kills // lornm_count}'
+                    lornm_desc += f'\nDeaths: {lornm_deaths}'
+                    lornm_desc += f'\nAverage Deaths: {lornm_deaths // lornm_count}'
+                except ZeroDivisionError:
+                    lornm_desc = 'Invalid Data'
+                try:
+                    jv_desc = f'Total: {jv_count}'
+                    jv_desc += f'\nWin/Lose: {jv_won}/{jv_failed}'
+                    jv_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=jv_time_total))}'
+                    jv_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(jv_time_total // jv_count)))}'
+                    jv_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=jv_time_short))}'
+                    jv_desc += f'\nKills: {jv_kills}'
+                    jv_desc += f'\nAverage Kills: {jv_kills // jv_count}'
+                    jv_desc += f'\nDeaths: {jv_deaths}'
+                    jv_desc += f'\nAverage Deaths: {jv_deaths // jv_count}'
+                except ZeroDivisionError:
+                    jv_desc = 'Invalid Data'
+                try:
+                    total_desc = f'Total: {total_count}'
+                    total_desc += f'\nWin/Lose: {total_won}/{total_failed}'
+                    total_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=total_time_total))}'
+                    total_desc += f'\nAverage Time: '
+                    total_desc += f'{str(datetime.timedelta(seconds=(total_time_total // total_count)))}'
+                    total_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=total_time_short))}'
+                    total_desc += f'\nKills: {total_kills}'
+                    total_desc += f'\nAverage Kills: {total_kills // total_count}'
+                    total_desc += f'\nDeaths: {total_deaths}'
+                    total_desc += f'\nAverage Deaths: {total_deaths // total_count}'
+                except ZeroDivisionError:
+                    total_desc = 'Invalid Data'
 
                 response = discord.Embed(color=0xa12626)
                 response.set_thumbnail(url='https://i.imgur.com/pf89nIk.png')
@@ -173,5 +183,6 @@ async def wftrials(cmd, message, args):
                 response.add_field(name='Jordas Verdict', value=jv_desc)
                 response.add_field(name='Total Trials', value=total_desc)
             except:
-                response = discord.Embed(color=0x696969, title=f'🔍 No Valid Stats For {username} Were Found.')
+                response = discord.Embed(color=0xFF9900,
+                                         title=f'⚠ Stats for {username} were found but cotained errors.')
         await message.channel.send(embed=response)
