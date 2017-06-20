@@ -23,9 +23,20 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Nabfish"
+    usage:   "{pfx:s}{cmd:s} Nabfischz"
     description:
       Inspects an item that is in your inventory.
+
+  - name: finditem
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} fish Nabfischz"
+    description:
+      Looks up information about an item.
+      The first argument needs to be the item type.
+      For example if it is a fish, meat, plant or material.
+      And the rest is the name of the item.
 
   - name: sell
     global:  true
