@@ -224,7 +224,7 @@ commands:
     alts:
       - "cb"
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     usage:   "{pfx:s}{cmd:s}"
     description:
@@ -237,7 +237,7 @@ events:
   - name:    chatterbot_control
     type:    mention
     global:  true
-    enabled: false
+    enabled: true
     sfw:     true
     pmable:  false
     usage:   "@bot message"
