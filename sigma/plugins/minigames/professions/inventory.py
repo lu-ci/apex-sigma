@@ -1,25 +1,42 @@
 import discord
+from config import Currency
 from sigma.core.utils import user_avatar
 from humanfriendly.tables import format_pretty_table as boop
+
 
 async def inventory(cmd, message, args):
     if message.mentions:
         target = message.mentions[0]
     else:
         target = message.author
+    page_number = 1
+    if args:
+        try:
+            page_number = abs(int(args[0]))
+            if page_number == 0:
+                page_number = 1
+        except TypeError:
+            page_number = 0
+    start_range = (page_number - 1) * 10
+    end_range = page_number * 10
     inv = cmd.db.get_inv(target)
+    total_inv = len(inv)
+    inv = inv[start_range:end_range]
     if inv:
-        headers = ['Item', 'Type', 'Value']
+        headers = ['Type', 'Item', 'Value', 'Rarity']
         to_format = []
+        total_value = 0
         for item in inv:
-            to_format.append([item['name'], item['item_type'],f'{item["value"]}'])
-        output = boop(to_format,column_names=headers)
+            to_format.append([item['item_type'], item['name'], f'{item["value"]}', f'{item["rarity_name"].title()}'])
+            total_value += item["value"]
+        output = boop(to_format, column_names=headers)
         response = discord.Embed(color=0xc16a4f)
         response.set_author(name=f'{target.name}#{target.discriminator}', icon_url=user_avatar(target))
-        inv_text = f'You have a total of {len(inv)} items in your inventory.'
+        inv_text = f'Showing {len(inv)}/{total_inv} items in your inventory.'
+        inv_text += f'\nTotal value of your inventory is {total_value} {Currency}.'
         response.add_field(name='📦 Inventory Stats',
                            value=f'```py\n{inv_text}\n```')
-        response.add_field(name='📋 Items Currently In It', value=f'```hs\n{output}\n```', inline=False)
+        response.add_field(name=f'📋 Items Currently On Page {page_number}', value=f'```hs\n{output}\n```', inline=False)
     else:
         response = discord.Embed(color=0xc6e4b5, title='💸 Totally empty...')
     await message.channel.send(embed=response)
