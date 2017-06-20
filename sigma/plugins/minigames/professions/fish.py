@@ -12,7 +12,7 @@ async def fish(cmd, message, args):
     if not all_fish:
         all_fish = get_all_items('fish', cmd.resource('data'))
     if not cmd.cooldown.on_cooldown(cmd, message):
-        #cmd.cooldown.set_cooldown(cmd, message, 60)
+        cmd.cooldown.set_cooldown(cmd, message, 60)
         kud = cmd.db.get_points(message.author)
         if kud['Current'] >= 20:
             cmd.db.take_points(message.guild, message.author, 20)
