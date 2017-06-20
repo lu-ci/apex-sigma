@@ -15,7 +15,7 @@ async def fish(cmd, message, args):
     if not cmd.cooldown.on_cooldown(cmd, message):
         inv = cmd.db.get_inv(message.author)
         if len(inv) < 24:
-            cmd.cooldown.set_cooldown(cmd, message, 20)
+            cmd.cooldown.set_cooldown(cmd, message, 60)
             kud = cmd.db.get_points(message.author)
             if kud['Current'] >= 20:
                 cmd.db.take_points(message.guild, message.author, 20)
