@@ -21,6 +21,7 @@ async def inspect(cmd, message, args):
                 response = discord.Embed(color=item['color'])
                 response.add_field(name=f'{item["icon"]} {item["name"]}', value=f'{item_info}')
                 response.add_field(name='Item Description', value=f'{item["description"]}', inline=False)
+                response.set_footer(text=f'ItemID:{item["item_id"]}')
             else:
                 response = discord.Embed(color=0x696969, title=f'🔍 I didn\'t find any {lookup} in your inventory.')
         else:
