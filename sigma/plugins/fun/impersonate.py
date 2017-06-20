@@ -2,9 +2,7 @@
 from config import Prefix
 import markovify
 import discord
-import yaml
 import ftfy
-import os
 
 
 async def impersonate(cmd, message, args):
@@ -14,11 +12,9 @@ async def impersonate(cmd, message, args):
         else:
             target = discord.utils.find(lambda x: x.name.lower() == ' '.join(args).lower(), message.guild.members)
         if target:
-            destination = f'chains/chain_{target.id}.yml'
-            if os.path.exists(destination):
-                with open(destination) as chain_file:
-                    chain_data = yaml.safe_load(chain_file)
-                total_string = ' '.join(chain_data)
+            chain_data = cmd.db.find_one('MarkovChains', {'UserID': target.id})
+            if chain_data:
+                total_string = ' '.join(chain_data['Chain'])
                 chain = markovify.Text(total_string)
                 sentence = chain.make_sentence(tries=100)
                 if not sentence:
@@ -30,6 +26,6 @@ async def impersonate(cmd, message, args):
                     response.add_field(name='🤔 Something like...', value=f'```\n{sentence}\n```')
             else:
                 response = discord.Embed(color=0x696969)
-                response.add_field(name=f'🔍 Chain File Not Found For {target.name}',
-                                   value=f'You can make one with `{Prefix}collectchain`!')
+                response.add_field(name=f'🔍 Chain Data Not Found For {target.name}',
+                                   value=f'You can make one with `{Prefix}collectchain @{target.name} #channel`!')
             await message.channel.send(None, embed=response)
