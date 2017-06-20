@@ -1,9 +1,10 @@
-﻿import yaml
-import arrow
+﻿import arrow
 import discord
 from config import Prefix
+from sigma.core.utils import user_avatar
 
 in_use = False
+in_use_by = None
 
 
 def check_for_bot_prefixes(text):
@@ -18,8 +19,10 @@ def check_for_bot_prefixes(text):
 
 async def collectchain(cmd, message, args):
     global in_use
+    global in_use_by
     if in_use:
         response = discord.Embed(color=0x696969, title='🛠 Currently in use. Try Again Later.')
+        response.set_author(name=f'{in_use_by.name}', icon_url=user_avatar(in_use_by))
         await message.channel.send(None, embed=response)
     else:
         if args:
@@ -36,6 +39,7 @@ async def collectchain(cmd, message, args):
                 collected = 0
                 collection = []
                 in_use = True
+                in_use_by = message.author
                 ch_response = discord.Embed(color=0x66CC66,
                                             title='📖 Collecting... You will be sent a DM when I\'m done.')
                 await message.channel.send(None, embed=ch_response)
@@ -63,12 +67,17 @@ async def collectchain(cmd, message, args):
                                             collected += 1
                                             if collected >= 3000:
                                                 break
-                with open(f'chains/chain_{target.id}.yml', 'w', encoding='utf-8') as chain_file:
-                    yaml.dump(collection, chain_file, default_flow_style=False)
+                cmd.db.delete_one('MarkovChains', {'UserID': target.id})
+                data = {
+                    'UserID': target.id,
+                    'Chain': collection
+                }
+                cmd.db.insert_one('MarkovChains', data)
                 in_use = False
+                in_use_by = None
                 dm_response = discord.Embed(color=0x66CC66, title=f'📖 {target.name}\'s chain is done!')
                 dm_response.add_field(name='Amount Collected', value=f'```\n{collected}\n```')
-                dm_response.add_field(name='Time Elapsed', value=f'```\n{arrow.utcnow().timestamp - start_time}\n```')
+                dm_response.add_field(name='Time Elapsed', value=f'```\n{arrow.utcnow().timestamp - start_time}s\n```')
                 await message.author.send(None, embed=dm_response)
                 await message.channel.send(None, embed=dm_response)
                 if message.author.id != target.id:
