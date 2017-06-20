@@ -103,9 +103,9 @@ def get_items_in_rarity(item_dict, rarity):
 def roll_rarity():
     rarities = {
         0: 0,
-        1: 4000,
-        2: 7000,
-        3: 9000,
+        1: 2500,
+        2: 6500,
+        3: 9500,
         4: 9500,
         5: 9800,
         6: 9910,
