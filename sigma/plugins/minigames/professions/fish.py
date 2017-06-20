@@ -1,6 +1,6 @@
 import random
 import discord
-from config import Currency
+from config import Currency, permitted_id
 from .mechanics import roll_rarity, make_item_id, get_all_items, get_items_in_rarity
 from sigma.core.utils import user_avatar
 
@@ -20,6 +20,12 @@ async def fish(cmd, message, args):
             if kud['Current'] >= 20:
                 cmd.db.take_points(message.guild, message.author, 20)
                 rarity = roll_rarity()
+                if args:
+                    if message.author.id in permitted_id:
+                        try:
+                            rarity = int(args[0])
+                        except TypeError:
+                            pass
                 all_items_in_rarity = get_items_in_rarity(all_fish, rarity)
                 item = random.choice(all_items_in_rarity)
                 value = item.value
