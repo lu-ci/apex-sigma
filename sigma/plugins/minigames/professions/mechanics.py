@@ -1,7 +1,7 @@
 import os
 import yaml
 import arrow
-import random
+import secrets
 import hashlib
 
 rarity_translation = {
@@ -113,7 +113,7 @@ def roll_rarity():
         8: 9985,
         9: 9995
     }
-    roll = random.randint(1, 10000)
+    roll = secrets.randbelow(10000)
     lowest = 0
     for rarity in rarities:
         if rarities[rarity] <= roll:

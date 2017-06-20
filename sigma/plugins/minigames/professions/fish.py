@@ -1,4 +1,4 @@
-import random
+import secrets
 import discord
 from config import Currency, permitted_id
 from .mechanics import roll_rarity, make_item_id, get_all_items, get_items_in_rarity
@@ -24,7 +24,7 @@ async def fish(cmd, message, args):
                     except TypeError:
                         pass
             all_items_in_rarity = get_items_in_rarity(all_fish, rarity)
-            item = random.choice(all_items_in_rarity)
+            item = secrets.choice(all_items_in_rarity)
             value = item.value
             connector = 'a'
             if item.rarity_name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
