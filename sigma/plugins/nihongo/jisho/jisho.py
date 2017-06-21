@@ -27,7 +27,7 @@ async def jisho(cmd, message, *args):
         await message.channel.send(None, embed=embed_content)
         return
 
-    output = '```'
+    output = '```js\n'
     # if the word doesn't have kanji, print out the kana alone
     try:
         output += "{} 【{}】".format(request['japanese'][0]['word'], request['japanese'][0]['reading'])
@@ -55,7 +55,7 @@ async def jisho(cmd, message, *args):
     for i in range(0, definitons_len):
         etc = []
         if 'english_definitions' in request['senses'][i]:
-            output += '{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
+            output += '\n\n{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
         if request['senses'][i]['parts_of_speech']:
             parts_of_speech = ''
             for part_of_speech in request['senses'][i]['parts_of_speech']:
@@ -84,9 +84,9 @@ async def jisho(cmd, message, *args):
     if len(request['senses']) > 5:
         hidden = len(request['senses']) - 5
         if hidden == 1:
-            output += '\n- {} definition is hidden'.format(hidden)
+            output += '\n\n- {} definition is hidden'.format(hidden)
         else:
-            output += '\n- {} definitions are hidden'.format(hidden)
+            output += '\n\n- {} definitions are hidden'.format(hidden)
 
     other_forms = ''
     if len(request['japanese']) > 1:
@@ -97,7 +97,7 @@ async def jisho(cmd, message, *args):
     if other_forms:
         output += '\n\nOther forms ' + other_forms[:-1] + '```'  # account for extra comma
     else:
-        output += '```'
+        output += '\n```'
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name=':books: Search for ' + jisho_q, value=output)
     await message.channel.send(None, embed=embed)
