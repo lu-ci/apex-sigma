@@ -14,3 +14,12 @@ commands:
     description:
       Searches through Imgur posts for the given title.
       Do remember that it is not Image-Only
+
+  - name:    imgurlink
+    global:  true
+    enabled: true
+    sfw:     true
+    usage:   "{pfx:s}{cmd:s} https://example.com/my_image.png"
+    description:
+      Sends an Image URL to Imgur and returns the Imgur URL of it.
+      Attachments are also supported.
