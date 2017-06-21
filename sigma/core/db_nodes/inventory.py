@@ -32,3 +32,13 @@ def del_from_inventory(db, user, item_id):
         if item['item_id'] == item_id:
             inv.remove(item)
     update_inv(db, user, inv)
+
+
+def get_inventory_item(db, user, item_file_id):
+    inv = get_inventory(db, user)
+    output = None
+    for item in inv:
+        if item['item_file_id'].lower() == item_file_id.lower():
+            output = item
+            break
+    return output

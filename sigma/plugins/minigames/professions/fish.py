@@ -4,13 +4,9 @@ from config import Currency, permitted_id, ItemWinChannelID
 from .mechanics import roll_rarity, make_item_id, get_all_items, get_items_in_rarity, notify_channel_of_special
 from sigma.core.utils import user_avatar
 
-all_fish = None
-
 
 async def fish(cmd, message, args):
-    global all_fish
-    if not all_fish:
-        all_fish = get_all_items('fish', cmd.resource('data'))
+    all_fish = get_all_items('fish', cmd.resource('data'))
     if not cmd.cooldown.on_cooldown(cmd, message):
         cmd.cooldown.set_cooldown(cmd, message, 60)
         kud = cmd.db.get_points(message.author)
@@ -35,16 +31,8 @@ async def fish(cmd, message, args):
                 response_title = f'{item.icon} You caught {connector} {item.rarity_name} {item.name}!'
                 item_id = make_item_id()
                 data_for_inv = {
-                    'name': item.name,
-                    'value': item.value,
-                    'description': item.description,
-                    'rarity': item.rarity,
-                    'rarity_name': item.rarity_name,
                     'item_id': item_id,
                     'item_file_id': item.item_file_id,
-                    'item_type': item.item_type,
-                    'color': item.color,
-                    'icon': item.icon
                 }
                 cmd.db.inv_add(message.author, data_for_inv)
             response = discord.Embed(color=item.color, title=response_title)
