@@ -55,7 +55,8 @@ async def jisho(cmd, message, *args):
     for i in range(0, definitons_len):
         output += '\n'
         etc = []
-        output += '{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
+        if 'english_definitions' in request['senses'][i]:
+            output += '{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
         if request['senses'][i]['parts_of_speech']:
             parts_of_speech = ''
             for part_of_speech in request['senses'][i]['parts_of_speech']:
