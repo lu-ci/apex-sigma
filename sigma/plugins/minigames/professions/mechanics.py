@@ -131,6 +131,6 @@ async def notify_channel_of_special(message, all_channels, channel_id, item):
                 connector = 'an'
             response_title = f'{item.icon} {connector.title()} {item.rarity_name} {item.name} has been caught!'
             response = discord.Embed(color=item.color, title=response_title)
-            response.set_author(name=f'{message.author.display_name} from {message.guild.name}',
-                                icon_url=user_avatar(message.author))
+            response.set_author(name=f'{message.author.display_name}', icon_url=user_avatar(message.author))
+            response.set_footer(text=f'From {message.guild.name}.', icon_url=message.guild.icon_url)
             await target.send(embed=response)
