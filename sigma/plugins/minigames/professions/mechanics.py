@@ -79,15 +79,16 @@ def make_item_class(item_data, settings):
 def get_all_items(item_type, location_base):
     settings = get_item_settings(item_type)
     output = {}
-    fish_file_list = os.listdir(f'{location_base}/{item_type.lower()}')
-    for file in fish_file_list:
-        if file.endswith('.yml'):
-            with open(f'{location_base}/{item_type.lower()}/{file}') as item_file:
-                item_id = file.split('.')[0]
-                item_data = yaml.safe_load(item_file)
-                item_data.update({'item_file_id': item_id})
-                item_object = make_item_class(item_data, settings)
-                output.update({item_id: item_object})
+    for root, dirs, files in os.walk(f'{location_base}/{item_type.lower()}'):
+        for file in files:
+            if file.endswith('.yml'):
+                file_path = (os.path.join(root, file))
+                with open(file_path) as item_file:
+                    item_id = file.split('.')[0]
+                    item_data = yaml.safe_load(item_file)
+                    item_data.update({'item_file_id': item_id})
+                    item_object = make_item_class(item_data, settings)
+                    output.update({item_id: item_object})
     return output
 
 
