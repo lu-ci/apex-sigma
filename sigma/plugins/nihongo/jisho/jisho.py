@@ -53,7 +53,6 @@ async def jisho(cmd, message, *args):
         definitons_len = len(request['senses'])
 
     for i in range(0, definitons_len):
-        output += '\n'
         etc = []
         if 'english_definitions' in request['senses'][i]:
             output += '{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
