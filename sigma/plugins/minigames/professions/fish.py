@@ -1,7 +1,7 @@
 import secrets
 import discord
-from config import Currency, permitted_id
-from .mechanics import roll_rarity, make_item_id, get_all_items, get_items_in_rarity
+from config import Currency, permitted_id, ItemWinChannelID
+from .mechanics import roll_rarity, make_item_id, get_all_items, get_items_in_rarity, notify_channel_of_special
 from sigma.core.utils import user_avatar
 
 all_fish = None
@@ -49,6 +49,8 @@ async def fish(cmd, message, args):
                 cmd.db.inv_add(message.author, data_for_inv)
             response = discord.Embed(color=item.color, title=response_title)
             response.set_author(name=message.author.display_name, icon_url=user_avatar(message.author))
+            if item.rarity >= 5:
+                await notify_channel_of_special(message, cmd.bot.get_all_channels(), ItemWinChannelID, item)
         else:
             response = discord.Embed(color=0xDB0000, title=f'❗ You don\'t have enough {Currency}!')
     else:

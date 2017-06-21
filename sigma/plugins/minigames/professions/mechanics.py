@@ -1,8 +1,8 @@
 import os
 import yaml
-import arrow
 import secrets
-import hashlib
+import discord
+from sigma.core.utils import user_avatar
 
 rarity_translation = {
     0: 'trash',
@@ -72,6 +72,7 @@ def make_item_class(item_data, settings):
         icon = settings.icons[rarity_name]
         color = settings.colors[rarity_name]
         item_file_id = item_data['item_file_id']
+
     return SigmaItem
 
 
@@ -119,3 +120,17 @@ def roll_rarity():
         else:
             break
     return lowest
+
+
+async def notify_channel_of_special(message, all_channels, channel_id, item):
+    if channel_id:
+        target = discord.utils.find(lambda x: x.id == channel_id, all_channels)
+        if target:
+            connector = 'a'
+            if item.rarity_name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
+                connector = 'an'
+            response_title = f'{item.icon} {connector.title()} {item.rarity_name} {item.name} has been caught!'
+            response = discord.Embed(color=item.color, title=response_title)
+            response.set_author(name=f'{message.author.display_name} from {message.guild.name}',
+                                icon_url=user_avatar(message.author))
+            await target.send(embed=response)
