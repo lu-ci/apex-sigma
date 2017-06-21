@@ -8,7 +8,7 @@ imgur_client = imgurpython.ImgurClient(ImgurClientID, ImgurClientSecret)
 async def imgurlink(cmd, message, args):
     if message.attachments or args:
         if message.attachments:
-            img_url = message.attachments[0]['url']
+            img_url = message.attachments[0].url
         else:
             img_url = ' '.join(args)
         if img_url.startswith('http'):
