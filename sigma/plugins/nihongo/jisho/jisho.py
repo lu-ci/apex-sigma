@@ -27,7 +27,7 @@ async def jisho(cmd, message, *args):
         await message.channel.send(None, embed=embed_content)
         return
 
-    output = '```'
+    output = '```js\n'
     # if the word doesn't have kanji, print out the kana alone
     try:
         output += "{} 【{}】".format(request['japanese'][0]['word'], request['japanese'][0]['reading'])
@@ -97,7 +97,7 @@ async def jisho(cmd, message, *args):
     if other_forms:
         output += '\n\nOther forms ' + other_forms[:-1] + '```'  # account for extra comma
     else:
-        output += '```'
+        output += '\n```'
     embed = discord.Embed(color=0x1abc9c)
     embed.add_field(name=':books: Search for ' + jisho_q, value=output)
     await message.channel.send(None, embed=embed)
