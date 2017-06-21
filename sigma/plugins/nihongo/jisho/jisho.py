@@ -55,7 +55,7 @@ async def jisho(cmd, message, *args):
     for i in range(0, definitons_len):
         etc = []
         if 'english_definitions' in request['senses'][i]:
-            output += '{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
+            output += '\n\n{}. {}'.format(i + 1, '; '.join(request['senses'][i]['english_definitions']))
         if request['senses'][i]['parts_of_speech']:
             parts_of_speech = ''
             for part_of_speech in request['senses'][i]['parts_of_speech']:
@@ -84,9 +84,9 @@ async def jisho(cmd, message, *args):
     if len(request['senses']) > 5:
         hidden = len(request['senses']) - 5
         if hidden == 1:
-            output += '\n- {} definition is hidden'.format(hidden)
+            output += '\n\n- {} definition is hidden'.format(hidden)
         else:
-            output += '\n- {} definitions are hidden'.format(hidden)
+            output += '\n\n- {} definitions are hidden'.format(hidden)
 
     other_forms = ''
     if len(request['japanese']) > 1:
