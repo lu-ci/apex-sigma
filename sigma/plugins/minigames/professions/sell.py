@@ -22,8 +22,11 @@ async def sell(cmd, message, args):
                 response = discord.Embed(color=0xc6e4b5, title=f'💶 You sold {count} items for {value} {Currency}.')
             else:
                 item_o = get_item_by_name(lookup)
-                item = cmd.db.get_inv_item(message.author, item_o.item_file_id)
-                if item_o and item:
+                if item_o:
+                    item = cmd.db.get_inv_item(message.author, item_o.item_file_id)
+                else:
+                    item = None
+                if item:
                     value = item_o.value
                     cmd.db.add_points(message.author.guild, message.author, value)
                     cmd.db.inv_del(message.author, item['item_id'])
