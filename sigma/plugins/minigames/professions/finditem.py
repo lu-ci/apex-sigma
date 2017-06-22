@@ -1,6 +1,6 @@
 import discord
 from config import Currency
-from .mechanics import get_all_items
+from .mechanics import get_all_items, get_item_by_name
 
 async def finditem(cmd, message, args):
     if args:
@@ -12,11 +12,7 @@ async def finditem(cmd, message, args):
             except KeyError:
                 inv = None
             if inv:
-                item = None
-                for invitem in inv:
-                    if inv[invitem].name.lower() == lookup.lower():
-                        item = inv[invitem]
-                        break
+                item = get_item_by_name(lookup)
                 if item:
                     connector = 'A'
                     if item.rarity_name[0].lower() in ['a', 'e', 'i', 'o', 'u']:

@@ -2,9 +2,12 @@ import discord
 from config import Currency
 from sigma.core.utils import user_avatar
 from humanfriendly.tables import format_pretty_table as boop
+from .mechanics import get_item_by_id, items, get_all_items
 
 
 async def inventory(cmd, message, args):
+    if not items:
+        get_all_items('fish', cmd.resource('data'))
     if message.mentions:
         target = message.mentions[0]
     else:
@@ -27,8 +30,9 @@ async def inventory(cmd, message, args):
         to_format = []
         total_value = 0
         for item in inv:
-            to_format.append([item['item_type'], item['name'], f'{item["value"]}', f'{item["rarity_name"].title()}'])
-            total_value += item["value"]
+            item_o = get_item_by_id(item['item_file_id'])
+            to_format.append([item_o.item_type, item_o.name, f'{item_o.value}', f'{item_o.rarity_name.title()}'])
+            total_value += item_o.value
         output = boop(to_format, column_names=headers)
         response = discord.Embed(color=0xc16a4f)
         response.set_author(name=f'{target.name}#{target.discriminator}', icon_url=user_avatar(target))

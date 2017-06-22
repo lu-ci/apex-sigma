@@ -54,6 +54,7 @@ def make_item_id():
 
 
 def get_item_settings(item_type):
+    item_type = item_type.lower()
     class ItemOptions(object):
         colors = item_colors[item_type]
         icons = item_icons[item_type]
@@ -76,18 +77,50 @@ def make_item_class(item_data, settings):
     return SigmaItem
 
 
+items = {}
+
+
 def get_all_items(item_type, location_base):
     settings = get_item_settings(item_type)
-    output = {}
-    fish_file_list = os.listdir(f'{location_base}/{item_type.lower()}')
-    for file in fish_file_list:
-        if file.endswith('.yml'):
-            with open(f'{location_base}/{item_type.lower()}/{file}') as item_file:
-                item_id = file.split('.')[0]
-                item_data = yaml.safe_load(item_file)
-                item_data.update({'item_file_id': item_id})
-                item_object = make_item_class(item_data, settings)
-                output.update({item_id: item_object})
+    if item_type not in items:
+        item_type_list = ['fish']
+        output = {}
+        for list_item in item_type_list:
+            for root, dirs, files in os.walk(f'{location_base}/{list_item.lower()}'):
+                for file in files:
+                    if file.endswith('.yml'):
+                        file_path = (os.path.join(root, file))
+                        with open(file_path) as item_file:
+                            item_id = file.split('.')[0]
+                            item_data = yaml.safe_load(item_file)
+                            item_data.update({'item_file_id': item_id})
+                            item_object = make_item_class(item_data, settings)
+                            output.update({item_id: item_object})
+            items.update({list_item: output})
+    return items[item_type]
+
+
+def get_item_by_name(item_name):
+    all_items = items
+    output = None
+    for cat in all_items:
+        for fid in all_items[cat]:
+            item = all_items[cat][fid]
+            if item.name.lower() == item_name.lower():
+                output = item
+                break
+    return output
+
+
+def get_item_by_id(item_id):
+    all_items = items
+    output = None
+    for cat in all_items:
+        for fid in all_items[cat]:
+            item = all_items[cat][fid]
+            if item.item_file_id.lower() == item_id.lower():
+                output = item
+                break
     return output
 
 
