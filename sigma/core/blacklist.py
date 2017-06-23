@@ -7,6 +7,7 @@ def check_black(db, message):
     black_user = False
     server_is_black = False
     black = False
+    global_user_blacklist = db.find_one('BlacklistedUsers', {'UserID': message.author.id})
     if message.guild:
         if check_admin(message.author, message.channel):
             black = False
@@ -16,7 +17,7 @@ def check_black(db, message):
         user_blacklist = db.get_settings(message.guild.id, 'BlacklistedUsers')
         if not user_blacklist:
             user_blacklist = []
-        if message.author.id in user_blacklist:
+        if message.author.id in user_blacklist or global_user_blacklist:
             black_user = True
         if message.channel.id in channel_blacklist:
             black_channel = True
