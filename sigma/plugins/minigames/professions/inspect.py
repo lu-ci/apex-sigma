@@ -11,7 +11,10 @@ async def inspect(cmd, message, args):
         if inv:
             lookup = ' '.join(args)
             item_o = get_item_by_name(lookup)
-            item = cmd.db.get_inv_item(message.author, item_o.item_file_id)
+            if item_o:
+                item = cmd.db.get_inv_item(message.author, item_o.item_file_id)
+            else:
+                item = None
             if item:
                 connector = 'A'
                 if item_o.rarity_name[0].lower() in ['a', 'e', 'i', 'o', 'u']:
