@@ -1,6 +1,6 @@
 import arrow
 import discord
-from sigma.core.permission import check_man_msg
+from sigma.core.permission import check_man_msg, check_admin
 from sigma.core.utils import user_avatar
 
 
