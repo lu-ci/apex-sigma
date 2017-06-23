@@ -26,15 +26,15 @@ async def inventory(cmd, message, args):
     end_range = page_number * 10
     inv = cmd.db.get_inv(target)
     total_inv = len(inv)
-    inv = inv[start_range:end_range]
+    item_o_list = []
+    for item in inv:
+        item_o = get_item_by_id(item['item_file_id'])
+        item_o_list.append(item_o)
+    inv = item_o_list[start_range:end_range]
     if inv:
         headers = ['Type', 'Item', 'Value', 'Rarity']
         to_format = []
         total_value = 0
-        item_o_list = []
-        for item in inv:
-            item_o = get_item_by_id(item['item_file_id'])
-            item_o_list.append(item_o)
         item_o_list = sorted(item_o_list, key=lambda x: x.rarity, reverse=True)
         for item_o_item in item_o_list:
             to_format.append(
