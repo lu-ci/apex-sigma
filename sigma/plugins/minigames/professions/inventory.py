@@ -36,7 +36,7 @@ async def inventory(cmd, message, args):
         headers = ['Type', 'Item', 'Value', 'Rarity']
         to_format = []
         total_value = 0
-        for item_o_item in item_o_list:
+        for item_o_item in inv:
             to_format.append(
                 [item_o_item.item_type, item_o_item.name, f'{item_o_item.value}', f'{item_o_item.rarity_name.title()}'])
             total_value += item_o_item.value
