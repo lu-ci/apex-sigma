@@ -39,6 +39,7 @@ async def inventory(cmd, message, args):
         for item_o_item in inv:
             to_format.append(
                 [item_o_item.item_type, item_o_item.name, f'{item_o_item.value}', f'{item_o_item.rarity_name.title()}'])
+        for item_o_item in item_o_list:
             total_value += item_o_item.value
         output = boop(to_format, column_names=headers)
         response = discord.Embed(color=0xc16a4f)
