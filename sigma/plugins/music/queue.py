@@ -15,6 +15,10 @@ async def queue(cmd, message, args):
     if message.author.voice:
         if args:
             qry = ' '.join(args)
+            if qry.startswith('<'):
+                qry = qry[1:]
+            if qry.endswith('>'):
+                qry = qry[:-1]
             if '?list=' in qry:
                 list_id = qry.split('list=')[1].split('&')[0]
                 plist = pafy.get_playlist2(list_id)
@@ -34,7 +38,7 @@ async def queue(cmd, message, args):
                         sc_cli = soundcloud.Client(client_id=SoundCloudClientID)
                         sound = sc_cli.get('/resolve', url=qry).fields()
                         sound_type = 1
-                    elif 'bandcamp' in qry:
+                    elif 'bandcamp.com' in qry:
                         await queuebandcamp(cmd, message, args)
                         return
                     else:
@@ -81,16 +85,21 @@ async def queue(cmd, message, args):
                     q_item = await q.get()
                     q_list.append(q_item)
                     await q_bup.put(q_item)
+                q_list_mini = q_list[:5]
                 cmd.music.queues.update({message.guild.id: q_bup})
                 embed = discord.Embed(color=0x0099FF,
-                                      title=f'ℹ The {len(q_list)} Upcoming Songs (Total: {len(list(q_list))})')
-                for item in q_list[:5]:
+                                      title=f'ℹ The {len(q_list_mini)} Upcoming Songs (Total: {len(q_list)})')
+                for item in q_list_mini:
                     if item['type'] == 0:
                         information = f'Requested By: {item["requester"].name}\nDuration: {item["sound"].duration}'
                         embed.add_field(name=item['sound'].title, value=f'```\n{information}\n```', inline=False)
                     elif item['type'] == 1:
                         information = f'Requested By: {item["requester"].name}\nDuration: {time.strftime("%H:%M:%S", time.gmtime(item["sound"]["duration"]//1000))}'
                         embed.add_field(name=item['sound']['title'], value=f'```\n{information}\n```', inline=False)
+                    elif item['type'] == 2:
+                        information = f'Requested By: {item["requester"].name}\nDuration: {time.strftime("%H:%M:%S", time.gmtime(int(item["sound"]["duration"])))}'
+                        embed.add_field(name=f"{item['sound']['artist']} - {item['sound']['title']}",
+                                        value=f'```\n{information}\n```', inline=False)
                 if message.guild.id in cmd.music.repeaters:
                     embed.set_footer(text='The current queue is set to repeat.')
                 else:

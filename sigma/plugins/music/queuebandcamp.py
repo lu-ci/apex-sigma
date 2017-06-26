@@ -6,6 +6,10 @@ from .bandcamp_parser import parse_bandcamp_album
 async def queuebandcamp(cmd, message, args):
     if args:
         qry = ' '.join(args)
+        if qry.startswith('<'):
+            qry = qry[1:]
+        if qry.endswith('>'):
+            qry = qry[:-1]
         if 'bandcamp' in qry:
             initial_response = discord.Embed(color=0xFFCC66, title='💽 Processing...')
             init_resp_msg = await message.channel.send(embed=initial_response)
