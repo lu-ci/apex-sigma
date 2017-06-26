@@ -20,5 +20,4 @@ async def chatterbot_control(ev, message, args):
             except:
                 cw.reset()
                 response = str(cw.say(interaction))
-            async with message.channel.typing():
-                await message.channel.send(message.author.mention + ' ' + response)
+            await message.channel.send(message.author.mention + ' ' + response)
