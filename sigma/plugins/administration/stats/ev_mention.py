@@ -2,11 +2,6 @@ import arrow
 
 
 async def ev_mention(ev, message, args):
-    command_data = {
-        'name': ev.name,
-    }
-    for key in ['global', 'sfw', 'admin', 'partner', 'pmable']:
-        command_data[key] = ev.perm[key]
     if message.guild:
         channel_id = message.channel.id
         guild_id = message.guild.id
