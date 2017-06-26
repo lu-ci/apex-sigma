@@ -86,7 +86,6 @@ async def play(cmd, message, args):
             cmd.music.currents.update({message.guild.id: item})
             sound = item['sound']
             await cmd.music.make_player(bot_voice, item)
-            cmd.db.add_stats('MusicCount')
             embed = discord.Embed(color=0x0099FF)
             if item['type'] == 0:
                 embed.add_field(name='🎵 Now Playing', value=sound.title)
@@ -97,6 +96,11 @@ async def play(cmd, message, args):
             elif item['type'] == 1:
                 embed.add_field(name='🎵 Now Playing', value=sound['title'])
                 embed.set_thumbnail(url=sound['artwork_url'])
+                embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
+                                 icon_url=user_avatar(item['requester']), url=item['url'])
+            elif item['type'] == 2:
+                embed.add_field(name='🎵 Now Playing', value=f"{sound['artist']} - {sound['title']}")
+                embed.set_thumbnail(url=sound['thumbnail'])
                 embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
                                  icon_url=user_avatar(item['requester']), url=item['url'])
             else:

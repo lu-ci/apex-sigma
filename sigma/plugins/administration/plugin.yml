@@ -78,18 +78,6 @@ commands:
       User, Channel and Server.
       If the server type is used, it will send a message to that server's default channel.
 
-  - name: inviteowner
-    alts:
-      - "invown"
-    global:  true
-    enabled: true
-    admin:   true
-    sfw:     true
-    usage:   "{pfx:s}{cmd:s} 200751504175398912"
-    description:
-      Creates a one-use invite link to a server the bot is a part of by inputted ID.
-      The purpose of this command is to investigate possibly abusive servers and quickly troubleshoot possible issues.
-
   - name: searchid
     alts:
       - "srchid"
