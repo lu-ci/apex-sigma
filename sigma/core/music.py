@@ -97,12 +97,28 @@ class Music(object):
                         data_file.write(total_data)
         return file_location
 
+    @staticmethod
+    async def download_bc_data(data):
+        song_id = data['id']
+        output = 'cache/'
+        filename = f'bc_{song_id}'
+        file_location = output + filename
+        if not os.path.exists(file_location):
+            with open(file_location, 'wb') as data_file:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(data['file']) as dl_data:
+                        total_data = await dl_data.read()
+                        data_file.write(total_data)
+        return file_location
+
     async def make_player(self, voice, item):
         location = item['url']
         if item['type'] == 0:
             file_location = self.download_yt_data(location)
         elif item['type'] == 1:
             file_location = await self.download_sc_data(location)
+        elif item['type'] == 2:
+            file_location = await self.download_bc_data(item['sound'])
         else:
             file_location = location
         source = discord.FFmpegPCMAudio(file_location, executable='ffmpeg')

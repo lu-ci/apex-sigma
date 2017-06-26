@@ -7,6 +7,7 @@ import time
 from sigma.plugins.searches.google.yt_search import search_youtube
 from sigma.core.utils import user_avatar
 from .playlist_adder import yt_playlist_adder
+from .queuebandcamp import queuebandcamp
 from config import Prefix, SoundCloudClientID
 
 
@@ -33,6 +34,9 @@ async def queue(cmd, message, args):
                         sc_cli = soundcloud.Client(client_id=SoundCloudClientID)
                         sound = sc_cli.get('/resolve', url=qry).fields()
                         sound_type = 1
+                    elif 'bandcamp' in qry:
+                        await queuebandcamp(cmd, message, args)
+                        return
                     else:
                         response = discord.Embed(color=0xDB0000, title='❗ Unsupported URL Provided')
                         response.set_footer(text='We only support YouTube and SoundCloud for now.')
