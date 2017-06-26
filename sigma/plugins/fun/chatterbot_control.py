@@ -7,7 +7,6 @@ cw = cleverwrap.CleverWrap(CleverBotAPIKey)
 async def chatterbot_control(ev, message, args):
     active = ev.db.get_settings(message.guild.id, 'CleverBot')
     if active:
-        ev.db.add_stats('CBCount')
         mention = f'<@{ev.bot.user.id}>'
         mention_alt = f'<@!{ev.bot.user.id}>'
         if message.content.startswith(mention) or message.content.startswith(mention_alt):

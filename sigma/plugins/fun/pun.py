@@ -4,7 +4,6 @@ import discord
 
 
 async def pun(cmd, message, args):
-    cmd.db.add_stats('CancerCount')
     pun_url = 'http://www.punoftheday.com/cgi-bin/arandompun.pl'
     async with aiohttp.ClientSession() as session:
         async with session.get(pun_url) as data:

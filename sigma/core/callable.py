@@ -108,10 +108,6 @@ class Callable(object):
                 await channel.send(None, embed=error_embed)
             except:
                 pass
-
-        if not self.perm['sfw']:
-            self.db.add_stats('NSFWCount')
-
         if msg:
             await channel.send(msg)
 

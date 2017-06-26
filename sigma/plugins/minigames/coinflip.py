@@ -2,7 +2,6 @@
 import discord
 
 async def coinflip(cmd, message, args):
-    cmd.db.add_stats('CoinFlipCount')
     result = random.choice(['heads', 'tails'])
     urls = {
         'heads': 'https://i.imgur.com/UbsozEv.png',

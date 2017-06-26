@@ -25,7 +25,6 @@ async def spin_slots(cmd, message, bet_amt, symbols, min_spins=4, max_spins=8, s
             await message.channel.send(None, embed=embed)
             return
         cmd.db.take_points(message.guild, message.author, bet_amt)
-        cmd.db.add_stats('SlotsCount')
         embed_colors = [0x990000, 0x0066FF, 0x009900, 0xff9900, 0xCC33FF, 0x990033]
         slot_embed = discord.Embed(color=random.choice(embed_colors))
         slot_back_data.update({message.author.id: current_time})

@@ -8,7 +8,6 @@ alts = load_alternate_command_names()
 
 
 async def help(cmd, message, args):
-    cmd.db.add_stats('HelpCount')
     if not args:
         help_json_url = 'https://canary.discordapp.com/api/guilds/200751504175398912/widget.json'
         async with aiohttp.ClientSession() as session:
