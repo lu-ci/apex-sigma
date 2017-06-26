@@ -112,6 +112,9 @@ async def play(cmd, message, args):
             await bot_voice.disconnect()
         except:
             pass
-        del cmd.music.currents[message.guild.id]
+        try:
+            del cmd.music.currents[message.guild.id]
+        except:
+            pass
     else:
         cmd.log.warning('Play Command Ignored Due To Server Being In The Music Initialization List')
