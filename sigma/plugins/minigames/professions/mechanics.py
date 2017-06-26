@@ -55,6 +55,7 @@ def make_item_id():
 
 def get_item_settings(item_type):
     item_type = item_type.lower()
+
     class ItemOptions(object):
         colors = item_colors[item_type]
         icons = item_icons[item_type]
