@@ -7,7 +7,6 @@ cw = cleverwrap.CleverWrap(CleverBotAPIKey)
 async def chatterbot_control(ev, message, args):
     active = ev.db.get_settings(message.guild.id, 'CleverBot')
     if active:
-        ev.db.add_stats('CBCount')
         mention = f'<@{ev.bot.user.id}>'
         mention_alt = f'<@!{ev.bot.user.id}>'
         if message.content.startswith(mention) or message.content.startswith(mention_alt):
@@ -20,5 +19,4 @@ async def chatterbot_control(ev, message, args):
             except:
                 cw.reset()
                 response = str(cw.say(interaction))
-            async with message.channel.typing():
-                await message.channel.send(message.author.mention + ' ' + response)
+            await message.channel.send(message.author.mention + ' ' + response)

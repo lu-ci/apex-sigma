@@ -10,7 +10,6 @@ async def member_leave_control(ev, member):
     except:
         del_bye = False
     if bye:
-        ev.db.add_stats('ByeCount')
         bye_channel = ev.db.get_settings(server.id, 'ByeChannel')
         bye_message = ev.db.get_settings(server.id, 'ByeMessage')
         bye_message = bye_message.replace('%user_mention%', member.name).replace('%server_name%', server.name)

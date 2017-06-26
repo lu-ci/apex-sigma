@@ -1,7 +1,6 @@
 import pymongo
 
 from .logger import create_logger
-from .db_nodes.stats import add_stats_node, update_population_stats_node, init_stats_table_node
 from .db_nodes.points import point_manipulation, point_grabber
 from .db_nodes.refactor import refactor_servers_node, refactor_users_node
 from .db_nodes.details import update_details
@@ -56,14 +55,6 @@ class Database(object):
         self.db[collection].delete_one(data)
 
     # Side Control Nodes
-    def init_stats_table(self):
-        init_stats_table_node(self.db)
-
-    def add_stats(self, statname):
-        add_stats_node(self.db, statname)
-
-    def update_population_stats(self, servers, members):
-        update_population_stats_node(self.db, servers, members)
 
     def add_points(self, server, user, points):
         point_manipulation(self.db, server, user, points, True)

@@ -1,0 +1,52 @@
+name: Event Stats
+
+categories:
+  - administration
+
+enabled: true
+
+events:
+  - name:    ev_message
+    type:    message
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Controls message event statistics.
+
+  - name:    ev_mention
+    type:    mention
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Control bot mention event statistics.
+
+  - name:    ev_member_join
+    type:    member_join
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Control member join event statistics.
+
+  - name:    ev_member_remove
+    type:    member_leave
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Control member remove event statistics.
+
+  - name:    population_clockwork
+    type:    ready
+    global:  true
+    enabled: true
+    sfw:     true
+    pmable:  true
+    description:
+      Control bot mention event statistics.

@@ -79,7 +79,6 @@ class Callable(object):
         server = message.guild
         channel = message.channel
         author = message.author
-        msg = None
 
         if author.bot:
             return
@@ -94,7 +93,7 @@ class Callable(object):
             return
 
         try:
-            msg = await getattr(self.module, self.name)(self, message, *args)
+            await getattr(self.module, self.name)(self, message, *args)
         except exception as e:
             try:
                 title = '❗ An Error Occurred!'
@@ -108,12 +107,6 @@ class Callable(object):
                 await channel.send(None, embed=error_embed)
             except:
                 pass
-
-        if not self.perm['sfw']:
-            self.db.add_stats('NSFWCount')
-
-        if msg:
-            await channel.send(msg)
 
     async def call_sp(self, member):
         try:

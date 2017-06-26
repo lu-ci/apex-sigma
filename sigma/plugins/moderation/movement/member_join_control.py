@@ -16,7 +16,6 @@ async def member_join_control(ev, member):
     except:
         del_greet = False
     if greet:
-        ev.db.add_stats('GreetCount')
         greet_message = ev.db.get_settings(server.id, 'GreetMessage')
         greet_message = greet_message.replace('%user_mention%', member.mention).replace('%server_name%',
                                                                                         server.name).replace(

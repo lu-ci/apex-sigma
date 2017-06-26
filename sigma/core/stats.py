@@ -1,4 +1,5 @@
 ﻿import yaml
+import arrow
 from config import permitted_id
 import discord
 import datetime
@@ -49,3 +50,26 @@ def multi(msg, log=None):
         log.info(msg)
 
     return msg
+
+
+def add_cmd_stat(db, cmd, message):
+    if not message.author.bot:
+        command_data = {
+            'name': cmd.name,
+        }
+        for key in ['global', 'sfw', 'admin', 'partner', 'pmable']:
+            command_data[key] = cmd.perm[key]
+        if message.guild:
+            channel_id = message.channel.id
+            guild_id = message.guild.id
+        else:
+            channel_id = None
+            guild_id = None
+        stat_data = {
+            'command': command_data,
+            'author': message.author.id,
+            'channel': channel_id,
+            'guild': guild_id,
+            'timestamp': arrow.utcnow().timestamp
+        }
+        db.insert_one('CommandStats', stat_data)

@@ -3,16 +3,14 @@ import datetime
 import arrow
 import discord
 import yaml
-import aiohttp
 
-from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
-from config import UseCachet, CachetToken, CachetURL
+from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass
 from .utils import load_module_list
 from .plugman import PluginManager
 from .database import Database
 from .music import Music
 from .logger import create_logger
-from .stats import stats
+from .stats import stats, add_cmd_stat
 from .command_alts import load_alternate_command_names
 from .blacklist import check_black
 from .blacklist import check_perms
@@ -37,6 +35,7 @@ from .cooldowns import Cooldown
 
 # I love spaghetti!
 # Valebu pls, no take my spaghetti... :'(
+
 class Sigma(discord.AutoShardedClient):
     def __init__(self):
         super().__init__()
@@ -80,28 +79,6 @@ class Sigma(discord.AutoShardedClient):
     def init_logger(self):
         self.log = create_logger('Sigma')
 
-    async def update_discordlist(self):
-        if not DevMode:
-            payload = {
-                "token": DiscordListToken,
-                "servers": len(self.guilds)
-            }
-            url = "https://bots.discordlist.net/api.php"
-            async with aiohttp.ClientSession() as session:
-                conn = await session.post(url, data=payload)
-                await conn.release()
-
-    async def cachet_stat_up(self, metric_id, value):
-        try:
-            headers = {'X-Cachet-Token': CachetToken}
-            payload = {'value': value}
-            url = f"{CachetURL}api/v1/metrics/{metric_id}/points"
-            async with aiohttp.ClientSession() as session:
-                conn = await session.post(url, data=payload, headers=headers)
-                await conn.release()
-        except Exception as e:
-            self.log.error(f'STAT UPDATE FAIL: {e}')
-
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
 
@@ -126,21 +103,12 @@ class Sigma(discord.AutoShardedClient):
 
     async def on_ready(self):
         self.log.info('Connecting To Database')
-        self.db.init_stats_table()
         self.log.info('Making Cache')
         self.create_cache()
         self.log.info('-----------------------------------')
         stats(self, self.log)
         self.db.init_server_settings(self.guilds)
         self.log.info('-----------------------------------')
-        self.log.info('Updating Bot Population Stats...')
-        self.db.update_population_stats(self.guilds, self.get_all_members())
-        # self.log.info('Starting UserList Refactor Node')
-        # self.loop.create_task(self.db.refactor_users(self.get_all_members()))
-        # self.log.info('Starting ServerList Refactor Node')
-        # self.loop.create_task(self.db.refactor_servers(self.guilds))
-        self.log.info('Updating Bot Listing APIs...')
-        self.loop.create_task(self.update_discordlist())
         self.log.info('Launching On-Ready Plugins...')
         for ev_name, event in self.plugin_manager.events['ready'].items():
             try:
@@ -157,7 +125,6 @@ class Sigma(discord.AutoShardedClient):
 
     async def on_message(self, message):
         if self.ready:
-            self.db.add_stats('MSGCount')
             self.message_count += 1
             args = message.content.split(' ')
             # handle mention events
@@ -185,15 +152,13 @@ class Sigma(discord.AutoShardedClient):
                     if not black and permed:
                         try:
                             async with message.channel.typing():
-                                task = self.plugin_manager.commands[cmd].call(message, args)
+                                command = self.plugin_manager.commands[cmd]
+                                task = command.call(message, args)
                                 self.loop.create_task(task)
+                                add_cmd_stat(self.db, command, message)
                         except discord.Forbidden:
                             pass
-                        self.db.add_stats(f'cmd_{cmd}_count')
-                        self.db.add_stats('CMDCount')
                         self.command_count += 1
-                        if UseCachet:
-                            self.loop.create_task(self.cachet_stat_up(1, 1))
                     athr = message.author
                     msg = f'CMD: {cmd} | USR: {athr.name}#{athr.discriminator} [{athr.id}]'
                     if message.guild:
@@ -201,7 +166,6 @@ class Sigma(discord.AutoShardedClient):
                         msg += f' | CHN: #{message.channel.name} [{message.channel.id}]'
                         if args:
                             msg = f'{msg} | ARGS: {" ".join(args)}'
-
                     else:
                         msg += f' | PRIVATE MESSAGE'
                         if args:
@@ -213,36 +177,26 @@ class Sigma(discord.AutoShardedClient):
 
     async def on_member_join(self, member):
         if self.ready:
-            self.db.update_population_stats(self.guilds, self.get_all_members())
             for ev_name, event in self.plugin_manager.events['member_join'].items():
                 task = event.call_sp(member)
                 self.loop.create_task(task)
 
     async def on_member_remove(self, member):
         if self.ready:
-            self.db.update_population_stats(self.guilds, self.get_all_members())
             for ev_name, event in self.plugin_manager.events['member_leave'].items():
                 task = event.call_sp(member)
                 self.loop.create_task(task)
 
     async def on_guild_join(self, server):
-        self.loop.create_task(self.update_discordlist())
         self.db.add_new_server_settings(server)
         # self.db.update_server_details(server)
-        self.db.update_population_stats(self.guilds, self.get_all_members())
         msg = f'INV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
         self.log.info(msg)
         self.db.init_server_settings(self.guilds)
-        if UseCachet:
-            self.loop.create_task(self.cachet_stat_up(3, 1))
 
     async def on_guild_remove(self, server):
-        self.loop.create_task(self.update_discordlist())
-        self.db.update_population_stats(self.guilds, self.get_all_members())
         msg = f'RMV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
         self.log.info(msg)
-        if UseCachet:
-            self.loop.create_task(self.cachet_stat_up(3, -1))
 
     async def on_message_edit(self, before, after):
         for ev_name, event in self.plugin_manager.events['message_edit'].items():
