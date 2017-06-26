@@ -3,10 +3,8 @@ import datetime
 import arrow
 import discord
 import yaml
-import aiohttp
 
-from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass, DiscordListToken, DevMode
-from config import UseCachet, CachetToken, CachetURL
+from config import Prefix, MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass
 from .utils import load_module_list
 from .plugman import PluginManager
 from .database import Database
@@ -37,6 +35,7 @@ from .cooldowns import Cooldown
 
 # I love spaghetti!
 # Valebu pls, no take my spaghetti... :'(
+
 class Sigma(discord.AutoShardedClient):
     def __init__(self):
         super().__init__()
@@ -79,17 +78,6 @@ class Sigma(discord.AutoShardedClient):
 
     def init_logger(self):
         self.log = create_logger('Sigma')
-
-    async def cachet_stat_up(self, metric_id, value):
-        try:
-            headers = {'X-Cachet-Token': CachetToken}
-            payload = {'value': value}
-            url = f"{CachetURL}api/v1/metrics/{metric_id}/points"
-            async with aiohttp.ClientSession() as session:
-                conn = await session.post(url, data=payload, headers=headers)
-                await conn.release()
-        except Exception as e:
-            self.log.error(f'STAT UPDATE FAIL: {e}')
 
     def init_databases(self):
         self.db = Database(MongoAddress, MongoPort, MongoAuth, MongoUser, MongoPass)
@@ -169,8 +157,6 @@ class Sigma(discord.AutoShardedClient):
                         except discord.Forbidden:
                             pass
                         self.command_count += 1
-                        if UseCachet:
-                            self.loop.create_task(self.cachet_stat_up(1, 1))
                     athr = message.author
                     msg = f'CMD: {cmd} | USR: {athr.name}#{athr.discriminator} [{athr.id}]'
                     if message.guild:
@@ -205,14 +191,10 @@ class Sigma(discord.AutoShardedClient):
         msg = f'INV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
         self.log.info(msg)
         self.db.init_server_settings(self.guilds)
-        if UseCachet:
-            self.loop.create_task(self.cachet_stat_up(3, 1))
 
     async def on_guild_remove(self, server):
         msg = f'RMV | SRV: {server.name} [{server.id}] | OWN: {server.owner.name} [{server.owner.id}]'
         self.log.info(msg)
-        if UseCachet:
-            self.loop.create_task(self.cachet_stat_up(3, -1))
 
     async def on_message_edit(self, before, after):
         for ev_name, event in self.plugin_manager.events['message_edit'].items():
