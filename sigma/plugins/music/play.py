@@ -31,8 +31,7 @@ def music_is_ongoing(cmd, sid, voice_instance):
 async def play(cmd, message, args):
     if args:
         task = cmd.bot.plugin_manager.commands['queue'].call(message, args)
-        cmd.bot.loop.create_task(task)
-        await asyncio.sleep(3)
+        await task
     if message.guild.id not in cmd.music.initializing:
         bot_voice = message.guild.voice_client
         if not message.author.voice:
