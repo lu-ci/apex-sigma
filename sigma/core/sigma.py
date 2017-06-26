@@ -10,7 +10,7 @@ from .plugman import PluginManager
 from .database import Database
 from .music import Music
 from .logger import create_logger
-from .stats import stats
+from .stats import stats, add_cmd_stat
 from .command_alts import load_alternate_command_names
 from .blacklist import check_black
 from .blacklist import check_perms
@@ -152,8 +152,10 @@ class Sigma(discord.AutoShardedClient):
                     if not black and permed:
                         try:
                             async with message.channel.typing():
-                                task = self.plugin_manager.commands[cmd].call(message, args)
+                                command = self.plugin_manager.commands[cmd]
+                                task = command.call(message, args)
                                 self.loop.create_task(task)
+                                add_cmd_stat(self.db, command, message)
                         except discord.Forbidden:
                             pass
                         self.command_count += 1
