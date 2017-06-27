@@ -8,7 +8,7 @@ async def unflip_control(ev, message, args):
             if ev.db.get_settings(message.guild.id, 'Unflip'):
                 unflip = True
         if unflip:
-            add_special_stats(ev.db, 'tables_unflip')
+            add_special_stats(ev.db, 'tables_fixed')
             table = ['┬─┬ ノ( ^_^ノ)',
                      '┬─┬ ﾉ(° -°ﾉ)',
                      '┬─┬ ノ(゜-゜ノ)',
