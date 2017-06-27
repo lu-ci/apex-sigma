@@ -1,4 +1,4 @@
-async def ev_member_join(ev, message, args):
+async def ev_member_join(ev, member):
     def_stat_data = {
         'event': 'member_join',
         'count': 0

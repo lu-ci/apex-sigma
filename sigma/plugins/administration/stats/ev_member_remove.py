@@ -1,4 +1,4 @@
-async def ev_member_remove(ev, message, args):
+async def ev_member_remove(ev, member):
     def_stat_data = {
         'event': 'member_remove',
         'count': 0
