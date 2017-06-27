@@ -54,7 +54,8 @@ async def play(cmd, message, args):
                     if can_connect and can_talk:
                         bot_voice = await message.author.voice.channel.connect()
                     else:
-                        embed = discord.Embed(title=f'⚠ I am not allowed to join {message.author.voice.channel.name}.', color=0xFF9900)
+                        embed = discord.Embed(title=f'⚠ I am not allowed to join {message.author.voice.channel.name}.',
+                                              color=0xFF9900)
                         await message.channel.send(None, embed=embed)
                         return
                 except discord.ClientException:
