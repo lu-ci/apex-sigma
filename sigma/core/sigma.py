@@ -155,7 +155,7 @@ class Sigma(discord.AutoShardedClient):
                                 command = self.plugin_manager.commands[cmd]
                                 task = command.call(message, args)
                                 self.loop.create_task(task)
-                                add_cmd_stat(self.db, command, message)
+                                add_cmd_stat(self.db, command, message, args)
                         except discord.Forbidden:
                             pass
                         self.command_count += 1

@@ -1,18 +1,16 @@
-import arrow
-
-
 async def ev_message(ev, message, args):
-    if message.guild:
-        channel_id = message.channel.id
-        guild_id = message.guild.id
-    else:
-        channel_id = None
-        guild_id = None
-    stat_data = {
+    def_stat_data = {
         'event': 'message',
-        'author': message.author.id,
-        'channel': channel_id,
-        'guild': guild_id,
-        'timestamp': arrow.utcnow().timestamp
+        'count': 0
     }
-    ev.db.insert_one('EventStats', stat_data)
+    collection = 'EventStats'
+    check = ev.db.find_one(collection, {"event": 'message'})
+    if not check:
+        ev.db.insert_one(collection, def_stat_data)
+        ev_count = 0
+    else:
+        ev_count = check['count']
+    ev_count += 1
+    updatetarget = {"event": 'message'}
+    updatedata = {"$set": {'count': ev_count}}
+    ev.db.update_one(collection, updatetarget, updatedata)

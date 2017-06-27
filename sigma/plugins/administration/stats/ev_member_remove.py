@@ -1,11 +1,16 @@
-import arrow
-
-
-async def ev_member_remove(ev, member):
-    stat_data = {
+async def ev_member_remove(ev, message, args):
+    def_stat_data = {
         'event': 'member_remove',
-        'author': member.id,
-        'guild': member.guild.id,
-        'timestamp': arrow.utcnow().timestamp
+        'count': 0
     }
-    ev.db.insert_one('EventStats', stat_data)
+    collection = 'EventStats'
+    check = ev.db.find_one(collection, {"event": 'member_remove'})
+    if not check:
+        ev.db.insert_one(collection, def_stat_data)
+        ev_count = 0
+    else:
+        ev_count = check['count']
+    ev_count += 1
+    updatetarget = {"event": 'member_remove'}
+    updatedata = {"$set": {'count': ev_count}}
+    ev.db.update_one(collection, updatetarget, updatedata)

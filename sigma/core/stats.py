@@ -52,7 +52,7 @@ def multi(msg, log=None):
     return msg
 
 
-def add_cmd_stat(db, cmd, message):
+def add_cmd_stat(db, cmd, message, args):
     if not message.author.bot:
         command_data = {
             'name': cmd.name,
@@ -67,6 +67,7 @@ def add_cmd_stat(db, cmd, message):
             guild_id = None
         stat_data = {
             'command': command_data,
+            'args': args,
             'author': message.author.id,
             'channel': channel_id,
             'guild': guild_id,
