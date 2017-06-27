@@ -14,8 +14,6 @@ async def queuebandcamp(cmd, message, args):
             initial_response = discord.Embed(color=0xFFCC66, title='💽 Processing...')
             init_resp_msg = await message.channel.send(embed=initial_response)
             songlist = await parse_bandcamp_album(qry)
-            detection_response = discord.Embed(color=0xFFCC66, title=f'💽 Importing {len(songlist)} songs...')
-            await init_resp_msg.edit(embed=detection_response)
             for song in songlist:
                 sound_type = 2
                 data = {
@@ -26,7 +24,12 @@ async def queuebandcamp(cmd, message, args):
                     'timestamp': arrow.now().timestamp
                 }
                 await cmd.bot.music.add_to_queue(message.guild.id, data)
-            finished_response = discord.Embed(color=0xFFCC66, title=f'💽 Done! {len(songlist)} songs were imported!')
+            if len(songlist) > 1:
+                finished_response = discord.Embed(color=0xFFCC66,
+                                                  title=f'💽 Done! {len(songlist)} songs were imported!')
+            else:
+                resp_title = f'💽 Done! {songlist[0]["artist"]} - {songlist[0]["title"]} was imported!'
+                finished_response = discord.Embed(color=0xFFCC66, title=resp_title)
             await init_resp_msg.edit(embed=finished_response)
         else:
             no_qry_resp = discord.Embed(color=0xDB0000, title='❗ Not a BandCamp URL.')

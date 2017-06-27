@@ -17,7 +17,11 @@ async def parse_bandcamp_album(url):
     end = tr_album_data.find('\n', tr_album_data.find('"url"'))
     url = tr_album_data[start:end]
     formatted_url = url[7:-2]
-    formatted_url = formatted_url.replace('"', '').replace(' ', '').split('+')
+    if formatted_url.find('" + "') == -1:
+        formatted_url = formatted_url.split('/track/')
+        formatted_url[1] = '/track/' + formatted_url[1]
+    else:
+        formatted_url = formatted_url.replace('"', '').replace(' ', '').split('+')
     formatted_url = '"url_base":"{}",\n"url_album":"{}",'.format(formatted_url[0], formatted_url[1])
     tr_album_data = tr_album_data.replace(url, formatted_url)
     tr_album_data = json.loads(tr_album_data)  # parsing as JSON
