@@ -74,3 +74,21 @@ def add_cmd_stat(db, cmd, message, args):
             'timestamp': arrow.utcnow().timestamp
         }
         db.insert_one('CommandStats', stat_data)
+
+
+def add_special_stats(db, stat_name):
+    collection = 'SpecialStats'
+    def_stat_data = {
+        'name': stat_name,
+        'count': 0
+    }
+    check = db.find_one(collection, {"name": stat_name})
+    if not check:
+        db.insert_one(collection, def_stat_data)
+        ev_count = 0
+    else:
+        ev_count = check['count']
+    ev_count += 1
+    updatetarget = {"name": stat_name}
+    updatedata = {"$set": {'count': ev_count}}
+    db.update_one(collection, updatetarget, updatedata)

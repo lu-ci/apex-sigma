@@ -1,5 +1,5 @@
 ﻿import random
-
+from sigma.core.stats import add_special_stats
 
 async def unflip_control(ev, message, args):
     if '(╯°□°）╯︵ ┻━┻' in message.content:
@@ -8,6 +8,7 @@ async def unflip_control(ev, message, args):
             if ev.db.get_settings(message.guild.id, 'Unflip'):
                 unflip = True
         if unflip:
+            add_special_stats(ev.db, 'tables_unflip')
             table = ['┬─┬ ノ( ^_^ノ)',
                      '┬─┬ ﾉ(° -°ﾉ)',
                      '┬─┬ ノ(゜-゜ノ)',

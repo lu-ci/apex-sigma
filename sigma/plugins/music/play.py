@@ -1,6 +1,7 @@
 ﻿import discord
 import asyncio
 from sigma.core.utils import user_avatar
+from sigma.core.stats import add_special_stats
 from .init_clock import init_clock
 
 
@@ -86,6 +87,7 @@ async def play(cmd, message, args):
             cmd.music.currents.update({message.guild.id: item})
             sound = item['sound']
             await cmd.music.make_player(bot_voice, item)
+            add_special_stats(cmd.db, 'songs_played')
             embed = discord.Embed(color=0x0099FF)
             if item['type'] == 0:
                 embed.add_field(name='🎵 Now Playing', value=sound.title)
