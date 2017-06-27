@@ -110,10 +110,10 @@ commands:
     global:  true
     enabled: true
     sfw:     true
-    usage:   "{pfx:s}{cmd:s} Pizza Burgers Both"
+    usage:   "{pfx:s}{cmd:s} Pizza; Burgers; Both"
     description:
       The bot will select a thing from the inputed list.
-      Separate list items with a space.
+      Separate list items with a semicolon and space.
 
   - name: poll
     global:  true

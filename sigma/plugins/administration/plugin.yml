@@ -28,7 +28,7 @@ commands:
     description:
       Takes away the inputted amount of minigame points from the mentioned user.
 
-  - name: announce
+  - name: announceglobal
     alts:
       - "ann"
     global:  true
@@ -98,7 +98,7 @@ commands:
     description:
       Repeats the given text.
 
-  - name:    kill
+  - name:    shutdown
     global:  true
     admin:   true
     enabled: true

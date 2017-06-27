@@ -2,10 +2,9 @@
 import discord
 
 
-async def announce(cmd, message, args):
+async def announceglobal(cmd, message, args):
     if not args:
-        out_content = discord.Embed(type='rich', color=0xDB0000,
-                                    title='❗ Empty Message.')
+        out_content = discord.Embed(type='rich', color=0xDB0000, title='❗ Empty Message.')
         await message.channel.send(None, embed=out_content)
         return
     else:

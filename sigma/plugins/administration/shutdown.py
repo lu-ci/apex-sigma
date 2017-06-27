@@ -2,9 +2,9 @@
 from config import permitted_id
 
 
-async def kill(cmd, message, args):
+async def shutdown(cmd, message, args):
     if message.author.id in permitted_id:
-        status = discord.Embed(title=':skull_crossbones: Sigma Shutting Down.', color=0x808080)
+        status = discord.Embed(title=f':skull_crossbones: {cmd.bot.user.name} Shutting Down.', color=0x808080)
         try:
             await message.channel.send(None, embed=status)
         except:
