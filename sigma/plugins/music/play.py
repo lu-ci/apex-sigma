@@ -1,4 +1,5 @@
-﻿import discord
+﻿import time
+import discord
 import asyncio
 from sigma.core.utils import user_avatar
 from sigma.core.stats import add_special_stats
@@ -105,6 +106,8 @@ async def play(cmd, message, args):
                 embed.set_thumbnail(url=sound['thumbnail'])
                 embed.set_author(name=f'{item["requester"].name}#{item["requester"].discriminator}',
                                  icon_url=user_avatar(item['requester']), url=item['url'])
+                duration = f'Duration: {time.strftime("%H:%M:%S", time.gmtime(int(item["sound"]["duration"])))}'
+                embed.set_footer(text=duration)
             else:
                 return
             await message.channel.send(None, embed=embed)
