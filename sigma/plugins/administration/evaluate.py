@@ -21,8 +21,7 @@ async def evaluate(cmd, message, args):
                         pass
             except Exception as e:
                 cmd.log.error(e)
-                status = discord.Embed(type='rich', color=0xDB0000,
-                                       title='❗ Error')
+                status = discord.Embed(color=0xDB0000, title='❗ Error')
                 status.add_field(name='Execution Failed', value=str(e))
             await message.channel.send(None, embed=status)
     else:

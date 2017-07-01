@@ -87,7 +87,10 @@ async def play(cmd, message, args):
                 await cmd.music.add_to_queue(message.guild.id, item)
             cmd.music.currents.update({message.guild.id: item})
             sound = item['sound']
-            await cmd.music.make_player(bot_voice, item)
+            try:
+                await cmd.music.make_player(bot_voice, item)
+            except:
+                pass
             add_special_stats(cmd.db, 'songs_played')
             embed = discord.Embed(color=0x0099FF)
             if item['type'] == 0:

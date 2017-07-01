@@ -1,4 +1,5 @@
-﻿import random
+﻿import json
+import random
 import aiohttp
 import discord
 
@@ -21,7 +22,8 @@ async def numberfact(cmd, message, args):
         url = 'http://numbersapi.com/' + number + '/' + fact_type + '?json'
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as data:
-            data = await data.json()
+            data = await data.read()
+            data = json.loads(data)
     fact = data['text']
     embed.add_field(name=':four: Number Fact', value='```\n' + fact + '\n```')
     await message.channel.send(None, embed=embed)
