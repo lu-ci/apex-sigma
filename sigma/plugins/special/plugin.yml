@@ -5,6 +5,13 @@ categories:
 
 enabled: true
 
+commands:
+  - name:    smitten
+    global:  true
+    enabled: true
+    pmable:  true
+    sfw:     true
+
 events:
   - name:    accept
     type:    message
