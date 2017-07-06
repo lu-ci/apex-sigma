@@ -15,6 +15,7 @@ async def impersonate(cmd, message, args):
             chain_data = cmd.db.find_one('MarkovChains', {'UserID': target.id})
             if chain_data:
                 total_string = ' '.join(chain_data['Chain'])
+                total_string = ftfy.fix_text(total_string)
                 chain = markovify.Text(total_string)
                 sentence = chain.make_sentence(tries=100)
                 if not sentence:

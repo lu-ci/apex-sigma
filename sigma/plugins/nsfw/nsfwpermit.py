@@ -12,6 +12,5 @@ async def nsfwpermit(cmd, message, args):
         else:
             embed = discord.Embed(color=0xFF9900, title=':fire: The NSFW Module has been Disabled for ' + channel.name)
     else:
-        embed = discord.Embed(type='rich', color=0xDB0000,
-                               title='⛔ Insufficient Permissions. Server Admin Only.')
+        embed = discord.Embed(type='rich', color=0xDB0000, title='⛔ Insufficient Permissions. Server Admin Only.')
     await message.channel.send(None, embed=embed)

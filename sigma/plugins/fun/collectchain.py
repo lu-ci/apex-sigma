@@ -50,23 +50,24 @@ async def collectchain(cmd, message, args):
                                 if len(log.content) > 3:
                                     if not check_for_bot_prefixes(log.content):
                                         if 'http' not in log.content and '```' not in log.content:
-                                            content = log.content
-                                            if log.mentions:
-                                                for mention in log.mentions:
-                                                    content = content.replace(mention.mention, mention.name)
-                                            if log.channel_mentions:
-                                                for mention in log.channel_mentions:
-                                                    content = content.replace(mention.mention, mention.name)
-                                            unallowed_chars = ['`', '\n', '\\', '\\n']
-                                            for char in unallowed_chars:
-                                                content = content.replace(char, '')
-                                            if len(content) > 48:
-                                                if not content.endswith(('.' or '?' or '!')):
-                                                    content += '.'
-                                            collection.append(content)
-                                            collected += 1
-                                            if collected >= 3000:
-                                                break
+                                            if '"' not in log.content:
+                                                content = log.content
+                                                if log.mentions:
+                                                    for mention in log.mentions:
+                                                        content = content.replace(mention.mention, mention.name)
+                                                if log.channel_mentions:
+                                                    for mention in log.channel_mentions:
+                                                        content = content.replace(mention.mention, mention.name)
+                                                unallowed_chars = ['`', '\n', '\\', '\\n']
+                                                for char in unallowed_chars:
+                                                    content = content.replace(char, '')
+                                                if len(content) > 12:
+                                                    if not content.endswith(('.' or '?' or '!')):
+                                                        content += '.'
+                                                collection.append(content)
+                                                collected += 1
+                                                if collected >= 3000:
+                                                    break
                 cmd.db.delete_one('MarkovChains', {'UserID': target.id})
                 data = {
                     'UserID': target.id,
