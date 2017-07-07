@@ -56,14 +56,22 @@ donors:
     avatar: "https://i.imgur.com/uupdRYa.png"
     duid:   182944830354227200
   - name:   "Cloverfear"
-    tier:   3
+    tier:   4
     avatar: "https://i.imgur.com/Dt2lAVc.png"
     duid:   130605131182899200
+  - name:   "KeithAlmli"
+    tier:   2
+    avatar: "https://i.imgur.com/CeB0qBr.png"
+    duid:   253358589601644548
+  - name:   "FireWoodCut"
+    tier:   2
+    avatar: "https://i.imgur.com/hhXbedN.gif"
+    duid:   58277187530268672
   - name:   "DanDay21"
-    tier:   3
+    tier:   4
     avatar: "https://i.imgur.com/pOoR9XK.png"
     duid:   285232223127601152
   - name:   "Nighty Nee-chan"
-    tier:   3
+    tier:   4
     avatar: "https://i.imgur.com/LwG03xc.png"
     duid:   222234484064518156
